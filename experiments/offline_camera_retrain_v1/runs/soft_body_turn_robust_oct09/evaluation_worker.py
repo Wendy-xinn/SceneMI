@@ -2,9 +2,15 @@ import json,time,subprocess,os,traceback
 from pathlib import Path
 p=Path(__file__).parent
 try:
+ failed_checks=0
  while True:
   status=json.loads((p/'status.json').read_text())
-  if status['status']=='failed':raise RuntimeError('Training failed')
+  if status['status']=='failed':
+   # A restarted trainer imports torch before replacing an old failed state.
+   # Require repeated failure checks rather than exiting on that startup race.
+   failed_checks+=1
+   if failed_checks>=3:raise RuntimeError('Training failed')
+  else:failed_checks=0
   if status['status']=='trained':break
   time.sleep(10)
  logs=p/'evaluation.log'

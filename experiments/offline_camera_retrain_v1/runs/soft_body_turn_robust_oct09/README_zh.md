@@ -9,7 +9,7 @@
 - noise_gate / orientation_v4：以v3时间归一化为基础，仅短时转速和累计转角的权重由alpha改为alpha²；绝对头部/骨盆/腿部朝向仍乘alpha。
 - neck_parent / orientation_v5：在v4上增加0.25倍的GT全局颈部父节点（关节12）朝向损失，乘alpha²。目标来自训练GT，不是硬拟合输入相机。其梯度经过上身父链，不经过头部局部关节。
 
-alpha为当前扩散时刻的累计干净信号比例。两组训练单独运行并记录sample_trace。尚未通过结果验收，不启动新55k。
+alpha为当前扩散时刻的累计干净信号比例。两组训练单独运行并记录sample_trace。结果已完成：neck_parent有小幅支撑收益，转身与不可靠轨迹尚未解决；保留研究候选，不启动新55k。详见ASSESSMENT_zh.md。
 
 ## 评估协议
 
