@@ -10,6 +10,7 @@
 | 10月7日三数据集汇报55k | `canonical_smpl_3dataset_20hz_55k_oct07`；`report55k_fullval_oct07` |
 | 原生20Hz汇报对照55k | `canonical_smpl_3dataset_native20_faceout_55k_oct07`；`report55k_native20_fullval_oct07` |
 | 动态场景/接触修复55k（当前主线） | `native_dynamic_scene20_contact_55k_oct07`；含 `RESULTS_zh.md`、全量验证及场景作用示例 |
+| 头部观测类型与可靠性筛选 | `typed_head_track_oct10`；四组500步及7936次配对预测，无候选通过联合验收，保留源码/报告/权重 |
 | 转身尝试 | `turn_repair_oct08`、`turn_generalization_oct09`、`turn_balance_oct09`、`soft_body_turn_robust_oct09`；全部保留 |
 
 其他尚不能确认无用的坐标/数据对照、输入审计和可视化验收也暂时保留。所有 `data/` 缓存、共享训练/评估/导出/测试代码及清理前未提交的修改均保留。

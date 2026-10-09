@@ -29,11 +29,11 @@ def main():
                     paired['/'.join((condition,subset,candidate+'-'+reference,metric))]=dict(difference=float(d.mean()),exploratory_sequence_bootstrap95=np.quantile(boot,[.025,.975]).tolist())
     (OUT/'joint_paired_intervals.json').write_text(json.dumps(paired,indent=2))
     def table(condition,subset='all'):
-        data=summary[condition][subset]['variants'];s='| 方案 | W-MPJPE cm | PA-MPJPE mm | 骨盆朝向 ° | 脚滑 cm/帧 | 悬浮 cm | 反向转身 | 转角不足 |\n|---|---:|---:|---:|---:|---:|---:|---:|\n'
+        data=summary[condition][subset]['variants'];s='| 方案 | W-MPJPE cm | PA-MPJPE mm | 骨盆朝向 ° | 脚滑 cm/帧 | 悬浮 cm | 穿透代理 cm | 反向转身 | 转角不足 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|\n'
         for label in LABELS:
             v=data[label]
             def percent(key):return '—' if v[key] is None else f'{100*v[key]:.1f}%'
-            s+=f"| {label} | {v['mpjpe_cm']:.3f} | {v['pa_mpjpe_mm']:.2f} | {v['pelvis_orientation_mean_deg']:.2f} | {v['gt_stance_slide_cm_frame']:.3f} | {100*v['support_floating_m']:.3f} | {percent('opposite_turn')} | {percent('under_turn')} |\n"
+            s+=f"| {label} | {v['mpjpe_cm']:.3f} | {v['pa_mpjpe_mm']:.2f} | {v['pelvis_orientation_mean_deg']:.2f} | {v['gt_stance_slide_cm_frame']:.3f} | {100*v['support_floating_m']:.3f} | {100*v['support_penetration_m']:.3f} | {percent('opposite_turn')} | {percent('under_turn')} |\n"
         return s
     report='''# 头部观测类型与可靠性短训结果
 
@@ -45,6 +45,10 @@ camera_control输入相机轨迹；其余输入理想人体头部关节。joint_
 
 '''+table('clean')+'\n## 大转身干净输入\n\n'+table('clean','turn_bin/large_turn')+'\n## 漂移和半秒缺失（144窗口）\n\n'+table('drift_gap')+'\n## 大转身漂移和缺失\n\n'+table('drift_gap','turn_bin/large_turn')+'\n## 只有头部位置，没有旋转\n\n'+table('position_only')
     report+='''
+## 验收结论
+
+当前没有候选通过方向、误差与支撑的联合验收，未启动新55k。噪声组的悬浮降低伴随穿透代理升高；具体收益、失败项与下一步见[ASSESSMENT_zh.md](ASSESSMENT_zh.md)和[NEXT_zh.md](NEXT_zh.md)。
+
 ## 解释边界
 
 - head_joint条件来自GT，只代表正确解剖语义的理想观测。相机→关节函数已经通过非单位安装旋转、旋转平移偏置验证，但真实PV标定/视频估计尚未验证，不能用GT反推安装关系作为实际推理方案。
