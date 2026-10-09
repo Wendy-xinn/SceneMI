@@ -618,7 +618,7 @@ class MDM_Scene_UNET(nn.Module):
 
         self.imputation = imputation
         self.imputation_timestep = imputation_timestep
-        self.time_weight = self.mask_weight(self.imputation)
+        self.register_buffer('time_weight', self.mask_weight(self.imputation), persistent=False)
 
         self.pose_rep = pose_rep
         self.glob = glob
@@ -648,6 +648,8 @@ class MDM_Scene_UNET(nn.Module):
 
         self.wo_frame_feature = kargs['wo_frame_feature']
         self.wo_scene_feature = kargs['wo_scene_feature']
+        self.offline_camera_condition = kargs.get('offline_camera_condition', False)
+        self.offline_sparse_control = kargs.get('offline_sparse_control', False)
 
         self.cond_beta = kargs['beta']
         self.body_abstract= kargs['body_abstract'] 
@@ -687,10 +689,20 @@ class MDM_Scene_UNET(nn.Module):
         
 
         self.add_mask = True
+        if self.offline_camera_condition:
+            self.camera_process = MLPNet(activation='mish', input_size=9,
+                                         hid_layer=None, output_size=32)
+        if self.offline_sparse_control:
+            self.sparse_control_process = MLPNet(activation='mish', input_size=22 * 10,
+                                                 hid_layer=[256], output_size=64)
         if self.add_mask:
-            added_channels = self.cond_latent_dim + 1
+            added_channels = (self.cond_latent_dim + 1
+                              + (32 if self.offline_camera_condition else 0)
+                              + (64 if self.offline_sparse_control else 0))
         else:
-            added_channels = self.cond_latent_dim
+            added_channels = (self.cond_latent_dim
+                              + (32 if self.offline_camera_condition else 0)
+                              + (64 if self.offline_sparse_control else 0))
 
 
         self.normalize_output = kargs.get('normalize_encoder_output', False)
@@ -817,7 +829,7 @@ class MDM_Scene_UNET(nn.Module):
     def mask_weight(self, imputation):
         t1 = self.imputation_timestep
         step = 1000
-        time_weight = torch.ones((step,1,1,1)).float().cuda()
+        time_weight = torch.ones((step,1,1,1)).float()
 
         if imputation == "all":
             return time_weight
@@ -866,12 +878,18 @@ class MDM_Scene_UNET(nn.Module):
         if not self.wo_scene_feature:
             scene_emb = self.scene_embedding(cond).unsqueeze(0)  # [1, b, d]
 
-            if sampling:
-                force_mask = y.get('uncond', False)
-                if force_mask:
-                    free_ind = torch.ones(scene_emb.shape[1]).bool().to(scene_emb.device)
-                else:
-                    free_ind = torch.zeros(scene_emb.shape[1]).bool().to(scene_emb.device)
+            force_mask = y.get('uncond', False)
+            if force_mask:
+                free_ind = torch.ones(scene_emb.shape[1]).bool().to(scene_emb.device)
+            elif sampling:
+                free_ind = torch.zeros(scene_emb.shape[1]).bool().to(scene_emb.device)
+            elif self.free_p <= 0:
+                # Do not consume the global Torch RNG when dropout is disabled.
+                # This matters for strictly paired scene/no-scene experiments:
+                # their subsequent diffusion noise must remain identical.
+                free_ind = torch.zeros(scene_emb.shape[1]).bool().to(scene_emb.device)
+            elif self.free_p >= 1:
+                free_ind = torch.ones(scene_emb.shape[1]).bool().to(scene_emb.device)
             else:
                 free_ind = torch.rand(scene_emb.shape[1]).to(scene_emb.device) < self.free_p
             scene_emb[:,free_ind] = 0.
@@ -882,6 +900,8 @@ class MDM_Scene_UNET(nn.Module):
             emb = t_emb
 
         emb = emb.squeeze(0)  # [bs, d]
+        if y.get('native_body_embedding') is not None:
+            emb = emb + y['native_body_embedding']
         
         if self.cond_beta:
             beta_emb = self.beta_process(y['body_abstract'])    
@@ -897,9 +917,29 @@ class MDM_Scene_UNET(nn.Module):
 
             frame_emb = self.cond_process(frame_feature).permute(1, 0, 2) #.permute(0,2,1).unsqueeze(2) [bs, d=128, nfeats, nframes]
             x = torch.cat((x, frame_emb), axis=2)   # [seqlen, bs, input_d + cond_d]
+
+        if self.offline_camera_condition:
+            camera_feature = y['camera_trajectory']
+            if camera_feature.shape != (bs, nframes, 9):
+                raise ValueError(f'Expected camera trajectory {(bs, nframes, 9)}, got {camera_feature.shape}')
+            camera_emb = self.camera_process(camera_feature).permute(1, 0, 2)
+            x = torch.cat((x, camera_emb), axis=2)
+
+        if self.offline_sparse_control:
+            sparse_control = y['sparse_control']
+            if sparse_control.shape != (bs, nframes, 22, 10):
+                raise ValueError(
+                    f'Expected sparse control {(bs, nframes, 22, 10)}, got {sparse_control.shape}')
+            control_emb = self.sparse_control_process(
+                sparse_control.reshape(bs, nframes, -1)).permute(1, 0, 2)
+            x = torch.cat((x, control_emb), axis=2)
         
-        assert nframes == 121 #, f"the input should be 121 frames not {nframes}"
-        x = F.pad(x, (0, 0, 0, 0, 0, 128 - nframes), value=0)
+        offline_variable_length = self.offline_camera_condition or self.offline_sparse_control
+        if not offline_variable_length:
+            assert nframes == 121
+            x = F.pad(x, (0, 0, 0, 0, 0, 128 - nframes), value=0)
+        elif nframes % 8:
+            raise ValueError('Offline SceneMI U-Net requires frame count divisible by 8')
 
         x = self.unet(
             x,

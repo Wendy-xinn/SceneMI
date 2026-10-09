@@ -1,0 +1,7 @@
+# 本地代码备份（2026-10-09）
+
+此备份保留SceneMI修改、混合原生SMPL/SMPL-X训练与预处理代码、因果动态场景、RICH接触、评估及朝向/头部约束实验。数据、人体模型、权重、临时日志、wheel和第三方PerspectiveFields检出不上传。
+
+当前长训55k已完成。时间归一化v3的1k短训已完成；训练期头部硬旋转v3_hard和后续固定评估通过turn_balance_oct09/recover_pipeline.py恢复，结果以该实验目录的状态与报告为准，不提前视为验收通过。
+
+运行需要scenemi环境、原始数据及兄弟目录diffusion-motion-inbetweening。docs/local_dependencies下备份了该目录中被SceneMI直接使用的本地辅助代码及来源提交，恢复时复制到对应相对路径。PerspectiveFields通过requirements中的固定上游提交安装。训练权重仍保存在本机；此Git备份只能恢复代码和报告。

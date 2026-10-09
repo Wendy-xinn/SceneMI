@@ -24,7 +24,7 @@ from scipy.spatial.transform import Rotation
 from common.quaternion import *
 from common.utils import point2point_signed
 
-from utils_transform import *
+from utils.utils_transform import *
 
 
 def fixseed(seed):

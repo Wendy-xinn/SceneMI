@@ -24,7 +24,6 @@ from common.quaternion import *
 from os.path import join as pjoin
 import pickle
 import smplx
-import smplx_model
 import torch.nn as nn
 
 import pdb
@@ -281,7 +280,7 @@ class GaussianDiffusion:
         #        batch_size=self.nframes * self.bs,
         #        ).to('cuda').eval()
         
-        self.smplx_model = smplx_model.create(model_path="./body_models/",
+        self.smplx_model = smplx.create(model_path="./body_models/",
                 model_type='smplx',
                 gender="neutral",
                 use_pca=False,
