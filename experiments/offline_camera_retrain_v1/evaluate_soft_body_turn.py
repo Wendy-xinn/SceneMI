@@ -53,7 +53,15 @@ def main():
         assert all(torch.isfinite(parameter).all() for parameter in model.parameters())
         models[label] = model; configs[label] = config
         del checkpoint
-    assert len({config['source_hash'] for config in configs.values()}) == 1
+    candidate_hashes={configs[label]['source_hash'] for label in ('noise_gate','neck_parent')}
+    assert len(candidate_hashes)==1
+    if configs['v3']['source_hash'] not in candidate_hashes:
+        from types import SimpleNamespace
+        from experiments.offline_camera_retrain_v1.source_recovery_contract import validate_source_recovery
+        from experiments.offline_camera_retrain_v1.train import fingerprint
+        audit_path=OUT/'source_recovery_audit.json'
+        validate_source_recovery(audit_path,configs['v3']['source_hash'],SimpleNamespace(**configs['noise_gate']))
+        assert all(configs[label].get('source_recovery_audit_sha256')==fingerprint([audit_path.resolve()]) for label in ('noise_gate','neck_parent'))
     config = configs['v3']
     dataset = NativeBodyData('validation', seed=20261009, skeleton_profile=config['skeleton_profile'],
                             rich_source=config['rich_source'], trumans_scene_manifest=config['trumans_scene_manifest'],

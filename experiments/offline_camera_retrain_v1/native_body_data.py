@@ -39,6 +39,8 @@ class NativeBodyData(OfflineSceneMIData):
         self.contact_cache={}
         kwargs.pop('skeleton_profile',None);kwargs['rich_source']='native20_faceout_oct07'
         kwargs.setdefault('trumans_window_protocol','temporal_valid_v1' if kwargs.get('trumans_scene_manifest') and self.temporal_scene_manifest else 'legacy_stable_v1')
+        if self.temporal_scene_manifest is not None and kwargs.get('trumans_scene_manifest') and kwargs['trumans_window_protocol']=='temporal_valid_v1':
+            kwargs['native_source_recovery']=True
         super().__init__(split,skeleton_profile='trumans_male_v2',**kwargs)
         self.native_models={};self.native_cache={};self.native_meta={}
         if self.temporal_scene_manifest is not None:

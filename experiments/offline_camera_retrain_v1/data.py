@@ -47,7 +47,10 @@ def rotation6d(matrices):
 
 class OfflineSceneMIData:
     def __init__(self, split, seed=2026, skeleton_profile='archived',
-                 rich_source='legacy5interp', trumans_scene_manifest=None, window_sampling='coverage', trumans_window_protocol='legacy_stable_v1'):
+                 rich_source='legacy5interp', trumans_scene_manifest=None, window_sampling='coverage', trumans_window_protocol='legacy_stable_v1', native_source_recovery=False):
+        ready_path=SOURCE/'READY.json'
+        if ready_path.is_file() and json.loads(ready_path.read_text()).get('reconstruction_protocol') and not native_source_recovery:
+            raise ValueError('Recovered archive supports only native_v1 with complete exact20 temporal scenes; historical/legacy inputs unavailable')
         if skeleton_profile not in ('archived', 'trumans_male_v2', 'canonical_smpl'):
             raise ValueError(f'Unknown skeleton profile: {skeleton_profile}')
         if rich_source not in RICH_SOURCES:

@@ -22,3 +22,7 @@ alpha为当前扩散时刻的累计干净信号比例。两组训练单独运行
 ## 文件
 
 commands.json为两组精确命令；status.json记录训练状态；evaluation_status.json记录评估状态。训练权重、动作缓存及完整日志仅留本机，小型报告和源码备份到GitHub。
+
+恢复记录：首次noise_gate在约880步中断且无checkpoint，保留于noise_gate_interrupted_2129。两组从原55k重跑，save_every改为250；验证使用fork_rng隔离，不改变训练随机状态。
+
+数据依赖恢复：兄弟仓库的旧预处理目录被删除。已从保留的原始源、20Hz姿态和完整动态场景恢复native-only运行档案；新的清单指纹与旧版不同，通过显式--source-recovery-audit载入旧权重。192窗/384次回放的GT、rest、camera和v3预测与删除前缓存差异均为0。恢复档案不支持旧版输入或test，当前仍使用RICH官方train/val。详见[SOURCE_RECOVERY_zh.md](SOURCE_RECOVERY_zh.md)。

@@ -132,6 +132,7 @@ def main():
     parser.add_argument('--ddim-every', type=int, default=0,
                         help='Run sampling and write a gallery at this checkpoint interval (0 disables)')
     parser.add_argument('--resume', type=Path)
+    parser.add_argument('--source-recovery-audit',type=Path,help='Explicit audited metadata-recovery transfer for warm start only; resume still requires exact current source hash')
     parser.add_argument('--init-from', type=Path,
                         help='Warm-start weights only; reset optimizer, schedule and RNG for a paired trial')
     parser.add_argument('--loss-profile', choices=('baseline', 'gait_v1', 'gait_v2', 'coordination_v1', 'orientation_v1', 'orientation_v2', 'orientation_v3', 'orientation_v4', 'orientation_v5'), default='baseline')
@@ -318,7 +319,15 @@ def main():
     if args.init_from:
         checkpoint = torch.load(args.init_from, map_location='cpu', weights_only=False)
         if checkpoint['config']['source_hash'] != data_hash:
-            raise ValueError('Warm-start source data mismatch')
+            if args.source_recovery_audit is None:
+                raise ValueError('Warm-start source data mismatch')
+            from experiments.offline_camera_retrain_v1.source_recovery_contract import validate_source_recovery
+            validate_source_recovery(args.source_recovery_audit,checkpoint['config']['source_hash'],args)
+            config['source_recovery_audit_sha256']=fingerprint([args.source_recovery_audit])
+            config['initial_source_hash']=checkpoint['config']['source_hash']
+            config['source_transfer_reason']='explicit native metadata recovery; frozen model/GT replay passed; current source hash retained'
+        elif args.source_recovery_audit is not None:
+            raise ValueError('Recovery audit is only for explicit source-hash transfer; omit it for unchanged data')
         model.load_state_dict(checkpoint['model'])
         config['initial_checkpoint_step'] = checkpoint['step']
         config['initial_total_steps'] = (checkpoint['config'].get('initial_total_steps',
@@ -339,6 +348,8 @@ def main():
             raise ValueError('Skeleton template changed since checkpoint')
         if checkpoint['config']['source_hash'] != data_hash:
             raise ValueError('Source data changed since checkpoint')
+        for recovery_key in ('source_recovery_audit_sha256','initial_source_hash','source_transfer_reason','initial_checkpoint_step','initial_total_steps'):
+            if recovery_key in checkpoint['config']:config[recovery_key]=checkpoint['config'][recovery_key]
         model.load_state_dict(checkpoint['model'])
         optimizer.load_state_dict(checkpoint['optimizer'])
         first = checkpoint['step']

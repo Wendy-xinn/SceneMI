@@ -14,7 +14,6 @@ def main():
  for split in ('train','validation'):
   rs='train' if split=='train' else 'val';expected.extend(('rich',split,m.parent.name,np.load(m.parent/'source_frame_ids.npy')) for m in sorted((HERE/f'data/scene_visibility_v2_oct05/rich_{rs}_smpl_native20_faceout_oct07').glob('*/metadata.json')))
   for dataset in ['egobody','trumans']:
-   catalog=NativeBodyData(split)
    rows=(list(map(json.loads,(SOURCE/f'trumans_sequences/{split}.jsonl').read_text().splitlines())) if dataset=='trumans' else list(map(json.loads,(SOURCE/f'{dataset}_sequences/{split}.jsonl').read_text().splitlines())))
    for m in rows:
     if dataset=='trumans' and (split,m['sequence_id']) in excluded:continue

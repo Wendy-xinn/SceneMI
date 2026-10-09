@@ -75,7 +75,7 @@ class GaitLossTest(unittest.TestCase):
     def test_complete_profiles_zero_on_consistent_static_truth(self):
         truth = torch.zeros(2, 64, 201)
         batch = {'rest': torch.zeros(2, 22, 3), 'joints': torch.zeros(2, 64, 22, 3)}
-        for profile in ('baseline', 'gait_v1', 'gait_v2', 'coordination_v1', 'orientation_v1', 'orientation_v2'):
+        for profile in ('baseline', 'gait_v1', 'gait_v2', 'coordination_v1', 'orientation_v1', 'orientation_v2', 'orientation_v3', 'orientation_v4', 'orientation_v5'):
             predicted = truth.clone().requires_grad_()
             loss = supervised_losses(predicted, truth, batch, profile=profile,
                                      signal_weight=torch.tensor([0., 1.]))['total']

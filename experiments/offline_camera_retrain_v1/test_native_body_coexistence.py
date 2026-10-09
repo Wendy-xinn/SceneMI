@@ -10,7 +10,9 @@ from experiments.offline_camera_retrain_v1.supervision import forward_kinematics
 class NativeBodyTest(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
-  torch.set_num_threads(4);cls.data=NativeBodyData('validation',seed=777)
+  torch.set_num_threads(4)
+  from experiments.offline_camera_retrain_v1.data import HERE
+  cls.data=NativeBodyData('validation',seed=777,trumans_scene_manifest=HERE/'data/trumans_temporal_training_v3/manifest.jsonl',temporal_scene_manifest=HERE/'data/native20_temporal_scenes_v4/manifest.jsonl')
  def test_native_mesh_matches_targets_all_lengths_and_domains(self):
   for group in ['trumans','camera_wearer','interactee','rich']:
    for length in [64,128,192]:
