@@ -16,6 +16,7 @@ from experiments.offline_camera_retrain_v1.control import MODE_PROBABILITIES, fi
 from experiments.offline_camera_retrain_v1.scene_model import OfflineSceneMI, cosine_alphas
 from experiments.offline_camera_retrain_v1.supervision import supervised_losses
 from experiments.offline_camera_retrain_v1.gallery import write_run_index
+from experiments.offline_camera_retrain_v1.checkpoint_io import save_checkpoint
 
 HERE = Path(__file__).resolve().parent
 
@@ -475,13 +476,9 @@ def main():
                               data_rng_state=train.base.rng.bit_generator.state,
                               sampler_state=train.sampler_state(),
                               condition_rng_state=condition_rng.bit_generator.state)
-            temporary = args.output / 'last.tmp'
-            torch.save(checkpoint, temporary)
-            temporary.replace(args.output / 'last.pt')
+            save_checkpoint(checkpoint,args.output/'last.pt')
             if improved:
-                temporary = args.output / 'best.tmp'
-                torch.save(checkpoint, temporary)
-                temporary.replace(args.output / 'best.pt')
+                save_checkpoint(checkpoint,args.output/'best.pt')
             if args.ddim_every and (step % args.ddim_every == 0 or step == args.steps):
                 evaluation_dir = args.output / 'evaluations' / f'step_{step:06d}'
                 evaluation_dir.mkdir(parents=True, exist_ok=True)
@@ -503,7 +500,7 @@ def main():
                 if result.returncode:
                     raise RuntimeError(f'Sampling failed; inspect {evaluation_dir}/evaluation.log')
                 if step % args.keep_inference_every == 0 or step == args.steps:
-                    torch.save(dict(step=step, model=model.state_dict(), config=config),
+                    save_checkpoint(dict(step=step, model=model.state_dict(), config=config),
                                evaluation_dir / 'inference.pt')
                 write_run_index(args.output)
     trace.close()

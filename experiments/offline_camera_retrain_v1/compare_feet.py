@@ -76,6 +76,8 @@ def main():
         label, path = checkpoint_spec.split('=', 1)
         checkpoint = torch.load(path, map_location='cpu', weights_only=False)
         config = checkpoint['config']
+        if config.get('hard_head_rotation'):
+            raise ValueError('Hard-head checkpoint requires calibrated projection; use evaluate_turn_balance.py')
         # Different checkpoint versions may decode different body templates;
         # identical data RNG ensures exactly paired clips, not paired errors.
         versioned_dataset = OfflineSceneMIData(args.split, seed=args.data_seed,

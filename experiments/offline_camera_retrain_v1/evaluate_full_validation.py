@@ -77,6 +77,8 @@ def main():
     checkpoint_hash = hashlib.sha256(args.checkpoint.read_bytes()).hexdigest()
     checkpoint = torch.load(args.checkpoint, map_location='cpu', weights_only=False)
     config = checkpoint['config']
+    if config.get('hard_head_rotation'):
+        raise ValueError('Hard-head checkpoint requires calibrated projection; use evaluate_turn_balance.py')
     dataset = OfflineSceneMIData('validation', seed=args.seed,
                                  skeleton_profile=config.get('skeleton_profile', 'archived'),
                                  rich_source=config.get('rich_source', 'legacy5interp'))

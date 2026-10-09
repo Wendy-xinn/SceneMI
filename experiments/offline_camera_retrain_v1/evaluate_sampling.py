@@ -82,6 +82,8 @@ def main():
         parser.error('samples-per-group must be positive')
     checkpoint = torch.load(args.checkpoint, map_location='cpu', weights_only=False)
     config = checkpoint['config']
+    if config.get('hard_head_rotation'):
+        raise ValueError('Hard-head checkpoint requires calibrated projection; use evaluate_turn_balance.py')
     model = OfflineSceneMI(int(config['latent_dim']), tuple(config['dim_mults']),body_conditioning=config.get('body_conditioning',False),contact_prediction=config.get('contact_prediction',False)).cuda()
     model.load_state_dict(checkpoint['model'])
     model.eval()
