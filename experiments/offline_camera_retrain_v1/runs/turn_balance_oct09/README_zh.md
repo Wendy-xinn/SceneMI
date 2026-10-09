@@ -27,3 +27,7 @@ orientation_v3从原55k初始化，保留v2全部目标，仅将累计转向损�
 ## 中断恢复
 
 2026-10-09恢复时，时间归一化日志已到1k，但进一步加载发现best.pt/last.pt均缺少zip中心目录，不能用于评估。损坏目录保存在orientation_v3_interrupted；硬约束1k已重新训练并得到可读权重。recover_v3_checkpoint.py重跑时间归一化v3，再顺序执行六方案评估与报告生成，状态写入recovery_status.json。原训练已采用临时文件加rename，此次进一步补充保存后文件fsync、原子替换后目录fsync，以及模拟写入中断保留旧checkpoint的回归测试。备份分支仅包含代码、报告和必要命令/配置，权重与数据留在本地。
+
+## 完成状态
+
+两组有效1k checkpoint及六方案配对评估已完成，384个窗口/噪声组合、2304份指标；旧v2在同一推理模式下复现通过，训练样本trace三组逐行一致。30项相关测试通过。当前无候选通过动作质量验收，详见[结果](RESULTS_zh.md)及[审核结论](ASSESSMENT_zh.md)。

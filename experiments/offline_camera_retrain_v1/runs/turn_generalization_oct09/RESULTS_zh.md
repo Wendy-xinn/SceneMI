@@ -78,3 +78,8 @@ PYTHONPATH=. /home/wenxin/miniconda3/envs/scenemi/bin/python -m experiments.offl
 PYTHONPATH=. /home/wenxin/miniconda3/envs/scenemi/bin/python -m experiments.offline_camera_retrain_v1.summarize_turn_generalization
 PYTHONPATH=. /home/wenxin/miniconda3/envs/scenemi/bin/python -m experiments.offline_camera_retrain_v1.audit_orientation_gradient_balance
 ```
+
+
+## 时间尺度与硬头部约束试验更新（2026-10-09）
+
+两组1k短训及六方案配对评估完成，另覆盖64/192帧开发探针。时间归一化未解决脚步退化；硬旋转导致明显颈部补偿，当前无候选通过质量验收。中断恢复、全部指标和下一版父链联动方案见[试验结果](../turn_balance_oct09/RESULTS_zh.md)。

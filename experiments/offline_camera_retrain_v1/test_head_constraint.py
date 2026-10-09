@@ -23,6 +23,17 @@ class HeadConstraintTests(unittest.TestCase):
         self.assertTrue(torch.isfinite(motion.grad).all())
         self.assertGreater(float(motion.grad[...,3:9].abs().sum()),0)
         self.assertEqual(float(motion.grad[...,93:99].abs().sum()),0)
+    def test_sampler_respects_disabled_and_late_control(self):
+        from experiments.offline_camera_retrain_v1.evaluate_turn_balance import HardHeadModel
+        class IdentityModel(torch.nn.Module):
+            def __init__(self):super().__init__();self.anchor=torch.nn.Parameter(torch.zeros(()))
+            def forward(self,x,t,batch,**kwargs):return x
+        model=HardHeadModel(IdentityModel(),late_only=True)
+        m=torch.randn(1,64,201)*.1;camera=torch.zeros(1,64,9);camera[...,3:]=camera.new_tensor(IDENTITY_6D)
+        batch={"camera":camera,"head_constraint_valid":torch.ones(1,64,dtype=torch.bool)}
+        self.assertTrue(torch.equal(model(m,torch.tensor([0]),batch,use_control=False),m))
+        self.assertTrue(torch.equal(model(m,torch.tensor([999]),batch),m))
+        self.assertTrue(torch.allclose(global_rotations(model(m,torch.tensor([0]),batch))[:,:,15],torch.eye(3).expand(1,64,3,3),atol=1e-5))
     def test_nonidentity_mount(self):
         motion=torch.zeros(1,64,201);camera=torch.zeros(1,64,9);camera[...,3:]=camera.new_tensor(IDENTITY_6D)
         mount=torch.diag(torch.tensor([-1.,1.,-1.]))

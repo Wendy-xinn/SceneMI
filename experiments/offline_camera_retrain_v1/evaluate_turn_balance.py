@@ -21,10 +21,14 @@ class HardHeadModel(nn.Module):
         self.register_buffer("alphas",cosine_alphas().to(next(model.parameters()).device))
     def forward(self,x,t,batch,**kwargs):
         value=self.model(x,t,batch,**kwargs)
-        enabled=batch['head_constraint_valid'] & kwargs['control_mask'][...,15]
+        mask=kwargs.get('control_mask')
+        if mask is None:mask=fixed_control_mask(len(x),x.shape[1],'head',x.device)
+        enabled=batch['head_constraint_valid'] & mask[...,15]
+        if not kwargs.get('use_control',True):enabled=torch.zeros_like(enabled)
         if self.late_only:enabled=enabled & (self.alphas[t]>=.8)[:,None]
         return project_head_orientation(value,batch['camera'],enabled)
 
+@torch.inference_mode()
 def main():
     torch.set_num_threads(4);start=time.monotonic();(OUT/'motions').mkdir(exist_ok=True)
     checkpoints={'orientation_v2':BASE/'turn_repair_oct08/orientation_v2/last.pt','orientation_v3':OUT/'orientation_v3/last.pt','v3_head_trained':OUT/'orientation_v3_hard/last.pt'}
@@ -34,20 +38,32 @@ def main():
     assert len({c['source_hash'] for c in configs.values()})==1
     c=configs['orientation_v3'];d=NativeBodyData('validation',seed=20261009,skeleton_profile=c['skeleton_profile'],rich_source=c['rich_source'],trumans_scene_manifest=c['trumans_scene_manifest'],trumans_window_protocol=c['trumans_window_protocol'],contact_root=c['rich_contact_root'],temporal_scene_manifest=c['temporal_scene_manifest'])
     fixed=json.loads((FIXED/'manifest.json').read_text());selected=list(fixed['selected'])
-    source=[json.loads(line)['window'] for line in (BASE/'native_dynamic_scene20_contact_55k_oct07/full_validation/rows.jsonl').read_text().splitlines()]
-    # Additional length probes: six selected people per group with 192-frame coverage.
-    eligible192={w['sequence_id'] for w in source if w['length']==192}
+    previous=[json.loads(line) for line in (FIXED/'rows.jsonl').read_text().splitlines()]
+    anchor_source={r['index']:r['identity']['source_start_30fps'] for r in previous}
+    # Enumerate actual 64/192 eligibility, since the full benchmark caches
+    # 128-frame windows (and short-sequence 64-frame fallback), not 192.
+    members_by_length={}
+    for length in [64,192]:
+        for group in ['trumans','camera_wearer','interactee','rich']:
+            source=d.rich_members if group=='rich' else d.base.groups[group]
+            eligible=[(meta,valid) for meta,valid in source if valid[length]]
+            members_by_length[(group,length)]={meta['sequence_id']:(si,meta,valid) for si,(meta,valid) in enumerate(eligible)}
     anchors=[]
     for group in ['trumans','camera_wearer','interactee','rich']:
         seen=set()
-        for w in fixed['selected']:
-            if w['group']==group and w['sequence_id'] in eligible192 and w['sequence_id'] not in seen and len(seen)<6:
-                anchors.append(w);seen.add(w['sequence_id'])
-        assert len(seen)==6
+        for index,w in enumerate(fixed['selected']):
+            if w['group']==group and w['sequence_id'] in members_by_length[(group,192)] and w['sequence_id'] not in seen and len(seen)<6:
+                anchors.append((w,anchor_source[index]));seen.add(w['sequence_id'])
+        assert len(seen)==6,(group,len(seen))
     for length in [64,192]:
-        for anchor in anchors:
-            candidates=[w for w in source if w['sequence_id']==anchor['sequence_id'] and w['length']==length]
-            selected.append(min(candidates,key=lambda w:abs(w['start_index']-anchor['start_index'])))
+        for anchor,source_time in anchors:
+            si,meta,valid=members_by_length[(anchor['group'],length)][anchor['sequence_id']]
+            if anchor['group']=='rich':
+                ids=np.load(d.rich_root/anchor['sequence_id']/'source_frame_ids.npy')
+                times=np.asarray([ids[start] for start in valid[length]])
+            else:times=np.asarray([source_id for start,source_id in valid[length]])
+            wi=int(np.argmin(np.abs(times-source_time)))
+            selected.append(dict(group=anchor['group'],length=length,sequence_index=si,start_index=wi,sequence_id=anchor['sequence_id'],expected_source_start_30fps=float(times[wi])))
     hard=HardHeadModel(models['orientation_v3']).eval();late=HardHeadModel(models['orientation_v3'],late_only=True).eval();allrows=[]
     manifest=dict(fixed);manifest.update(selected=selected,windows=len(selected),extra_length_probe='24 windows at 64 frames and 24 at 192 frames, same selected people and nearest valid start; development probes',checkpoints={k:str(v) for k,v in checkpoints.items()},projection='joint15 local rotation from input camera rotation; identity known mount in synthetic TRUMANS/RICH/Ego interactee; real PV wearer disabled; no position/root correction, no GT calibration',hard_variants=['v3_head_final','v3_head_each_step','v3_head_late_step'])
     (OUT/'manifest.json').write_text(json.dumps(manifest,indent=2))
@@ -55,7 +71,10 @@ def main():
         for start_index in range(0,len(selected),8):
             members=selected[start_index:start_index+8];samples=[];identities=[]
             for w in members:
-                sample,identity=d.sample(w['length'],w['group'],sequence_index=w['sequence_index'],start_index=w['start_index']);samples.append(sample);identities.append(identity)
+                sample,identity=d.sample(w['length'],w['group'],sequence_index=w['sequence_index'],start_index=w['start_index'])
+                assert identity['sequence_id']==w['sequence_id']
+                if 'expected_source_start_30fps' in w:assert abs(identity['source_start_30fps']-w['expected_source_start_30fps'])<1e-6
+                samples.append(sample);identities.append(identity)
             length=members[0]['length'];assert all(w['length']==length for w in members)
             batch={k:v.cuda() for k,v in collate(samples).items()};mask=fixed_control_mask(len(samples),length,'head','cuda')
             calibrated=torch.tensor([w['group']!='camera_wearer' for w in members],device='cuda')[:,None].expand(-1,length)
@@ -68,7 +87,7 @@ def main():
                     if start_index+i>=144:continue
                     with np.load(FIXED/f'motions/{start_index+i:04d}_{replicate}.npz') as cache:
                         if not np.allclose(motions['orientation_v2'][i].cpu().numpy(),cache['orientation_v2'],atol=1e-5,rtol=1e-5):
-                            raise ValueError('v2 fixed-noise reproduction failed')
+                            raise ValueError(f'v2 fixed-noise reproduction failed: max={np.max(np.abs(motions["orientation_v2"][i].cpu().numpy()-cache["orientation_v2"]))}')
                 motions['v3_head_final']=project_head_orientation(motions['orientation_v3'],batch['camera'],calibrated)
                 motions['v3_head_each_step']=ddim_sample(hard,batch,length,steps=20,seed=seed,control_mask=mask)
                 motions['v3_head_late_step']=ddim_sample(late,batch,length,steps=20,seed=seed,control_mask=mask)

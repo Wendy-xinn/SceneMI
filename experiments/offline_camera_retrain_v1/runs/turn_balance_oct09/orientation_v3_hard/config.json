@@ -1,5 +1,5 @@
 {
-  "output": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/turn_balance_oct09/orientation_v3",
+  "output": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/turn_balance_oct09/orientation_v3_hard",
   "steps": 1000,
   "batch_size": 4,
   "save_every": 1000,
@@ -18,7 +18,7 @@
   "resume": null,
   "init_from": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/last.pt",
   "loss_profile": "orientation_v3",
-  "hard_head_rotation": false,
+  "hard_head_rotation": true,
   "ddim_head_only": false,
   "allow_legacy_scene_for_diagnostics": false,
   "temporal_scene_manifest": "experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/manifest.jsonl",
@@ -256,7 +256,8 @@
     }
   },
   "skeleton_template_sha256": "59d39e914b93ae359bc58b3bd293b620a976ece7461e76cd03b08f1385804050",
-  "objective_sha256": "4e42b39262e8a90cb2260feb856882e67819b8f60d0ced87eb45d20bb4d0f32b",
+  "head_constraint_protocol": "known synthetic identity mount, observed joint15 rotation only; real PV soft; training and DDIM x0 projection; no root position correction",
+  "objective_sha256": "f1dbde16090b71db597925b8c1a3cfbd28a4d390d9dc336f83b051093cf81ff2",
   "initial_checkpoint_step": 55000,
   "initial_total_steps": 55000
 }
