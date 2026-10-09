@@ -35,7 +35,7 @@ class TypedObservationTests(unittest.TestCase):
         b['observation_meta'][:,:,15,2]=.1
         low=observation_loss(pred,b,m,torch.ones(2))
         self.assertTrue(torch.allclose(low,full*.1))
-        m.zero_();self.assertEqual(float(observation_loss(pred,b,m,torch.ones(2))),0.)
+        m.zero_();self.assertEqual(float(observation_loss(pred,b,m,torch.ones(2)).detach()),0.)
 
     def test_legacy_mapping_new_columns_zero(self):
         from experiments.offline_camera_retrain_v1.scene_model import OfflineSceneMI
@@ -44,6 +44,30 @@ class TypedObservationTests(unittest.TestCase):
         a=old.core.sparse_control_process;z=new.core.sparse_control_process
         x=torch.randn(2,220);y=torch.zeros(2,22,14);y[...,:10]=x.reshape(2,22,10)
         self.assertTrue(torch.allclose(a(x),z(y.flatten(1)),atol=1e-6))
-        self.assertEqual(float(z.lin0.weight.reshape(256,22,14)[...,10:].abs().max()),0.)
+        self.assertEqual(float(z.lin0.weight.detach().reshape(256,22,14)[...,10:].abs().max()),0.)
+
+    def test_unavailable_rotation_and_disabled_control_not_encoded(self):
+        from unittest.mock import patch
+        from experiments.offline_camera_retrain_v1.control import fixed_control_mask
+        model=TypedSceneMI(latent_dim=32);batch=prepare_observation(self.batch(),'joint')
+        batch['occupancy']=torch.empty(0)
+        batch['observation_meta'][:,:,15,1]=0
+        captured=[]
+        def fake_forward(core,noisy,timestep,**kwargs):
+            core.sparse_control_process(kwargs['y']['sparse_control'].flatten(2))
+            return noisy
+        def capture(module,args):captured.append(args[0].detach().clone())
+        h=model.core.sparse_control_process.lin0.register_forward_pre_hook(capture)
+        mask=fixed_control_mask(2,64,'head','cpu')
+        with patch.object(type(model.core),'forward',fake_forward):
+            x=torch.zeros(2,64,201);t=torch.zeros(2,dtype=torch.long)
+            model(x,t,batch,control_mask=mask)
+            batch['trajectory'][:,:,15,3:]=torch.randn(2,64,6)*100
+            model(x,t,batch,control_mask=mask)
+            model(x,t,batch,control_mask=mask,use_control=False)
+        h.remove()
+        self.assertTrue(torch.equal(captured[0],captured[1]))
+        self.assertEqual(float(captured[2].abs().max()),0.)
+        self.assertEqual(float(captured[0].reshape(2,64,22,14)[:,:,15,3:9].abs().max()),0.)
 
 if __name__=='__main__':unittest.main()

@@ -89,3 +89,7 @@ RICH固定4窗口有场景接触F1=0.9302，含正样本区域macro F1=0.8150；
 ## 后续软轨迹与转向实验
 
 两组1k配对短训及不可靠头部轨迹诊断见[实验协议](../soft_body_turn_robust_oct09/README_zh.md)。2026-10-10恢复后的两组1k短训与4800份配对指标已完成。neck_parent仅有小幅支撑收益，尚未解决转身；输入相机与人体头部关节存在观测类型差别。见[审核结论](../soft_body_turn_robust_oct09/ASSESSMENT_zh.md)和[完整结果](../soft_body_turn_robust_oct09/RESULTS_zh.md)。被删除的依赖已按[恢复审计](../soft_body_turn_robust_oct09/SOURCE_RECOVERY_zh.md)恢复native输入，未更改本55k的权重或历史评估结果。
+
+## 头部语义与可靠性筛选（2026-10-10）
+
+四组各500步配对短训已启动，分别比较相机/解剖头部输入、相关漂移及缺失、模拟可靠性与软观测约束。原55k权重保留；当前为开发筛选，未启动新长训。协议与运行入口见[头部条件实验](../typed_head_track_oct10/README_zh.md)。
