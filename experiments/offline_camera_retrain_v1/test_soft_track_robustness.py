@@ -26,5 +26,17 @@ class TrackProbeTests(unittest.TestCase):
         self.assertEqual(int(empty.sum()), 0)
         self.assertEqual(int(clean_mask.sum()), 128)
 
+    def test_ideal_head_type_probe_exposes_only_head(self):
+        trajectory=torch.zeros(1,64,22,9);trajectory[...,3]=trajectory[...,7]=1
+        joints=torch.randn(1,64,22,3);motion=torch.zeros(1,64,201)
+        batch={'trajectory':trajectory,'joints':joints,'motion':motion}
+        probe,mask=perturb_head_track(batch,'head_joint')
+        self.assertTrue(torch.equal(probe['trajectory'][:,:,15,:3],joints[:,:,15]))
+        self.assertTrue(torch.equal(probe['trajectory'][:,:,:15],trajectory[:,:,:15]))
+        self.assertTrue(torch.equal(probe['trajectory'][:,:,16:],trajectory[:,:,16:]))
+        self.assertTrue(torch.equal(probe['trajectory'][:,:,15,3:],trajectory[:,:,15,3:]))
+        self.assertEqual(int(mask.sum()),64)
+        self.assertIs(probe['motion'],motion)
+
 if __name__ == '__main__':
     unittest.main()

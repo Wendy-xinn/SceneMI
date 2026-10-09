@@ -4,13 +4,23 @@ from experiments.offline_camera_retrain_v1.control import fixed_control_mask
 
 
 def perturb_head_track(batch, condition):
-    if condition not in ('clean', 'drift', 'drift_gap', 'none'):
+    if condition not in ('clean', 'drift', 'drift_gap', 'head_joint', 'none'):
         raise ValueError(condition)
     trajectory = batch['trajectory']
     count, frames = trajectory.shape[:2]
     mask = fixed_control_mask(count, frames, 'head', trajectory.device)
     output = dict(batch)
-    if condition == 'none':
+    if condition == 'head_joint':
+        # Diagnostic ideal anatomical-head track, derived from held-out GT.
+        # No other joint is exposed. This is an observation-type probe, not
+        # video performance or a proposed inference-time GT dependency.
+        from experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations
+        head = global_rotations(batch['motion'])[:, :, 15]
+        track = trajectory.clone()
+        track[:, :, 15, :3] = batch['joints'][:, :, 15]
+        track[:, :, 15, 3:] = torch.cat((head[..., 0], head[..., 1]), dim=-1)
+        output['trajectory'] = track
+    elif condition == 'none':
         mask.zero_()
     elif condition in ('drift', 'drift_gap'):
         track = trajectory.clone()

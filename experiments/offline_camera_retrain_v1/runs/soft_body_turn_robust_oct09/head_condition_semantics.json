@@ -1,0 +1,46 @@
+{
+  "definition": "Camera position minus anatomical body-joint15 position, expressed in native head frame; sequence balanced, 144 development windows",
+  "groups": {
+    "trumans": {
+      "sequences": 12,
+      "mean_distance_cm": 10.98289019945595,
+      "mean_within_window_local_offset_variation_cm": 0.002518988341964561,
+      "average_local_offset_m": [
+        -0.013199199456721544,
+        0.046116480396853544,
+        0.09879969122509162
+      ]
+    },
+    "camera_wearer": {
+      "sequences": 12,
+      "mean_distance_cm": 18.02119459542963,
+      "mean_within_window_local_offset_variation_cm": 2.026938794491192,
+      "average_local_offset_m": [
+        -0.0013386765171566773,
+        0.1246436165852679,
+        0.12005269475695157
+      ]
+    },
+    "interactee": {
+      "sequences": 12,
+      "mean_distance_cm": 12.55005531840854,
+      "mean_within_window_local_offset_variation_cm": 1.5030822098083263e-05,
+      "average_local_offset_m": [
+        -0.0015044738538563251,
+        0.0923972200188372,
+        0.08485098969605233
+      ]
+    },
+    "rich": {
+      "sequences": 12,
+      "mean_distance_cm": 10.62607800381051,
+      "mean_within_window_local_offset_variation_cm": 3.053668081855044e-05,
+      "average_local_offset_m": [
+        -0.009892507165204732,
+        0.03979924129736093,
+        0.09739526506099434
+      ]
+    }
+  },
+  "implication": "Current head slot is a camera/sensor pose. A video-estimated anatomical head/body joint is a different observation; input-type/mount handling is required in addition to uncertainty handling."
+}

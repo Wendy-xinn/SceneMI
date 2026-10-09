@@ -70,9 +70,9 @@ def main():
     manifest = json.loads((REFERENCE / 'manifest.json').read_text())
     selected = manifest['selected']
     manifest.update(checkpoints={k: str(v) for k, v in paths.items()},
-                    conditions=['clean', 'drift', 'drift_gap'],
+                    conditions=['clean', 'drift', 'drift_gap', 'head_joint'],
                     perturbation='head-slot only: 3-5cm x bias, up to 1cm y, 0-2cm z drift; smooth yaw 3-11deg; optional 10-frame missing interval; GT/camera/scene caches unchanged',
-                    limitation='condition-only stress test, not an end-to-end noisy camera/scene reconstruction experiment')
+                    limitation='condition-only stress test, not an end-to-end noisy camera/scene reconstruction experiment; head_joint is an ideal anatomical-head track constructed from held-out GT for observation-type diagnosis')
     (OUT / 'manifest.json').write_text(json.dumps(manifest, indent=2))
     rows = []
     with (OUT / 'rows.jsonl').open('w') as stream:
@@ -89,7 +89,7 @@ def main():
             length = members[0]['length']
             assert all(member['length'] == length for member in members)
             batch = {k: v.cuda() for k, v in collate(samples).items()}
-            conditions = ['clean', 'drift', 'drift_gap']
+            conditions = ['clean', 'drift', 'drift_gap', 'head_joint']
             # Entire paired batches, first 8 windows of each dataset group:
             # clean/no-control response distinguishes robustness from ignoring inputs.
             if length == 128 and start in (0, 40, 72, 112):

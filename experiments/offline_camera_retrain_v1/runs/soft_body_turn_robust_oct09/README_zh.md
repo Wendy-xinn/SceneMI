@@ -26,3 +26,5 @@ commands.json为两组精确命令；status.json记录训练状态；evaluation_
 恢复记录：首次noise_gate在约880步中断且无checkpoint，保留于noise_gate_interrupted_2129。两组从原55k重跑，save_every改为250；验证使用fork_rng隔离，不改变训练随机状态。
 
 数据依赖恢复：兄弟仓库的旧预处理目录被删除。已从保留的原始源、20Hz姿态和完整动态场景恢复native-only运行档案；新的清单指纹与旧版不同，通过显式--source-recovery-audit载入旧权重。192窗/384次回放的GT、rest、camera和v3预测与删除前缓存差异均为0。恢复档案不支持旧版输入或test，当前仍使用RICH官方train/val。详见[SOURCE_RECOVERY_zh.md](SOURCE_RECOVERY_zh.md)。
+
+额外输入类型诊断：head_joint只把条件槽15替换为由验证GT构造的理想人体头部关节位置和全局朝向，不暴露其他身体关节。用于检查相机观测与人体头部观测之间的语义差别，不是视频轨迹估计性能。固定样本中相机到头部关节平均偏移约11–18cm，统计见head_condition_semantics.json。评估共四种完整条件加32窗无轨迹条件，4800份指标；增加的输入类型单测通过后，相关测试总数为38。
