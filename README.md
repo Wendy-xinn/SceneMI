@@ -1,5 +1,16 @@
 # SceneMI: Motion In-betweening for Modeling Human-Scene Interactions
 
+## 本仓库的本地实验扩展
+
+本仓库基于下方原作者SceneMI代码，加入TRUMANS / EgoBody / RICH混合原生SMPL与SMPL-X监督、20Hz因果动态场景、RICH接触预测、标准动作指标，以及转身和不可靠轨迹条件诊断。
+
+- [代码备份范围及本地依赖](docs/BACKUP_zh.md)
+- [原生动态场景55k实验结果](experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/RESULTS_zh.md)
+- [时间归一化和头部硬约束审核](experiments/offline_camera_retrain_v1/runs/turn_balance_oct09/ASSESSMENT_zh.md)
+- [软轨迹与身体转向短训](experiments/offline_camera_retrain_v1/runs/soft_body_turn_robust_oct09/README_zh.md)
+
+数据、人体模型、训练checkpoint和生成缓存仅保存在本机，不包含在代码备份中。下方为原作者项目说明及引用。
+
 <p align="left">
   <a href='https://arxiv.org/abs/2503.16289'>
     <img src='https://img.shields.io/badge/Arxiv-Pdf-A42C25?style=flat&logo=arXiv&logoColor=white'></a>

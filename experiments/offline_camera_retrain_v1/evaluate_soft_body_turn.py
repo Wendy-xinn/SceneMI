@@ -19,7 +19,8 @@ REFERENCE = BASE / 'turn_balance_oct09'
 METRICS = ['mpjpe_cm', 'pa_mpjpe_mm', 'head_cm', 'head_orientation_mean_deg',
            'pelvis_orientation_mean_deg', 'gt_stance_slide_cm_frame', 'support_floating_m',
            'support_penetration_m', 'both_feet_moving_fraction', 'root_path_length_ratio',
-           'head_to_neck_local_rotation_p95_deg', 'opposite_turn', 'under_turn',
+           'head_to_neck_local_rotation_p95_deg', 'neck_to_chest_local_rotation_p95_deg',
+           'neck_orientation_mean_deg', 'chest_orientation_mean_deg', 'opposite_turn', 'under_turn',
            'response_head_cm', 'response_pelvis_deg', 'response_head_deg']
 
 
@@ -108,6 +109,14 @@ def main():
                             local = rotation_from_6d(value[0, :, 93:99])
                             angle = torch.rad2deg(torch.acos(((local.diagonal(dim1=-2, dim2=-1).sum(-1)-1)/2).clamp(-1, 1)))
                             metrics['head_to_neck_local_rotation_p95_deg'] = float(torch.quantile(angle, .95))
+                            neck_local = rotation_from_6d(value[0, :, 75:81])
+                            neck_angle = torch.rad2deg(torch.acos(((neck_local.diagonal(dim1=-2, dim2=-1).sum(-1)-1)/2).clamp(-1, 1)))
+                            metrics['neck_to_chest_local_rotation_p95_deg'] = float(torch.quantile(neck_angle, .95))
+                            truth_rotation = global_rotations(one['motion'])
+                            predicted_rotation = global_rotations(value)
+                            for joint, name in ((9, 'chest'), (12, 'neck')):
+                                relative = truth_rotation[:, :, joint].transpose(-1, -2) @ predicted_rotation[:, :, joint]
+                                metrics[name + '_orientation_mean_deg'] = float(torch.rad2deg(torch.acos(((relative.diagonal(dim1=-2, dim2=-1).sum(-1)-1)/2).clamp(-1, 1))).mean())
                             gt_turn = metrics['pelvis_gt_turn_deg']
                             eligible = abs(gt_turn) >= 30 and valid >= .95
                             metrics['opposite_turn'] = float(metrics['pelvis_turn_deg'] * gt_turn < 0) if eligible else None
