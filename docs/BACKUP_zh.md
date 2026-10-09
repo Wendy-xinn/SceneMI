@@ -7,3 +7,5 @@
 用户备份仓库为https://github.com/Wendy-xinn/SceneMI；原作者origin保留用于追溯，不写入原作者仓库。
 
 运行需要scenemi环境、原始数据及兄弟目录diffusion-motion-inbetweening。docs/local_dependencies下备份了该目录中被SceneMI直接使用的本地辅助代码及来源提交，恢复时复制到对应相对路径。PerspectiveFields通过requirements中的固定上游提交安装。训练权重仍保存在本机；此Git备份只能恢复代码和报告。
+
+2026-10-10恢复补充：兄弟仓库的旧experiments目录已被删除，当前native运行依赖已从原始源和保留的SceneMI姿态/场景重新构建。192窗/384次固定回放完全复现，904个完整场景序列及37项回归检查通过。恢复后的data目录仍是活动依赖；旧版/历史test档案未恢复，不能将新运行档案用于旧协议。详见soft_body_turn_robust_oct09/SOURCE_RECOVERY_zh.md。
