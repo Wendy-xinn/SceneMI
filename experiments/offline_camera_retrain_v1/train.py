@@ -134,7 +134,7 @@ def main():
     parser.add_argument('--resume', type=Path)
     parser.add_argument('--init-from', type=Path,
                         help='Warm-start weights only; reset optimizer, schedule and RNG for a paired trial')
-    parser.add_argument('--loss-profile', choices=('baseline', 'gait_v1', 'gait_v2', 'coordination_v1', 'orientation_v1', 'orientation_v2', 'orientation_v3'), default='baseline')
+    parser.add_argument('--loss-profile', choices=('baseline', 'gait_v1', 'gait_v2', 'coordination_v1', 'orientation_v1', 'orientation_v2', 'orientation_v3', 'orientation_v4', 'orientation_v5'), default='baseline')
     parser.add_argument('--hard-head-rotation', action='store_true', help='Experimental calibrated synthetic-camera rotation projection in training; real PV excluded; inference must use the same projection')
     parser.add_argument('--ddim-head-only', action='store_true')
     parser.add_argument('--allow-legacy-scene-for-diagnostics',action='store_true',help='Explicitly permit old scene inputs for diagnostic trials only')

@@ -149,7 +149,7 @@ def supervised_losses(prediction, truth, batch, *, profile='baseline', signal_we
              + 2. * joint_acceleration + head_position + 10. * foot_stillness
              + .5 * consistency)
     extra = {}
-    if profile in ('gait_v1', 'gait_v2', 'coordination_v1', 'orientation_v1', 'orientation_v2', 'orientation_v3'):
+    if profile in ('gait_v1', 'gait_v2', 'coordination_v1', 'orientation_v1', 'orientation_v2', 'orientation_v3', 'orientation_v4', 'orientation_v5'):
         with torch.no_grad():
             target_fk = forward_kinematics(truth.float(), batch['rest'].float())
         extra = gait_losses(fk_joints, target_fk, signal_weight)
@@ -161,7 +161,7 @@ def supervised_losses(prediction, truth, batch, *, profile='baseline', signal_we
                       + 2. * extra['gait_stride_displacement_m2'])
         extra['gait_total'] = gait_total
         total = total + gait_total
-        if profile in ('gait_v2', 'coordination_v1', 'orientation_v1', 'orientation_v2', 'orientation_v3'):
+        if profile in ('gait_v2', 'coordination_v1', 'orientation_v1', 'orientation_v2', 'orientation_v3', 'orientation_v4', 'orientation_v5'):
             extra.update(phase_free_support_losses(fk_joints, target_fk))
             physical = (4. * extra['support_envelope_m2']
                         + 2. * extra['support_penetration_m2']
@@ -171,15 +171,15 @@ def supervised_losses(prediction, truth, batch, *, profile='baseline', signal_we
             # with clean-signal weighting; use phase-free planting here.
             total = total - 10. * foot_stillness + physical
             extra['phase_free_support_total'] = physical
-        if profile in ('coordination_v1', 'orientation_v1', 'orientation_v2', 'orientation_v3'):
+        if profile in ('coordination_v1', 'orientation_v1', 'orientation_v2', 'orientation_v3', 'orientation_v4', 'orientation_v5'):
             extra.update(coordination_losses(fk_joints, target_fk, signal_weight))
             coordination = (.05 * extra['coordination_relation_mse']
                             + 5. * extra['coordination_amplitude_m2'])
             total = total + coordination
             extra['coordination_total'] = coordination
-        if profile in ('orientation_v1', 'orientation_v2', 'orientation_v3'):
+        if profile in ('orientation_v1', 'orientation_v2', 'orientation_v3', 'orientation_v4', 'orientation_v5'):
             from experiments.offline_camera_retrain_v1.orientation_supervision import orientation_losses
-            extra.update(orientation_losses(prediction, truth, signal_weight, accumulated=profile in ('orientation_v2','orientation_v3'), normalize_duration=profile=='orientation_v3'))
+            extra.update(orientation_losses(prediction, truth, signal_weight, accumulated=profile in ('orientation_v2','orientation_v3', 'orientation_v4', 'orientation_v5'), normalize_duration=profile in ('orientation_v3','orientation_v4','orientation_v5'), gate_turn_noise=profile in ('orientation_v4','orientation_v5'), supervise_neck=profile=='orientation_v5'))
             total = total + extra['orientation_total']
     elif profile != 'baseline':
         raise ValueError(f'Unknown loss profile: {profile}')

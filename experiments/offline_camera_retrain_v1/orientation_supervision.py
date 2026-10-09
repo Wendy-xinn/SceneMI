@@ -8,10 +8,12 @@ def global_rotations(motion):
  for j in range(1,22):result.append(result[PARENTS[j]]@local[:,:,j])
  return torch.stack(result,dim=2)
 
-def orientation_losses(prediction,truth,signal_weight=None,accumulated=False, normalize_duration=False):
+def orientation_losses(prediction,truth,signal_weight=None,accumulated=False, normalize_duration=False, gate_turn_noise=False, supervise_neck=False):
  pred=global_rotations(prediction);target=global_rotations(truth).detach()
  weight=prediction.new_ones(len(prediction)) if signal_weight is None else signal_weight.detach().to(prediction).reshape(-1)
- def reduce(x):return (x.flatten(1).mean(1)*weight).mean()
+ def reduce(x, temporal=False):
+  effective=weight.square() if temporal and gate_turn_noise else weight
+  return (x.flatten(1).mean(1)*effective).mean()
  # Squared Frobenius / 2 = 2(1-cos(theta)); stable at zero and differentiable.
  def chordal(a,b):return (a-b).square().sum((-1,-2))*.5
  head=reduce(chordal(pred[:,:,15],target[:,:,15]))
@@ -23,9 +25,15 @@ def orientation_losses(prediction,truth,signal_weight=None,accumulated=False, no
  for lag in lags:
   rp=pred[:,lag:,(0,15)]@pred[:,:-lag,(0,15)].transpose(-1,-2)
   rt=target[:,lag:,(0,15)]@target[:,:-lag,(0,15)].transpose(-1,-2)
-  turning=turning+reduce(chordal(rp,rt))*(20/lag)**2/max(len(lags),1)
+  turning=turning+reduce(chordal(rp,rt), temporal=True)*(20/lag)**2/max(len(lags),1)
  total=.5*head+.25*pelvis+.1*legs+(.1 if accumulated else .02)*turning
  extra={}
+ if supervise_neck:
+  # GT global neck-parent orientation teaches the torso chain, rather than
+  # forcing an uncertain input camera rotation into the local head joint.
+  neck=reduce(chordal(pred[:,:,12],target[:,:,12]), temporal=True)
+  total=total+.25*neck
+  extra["global_neck_parent_orientation_loss"]=neck
  if accumulated:
   # Horizontal forward-vector increments distinguish a long left turn from
   # a short right turn to the same final rotation. Never unwrap Euler angles.
@@ -35,7 +43,7 @@ def orientation_losses(prediction,truth,signal_weight=None,accumulated=False, no
    return torch.atan2(a[...,1]*b[...,0]-a[...,0]*b[...,1],(a*b).sum(-1)+1e-6)
   valid=(tf[:,:-1].norm(dim=-1)>.3)&(tf[:,1:].norm(dim=-1)>.3)
   error=(increments(pf)-increments(tf))*valid
-  heading=reduce(error.cumsum(dim=1).square())
+  heading=reduce(error.cumsum(dim=1).square(), temporal=True)
   if normalize_duration:
    # Normalize mean elapsed-time squared; exactly preserve the 128-frame
    # reference objective, without overweighting the first few increments.
