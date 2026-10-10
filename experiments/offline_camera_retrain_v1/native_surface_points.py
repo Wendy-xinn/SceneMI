@@ -6,7 +6,7 @@ from experiments.offline_camera_retrain_v1.export_rest_joints import load_model
 from experiments.offline_camera_retrain_v1.supervision import rotation_from_6d
 
 class NativeSurfacePoints:
-    def __init__(self,body_info,device='cuda'):
+    def __init__(self,body_info,device='cuda',full_regions=None):
         model=load_model(body_info['model'],body_info['gender']).to(device)
         beta=torch.tensor([body_info['betas']],device=device,dtype=torch.float32)
         with torch.no_grad():
@@ -18,6 +18,9 @@ class NativeSurfacePoints:
         soles=[]
         for j in [10,11]:
             ids=np.flatnonzero((regions==j)|(regions==j-3));low=ids[np.argsort(verts[ids,1])[:12]];soles.append(low.tolist());selected.extend(low.tolist())
+        if full_regions is not None:
+            # Opt-in only: preserve previously scored sparse objectives exactly.
+            selected.extend(np.flatnonzero(np.isin(regions,full_regions)).tolist())
         self.indices=np.unique(selected);self.v=v[self.indices].detach();self.weights=weights[self.indices].detach();self.parents=model.parents.detach();self.pose_dirs=model.posedirs.reshape(-1,len(v),3)[:,self.indices].reshape(model.posedirs.shape[0],-1).detach();self.scale=float(body_info['scale']);self.sole_indices=[[int(np.flatnonzero(self.indices==i)[0]) for i in foot] for foot in soles]
         self.labels=torch.tensor(regions[self.indices],device=device);self.vertex_ids=self.indices.copy();self.model_info=dict(body_info)
     def __call__(self,motion):
