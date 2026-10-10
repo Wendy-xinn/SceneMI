@@ -1,0 +1,82 @@
+{
+  "arms": [
+    {
+      "arm": "fresh55k_replay_oct11/denoise_control",
+      "checkpoint_bytes": 486180753,
+      "all_model_tensors_finite": true,
+      "trace_rows": 600,
+      "checkpoint_keys": [
+        "step",
+        "model",
+        "config",
+        "evaluation_only",
+        "optimizer_removed",
+        "rng",
+        "cuda_rng",
+        "sampler_state"
+      ],
+      "checkpoint_files": [
+        "last.pt"
+      ]
+    },
+    {
+      "arm": "fresh55k_replay_oct11/rollout_replay",
+      "checkpoint_bytes": 486180753,
+      "all_model_tensors_finite": true,
+      "trace_rows": 600,
+      "checkpoint_keys": [
+        "step",
+        "model",
+        "config",
+        "evaluation_only",
+        "optimizer_removed",
+        "rng",
+        "cuda_rng",
+        "sampler_state"
+      ],
+      "checkpoint_files": [
+        "last.pt"
+      ]
+    },
+    {
+      "arm": "fresh55k_winding_oct11/winding_guard",
+      "checkpoint_bytes": 486180753,
+      "all_model_tensors_finite": true,
+      "trace_rows": 600,
+      "checkpoint_keys": [
+        "step",
+        "model",
+        "config",
+        "evaluation_only",
+        "optimizer_removed",
+        "rng",
+        "cuda_rng",
+        "sampler_state"
+      ],
+      "checkpoint_files": [
+        "last.pt"
+      ]
+    },
+    {
+      "arm": "fresh55k_scene_physics_oct11/winding_scene",
+      "checkpoint_bytes": 486180753,
+      "all_model_tensors_finite": true,
+      "trace_rows": 600,
+      "checkpoint_keys": [
+        "step",
+        "model",
+        "config",
+        "evaluation_only",
+        "optimizer_removed",
+        "rng",
+        "cuda_rng",
+        "sampler_state"
+      ],
+      "checkpoint_files": [
+        "last.pt"
+      ]
+    }
+  ],
+  "free_disk_bytes": 104946450432,
+  "policy": "One evaluation-only checkpoint per completed short arm; official55k retained unchanged; no source data or active dependencies removed."
+}
