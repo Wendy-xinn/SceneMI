@@ -25,27 +25,35 @@ def extra_metrics(m,rest):
 @torch.inference_mode()
 def main():
     global O
-    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');parser.add_argument('--fresh55k-winding',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');parser.add_argument('--fresh55k-winding',action='store_true');parser.add_argument('--fresh55k-physics',action='store_true');args=parser.parse_args()
+    if args.fresh55k_physics:args.fresh55k_replay=True
     if args.fresh55k_winding:args.fresh55k_replay=True
     if args.support_refinement and args.fresh55k_replay:parser.error('Choose one trial')
     if args.support_refinement:O=H/'runs/sole_support_oct11'
     if args.fresh55k_replay:O=H/'runs/fresh55k_replay_oct11'
     if args.fresh55k_winding:O=H/'runs/fresh55k_winding_oct11'
+    if args.fresh55k_physics:O=H/'runs/fresh55k_scene_physics_oct11'
     labels=['original55k','prior_turn600','turn_control','sole_support'] if args.support_refinement else ['original55k','continued_control','turn_path']
     if args.fresh55k_replay:labels=['original55k','denoise_control','rollout_replay']
     if args.fresh55k_winding:labels=['original55k','replay_reference','winding_guard']
+    if args.fresh55k_physics:labels=['original55k','guard_reference','winding_scene']
     torch.set_num_threads(4);start=time.monotonic();models={};digests={}
     for label in labels:
         path=H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt' if label=='original55k' else O/label/'last.pt'
         if label=='prior_turn600':path=H/'runs/turn_path_training_oct10/turn_path/last.pt'
         if label=='replay_reference':path=H/'runs/fresh55k_replay_oct11/rollout_replay/last.pt'
+        if label=='guard_reference':path=H/'runs/fresh55k_winding_oct11/winding_guard/last.pt'
         cp=torch.load(path,map_location='cpu',weights_only=False);c=cp['config'];model=OfflineSceneMI(c['latent_dim'],tuple(c['dim_mults']),body_conditioning=True,contact_prediction=True).cuda().eval();model.load_state_dict(cp['model']);models[label]=model
         digest=hashlib.sha256()
         for name,t in sorted(cp['model'].items()):digest.update(name.encode());digest.update(t.numpy().tobytes())
         digests[label]=digest.hexdigest();del cp
-    if args.fresh55k_replay:
+    if args.fresh55k_replay and not args.fresh55k_physics:
         aliases=[('replay_terminal','replay_reference'),('guard_terminal','winding_guard')] if args.fresh55k_winding else [('denoise_terminal','denoise_control'),('replay_terminal','rollout_replay')]
         for label,source in aliases:models[label]=models[source];digests[label]=digests[source]
+    if args.fresh55k_physics:
+        from experiments.offline_camera_retrain_v1.scene_floor_physics import FloorCache
+        from experiments.offline_camera_retrain_v1.audit_native_support_scene import stats as native_scene_stats
+        floor_cache=FloorCache()
     data=NativeBodyData('validation',seed=777,**{k:c[k] for k in ('skeleton_profile','rich_source','trumans_scene_manifest','trumans_window_protocol','temporal_scene_manifest')},contact_root=c['rich_contact_root'])
     selected=json.loads((H/'runs/state_relative_spline_oct10/confirmation/protocol.json').read_text())['selected'];panel=[selected[i] for i in range(0,48,3)]
     demos=json.loads((H/'runs/state_relative_spline_oct10/demo/manifest.json').read_text())['cases'];historic=[json.loads(s) for s in (H/'runs/native_dynamic_scene20_contact_55k_oct07/full_validation/standard_rows.jsonl').read_text().splitlines()]
@@ -71,14 +79,20 @@ def main():
                 feet=forward_kinematics(motion,batch['rest'])[:,:,(10,11)];support=torch.quantile((batch['joints'][:,:,(10,11),1]*2).flatten(1),.05,dim=1)
                 low=(feet[:,1:,:,1]-support[:,None,None]).abs()<.05;slow=torch.diff(feet,dim=1).norm(dim=-1)<.01
                 result['joint_low_and_slow_fraction']=float((low&slow).float().mean())
+                gt_head=global_rotations(batch['motion'])[0,:,15,:,2];head_valid=float((gt_head[:,[0,2]].norm(dim=-1)>.3).float().mean())>=.95
+                result['head_opposite_turn']=float(result['head_gt_turn_deg']*result['head_turn_deg']<0) if head_valid and abs(result['head_gt_turn_deg'])>=30 else None
             envelope=soles[:,:,1].min(-1).values-gt_soles[:,:,1].min(-1).values;result['native_sole_envelope_abs_cm']=float(envelope.abs().mean()*100);result['native_sole_positive_envelope_cm']=float(envelope.clamp_min(0).mean()*100)
+            if args.fresh55k_physics:
+                floor=floor_cache.get(identity,128)
+                result['observed_floor_support']=native_scene_stats(skin(motion[0]).cpu().numpy(),skin.labels.cpu().numpy(),floor[0],floor[1].data) if floor else None
+                result['floor_audit']=floor[2] if floor else None
             from experiments.offline_camera_retrain_v1.evaluate_body_history import crop
             late=measure(motion[:,80:],crop(batch,80),turn_threshold=30);result['post80_stance_slide_cm_frame']=late['gt_stance_slide_cm_frame'];result['post80_floating_proxy_cm']=late['support_floating_m']*100;values[label]=result
             if member['scope']=='demo':
                 if label=='original55k':
                     with np.load(H/f"runs/state_relative_spline_oct10/demo/{member['index']}.npz") as a:assert np.max(abs(motion[0].cpu().numpy()-a['official55k_motion']))<1e-5
                 elif label!='prior_turn600':saved[label]=motion[0].cpu().numpy()
-            if member['scope']=='demo' and member['index']==850 and (label in (['winding_guard','guard_terminal'] if args.fresh55k_winding else ['rollout_replay','replay_terminal']) if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
+            if member['scope']=='demo' and member['index']==850 and (label in (['winding_scene'] if args.fresh55k_physics else (['winding_guard','guard_terminal'] if args.fresh55k_winding else ['rollout_replay','replay_terminal'])) if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
                 poisoned=dict(batch)
                 for key in ['motion','joints','trajectory','contact_target','contact_valid']:
                     if key in poisoned:poisoned[key]=torch.rand_like(poisoned[key].float())*100
@@ -98,6 +112,7 @@ def main():
     if args.fresh55k_replay:pairs=[('rollout_replay','original55k'),('rollout_replay','denoise_control'),('denoise_control','original55k')]
     if args.fresh55k_replay:pairs.extend([('replay_terminal','original55k'),('replay_terminal','denoise_terminal'),('denoise_terminal','original55k')])
     if args.fresh55k_winding:pairs=[('winding_guard','original55k'),('winding_guard','replay_reference'),('guard_terminal','original55k'),('guard_terminal','replay_terminal')]
+    if args.fresh55k_physics:pairs=[('winding_scene','original55k'),('winding_scene','guard_reference')]
     for label,base in pairs:
         paired[label+'-'+base]={}
         for m in METRICS:
@@ -109,7 +124,11 @@ def main():
             if len(ds):paired[label+'-'+base][m]=dict(mean_difference=float(ds.mean()),exploratory_ci95=np.quantile(rng.choice(ds,(2000,len(ds))).mean(1),[.025,.975]).tolist(),sequences=len(ds))
     result=dict(means=summary,paired=paired)
     if args.fresh55k_replay:
-        for label in models:summary[label]['joint_low_and_slow_fraction']=float(np.mean([r['metrics'][label]['joint_low_and_slow_fraction'] for r in rows if r['scope']=='panel']))
+        for label in models:
+            summary[label]['joint_low_and_slow_fraction']=float(np.mean([r['metrics'][label]['joint_low_and_slow_fraction'] for r in rows if r['scope']=='panel']))
+            eligible=[r['metrics'][label]['head_opposite_turn'] for r in rows if r['scope']=='panel' and r['metrics'][label]['head_opposite_turn'] is not None]
+            summary[label]['head_opposite_turn']=float(np.mean(eligible)) if eligible else None
+            summary[label]['head_turn_eligible_seed_cases']=len(eligible)
     if args.fresh55k_replay:result['confirmation_means']={label:{m:float(np.mean([r['metrics'][label][m] for r in rows if r['scope']=='confirmation' and r['metrics'][label][m] is not None])) for m in METRICS if any(r['metrics'][label][m] is not None for r in rows if r['scope']=='confirmation')} for label in models}
     (O/'summary.json').write_text(json.dumps(result,indent=2));protocol.update(status='completed',elapsed_s=time.monotonic()-start);(O/'evaluation_protocol.json').write_text(json.dumps(protocol,indent=2));print(json.dumps(summary),flush=True)
 if __name__=='__main__':main()

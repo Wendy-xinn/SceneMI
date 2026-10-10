@@ -17,8 +17,10 @@ from experiments.offline_camera_retrain_v1.fresh55k_replay_objective import repl
 H=Path(__file__).parent;O=H/'runs/fresh55k_replay_oct11';BASE=H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt'
 def main():
     global O
-    p=argparse.ArgumentParser();p.add_argument('--steps',type=int,default=600);p.add_argument('--guard-only',action='store_true');args=p.parse_args();torch.set_num_threads(4)
+    p=argparse.ArgumentParser();p.add_argument('--steps',type=int,default=600);p.add_argument('--guard-only',action='store_true');p.add_argument('--physics-only',action='store_true');args=p.parse_args();torch.set_num_threads(4)
+    if args.guard_only and args.physics_only:p.error('Choose guard or physics trial')
     if args.guard_only:O=H/'runs/fresh55k_winding_oct11'
+    if args.physics_only:O=H/'runs/fresh55k_scene_physics_oct11'
     O.mkdir(exist_ok=True)
     if any(O.rglob('last.pt')):raise FileExistsError('Do not overwrite a scored trial')
     seed=2026101121;cp=torch.load(BASE,map_location='cpu',weights_only=False);c=cp['config']
@@ -28,8 +30,11 @@ def main():
     digest=hashlib.sha256()
     for name,t in sorted(cp['model'].items()):digest.update(name.encode());digest.update(t.numpy().tobytes())
     protocol=dict(status='training_running',base=str(BASE),base_model_sha256=digest.hexdigest(),variants=['denoise_control','rollout_replay'],steps=args.steps,batch_size=2,frames=128,seed=seed,lr=2e-5,initialization='BOTH original55k; no previous candidate weights',replay='50% batches: frozen original55k DDIM20 all-noise generation from TRAIN known inputs, then re-noise at t<100; control uses clean TRAIN target with same noise/t; remaining common standard diffusion',supervision='same turn+native sole support+head/neck+stance displacement; no frozen old foot position, no GT body input',storage='one final evaluation-only last.pt per arm; no optimizer/best/numbered weights',source_sha256={f:hashlib.sha256((H/f).read_bytes()).hexdigest() for f in ['train_fresh55k_replay.py','fresh55k_replay_objective.py']},free_disk_before=shutil.disk_usage(O).free)
-    if args.guard_only:
+    if args.guard_only or args.physics_only:
         protocol.update(variants=['winding_guard'],initialization='original55k ONLY; replay600 is comparison, NEVER initialization',guard='head/root winding at all noise with .25+.75alpha weight; top10% root/neck/head/legs relative-rotation and excess-rate supervision',source_guard_sha256=hashlib.sha256((H/'winding_guard_objective.py').read_bytes()).hexdigest())
+    if args.physics_only:
+        from experiments.offline_camera_retrain_v1.scene_floor_physics import FloorCache,FootCache,physics_losses
+        floors=FloorCache();foot_vertices=FootCache();protocol.update(variants=['winding_scene'],physics='known camera ROI and start-causal static lowest horizontal patch; replace strong GT native height targets with scene penetration/ground height/persistent contact velocity; training GT used only for conservative stance tags near observed support',source_physics_sha256=hashlib.sha256((H/'scene_floor_physics.py').read_bytes()).hexdigest())
     (O/'protocol.json').write_text(json.dumps(protocol,indent=2));start=time.monotonic()
     for variant in protocol['variants']:
         torch.manual_seed(seed);np.random.seed(seed);rng=np.random.default_rng(seed+991)
@@ -45,7 +50,10 @@ def main():
                 pred=model(noisy,t,known,control_mask=mask,use_scene=scene);losses=supervised_losses(pred,clean,batch,profile='coordination_v1',signal_weight=alpha.flatten())
                 with torch.no_grad():old=teacher(noisy,t,known,control_mask=mask,use_scene=scene);target_soles=sole.soles(clean,[i for s,i in pairs])
                 extra=replay_losses(pred,clean,batch['rest'],sole.soles(pred,[i for s,i in pairs]),target_soles,old,alpha.flatten());bce=contact_loss(model.contact_logits(pred,known,use_scene=scene),batch,alpha.flatten());total=losses['total']+extra['replay_total']+.1*bce
-                if args.guard_only:
+                if args.physics_only:
+                    total=total-.15*extra['native_envelope']-.1*extra['stance_height']
+                    physics=physics_losses(pred,clean,batch['rest'],[i for s,i in pairs],alpha.flatten(),floors,foot_vertices);total=total+physics['scene_physics_total'];extra.update(physics)
+                if args.guard_only or args.physics_only:
                     from experiments.offline_camera_retrain_v1.winding_guard_objective import winding_guard_losses
                     guard=winding_guard_losses(pred,clean,alpha.flatten());total=total+guard['winding_guard_total'];extra.update(guard)
                 assert torch.isfinite(total);total.backward();norm=torch.nn.utils.clip_grad_norm_(model.parameters(),1,error_if_nonfinite=True);lr=2e-5*min(1,step/50)*max(.1,.5*(1+math.cos(math.pi*step/args.steps)))

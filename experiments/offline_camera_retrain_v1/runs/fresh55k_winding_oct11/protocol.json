@@ -1,0 +1,26 @@
+{
+  "status": "training_completed",
+  "base": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/last.pt",
+  "base_model_sha256": "35795d68bbb3d9f9747af250584770401ebe5161dc5db16219cc4796b0d3c56d",
+  "variants": [
+    "winding_guard"
+  ],
+  "steps": 600,
+  "batch_size": 2,
+  "frames": 128,
+  "seed": 2026101121,
+  "lr": 2e-05,
+  "initialization": "original55k ONLY; replay600 is comparison, NEVER initialization",
+  "replay": "50% batches: frozen original55k DDIM20 all-noise generation from TRAIN known inputs, then re-noise at t<100; control uses clean TRAIN target with same noise/t; remaining common standard diffusion",
+  "supervision": "same turn+native sole support+head/neck+stance displacement; no frozen old foot position, no GT body input",
+  "storage": "one final evaluation-only last.pt per arm; no optimizer/best/numbered weights",
+  "source_sha256": {
+    "train_fresh55k_replay.py": "389b89c0d99e2fcffa56c5f6aee92013f29390024fb184380d005d760dfef662",
+    "fresh55k_replay_objective.py": "48fec54f55ad2ebbad0510e17b9013dc86724c3a962b8c89c5f3b22dec117b31"
+  },
+  "free_disk_before": 105933230080,
+  "guard": "head/root winding at all noise with .25+.75alpha weight; top10% root/neck/head/legs relative-rotation and excess-rate supervision",
+  "source_guard_sha256": "6f7ac18778c84d8e4261a02aa5e04a1943673534c0c0a260c7a973ace83fe91b",
+  "elapsed_s": 659.6956025519903,
+  "free_disk_after": 105444376576
+}

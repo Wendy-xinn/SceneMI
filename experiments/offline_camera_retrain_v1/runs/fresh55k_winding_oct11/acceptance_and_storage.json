@@ -1,0 +1,192 @@
+{
+  "variants": {
+    "winding_guard": {
+      "adopt": false,
+      "gates": {
+        "panel_joint_slide_vs_original_ratio_max": {
+          "value": 0.7421357852381884,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "panel_native_sole_slide_vs_original_ratio_max": {
+          "value": 0.75486686432317,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "panel_leg_accel_vs_original_ratio_max": {
+          "value": 0.8993068081468264,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "906_negative_net_turn": {
+          "value": true,
+          "threshold": true,
+          "passed": true
+        },
+        "906_root_peak_deg_max": {
+          "value": 3.9719685465093835,
+          "threshold": 7.0,
+          "passed": true
+        },
+        "906_slide_vs_original_ratio_max": {
+          "value": 0.8992202495285228,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "850_slide_vs_original_ratio_max": {
+          "value": 1.0082190390629875,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "906_floating_proxy_cm_max": {
+          "value": 1.157207228243351,
+          "threshold": 1.0,
+          "passed": false
+        },
+        "906_contact_proxy_fraction_min": {
+          "value": 0.03543306887149811,
+          "threshold": 0.3,
+          "passed": false
+        },
+        "850_floating_proxy_vs_original_cm_margin": {
+          "value": 0.03105581272393465,
+          "threshold": 0.5,
+          "passed": true
+        },
+        "panel_heading_vs_original_ratio_max": {
+          "value": 0.831049892799281,
+          "threshold": 0.95,
+          "passed": true
+        },
+        "906_post80_slide_vs_original_ratio_max": {
+          "value": 1.2726354397973174,
+          "threshold": 1.02,
+          "passed": false
+        },
+        "confirmation_heading_vs_original_max": {
+          "value": 0.9119573368140611,
+          "threshold": 1.0,
+          "passed": true
+        },
+        "confirmation_joint_slide_vs_original_max": {
+          "value": 0.6996337448250471,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "confirmation_native_sole_slide_vs_original_max": {
+          "value": 0.6867516110768463,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "confirmation_leg_accel_vs_original_max": {
+          "value": 0.8979803413113943,
+          "threshold": 1.02,
+          "passed": true
+        }
+      }
+    },
+    "guard_terminal": {
+      "adopt": false,
+      "gates": {
+        "panel_joint_slide_vs_original_ratio_max": {
+          "value": 0.7865834318510646,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "panel_native_sole_slide_vs_original_ratio_max": {
+          "value": 0.7838485502726105,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "panel_leg_accel_vs_original_ratio_max": {
+          "value": 0.9091693172857264,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "906_negative_net_turn": {
+          "value": false,
+          "threshold": true,
+          "passed": false
+        },
+        "906_root_peak_deg_max": {
+          "value": 18.894746193981707,
+          "threshold": 7.0,
+          "passed": false
+        },
+        "906_slide_vs_original_ratio_max": {
+          "value": 0.7889543657104205,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "850_slide_vs_original_ratio_max": {
+          "value": 0.8264120713879806,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "906_floating_proxy_cm_max": {
+          "value": 0.0,
+          "threshold": 1.0,
+          "passed": true
+        },
+        "906_contact_proxy_fraction_min": {
+          "value": 0.8779527544975281,
+          "threshold": 0.3,
+          "passed": true
+        },
+        "850_floating_proxy_vs_original_cm_margin": {
+          "value": -0.3006880317116156,
+          "threshold": 0.5,
+          "passed": true
+        },
+        "panel_heading_vs_original_ratio_max": {
+          "value": 0.8689543703952349,
+          "threshold": 0.95,
+          "passed": true
+        },
+        "906_post80_slide_vs_original_ratio_max": {
+          "value": 0.9259622403198247,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "confirmation_heading_vs_original_max": {
+          "value": 0.88251074711802,
+          "threshold": 1.0,
+          "passed": true
+        },
+        "confirmation_joint_slide_vs_original_max": {
+          "value": 0.7679200450358034,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "confirmation_native_sole_slide_vs_original_max": {
+          "value": 0.7606350081356565,
+          "threshold": 1.02,
+          "passed": true
+        },
+        "confirmation_leg_accel_vs_original_max": {
+          "value": 0.9142113347660582,
+          "threshold": 1.02,
+          "passed": true
+        }
+      }
+    }
+  },
+  "trace_steps": {
+    "replay_reference": 600,
+    "winding_guard": 600
+  },
+  "paired_samples_noise_schedule_match": true,
+  "train_scene_bundles_only": true,
+  "weights": [
+    {
+      "variant": "winding_guard",
+      "bytes": 486180753,
+      "step": 600,
+      "evaluation_only": true,
+      "optimizer_present": false,
+      "all_tensors_finite": true
+    }
+  ],
+  "free_disk_bytes": 105441476608,
+  "storage": "1 final evaluation-only last.pt; no optimizer/best/numbered weights; source/preprocessing dependencies untouched"
+}

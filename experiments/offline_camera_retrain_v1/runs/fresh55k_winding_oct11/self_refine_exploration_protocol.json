@@ -1,0 +1,9 @@
+{
+  "registered_at": "2026-10-11T01:48:16+0800",
+  "decision": "AFTER raw guard all48 scores, BEFORE self-refine generation or scoring",
+  "reason": "raw guard fixes winding but floats; test one extra t0 denoising pass on its OWN DDIM20 sample vs t0 on original55k sample; no new training or weights",
+  "inference": "winding_guard DDIM20 all noise -> same winding_guard model at t0 ONCE",
+  "iterations": 1,
+  "acceptance": "same joint gates, full48 if demos are informative; exploratory development, not primary preregistered comparison",
+  "GT": "no GT input, initialization, alignment, head mount, contacts or projection; GT scoring only"
+}

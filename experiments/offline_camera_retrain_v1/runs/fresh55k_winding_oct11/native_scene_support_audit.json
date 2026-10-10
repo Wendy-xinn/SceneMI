@@ -1,0 +1,266 @@
+{
+  "scope": "850/906 observed static near-foot planar diagnostics only",
+  "plane_uses_GT_body": false,
+  "body_outputs_modified": false,
+  "dynamic_objects_used": false,
+  "static_time_policy": "first_observed_source_frame <= window_start",
+  "contact_definition": "sampled foot/ankle vertices within observed plane \u00b12cm; same vertex contact at two consecutive frames; unknown >60cm away excluded",
+  "rows": [
+    {
+      "index": 850,
+      "plane": [
+        0.00018967728084216104,
+        0.0005907137617943148,
+        -1.5325881755926551
+      ],
+      "plane_audit": {
+        "points": 9063,
+        "slope": 0.000620419389800856,
+        "residual_p95_mm": 2.7369955390384333,
+        "xz_span_m": [
+          2.893709659576416,
+          2.5278632640838623
+        ],
+        "policy": "dominant near-foot horizontal mode from start-causal static ROI; not complete floor/SDF or dynamic support"
+      },
+      "metrics": {
+        "replay_reference": {
+          "lowest_foot_height_mean_cm": -3.3670805394649506,
+          "lowest_foot_height_p95_cm": -2.2015112638473533,
+          "lowest_foot_height_min_cm": -4.121553897857666,
+          "lowest_foot_height_post80_mean_cm": -3.129884973168373,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 0.8307292461395264,
+            "low_and_slow_contact_fraction": 0.4474867184307315,
+            "contact_vertex_pairs": 12235
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 0.8015468716621399,
+            "low_and_slow_contact_fraction": 0.24492685228881547,
+            "contact_vertex_pairs": 4238
+          }
+        },
+        "winding_guard": {
+          "lowest_foot_height_mean_cm": -2.890048921108246,
+          "lowest_foot_height_p95_cm": -1.08388125896454,
+          "lowest_foot_height_min_cm": -4.587197303771973,
+          "lowest_foot_height_post80_mean_cm": -1.879110373556614,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 1.0624700784683228,
+            "low_and_slow_contact_fraction": 0.3686844838983851,
+            "contact_vertex_pairs": 10589
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 1.1495810747146606,
+            "low_and_slow_contact_fraction": 0.11144496039333515,
+            "contact_vertex_pairs": 3661
+          }
+        },
+        "replay_terminal": {
+          "lowest_foot_height_mean_cm": -3.2966841012239456,
+          "lowest_foot_height_p95_cm": -2.5257563591003422,
+          "lowest_foot_height_min_cm": -4.03972864151001,
+          "lowest_foot_height_post80_mean_cm": -2.9905512928962708,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 0.8339009881019592,
+            "low_and_slow_contact_fraction": 0.4828711256117455,
+            "contact_vertex_pairs": 12260
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 0.8392991423606873,
+            "low_and_slow_contact_fraction": 0.2978517982138547,
+            "contact_vertex_pairs": 4143
+          }
+        },
+        "guard_terminal": {
+          "lowest_foot_height_mean_cm": -3.683985024690628,
+          "lowest_foot_height_p95_cm": -2.9908794164657593,
+          "lowest_foot_height_min_cm": -4.698801040649414,
+          "lowest_foot_height_post80_mean_cm": -3.649367019534111,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 0.9928753972053528,
+            "low_and_slow_contact_fraction": 0.4398573339277753,
+            "contact_vertex_pairs": 11215
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 1.037638783454895,
+            "low_and_slow_contact_fraction": 0.29217904574520415,
+            "contact_vertex_pairs": 4066
+          }
+        },
+        "original55k": {
+          "lowest_foot_height_mean_cm": -3.3420518040657043,
+          "lowest_foot_height_p95_cm": -1.7863661050796509,
+          "lowest_foot_height_min_cm": -4.847991466522217,
+          "lowest_foot_height_post80_mean_cm": -2.6553623378276825,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 0.9130829572677612,
+            "low_and_slow_contact_fraction": 0.4855614973262032,
+            "contact_vertex_pairs": 11220
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 0.9752776026725769,
+            "low_and_slow_contact_fraction": 0.156,
+            "contact_vertex_pairs": 3000
+          }
+        },
+        "gt_reference_only": {
+          "lowest_foot_height_mean_cm": -6.153153628110886,
+          "lowest_foot_height_p95_cm": -5.128490328788757,
+          "lowest_foot_height_min_cm": -7.545828819274902,
+          "lowest_foot_height_post80_mean_cm": -6.531721353530884,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 1.5688518285751343,
+            "low_and_slow_contact_fraction": 0.5738958795953615,
+            "contact_vertex_pairs": 4053
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 1.1133102178573608,
+            "low_and_slow_contact_fraction": 0.7227722772277227,
+            "contact_vertex_pairs": 1616
+          }
+        }
+      }
+    },
+    {
+      "index": 906,
+      "plane": [
+        0.00015550934103734603,
+        -0.00032380671807974437,
+        -1.5784470324487947
+      ],
+      "plane_audit": {
+        "points": 5896,
+        "slope": 0.0003592129533068715,
+        "residual_p95_mm": 2.0796535985609377,
+        "xz_span_m": [
+          2.557343006134033,
+          3.241600513458252
+        ],
+        "policy": "dominant near-foot horizontal mode from start-causal static ROI; not complete floor/SDF or dynamic support"
+      },
+      "metrics": {
+        "replay_reference": {
+          "lowest_foot_height_mean_cm": -3.0356187373399734,
+          "lowest_foot_height_p95_cm": -2.020713090896607,
+          "lowest_foot_height_min_cm": -4.666244983673096,
+          "lowest_foot_height_post80_mean_cm": -2.682366222143173,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 1.1278698444366455,
+            "low_and_slow_contact_fraction": 0.4805053025577043,
+            "contact_vertex_pairs": 12824
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 1.5349500179290771,
+            "low_and_slow_contact_fraction": 0.26280878316559925,
+            "contact_vertex_pairs": 4372
+          }
+        },
+        "winding_guard": {
+          "lowest_foot_height_mean_cm": -1.6790799796581268,
+          "lowest_foot_height_p95_cm": -0.5378103256225594,
+          "lowest_foot_height_min_cm": -2.9749393463134766,
+          "lowest_foot_height_post80_mean_cm": -1.0902799665927887,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 0.8674315214157104,
+            "low_and_slow_contact_fraction": 0.5299,
+            "contact_vertex_pairs": 10000
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 1.1998132467269897,
+            "low_and_slow_contact_fraction": 0.4317803660565724,
+            "contact_vertex_pairs": 2404
+          }
+        },
+        "replay_terminal": {
+          "lowest_foot_height_mean_cm": -3.8617387413978577,
+          "lowest_foot_height_p95_cm": -2.7317339181900038,
+          "lowest_foot_height_min_cm": -5.363059043884277,
+          "lowest_foot_height_post80_mean_cm": -4.136082902550697,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 1.330588698387146,
+            "low_and_slow_contact_fraction": 0.48733811762764995,
+            "contact_vertex_pairs": 12123
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 1.7329622507095337,
+            "low_and_slow_contact_fraction": 0.49106918238993713,
+            "contact_vertex_pairs": 3975
+          }
+        },
+        "guard_terminal": {
+          "lowest_foot_height_mean_cm": -4.416003078222275,
+          "lowest_foot_height_p95_cm": -3.1204628944396973,
+          "lowest_foot_height_min_cm": -6.221961975097656,
+          "lowest_foot_height_post80_mean_cm": -4.736003279685974,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 1.5633693933486938,
+            "low_and_slow_contact_fraction": 0.4032433501433798,
+            "contact_vertex_pairs": 10113
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 2.0865821838378906,
+            "low_and_slow_contact_fraction": 0.2765282583621684,
+            "contact_vertex_pairs": 3468
+          }
+        },
+        "original55k": {
+          "lowest_foot_height_mean_cm": -3.6188334226608276,
+          "lowest_foot_height_p95_cm": -2.580103874206543,
+          "lowest_foot_height_min_cm": -5.274999141693115,
+          "lowest_foot_height_post80_mean_cm": -3.7264008074998856,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 1.3001478910446167,
+            "low_and_slow_contact_fraction": 0.48574122083431537,
+            "contact_vertex_pairs": 12729
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 1.705915927886963,
+            "low_and_slow_contact_fraction": 0.4004678362573099,
+            "contact_vertex_pairs": 4275
+          }
+        },
+        "gt_reference_only": {
+          "lowest_foot_height_mean_cm": -6.3073135912418365,
+          "lowest_foot_height_p95_cm": -5.089544653892517,
+          "lowest_foot_height_min_cm": -7.305049896240234,
+          "lowest_foot_height_post80_mean_cm": -6.0423146933317184,
+          "observed_contact_frame_fraction": 1.0,
+          "known_vertex_fraction": 1.0,
+          "full": {
+            "contact_vertex_slide_cm_frame": 2.2378878593444824,
+            "low_and_slow_contact_fraction": 0.5337796713329276,
+            "contact_vertex_pairs": 3286
+          },
+          "post80": {
+            "contact_vertex_slide_cm_frame": 2.4349889755249023,
+            "low_and_slow_contact_fraction": 0.5664280031821798,
+            "contact_vertex_pairs": 1257
+          }
+        }
+      }
+    }
+  ]
+}
