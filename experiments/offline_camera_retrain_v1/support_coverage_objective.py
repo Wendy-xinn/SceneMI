@@ -64,3 +64,28 @@ terms use a bounded reference patch, not the whole foot or a rest-pose sole.
     result['reference_support_vertex_pairs']=pairs;result['reference_support_foot_frames']=frames
     result['total']=.08*result['height']+.08*result['velocity']+.04*result['displacement']
     return result
+
+def coverage_physics_losses(pred,truth,rest,identities,signal,floors,feet):
+    """Opt-in training wrapper. Known scene selects plane; GT labels select support.
+
+The support mask never reads predicted height/known status. Predicted geometry
+is queried only for penetration into observed ground. No plane fitted to body.
+"""
+    from experiments.offline_camera_retrain_v1.supervision import forward_kinematics
+    target_velocity=torch.diff(forward_kinematics(truth.detach(),rest)[:,:,(10,11)],dim=1).norm(dim=-1)
+    totals=[];counts=0;terms={k:pred.new_zeros(()) for k in ('height','velocity','displacement','coverage_deficit','reference_support_vertex_pairs','reference_support_foot_frames')}
+    for b,identity in enumerate(identities):
+        field=floors.get(identity,len(pred[b]))
+        if field is None:totals.append(pred[b].sum()*0);continue
+        coef,tree,_=field;skin=feet.get(identity['native_body']);v=skin(pred[b])
+        with torch.no_grad():gt=skin(truth[b])
+        def height(vertices):return vertices[...,1]-vertices[...,0]*float(coef[0])-vertices[...,2]*float(coef[1])-float(coef[2])
+        def known(vertices):
+            xz=vertices.detach()[...,[0,2]].cpu().numpy();distance=tree.query(xz.reshape(-1,2),workers=2)[0].reshape(xz.shape[:2]);return torch.tensor(distance<.6,device=pred.device)
+        hp=height(v);ht=height(gt);kp=known(v);kt=known(gt)
+        # Keep prior penetration term and signal schedule for paired comparison.
+        penetration=(((-hp-.01).relu()/.03).square()*kp).sum()/kp.sum().clamp_min(1)
+        support=support_patch_losses(v,gt,hp,ht,kt,skin.labels,target_velocity[b]<.01)
+        totals.append((.10*penetration+support['total'])*signal[b].detach().square());counts+=1
+        for key in terms:terms[key]=terms[key]+support[key]/len(pred)
+    return dict(scene_physics_total=torch.stack(totals).mean(),scene_floor_valid_examples=pred.new_tensor(counts),**{'support_patch_'+k:v for k,v in terms.items()})

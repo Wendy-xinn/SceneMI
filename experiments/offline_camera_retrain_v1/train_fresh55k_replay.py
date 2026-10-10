@@ -17,10 +17,12 @@ from experiments.offline_camera_retrain_v1.fresh55k_replay_objective import repl
 H=Path(__file__).parent;O=H/'runs/fresh55k_replay_oct11';BASE=H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt'
 def main():
     global O
-    p=argparse.ArgumentParser();p.add_argument('--steps',type=int,default=600);p.add_argument('--guard-only',action='store_true');p.add_argument('--physics-only',action='store_true');args=p.parse_args();torch.set_num_threads(4)
-    if args.guard_only and args.physics_only:p.error('Choose guard or physics trial')
+    p=argparse.ArgumentParser();p.add_argument('--steps',type=int,default=600);p.add_argument('--guard-only',action='store_true');p.add_argument('--physics-only',action='store_true');p.add_argument('--coverage-only',action='store_true');args=p.parse_args();torch.set_num_threads(4)
+    if sum((args.guard_only,args.physics_only,args.coverage_only))>1:p.error('Choose one trial')
+    if args.coverage_only:args.physics_only=True
     if args.guard_only:O=H/'runs/fresh55k_winding_oct11'
     if args.physics_only:O=H/'runs/fresh55k_scene_physics_oct11'
+    if args.coverage_only:O=H/'runs/fresh55k_support_coverage_oct11'
     O.mkdir(exist_ok=True)
     if any(O.rglob('last.pt')):raise FileExistsError('Do not overwrite a scored trial')
     seed=2026101121;cp=torch.load(BASE,map_location='cpu',weights_only=False);c=cp['config']
@@ -35,6 +37,10 @@ def main():
     if args.physics_only:
         from experiments.offline_camera_retrain_v1.scene_floor_physics import FloorCache,FootCache,physics_losses
         floors=FloorCache();foot_vertices=FootCache();protocol.update(variants=['winding_scene'],physics='known camera ROI and start-causal static lowest horizontal patch; replace strong GT native height targets with scene penetration/ground height/persistent contact velocity; training GT used only for conservative stance tags near observed support',source_physics_sha256=hashlib.sha256((H/'scene_floor_physics.py').read_bytes()).hexdigest())
+    if args.coverage_only:
+        from experiments.offline_camera_retrain_v1.support_coverage_objective import FullFootCache,coverage_physics_losses
+        foot_vertices=FullFootCache();physics_losses=coverage_physics_losses
+        protocol.update(variants=['coverage_support'],physics='full native foot vertices; TRAIN reference support patch independent of predicted height; observed-plane patch height plus reference rolling velocity/4,8-frame displacement; same penetration and alpha squared; old region labels/BCE unchanged',source_coverage_sha256=hashlib.sha256((H/'support_coverage_objective.py').read_bytes()).hexdigest(),comparison='winding_scene600 only for evaluation, NEVER initialization; same schedule/noise/replay/scene dropout/guard')
     (O/'protocol.json').write_text(json.dumps(protocol,indent=2));start=time.monotonic()
     for variant in protocol['variants']:
         torch.manual_seed(seed);np.random.seed(seed);rng=np.random.default_rng(seed+991)

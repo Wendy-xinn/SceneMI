@@ -11,7 +11,11 @@ ROOT=Path(__file__).parent/'runs/state_relative_spline_oct10/demo'
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=8780);parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--scene-refinement',type=Path);parser.add_argument('--legacy-history-diagnostic',action='store_true');parser.add_argument('--turn-coordination',type=Path);parser.add_argument('--turn-training',type=Path);parser.add_argument('--support-refinement',type=Path);parser.add_argument('--fresh55k-replay',type=Path);parser.add_argument('--fresh55k-winding',type=Path);parser.add_argument('--fresh55k-physics',type=Path);args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=8780);parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--scene-refinement',type=Path);parser.add_argument('--legacy-history-diagnostic',action='store_true');parser.add_argument('--turn-coordination',type=Path);parser.add_argument('--turn-training',type=Path);parser.add_argument('--support-refinement',type=Path);parser.add_argument('--fresh55k-replay',type=Path);parser.add_argument('--fresh55k-winding',type=Path);parser.add_argument('--fresh55k-physics',type=Path);parser.add_argument('--fresh55k-coverage',type=Path);args=parser.parse_args()
+    coverage_mode=bool(args.fresh55k_coverage)
+    if coverage_mode:
+        if args.fresh55k_physics:parser.error('Choose one physical trial')
+        args.fresh55k_physics=args.fresh55k_coverage
     physics_mode=bool(args.fresh55k_physics)
     if physics_mode:
         if args.fresh55k_replay or args.fresh55k_winding:parser.error('Choose one fresh55k diagnostic')
@@ -29,7 +33,7 @@ def main():
         mesh_keys=['gt','official55k'];colors['official55k']=(240,65,60);labels['official55k']='55k无身体GT初始化红色'
     if sum(bool(x) for x in [args.turn_training,args.turn_coordination,args.support_refinement,args.fresh55k_replay])>1:parser.error('Choose one turn diagnostic')
     turn_root=args.fresh55k_replay or args.support_refinement or args.turn_training or args.turn_coordination
-    turn_variant=('winding_scene' if physics_mode else ('winding_guard' if winding_mode else 'rollout_replay')) if args.fresh55k_replay else ('sole_support' if args.support_refinement else ('turn_path' if args.turn_training else 'camera_soft'))
+    turn_variant=('coverage_support' if coverage_mode else ('winding_scene' if physics_mode else ('winding_guard' if winding_mode else 'rollout_replay'))) if args.fresh55k_replay else ('sole_support' if args.support_refinement else ('turn_path' if args.turn_training else 'camera_soft'))
     if turn_root:
         if not gt_free:parser.error('Turn diagnostics require GT-free default mode')
         mesh_keys.append('turn_coordination');colors['turn_coordination']=(45,205,90);labels['turn_coordination']='足底支撑400步绿色（未通过）' if args.support_refinement else ('转向路径600步绿色（未通过）' if args.turn_training else '转向保脚开发候选绿色')
@@ -39,6 +43,8 @@ def main():
             labels['turn_coordination']='55k回放微调绿色（开发候选）';mesh_keys.append('continued_control');colors['continued_control']=(155,80,215);labels['continued_control']='55k标准加噪对照紫色'
         if physics_mode:
             labels['turn_coordination']='原55k独立场景接触组绿色（未通过）';labels['continued_control']='原55k独立累计转向参考橙色';colors['continued_control']=(245,145,30)
+        if coverage_mode:
+            labels['turn_coordination']='原55k独立支撑覆盖组绿色（开发候选）';labels['continued_control']='原55k独立上轮场景接触参考橙色'
         if winding_mode:
             labels['turn_coordination']='55k累计转向微调绿色（开发候选）';labels['continued_control']='55k回放标准DDIM紫色'
             mesh_keys.extend(['guard_terminal','replay_terminal']);colors.update(guard_terminal=(245,145,30),replay_terminal=(80,205,210));labels.update(guard_terminal='累计转向末端一次橙色',replay_terminal='回放末端一次青色')
@@ -56,7 +62,7 @@ def main():
         if turn_root:
             with np.load(turn_root/f"{case['index']}.npz") as turn_arrays:
                 arrays['turn_coordination_motion']=turn_arrays[turn_variant]
-                if args.turn_training or args.fresh55k_replay:arrays['continued_control_motion']=turn_arrays['guard_reference' if physics_mode else ('replay_reference' if winding_mode else ('denoise_control' if args.fresh55k_replay else 'continued_control'))]
+                if args.turn_training or args.fresh55k_replay:arrays['continued_control_motion']=turn_arrays['scene_reference' if coverage_mode else ('guard_reference' if physics_mode else ('replay_reference' if winding_mode else ('denoise_control' if args.fresh55k_replay else 'continued_control')))]
                 if winding_mode:
                     arrays['guard_terminal_motion']=turn_arrays['guard_terminal'];arrays['replay_terminal_motion']=turn_arrays['replay_terminal']
                 if args.support_refinement:arrays['turn_control_motion']=turn_arrays['turn_control']
@@ -76,7 +82,8 @@ def main():
         name=f"{case['index']} · {case['identity']['sequence_id']}";cases[name]=(case,arrays)
     server=viser.ViserServer(port=args.port,label='SceneMI · 状态相对生成');server.scene.set_up_direction('+y')
     if gt_free:server.gui.add_markdown('**850/906：严格无身体GT初始化基线。** 蓝GT仅对照 · 红真正原55k，从随机扩散噪声生成全部128帧。输入仅已知相机/场景与配置身体模板，没有GT身体前缀或初始姿态对齐。TRUMANS相机仍是模拟已知条件，非真实视频估计。红色已切回原55k，与此前微调+GT历史红色不同；可选绿色为转向开发诊断，尚未通过验收。')
-    if physics_mode:server.gui.add_markdown('**本轮全部从原55k独立初始化。** 红原55k · 橙累计转向参考 · 绿累计转向＋已观测地面接触组。全128帧从噪声生成，无GT身体初始化、无推理投影。850改善，906转向改善但转身后仍离地滑动，未通过。参考组只用于对照，没有作为绿色训练起点。')
+    if coverage_mode:server.gui.add_markdown('**支撑覆盖配对实验，全部从原55k独立初始化。** 红原55k · 橙上轮场景接触参考 · 绿支撑patch覆盖修复。全128帧纯噪声，无GT身体初态，无推理投影；头部约束与上轮相同。本轮是否通过必须查看fresh55k_support_coverage_oct11评估，默认不启用开发候选。')
+    if physics_mode and not coverage_mode:server.gui.add_markdown('**本轮全部从原55k独立初始化。** 红原55k · 橙累计转向参考 · 绿累计转向＋已观测地面接触组。全128帧从噪声生成，无GT身体初始化、无推理投影。850改善，906转向改善但转身后仍离地滑动，未通过。参考组只用于对照，没有作为绿色训练起点。')
     if winding_mode:server.gui.add_markdown('**均从原55k独立开始，未接着旧候选微调。** 红原55k · 紫回放600步参考 · 绿新增累计转向/速率尾部600步标准DDIM · 橙新组末端一次修正 · 青回放参考末端一次。绿色与紫色均全128帧由噪声生成；橙/青先冻结原55k生成再修正一次。无GT身体初始化或GT投影，联合验收及脚步幅度见fresh55k_winding_oct11报告。')
     if args.fresh55k_replay and not winding_mode and not physics_mode:server.gui.add_markdown('**直接从原55k开始的对照。** 红原55k · 紫同目标标准加噪微调 · 绿55k生成轨迹回放微调。两组都未加载此前候选；全128帧无GT身体初始化，没有GT投影。联合验收见fresh55k_replay_oct11报告，开发结果未证明物理可跟踪。')
     if args.support_refinement:server.gui.add_markdown('**足底支撑400步诊断：** 红原55k · 橙上轮转向600步 · 紫继续转向400步 · 绿新增足底支撑400步。全部无GT身体初始化；native足底监督用训练GT包络，未做推理GT投影。906漂浮减少但支撑未恢复；850脚滑仍退化，未通过联合验收。')
@@ -88,7 +95,7 @@ def main():
     options=['完整生成0–127','短期预测16–47'] if gt_free else (['短期预测16–47','含历史0–47'] if args.scene_refinement else ['短期预测16–47','完整预测16–127','含历史0–127'])
     range_select=server.gui.add_dropdown('播放范围',options=options,initial_value=options[0] if gt_free or args.scene_refinement else '完整预测16–127')
     frame=server.gui.add_slider('帧',min=0,max=frame_count-1,step=1,initial_value=0 if gt_free else 16);opacity=server.gui.add_slider('人物透明度',min=.1,max=1,step=.05,initial_value=.55)
-    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['原55k独立场景接触组绿色（未通过）','原55k独立累计转向参考橙色','55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色','足底支撑400步绿色（未通过）','上轮转向600步橙色','继续转向400步紫色','55k回放微调绿色（开发候选）','55k标准加噪对照紫色','55k累计转向微调绿色（开发候选）','55k回放标准DDIM紫色','累计转向末端一次橙色','回放末端一次青色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','输入相机与轨迹','生成相机与轨迹']}
+    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['原55k独立支撑覆盖组绿色（开发候选）','原55k独立上轮场景接触参考橙色','原55k独立场景接触组绿色（未通过）','原55k独立累计转向参考橙色','55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色','足底支撑400步绿色（未通过）','上轮转向600步橙色','继续转向400步紫色','55k回放微调绿色（开发候选）','55k标准加噪对照紫色','55k累计转向微调绿色（开发候选）','55k回放标准DDIM紫色','累计转向末端一次橙色','回放末端一次青色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','输入相机与轨迹','生成相机与轨迹']}
     server.gui.add_markdown('**相机诊断：** 紫色是已知输入；红/绿/紫生成相机随对应mesh开关显示。相机由生成身体FK头部重建，未吸附输入。固定安装偏置由GT首帧仅作绘图标定，非生成输入。位置和朝向误差均在完整128帧记录。')
     camera_size=server.gui.add_slider('相机线框深度（米）',min=.04,max=.8,step=.02,initial_value=.5)
     follow=server.gui.add_checkbox('观察相机视角',initial_value=False);reset=server.gui.add_button('外部视角');info=server.gui.add_markdown('')

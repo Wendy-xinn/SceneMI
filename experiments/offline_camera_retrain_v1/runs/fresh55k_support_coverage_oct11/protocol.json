@@ -1,0 +1,30 @@
+{
+  "status": "training_completed",
+  "base": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/last.pt",
+  "base_model_sha256": "35795d68bbb3d9f9747af250584770401ebe5161dc5db16219cc4796b0d3c56d",
+  "variants": [
+    "coverage_support"
+  ],
+  "steps": 600,
+  "batch_size": 2,
+  "frames": 128,
+  "seed": 2026101121,
+  "lr": 2e-05,
+  "initialization": "original55k ONLY; replay600 is comparison, NEVER initialization",
+  "replay": "50% batches: frozen original55k DDIM20 all-noise generation from TRAIN known inputs, then re-noise at t<100; control uses clean TRAIN target with same noise/t; remaining common standard diffusion",
+  "supervision": "same turn+native sole support+head/neck+stance displacement; no frozen old foot position, no GT body input",
+  "storage": "one final evaluation-only last.pt per arm; no optimizer/best/numbered weights",
+  "source_sha256": {
+    "train_fresh55k_replay.py": "418d3472b931c879ec212ae8b6b4173f24124cd8214a35c6bca74d1c26699e71",
+    "fresh55k_replay_objective.py": "48fec54f55ad2ebbad0510e17b9013dc86724c3a962b8c89c5f3b22dec117b31"
+  },
+  "free_disk_before": 104943996928,
+  "guard": "head/root winding at all noise with .25+.75alpha weight; top10% root/neck/head/legs relative-rotation and excess-rate supervision",
+  "source_guard_sha256": "6f7ac18778c84d8e4261a02aa5e04a1943673534c0c0a260c7a973ace83fe91b",
+  "physics": "full native foot vertices; TRAIN reference support patch independent of predicted height; observed-plane patch height plus reference rolling velocity/4,8-frame displacement; same penetration and alpha squared; old region labels/BCE unchanged",
+  "source_physics_sha256": "27752e96dc2fc70a468ef1388dd886ad4d5b1722b5ed9fec1f165142be67ac31",
+  "source_coverage_sha256": "9efa9507a7a9f3d141f0b6140dd44390dcf91f5c23b202618aeab88ace4dbaa1",
+  "comparison": "winding_scene600 only for evaluation, NEVER initialization; same schedule/noise/replay/scene dropout/guard",
+  "elapsed_s": 818.9239256370056,
+  "free_disk_after": 104455262208
+}
