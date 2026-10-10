@@ -1,0 +1,12 @@
+{
+  "registered_at": "2026-10-11T01:17:16+0800",
+  "decision": "AFTER denoise_control850/906 standard-DDIM preview, BEFORE any terminal evaluation or replay final evaluation",
+  "reason": "frozen55k sample -> candidate t0 forward matches replay training input distribution; standard new-model DDIM changes the base rollout distribution",
+  "variants": [
+    "denoise_terminal",
+    "replay_terminal"
+  ],
+  "weights": "reuse same600-step two checkpoints; no extra checkpoint or retraining",
+  "generation": "original55k DDIM20 from pure noise and known conditions, then one candidate t0 forward; no GT body initialization/conditioning/projection",
+  "acceptance": "same existing gates; additional exploratory inference test, not wholly prespecified main comparison"
+}

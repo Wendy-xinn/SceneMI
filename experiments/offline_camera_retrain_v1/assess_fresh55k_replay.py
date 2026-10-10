@@ -6,7 +6,7 @@ H=Path(__file__).parent;O=H/'runs/fresh55k_replay_oct11'
 def main():
     rows=json.loads((O/'rows.json').read_text());summary=json.loads((O/'summary.json').read_text());demos={r['index']:r['metrics'] for r in rows if r['scope']=='demo'}
     registered=json.loads((O/'pre_registered_evaluation.json').read_text());g=registered['adoption_gate'];audit={}
-    for label in ['denoise_control','rollout_replay']:
+    for label in ['denoise_control','rollout_replay','denoise_terminal','replay_terminal']:
         m=summary['means'][label];b=summary['means']['original55k'];d=demos[906][label];e=demos[850][label]
         values={
             'panel_joint_slide_vs_original_ratio_max':m['gt_stance_slide_cm_frame']/b['gt_stance_slide_cm_frame'],
@@ -26,19 +26,20 @@ def main():
         for k,key in mapping.items():
             v=c[label][key]/c['original55k'][key];t=registered['confirmation_gate'][k];gates['confirmation_'+k]=dict(value=v,threshold=t,passed=v<=t)
         audit[label]=dict(adopt=all(x['passed'] for x in gates.values()),gates=gates)
-    traces={v:[json.loads(x) for x in (O/v/'trace.jsonl').read_text().splitlines()] for v in audit}
+    traces={v:[json.loads(x) for x in (O/v/'trace.jsonl').read_text().splitlines()] for v in ['denoise_control','rollout_replay']}
     keys=['step','group','length','identities','t','noise_checksum','use_scene','replay_schedule','lr']
     matching=len(traces['denoise_control'])==len(traces['rollout_replay']) and all(all(x[k]==y[k] for k in keys) for x,y in zip(*traces.values()))
     train_only=all('/train/' in i['scene_bundle'] for v in traces.values() for x in v for i in x['identities'])
     weights=[]
-    for v in audit:
+    for v in ['denoise_control','rollout_replay']:
         f=O/v/'last.pt';cp=torch.load(f,map_location='cpu',weights_only=False)
         weights.append(dict(variant=v,bytes=f.stat().st_size,step=cp['step'],evaluation_only=cp.get('evaluation_only'),optimizer_present='optimizer' in cp,all_tensors_finite=all(torch.isfinite(x).all().item() for x in cp['model'].values())))
     result=dict(variants=audit,trace_steps={k:len(v) for k,v in traces.items()},paired_samples_noise_schedule_match=matching,train_scene_bundles_only=train_only,weights=weights,free_disk_bytes=shutil.disk_usage(O).free,storage='two final evaluation-only last.pt; no optimizer/best/numbered weights; source/preprocessing dependencies untouched')
     (O/'acceptance_and_storage.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))
-    names={'original55k':'原55k','denoise_control':'标准加噪600','rollout_replay':'生成回放600'}
+    names={'original55k':'原55k','denoise_control':'标准加噪600','rollout_replay':'生成回放600标准DDIM','denoise_terminal':'标准加噪末端一次','replay_terminal':'回放末端一次'}
     report='# 从原55k重新开始：生成回放对照验收\n\n'
     report+='通过联合门槛的分支：'+('、'.join(names[k] for k,v in audit.items() if v['adopt']) or '**没有；不替换正式55k**')+'。不是仅靠降低朝向误差挑候选。门槛在本轮评分前登记，详细数值见acceptance_and_storage.json。\n\n'
+    report+='追加terminal是标准加噪组850/906预览后、terminal评分前登记的探索（terminal_exploration_protocol.json），复用同两份权重。原55k先纯噪声DDIM20生成整段，然后候选t0前向一次；输出仍是学习得到的修正，无GT反馈，也没有迭代IK。主比较标准DDIM与此附加探索分开解释。\n\n'
     report+='## 来源与方法\n\n两个分支都直接加载原55k，源码没有读取之前候选。两组用相同转向、native足底高度/速度/连续支撑位移、头/颈旋转目标，不冻结旧生成的世界脚部位置。控制组GT加噪，回放组50%批次将冻结原55k从TRAIN已知输入、纯噪声DDIM20得到的动作重新加噪；另外50%保持普通扩散训练。这是固定55k生成轨迹回放，**不是当前模型在线on-policy回放**，也不是推理时GT优化。\n\n600步/组、batch2、完整128帧、AdamW lr2e−5、50步warmup、cosine最低0.1，时长平方根组采样，场景dropout0.1。目标GT只作训练监督，已知输入仅相机/场景与配置身体模板。没有GT身体前缀/初始姿态/接触条件，也没有头部或足部硬投影。标准去噪训练使用GT加噪是训练分布；推理全部128帧从噪声开始。\n\n'
     report+='## 固定850/906完整128帧\n\n脚滑单位cm/帧，浮起为GT相对支撑高度容差5cm以外的均值代理，不是绝对离地高度。接触覆盖仅为脚部关节高度落在GT参考高度±5cm内的比例，不含速度，不能当作稳定支撑。额外joint_low_and_slow_fraction要求高度范围与3D位移<1cm/帧同时满足，也只是评分代理。末段固定80–127帧。\n\n|例子/模型|净转向°|根部峰值°/帧|脚滑|浮起cm|接触覆盖|末段脚滑|末段浮起cm|\n|---|---:|---:|---:|---:|---:|---:|---:|\n'
     for i,metrics in demos.items():

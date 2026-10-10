@@ -8,7 +8,8 @@ from scipy.spatial.transform import Rotation
 from experiments.offline_camera_retrain_v1.scene_model import OfflineSceneMI
 from experiments.offline_camera_retrain_v1.native_body_data import NativeBodyData
 from experiments.offline_camera_retrain_v1.data import collate
-from experiments.offline_camera_retrain_v1.known_input_generation import generate_without_body_initialization
+from experiments.offline_camera_retrain_v1.known_input_generation import generate_without_body_initialization,camera_inputs_only
+from experiments.offline_camera_retrain_v1.control import fixed_control_mask
 from experiments.offline_camera_retrain_v1.evaluate_body_history import measure
 from experiments.offline_camera_retrain_v1.evaluate_state_spline_confirmation import leg_motion
 from experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations
@@ -38,6 +39,8 @@ def main():
         digest=hashlib.sha256()
         for name,t in sorted(cp['model'].items()):digest.update(name.encode());digest.update(t.numpy().tobytes())
         digests[label]=digest.hexdigest();del cp
+    if args.fresh55k_replay:
+        for label,source in [('denoise_terminal','denoise_control'),('replay_terminal','rollout_replay')]:models[label]=models[source];digests[label]=digests[source]
     data=NativeBodyData('validation',seed=777,**{k:c[k] for k in ('skeleton_profile','rich_source','trumans_scene_manifest','trumans_window_protocol','temporal_scene_manifest')},contact_root=c['rich_contact_root'])
     selected=json.loads((H/'runs/state_relative_spline_oct10/confirmation/protocol.json').read_text())['selected'];panel=[selected[i] for i in range(0,48,3)]
     demos=json.loads((H/'runs/state_relative_spline_oct10/demo/manifest.json').read_text())['cases'];historic=[json.loads(s) for s in (H/'runs/native_dynamic_scene20_contact_55k_oct07/full_validation/standard_rows.jsonl').read_text().splitlines()]
@@ -52,8 +55,13 @@ def main():
     for member in members:
         w=member['window'];sample,identity=data.sample(128,w['group'],sequence_index=w['sequence_index'],start_index=w['start_index']);batch={k:v.cuda() for k,v in collate([sample]).items()};values={};saved={}
         skin=NativeSurfacePoints(identity['native_body']);gt_soles=skin.soles(skin(batch['motion'][0]));sole_stance=torch.diff(gt_soles,dim=0).norm(dim=-1)<.01
+        base_motion=None
         for label,model in models.items():
-            motion=generate_without_body_initialization(model,batch,seed=member['seed']);result=measure(motion,batch,turn_threshold=30);result.update(leg_motion(motion));result.update(extra_metrics(motion,batch['rest']));soles=skin.soles(skin(motion[0]));slide=torch.diff(soles,dim=0)[...,[0,2]].norm(dim=-1);result['native_sole_stance_horizontal_cm_frame']=float((slide*sole_stance).sum()/sole_stance.sum().clamp_min(1)*100)
+            if label.endswith('_terminal'):
+                motion=model(base_motion,torch.zeros(len(base_motion),device='cuda',dtype=torch.long),camera_inputs_only(batch),control_mask=fixed_control_mask(len(base_motion),128,'head','cuda'),use_scene=True)
+            else:motion=generate_without_body_initialization(model,batch,seed=member['seed'])
+            if label=='original55k':base_motion=motion
+            result=measure(motion,batch,turn_threshold=30);result.update(leg_motion(motion));result.update(extra_metrics(motion,batch['rest']));soles=skin.soles(skin(motion[0]));slide=torch.diff(soles,dim=0)[...,[0,2]].norm(dim=-1);result['native_sole_stance_horizontal_cm_frame']=float((slide*sole_stance).sum()/sole_stance.sum().clamp_min(1)*100)
             if args.fresh55k_replay:
                 feet=forward_kinematics(motion,batch['rest'])[:,:,(10,11)];support=torch.quantile((batch['joints'][:,:,(10,11),1]*2).flatten(1),.05,dim=1)
                 low=(feet[:,1:,:,1]-support[:,None,None]).abs()<.05;slow=torch.diff(feet,dim=1).norm(dim=-1)<.01
@@ -65,11 +73,15 @@ def main():
                 if label=='original55k':
                     with np.load(H/f"runs/state_relative_spline_oct10/demo/{member['index']}.npz") as a:assert np.max(abs(motion[0].cpu().numpy()-a['official55k_motion']))<1e-5
                 elif label!='prior_turn600':saved[label]=motion[0].cpu().numpy()
-            if member['scope']=='demo' and member['index']==850 and label==('rollout_replay' if args.fresh55k_replay else ('sole_support' if args.support_refinement else 'turn_path')):
+            if member['scope']=='demo' and member['index']==850 and (label in ['rollout_replay','replay_terminal'] if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
                 poisoned=dict(batch)
                 for key in ['motion','joints','trajectory','contact_target','contact_valid']:
                     if key in poisoned:poisoned[key]=torch.rand_like(poisoned[key].float())*100
-                regenerated=generate_without_body_initialization(model,poisoned,seed=member['seed']);assert torch.equal(regenerated,motion);protocol['body_GT_poison_output_max_diff']=float((regenerated-motion).abs().max())
+                if label.endswith('_terminal'):
+                    regenerated_base=generate_without_body_initialization(models['original55k'],poisoned,seed=member['seed']);regenerated=model(regenerated_base,torch.zeros(len(regenerated_base),device='cuda',dtype=torch.long),camera_inputs_only(poisoned),control_mask=fixed_control_mask(len(regenerated_base),128,'head','cuda'),use_scene=True)
+                else:regenerated=generate_without_body_initialization(model,poisoned,seed=member['seed'])
+                assert torch.equal(regenerated,motion);protocol['body_GT_poison_output_max_diff']=float((regenerated-motion).abs().max())
+                protocol.setdefault('GT_poison_by_variant',{})[label]=float((regenerated-motion).abs().max())
         if saved:np.savez_compressed(O/f"{member['index']}.npz",**saved)
         rows.append(dict(**member,identity=identity,metrics=values,gt_geometry=extra_metrics(batch['motion'],batch['rest'])));(O/'rows.json').write_text(json.dumps(rows,indent=2))
         print(member['scope'],member['index'],{k:(round(v['pelvis_orientation_mean_deg'],2),round(v['gt_stance_slide_cm_frame'],3)) for k,v in values.items()},flush=True)
@@ -79,6 +91,7 @@ def main():
     paired={}
     pairs=[('sole_support','original55k'),('sole_support','prior_turn600'),('sole_support','turn_control'),('turn_control','prior_turn600')] if args.support_refinement else [('turn_path','original55k'),('turn_path','continued_control'),('continued_control','original55k')]
     if args.fresh55k_replay:pairs=[('rollout_replay','original55k'),('rollout_replay','denoise_control'),('denoise_control','original55k')]
+    if args.fresh55k_replay:pairs.extend([('replay_terminal','original55k'),('replay_terminal','denoise_terminal'),('denoise_terminal','original55k')])
     for label,base in pairs:
         paired[label+'-'+base]={}
         for m in METRICS:
