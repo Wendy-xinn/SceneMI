@@ -16,4 +16,11 @@ for module in ('evaluate_position_adapter','summarize_position_adapter'):
  with (p/(module+'.log')).open('a') as f:
   code=subprocess.call(['/home/wenxin/miniconda3/envs/scenemi/bin/python','-u','-m','experiments.offline_camera_retrain_v1.'+module],stdout=f,stderr=subprocess.STDOUT,env=dict(os.environ,PYTHONPATH='.'))
  if code:(p/'status.json').write_text(json.dumps({'status':'failed','module':module,'code':code}));raise SystemExit(code)
+screen=json.loads((p/'verification.json').read_text())
+if screen['quality_screen_passed']:
+ with (p/'holdout.log').open('a') as f:
+  code=subprocess.call(['/home/wenxin/miniconda3/envs/scenemi/bin/python','-u','-m','experiments.offline_camera_retrain_v1.evaluate_position_adapter_holdout'],stdout=f,stderr=subprocess.STDOUT,env=dict(os.environ,PYTHONPATH='.'))
+ if code:raise SystemExit(code)
+else:
+ (p/'holdout_status.json').write_text(json.dumps({'status':'not_evaluated','reason':'development error/foot/support joint screen not passed; reserve panel preserved'},indent=2))
 (p/'status.json').write_text(json.dumps({'status':'completed'}))

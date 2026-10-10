@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "test": "test_position_adapter.AdapterTests",
+  "checks": [
+    "typed base weight loading and copied branch initially identical",
+    "branch updates leave base fingerprint unchanged",
+    "frozen base gradients absent",
+    "unavailable rotation values not encoded",
+    "full rotation routes unchanged base",
+    "mixed frames route by independent availability",
+    "disabled control routes unchanged base",
+    "adapter state roundtrip preserves output"
+  ],
+  "scope": "mock core; final DDIM384 clean predictions perform real full-model invariance check"
+}
