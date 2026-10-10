@@ -82,3 +82,8 @@ RICH/TRUMANS上，微调+修正的世界误差并没有优于55k固定历史+同
 Viser http://127.0.0.1:8780：蓝GT、橙55k原相机输入、紫55k统一头部输入（默认隐藏）、红微调固定历史、绿红色基础上修正。850/906仍是固定历史失败身份，未按新分数筛选。人物mesh同一原生SMPL/SMPL-X模型；相机、可见点、当前动态物体仍可切换。
 
 `protocol.json`记录权重指纹与条件；`rows.jsonl`288配对记录含1440预测变体，`camera55k_rows.jsonl`另96原相机预测；`summary.json`含按角色结果、逐序列配对差及按录制区间；`GT_mutation_audit.json`、`split_identity_audit.json`、`previous_confirmation_reproduction.json`和`kinematic_feedback_proxy.json`保留检验证据。本轮只有小型指标记录和原地扩展的薄demo数组，没有新checkpoint或大型mesh缓存。
+
+
+## 后续可视化反馈
+
+用户观察到脚滑、头部异常与腿进入沙发，本轮指标不代表视觉/接触验收通过。相机→头部经正确外参转换应等价，原表直接替换GT头部没有进行此转换；已补上往返与850/906实际来源一致性检查。详情见[可视化反馈与冻结验证策略](VALIDATION_CONCERNS_zh.md)。
