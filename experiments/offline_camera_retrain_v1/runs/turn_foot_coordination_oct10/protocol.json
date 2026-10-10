@@ -1,0 +1,111 @@
+{
+  "status": "completed",
+  "hypothesis": "small root-yaw path correction while exactly retaining own world ankle/toe trajectories can reduce turning spikes without sliding",
+  "source_sha256": "55a8a024c5b155a5dbf3122e61032e5d584d3b31b550ae49324197fd4f6459eb",
+  "variants": [
+    "original55k",
+    "smooth",
+    "camera_soft"
+  ],
+  "weights": "untouched original55k; no body GT prefix; all128 noise initialization",
+  "panel": [
+    {
+      "index": 390,
+      "group": "trumans",
+      "length": 128,
+      "sequence_index": 8,
+      "start_index": 2,
+      "sequence_id": "2023-02-17@11-00-27",
+      "expected_source_start_30fps": 60,
+      "holdout_recording": "2023-02-17@11-00-27"
+    },
+    {
+      "index": 188,
+      "group": "trumans",
+      "length": 128,
+      "sequence_index": 4,
+      "start_index": 15,
+      "sequence_id": "2023-02-17@10-53-45",
+      "expected_source_start_30fps": 450,
+      "holdout_recording": "2023-02-17@10-53-45"
+    },
+    {
+      "index": 2244,
+      "group": "camera_wearer",
+      "length": 128,
+      "sequence_index": 6,
+      "start_index": 24,
+      "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4661",
+      "expected_source_start_30fps": 2231,
+      "holdout_recording": "recording_20220215_S21_S22_02"
+    },
+    {
+      "index": 2875,
+      "group": "camera_wearer",
+      "length": 128,
+      "sequence_index": 25,
+      "start_index": 1,
+      "sequence_id": "recording_20220315_S21_S30_04_camera_wearer_4131-4581",
+      "expected_source_start_30fps": 4161,
+      "holdout_recording": "recording_20220315_S21_S30_04"
+    },
+    {
+      "index": 3400,
+      "group": "interactee",
+      "length": 128,
+      "sequence_index": 1,
+      "start_index": 4,
+      "sequence_id": "recording_20210907_S03_S04_01_interactee_1421-2141",
+      "expected_source_start_30fps": 1541,
+      "holdout_recording": "recording_20210907_S03_S04_01"
+    },
+    {
+      "index": 4124,
+      "group": "interactee",
+      "length": 128,
+      "sequence_index": 28,
+      "start_index": 2,
+      "sequence_id": "recording_20220315_S21_S30_03_interactee_3251-4061",
+      "expected_source_start_30fps": 3311,
+      "holdout_recording": "recording_20220315_S21_S30_03"
+    },
+    {
+      "index": 5728,
+      "group": "rich",
+      "length": 128,
+      "sequence_index": 2,
+      "start_index": 119,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "expected_source_start_30fps": 183.5,
+      "holdout_recording": "LectureHall_020_wipingchairs1"
+    },
+    {
+      "index": 7463,
+      "group": "rich",
+      "length": 128,
+      "sequence_index": 13,
+      "start_index": 19,
+      "sequence_id": "ParkingLot1_007_burpee2",
+      "expected_source_start_30fps": 33.5,
+      "holdout_recording": "ParkingLot1_007_burpee2"
+    }
+  ],
+  "panel_seeds": [
+    2026101201,
+    2026101202
+  ],
+  "limits": {
+    "root_yaw_deg": 15,
+    "generated_head_displacement_m": 0.02,
+    "camera_relative_weight": 0.25,
+    "sigma_frames": 3,
+    "DP_velocity_weight": 10
+  },
+  "scope": "two development demos, eight exposed sequence windows, two seeds; not holdout",
+  "acceptance": "foot world preservation20micrometers; slide numerical tolerance1e-5cm/frame, no world/PA or local-joint dynamics regression for adoption; physical collision pending",
+  "GT": "scoring only; camera/scene/native template allowed inputs",
+  "new_checkpoints": 0,
+  "elapsed_s": 26.094666477001738,
+  "free_disk_before": 108850941952,
+  "free_disk_after": 108850089984
+}
