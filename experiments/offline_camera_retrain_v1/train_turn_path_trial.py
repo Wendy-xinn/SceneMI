@@ -15,11 +15,22 @@ from experiments.offline_camera_retrain_v1.checkpoint_io import save_checkpoint
 from experiments.offline_camera_retrain_v1.turn_path_objective import turn_path_losses
 H=Path(__file__).parent;OUT=H/'runs/turn_path_training_oct10'
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--steps',type=int,default=600);args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--steps',type=int,default=600);p.add_argument('--support-refinement',action='store_true');args=p.parse_args()
+    global OUT
+    if args.support_refinement:OUT=H/'runs/sole_support_oct11'
     torch.set_num_threads(4);OUT.mkdir(exist_ok=True);seed=2026101031
     cp=torch.load(H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt',map_location='cpu',weights_only=False);c=cp['config']
     teacher=OfflineSceneMI(c['latent_dim'],tuple(c['dim_mults']),body_conditioning=True,contact_prediction=True).cuda().eval();teacher.load_state_dict(cp['model']);teacher.requires_grad_(False)
+    turn_teacher=None
+    if args.support_refinement:
+        del cp
+        cp=torch.load(H/'runs/turn_path_training_oct10/turn_path/last.pt',map_location='cpu',weights_only=False);c=cp['config'];seed=2026101107
+        turn_teacher=OfflineSceneMI(c['latent_dim'],tuple(c['dim_mults']),body_conditioning=True,contact_prediction=True).cuda().eval();turn_teacher.load_state_dict(cp['model']);turn_teacher.requires_grad_(False)
+        from experiments.offline_camera_retrain_v1.sole_support_objective import SoleCache,sole_support_losses
+        sole_cache=SoleCache()
     protocol=dict(status='registered_before_training',steps=args.steps,batch_size=4,lr=2e-5,warmup_steps=50,seed=seed,variants=['continued_control','turn_path'],initialization='original55k; no body GT conditioning or prefix',condition='head-only raw camera and exact20 native scene/body template; no hard head projection',lengths=[64,128,192],duration_alpha=.5,low_noise_fraction=.5,optimizer='AdamW weight_decay .01; clip1',source_sha256=hashlib.sha256((H/'turn_path_objective.py').read_bytes()).hexdigest(),guard='training target local root/leg step + 3deg margin; not universal physical joint limits',acceptance='paired full128: turning and torso/leg spikes improve, feet/world/PA do not regress; fixed850/906 must show improvement; exposed panel not independent holdout',storage='one final evaluation-only last.pt per arm; no optimizer or numbered/best checkpoints',free_disk_before=shutil.disk_usage(H).free)
+    if args.support_refinement:
+        protocol.update(variants=['turn_control','sole_support'],initialization='600-step turn_path candidate; both arms same; original55k foot teacher',source_sha256=hashlib.sha256((H/'sole_support_objective.py').read_bytes()).hexdigest(),support='native sole centroid LBS/pose correctives; clean training support envelope and stance; no scene floor or inference GT projection',acceptance='fixed protocol in pre_registered_evaluation.json; preserve 906 turn direction and improve support/feet on exposed panel')
     (OUT/'protocol.json').write_text(json.dumps(protocol,indent=2))
     started=time.monotonic();alpha_table=cosine_alphas().cuda()
     for variant in protocol['variants']:
@@ -37,9 +48,13 @@ def main():
                 pred=model(noisy,t,known,control_mask=mask,use_scene=scene)
                 losses=supervised_losses(pred,clean,batch,profile='coordination_v1',signal_weight=alpha.flatten())
                 losses['contact_bce']=contact_loss(model.contact_logits(pred,known,use_scene=scene),batch,alpha.flatten());total=losses['total']+.1*losses['contact_bce']
-                if variant=='turn_path':
+                if variant!='continued_control':
                     with torch.no_grad():old=teacher(noisy,t,known,control_mask=mask,use_scene=scene)
                     extra=turn_path_losses(pred,clean,batch['rest'],old,alpha.flatten());total=total+extra['turn_total'];losses.update(extra)
+                if variant=='sole_support':
+                    with torch.no_grad():
+                        turn_old=turn_teacher(noisy,t,known,control_mask=mask,use_scene=scene);true_soles=sole_cache.soles(clean,[x[1] for x in pairs])
+                    predicted_soles=sole_cache.soles(pred,[x[1] for x in pairs]);support=sole_support_losses(pred,clean,predicted_soles,true_soles,turn_old,alpha.flatten());total=total+support['sole_total'];losses.update(support)
                 assert torch.isfinite(total);total.backward();norm=torch.nn.utils.clip_grad_norm_(model.parameters(),1,error_if_nonfinite=True)
                 lr=2e-5*min(1,step/50)*max(.1,.5*(1+math.cos(math.pi*step/args.steps)))
                 for g in optimizer.param_groups:g['lr']=lr

@@ -64,7 +64,7 @@ def main():
     frame=server.gui.add_slider('帧',min=0,max=frame_count-1,step=1,initial_value=0 if gt_free else 16);opacity=server.gui.add_slider('人物透明度',min=.1,max=1,step=.05,initial_value=.55)
     checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','输入相机与轨迹','生成相机与轨迹']}
     server.gui.add_markdown('**相机诊断：** 紫色是已知输入；红/绿/紫生成相机随对应mesh开关显示。相机由生成身体FK头部重建，未吸附输入。固定安装偏置由GT首帧仅作绘图标定，非生成输入。位置和朝向误差均在完整128帧记录。')
-    camera_size=server.gui.add_slider('相机线框深度（米）',min=.04,max=.4,step=.02,initial_value=.12)
+    camera_size=server.gui.add_slider('相机线框深度（米）',min=.04,max=.8,step=.02,initial_value=.5)
     follow=server.gui.add_checkbox('观察相机视角',initial_value=False);reset=server.gui.add_button('外部视角');info=server.gui.add_markdown('')
     handles={};active=None;lock=threading.RLock()
     def external(client,g):
