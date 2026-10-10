@@ -17,7 +17,7 @@ from experiments.offline_camera_retrain_v1.supervision import rotation_from_6d, 
 from experiments.offline_camera_retrain_v1.soft_track_robustness import perturb_head_track
 
 BASE = Path(__file__).parent / 'runs'
-OUT = BASE / 'soft_coupled_contact_oct10'
+OUT = BASE / 'soft_coupled_contact_oct10/precomputed'
 REFERENCE = BASE / 'turn_balance_oct09'
 METRICS = ['mpjpe_cm', 'pa_mpjpe_mm', 'head_cm', 'head_orientation_mean_deg',
            'pelvis_orientation_mean_deg', 'gt_stance_slide_cm_frame', 'support_floating_m',
@@ -41,7 +41,7 @@ def main():
     torch.set_num_threads(4)
     started = time.monotonic()
     (OUT / 'motions').mkdir(exist_ok=True)
-    paths = {label: OUT / label / 'last.pt' for label in ('baseline','coupled','coupled_contact')}
+    paths = {label: OUT.parent / label / 'last.pt' for label in ('baseline','coupled')}
     models = {}; configs = {}
     for label, path in paths.items():
         checkpoint = torch.load(path, map_location='cpu', weights_only=False)
@@ -62,18 +62,6 @@ def main():
         assert c['repair_objective']==label
         assert c['initial_checkpoint_step']==1000
         assert c['objective_sha256']==fingerprint([Path(__file__).parent/name for name in objective_files])
-    cached_rows={}
-    provenance_path=OUT/'precomputed/provenance.json'
-    if (OUT/'precomputed/motions').exists():
-        assert provenance_path.exists(),'Missing cached model provenance'
-        assert json.loads((OUT/'precomputed/evaluation_status.json').read_text())['status']=='completed'
-        from experiments.offline_camera_retrain_v1.position_only_adapter import frozen_base_fingerprint
-        provenance=json.loads(provenance_path.read_text())
-        cached_rows={(r['index'],r['replicate'],r['condition']):r for r in map(json.loads,(OUT/'precomputed/rows.jsonl').read_text().splitlines())}
-        for label in ('baseline','coupled'):
-            assert frozen_base_fingerprint(models[label])==provenance[label]['model_sha256']
-            assert configs[label]['source_hash']==provenance[label]['source_hash']
-            assert configs[label]['objective_sha256']==provenance[label]['objective_sha256']
     config = configs['baseline']
     dataset = NativeBodyData('validation', seed=20261009, skeleton_profile=config['skeleton_profile'],
                             rich_source=config['rich_source'], trumans_scene_manifest=config['trumans_scene_manifest'],
@@ -86,7 +74,7 @@ def main():
                     perturbation='head-slot only: 3-5cm x bias, up to 1cm y, 0-2cm z drift; smooth yaw 3-11deg; optional 10-frame missing interval; GT/camera/scene caches unchanged',
                     limitation='ideal anatomical observation drawn from held-out GT for joint variants; simulated confidence from injected error, not calibrated video estimates; clean scene caches; 1000-step matched adaptation from joint_all1000; soft observed rotation plus GT relative rotation and labeled contact-joint geometry proxy; all models receive the SAME anatomical observation; clean scene caches; synthetic confidence not estimator-calibrated')
     (OUT / 'manifest.json').write_text(json.dumps(manifest, indent=2))
-    rows = [];cached_predictions=0
+    rows = []
     with (OUT / 'rows.jsonl').open('w') as stream:
         for start in range(0, len(selected), 8):
             members = selected[start:start + 8]
@@ -113,19 +101,7 @@ def main():
                     mask = fixed_control_mask(len(members),length,'head',batch['motion'].device)
                     if condition=='none':mask.zero_()
                     altered_by_label={label:prepare_observation(batch,configs[label]['observation_protocol'],evaluation=condition) for label in models}
-                    motions={}
-                    for label,model in models.items():
-                        cached=[]
-                        for i in range(len(members)):
-                            path=OUT/'precomputed'/f'motions/{start+i:04d}_{replicate}_{condition}.npz'
-                            if label=='coupled_contact' or not path.exists():break
-                            assert cached_rows[(start+i,replicate,condition)]['identity']==identities[i]
-                            with np.load(path) as stored:
-                                for name,value in (('truth_motion',batch['motion'][i]),('rest',batch['rest'][i]),('camera',batch['camera'][i]),('input_head',altered_by_label[label]['trajectory'][i,:,15]),('observation_meta',altered_by_label[label]['observation_meta'][i,:,15]),('input_head_mask',mask[i,:,15])):
-                                    assert np.array_equal(stored[name],value.cpu().numpy()),name
-                                cached.append(stored[label].copy())
-                        if len(cached)==len(members):cached_predictions+=len(members)
-                        motions[label]=(torch.as_tensor(np.stack(cached),device=batch['motion'].device) if len(cached)==len(members) else ddim_sample(model,altered_by_label[label],length,steps=20,seed=seed,control_mask=mask))
+                    motions={label:ddim_sample(model,altered_by_label[label],length,steps=20,seed=seed,control_mask=mask) for label,model in models.items()}
                     if condition=='clean':clean=motions
                     for i, (member, identity) in enumerate(zip(members, identities)):
                         one = {k: v[i:i+1] for k, v in batch.items()}
@@ -162,8 +138,8 @@ def main():
                         filename = f'motions/{start+i:04d}_{replicate}_{condition}.npz'
                         np.savez_compressed(OUT / filename, truth_motion=one['motion'][0].cpu().numpy(),
                                             rest=one['rest'][0].cpu().numpy(), camera=one['camera'][0].cpu().numpy(),
-                                            input_head=altered_by_label['coupled_contact']['trajectory'][i, :, 15].cpu().numpy(),
-                                            observation_meta=altered_by_label['coupled_contact']['observation_meta'][i,:,15].cpu().numpy(),
+                                            input_head=altered_by_label['coupled']['trajectory'][i, :, 15].cpu().numpy(),
+                                            observation_meta=altered_by_label['coupled']['observation_meta'][i,:,15].cpu().numpy(),
                                             input_head_mask=mask[i, :, 15].cpu().numpy(),
                                             **{k: v[i].cpu().numpy() for k, v in motions.items()})
                         row = dict(index=start+i, replicate=replicate, seed=seed, identity=identity,
@@ -174,7 +150,6 @@ def main():
             (OUT / 'evaluation_status.json').write_text(json.dumps(dict(status='running', completed_windows=start+len(members), total_windows=len(selected), elapsed_s=time.monotonic()-started)))
             print('completed', start+len(members), flush=True)
     summarize(rows)
-    (OUT/'cache_reuse_audit.json').write_text(json.dumps({'reused_predictions':cached_predictions,'weights_provenance_checked':True,'GT_rest_camera_head_metadata_masks_verified':True,'total_predictions':len(rows)*len(models)},indent=2))
     (OUT / 'evaluation_status.json').write_text(json.dumps(dict(status='completed', windows=len(selected), evaluated_predictions=len(rows)*len(models), elapsed_s=time.monotonic()-started), indent=2))
 
 
@@ -197,7 +172,7 @@ def summarize(rows):
                     for metric in METRICS for values in [sequence_means(members, label, metric)]}
             summary[condition][group] = result
             if group not in ('all', 'turn_bin/large_turn'): continue
-            for label in ('coupled','coupled_contact'):
+            for label in ('coupled',):
                 for metric in METRICS:
                     baseline = sequence_means(members, 'baseline', metric); candidate = sequence_means(members, label, metric)
                     ids = sorted(set(baseline) & set(candidate))

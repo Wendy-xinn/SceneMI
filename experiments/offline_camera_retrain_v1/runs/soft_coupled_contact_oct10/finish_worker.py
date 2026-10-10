@@ -22,4 +22,9 @@ before=shutil.disk_usage(p).free;records=[]
 for label in ('coupled','coupled_contact'):
  if not screens[label]['passed']:records.append(compact_evaluated_checkpoint(p/label/'last.pt'))
 (p/'storage_cleanup.json').write_text(json.dumps({'records':records,'reclaimed_bytes':sum(x['before_bytes']-x['after_bytes'] for x in records),'before_free_bytes':before,'after_free_bytes':shutil.disk_usage(p).free,'preserved_resumable':'baseline and screened candidates'},indent=2))
+cache=p/'precomputed/motions'
+if cache.exists():
+ assert json.loads((p/'cache_reuse_audit.json').read_text())['reused_predictions']==4736
+ size=sum(f.stat().st_size for f in cache.rglob('*') if f.is_file());shutil.rmtree(cache)
+ (p/'cache_cleanup.json').write_text(json.dumps({'removed':str(cache),'bytes':size,'reason':'4736 cached predictions merged into final paired artifacts with model/input provenance checks'},indent=2))
 state({'status':'completed'})
