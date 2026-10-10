@@ -1,0 +1,30 @@
+{
+  "recorded_before_evaluation": true,
+  "primary_condition": "oracle_history",
+  "secondary_conditions": [
+    "execution_error",
+    "large_execution_error"
+  ],
+  "known_future_head_and_scene": true,
+  "primary_horizon_frames": 32,
+  "history_frames": 16,
+  "full_horizon_frames": 112,
+  "development_windows": 48,
+  "seeds_per_window": 2,
+  "reserved_holdout_used": false,
+  "comparisons": [
+    "matched-previous",
+    "boundary-matched",
+    "boundary-previous"
+  ],
+  "gates": {
+    "boundary_root_step_relative_improvement_min": 0.1,
+    "stance_slide_relative_regression_max": 0.05,
+    "world_mpjpe_relative_regression_max": 0.05,
+    "pelvis_orientation_regression_max_deg": 2.0,
+    "head_orientation_regression_max_deg": 2.0
+  },
+  "purpose": "exploratory promotion to holdout or rolling evaluation; never direct55k acceptance",
+  "free_bytes_before": 108957822976,
+  "checkpoint_retention": "one atomic last.pt per trial; strip rejected optimizer after recorded eval"
+}

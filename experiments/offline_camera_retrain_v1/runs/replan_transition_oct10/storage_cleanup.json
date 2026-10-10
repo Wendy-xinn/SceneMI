@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "path": "experiments/offline_camera_retrain_v1/runs/replan_transition_oct10/matched/last.pt",
+      "before_bytes": 1450336119,
+      "after_bytes": 487976071,
+      "model_verified": true,
+      "optimizer_removed": true,
+      "role": "rejected, evaluation/warm-start only"
+    },
+    {
+      "path": "experiments/offline_camera_retrain_v1/runs/replan_transition_oct10/boundary/last.pt",
+      "before_bytes": 1450336119,
+      "after_bytes": 487976071,
+      "model_verified": true,
+      "optimizer_removed": true,
+      "role": "rejected, evaluation/warm-start only"
+    }
+  ],
+  "reclaimed_bytes": 1924720096,
+  "free_after_bytes": 107972362240,
+  "retained_full": [
+    "official55k",
+    "bounded_head_adaptation/joint_all1000 warm-start",
+    "body_history_replan/baseline500 control",
+    "body_history_replan/delta_history500 current inpainting candidate"
+  ],
+  "reason": "Neither new trial improves history boundary; boundary-loss candidate worsens short stance sliding; no planned optimizer resume"
+}
