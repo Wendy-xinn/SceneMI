@@ -9,6 +9,7 @@
   "predictions": 288,
   "derived_variants": 1152,
   "executed_prefix_exact_after_FK": true,
-  "future_gt_not_consumed": true,
-  "scope": "same prior model, future rigid alignment to measured past velocity/heading; no future GT input; not simulator tracking evaluation"
+  "scope": "same model; measured-state SO3 transition16/32 and inferred-contact lower-limb IK; no future body/contact target input; rejected for foot/angle regressions",
+  "future_body_contact_gt_not_consumed": true,
+  "known_future_head_scene_allowed": true
 }

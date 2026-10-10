@@ -95,7 +95,7 @@ def main():
             summary[condition][horizon]=result
     (OUT/'ik_audit.json').write_text(json.dumps(ik_audits,indent=2))
     (OUT/'summary.json').write_text(json.dumps(summary,indent=2))
-    (OUT/'verification.json').write_text(json.dumps({'reference_rows_sha256':hashlib.sha256((REFERENCE/'inpainting_rows.jsonl').read_bytes()).hexdigest(),'sampler_sha256':hashlib.sha256((Path(__file__).parent/'executed_prefix_sampling.py').read_bytes()).hexdigest(),'model_sha256':fingerprints,'new_checkpoints':0,'first_state_alignment_is_imposed':True,'predictions':len(rows),'derived_variants':len(rows)*2,'executed_prefix_exact_after_FK':True,'future_gt_not_consumed':True,'scope':'same prior model, future rigid alignment to measured past velocity/heading; no future GT input; not simulator tracking evaluation'},indent=2))
+    (OUT/'verification.json').write_text(json.dumps({'reference_rows_sha256':hashlib.sha256((REFERENCE/'inpainting_rows.jsonl').read_bytes()).hexdigest(),'sampler_sha256':hashlib.sha256((Path(__file__).parent/'executed_prefix_sampling.py').read_bytes()).hexdigest(),'model_sha256':fingerprints,'new_checkpoints':0,'first_state_alignment_is_imposed':True,'predictions':len(rows),'derived_variants':len(rows)*2,'executed_prefix_exact_after_FK':True,'future_body_contact_gt_not_consumed':True,'scope':'same model; per-frame foot relative-displacement and soft upper-body head IK; rejected after independent high-frequency angle audit'},indent=2))
 
 
 if __name__=='__main__':main()
