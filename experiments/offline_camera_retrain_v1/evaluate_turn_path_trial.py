@@ -54,6 +54,10 @@ def main():
         skin=NativeSurfacePoints(identity['native_body']);gt_soles=skin.soles(skin(batch['motion'][0]));sole_stance=torch.diff(gt_soles,dim=0).norm(dim=-1)<.01
         for label,model in models.items():
             motion=generate_without_body_initialization(model,batch,seed=member['seed']);result=measure(motion,batch,turn_threshold=30);result.update(leg_motion(motion));result.update(extra_metrics(motion,batch['rest']));soles=skin.soles(skin(motion[0]));slide=torch.diff(soles,dim=0)[...,[0,2]].norm(dim=-1);result['native_sole_stance_horizontal_cm_frame']=float((slide*sole_stance).sum()/sole_stance.sum().clamp_min(1)*100)
+            if args.fresh55k_replay:
+                feet=forward_kinematics(motion,batch['rest'])[:,:,(10,11)];support=torch.quantile((batch['joints'][:,:,(10,11),1]*2).flatten(1),.05,dim=1)
+                low=(feet[:,1:,:,1]-support[:,None,None]).abs()<.05;slow=torch.diff(feet,dim=1).norm(dim=-1)<.01
+                result['joint_low_and_slow_fraction']=float((low&slow).float().mean())
             envelope=soles[:,:,1].min(-1).values-gt_soles[:,:,1].min(-1).values;result['native_sole_envelope_abs_cm']=float(envelope.abs().mean()*100);result['native_sole_positive_envelope_cm']=float(envelope.clamp_min(0).mean()*100)
             from experiments.offline_camera_retrain_v1.evaluate_body_history import crop
             late=measure(motion[:,80:],crop(batch,80),turn_threshold=30);result['post80_stance_slide_cm_frame']=late['gt_stance_slide_cm_frame'];result['post80_floating_proxy_cm']=late['support_floating_m']*100;values[label]=result
@@ -85,6 +89,8 @@ def main():
             ds=np.array([np.mean(v) for v in groups.values()])
             if len(ds):paired[label+'-'+base][m]=dict(mean_difference=float(ds.mean()),exploratory_ci95=np.quantile(rng.choice(ds,(2000,len(ds))).mean(1),[.025,.975]).tolist(),sequences=len(ds))
     result=dict(means=summary,paired=paired)
+    if args.fresh55k_replay:
+        for label in models:summary[label]['joint_low_and_slow_fraction']=float(np.mean([r['metrics'][label]['joint_low_and_slow_fraction'] for r in rows if r['scope']=='panel']))
     if args.fresh55k_replay:result['confirmation_means']={label:{m:float(np.mean([r['metrics'][label][m] for r in rows if r['scope']=='confirmation' and r['metrics'][label][m] is not None])) for m in METRICS if any(r['metrics'][label][m] is not None for r in rows if r['scope']=='confirmation')} for label in models}
     (O/'summary.json').write_text(json.dumps(result,indent=2));protocol.update(status='completed',elapsed_s=time.monotonic()-start);(O/'evaluation_protocol.json').write_text(json.dumps(protocol,indent=2));print(json.dumps(summary),flush=True)
 if __name__=='__main__':main()
