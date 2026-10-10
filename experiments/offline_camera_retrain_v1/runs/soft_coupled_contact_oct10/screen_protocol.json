@@ -1,0 +1,25 @@
+{
+  "recorded_before_evaluation": true,
+  "core": "128-frame sequence-balanced clean all and large_turn groups",
+  "conditions": [
+    "clean",
+    "mild_drift",
+    "drift",
+    "drift_gap",
+    "position_only",
+    "low_confidence",
+    "none_subset"
+  ],
+  "criteria": {
+    "pelvis_improvement_min_deg": 1,
+    "world_mpjpe_max_increase_cm": 0.3,
+    "PA_max_increase_mm": 2,
+    "slide_max_ratio": 1.05,
+    "floating_max_increase_m": 0.002,
+    "penetration_max_increase_m": 0.002,
+    "reverse_and_underturn_max_increase_fraction": 0.03,
+    "local_head_neck_chest_p95_max_increase_deg": 10,
+    "mild_drift_mpjpe_max_increase_cm": 0.3
+  },
+  "status": "exploratory screen; passing leads to reserved validation confirmation, not long training"
+}
