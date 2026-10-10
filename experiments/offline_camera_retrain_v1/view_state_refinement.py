@@ -6,6 +6,7 @@ import viser
 from scipy.spatial.transform import Rotation
 from experiments.offline_camera_retrain_v1.native_body_mesh import decode_native_mesh
 from experiments.offline_camera_retrain_v1.export_rest_joints import load_model
+from experiments.offline_camera_retrain_v1.generated_head_camera import head_world_track,apply_camera_mount,diagnostic_fixed_mount,camera_errors,frustum_lines
 ROOT=Path(__file__).parent/'runs/state_relative_spline_oct10/demo'
 
 
@@ -39,8 +40,17 @@ def main():
             with np.load(turn_root/f"{case['index']}.npz") as turn_arrays:
                 arrays['turn_coordination_motion']=turn_arrays[turn_variant]
                 if args.turn_training:arrays['continued_control_motion']=turn_arrays['continued_control']
+        camera_heads={}
         for label in mesh_keys:
             vertices,faces,joints=decode_native_mesh(arrays[label+'_motion'][:frame_count],body,models[key]);arrays[label+'_vertices']=(vertices@arrays['anchor_rotation']+arrays['camera'][0]).astype(np.float32);arrays['faces']=faces
+            camera_heads[label]=head_world_track(arrays[label+'_motion'][:frame_count],joints,arrays['anchor_rotation'],arrays['camera'][0])
+        mount_r,mount_t=diagnostic_fixed_mount(*camera_heads['gt'],arrays['camera'][:frame_count],arrays['rotation'][:frame_count])
+        case['generated_camera_diagnostic']={'calibration':'GT first-frame fixed mount, display/scoring only; no motion modification','mount_translation_m':mount_t.tolist(),'mount_rotation':mount_r.tolist(),'variants':{}}
+        for label,(hp,hr) in camera_heads.items():
+            cp,cr=apply_camera_mount(hp,hr,mount_r,mount_t);arrays[label+'_camera_position']=cp;arrays[label+'_camera_rotation']=cr
+            arrays[label+'_camera_position_error_cm']=np.linalg.norm(cp-arrays['camera'][:frame_count],axis=-1)*100
+            arrays[label+'_camera_rotation_error_deg']=np.rad2deg(Rotation.from_matrix((arrays['rotation'][:frame_count].transpose(0,2,1)@cr).copy()).magnitude())
+            case['generated_camera_diagnostic']['variants'][label]=camera_errors(cp,cr,arrays['camera'][:frame_count],arrays['rotation'][:frame_count])
         name=f"{case['index']} · {case['identity']['sequence_id']}";cases[name]=(case,arrays)
     server=viser.ViserServer(port=args.port,label='SceneMI · 状态相对生成');server.scene.set_up_direction('+y')
     if gt_free:server.gui.add_markdown('**850/906：严格无身体GT初始化基线。** 蓝GT仅对照 · 红真正原55k，从随机扩散噪声生成全部128帧。输入仅已知相机/场景与配置身体模板，没有GT身体前缀或初始姿态对齐。TRUMANS相机仍是模拟已知条件，非真实视频估计。红色已切回原55k，与此前微调+GT历史红色不同；可选绿色为转向开发诊断，尚未通过验收。')
@@ -52,7 +62,9 @@ def main():
     options=['完整生成0–127','短期预测16–47'] if gt_free else (['短期预测16–47','含历史0–47'] if args.scene_refinement else ['短期预测16–47','完整预测16–127','含历史0–127'])
     range_select=server.gui.add_dropdown('播放范围',options=options,initial_value=options[0] if gt_free or args.scene_refinement else '完整预测16–127')
     frame=server.gui.add_slider('帧',min=0,max=frame_count-1,step=1,initial_value=0 if gt_free else 16);opacity=server.gui.add_slider('人物透明度',min=.1,max=1,step=.05,initial_value=.55)
-    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','相机与轨迹']}
+    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','输入相机与轨迹','生成相机与轨迹']}
+    server.gui.add_markdown('**相机诊断：** 紫色是已知输入；红/绿/紫生成相机随对应mesh开关显示。相机由生成身体FK头部重建，未吸附输入。固定安装偏置由GT首帧仅作绘图标定，非生成输入。位置和朝向误差均在完整128帧记录。')
+    camera_size=server.gui.add_slider('相机线框深度（米）',min=.04,max=.4,step=.02,initial_value=.12)
     follow=server.gui.add_checkbox('观察相机视角',initial_value=False);reset=server.gui.add_button('外部视角');info=server.gui.add_markdown('')
     handles={};active=None;lock=threading.RLock()
     def external(client,g):
@@ -69,15 +81,23 @@ def main():
                 handles['objects']=[server.scene.add_mesh_simple(f'/object/{i}',g[f'obj_{i}_v'],g[f'obj_{i}_f'],color=(240,165,45)) for i in range(len(case['objects']))]
                 handles['frustum']=server.scene.add_line_segments('/camera',np.zeros((8,2,3),np.float32),colors=(180,45,215),thickness=2,thickness_units='screen')
                 handles['path']=server.scene.add_line_segments('/head_camera_path',np.stack((g['camera'][:frame_count-1],g['camera'][1:frame_count]),1),colors=(180,45,215),thickness=2,thickness_units='screen')
+                for key in mesh_keys:
+                    if key=='gt':continue
+                    handles[key+'_camera']=server.scene.add_line_segments('/generated_camera/'+key,frustum_lines(g[key+'_camera_position'][t],g[key+'_camera_rotation'][t]),colors=colors[key],thickness=2,thickness_units='screen')
+                    pos_track=g[key+'_camera_position'];handles[key+'_camera_path']=server.scene.add_line_segments('/generated_camera_path/'+key,np.stack((pos_track[:-1],pos_track[1:]),1).astype(np.float32),colors=colors[key],thickness=2,thickness_units='screen')
                 center=g['gt_vertices'][16].mean(0);server.initial_camera.look_at=tuple(center);server.initial_camera.position=tuple(center+[2,.8,2])
                 for client in server.get_clients().values():external(client,g)
             for key,label in [(key,labels[key]) for key in mesh_keys]:handles[key].vertices=g[key+'_vertices'][t];handles[key].visible=checks[label].value;handles[key].opacity=opacity.value
             known=g['static_times']<=g['source_frames'][t];handles['static'].points=g['static_points'][known];handles['static'].visible=checks['静态记忆'].value
             valid=(g['visible_owners'][t]>=0)&(g['visible_owners'][t]<100);handles['visible'].points=g['visible_points'][t][valid];handles['visible'].visible=checks['当前可见点'].value
             for i,node in enumerate(handles['objects']):node.position=g[f'obj_{i}_t'][t];node.wxyz=np.roll(Rotation.from_matrix(g[f'obj_{i}_r'][t]).as_quat(),1);node.visible=checks['动态物体'].value
-            pos=g['camera'][t];r=g['rotation'][t];corners=np.array([[-.3,-.2,.5],[.3,-.2,.5],[.3,.2,.5],[-.3,.2,.5]])@r.T+pos
-            handles['frustum'].points=np.concatenate((np.stack((np.tile(pos,(4,1)),corners),1),np.stack((corners,np.roll(corners,-1,axis=0)),1))).astype(np.float32)
-            handles['frustum'].visible=handles['path'].visible=checks['相机与轨迹'].value
+            pos=g['camera'][t];r=g['rotation'][t]
+            handles['frustum'].points=frustum_lines(pos,r,camera_size.value)
+            handles['frustum'].visible=handles['path'].visible=checks['输入相机与轨迹'].value
+            for key in mesh_keys:
+                if key=='gt':continue
+                handles[key+'_camera'].points=frustum_lines(g[key+'_camera_position'][t],g[key+'_camera_rotation'][t],camera_size.value)
+                handles[key+'_camera'].visible=handles[key+'_camera_path'].visible=checks['生成相机与轨迹'].value and checks[labels[key]].value
             if follow.value:
                 for client in server.get_clients().values():client.camera.position=tuple(pos);client.camera.look_at=tuple(pos+r[:,2]);client.camera.up_direction=tuple(r[:,1])
             horizon='short32' if args.scene_refinement or range_select.value=='短期预测16–47' else 'future112';old=case['metrics']['original'][horizon];new=case['metrics']['refined'][horizon];official=case['metrics']['official55k'][horizon]
@@ -90,9 +110,14 @@ def main():
                 if args.turn_training:info.content+=f"\n\n绿色净转向 {candidate['pelvis_turn_deg']:.1f}° / 根部最大步长 {candidate['root_step_max_deg']:.2f}° / 悬浮代理 {candidate['support_floating_m']*100:.2f}cm（相对GT足部支撑高度，非场景地板真值）。"
             if args.scene_refinement:
                 current=case['metrics']['scene_contact']['short32'];info.content=f"未来1.6秒开发诊断，帧{t}。\n\n世界MPJPE：旧样条 {new['mpjpe_cm']:.2f} / 场景接触 {current['mpjpe_cm']:.2f} cm\n\n脚滑：旧 {new['gt_stance_slide_cm_frame']:.3f} / 场景接触 {current['gt_stance_slide_cm_frame']:.3f} cm/帧\n\n观察半空间P95深度：{current['observed_halfspace_p95_depth_cm']:.2f} cm（局部代理，非完整mesh验收）。\n\n头部误差：{current['head_cm']:.2f} cm。完整场景独立诊断及GT冲突见 observed_surface_refine_oct10 报告。"
+            info.content+='\n\n**生成相机 vs 已知输入（固定安装标定）**'
+            for key in mesh_keys:
+                if key=='gt' or not checks[labels[key]].value:continue
+                cm=case['generated_camera_diagnostic']['variants'][key]
+                info.content+=f"\n\n{labels[key]}：本帧 {g[key+'_camera_position_error_cm'][t]:.2f}cm / {g[key+'_camera_rotation_error_deg'][t]:.1f}°；整段均值 {cm['position_mean_cm']:.2f}cm / {cm['orientation_mean_deg']:.1f}°，P95 {cm['position_p95_cm']:.2f}cm / {cm['orientation_p95_deg']:.1f}°。"
     @select.on_update
     def _(_):play.value=False;frame.value=0 if gt_free else 16;update()
-    for control in [frame,range_select,opacity,*checks.values(),follow]:control.on_update(lambda _:update())
+    for control in [frame,range_select,opacity,camera_size,*checks.values(),follow]:control.on_update(lambda _:update())
     @reset.on_click
     def _(_):
         follow.value=False
