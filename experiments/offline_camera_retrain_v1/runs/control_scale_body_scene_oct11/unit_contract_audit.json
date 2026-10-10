@@ -1,0 +1,33 @@
+{
+  "FK_output": "metres in first-known-camera anchor; translation feature multiplied 2 exactly once",
+  "position_tolerance_m": 0.05,
+  "head_rotation_tolerance_deg": 5.0,
+  "head_body_rotation_tolerance_deg": 15.0,
+  "rotation_residual": "sqrt-chordal 2sin(theta/2)/2sin(tolerance/2), finite epsilon; approximate normalized angle only near zero; bounded and gradient weak near180deg; not hard angular constraint",
+  "weights_effective": {
+    "head_position": 0.02,
+    "head_absolute_rotation": 0.002,
+    "head_body_relative_rotation": 0.01
+  },
+  "relative_reference_joints": [
+    0,
+    9,
+    12
+  ],
+  "head_joint": 15,
+  "absolute_frame": "global within shared anchored coordinates; known anchor applied consistently; not frame-to-frame relative-only",
+  "confidence": "per-example [0,1] external optional; synthetic current1; cannot claim calibrated real video uncertainty",
+  "body_query_radius_m": 0.75,
+  "body_query_units": "nearest delta/radius and distance/radius; local generated global joint rotation transpose; valid masks all unknown fields to zero",
+  "dynamic": "current observed frame only, never merged into accumulated static",
+  "initialization": "all128 noise; GT/native morphology template allowed configuration, no GT pose or contact input",
+  "camera_mount": "implicit learned training camera/native-head relation; GT first-frame mount only diagnostic drawing/scoring, excluded from generator",
+  "not_addressed_this_pair": [
+    "mixed-duration path normalization",
+    "contact BCE signal numerator cancellation",
+    "RICH distal-to-region contact coverage extension",
+    "signed local collision/contact penalty",
+    "full model gradient scale audit",
+    "real video camera mount/confidence estimator"
+  ]
+}

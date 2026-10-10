@@ -11,7 +11,11 @@ ROOT=Path(__file__).parent/'runs/state_relative_spline_oct10/demo'
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=8780);parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--scene-refinement',type=Path);parser.add_argument('--legacy-history-diagnostic',action='store_true');parser.add_argument('--turn-coordination',type=Path);parser.add_argument('--turn-training',type=Path);parser.add_argument('--support-refinement',type=Path);parser.add_argument('--fresh55k-replay',type=Path);parser.add_argument('--fresh55k-winding',type=Path);parser.add_argument('--fresh55k-physics',type=Path);parser.add_argument('--fresh55k-coverage',type=Path);args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=8780);parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--scene-refinement',type=Path);parser.add_argument('--legacy-history-diagnostic',action='store_true');parser.add_argument('--turn-coordination',type=Path);parser.add_argument('--turn-training',type=Path);parser.add_argument('--support-refinement',type=Path);parser.add_argument('--fresh55k-replay',type=Path);parser.add_argument('--fresh55k-winding',type=Path);parser.add_argument('--fresh55k-physics',type=Path);parser.add_argument('--fresh55k-coverage',type=Path);parser.add_argument('--scale-body-scene',type=Path);args=parser.parse_args()
+    scale_mode=bool(args.scale_body_scene)
+    if scale_mode:
+        if args.fresh55k_coverage:parser.error('Choose one coverage trial')
+        args.fresh55k_coverage=args.scale_body_scene
     coverage_mode=bool(args.fresh55k_coverage)
     if coverage_mode:
         if args.fresh55k_physics:parser.error('Choose one physical trial')
@@ -50,6 +54,9 @@ def main():
             mesh_keys.extend(['guard_terminal','replay_terminal']);colors.update(guard_terminal=(245,145,30),replay_terminal=(80,205,210));labels.update(guard_terminal='累计转向末端一次橙色',replay_terminal='回放末端一次青色')
         if args.turn_training:
             mesh_keys.append('continued_control');colors['continued_control']=(155,80,215);labels['continued_control']='继续原目标600步紫色'
+    if scale_mode:
+        turn_variant='body_local';labels['turn_coordination']='身体局部场景绿色（开发候选）';labels['continued_control']='尺度校准紫色（开发候选）';colors['continued_control']=(155,80,215)
+        mesh_keys.append('support_reference');colors['support_reference']=(245,145,30);labels['support_reference']='上轮支撑覆盖橙色（参考）'
     turn_rows={r['index']:r for r in json.loads((turn_root/'rows.json').read_text()) if r['scope']=='demo'} if turn_root else {}
     init_audit={r['index']:r for r in json.loads((ROOT.parent.parent/'no_body_initialization_oct10/audit.json').read_text())['rows']} if gt_free else {}
     scene_rows={r['index']:r for r in json.loads((args.scene_refinement/'rows.json').read_text())} if args.scene_refinement else {}
@@ -62,7 +69,11 @@ def main():
         if turn_root:
             with np.load(turn_root/f"{case['index']}.npz") as turn_arrays:
                 arrays['turn_coordination_motion']=turn_arrays[turn_variant]
-                if args.turn_training or args.fresh55k_replay:arrays['continued_control_motion']=turn_arrays['scene_reference' if coverage_mode else ('guard_reference' if physics_mode else ('replay_reference' if winding_mode else ('denoise_control' if args.fresh55k_replay else 'continued_control')))]
+                if args.turn_training or args.fresh55k_replay:arrays['continued_control_motion']=turn_arrays['scale_calibrated' if scale_mode else ('scene_reference' if coverage_mode else ('guard_reference' if physics_mode else ('replay_reference' if winding_mode else ('denoise_control' if args.fresh55k_replay else 'continued_control'))))]
+                if scale_mode:
+                    arrays['support_reference_motion']=turn_arrays['support_reference']
+                    for qkey in ('body_query_joints','body_query_surface_points','body_query_valid','body_query_dynamic'):arrays[qkey]=turn_arrays[qkey]
+                    for qkey in ('body_query_joints','body_query_surface_points'):arrays[qkey]=arrays[qkey]@arrays['anchor_rotation']+arrays['camera'][0]
                 if winding_mode:
                     arrays['guard_terminal_motion']=turn_arrays['guard_terminal'];arrays['replay_terminal_motion']=turn_arrays['replay_terminal']
                 if args.support_refinement:arrays['turn_control_motion']=turn_arrays['turn_control']
@@ -82,7 +93,8 @@ def main():
         name=f"{case['index']} · {case['identity']['sequence_id']}";cases[name]=(case,arrays)
     server=viser.ViserServer(port=args.port,label='SceneMI · 状态相对生成');server.scene.set_up_direction('+y')
     if gt_free:server.gui.add_markdown('**850/906：严格无身体GT初始化基线。** 蓝GT仅对照 · 红真正原55k，从随机扩散噪声生成全部128帧。输入仅已知相机/场景与配置身体模板，没有GT身体前缀或初始姿态对齐。TRUMANS相机仍是模拟已知条件，非真实视频估计。红色已切回原55k，与此前微调+GT历史红色不同；可选绿色为转向开发诊断，尚未通过验收。')
-    if coverage_mode:server.gui.add_markdown('**支撑覆盖配对实验，全部从原55k独立初始化。** 红原55k · 橙上轮场景接触参考 · 绿支撑patch覆盖修复。全128帧纯噪声，无GT身体初态，无推理投影；头部约束与上轮相同。本轮是否通过必须查看fresh55k_support_coverage_oct11评估，默认不启用开发候选。')
+    if scale_mode:server.gui.add_markdown('**两项独立600步对照，均从原55k开始。** 红原55k · 橙上轮支撑覆盖 · 紫约束尺度校准 · 绿同一校准加身体局部场景查询。全128帧从噪声生成，无GT身体初始化或推理投影。局部查询来自每步预生成FK关节，静态记忆按观测时间截断，动态几何只取当前帧。不是完整碰撞约束，联合结果见control_scale_body_scene_oct11报告。')
+    if coverage_mode and not scale_mode:server.gui.add_markdown('**支撑覆盖配对实验，全部从原55k独立初始化。** 红原55k · 橙上轮场景接触参考 · 绿支撑patch覆盖修复。全128帧纯噪声，无GT身体初态，无推理投影；头部约束与上轮相同。本轮是否通过必须查看fresh55k_support_coverage_oct11评估，默认不启用开发候选。')
     if physics_mode and not coverage_mode:server.gui.add_markdown('**本轮全部从原55k独立初始化。** 红原55k · 橙累计转向参考 · 绿累计转向＋已观测地面接触组。全128帧从噪声生成，无GT身体初始化、无推理投影。850改善，906转向改善但转身后仍离地滑动，未通过。参考组只用于对照，没有作为绿色训练起点。')
     if winding_mode:server.gui.add_markdown('**均从原55k独立开始，未接着旧候选微调。** 红原55k · 紫回放600步参考 · 绿新增累计转向/速率尾部600步标准DDIM · 橙新组末端一次修正 · 青回放参考末端一次。绿色与紫色均全128帧由噪声生成；橙/青先冻结原55k生成再修正一次。无GT身体初始化或GT投影，联合验收及脚步幅度见fresh55k_winding_oct11报告。')
     if args.fresh55k_replay and not winding_mode and not physics_mode:server.gui.add_markdown('**直接从原55k开始的对照。** 红原55k · 紫同目标标准加噪微调 · 绿55k生成轨迹回放微调。两组都未加载此前候选；全128帧无GT身体初始化，没有GT投影。联合验收见fresh55k_replay_oct11报告，开发结果未证明物理可跟踪。')
@@ -95,8 +107,9 @@ def main():
     options=['完整生成0–127','短期预测16–47'] if gt_free else (['短期预测16–47','含历史0–47'] if args.scene_refinement else ['短期预测16–47','完整预测16–127','含历史0–127'])
     range_select=server.gui.add_dropdown('播放范围',options=options,initial_value=options[0] if gt_free or args.scene_refinement else '完整预测16–127')
     frame=server.gui.add_slider('帧',min=0,max=frame_count-1,step=1,initial_value=0 if gt_free else 16);opacity=server.gui.add_slider('人物透明度',min=.1,max=1,step=.05,initial_value=.55)
-    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['原55k独立支撑覆盖组绿色（开发候选）','原55k独立上轮场景接触参考橙色','原55k独立场景接触组绿色（未通过）','原55k独立累计转向参考橙色','55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色','足底支撑400步绿色（未通过）','上轮转向600步橙色','继续转向400步紫色','55k回放微调绿色（开发候选）','55k标准加噪对照紫色','55k累计转向微调绿色（开发候选）','55k回放标准DDIM紫色','累计转向末端一次橙色','回放末端一次青色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','输入相机与轨迹','生成相机与轨迹']}
+    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['身体局部场景绿色（开发候选）','尺度校准紫色（开发候选）','上轮支撑覆盖橙色（参考）','原55k独立支撑覆盖组绿色（开发候选）','原55k独立上轮场景接触参考橙色','原55k独立场景接触组绿色（未通过）','原55k独立累计转向参考橙色','55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色','足底支撑400步绿色（未通过）','上轮转向600步橙色','继续转向400步紫色','55k回放微调绿色（开发候选）','55k标准加噪对照紫色','55k累计转向微调绿色（开发候选）','55k回放标准DDIM紫色','累计转向末端一次橙色','回放末端一次青色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','输入相机与轨迹','生成相机与轨迹']}
     server.gui.add_markdown('**相机诊断：** 紫色是已知输入；红/绿/紫生成相机随对应mesh开关显示。相机由生成身体FK头部重建，未吸附输入。固定安装偏置由GT首帧仅作绘图标定，非生成输入。位置和朝向误差均在完整128帧记录。')
+    body_queries=server.gui.add_checkbox('身体局部查询（最后扩散步预生成关节）',initial_value=False) if scale_mode else None
     camera_size=server.gui.add_slider('相机线框深度（米）',min=.04,max=.8,step=.02,initial_value=.5)
     follow=server.gui.add_checkbox('观察相机视角',initial_value=False);reset=server.gui.add_button('外部视角');info=server.gui.add_markdown('')
     handles={};active=None;lock=threading.RLock()
@@ -118,12 +131,16 @@ def main():
                     if key=='gt':continue
                     handles[key+'_camera']=server.scene.add_line_segments('/generated_camera/'+key,frustum_lines(g[key+'_camera_position'][t],g[key+'_camera_rotation'][t]),colors=colors[key],thickness=2,thickness_units='screen')
                     pos_track=g[key+'_camera_position'];handles[key+'_camera_path']=server.scene.add_line_segments('/generated_camera_path/'+key,np.stack((pos_track[:-1],pos_track[1:]),1).astype(np.float32),colors=colors[key],thickness=2,thickness_units='screen')
+                if scale_mode:handles['body_queries']=server.scene.add_line_segments('/body_local_queries',np.zeros((22,2,3),np.float32),colors=(40,205,205),thickness=2,thickness_units='screen')
                 center=g['gt_vertices'][16].mean(0);server.initial_camera.look_at=tuple(center);server.initial_camera.position=tuple(center+[2,.8,2])
                 for client in server.get_clients().values():external(client,g)
             for key,label in [(key,labels[key]) for key in mesh_keys]:handles[key].vertices=g[key+'_vertices'][t];handles[key].visible=checks[label].value;handles[key].opacity=opacity.value
             known=g['static_times']<=g['source_frames'][t];handles['static'].points=g['static_points'][known];handles['static'].visible=checks['静态记忆'].value
             valid=(g['visible_owners'][t]>=0)&(g['visible_owners'][t]<100);handles['visible'].points=g['visible_points'][t][valid];handles['visible'].visible=checks['当前可见点'].value
             for i,node in enumerate(handles['objects']):node.position=g[f'obj_{i}_t'][t];node.wxyz=np.roll(Rotation.from_matrix(g[f'obj_{i}_r'][t]).as_quat(),1);node.visible=checks['动态物体'].value
+            if scale_mode:
+                validq=g['body_query_valid'][t];segments=np.stack((g['body_query_joints'][t],g['body_query_surface_points'][t]),axis=1)
+                segments[~validq]=g['body_query_joints'][t][~validq,None,:];handles['body_queries'].points=segments.astype(np.float32);handles['body_queries'].visible=body_queries.value
             pos=g['camera'][t];r=g['rotation'][t]
             handles['frustum'].points=frustum_lines(pos,r,camera_size.value)
             handles['frustum'].visible=handles['path'].visible=checks['输入相机与轨迹'].value
@@ -154,6 +171,7 @@ def main():
     @select.on_update
     def _(_):play.value=False;frame.value=0 if gt_free else 16;update()
     for control in [frame,range_select,opacity,camera_size,*checks.values(),follow]:control.on_update(lambda _:update())
+    if body_queries is not None:body_queries.on_update(lambda _:update())
     @reset.on_click
     def _(_):
         follow.value=False

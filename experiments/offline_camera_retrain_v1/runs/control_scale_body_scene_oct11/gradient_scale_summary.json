@@ -1,0 +1,58 @@
+{
+  "scope": "8 TRAIN windows x4 noise/replay settings=32; shared sparse-control and BPS encoder gradients only, not full-backbone gradients; no optimizer or validation-based coefficient selection",
+  "selected_multiplier": 0.1,
+  "summaries": [
+    {
+      "basis": "GT_qnoise",
+      "timestep": 50,
+      "encoder_gradient_medians": {
+        "base": 0.1292453296482563,
+        "head_position_existing": 0.02438935823738575,
+        "winding": 0.5139147490262985,
+        "support": 0.057725466787815094,
+        "calibrated": 2.9326964616775513,
+        "calibrated_after_selected_scale": 0.29326964616775514
+      },
+      "scope": "sparse-control/BPS encoder only, cannot extrapolate to full network"
+    },
+    {
+      "basis": "GT_qnoise",
+      "timestep": 500,
+      "encoder_gradient_medians": {
+        "base": 0.3769088238477707,
+        "head_position_existing": 0.052127374336123466,
+        "winding": 0.3750808537006378,
+        "support": 0.28574517369270325,
+        "calibrated": 3.5486913919448853,
+        "calibrated_after_selected_scale": 0.35486913919448854
+      },
+      "scope": "sparse-control/BPS encoder only, cannot extrapolate to full network"
+    },
+    {
+      "basis": "GT_qnoise",
+      "timestep": 950,
+      "encoder_gradient_medians": {
+        "base": 0.6065790951251984,
+        "head_position_existing": 0.060277415439486504,
+        "winding": 0.19161319732666016,
+        "support": 7.880771590862423e-05,
+        "calibrated": 1.8485845923423767,
+        "calibrated_after_selected_scale": 0.1848584592342377
+      },
+      "scope": "sparse-control/BPS encoder only, cannot extrapolate to full network"
+    },
+    {
+      "basis": "frozen55k_replay",
+      "timestep": 50,
+      "encoder_gradient_medians": {
+        "base": 0.7682402431964874,
+        "head_position_existing": 0.04082728922367096,
+        "winding": 0.32939495146274567,
+        "support": 1.8613983392715454,
+        "calibrated": 3.658605933189392,
+        "calibrated_after_selected_scale": 0.3658605933189392
+      },
+      "scope": "sparse-control/BPS encoder only, cannot extrapolate to full network"
+    }
+  ]
+}

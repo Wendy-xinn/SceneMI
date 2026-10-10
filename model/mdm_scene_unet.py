@@ -916,6 +916,10 @@ class MDM_Scene_UNET(nn.Module):
             frame_feature = y['bps_sbj'].permute(0,3,1,2).reshape(bs, nframes, -1)
 
             frame_emb = self.cond_process(frame_feature).permute(1, 0, 2) #.permute(0,2,1).unsqueeze(2) [bs, d=128, nfeats, nframes]
+            if 'body_local_embedding' in y:
+                local=y['body_local_embedding']
+                if local.shape != (bs,nframes,self.cond_latent_dim):raise ValueError('Body-local embedding shape mismatch')
+                frame_emb=frame_emb+local.permute(1,0,2)
             x = torch.cat((x, frame_emb), axis=2)   # [seqlen, bs, input_d + cond_d]
 
         if self.offline_camera_condition:

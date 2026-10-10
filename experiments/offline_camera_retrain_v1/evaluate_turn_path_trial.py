@@ -25,7 +25,8 @@ def extra_metrics(m,rest):
 @torch.inference_mode()
 def main():
     global O
-    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');parser.add_argument('--fresh55k-winding',action='store_true');parser.add_argument('--fresh55k-physics',action='store_true');parser.add_argument('--fresh55k-coverage',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');parser.add_argument('--fresh55k-winding',action='store_true');parser.add_argument('--fresh55k-physics',action='store_true');parser.add_argument('--fresh55k-coverage',action='store_true');parser.add_argument('--scale-body-scene',action='store_true');args=parser.parse_args()
+    if args.scale_body_scene:args.fresh55k_coverage=True
     if args.fresh55k_coverage:
         if args.fresh55k_physics or args.fresh55k_winding or args.fresh55k_replay or args.support_refinement:parser.error('Choose coverage alone')
         args.fresh55k_physics=True
@@ -42,14 +43,20 @@ def main():
     if args.fresh55k_winding:labels=['original55k','replay_reference','winding_guard']
     if args.fresh55k_physics:labels=['original55k','guard_reference','winding_scene']
     if args.fresh55k_coverage:labels=['original55k','scene_reference','coverage_support']
+    if args.scale_body_scene:O=H/'runs/control_scale_body_scene_oct11';labels=['original55k','support_reference','scale_calibrated','body_local']
     torch.set_num_threads(4);start=time.monotonic();models={};digests={}
     for label in labels:
         path=H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt' if label=='original55k' else O/label/'last.pt'
         if label=='prior_turn600':path=H/'runs/turn_path_training_oct10/turn_path/last.pt'
         if label=='replay_reference':path=H/'runs/fresh55k_replay_oct11/rollout_replay/last.pt'
+        if label=='support_reference':path=H/'runs/fresh55k_support_coverage_oct11/coverage_support/last.pt'
         if label=='scene_reference':path=H/'runs/fresh55k_scene_physics_oct11/winding_scene/last.pt'
         if label=='guard_reference':path=H/'runs/fresh55k_winding_oct11/winding_guard/last.pt'
-        cp=torch.load(path,map_location='cpu',weights_only=False);c=cp['config'];model=OfflineSceneMI(c['latent_dim'],tuple(c['dim_mults']),body_conditioning=True,contact_prediction=True).cuda().eval();model.load_state_dict(cp['model']);models[label]=model
+        cp=torch.load(path,map_location='cpu',weights_only=False);c=cp['config'];cls=OfflineSceneMI
+        if c.get('body_local_queries'):
+            from experiments.offline_camera_retrain_v1.body_local_scene_model import BodyLocalSceneMI
+            cls=BodyLocalSceneMI
+        model=cls(c['latent_dim'],tuple(c['dim_mults']),body_conditioning=True,contact_prediction=True).cuda().eval();model.load_state_dict(cp['model']);models[label]=model
         digest=hashlib.sha256()
         for name,t in sorted(cp['model'].items()):digest.update(name.encode());digest.update(t.numpy().tobytes())
         digests[label]=digest.hexdigest();del cp
@@ -63,6 +70,9 @@ def main():
         if args.fresh55k_coverage:
             from experiments.offline_camera_retrain_v1.support_coverage_objective import FullFootCache
             full_feet=FullFootCache()
+        if args.scale_body_scene:
+            from experiments.offline_camera_retrain_v1.body_local_scene import BodySceneCache
+            body_scene_cache=BodySceneCache()
     data=NativeBodyData('validation',seed=777,**{k:c[k] for k in ('skeleton_profile','rich_source','trumans_scene_manifest','trumans_window_protocol','temporal_scene_manifest')},contact_root=c['rich_contact_root'])
     selected=json.loads((H/'runs/state_relative_spline_oct10/confirmation/protocol.json').read_text())['selected'];panel=[selected[i] for i in range(0,48,3)]
     demos=json.loads((H/'runs/state_relative_spline_oct10/demo/manifest.json').read_text())['cases'];historic=[json.loads(s) for s in (H/'runs/native_dynamic_scene20_contact_55k_oct07/full_validation/standard_rows.jsonl').read_text().splitlines()]
@@ -81,9 +91,14 @@ def main():
         for label,model in models.items():
             if label.endswith('_terminal'):
                 motion=model(base_motion,torch.zeros(len(base_motion),device='cuda',dtype=torch.long),camera_inputs_only(batch),control_mask=fixed_control_mask(len(base_motion),128,'head','cuda'),use_scene=True)
-            else:motion=generate_without_body_initialization(model,batch,seed=member['seed'])
+            else:
+                if label=='body_local':batch['body_scene_query']=[body_scene_cache.get(identity)]
+                else:batch.pop('body_scene_query',None)
+                motion=generate_without_body_initialization(model,batch,seed=member['seed'])
             if label=='original55k':base_motion=motion
-            result=measure(motion,batch,turn_threshold=30);result.update(leg_motion(motion));result.update(extra_metrics(motion,batch['rest']));soles=skin.soles(skin(motion[0]));slide=torch.diff(soles,dim=0)[...,[0,2]].norm(dim=-1);result['native_sole_stance_horizontal_cm_frame']=float((slide*sole_stance).sum()/sole_stance.sum().clamp_min(1)*100)
+            result=measure(motion,batch,turn_threshold=30);
+            if label=='body_local':result['body_local_query']=model.last_body_query_stats
+            result.update(leg_motion(motion));result.update(extra_metrics(motion,batch['rest']));soles=skin.soles(skin(motion[0]));slide=torch.diff(soles,dim=0)[...,[0,2]].norm(dim=-1);result['native_sole_stance_horizontal_cm_frame']=float((slide*sole_stance).sum()/sole_stance.sum().clamp_min(1)*100)
             if args.fresh55k_replay:
                 feet=forward_kinematics(motion,batch['rest'])[:,:,(10,11)];support=torch.quantile((batch['joints'][:,:,(10,11),1]*2).flatten(1),.05,dim=1)
                 low=(feet[:,1:,:,1]-support[:,None,None]).abs()<.05;slow=torch.diff(feet,dim=1).norm(dim=-1)<.01
@@ -107,7 +122,10 @@ def main():
                 if label=='original55k':
                     with np.load(H/f"runs/state_relative_spline_oct10/demo/{member['index']}.npz") as a:assert np.max(abs(motion[0].cpu().numpy()-a['official55k_motion']))<1e-5
                 elif label!='prior_turn600':saved[label]=motion[0].cpu().numpy()
-            if member['scope']=='demo' and member['index']==850 and (label in (['coverage_support'] if args.fresh55k_coverage else (['winding_scene'] if args.fresh55k_physics else (['winding_guard','guard_terminal'] if args.fresh55k_winding else ['rollout_replay','replay_terminal']))) if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
+                if label=='body_local':
+                    qj=model.last_body_query_joints[0];features=model.last_body_query_features[0];r=model.last_body_query_rotations[0]
+                    saved['body_query_joints']=qj;saved['body_query_surface_points']=qj+np.einsum('tjik,tjk->tji',r,features[...,:3]*.75);saved['body_query_valid']=features[...,4]>0;saved['body_query_dynamic']=features[...,5]>0
+            if member['scope']=='demo' and member['index']==850 and (label in (['scale_calibrated','body_local'] if args.scale_body_scene else (['coverage_support'] if args.fresh55k_coverage else (['winding_scene'] if args.fresh55k_physics else (['winding_guard','guard_terminal'] if args.fresh55k_winding else ['rollout_replay','replay_terminal'])))) if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
                 poisoned=dict(batch)
                 for key in ['motion','joints','trajectory','contact_target','contact_valid']:
                     if key in poisoned:poisoned[key]=torch.rand_like(poisoned[key].float())*100
@@ -129,6 +147,7 @@ def main():
     if args.fresh55k_winding:pairs=[('winding_guard','original55k'),('winding_guard','replay_reference'),('guard_terminal','original55k'),('guard_terminal','replay_terminal')]
     if args.fresh55k_physics:pairs=[('winding_scene','original55k'),('winding_scene','guard_reference')]
     if args.fresh55k_coverage:pairs=[('coverage_support','original55k'),('coverage_support','scene_reference')]
+    if args.scale_body_scene:pairs=[('scale_calibrated','support_reference'),('body_local','scale_calibrated'),('body_local','original55k')]
     for label,base in pairs:
         paired[label+'-'+base]={}
         for m in METRICS:

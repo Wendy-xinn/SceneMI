@@ -8,7 +8,7 @@ from experiments.offline_camera_retrain_v1.scene_model import ddim_sample
 from experiments.offline_camera_retrain_v1.control import fixed_control_mask
 
 def camera_inputs_only(observations):
-    allowed=('camera','occupancy','bps','bps_valid','rest','body_type','body_scale')
+    allowed=('camera','occupancy','bps','bps_valid','rest','body_type','body_scale','body_scene_query')
     inputs={k:observations[k] for k in allowed if k in observations}
     camera=inputs['camera'];b,t=camera.shape[:2]
     trajectory=camera.new_zeros(b,t,22,9);trajectory[:,:,15]=camera

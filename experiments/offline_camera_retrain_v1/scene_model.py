@@ -51,6 +51,7 @@ class OfflineSceneMI(nn.Module):
              # dropout. ``uncond`` explicitly masks the global scene branch.
              'sampling': not self.training,
              'uncond': not use_scene}
+        if 'body_local_embedding' in batch:y['body_local_embedding']=batch['body_local_embedding']
         if self.body_conditioning:
             relative_rest=batch['rest']-batch['rest'][:,:1]
             body_features=torch.cat((relative_rest.flatten(1),batch['body_type'],batch['body_scale']),dim=-1)
