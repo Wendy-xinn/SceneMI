@@ -1,0 +1,40 @@
+{
+  "recorded_before_scores_inspected": true,
+  "development_rows": 48,
+  "seeds": 2,
+  "conditions": [
+    "oracle_history",
+    "execution_error",
+    "large_execution_error"
+  ],
+  "source_model": "body_history_replan_oct10/delta_history/last.pt",
+  "new_checkpoints": 0,
+  "free_disk_bytes": 107958509568,
+  "methods": [
+    "refine0",
+    "refine32"
+  ],
+  "loss_weights": {
+    "foot_position": 100,
+    "foot_velocity": 2000,
+    "head_position": 30,
+    "head_rotation": 0.15,
+    "pose_delta": 0.03,
+    "delta_velocity": 0.3,
+    "delta_acceleration": 0.5
+  },
+  "iterations": 60,
+  "foot_targets": "measured feet plus GENERATED relative displacement; no guessed freeze, no future GT",
+  "future_head": "soft typed observation confidence^2",
+  "future_scene": "unchanged known-time model conditions",
+  "gates": {
+    "world_mpjpe_improvement_min_pct": 5,
+    "stance_slide_regression_max_pct": 5,
+    "head_position_regression_max_cm": 2,
+    "head_orientation_regression_max_deg": 2,
+    "pelvis_orientation_regression_max_deg": 2,
+    "support_penetration_regression_max_cm": 1,
+    "support_floating_regression_max_cm": 1
+  },
+  "scope": "short32 primary, full112 retained; holdout only after development gate"
+}

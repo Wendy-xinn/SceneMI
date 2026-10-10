@@ -1,0 +1,25 @@
+{
+  "method": "relative_root",
+  "relative_root": true,
+  "pose_frames": 32,
+  "iterations": 60,
+  "knot_spacing_frames": 4,
+  "gates": {
+    "world_mpjpe": true,
+    "stance_slide": true,
+    "head_position": true,
+    "head_orientation": true,
+    "pelvis_orientation": true,
+    "support_penetration": true,
+    "support_floating": true
+  },
+  "source_sha256": "5260314bb8ed732262ae3f063d5eb6bd762f95df8931f8081160f3597f95eafb",
+  "weights_frozen_before_confirmation": true,
+  "no_new_checkpoint": true,
+  "confirmation_additional_gates": {
+    "angular_step_p95_max_vs_native_GT_ratio": 1.5,
+    "angular_accel_p95_max_vs_native_GT_ratio": 1.5,
+    "meaningful_reverse_turn_regression_max_fraction": 0.05
+  },
+  "notes": "Initial state alignment imposed by construction; do not score it as independent quality improvement; previous holdout already exposed by per-frame IK evaluation, use new recording panel"
+}

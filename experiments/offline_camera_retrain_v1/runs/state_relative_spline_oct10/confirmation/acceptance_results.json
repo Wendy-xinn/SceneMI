@@ -1,0 +1,109 @@
+{
+  "passed_for_kinematic_short_planning_candidate": true,
+  "conditions": {
+    "clean": {
+      "short32": {
+        "passed": true,
+        "gates": {
+          "world_error_improvement": true,
+          "stance_slide_within5pct": true,
+          "head_error_within2cm": true,
+          "head_rotation_within2deg": true,
+          "pelvis_rotation_within2deg": true,
+          "support_penetration_within1cm": true,
+          "support_floating_within1cm": true,
+          "leg_angular_step_below1_5xGT": true,
+          "leg_angular_accel_below1_5xGT": true,
+          "meaningful_reverse_within5points": true
+        }
+      },
+      "future112": {
+        "passed": true,
+        "gates": {
+          "world_error_improvement": true,
+          "stance_slide_within5pct": true,
+          "head_error_within2cm": true,
+          "head_rotation_within2deg": true,
+          "pelvis_rotation_within2deg": true,
+          "support_penetration_within1cm": true,
+          "support_floating_within1cm": true,
+          "leg_angular_step_below1_5xGT": true,
+          "leg_angular_accel_below1_5xGT": true,
+          "meaningful_reverse_within5points": true
+        }
+      }
+    },
+    "head_mild": {
+      "short32": {
+        "passed": true,
+        "gates": {
+          "world_error_improvement": true,
+          "stance_slide_within5pct": true,
+          "head_error_within2cm": true,
+          "head_rotation_within2deg": true,
+          "pelvis_rotation_within2deg": true,
+          "support_penetration_within1cm": true,
+          "support_floating_within1cm": true,
+          "leg_angular_step_below1_5xGT": true,
+          "leg_angular_accel_below1_5xGT": true,
+          "meaningful_reverse_within5points": true
+        }
+      },
+      "future112": {
+        "passed": true,
+        "gates": {
+          "world_error_improvement": true,
+          "stance_slide_within5pct": true,
+          "head_error_within2cm": true,
+          "head_rotation_within2deg": true,
+          "pelvis_rotation_within2deg": true,
+          "support_penetration_within1cm": true,
+          "support_floating_within1cm": true,
+          "leg_angular_step_below1_5xGT": true,
+          "leg_angular_accel_below1_5xGT": true,
+          "meaningful_reverse_within5points": true
+        }
+      }
+    },
+    "head_large": {
+      "short32": {
+        "passed": true,
+        "gates": {
+          "world_error_improvement": true,
+          "stance_slide_within5pct": true,
+          "head_error_within2cm": true,
+          "head_rotation_within2deg": true,
+          "pelvis_rotation_within2deg": true,
+          "support_penetration_within1cm": true,
+          "support_floating_within1cm": true,
+          "leg_angular_step_below1_5xGT": true,
+          "leg_angular_accel_below1_5xGT": true,
+          "meaningful_reverse_within5points": true
+        }
+      },
+      "future112": {
+        "passed": true,
+        "gates": {
+          "world_error_improvement": true,
+          "stance_slide_within5pct": true,
+          "head_error_within2cm": true,
+          "head_rotation_within2deg": true,
+          "pelvis_rotation_within2deg": true,
+          "support_penetration_within1cm": true,
+          "support_floating_within1cm": true,
+          "leg_angular_step_below1_5xGT": true,
+          "leg_angular_accel_below1_5xGT": true,
+          "meaningful_reverse_within5points": true
+        }
+      }
+    }
+  },
+  "not_verified": [
+    "real video head estimator calibration",
+    "physical tracking in simulator",
+    "mesh self collision/scene penetration",
+    "hard real-time latency",
+    "elimination of opposite-turn or under-turn cases"
+  ],
+  "first_state_alignment_imposed_not_independent_quality_metric": true
+}

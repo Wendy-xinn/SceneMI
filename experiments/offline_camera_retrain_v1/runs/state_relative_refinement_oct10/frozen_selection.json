@@ -1,0 +1,18 @@
+{
+  "method": "refine32",
+  "pose_frames": 32,
+  "iterations": 60,
+  "gates": {
+    "world_mpjpe": true,
+    "stance_slide": true,
+    "head_position": true,
+    "head_orientation": true,
+    "pelvis_orientation": true,
+    "support_penetration": true,
+    "support_floating": true
+  },
+  "source_sha256": "c6b1578184e5701661aae4a3f39796f6d188c9c3cf6bda53bef9bcdbb3ccd02f",
+  "weights_frozen_before_holdout": true,
+  "no_new_checkpoint": true,
+  "additional_risk_to_audit": "leg angular speed/acceleration vs native GT, synthetic future head noise; no mesh collision proof"
+}

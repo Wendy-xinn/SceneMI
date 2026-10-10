@@ -53,3 +53,7 @@
 新增支路零初始化和未来GT不影响输出的检查均通过；三组500步的样本、扩散噪声、时间步、head mask、场景开关完全配对。配置、种子、权重指纹和逐窗口指标已保留。
 
 每组只有last.pt。已核验张量并清理失败delta的优化器与不再续训的上一轮soft-loss baseline优化器，共回收1.925GB；保留模型和审计状态。正式55k、joint_all1000 warm start、新baseline控制及有价值的history候选保留完整状态，后者尚未通过共同筛查。磁盘可用约101.49GiB。
+
+### 保留角色更新
+
+当前新对照和状态相对规划均使用同一个 `delta_history/last.pt`，它继续完整保留。旧head-only `baseline/last.pt` 已退役，optimizer剥离后核对模型逐张量一致，保留模型/RNG/config供评估及warm-start，不能恢复optimizer训练。清理记录和实质改善结果见 [state_relative_spline_oct10/ASSESSMENT_zh.md](../state_relative_spline_oct10/ASSESSMENT_zh.md)。

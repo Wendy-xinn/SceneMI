@@ -45,3 +45,9 @@
 ### 已知未来条件与场景复核更新
 
 已完成两个500步前缀分布/衔接损失对比，完整保留已知未来头部与场景；新增分支未改善首步跳变，衔接损失分支短期脚滑增加，未采用。独立重查904个有效场景包、780份静态记忆及2712个时间点，未发现按历史累计的动态残影。详见 [replan_transition_oct10/ASSESSMENT_zh.md](../replan_transition_oct10/ASSESSMENT_zh.md)。淘汰权重已剥离optimizer回收约1.925GB，保留模型与结果。
+
+### 状态相对规划方案：已取得实质改善
+
+冻结连续样条+实际根状态/脚步位移+软上身头部IK后，另一批48窗口、16身体序列、12录制确认：短期世界MPJPE13.348→9.205cm，PA92.243→71.225mm，骨盆朝向21.163→13.404°，脚滑0.692→0.703cm/帧。合成未来头部噪声仍保留收益；逐帧IK的高频腿部抖动已排除。没有消除反向转身/幅度不足，也没有证明实时动力学跟踪。
+
+详见 [state_relative_spline_oct10/ASSESSMENT_zh.md](../state_relative_spline_oct10/ASSESSMENT_zh.md)。Viser `http://127.0.0.1:8780`：850/906三种native mesh叠加、相机和逐时刻场景。没有新checkpoint，旧head-only控制退役剥离optimizer回收约0.962GB。此前的预留holdout已用于发现IK问题，最终确认使用另一批录制。

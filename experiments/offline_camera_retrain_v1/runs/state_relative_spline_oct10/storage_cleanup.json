@@ -1,0 +1,21 @@
+{
+  "items": [
+    {
+      "path": "experiments/offline_camera_retrain_v1/runs/body_history_replan_oct10/baseline/last.pt",
+      "before_bytes": 1450249935,
+      "after_bytes": 487975687,
+      "model_sha256": "c51c8db78da8d6c7f32bbad663ae88dab5b596f119bbe550758a9c203fbf708a",
+      "model_verified": true,
+      "optimizer_removed": true
+    }
+  ],
+  "reclaimed_bytes": 962274248,
+  "no_new_checkpoints": true,
+  "free_after_bytes": 108894257152,
+  "retained_full": [
+    "official55k",
+    "bounded_head_adaptation/joint_all1000 useful warm-start",
+    "body_history_replan/delta_history500 current generation control/warm-start"
+  ],
+  "note": "Control for new comparison is exactly same delta_history model before refinement; older head-only trial no longer scheduled for optimizer resume; native sources/scenes/body models untouched"
+}
