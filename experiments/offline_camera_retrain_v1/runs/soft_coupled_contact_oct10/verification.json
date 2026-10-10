@@ -1,0 +1,74 @@
+{
+  "trained_steps": 1000,
+  "paired_training_traces": 1000,
+  "evaluated_predictions": 7104,
+  "quality_screens": {
+    "coupled": {
+      "passed": false,
+      "checks": {
+        "all": {
+          "pelvis_improvement_at_least_1deg": false,
+          "world_mpjpe_within_point3cm": true,
+          "PA_within_2mm": true,
+          "slide_within_5percent": true,
+          "floating_within_point2cm": true,
+          "penetration_within_point2cm": true,
+          "opposite_turn_within_3pp": true,
+          "underturn_within_3pp": false,
+          "head_neck_p95_within_10deg": true,
+          "neck_chest_p95_within_10deg": true
+        },
+        "turn_bin/large_turn": {
+          "pelvis_improvement_at_least_1deg": true,
+          "world_mpjpe_within_point3cm": true,
+          "PA_within_2mm": true,
+          "slide_within_5percent": true,
+          "floating_within_point2cm": true,
+          "penetration_within_point2cm": true,
+          "opposite_turn_within_3pp": true,
+          "underturn_within_3pp": false,
+          "head_neck_p95_within_10deg": true,
+          "neck_chest_p95_within_10deg": true
+        },
+        "mild_drift": {
+          "world_within_point3cm": true
+        }
+      }
+    },
+    "coupled_contact": {
+      "passed": false,
+      "checks": {
+        "all": {
+          "pelvis_improvement_at_least_1deg": false,
+          "world_mpjpe_within_point3cm": true,
+          "PA_within_2mm": true,
+          "slide_within_5percent": true,
+          "floating_within_point2cm": true,
+          "penetration_within_point2cm": false,
+          "opposite_turn_within_3pp": true,
+          "underturn_within_3pp": false,
+          "head_neck_p95_within_10deg": true,
+          "neck_chest_p95_within_10deg": true
+        },
+        "turn_bin/large_turn": {
+          "pelvis_improvement_at_least_1deg": false,
+          "world_mpjpe_within_point3cm": true,
+          "PA_within_2mm": true,
+          "slide_within_5percent": true,
+          "floating_within_point2cm": true,
+          "penetration_within_point2cm": true,
+          "opposite_turn_within_3pp": true,
+          "underturn_within_3pp": false,
+          "head_neck_p95_within_10deg": true,
+          "neck_chest_p95_within_10deg": true
+        },
+        "mild_drift": {
+          "world_within_point3cm": true
+        }
+      }
+    }
+  },
+  "hard_projection": false,
+  "new55k": false,
+  "tests_passed": 4
+}
