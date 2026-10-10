@@ -49,3 +49,8 @@
 - [前缀训练与边界损失失败结果](../replan_transition_oct10/ASSESSMENT_zh.md)
 - [原55k对照、GT隔离与短滚动](paired_55k_audit/ASSESSMENT_zh.md)
 - [最新场景修正失败结果](../observed_surface_refine_oct10/ASSESSMENT_zh.md)
+
+
+## 本轮执行更新
+
+上述8秒长段滚动验证已完成：8条序列、两个种子，所有滚动/修正候选脚滑均退化。两条RICH生成动作的22区域接触头也已评分，不能代替全val或mesh接触验收。完整[结果与后续依据](../long_history_rollout_oct10/ASSESSMENT_zh.md)。当前未开展短块增量训练。
