@@ -24,9 +24,12 @@ def extra_metrics(m,rest):
 @torch.inference_mode()
 def main():
     global O
-    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');args=parser.parse_args()
+    if args.support_refinement and args.fresh55k_replay:parser.error('Choose one trial')
     if args.support_refinement:O=H/'runs/sole_support_oct11'
+    if args.fresh55k_replay:O=H/'runs/fresh55k_replay_oct11'
     labels=['original55k','prior_turn600','turn_control','sole_support'] if args.support_refinement else ['original55k','continued_control','turn_path']
+    if args.fresh55k_replay:labels=['original55k','denoise_control','rollout_replay']
     torch.set_num_threads(4);start=time.monotonic();models={};digests={}
     for label in labels:
         path=H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt' if label=='original55k' else O/label/'last.pt'
@@ -41,6 +44,11 @@ def main():
     protocol=dict(status='registered_before_scoring',panel=panel,seeds=[2026101201,2026101202],source_model_sha256=digests,scope='16 exposed validation body sequences, one window each, two seeds; 850/906 development; not pristine holdout',frames='full128=6.4s; all noise initialized; no GT body prefix',metrics='GT stance scoring only; ankle_cross heuristic can include legitimate crossed steps; no physical certificate',batch_size=1)
     (O/'evaluation_protocol.json').write_text(json.dumps(protocol,indent=2));rows=[]
     members=[dict(scope='demo',index=d['index'],seed=d['seed'],window=historic[d['index']]['window']) for d in demos]+[dict(scope='panel',index=i,seed=seed,window=w) for seed in protocol['seeds'] for i,w in enumerate(panel)]
+    if args.fresh55k_replay:
+        confirmation=[w for i,w in enumerate(selected) if i%3!=0]
+        members.extend(dict(scope='confirmation',index=i,seed=seed,window=w) for seed in protocol['seeds'] for i,w in enumerate(confirmation))
+        protocol.update(confirmation=confirmation,scope='16 exposed primary +32 other fixed development windows, two seeds; same48 body sequences, not independent holdout')
+        (O/'evaluation_protocol.json').write_text(json.dumps(protocol,indent=2))
     for member in members:
         w=member['window'];sample,identity=data.sample(128,w['group'],sequence_index=w['sequence_index'],start_index=w['start_index']);batch={k:v.cuda() for k,v in collate([sample]).items()};values={};saved={}
         skin=NativeSurfacePoints(identity['native_body']);gt_soles=skin.soles(skin(batch['motion'][0]));sole_stance=torch.diff(gt_soles,dim=0).norm(dim=-1)<.01
@@ -53,7 +61,7 @@ def main():
                 if label=='original55k':
                     with np.load(H/f"runs/state_relative_spline_oct10/demo/{member['index']}.npz") as a:assert np.max(abs(motion[0].cpu().numpy()-a['official55k_motion']))<1e-5
                 elif label!='prior_turn600':saved[label]=motion[0].cpu().numpy()
-            if member['scope']=='demo' and member['index']==850 and label==('sole_support' if args.support_refinement else 'turn_path'):
+            if member['scope']=='demo' and member['index']==850 and label==('rollout_replay' if args.fresh55k_replay else ('sole_support' if args.support_refinement else 'turn_path')):
                 poisoned=dict(batch)
                 for key in ['motion','joints','trajectory','contact_target','contact_valid']:
                     if key in poisoned:poisoned[key]=torch.rand_like(poisoned[key].float())*100
@@ -66,6 +74,7 @@ def main():
         summary[label]={m:float(np.mean([r['metrics'][label][m] for r in rows if r['scope']=='panel' and r['metrics'][label][m] is not None])) for m in METRICS if any(r['metrics'][label][m] is not None for r in rows if r['scope']=='panel')}
     paired={}
     pairs=[('sole_support','original55k'),('sole_support','prior_turn600'),('sole_support','turn_control'),('turn_control','prior_turn600')] if args.support_refinement else [('turn_path','original55k'),('turn_path','continued_control'),('continued_control','original55k')]
+    if args.fresh55k_replay:pairs=[('rollout_replay','original55k'),('rollout_replay','denoise_control'),('denoise_control','original55k')]
     for label,base in pairs:
         paired[label+'-'+base]={}
         for m in METRICS:
@@ -75,5 +84,7 @@ def main():
                 if r['scope']=='panel' and a is not None and b is not None:groups[r['identity']['group']+'/'+r['identity']['sequence_id']].append(a-b)
             ds=np.array([np.mean(v) for v in groups.values()])
             if len(ds):paired[label+'-'+base][m]=dict(mean_difference=float(ds.mean()),exploratory_ci95=np.quantile(rng.choice(ds,(2000,len(ds))).mean(1),[.025,.975]).tolist(),sequences=len(ds))
-    (O/'summary.json').write_text(json.dumps(dict(means=summary,paired=paired),indent=2));protocol.update(status='completed',elapsed_s=time.monotonic()-start);(O/'evaluation_protocol.json').write_text(json.dumps(protocol,indent=2));print(json.dumps(summary),flush=True)
+    result=dict(means=summary,paired=paired)
+    if args.fresh55k_replay:result['confirmation_means']={label:{m:float(np.mean([r['metrics'][label][m] for r in rows if r['scope']=='confirmation' and r['metrics'][label][m] is not None])) for m in METRICS if any(r['metrics'][label][m] is not None for r in rows if r['scope']=='confirmation')} for label in models}
+    (O/'summary.json').write_text(json.dumps(result,indent=2));protocol.update(status='completed',elapsed_s=time.monotonic()-start);(O/'evaluation_protocol.json').write_text(json.dumps(protocol,indent=2));print(json.dumps(summary),flush=True)
 if __name__=='__main__':main()
