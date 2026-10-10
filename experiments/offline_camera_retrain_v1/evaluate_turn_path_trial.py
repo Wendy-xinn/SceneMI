@@ -25,22 +25,27 @@ def extra_metrics(m,rest):
 @torch.inference_mode()
 def main():
     global O
-    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');parser.add_argument('--fresh55k-winding',action='store_true');args=parser.parse_args()
+    if args.fresh55k_winding:args.fresh55k_replay=True
     if args.support_refinement and args.fresh55k_replay:parser.error('Choose one trial')
     if args.support_refinement:O=H/'runs/sole_support_oct11'
     if args.fresh55k_replay:O=H/'runs/fresh55k_replay_oct11'
+    if args.fresh55k_winding:O=H/'runs/fresh55k_winding_oct11'
     labels=['original55k','prior_turn600','turn_control','sole_support'] if args.support_refinement else ['original55k','continued_control','turn_path']
     if args.fresh55k_replay:labels=['original55k','denoise_control','rollout_replay']
+    if args.fresh55k_winding:labels=['original55k','replay_reference','winding_guard']
     torch.set_num_threads(4);start=time.monotonic();models={};digests={}
     for label in labels:
         path=H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt' if label=='original55k' else O/label/'last.pt'
         if label=='prior_turn600':path=H/'runs/turn_path_training_oct10/turn_path/last.pt'
+        if label=='replay_reference':path=H/'runs/fresh55k_replay_oct11/rollout_replay/last.pt'
         cp=torch.load(path,map_location='cpu',weights_only=False);c=cp['config'];model=OfflineSceneMI(c['latent_dim'],tuple(c['dim_mults']),body_conditioning=True,contact_prediction=True).cuda().eval();model.load_state_dict(cp['model']);models[label]=model
         digest=hashlib.sha256()
         for name,t in sorted(cp['model'].items()):digest.update(name.encode());digest.update(t.numpy().tobytes())
         digests[label]=digest.hexdigest();del cp
     if args.fresh55k_replay:
-        for label,source in [('denoise_terminal','denoise_control'),('replay_terminal','rollout_replay')]:models[label]=models[source];digests[label]=digests[source]
+        aliases=[('replay_terminal','replay_reference'),('guard_terminal','winding_guard')] if args.fresh55k_winding else [('denoise_terminal','denoise_control'),('replay_terminal','rollout_replay')]
+        for label,source in aliases:models[label]=models[source];digests[label]=digests[source]
     data=NativeBodyData('validation',seed=777,**{k:c[k] for k in ('skeleton_profile','rich_source','trumans_scene_manifest','trumans_window_protocol','temporal_scene_manifest')},contact_root=c['rich_contact_root'])
     selected=json.loads((H/'runs/state_relative_spline_oct10/confirmation/protocol.json').read_text())['selected'];panel=[selected[i] for i in range(0,48,3)]
     demos=json.loads((H/'runs/state_relative_spline_oct10/demo/manifest.json').read_text())['cases'];historic=[json.loads(s) for s in (H/'runs/native_dynamic_scene20_contact_55k_oct07/full_validation/standard_rows.jsonl').read_text().splitlines()]
@@ -73,7 +78,7 @@ def main():
                 if label=='original55k':
                     with np.load(H/f"runs/state_relative_spline_oct10/demo/{member['index']}.npz") as a:assert np.max(abs(motion[0].cpu().numpy()-a['official55k_motion']))<1e-5
                 elif label!='prior_turn600':saved[label]=motion[0].cpu().numpy()
-            if member['scope']=='demo' and member['index']==850 and (label in ['rollout_replay','replay_terminal'] if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
+            if member['scope']=='demo' and member['index']==850 and (label in (['winding_guard','guard_terminal'] if args.fresh55k_winding else ['rollout_replay','replay_terminal']) if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
                 poisoned=dict(batch)
                 for key in ['motion','joints','trajectory','contact_target','contact_valid']:
                     if key in poisoned:poisoned[key]=torch.rand_like(poisoned[key].float())*100
@@ -92,6 +97,7 @@ def main():
     pairs=[('sole_support','original55k'),('sole_support','prior_turn600'),('sole_support','turn_control'),('turn_control','prior_turn600')] if args.support_refinement else [('turn_path','original55k'),('turn_path','continued_control'),('continued_control','original55k')]
     if args.fresh55k_replay:pairs=[('rollout_replay','original55k'),('rollout_replay','denoise_control'),('denoise_control','original55k')]
     if args.fresh55k_replay:pairs.extend([('replay_terminal','original55k'),('replay_terminal','denoise_terminal'),('denoise_terminal','original55k')])
+    if args.fresh55k_winding:pairs=[('winding_guard','original55k'),('winding_guard','replay_reference'),('guard_terminal','original55k'),('guard_terminal','replay_terminal')]
     for label,base in pairs:
         paired[label+'-'+base]={}
         for m in METRICS:

@@ -1,0 +1,25 @@
+{
+  "status": "training_completed",
+  "base": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/last.pt",
+  "base_model_sha256": "35795d68bbb3d9f9747af250584770401ebe5161dc5db16219cc4796b0d3c56d",
+  "variants": [
+    "denoise_control",
+    "rollout_replay"
+  ],
+  "steps": 600,
+  "batch_size": 2,
+  "frames": 128,
+  "seed": 2026101121,
+  "lr": 2e-05,
+  "initialization": "BOTH original55k; no previous candidate weights",
+  "replay": "50% batches: frozen original55k DDIM20 all-noise generation from TRAIN known inputs, then re-noise at t<100; control uses clean TRAIN target with same noise/t; remaining common standard diffusion",
+  "supervision": "same turn+native sole support+head/neck+stance displacement; no frozen old foot position, no GT body input",
+  "storage": "one final evaluation-only last.pt per arm; no optimizer/best/numbered weights",
+  "source_sha256": {
+    "train_fresh55k_replay.py": "5ae81f120ce21abd6f89b39754523c0a4a87f4434b778ac2d6e1b2c51068251c",
+    "fresh55k_replay_objective.py": "48fec54f55ad2ebbad0510e17b9013dc86724c3a962b8c89c5f3b22dec117b31"
+  },
+  "free_disk_before": 106920968192,
+  "elapsed_s": 1279.1962602740095,
+  "free_disk_after": 105936171008
+}
