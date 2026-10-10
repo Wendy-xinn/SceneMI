@@ -1,0 +1,25 @@
+{
+  "status": "completed",
+  "scope": "two previously exposed failure clips; development diagnostic, NOT holdout or simulator",
+  "variants": [
+    "history_raw",
+    "history_spline",
+    "scene_geometry",
+    "scene_contact"
+  ],
+  "frozen_weights": "orange official55k; red/green same delta_history500; no new weights",
+  "head": "known GT anatomical head diagnostic",
+  "history": "first16 GT simulator-state proxy, all variants retain same past",
+  "scene": "known observed surfaces only; no complete source mesh used",
+  "native_mesh": "sparse exact shape/pose LBS surface points, no future target mesh consumed",
+  "source_sha256": {
+    "observed_body_surfaces.py": "fc83b1c4ff43160331acb94e0459c6d34a30523d1ca4cd7cc55c1077b2eff74f",
+    "native_surface_points.py": "879de9607aac0ee50db1aaf237bccd4b653804c41d6ea92be602bf975067d694",
+    "observed_scene_refinement.py": "232b5e0a91d4739aac494f021fe8a419f7db85fbc545537f446e358a31dc264c",
+    "evaluate_observed_scene_refinement.py": "a5905ae8610447021cf31c878cac746ae96163c9470fd21335c7d0cd889cca49"
+  },
+  "elapsed_s": 52.9344216669997,
+  "new_checkpoints": 0,
+  "free_disk_before": 108864794624,
+  "free_disk_after": 108864040960
+}

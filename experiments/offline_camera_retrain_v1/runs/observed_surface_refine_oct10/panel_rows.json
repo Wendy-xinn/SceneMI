@@ -1,0 +1,2990 @@
+[
+  {
+    "selected_index": 0,
+    "group": "trumans",
+    "identity": {
+      "dataset": "trumans",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-00-27",
+      "source_start_30fps": 60,
+      "camera_source": "synthetic_head_from_smplx",
+      "dynamic_object_points": 1497,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/validation/2023-02-17@11-00-27",
+      "scene_observation_fps": 20,
+      "scene_history_points": 7372,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/validation/trumans/2023-02-17@11-00-27",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.00014210640802048147
+    },
+    "metrics": {
+      "history_raw": {
+        "mpjpe_cm": 10.761690139770508,
+        "head_cm": 11.41186809539795,
+        "gt_stance_slide_cm_frame": 0.8075903058052063,
+        "relative_head_cm": 9.255431175231934,
+        "coordination_relation_mse": 0.0364498496055603,
+        "coordination_amplitude_m2": 0.0007986223790794611,
+        "root_path_length_m": 0.3651249408721924,
+        "foot_horizontal_speed_m_per_frame": 0.008209772408008575,
+        "mean_joint_speed_m_per_frame": 0.01818198524415493,
+        "mean_joint_acceleration_m_per_frame2": 0.004229549318552017,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.00835284311324358,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0,
+        "foot_relative_speed_ratio": 0.8025930523872375,
+        "foot_relative_speed_m_per_frame": 0.011383933946490288,
+        "slowest_foot_horizontal_cm_per_frame": 0.5453590154647827,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 5.758184432983398,
+        "gt_foot_separation_rms_cm": 6.778494834899902,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.0,
+        "fk_reference_stance_slide_cm_frame": 0.8075903058052063,
+        "gt_root_path_length_m": 0.3586280345916748,
+        "root_path_length_ratio": 1.018116002247049,
+        "w_mpjpe_mm": 107.61689912738898,
+        "root_relative_mpjpe_mm": 102.28079803240796,
+        "pa_mpjpe_mm": 71.40926298341469,
+        "root_position_error_mm": 110.00420777030791,
+        "mpjve_mm_s": 238.79275875322128,
+        "acceleration_error_mm_s2": 2765.419564575204,
+        "pelvis_orientation_mean_deg": 18.103186353357277,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": 25.61687660217285,
+        "pelvis_gt_turn_deg": 2.7468082904815674,
+        "pelvis_turn_sign_agreement": 0.625,
+        "head_orientation_mean_deg": 37.28266689142812,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 46.04877853393555,
+        "head_gt_turn_deg": 61.938961029052734,
+        "head_turn_sign_agreement": 0.6785714285714286,
+        "leg_orientation_mean_deg": 18.491642879887696,
+        "leg_global_rotation_step_max_deg": 4.0840128993870985,
+        "camera_mount_variation_max_deg": 1.0013890696474416e-05,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 2.546171188354492,
+        "observed_halfspace_p95_depth_cm": 6.821735858917236,
+        "observed_halfspace_max_depth_cm": 10.245116233825684,
+        "observed_halfspace_over1cm_fraction": 0.6210115551948547,
+        "observed_halfspace_query_coverage": 0.3934295177459717,
+        "observed_halfspace_frames_with_over1cm": 32,
+        "mesh_sample_count": 468,
+        "not_closed_mesh_collision": true
+      },
+      "history_spline": {
+        "mpjpe_cm": 8.865132331848145,
+        "head_cm": 0.6038233637809753,
+        "gt_stance_slide_cm_frame": 0.8305463194847107,
+        "relative_head_cm": 5.4174981117248535,
+        "coordination_relation_mse": 0.023886293172836304,
+        "coordination_amplitude_m2": 0.0003190844436176121,
+        "root_path_length_m": 0.36512500047683716,
+        "foot_horizontal_speed_m_per_frame": 0.008211339823901653,
+        "mean_joint_speed_m_per_frame": 0.019013704732060432,
+        "mean_joint_acceleration_m_per_frame2": 0.0050433240830898285,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.008345511741936207,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0007671453058719635,
+        "foot_relative_speed_ratio": 0.8634369969367981,
+        "foot_relative_speed_m_per_frame": 0.012246941216289997,
+        "slowest_foot_horizontal_cm_per_frame": 0.5650623440742493,
+        "both_feet_moving_fraction": 0.032258063554763794,
+        "foot_separation_rms_cm": 5.6613264083862305,
+        "gt_foot_separation_rms_cm": 6.778494834899902,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.0007671453058719635,
+        "fk_reference_stance_slide_cm_frame": 0.8305463194847107,
+        "gt_root_path_length_m": 0.3586280345916748,
+        "root_path_length_ratio": 1.0181161684489046,
+        "w_mpjpe_mm": 88.65132585934886,
+        "root_relative_mpjpe_mm": 77.81438549853301,
+        "pa_mpjpe_mm": 62.43663601773756,
+        "root_position_error_mm": 72.02725697711898,
+        "mpjve_mm_s": 238.31644923987923,
+        "acceleration_error_mm_s2": 3002.206348475443,
+        "pelvis_orientation_mean_deg": 12.16774726404588,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": 29.438291549682617,
+        "pelvis_gt_turn_deg": 2.7468082904815674,
+        "pelvis_turn_sign_agreement": 0.5,
+        "head_orientation_mean_deg": 1.4411133742110596,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 64.85751342773438,
+        "head_gt_turn_deg": 61.938961029052734,
+        "head_turn_sign_agreement": 0.7857142857142857,
+        "leg_orientation_mean_deg": 17.167028032967036,
+        "leg_global_rotation_step_max_deg": 4.825287797253267,
+        "camera_mount_variation_max_deg": 1.0013890696474416e-05,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 3.686826705932617,
+        "observed_halfspace_p95_depth_cm": 8.580949783325195,
+        "observed_halfspace_max_depth_cm": 13.037657737731934,
+        "observed_halfspace_over1cm_fraction": 0.7096880674362183,
+        "observed_halfspace_query_coverage": 0.404580682516098,
+        "observed_halfspace_frames_with_over1cm": 32,
+        "mesh_sample_count": 468,
+        "not_closed_mesh_collision": true
+      },
+      "scene_contact": {
+        "mpjpe_cm": 11.088651657104492,
+        "head_cm": 0.784267008304596,
+        "gt_stance_slide_cm_frame": 0.5498963594436646,
+        "relative_head_cm": 5.439730644226074,
+        "coordination_relation_mse": 0.031666651368141174,
+        "coordination_amplitude_m2": 0.0002992826630361378,
+        "root_path_length_m": 0.3990374207496643,
+        "foot_horizontal_speed_m_per_frame": 0.004834665451198816,
+        "mean_joint_speed_m_per_frame": 0.0200556181371212,
+        "mean_joint_acceleration_m_per_frame2": 0.006353070959448814,
+        "contact_coverage": 0.06451612710952759,
+        "contact_slide_m_per_frame": 0.020923912525177002,
+        "support_floating_m": 0.008370654657483101,
+        "support_penetration_m": 3.416091203689575e-06,
+        "foot_relative_speed_ratio": 0.9399009346961975,
+        "foot_relative_speed_m_per_frame": 0.013331501744687557,
+        "slowest_foot_horizontal_cm_per_frame": 0.3008202016353607,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 4.517574787139893,
+        "gt_foot_separation_rms_cm": 6.778494834899902,
+        "fk_reference_contact_coverage": 0.06451612710952759,
+        "fk_reference_support_floating_m": 0.008370654657483101,
+        "fk_reference_support_penetration_m": 3.416091203689575e-06,
+        "fk_reference_stance_slide_cm_frame": 0.5498963594436646,
+        "gt_root_path_length_m": 0.3586280345916748,
+        "root_path_length_ratio": 1.1126777113339694,
+        "w_mpjpe_mm": 110.88650775055414,
+        "root_relative_mpjpe_mm": 89.23033059014604,
+        "pa_mpjpe_mm": 74.81699775028305,
+        "root_position_error_mm": 92.01967754240098,
+        "mpjve_mm_s": 261.80805467003705,
+        "acceleration_error_mm_s2": 3331.593350637996,
+        "pelvis_orientation_mean_deg": 13.69280336352498,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": 31.695558547973633,
+        "pelvis_gt_turn_deg": 2.7468082904815674,
+        "pelvis_turn_sign_agreement": 0.625,
+        "head_orientation_mean_deg": 5.9973236191682116,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 61.55963897705078,
+        "head_gt_turn_deg": 61.938961029052734,
+        "head_turn_sign_agreement": 0.7857142857142857,
+        "leg_orientation_mean_deg": 19.562531738036423,
+        "leg_global_rotation_step_max_deg": 6.639621453575899,
+        "camera_mount_variation_max_deg": 1.0013890696474416e-05,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.16681596636772156,
+        "observed_halfspace_p95_depth_cm": 0.8567233681678772,
+        "observed_halfspace_max_depth_cm": 8.464031219482422,
+        "observed_halfspace_over1cm_fraction": 0.04196816310286522,
+        "observed_halfspace_query_coverage": 0.3691239356994629,
+        "observed_halfspace_frames_with_over1cm": 8,
+        "mesh_sample_count": 468,
+        "not_closed_mesh_collision": true
+      }
+    },
+    "solver": {
+      "iterations": 80,
+      "contact": true,
+      "contact_weight_mean": 0.14704224467277527,
+      "contact_weight_over_half_fraction": 0.0,
+      "root_correction_max_cm": 7.30527400970459,
+      "root_yaw_correction_max_deg": 4.392323970794678,
+      "future_body_or_contact_GT_read": false,
+      "dynamic_contact_velocity_unavailable_excluded": true,
+      "scene_semantics": "observed oriented local halfspace only; no global inside/outside guarantee",
+      "first_future_pose_fixed": true
+    },
+    "scene": {
+      "source": "observed first-hit points only; no complete scene mesh",
+      "counts": [
+        {
+          "static": 8211,
+          "dynamic": 0
+        },
+        {
+          "static": 8413,
+          "dynamic": 0
+        },
+        {
+          "static": 8616,
+          "dynamic": 0
+        },
+        {
+          "static": 8820,
+          "dynamic": 0
+        },
+        {
+          "static": 9033,
+          "dynamic": 0
+        },
+        {
+          "static": 9189,
+          "dynamic": 0
+        },
+        {
+          "static": 9305,
+          "dynamic": 0
+        },
+        {
+          "static": 9405,
+          "dynamic": 10
+        },
+        {
+          "static": 9487,
+          "dynamic": 22
+        },
+        {
+          "static": 9557,
+          "dynamic": 31
+        },
+        {
+          "static": 9602,
+          "dynamic": 34
+        },
+        {
+          "static": 9653,
+          "dynamic": 41
+        },
+        {
+          "static": 9681,
+          "dynamic": 53
+        },
+        {
+          "static": 9701,
+          "dynamic": 40
+        },
+        {
+          "static": 9722,
+          "dynamic": 57
+        },
+        {
+          "static": 9730,
+          "dynamic": 59
+        },
+        {
+          "static": 9736,
+          "dynamic": 45
+        },
+        {
+          "static": 9738,
+          "dynamic": 43
+        },
+        {
+          "static": 9743,
+          "dynamic": 26
+        },
+        {
+          "static": 9751,
+          "dynamic": 0
+        },
+        {
+          "static": 9756,
+          "dynamic": 0
+        },
+        {
+          "static": 9769,
+          "dynamic": 0
+        },
+        {
+          "static": 9802,
+          "dynamic": 0
+        },
+        {
+          "static": 9867,
+          "dynamic": 0
+        },
+        {
+          "static": 9975,
+          "dynamic": 0
+        },
+        {
+          "static": 10121,
+          "dynamic": 0
+        },
+        {
+          "static": 10291,
+          "dynamic": 26
+        },
+        {
+          "static": 10468,
+          "dynamic": 53
+        },
+        {
+          "static": 10666,
+          "dynamic": 57
+        },
+        {
+          "static": 10844,
+          "dynamic": 60
+        },
+        {
+          "static": 11026,
+          "dynamic": 60
+        },
+        {
+          "static": 11183,
+          "dynamic": 51
+        }
+      ],
+      "static_time_policy": "first observation <= query, fit normals only from known points",
+      "dynamic_time_policy": "current frame owner1..99 only, never memory union",
+      "normal_policy": "PCA planar patch facing observing camera",
+      "distance_semantics": "local observed half-space proxy; unknown holes/deep interiors not guaranteed",
+      "older_segment_points_without_observer_camera_excluded": true
+    },
+    "GT_surface_reference": {
+      "observed_halfspace_mean_depth_cm": 2.8583641052246094,
+      "observed_halfspace_p95_depth_cm": 6.688169479370117,
+      "observed_halfspace_max_depth_cm": 15.328749656677246,
+      "observed_halfspace_over1cm_fraction": 0.6778950691223145,
+      "observed_halfspace_query_coverage": 0.3984375298023224,
+      "observed_halfspace_frames_with_over1cm": 32,
+      "mesh_sample_count": 468,
+      "not_closed_mesh_collision": true
+    }
+  },
+  {
+    "selected_index": 3,
+    "group": "trumans",
+    "identity": {
+      "dataset": "trumans",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-53-45",
+      "source_start_30fps": 450,
+      "camera_source": "synthetic_head_from_smplx",
+      "dynamic_object_points": 1278,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/validation/2023-02-17@10-53-45",
+      "scene_observation_fps": 20,
+      "scene_history_points": 13820,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/validation/trumans/2023-02-17@10-53-45",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.00012416424578987062
+    },
+    "metrics": {
+      "history_raw": {
+        "mpjpe_cm": 11.454888343811035,
+        "head_cm": 7.495325088500977,
+        "gt_stance_slide_cm_frame": 0.8033708930015564,
+        "relative_head_cm": 6.747421741485596,
+        "coordination_relation_mse": 0.16364257037639618,
+        "coordination_amplitude_m2": 0.002284419257193804,
+        "root_path_length_m": 0.6304737329483032,
+        "foot_horizontal_speed_m_per_frame": 0.014421207830309868,
+        "mean_joint_speed_m_per_frame": 0.02019089087843895,
+        "mean_joint_acceleration_m_per_frame2": 0.004488164559006691,
+        "contact_coverage": 0.8387096524238586,
+        "contact_slide_m_per_frame": 0.015092829242348671,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0,
+        "foot_relative_speed_ratio": 0.791772723197937,
+        "foot_relative_speed_m_per_frame": 0.02009972371160984,
+        "slowest_foot_horizontal_cm_per_frame": 0.5248966813087463,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 17.964401245117188,
+        "gt_foot_separation_rms_cm": 26.59798240661621,
+        "fk_reference_contact_coverage": 0.8387096524238586,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.0,
+        "fk_reference_stance_slide_cm_frame": 0.8033708930015564,
+        "gt_root_path_length_m": 0.5740692019462585,
+        "root_path_length_ratio": 1.0982538878776587,
+        "w_mpjpe_mm": 114.54887702913624,
+        "root_relative_mpjpe_mm": 118.23474310516275,
+        "pa_mpjpe_mm": 89.92439384583069,
+        "root_position_error_mm": 68.35479506513661,
+        "mpjve_mm_s": 246.46775378037918,
+        "acceleration_error_mm_s2": 2579.6944095993736,
+        "pelvis_orientation_mean_deg": 30.85953610411464,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -83.05709075927734,
+        "pelvis_gt_turn_deg": -92.62773895263672,
+        "pelvis_turn_sign_agreement": 0.8666666666666667,
+        "head_orientation_mean_deg": 19.925722712392513,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -51.10563278198242,
+        "head_gt_turn_deg": 11.672779083251953,
+        "head_turn_sign_agreement": 0.48148148148148145,
+        "leg_orientation_mean_deg": 34.503862830616754,
+        "leg_global_rotation_step_max_deg": 7.2151647683545574,
+        "camera_mount_variation_max_deg": 9.072358662029884e-06,
+        "opposite_turn": 0.0,
+        "meaningful_opposite_turn": 0.0,
+        "under_turn": 0.0,
+        "observed_halfspace_mean_depth_cm": 1.4833828210830688,
+        "observed_halfspace_p95_depth_cm": 5.121152400970459,
+        "observed_halfspace_max_depth_cm": 23.170169830322266,
+        "observed_halfspace_over1cm_fraction": 0.44052979350090027,
+        "observed_halfspace_query_coverage": 0.25206997990608215,
+        "observed_halfspace_frames_with_over1cm": 24,
+        "mesh_sample_count": 468,
+        "not_closed_mesh_collision": true
+      },
+      "history_spline": {
+        "mpjpe_cm": 9.598204612731934,
+        "head_cm": 0.4661926031112671,
+        "gt_stance_slide_cm_frame": 0.7980778813362122,
+        "relative_head_cm": 0.6005717515945435,
+        "coordination_relation_mse": 0.0849873349070549,
+        "coordination_amplitude_m2": 0.0011352214496582747,
+        "root_path_length_m": 0.6304737329483032,
+        "foot_horizontal_speed_m_per_frame": 0.01434569712728262,
+        "mean_joint_speed_m_per_frame": 0.021393122151494026,
+        "mean_joint_acceleration_m_per_frame2": 0.00501068402081728,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.014693097211420536,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0006023012101650238,
+        "foot_relative_speed_ratio": 0.7924960851669312,
+        "foot_relative_speed_m_per_frame": 0.02011808753013611,
+        "slowest_foot_horizontal_cm_per_frame": 0.5255972146987915,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 18.009275436401367,
+        "gt_foot_separation_rms_cm": 26.59798240661621,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.00060228630900383,
+        "fk_reference_stance_slide_cm_frame": 0.7980780005455017,
+        "gt_root_path_length_m": 0.5740692019462585,
+        "root_path_length_ratio": 1.0982538878776587,
+        "w_mpjpe_mm": 95.9820374249055,
+        "root_relative_mpjpe_mm": 96.3783363610376,
+        "pa_mpjpe_mm": 69.04125433367759,
+        "root_position_error_mm": 59.44775616735599,
+        "mpjve_mm_s": 235.47892121654797,
+        "acceleration_error_mm_s2": 2620.9714031972526,
+        "pelvis_orientation_mean_deg": 14.401736779625963,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -83.00531005859375,
+        "pelvis_gt_turn_deg": -92.62773895263672,
+        "pelvis_turn_sign_agreement": 0.8666666666666667,
+        "head_orientation_mean_deg": 1.4115830475157867,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 11.005025863647461,
+        "head_gt_turn_deg": 11.672779083251953,
+        "head_turn_sign_agreement": 0.8148148148148148,
+        "leg_orientation_mean_deg": 19.642354574751845,
+        "leg_global_rotation_step_max_deg": 6.182291049903529,
+        "camera_mount_variation_max_deg": 9.072358662029884e-06,
+        "opposite_turn": 0.0,
+        "meaningful_opposite_turn": 0.0,
+        "under_turn": 0.0,
+        "observed_halfspace_mean_depth_cm": 3.2380826473236084,
+        "observed_halfspace_p95_depth_cm": 7.310098648071289,
+        "observed_halfspace_max_depth_cm": 23.795381546020508,
+        "observed_halfspace_over1cm_fraction": 0.721059262752533,
+        "observed_halfspace_query_coverage": 0.2647569477558136,
+        "observed_halfspace_frames_with_over1cm": 24,
+        "mesh_sample_count": 468,
+        "not_closed_mesh_collision": true
+      },
+      "scene_contact": {
+        "mpjpe_cm": 11.298457145690918,
+        "head_cm": 1.0297231674194336,
+        "gt_stance_slide_cm_frame": 0.8620760440826416,
+        "relative_head_cm": 0.9718140363693237,
+        "coordination_relation_mse": 0.12011788785457611,
+        "coordination_amplitude_m2": 0.0013043931685388088,
+        "root_path_length_m": 0.6856256127357483,
+        "foot_horizontal_speed_m_per_frame": 0.012722553685307503,
+        "mean_joint_speed_m_per_frame": 0.022688118740916252,
+        "mean_joint_acceleration_m_per_frame2": 0.007689272053539753,
+        "contact_coverage": 0.22580644488334656,
+        "contact_slide_m_per_frame": 0.017925329506397247,
+        "support_floating_m": 0.006244075484573841,
+        "support_penetration_m": 0.0,
+        "foot_relative_speed_ratio": 0.8021715879440308,
+        "foot_relative_speed_m_per_frame": 0.020363707095384598,
+        "slowest_foot_horizontal_cm_per_frame": 0.5889618396759033,
+        "both_feet_moving_fraction": 0.19354838132858276,
+        "foot_separation_rms_cm": 20.776649475097656,
+        "gt_foot_separation_rms_cm": 26.59798240661621,
+        "fk_reference_contact_coverage": 0.22580644488334656,
+        "fk_reference_support_floating_m": 0.006244164891541004,
+        "fk_reference_support_penetration_m": 0.0,
+        "fk_reference_stance_slide_cm_frame": 0.8620760440826416,
+        "gt_root_path_length_m": 0.5740692019462585,
+        "root_path_length_ratio": 1.1943257196367296,
+        "w_mpjpe_mm": 112.9845745810433,
+        "root_relative_mpjpe_mm": 107.22057528727868,
+        "pa_mpjpe_mm": 73.31467655481524,
+        "root_position_error_mm": 90.39991366149779,
+        "mpjve_mm_s": 313.5893775225091,
+        "acceleration_error_mm_s2": 3626.066848033161,
+        "pelvis_orientation_mean_deg": 10.223492521461619,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -85.07221984863281,
+        "pelvis_gt_turn_deg": -92.62773895263672,
+        "pelvis_turn_sign_agreement": 0.8333333333333334,
+        "head_orientation_mean_deg": 7.435457932337966,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 18.04401969909668,
+        "head_gt_turn_deg": 11.672779083251953,
+        "head_turn_sign_agreement": 0.7037037037037037,
+        "leg_orientation_mean_deg": 23.148917897244047,
+        "leg_global_rotation_step_max_deg": 13.01018443283771,
+        "camera_mount_variation_max_deg": 9.072358662029884e-06,
+        "opposite_turn": 0.0,
+        "meaningful_opposite_turn": 0.0,
+        "under_turn": 0.0,
+        "observed_halfspace_mean_depth_cm": 0.4551703929901123,
+        "observed_halfspace_p95_depth_cm": 0.5729709267616272,
+        "observed_halfspace_max_depth_cm": 23.49934959411621,
+        "observed_halfspace_over1cm_fraction": 0.04458930715918541,
+        "observed_halfspace_query_coverage": 0.2560763955116272,
+        "observed_halfspace_frames_with_over1cm": 20,
+        "mesh_sample_count": 468,
+        "not_closed_mesh_collision": true
+      }
+    },
+    "solver": {
+      "iterations": 80,
+      "contact": true,
+      "contact_weight_mean": 0.17277070879936218,
+      "contact_weight_over_half_fraction": 0.0,
+      "root_correction_max_cm": 10.3128023147583,
+      "root_yaw_correction_max_deg": 14.128422737121582,
+      "future_body_or_contact_GT_read": false,
+      "dynamic_contact_velocity_unavailable_excluded": true,
+      "scene_semantics": "observed oriented local halfspace only; no global inside/outside guarantee",
+      "first_future_pose_fixed": true
+    },
+    "scene": {
+      "source": "observed first-hit points only; no complete scene mesh",
+      "counts": [
+        {
+          "static": 14737,
+          "dynamic": 26
+        },
+        {
+          "static": 14896,
+          "dynamic": 24
+        },
+        {
+          "static": 15139,
+          "dynamic": 10
+        },
+        {
+          "static": 15341,
+          "dynamic": 22
+        },
+        {
+          "static": 15536,
+          "dynamic": 36
+        },
+        {
+          "static": 15738,
+          "dynamic": 35
+        },
+        {
+          "static": 15892,
+          "dynamic": 47
+        },
+        {
+          "static": 16040,
+          "dynamic": 58
+        },
+        {
+          "static": 16181,
+          "dynamic": 65
+        },
+        {
+          "static": 16303,
+          "dynamic": 62
+        },
+        {
+          "static": 16461,
+          "dynamic": 50
+        },
+        {
+          "static": 16586,
+          "dynamic": 38
+        },
+        {
+          "static": 16695,
+          "dynamic": 18
+        },
+        {
+          "static": 16781,
+          "dynamic": 10
+        },
+        {
+          "static": 16910,
+          "dynamic": 0
+        },
+        {
+          "static": 16997,
+          "dynamic": 1
+        },
+        {
+          "static": 17085,
+          "dynamic": 2
+        },
+        {
+          "static": 17162,
+          "dynamic": 0
+        },
+        {
+          "static": 17218,
+          "dynamic": 8
+        },
+        {
+          "static": 17281,
+          "dynamic": 11
+        },
+        {
+          "static": 17319,
+          "dynamic": 11
+        },
+        {
+          "static": 17353,
+          "dynamic": 7
+        },
+        {
+          "static": 17392,
+          "dynamic": 12
+        },
+        {
+          "static": 17414,
+          "dynamic": 19
+        },
+        {
+          "static": 17436,
+          "dynamic": 11
+        },
+        {
+          "static": 17451,
+          "dynamic": 17
+        },
+        {
+          "static": 17464,
+          "dynamic": 17
+        },
+        {
+          "static": 17481,
+          "dynamic": 22
+        },
+        {
+          "static": 17497,
+          "dynamic": 9
+        },
+        {
+          "static": 17511,
+          "dynamic": 15
+        },
+        {
+          "static": 17527,
+          "dynamic": 5
+        },
+        {
+          "static": 17539,
+          "dynamic": 16
+        }
+      ],
+      "static_time_policy": "first observation <= query, fit normals only from known points",
+      "dynamic_time_policy": "current frame owner1..99 only, never memory union",
+      "normal_policy": "PCA planar patch facing observing camera",
+      "distance_semantics": "local observed half-space proxy; unknown holes/deep interiors not guaranteed",
+      "older_segment_points_without_observer_camera_excluded": true
+    },
+    "GT_surface_reference": {
+      "observed_halfspace_mean_depth_cm": 2.678593158721924,
+      "observed_halfspace_p95_depth_cm": 6.190703868865967,
+      "observed_halfspace_max_depth_cm": 21.132505416870117,
+      "observed_halfspace_over1cm_fraction": 0.6888428926467896,
+      "observed_halfspace_query_coverage": 0.25794607400894165,
+      "observed_halfspace_frames_with_over1cm": 23,
+      "mesh_sample_count": 468,
+      "not_closed_mesh_collision": true
+    }
+  },
+  {
+    "selected_index": 12,
+    "group": "camera_wearer",
+    "identity": {
+      "dataset": "egobody",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4661",
+      "source_start_30fps": 2231,
+      "camera_source": "real_PV_pose_synthetic_scene_depth",
+      "dynamic_object_points": 0,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/validation/recording_20220215_S21_S22_02_camera_wearer_1511-4661",
+      "scene_observation_fps": 20,
+      "scene_history_points": 7711,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/validation/egobody/recording_20220215_S21_S22_02_camera_wearer",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smpl",
+        "gender": "male",
+        "betas": [
+          -0.43061137199401855,
+          -0.3139784634113312,
+          1.7072820663452148,
+          0.8320462703704834,
+          0.4599230885505676,
+          0.10588432848453522,
+          0.24869725108146667,
+          -0.5719032287597656,
+          0.45366644859313965,
+          -0.45254117250442505
+        ],
+        "scale": 1.0,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.0
+    },
+    "metrics": {
+      "history_raw": {
+        "mpjpe_cm": 12.795104026794434,
+        "head_cm": 5.978524208068848,
+        "gt_stance_slide_cm_frame": 0.39555349946022034,
+        "relative_head_cm": 7.039590835571289,
+        "coordination_relation_mse": 0.1097983792424202,
+        "coordination_amplitude_m2": 0.0007000286132097244,
+        "root_path_length_m": 0.2183956503868103,
+        "foot_horizontal_speed_m_per_frame": 0.003383706556633115,
+        "mean_joint_speed_m_per_frame": 0.012359045445919037,
+        "mean_joint_acceleration_m_per_frame2": 0.0025282534770667553,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.003955535124987364,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0007108114659786224,
+        "foot_relative_speed_ratio": 1.3817209005355835,
+        "foot_relative_speed_m_per_frame": 0.006668644025921822,
+        "slowest_foot_horizontal_cm_per_frame": 0.25673267245292664,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 2.517443895339966,
+        "gt_foot_separation_rms_cm": 0.8315465450286865,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.0007107928395271301,
+        "fk_reference_stance_slide_cm_frame": 0.39555349946022034,
+        "gt_root_path_length_m": 0.13910824060440063,
+        "root_path_length_ratio": 1.569969179668436,
+        "w_mpjpe_mm": 127.95102870011405,
+        "root_relative_mpjpe_mm": 91.85009713807594,
+        "pa_mpjpe_mm": 73.48089478552478,
+        "root_position_error_mm": 149.2003344070305,
+        "mpjve_mm_s": 161.72212202389557,
+        "acceleration_error_mm_s2": 2015.3734862151298,
+        "pelvis_orientation_mean_deg": 5.254232011567845,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -16.28948211669922,
+        "pelvis_gt_turn_deg": -2.7210516929626465,
+        "pelvis_turn_sign_agreement": 0.6666666666666666,
+        "head_orientation_mean_deg": 21.93451762739682,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -8.775412559509277,
+        "head_gt_turn_deg": 3.7823362350463867,
+        "head_turn_sign_agreement": 0.7058823529411765,
+        "leg_orientation_mean_deg": 15.217531373898145,
+        "leg_global_rotation_step_max_deg": 4.734597740499263,
+        "camera_mount_variation_max_deg": 12.566620484005723,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 467,
+        "not_closed_mesh_collision": true
+      },
+      "history_spline": {
+        "mpjpe_cm": 5.50163459777832,
+        "head_cm": 2.339853525161743,
+        "gt_stance_slide_cm_frame": 0.3960152268409729,
+        "relative_head_cm": 2.5747244358062744,
+        "coordination_relation_mse": 0.033046167343854904,
+        "coordination_amplitude_m2": 0.0002956396492663771,
+        "root_path_length_m": 0.2183956503868103,
+        "foot_horizontal_speed_m_per_frame": 0.003304718993604183,
+        "mean_joint_speed_m_per_frame": 0.011889077723026276,
+        "mean_joint_acceleration_m_per_frame2": 0.0026195929385721684,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.00396015215665102,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.005397941917181015,
+        "foot_relative_speed_ratio": 1.3779560327529907,
+        "foot_relative_speed_m_per_frame": 0.006650473456829786,
+        "slowest_foot_horizontal_cm_per_frame": 0.24525010585784912,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 2.4362387657165527,
+        "gt_foot_separation_rms_cm": 0.8315465450286865,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.00539790466427803,
+        "fk_reference_stance_slide_cm_frame": 0.3960152268409729,
+        "gt_root_path_length_m": 0.13910824060440063,
+        "root_path_length_ratio": 1.569969179668436,
+        "w_mpjpe_mm": 55.01634804595554,
+        "root_relative_mpjpe_mm": 49.02005241103533,
+        "pa_mpjpe_mm": 40.05968510142569,
+        "root_position_error_mm": 63.486366050407774,
+        "mpjve_mm_s": 156.3958897324555,
+        "acceleration_error_mm_s2": 2038.9454176051397,
+        "pelvis_orientation_mean_deg": 5.408592662944347,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -16.3830509185791,
+        "pelvis_gt_turn_deg": -2.7210516929626465,
+        "pelvis_turn_sign_agreement": 0.6666666666666666,
+        "head_orientation_mean_deg": 1.0327011465830287,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 7.64138650894165,
+        "head_gt_turn_deg": 3.7823362350463867,
+        "head_turn_sign_agreement": 1.0,
+        "leg_orientation_mean_deg": 11.177434265841919,
+        "leg_global_rotation_step_max_deg": 4.735722066875979,
+        "camera_mount_variation_max_deg": 12.566620484005723,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 467,
+        "not_closed_mesh_collision": true
+      },
+      "scene_contact": {
+        "mpjpe_cm": 4.727985858917236,
+        "head_cm": 0.5910453200340271,
+        "gt_stance_slide_cm_frame": 0.3858385980129242,
+        "relative_head_cm": 0.9499486684799194,
+        "coordination_relation_mse": 0.026554573327302933,
+        "coordination_amplitude_m2": 0.00021910415671300143,
+        "root_path_length_m": 0.24213992059230804,
+        "foot_horizontal_speed_m_per_frame": 0.003391318256035447,
+        "mean_joint_speed_m_per_frame": 0.01345742680132389,
+        "mean_joint_acceleration_m_per_frame2": 0.0029595582745969296,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.0038583858404308558,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0023266561329364777,
+        "foot_relative_speed_ratio": 1.5291117429733276,
+        "foot_relative_speed_m_per_frame": 0.007380000781267881,
+        "slowest_foot_horizontal_cm_per_frame": 0.25406044721603394,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 2.432878255844116,
+        "gt_foot_separation_rms_cm": 0.8315465450286865,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.0023266226053237915,
+        "fk_reference_stance_slide_cm_frame": 0.3858385980129242,
+        "gt_root_path_length_m": 0.13910824060440063,
+        "root_path_length_ratio": 1.7406583502188873,
+        "w_mpjpe_mm": 47.27985525822743,
+        "root_relative_mpjpe_mm": 49.42445181063869,
+        "pa_mpjpe_mm": 39.19543944989365,
+        "root_position_error_mm": 54.97148383617184,
+        "mpjve_mm_s": 148.4277824777274,
+        "acceleration_error_mm_s2": 2069.716618879739,
+        "pelvis_orientation_mean_deg": 5.417557415696142,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -16.630245208740234,
+        "pelvis_gt_turn_deg": -2.7210516929626465,
+        "pelvis_turn_sign_agreement": 0.6666666666666666,
+        "head_orientation_mean_deg": 0.7170779310502415,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 4.6741838455200195,
+        "head_gt_turn_deg": 3.7823362350463867,
+        "head_turn_sign_agreement": 1.0,
+        "leg_orientation_mean_deg": 10.694980081180121,
+        "leg_global_rotation_step_max_deg": 4.7270260192700775,
+        "camera_mount_variation_max_deg": 12.566620484005723,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 467,
+        "not_closed_mesh_collision": true
+      }
+    },
+    "solver": {
+      "iterations": 80,
+      "contact": true,
+      "contact_weight_mean": 0.0,
+      "contact_weight_over_half_fraction": 0.0,
+      "root_correction_max_cm": 6.2263946533203125,
+      "root_yaw_correction_max_deg": 0.48007872700691223,
+      "future_body_or_contact_GT_read": false,
+      "dynamic_contact_velocity_unavailable_excluded": true,
+      "scene_semantics": "observed oriented local halfspace only; no global inside/outside guarantee",
+      "first_future_pose_fixed": true
+    },
+    "scene": {
+      "source": "observed first-hit points only; no complete scene mesh",
+      "counts": [
+        {
+          "static": 8181,
+          "dynamic": 0
+        },
+        {
+          "static": 8274,
+          "dynamic": 0
+        },
+        {
+          "static": 8364,
+          "dynamic": 0
+        },
+        {
+          "static": 8441,
+          "dynamic": 0
+        },
+        {
+          "static": 8501,
+          "dynamic": 0
+        },
+        {
+          "static": 8575,
+          "dynamic": 0
+        },
+        {
+          "static": 8682,
+          "dynamic": 0
+        },
+        {
+          "static": 8752,
+          "dynamic": 0
+        },
+        {
+          "static": 8798,
+          "dynamic": 0
+        },
+        {
+          "static": 8823,
+          "dynamic": 0
+        },
+        {
+          "static": 8842,
+          "dynamic": 0
+        },
+        {
+          "static": 8860,
+          "dynamic": 0
+        },
+        {
+          "static": 8873,
+          "dynamic": 0
+        },
+        {
+          "static": 8881,
+          "dynamic": 0
+        },
+        {
+          "static": 8890,
+          "dynamic": 0
+        },
+        {
+          "static": 8903,
+          "dynamic": 0
+        },
+        {
+          "static": 8927,
+          "dynamic": 0
+        },
+        {
+          "static": 8946,
+          "dynamic": 0
+        },
+        {
+          "static": 8969,
+          "dynamic": 0
+        },
+        {
+          "static": 9007,
+          "dynamic": 0
+        },
+        {
+          "static": 9037,
+          "dynamic": 0
+        },
+        {
+          "static": 9054,
+          "dynamic": 0
+        },
+        {
+          "static": 9062,
+          "dynamic": 0
+        },
+        {
+          "static": 9067,
+          "dynamic": 0
+        },
+        {
+          "static": 9072,
+          "dynamic": 0
+        },
+        {
+          "static": 9076,
+          "dynamic": 0
+        },
+        {
+          "static": 9076,
+          "dynamic": 0
+        },
+        {
+          "static": 9077,
+          "dynamic": 0
+        },
+        {
+          "static": 9077,
+          "dynamic": 0
+        },
+        {
+          "static": 9079,
+          "dynamic": 0
+        },
+        {
+          "static": 9079,
+          "dynamic": 0
+        },
+        {
+          "static": 9079,
+          "dynamic": 0
+        }
+      ],
+      "static_time_policy": "first observation <= query, fit normals only from known points",
+      "dynamic_time_policy": "current frame owner1..99 only, never memory union",
+      "normal_policy": "PCA planar patch facing observing camera",
+      "distance_semantics": "local observed half-space proxy; unknown holes/deep interiors not guaranteed",
+      "older_segment_points_without_observer_camera_excluded": true
+    },
+    "GT_surface_reference": {
+      "observed_halfspace_mean_depth_cm": 0.0,
+      "observed_halfspace_p95_depth_cm": null,
+      "observed_halfspace_max_depth_cm": 0.0,
+      "observed_halfspace_over1cm_fraction": 0.0,
+      "observed_halfspace_query_coverage": 0.0,
+      "observed_halfspace_frames_with_over1cm": 0,
+      "mesh_sample_count": 467,
+      "not_closed_mesh_collision": true
+    }
+  },
+  {
+    "selected_index": 15,
+    "group": "camera_wearer",
+    "identity": {
+      "dataset": "egobody",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_04_camera_wearer_4131-4581",
+      "source_start_30fps": 4161,
+      "camera_source": "real_PV_pose_synthetic_scene_depth",
+      "dynamic_object_points": 0,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/validation/recording_20220315_S21_S30_04_camera_wearer_4131-4581",
+      "scene_observation_fps": 20,
+      "scene_history_points": 7464,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/validation/egobody/recording_20220315_S21_S30_04_camera_wearer",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smpl",
+        "gender": "male",
+        "betas": [
+          -0.2703307271003723,
+          -0.16395533084869385,
+          2.0963850021362305,
+          0.8839767575263977,
+          0.8248839378356934,
+          0.24929417669773102,
+          0.3090195059776306,
+          -0.7378751039505005,
+          0.5406134128570557,
+          -0.3561069369316101
+        ],
+        "scale": 1.0,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.0
+    },
+    "metrics": {
+      "history_raw": {
+        "mpjpe_cm": 13.091611862182617,
+        "head_cm": 8.296052932739258,
+        "gt_stance_slide_cm_frame": 0.5409812331199646,
+        "relative_head_cm": 6.936989784240723,
+        "coordination_relation_mse": 0.10948251932859421,
+        "coordination_amplitude_m2": 0.000171226667589508,
+        "root_path_length_m": 0.20883409678936005,
+        "foot_horizontal_speed_m_per_frame": 0.005280742421746254,
+        "mean_joint_speed_m_per_frame": 0.009253122843801975,
+        "mean_joint_acceleration_m_per_frame2": 0.0020157962571829557,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.005409812554717064,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.020061228424310684,
+        "foot_relative_speed_ratio": 1.0967495441436768,
+        "foot_relative_speed_m_per_frame": 0.0055772108025848866,
+        "slowest_foot_horizontal_cm_per_frame": 0.32400405406951904,
+        "both_feet_moving_fraction": 0.09677419066429138,
+        "foot_separation_rms_cm": 5.304584503173828,
+        "gt_foot_separation_rms_cm": 0.48112952709198,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.020061228424310684,
+        "fk_reference_stance_slide_cm_frame": 0.5409812331199646,
+        "gt_root_path_length_m": 0.15712997317314148,
+        "root_path_length_ratio": 1.3290532199050642,
+        "w_mpjpe_mm": 130.9161013794791,
+        "root_relative_mpjpe_mm": 118.02289451899415,
+        "pa_mpjpe_mm": 105.27768408725872,
+        "root_position_error_mm": 79.787787493855,
+        "mpjve_mm_s": 166.24783789170453,
+        "acceleration_error_mm_s2": 1511.0892187088793,
+        "pelvis_orientation_mean_deg": 21.437211200655685,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -15.23584270477295,
+        "pelvis_gt_turn_deg": 10.984773635864258,
+        "pelvis_turn_sign_agreement": 0.14285714285714285,
+        "head_orientation_mean_deg": 16.096640160608725,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -6.192537307739258,
+        "head_gt_turn_deg": 0.8064740896224976,
+        "head_turn_sign_agreement": 0.2631578947368421,
+        "leg_orientation_mean_deg": 26.84201171042535,
+        "leg_global_rotation_step_max_deg": 3.1573636249629633,
+        "camera_mount_variation_max_deg": 6.184585733152274,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 467,
+        "not_closed_mesh_collision": true
+      },
+      "history_spline": {
+        "mpjpe_cm": 7.590172290802002,
+        "head_cm": 0.28669604659080505,
+        "gt_stance_slide_cm_frame": 0.5363725423812866,
+        "relative_head_cm": 0.6244308948516846,
+        "coordination_relation_mse": 0.09279173612594604,
+        "coordination_amplitude_m2": 0.00037128408439457417,
+        "root_path_length_m": 0.20883409678936005,
+        "foot_horizontal_speed_m_per_frame": 0.00525396503508091,
+        "mean_joint_speed_m_per_frame": 0.009827997535467148,
+        "mean_joint_acceleration_m_per_frame2": 0.002166881924495101,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.00536372559145093,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.014725174754858017,
+        "foot_relative_speed_ratio": 1.124883770942688,
+        "foot_relative_speed_m_per_frame": 0.005720279645174742,
+        "slowest_foot_horizontal_cm_per_frame": 0.31889989972114563,
+        "both_feet_moving_fraction": 0.06451612710952759,
+        "foot_separation_rms_cm": 5.257633686065674,
+        "gt_foot_separation_rms_cm": 0.48112952709198,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.014725174754858017,
+        "fk_reference_stance_slide_cm_frame": 0.5363726019859314,
+        "gt_root_path_length_m": 0.15712997317314148,
+        "root_path_length_ratio": 1.3290532199050642,
+        "w_mpjpe_mm": 75.9017205026379,
+        "root_relative_mpjpe_mm": 76.15174376315572,
+        "pa_mpjpe_mm": 54.70755855260737,
+        "root_position_error_mm": 46.231731657279845,
+        "mpjve_mm_s": 136.0653147312412,
+        "acceleration_error_mm_s2": 1524.7733267882008,
+        "pelvis_orientation_mean_deg": 14.396779717184163,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -15.33760929107666,
+        "pelvis_gt_turn_deg": 10.984773635864258,
+        "pelvis_turn_sign_agreement": 0.14285714285714285,
+        "head_orientation_mean_deg": 0.6820615788355484,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 1.3725484609603882,
+        "head_gt_turn_deg": 0.8064740896224976,
+        "head_turn_sign_agreement": 1.0,
+        "leg_orientation_mean_deg": 19.304687456107217,
+        "leg_global_rotation_step_max_deg": 3.5759493154000825,
+        "camera_mount_variation_max_deg": 6.184585733152274,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 467,
+        "not_closed_mesh_collision": true
+      },
+      "scene_contact": {
+        "mpjpe_cm": 7.5463714599609375,
+        "head_cm": 0.23326317965984344,
+        "gt_stance_slide_cm_frame": 0.5369918942451477,
+        "relative_head_cm": 0.5217570066452026,
+        "coordination_relation_mse": 0.09786289930343628,
+        "coordination_amplitude_m2": 0.00034452902036719024,
+        "root_path_length_m": 0.22633494436740875,
+        "foot_horizontal_speed_m_per_frame": 0.0052540600299835205,
+        "mean_joint_speed_m_per_frame": 0.010199923999607563,
+        "mean_joint_acceleration_m_per_frame2": 0.002229209989309311,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.005369918886572123,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.015039481222629547,
+        "foot_relative_speed_ratio": 1.2487870454788208,
+        "foot_relative_speed_m_per_frame": 0.006350354757159948,
+        "slowest_foot_horizontal_cm_per_frame": 0.31885790824890137,
+        "both_feet_moving_fraction": 0.06451612710952759,
+        "foot_separation_rms_cm": 5.264220237731934,
+        "gt_foot_separation_rms_cm": 0.48112952709198,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.015039481222629547,
+        "fk_reference_stance_slide_cm_frame": 0.5369918942451477,
+        "gt_root_path_length_m": 0.15712997317314148,
+        "root_path_length_ratio": 1.440431381719962,
+        "w_mpjpe_mm": 75.4637061389384,
+        "root_relative_mpjpe_mm": 74.74297946453774,
+        "pa_mpjpe_mm": 54.55611908940254,
+        "root_position_error_mm": 46.59160788286655,
+        "mpjve_mm_s": 141.17303813893184,
+        "acceleration_error_mm_s2": 1565.2254441111188,
+        "pelvis_orientation_mean_deg": 14.374782261049528,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -15.046319961547852,
+        "pelvis_gt_turn_deg": 10.984773635864258,
+        "pelvis_turn_sign_agreement": 0.21428571428571427,
+        "head_orientation_mean_deg": 0.8285976080240363,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 0.8829931616783142,
+        "head_gt_turn_deg": 0.8064740896224976,
+        "head_turn_sign_agreement": 1.0,
+        "leg_orientation_mean_deg": 19.24656063203804,
+        "leg_global_rotation_step_max_deg": 4.2469148674772725,
+        "camera_mount_variation_max_deg": 6.184585733152274,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 467,
+        "not_closed_mesh_collision": true
+      }
+    },
+    "solver": {
+      "iterations": 80,
+      "contact": true,
+      "contact_weight_mean": 0.0,
+      "contact_weight_over_half_fraction": 0.0,
+      "root_correction_max_cm": 2.7281792163848877,
+      "root_yaw_correction_max_deg": 0.2912887632846832,
+      "future_body_or_contact_GT_read": false,
+      "dynamic_contact_velocity_unavailable_excluded": true,
+      "scene_semantics": "observed oriented local halfspace only; no global inside/outside guarantee",
+      "first_future_pose_fixed": true
+    },
+    "scene": {
+      "source": "observed first-hit points only; no complete scene mesh",
+      "counts": [
+        {
+          "static": 10403,
+          "dynamic": 0
+        },
+        {
+          "static": 10586,
+          "dynamic": 0
+        },
+        {
+          "static": 10800,
+          "dynamic": 0
+        },
+        {
+          "static": 11040,
+          "dynamic": 0
+        },
+        {
+          "static": 11182,
+          "dynamic": 0
+        },
+        {
+          "static": 11334,
+          "dynamic": 0
+        },
+        {
+          "static": 11497,
+          "dynamic": 0
+        },
+        {
+          "static": 11665,
+          "dynamic": 0
+        },
+        {
+          "static": 11847,
+          "dynamic": 0
+        },
+        {
+          "static": 12008,
+          "dynamic": 0
+        },
+        {
+          "static": 12177,
+          "dynamic": 0
+        },
+        {
+          "static": 12344,
+          "dynamic": 0
+        },
+        {
+          "static": 12521,
+          "dynamic": 0
+        },
+        {
+          "static": 12656,
+          "dynamic": 0
+        },
+        {
+          "static": 12806,
+          "dynamic": 0
+        },
+        {
+          "static": 12957,
+          "dynamic": 0
+        },
+        {
+          "static": 13063,
+          "dynamic": 0
+        },
+        {
+          "static": 13191,
+          "dynamic": 0
+        },
+        {
+          "static": 13325,
+          "dynamic": 0
+        },
+        {
+          "static": 13470,
+          "dynamic": 0
+        },
+        {
+          "static": 13605,
+          "dynamic": 0
+        },
+        {
+          "static": 13724,
+          "dynamic": 0
+        },
+        {
+          "static": 13870,
+          "dynamic": 0
+        },
+        {
+          "static": 14000,
+          "dynamic": 0
+        },
+        {
+          "static": 14130,
+          "dynamic": 0
+        },
+        {
+          "static": 14245,
+          "dynamic": 0
+        },
+        {
+          "static": 14395,
+          "dynamic": 0
+        },
+        {
+          "static": 14479,
+          "dynamic": 0
+        },
+        {
+          "static": 14608,
+          "dynamic": 0
+        },
+        {
+          "static": 14737,
+          "dynamic": 0
+        },
+        {
+          "static": 14844,
+          "dynamic": 0
+        },
+        {
+          "static": 14988,
+          "dynamic": 0
+        }
+      ],
+      "static_time_policy": "first observation <= query, fit normals only from known points",
+      "dynamic_time_policy": "current frame owner1..99 only, never memory union",
+      "normal_policy": "PCA planar patch facing observing camera",
+      "distance_semantics": "local observed half-space proxy; unknown holes/deep interiors not guaranteed",
+      "older_segment_points_without_observer_camera_excluded": true
+    },
+    "GT_surface_reference": {
+      "observed_halfspace_mean_depth_cm": 0.0,
+      "observed_halfspace_p95_depth_cm": null,
+      "observed_halfspace_max_depth_cm": 0.0,
+      "observed_halfspace_over1cm_fraction": 0.0,
+      "observed_halfspace_query_coverage": 0.0,
+      "observed_halfspace_frames_with_over1cm": 0,
+      "mesh_sample_count": 467,
+      "not_closed_mesh_collision": true
+    }
+  },
+  {
+    "selected_index": 24,
+    "group": "interactee",
+    "identity": {
+      "dataset": "egobody",
+      "group": "interactee",
+      "sequence_id": "recording_20210907_S03_S04_01_interactee_1421-2141",
+      "source_start_30fps": 1541,
+      "camera_source": "synthetic_head_xright_yup_zforward",
+      "dynamic_object_points": 0,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/validation/recording_20210907_S03_S04_01_interactee_1421-2141",
+      "scene_observation_fps": 20,
+      "scene_history_points": 20441,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/validation/egobody/recording_20210907_S03_S04_01_interactee",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smpl",
+        "gender": "male",
+        "betas": [
+          0.9849778413772583,
+          1.8575496673583984,
+          2.2383477687835693,
+          -0.18143115937709808,
+          0.9426872730255127,
+          0.7866572141647339,
+          0.9206537008285522,
+          -0.5932809114456177,
+          0.25281602144241333,
+          -0.42592182755470276
+        ],
+        "scale": 1.0,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.0
+    },
+    "metrics": {
+      "history_raw": {
+        "mpjpe_cm": 14.86521053314209,
+        "head_cm": 7.350953102111816,
+        "gt_stance_slide_cm_frame": 0.6332774758338928,
+        "relative_head_cm": 5.380181312561035,
+        "coordination_relation_mse": 0.13587240874767303,
+        "coordination_amplitude_m2": 0.0012148773530498147,
+        "root_path_length_m": 0.45997798442840576,
+        "foot_horizontal_speed_m_per_frame": 0.013814549893140793,
+        "mean_joint_speed_m_per_frame": 0.01757022924721241,
+        "mean_joint_acceleration_m_per_frame2": 0.003962400835007429,
+        "contact_coverage": 0.9193547964096069,
+        "contact_slide_m_per_frame": 0.012971756979823112,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 2.197176218032837e-05,
+        "foot_relative_speed_ratio": 0.8100014328956604,
+        "foot_relative_speed_m_per_frame": 0.016638608649373055,
+        "slowest_foot_horizontal_cm_per_frame": 0.43377742171287537,
+        "both_feet_moving_fraction": 0.06451612710952759,
+        "foot_separation_rms_cm": 25.776344299316406,
+        "gt_foot_separation_rms_cm": 29.21822738647461,
+        "fk_reference_contact_coverage": 0.9193547964096069,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 2.197176218032837e-05,
+        "fk_reference_stance_slide_cm_frame": 0.6332774758338928,
+        "gt_root_path_length_m": 0.5676637887954712,
+        "root_path_length_ratio": 0.8103000288329744,
+        "w_mpjpe_mm": 148.65211035818552,
+        "root_relative_mpjpe_mm": 95.54384483854263,
+        "pa_mpjpe_mm": 57.963666223471165,
+        "root_position_error_mm": 155.15800173197945,
+        "mpjve_mm_s": 262.03067703960903,
+        "acceleration_error_mm_s2": 2726.0495407084804,
+        "pelvis_orientation_mean_deg": 34.84862843486357,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -41.70996856689453,
+        "pelvis_gt_turn_deg": -96.38561248779297,
+        "pelvis_turn_sign_agreement": 0.8666666666666667,
+        "head_orientation_mean_deg": 31.444682825024746,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -27.999731063842773,
+        "head_gt_turn_deg": -87.2735366821289,
+        "head_turn_sign_agreement": 0.4,
+        "leg_orientation_mean_deg": 33.0447868597173,
+        "leg_global_rotation_step_max_deg": 5.937004630108761,
+        "camera_mount_variation_max_deg": 6.766093702415589e-06,
+        "opposite_turn": 0.0,
+        "meaningful_opposite_turn": 0.0,
+        "under_turn": 1.0,
+        "observed_halfspace_mean_depth_cm": 4.126627445220947,
+        "observed_halfspace_p95_depth_cm": 20.523523330688477,
+        "observed_halfspace_max_depth_cm": 24.14430046081543,
+        "observed_halfspace_over1cm_fraction": 0.3885209858417511,
+        "observed_halfspace_query_coverage": 0.030443549156188965,
+        "observed_halfspace_frames_with_over1cm": 9,
+        "mesh_sample_count": 465,
+        "not_closed_mesh_collision": true
+      },
+      "history_spline": {
+        "mpjpe_cm": 10.610394477844238,
+        "head_cm": 2.270132303237915,
+        "gt_stance_slide_cm_frame": 0.6478962898254395,
+        "relative_head_cm": 2.276261806488037,
+        "coordination_relation_mse": 0.10704685747623444,
+        "coordination_amplitude_m2": 0.0008077288512140512,
+        "root_path_length_m": 0.45997798442840576,
+        "foot_horizontal_speed_m_per_frame": 0.014522827230393887,
+        "mean_joint_speed_m_per_frame": 0.019175836816430092,
+        "mean_joint_acceleration_m_per_frame2": 0.004301071632653475,
+        "contact_coverage": 0.9354838132858276,
+        "contact_slide_m_per_frame": 0.013616994023323059,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.00456397607922554,
+        "foot_relative_speed_ratio": 0.8433761596679688,
+        "foot_relative_speed_m_per_frame": 0.017324173822999,
+        "slowest_foot_horizontal_cm_per_frame": 0.48523685336112976,
+        "both_feet_moving_fraction": 0.06451612710952759,
+        "foot_separation_rms_cm": 26.047388076782227,
+        "gt_foot_separation_rms_cm": 29.21822738647461,
+        "fk_reference_contact_coverage": 0.9354838132858276,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.00456397607922554,
+        "fk_reference_stance_slide_cm_frame": 0.6478962302207947,
+        "gt_root_path_length_m": 0.5676637887954712,
+        "root_path_length_ratio": 0.8103000288329744,
+        "w_mpjpe_mm": 106.10394588671822,
+        "root_relative_mpjpe_mm": 77.47970275983397,
+        "pa_mpjpe_mm": 50.95118903154677,
+        "root_position_error_mm": 104.83439445615147,
+        "mpjve_mm_s": 246.77371016043668,
+        "acceleration_error_mm_s2": 2721.2490955879275,
+        "pelvis_orientation_mean_deg": 29.771555226283553,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -41.79549026489258,
+        "pelvis_gt_turn_deg": -96.38561248779297,
+        "pelvis_turn_sign_agreement": 0.8666666666666667,
+        "head_orientation_mean_deg": 2.0909298651085635,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -96.71504974365234,
+        "head_gt_turn_deg": -87.2735366821289,
+        "head_turn_sign_agreement": 1.0,
+        "leg_orientation_mean_deg": 29.401864535261694,
+        "leg_global_rotation_step_max_deg": 6.2837994407862245,
+        "camera_mount_variation_max_deg": 6.766093702415589e-06,
+        "opposite_turn": 0.0,
+        "meaningful_opposite_turn": 0.0,
+        "under_turn": 1.0,
+        "observed_halfspace_mean_depth_cm": 2.303312063217163,
+        "observed_halfspace_p95_depth_cm": 13.975863456726074,
+        "observed_halfspace_max_depth_cm": 23.775070190429688,
+        "observed_halfspace_over1cm_fraction": 0.2375296950340271,
+        "observed_halfspace_query_coverage": 0.028293011710047722,
+        "observed_halfspace_frames_with_over1cm": 9,
+        "mesh_sample_count": 465,
+        "not_closed_mesh_collision": true
+      },
+      "scene_contact": {
+        "mpjpe_cm": 15.422834396362305,
+        "head_cm": 1.2184996604919434,
+        "gt_stance_slide_cm_frame": 1.739646077156067,
+        "relative_head_cm": 1.467655062675476,
+        "coordination_relation_mse": 0.12397463619709015,
+        "coordination_amplitude_m2": 0.0037079404573887587,
+        "root_path_length_m": 0.49425289034843445,
+        "foot_horizontal_speed_m_per_frame": 0.022102180868387222,
+        "mean_joint_speed_m_per_frame": 0.024368811398744583,
+        "mean_joint_acceleration_m_per_frame2": 0.011602958664298058,
+        "contact_coverage": 0.29032257199287415,
+        "contact_slide_m_per_frame": 0.01333535648882389,
+        "support_floating_m": 0.03450741991400719,
+        "support_penetration_m": 0.00018516182899475098,
+        "foot_relative_speed_ratio": 1.269468069076538,
+        "foot_relative_speed_m_per_frame": 0.026076722890138626,
+        "slowest_foot_horizontal_cm_per_frame": 1.253129005432129,
+        "both_feet_moving_fraction": 0.5483870506286621,
+        "foot_separation_rms_cm": 30.134275436401367,
+        "gt_foot_separation_rms_cm": 29.21822738647461,
+        "fk_reference_contact_coverage": 0.29032257199287415,
+        "fk_reference_support_floating_m": 0.03450741991400719,
+        "fk_reference_support_penetration_m": 0.00018516182899475098,
+        "fk_reference_stance_slide_cm_frame": 1.739646077156067,
+        "gt_root_path_length_m": 0.5676637887954712,
+        "root_path_length_ratio": 0.8706789125957678,
+        "w_mpjpe_mm": 154.2283432847491,
+        "root_relative_mpjpe_mm": 133.60984931615627,
+        "pa_mpjpe_mm": 99.55101952421128,
+        "root_position_error_mm": 131.2994637431969,
+        "mpjve_mm_s": 382.38745213800223,
+        "acceleration_error_mm_s2": 5228.399932583006,
+        "pelvis_orientation_mean_deg": 37.62952641559512,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -24.785505294799805,
+        "pelvis_gt_turn_deg": -96.38561248779297,
+        "pelvis_turn_sign_agreement": 0.7666666666666667,
+        "head_orientation_mean_deg": 10.41890021990314,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -96.5105972290039,
+        "head_gt_turn_deg": -87.2735366821289,
+        "head_turn_sign_agreement": 0.92,
+        "leg_orientation_mean_deg": 50.957058594297564,
+        "leg_global_rotation_step_max_deg": 18.06778009847798,
+        "camera_mount_variation_max_deg": 6.766093702415589e-06,
+        "opposite_turn": 0.0,
+        "meaningful_opposite_turn": 0.0,
+        "under_turn": 1.0,
+        "observed_halfspace_mean_depth_cm": 3.444572925567627,
+        "observed_halfspace_p95_depth_cm": 16.516094207763672,
+        "observed_halfspace_max_depth_cm": 24.533397674560547,
+        "observed_halfspace_over1cm_fraction": 0.3733271658420563,
+        "observed_halfspace_query_coverage": 0.14563173055648804,
+        "observed_halfspace_frames_with_over1cm": 16,
+        "mesh_sample_count": 465,
+        "not_closed_mesh_collision": true
+      }
+    },
+    "solver": {
+      "iterations": 80,
+      "contact": true,
+      "contact_weight_mean": 0.0,
+      "contact_weight_over_half_fraction": 0.0,
+      "root_correction_max_cm": 10.392274856567383,
+      "root_yaw_correction_max_deg": 17.009990692138672,
+      "future_body_or_contact_GT_read": false,
+      "dynamic_contact_velocity_unavailable_excluded": true,
+      "scene_semantics": "observed oriented local halfspace only; no global inside/outside guarantee",
+      "first_future_pose_fixed": true
+    },
+    "scene": {
+      "source": "observed first-hit points only; no complete scene mesh",
+      "counts": [
+        {
+          "static": 22599,
+          "dynamic": 0
+        },
+        {
+          "static": 22925,
+          "dynamic": 0
+        },
+        {
+          "static": 23236,
+          "dynamic": 0
+        },
+        {
+          "static": 23544,
+          "dynamic": 0
+        },
+        {
+          "static": 23850,
+          "dynamic": 0
+        },
+        {
+          "static": 24151,
+          "dynamic": 0
+        },
+        {
+          "static": 24437,
+          "dynamic": 0
+        },
+        {
+          "static": 24716,
+          "dynamic": 0
+        },
+        {
+          "static": 25010,
+          "dynamic": 0
+        },
+        {
+          "static": 25308,
+          "dynamic": 0
+        },
+        {
+          "static": 25588,
+          "dynamic": 0
+        },
+        {
+          "static": 25888,
+          "dynamic": 0
+        },
+        {
+          "static": 26153,
+          "dynamic": 0
+        },
+        {
+          "static": 26449,
+          "dynamic": 0
+        },
+        {
+          "static": 26737,
+          "dynamic": 0
+        },
+        {
+          "static": 27009,
+          "dynamic": 0
+        },
+        {
+          "static": 27272,
+          "dynamic": 0
+        },
+        {
+          "static": 27549,
+          "dynamic": 0
+        },
+        {
+          "static": 27816,
+          "dynamic": 0
+        },
+        {
+          "static": 28088,
+          "dynamic": 0
+        },
+        {
+          "static": 28305,
+          "dynamic": 0
+        },
+        {
+          "static": 28258,
+          "dynamic": 0
+        },
+        {
+          "static": 28232,
+          "dynamic": 0
+        },
+        {
+          "static": 28269,
+          "dynamic": 0
+        },
+        {
+          "static": 28237,
+          "dynamic": 0
+        },
+        {
+          "static": 28185,
+          "dynamic": 0
+        },
+        {
+          "static": 28112,
+          "dynamic": 0
+        },
+        {
+          "static": 27982,
+          "dynamic": 0
+        },
+        {
+          "static": 27815,
+          "dynamic": 0
+        },
+        {
+          "static": 27692,
+          "dynamic": 0
+        },
+        {
+          "static": 27561,
+          "dynamic": 0
+        },
+        {
+          "static": 27544,
+          "dynamic": 0
+        }
+      ],
+      "static_time_policy": "first observation <= query, fit normals only from known points",
+      "dynamic_time_policy": "current frame owner1..99 only, never memory union",
+      "normal_policy": "PCA planar patch facing observing camera",
+      "distance_semantics": "local observed half-space proxy; unknown holes/deep interiors not guaranteed",
+      "older_segment_points_without_observer_camera_excluded": true
+    },
+    "GT_surface_reference": {
+      "observed_halfspace_mean_depth_cm": 1.6195541620254517,
+      "observed_halfspace_p95_depth_cm": 12.714591979980469,
+      "observed_halfspace_max_depth_cm": 23.414487838745117,
+      "observed_halfspace_over1cm_fraction": 0.15132924914360046,
+      "observed_halfspace_query_coverage": 0.03286290541291237,
+      "observed_halfspace_frames_with_over1cm": 15,
+      "mesh_sample_count": 465,
+      "not_closed_mesh_collision": true
+    }
+  },
+  {
+    "selected_index": 27,
+    "group": "interactee",
+    "identity": {
+      "dataset": "egobody",
+      "group": "interactee",
+      "sequence_id": "recording_20220315_S21_S30_03_interactee_3251-4061",
+      "source_start_30fps": 3311,
+      "camera_source": "synthetic_head_xright_yup_zforward",
+      "dynamic_object_points": 0,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/validation/recording_20220315_S21_S30_03_interactee_3251-4061",
+      "scene_observation_fps": 20,
+      "scene_history_points": 13582,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/validation/egobody/recording_20220315_S21_S30_03_interactee",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smpl",
+        "gender": "female",
+        "betas": [
+          -0.17924407124519348,
+          -0.22361305356025696,
+          1.7711920738220215,
+          -0.16138148307800293,
+          -0.7076363563537598,
+          -0.7107791900634766,
+          0.23078995943069458,
+          -0.6193820238113403,
+          -0.8420954942703247,
+          0.9453323483467102
+        ],
+        "scale": 1.0,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.0
+    },
+    "metrics": {
+      "history_raw": {
+        "mpjpe_cm": 16.971351623535156,
+        "head_cm": 6.783734321594238,
+        "gt_stance_slide_cm_frame": 0.7563953995704651,
+        "relative_head_cm": 4.5988993644714355,
+        "coordination_relation_mse": 0.10897736251354218,
+        "coordination_amplitude_m2": 0.0025774547830224037,
+        "root_path_length_m": 0.1968998908996582,
+        "foot_horizontal_speed_m_per_frame": 0.008530981838703156,
+        "mean_joint_speed_m_per_frame": 0.008681287057697773,
+        "mean_joint_acceleration_m_per_frame2": 0.001953069120645523,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.008765822276473045,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.03279166668653488,
+        "foot_relative_speed_ratio": 0.7854957580566406,
+        "foot_relative_speed_m_per_frame": 0.007875252515077591,
+        "slowest_foot_horizontal_cm_per_frame": 0.4293312430381775,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 9.89492130279541,
+        "gt_foot_separation_rms_cm": 5.768620491027832,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.03279166668653488,
+        "fk_reference_stance_slide_cm_frame": 0.7563953995704651,
+        "gt_root_path_length_m": 0.21413952112197876,
+        "root_path_length_ratio": 0.9194934679409297,
+        "w_mpjpe_mm": 169.71350990265253,
+        "root_relative_mpjpe_mm": 111.57013141570954,
+        "pa_mpjpe_mm": 118.77310425056311,
+        "root_position_error_mm": 135.13375456156507,
+        "mpjve_mm_s": 208.00775875978474,
+        "acceleration_error_mm_s2": 2279.8302755420186,
+        "pelvis_orientation_mean_deg": 11.14427132310353,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": 38.78080749511719,
+        "pelvis_gt_turn_deg": 33.59444046020508,
+        "pelvis_turn_sign_agreement": 1.0,
+        "head_orientation_mean_deg": 13.019882858889547,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 43.645652770996094,
+        "head_gt_turn_deg": 33.78125,
+        "head_turn_sign_agreement": 0.7142857142857143,
+        "leg_orientation_mean_deg": 22.14273410241253,
+        "leg_global_rotation_step_max_deg": 3.417519427946864,
+        "camera_mount_variation_max_deg": 7.662965327252506e-06,
+        "opposite_turn": 0.0,
+        "meaningful_opposite_turn": 0.0,
+        "under_turn": 0.0,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 466,
+        "not_closed_mesh_collision": true
+      },
+      "history_spline": {
+        "mpjpe_cm": 7.573906421661377,
+        "head_cm": 1.0982900857925415,
+        "gt_stance_slide_cm_frame": 0.7580676078796387,
+        "relative_head_cm": 0.7204555869102478,
+        "coordination_relation_mse": 0.11021490395069122,
+        "coordination_amplitude_m2": 0.0003176124591846019,
+        "root_path_length_m": 0.19689986109733582,
+        "foot_horizontal_speed_m_per_frame": 0.008510498329997063,
+        "mean_joint_speed_m_per_frame": 0.01074566412717104,
+        "mean_joint_acceleration_m_per_frame2": 0.002183464588597417,
+        "contact_coverage": 0.7096773982048035,
+        "contact_slide_m_per_frame": 0.006988154258579016,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0,
+        "foot_relative_speed_ratio": 0.7986076474189758,
+        "foot_relative_speed_m_per_frame": 0.008006710559129715,
+        "slowest_foot_horizontal_cm_per_frame": 0.43845129013061523,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 9.970653533935547,
+        "gt_foot_separation_rms_cm": 5.768620491027832,
+        "fk_reference_contact_coverage": 0.7096773982048035,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.0,
+        "fk_reference_stance_slide_cm_frame": 0.7580676078796387,
+        "gt_root_path_length_m": 0.21413952112197876,
+        "root_path_length_ratio": 0.9194933287684769,
+        "w_mpjpe_mm": 75.73905985756602,
+        "root_relative_mpjpe_mm": 71.5859559686453,
+        "pa_mpjpe_mm": 71.82832803325644,
+        "root_position_error_mm": 51.894299263286676,
+        "mpjve_mm_s": 184.1824441841167,
+        "acceleration_error_mm_s2": 2292.0110059878007,
+        "pelvis_orientation_mean_deg": 8.535226232788666,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": 39.0693473815918,
+        "pelvis_gt_turn_deg": 33.59444046020508,
+        "pelvis_turn_sign_agreement": 1.0,
+        "head_orientation_mean_deg": 1.05094716797703,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 34.38566207885742,
+        "head_gt_turn_deg": 33.78125,
+        "head_turn_sign_agreement": 0.8928571428571429,
+        "leg_orientation_mean_deg": 18.917281093684323,
+        "leg_global_rotation_step_max_deg": 3.338138636953973,
+        "camera_mount_variation_max_deg": 7.662965327252506e-06,
+        "opposite_turn": 0.0,
+        "meaningful_opposite_turn": 0.0,
+        "under_turn": 0.0,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 466,
+        "not_closed_mesh_collision": true
+      },
+      "scene_contact": {
+        "mpjpe_cm": 7.1844563484191895,
+        "head_cm": 0.36854732036590576,
+        "gt_stance_slide_cm_frame": 0.768240213394165,
+        "relative_head_cm": 0.7249196171760559,
+        "coordination_relation_mse": 0.12102639675140381,
+        "coordination_amplitude_m2": 0.0003380096750333905,
+        "root_path_length_m": 0.2133331447839737,
+        "foot_horizontal_speed_m_per_frame": 0.008551627397537231,
+        "mean_joint_speed_m_per_frame": 0.011135733686387539,
+        "mean_joint_acceleration_m_per_frame2": 0.0025558609049767256,
+        "contact_coverage": 0.6935483813285828,
+        "contact_slide_m_per_frame": 0.007059348281472921,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0,
+        "foot_relative_speed_ratio": 0.9071715474128723,
+        "foot_relative_speed_m_per_frame": 0.009095154702663422,
+        "slowest_foot_horizontal_cm_per_frame": 0.446678102016449,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 9.954413414001465,
+        "gt_foot_separation_rms_cm": 5.768620491027832,
+        "fk_reference_contact_coverage": 0.6935483813285828,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.0,
+        "fk_reference_stance_slide_cm_frame": 0.768240213394165,
+        "gt_root_path_length_m": 0.21413952112197876,
+        "root_path_length_ratio": 0.9962343413594087,
+        "w_mpjpe_mm": 71.84456217287007,
+        "root_relative_mpjpe_mm": 72.13739388515026,
+        "pa_mpjpe_mm": 72.28664546250026,
+        "root_position_error_mm": 45.716907673208986,
+        "mpjve_mm_s": 187.94547083495377,
+        "acceleration_error_mm_s2": 2339.1253103923464,
+        "pelvis_orientation_mean_deg": 8.365443440908859,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": 38.55537796020508,
+        "pelvis_gt_turn_deg": 33.59444046020508,
+        "pelvis_turn_sign_agreement": 1.0,
+        "head_orientation_mean_deg": 1.0069655274664535,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": 34.412322998046875,
+        "head_gt_turn_deg": 33.78125,
+        "head_turn_sign_agreement": 0.9285714285714286,
+        "leg_orientation_mean_deg": 18.42095072836592,
+        "leg_global_rotation_step_max_deg": 3.51791512327992,
+        "camera_mount_variation_max_deg": 7.662965327252506e-06,
+        "opposite_turn": 0.0,
+        "meaningful_opposite_turn": 0.0,
+        "under_turn": 0.0,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 466,
+        "not_closed_mesh_collision": true
+      }
+    },
+    "solver": {
+      "iterations": 80,
+      "contact": true,
+      "contact_weight_mean": 0.0,
+      "contact_weight_over_half_fraction": 0.0,
+      "root_correction_max_cm": 2.352337121963501,
+      "root_yaw_correction_max_deg": 0.6634135842323303,
+      "future_body_or_contact_GT_read": false,
+      "dynamic_contact_velocity_unavailable_excluded": true,
+      "scene_semantics": "observed oriented local halfspace only; no global inside/outside guarantee",
+      "first_future_pose_fixed": true
+    },
+    "scene": {
+      "source": "observed first-hit points only; no complete scene mesh",
+      "counts": [
+        {
+          "static": 16125,
+          "dynamic": 0
+        },
+        {
+          "static": 16321,
+          "dynamic": 0
+        },
+        {
+          "static": 16489,
+          "dynamic": 0
+        },
+        {
+          "static": 16649,
+          "dynamic": 0
+        },
+        {
+          "static": 16806,
+          "dynamic": 0
+        },
+        {
+          "static": 16947,
+          "dynamic": 0
+        },
+        {
+          "static": 17097,
+          "dynamic": 0
+        },
+        {
+          "static": 17257,
+          "dynamic": 0
+        },
+        {
+          "static": 17415,
+          "dynamic": 0
+        },
+        {
+          "static": 17576,
+          "dynamic": 0
+        },
+        {
+          "static": 17736,
+          "dynamic": 0
+        },
+        {
+          "static": 17901,
+          "dynamic": 0
+        },
+        {
+          "static": 18034,
+          "dynamic": 0
+        },
+        {
+          "static": 18165,
+          "dynamic": 0
+        },
+        {
+          "static": 18292,
+          "dynamic": 0
+        },
+        {
+          "static": 18444,
+          "dynamic": 0
+        },
+        {
+          "static": 18597,
+          "dynamic": 0
+        },
+        {
+          "static": 18737,
+          "dynamic": 0
+        },
+        {
+          "static": 18864,
+          "dynamic": 0
+        },
+        {
+          "static": 18999,
+          "dynamic": 0
+        },
+        {
+          "static": 19159,
+          "dynamic": 0
+        },
+        {
+          "static": 19273,
+          "dynamic": 0
+        },
+        {
+          "static": 19399,
+          "dynamic": 0
+        },
+        {
+          "static": 19532,
+          "dynamic": 0
+        },
+        {
+          "static": 19666,
+          "dynamic": 0
+        },
+        {
+          "static": 19776,
+          "dynamic": 0
+        },
+        {
+          "static": 19895,
+          "dynamic": 0
+        },
+        {
+          "static": 20034,
+          "dynamic": 0
+        },
+        {
+          "static": 20183,
+          "dynamic": 0
+        },
+        {
+          "static": 20321,
+          "dynamic": 0
+        },
+        {
+          "static": 20465,
+          "dynamic": 0
+        },
+        {
+          "static": 20631,
+          "dynamic": 0
+        }
+      ],
+      "static_time_policy": "first observation <= query, fit normals only from known points",
+      "dynamic_time_policy": "current frame owner1..99 only, never memory union",
+      "normal_policy": "PCA planar patch facing observing camera",
+      "distance_semantics": "local observed half-space proxy; unknown holes/deep interiors not guaranteed",
+      "older_segment_points_without_observer_camera_excluded": true
+    },
+    "GT_surface_reference": {
+      "observed_halfspace_mean_depth_cm": 0.0,
+      "observed_halfspace_p95_depth_cm": null,
+      "observed_halfspace_max_depth_cm": 0.0,
+      "observed_halfspace_over1cm_fraction": 0.0,
+      "observed_halfspace_query_coverage": 0.0,
+      "observed_halfspace_frames_with_over1cm": 0,
+      "mesh_sample_count": 466,
+      "not_closed_mesh_collision": true
+    }
+  },
+  {
+    "selected_index": 36,
+    "group": "rich",
+    "identity": {
+      "dataset": "rich",
+      "group": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "source_start_30fps": 183.5,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/validation/LectureHall_020_wipingchairs1",
+      "scene_observation_fps": 20,
+      "scene_history_points": 14506,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/validation/rich/LectureHall_020_wipingchairs1",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          -0.16652725636959076,
+          -1.112358808517456,
+          -1.4243460893630981,
+          0.4896526038646698,
+          -0.7783043384552002,
+          -0.6628745198249817,
+          1.6186789274215698,
+          0.26335644721984863,
+          0.4888407588005066,
+          -0.6510182023048401
+        ],
+        "scale": 1.006566842415469,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.04884522780776024
+    },
+    "metrics": {
+      "history_raw": {
+        "mpjpe_cm": 10.858585357666016,
+        "head_cm": 6.779181957244873,
+        "gt_stance_slide_cm_frame": 0.3960612118244171,
+        "relative_head_cm": 4.746090888977051,
+        "coordination_relation_mse": 0.08564060926437378,
+        "coordination_amplitude_m2": 0.0006616540485993028,
+        "root_path_length_m": 0.17075565457344055,
+        "foot_horizontal_speed_m_per_frame": 0.003805166343227029,
+        "mean_joint_speed_m_per_frame": 0.006461479235440493,
+        "mean_joint_acceleration_m_per_frame2": 0.0022028193343430758,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.00396061223000288,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0013083703815937042,
+        "foot_relative_speed_ratio": 0.7642000317573547,
+        "foot_relative_speed_m_per_frame": 0.005917610600590706,
+        "slowest_foot_horizontal_cm_per_frame": 0.21868456900119781,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 4.719205379486084,
+        "gt_foot_separation_rms_cm": 0.48567327857017517,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.0013082660734653473,
+        "fk_reference_stance_slide_cm_frame": 0.3960612118244171,
+        "gt_root_path_length_m": 0.2085961103439331,
+        "root_path_length_ratio": 0.8185946242808592,
+        "w_mpjpe_mm": 108.58585795821764,
+        "root_relative_mpjpe_mm": 96.02772520507642,
+        "pa_mpjpe_mm": 89.90180268795623,
+        "root_position_error_mm": 67.6286107558678,
+        "mpjve_mm_s": 142.04434089776242,
+        "acceleration_error_mm_s2": 1899.173202940475,
+        "pelvis_orientation_mean_deg": 25.865078589868787,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -9.606035232543945,
+        "pelvis_gt_turn_deg": -13.192028045654297,
+        "pelvis_turn_sign_agreement": 0.5,
+        "head_orientation_mean_deg": 12.915098876262071,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -29.183757781982422,
+        "head_gt_turn_deg": -14.360490798950195,
+        "head_turn_sign_agreement": 0.55,
+        "leg_orientation_mean_deg": 16.219057273766555,
+        "leg_global_rotation_step_max_deg": 2.228749272592169,
+        "camera_mount_variation_max_deg": 1.2125312843780375e-05,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.0007415740401484072,
+        "observed_halfspace_p95_depth_cm": 0.0,
+        "observed_halfspace_max_depth_cm": 0.2232608199119568,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.12741416692733765,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 466,
+        "not_closed_mesh_collision": true
+      },
+      "history_spline": {
+        "mpjpe_cm": 6.938352584838867,
+        "head_cm": 0.8505232334136963,
+        "gt_stance_slide_cm_frame": 0.4223378300666809,
+        "relative_head_cm": 4.057516098022461,
+        "coordination_relation_mse": 0.109613798558712,
+        "coordination_amplitude_m2": 0.0005102343275211751,
+        "root_path_length_m": 0.17075565457344055,
+        "foot_horizontal_speed_m_per_frame": 0.004089924041181803,
+        "mean_joint_speed_m_per_frame": 0.008200851269066334,
+        "mean_joint_acceleration_m_per_frame2": 0.0026545629370957613,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.004223378375172615,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0,
+        "foot_relative_speed_ratio": 0.792305052280426,
+        "foot_relative_speed_m_per_frame": 0.006135242525488138,
+        "slowest_foot_horizontal_cm_per_frame": 0.23187631368637085,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 4.409125804901123,
+        "gt_foot_separation_rms_cm": 0.48567327857017517,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.0,
+        "fk_reference_stance_slide_cm_frame": 0.4223378300666809,
+        "gt_root_path_length_m": 0.2085961103439331,
+        "root_path_length_ratio": 0.8185946242808592,
+        "w_mpjpe_mm": 69.38352518440604,
+        "root_relative_mpjpe_mm": 63.24638365922647,
+        "pa_mpjpe_mm": 59.7028430633461,
+        "root_position_error_mm": 38.22689306930809,
+        "mpjve_mm_s": 147.67837908125057,
+        "acceleration_error_mm_s2": 1950.9835227100605,
+        "pelvis_orientation_mean_deg": 12.116138475939882,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -9.716593742370605,
+        "pelvis_gt_turn_deg": -13.192028045654297,
+        "pelvis_turn_sign_agreement": 0.5,
+        "head_orientation_mean_deg": 1.2198479461571392,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -13.205920219421387,
+        "head_gt_turn_deg": -14.360490798950195,
+        "head_turn_sign_agreement": 0.6,
+        "leg_orientation_mean_deg": 13.065244865211149,
+        "leg_global_rotation_step_max_deg": 2.4632001558810255,
+        "camera_mount_variation_max_deg": 1.2125312843780375e-05,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.032723117619752884,
+        "observed_halfspace_p95_depth_cm": 0.06602901220321655,
+        "observed_halfspace_max_depth_cm": 1.8217418193817139,
+        "observed_halfspace_over1cm_fraction": 0.010309278033673763,
+        "observed_halfspace_query_coverage": 0.11058208346366882,
+        "observed_halfspace_frames_with_over1cm": 6,
+        "mesh_sample_count": 466,
+        "not_closed_mesh_collision": true
+      },
+      "scene_contact": {
+        "mpjpe_cm": 6.469744682312012,
+        "head_cm": 0.5079229474067688,
+        "gt_stance_slide_cm_frame": 0.35561850666999817,
+        "relative_head_cm": 3.9281725883483887,
+        "coordination_relation_mse": 0.10820486396551132,
+        "coordination_amplitude_m2": 0.00035142223350703716,
+        "root_path_length_m": 0.26491597294807434,
+        "foot_horizontal_speed_m_per_frame": 0.0033142666798084974,
+        "mean_joint_speed_m_per_frame": 0.010316530242562294,
+        "mean_joint_acceleration_m_per_frame2": 0.0034694799687713385,
+        "contact_coverage": 1.0,
+        "contact_slide_m_per_frame": 0.003556185169145465,
+        "support_floating_m": 0.0,
+        "support_penetration_m": 0.0,
+        "foot_relative_speed_ratio": 1.099152684211731,
+        "foot_relative_speed_m_per_frame": 0.008511328138411045,
+        "slowest_foot_horizontal_cm_per_frame": 0.1437963843345642,
+        "both_feet_moving_fraction": 0.0,
+        "foot_separation_rms_cm": 4.63170051574707,
+        "gt_foot_separation_rms_cm": 0.48567327857017517,
+        "fk_reference_contact_coverage": 1.0,
+        "fk_reference_support_floating_m": 0.0,
+        "fk_reference_support_penetration_m": 0.0,
+        "fk_reference_stance_slide_cm_frame": 0.35561850666999817,
+        "gt_root_path_length_m": 0.2085961103439331,
+        "root_path_length_ratio": 1.2699947880681048,
+        "w_mpjpe_mm": 64.69744204057324,
+        "root_relative_mpjpe_mm": 62.23868715036878,
+        "pa_mpjpe_mm": 58.441189146695244,
+        "root_position_error_mm": 26.952817614459857,
+        "mpjve_mm_s": 183.88858091578655,
+        "acceleration_error_mm_s2": 2177.403971587942,
+        "pelvis_orientation_mean_deg": 12.335251465979933,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -9.614424705505371,
+        "pelvis_gt_turn_deg": -13.192028045654297,
+        "pelvis_turn_sign_agreement": 0.5,
+        "head_orientation_mean_deg": 1.2144302766961506,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -15.444795608520508,
+        "head_gt_turn_deg": -14.360490798950195,
+        "head_turn_sign_agreement": 0.55,
+        "leg_orientation_mean_deg": 12.48364397925247,
+        "leg_global_rotation_step_max_deg": 5.593658003527646,
+        "camera_mount_variation_max_deg": 1.2125312843780375e-05,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.004429943859577179,
+        "observed_halfspace_p95_depth_cm": 0.0,
+        "observed_halfspace_max_depth_cm": 0.7766578197479248,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.10548551380634308,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 466,
+        "not_closed_mesh_collision": true
+      }
+    },
+    "solver": {
+      "iterations": 80,
+      "contact": true,
+      "contact_weight_mean": 0.3456975221633911,
+      "contact_weight_over_half_fraction": 0.40625,
+      "root_correction_max_cm": 4.910369873046875,
+      "root_yaw_correction_max_deg": 8.327056884765625,
+      "future_body_or_contact_GT_read": false,
+      "dynamic_contact_velocity_unavailable_excluded": true,
+      "scene_semantics": "observed oriented local halfspace only; no global inside/outside guarantee",
+      "first_future_pose_fixed": true
+    },
+    "scene": {
+      "source": "observed first-hit points only; no complete scene mesh",
+      "counts": [
+        {
+          "static": 15042,
+          "dynamic": 0
+        },
+        {
+          "static": 15059,
+          "dynamic": 0
+        },
+        {
+          "static": 15066,
+          "dynamic": 0
+        },
+        {
+          "static": 15070,
+          "dynamic": 0
+        },
+        {
+          "static": 15071,
+          "dynamic": 0
+        },
+        {
+          "static": 15071,
+          "dynamic": 0
+        },
+        {
+          "static": 15072,
+          "dynamic": 0
+        },
+        {
+          "static": 15072,
+          "dynamic": 0
+        },
+        {
+          "static": 15072,
+          "dynamic": 0
+        },
+        {
+          "static": 15072,
+          "dynamic": 0
+        },
+        {
+          "static": 15078,
+          "dynamic": 0
+        },
+        {
+          "static": 15081,
+          "dynamic": 0
+        },
+        {
+          "static": 15083,
+          "dynamic": 0
+        },
+        {
+          "static": 15090,
+          "dynamic": 0
+        },
+        {
+          "static": 15093,
+          "dynamic": 0
+        },
+        {
+          "static": 15096,
+          "dynamic": 0
+        },
+        {
+          "static": 15098,
+          "dynamic": 0
+        },
+        {
+          "static": 15100,
+          "dynamic": 0
+        },
+        {
+          "static": 15106,
+          "dynamic": 0
+        },
+        {
+          "static": 15110,
+          "dynamic": 0
+        },
+        {
+          "static": 15111,
+          "dynamic": 0
+        },
+        {
+          "static": 15113,
+          "dynamic": 0
+        },
+        {
+          "static": 15113,
+          "dynamic": 0
+        },
+        {
+          "static": 15116,
+          "dynamic": 0
+        },
+        {
+          "static": 15116,
+          "dynamic": 0
+        },
+        {
+          "static": 15118,
+          "dynamic": 0
+        },
+        {
+          "static": 15119,
+          "dynamic": 0
+        },
+        {
+          "static": 15122,
+          "dynamic": 0
+        },
+        {
+          "static": 15123,
+          "dynamic": 0
+        },
+        {
+          "static": 15125,
+          "dynamic": 0
+        },
+        {
+          "static": 15126,
+          "dynamic": 0
+        },
+        {
+          "static": 15128,
+          "dynamic": 0
+        }
+      ],
+      "static_time_policy": "first observation <= query, fit normals only from known points",
+      "dynamic_time_policy": "current frame owner1..99 only, never memory union",
+      "normal_policy": "PCA planar patch facing observing camera",
+      "distance_semantics": "local observed half-space proxy; unknown holes/deep interiors not guaranteed",
+      "older_segment_points_without_observer_camera_excluded": true
+    },
+    "GT_surface_reference": {
+      "observed_halfspace_mean_depth_cm": 0.0,
+      "observed_halfspace_p95_depth_cm": 0.0,
+      "observed_halfspace_max_depth_cm": 0.0,
+      "observed_halfspace_over1cm_fraction": 0.0,
+      "observed_halfspace_query_coverage": 0.10085836797952652,
+      "observed_halfspace_frames_with_over1cm": 0,
+      "mesh_sample_count": 466,
+      "not_closed_mesh_collision": true
+    }
+  },
+  {
+    "selected_index": 39,
+    "group": "rich",
+    "identity": {
+      "dataset": "rich",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_007_burpee2",
+      "source_start_30fps": 33.5,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/validation/ParkingLot1_007_burpee2",
+      "scene_observation_fps": 20,
+      "scene_history_points": 6552,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/validation/rich/ParkingLot1_007_burpee2",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          -1.0969774723052979,
+          -0.5973542332649231,
+          -1.0839046239852905,
+          1.8780280351638794,
+          -0.8937054872512817,
+          0.6266881823539734,
+          2.087015390396118,
+          0.22298121452331543,
+          3.6870505809783936,
+          1.2340162992477417
+        ],
+        "scale": 1.006576756111272,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.04661832004785538
+    },
+    "metrics": {
+      "history_raw": {
+        "mpjpe_cm": 18.958906173706055,
+        "head_cm": 9.617194175720215,
+        "gt_stance_slide_cm_frame": 1.4224143028259277,
+        "relative_head_cm": 12.213379859924316,
+        "coordination_relation_mse": 0.1327522099018097,
+        "coordination_amplitude_m2": 0.0059676459059119225,
+        "root_path_length_m": 0.10461963713169098,
+        "foot_horizontal_speed_m_per_frame": 0.012954426929354668,
+        "mean_joint_speed_m_per_frame": 0.009422365576028824,
+        "mean_joint_acceleration_m_per_frame2": 0.0034268659073859453,
+        "contact_coverage": 0.17741934955120087,
+        "contact_slide_m_per_frame": 0.013125949539244175,
+        "support_floating_m": 0.04320135340094566,
+        "support_penetration_m": 0.0,
+        "foot_relative_speed_ratio": 5.117327690124512,
+        "foot_relative_speed_m_per_frame": 0.012773687019944191,
+        "slowest_foot_horizontal_cm_per_frame": 0.7905764579772949,
+        "both_feet_moving_fraction": 0.32258063554763794,
+        "foot_separation_rms_cm": 17.86405372619629,
+        "gt_foot_separation_rms_cm": 0.3754490315914154,
+        "fk_reference_contact_coverage": 0.17741934955120087,
+        "fk_reference_support_floating_m": 0.04320135340094566,
+        "fk_reference_support_penetration_m": 0.0,
+        "fk_reference_stance_slide_cm_frame": 1.4224143028259277,
+        "gt_root_path_length_m": 0.05681314691901207,
+        "root_path_length_ratio": 1.8414687938485035,
+        "w_mpjpe_mm": 189.58903867810787,
+        "root_relative_mpjpe_mm": 204.06299327664695,
+        "pa_mpjpe_mm": 182.8305548840023,
+        "root_position_error_mm": 92.51285890726281,
+        "mpjve_mm_s": 235.8086154942512,
+        "acceleration_error_mm_s2": 2012.5280340633437,
+        "pelvis_orientation_mean_deg": 29.671792079763676,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -24.21245002746582,
+        "pelvis_gt_turn_deg": -7.057753562927246,
+        "pelvis_turn_sign_agreement": 0.46153846153846156,
+        "head_orientation_mean_deg": 13.880797363673555,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -7.499372959136963,
+        "head_gt_turn_deg": -3.5750181674957275,
+        "head_turn_sign_agreement": 0.5714285714285714,
+        "leg_orientation_mean_deg": 33.25529197037869,
+        "leg_global_rotation_step_max_deg": 3.290739323182353,
+        "camera_mount_variation_max_deg": 9.713071889028167e-06,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 468,
+        "not_closed_mesh_collision": true
+      },
+      "history_spline": {
+        "mpjpe_cm": 13.869650840759277,
+        "head_cm": 1.7037649154663086,
+        "gt_stance_slide_cm_frame": 1.4316833019256592,
+        "relative_head_cm": 1.7472267150878906,
+        "coordination_relation_mse": 0.12990230321884155,
+        "coordination_amplitude_m2": 0.01226520724594593,
+        "root_path_length_m": 0.10461963713169098,
+        "foot_horizontal_speed_m_per_frame": 0.013061308301985264,
+        "mean_joint_speed_m_per_frame": 0.010615614242851734,
+        "mean_joint_acceleration_m_per_frame2": 0.003703370224684477,
+        "contact_coverage": 0.20967741310596466,
+        "contact_slide_m_per_frame": 0.012779060751199722,
+        "support_floating_m": 0.034988462924957275,
+        "support_penetration_m": 0.0,
+        "foot_relative_speed_ratio": 5.166652202606201,
+        "foot_relative_speed_m_per_frame": 0.012896808795630932,
+        "slowest_foot_horizontal_cm_per_frame": 0.8124938011169434,
+        "both_feet_moving_fraction": 0.32258063554763794,
+        "foot_separation_rms_cm": 17.97855567932129,
+        "gt_foot_separation_rms_cm": 0.3754490315914154,
+        "fk_reference_contact_coverage": 0.20967741310596466,
+        "fk_reference_support_floating_m": 0.034988462924957275,
+        "fk_reference_support_penetration_m": 0.0,
+        "fk_reference_stance_slide_cm_frame": 1.4316833019256592,
+        "gt_root_path_length_m": 0.05681314691901207,
+        "root_path_length_ratio": 1.8414687938485035,
+        "w_mpjpe_mm": 138.69650400376432,
+        "root_relative_mpjpe_mm": 130.79960295292602,
+        "pa_mpjpe_mm": 129.81647362943482,
+        "root_position_error_mm": 59.934391700373986,
+        "mpjve_mm_s": 241.7734825392784,
+        "acceleration_error_mm_s2": 2094.2363230373508,
+        "pelvis_orientation_mean_deg": 19.386099906452788,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -24.20055389404297,
+        "pelvis_gt_turn_deg": -7.057753562927246,
+        "pelvis_turn_sign_agreement": 0.46153846153846156,
+        "head_orientation_mean_deg": 1.3524885386131036,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -4.059252738952637,
+        "head_gt_turn_deg": -3.5750181674957275,
+        "head_turn_sign_agreement": 0.5714285714285714,
+        "leg_orientation_mean_deg": 26.53120290908824,
+        "leg_global_rotation_step_max_deg": 4.596488740557191,
+        "camera_mount_variation_max_deg": 9.713071889028167e-06,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 468,
+        "not_closed_mesh_collision": true
+      },
+      "scene_contact": {
+        "mpjpe_cm": 13.76925277709961,
+        "head_cm": 0.21295906603336334,
+        "gt_stance_slide_cm_frame": 1.4350123405456543,
+        "relative_head_cm": 0.2556876242160797,
+        "coordination_relation_mse": 0.1341768056154251,
+        "coordination_amplitude_m2": 0.012497986666858196,
+        "root_path_length_m": 0.11556294560432434,
+        "foot_horizontal_speed_m_per_frame": 0.013071413151919842,
+        "mean_joint_speed_m_per_frame": 0.01066384557634592,
+        "mean_joint_acceleration_m_per_frame2": 0.0037822730373591185,
+        "contact_coverage": 0.20967741310596466,
+        "contact_slide_m_per_frame": 0.012739933095872402,
+        "support_floating_m": 0.03496573865413666,
+        "support_penetration_m": 0.0,
+        "foot_relative_speed_ratio": 5.196996212005615,
+        "foot_relative_speed_m_per_frame": 0.012972552329301834,
+        "slowest_foot_horizontal_cm_per_frame": 0.8138883113861084,
+        "both_feet_moving_fraction": 0.32258063554763794,
+        "foot_separation_rms_cm": 18.0228214263916,
+        "gt_foot_separation_rms_cm": 0.3754490315914154,
+        "fk_reference_contact_coverage": 0.20967741310596466,
+        "fk_reference_support_floating_m": 0.03496573865413666,
+        "fk_reference_support_penetration_m": 0.0,
+        "fk_reference_stance_slide_cm_frame": 1.4350123405456543,
+        "gt_root_path_length_m": 0.05681314691901207,
+        "root_path_length_ratio": 2.034088091776731,
+        "w_mpjpe_mm": 137.69251816800994,
+        "root_relative_mpjpe_mm": 133.23055841205192,
+        "pa_mpjpe_mm": 131.26931958980575,
+        "root_position_error_mm": 55.20715439763591,
+        "mpjve_mm_s": 242.0544307946953,
+        "acceleration_error_mm_s2": 2120.8565421127596,
+        "pelvis_orientation_mean_deg": 19.68879948607352,
+        "pelvis_orientation_over90_fraction": 0.0,
+        "pelvis_turn_deg": -24.887065887451172,
+        "pelvis_gt_turn_deg": -7.057753562927246,
+        "pelvis_turn_sign_agreement": 0.46153846153846156,
+        "head_orientation_mean_deg": 0.5058142161827619,
+        "head_orientation_over90_fraction": 0.0,
+        "head_turn_deg": -4.005949974060059,
+        "head_gt_turn_deg": -3.5750181674957275,
+        "head_turn_sign_agreement": 0.6428571428571429,
+        "leg_orientation_mean_deg": 26.69955994709312,
+        "leg_global_rotation_step_max_deg": 4.347403312370506,
+        "camera_mount_variation_max_deg": 9.713071889028167e-06,
+        "opposite_turn": null,
+        "meaningful_opposite_turn": null,
+        "under_turn": null,
+        "observed_halfspace_mean_depth_cm": 0.0,
+        "observed_halfspace_p95_depth_cm": null,
+        "observed_halfspace_max_depth_cm": 0.0,
+        "observed_halfspace_over1cm_fraction": 0.0,
+        "observed_halfspace_query_coverage": 0.0,
+        "observed_halfspace_frames_with_over1cm": 0,
+        "mesh_sample_count": 468,
+        "not_closed_mesh_collision": true
+      }
+    },
+    "solver": {
+      "iterations": 80,
+      "contact": true,
+      "contact_weight_mean": 0.0,
+      "contact_weight_over_half_fraction": 0.0,
+      "root_correction_max_cm": 2.0217089653015137,
+      "root_yaw_correction_max_deg": 0.8566572666168213,
+      "future_body_or_contact_GT_read": false,
+      "dynamic_contact_velocity_unavailable_excluded": true,
+      "scene_semantics": "observed oriented local halfspace only; no global inside/outside guarantee",
+      "first_future_pose_fixed": true
+    },
+    "scene": {
+      "source": "observed first-hit points only; no complete scene mesh",
+      "counts": [
+        {
+          "static": 9399,
+          "dynamic": 0
+        },
+        {
+          "static": 9498,
+          "dynamic": 0
+        },
+        {
+          "static": 9604,
+          "dynamic": 0
+        },
+        {
+          "static": 9696,
+          "dynamic": 0
+        },
+        {
+          "static": 9788,
+          "dynamic": 0
+        },
+        {
+          "static": 9886,
+          "dynamic": 0
+        },
+        {
+          "static": 9996,
+          "dynamic": 0
+        },
+        {
+          "static": 10080,
+          "dynamic": 0
+        },
+        {
+          "static": 10168,
+          "dynamic": 0
+        },
+        {
+          "static": 10264,
+          "dynamic": 0
+        },
+        {
+          "static": 10341,
+          "dynamic": 0
+        },
+        {
+          "static": 10409,
+          "dynamic": 0
+        },
+        {
+          "static": 10486,
+          "dynamic": 0
+        },
+        {
+          "static": 10560,
+          "dynamic": 0
+        },
+        {
+          "static": 10623,
+          "dynamic": 0
+        },
+        {
+          "static": 10681,
+          "dynamic": 0
+        },
+        {
+          "static": 10751,
+          "dynamic": 0
+        },
+        {
+          "static": 10812,
+          "dynamic": 0
+        },
+        {
+          "static": 10878,
+          "dynamic": 0
+        },
+        {
+          "static": 10943,
+          "dynamic": 0
+        },
+        {
+          "static": 10996,
+          "dynamic": 0
+        },
+        {
+          "static": 11052,
+          "dynamic": 0
+        },
+        {
+          "static": 11099,
+          "dynamic": 0
+        },
+        {
+          "static": 11157,
+          "dynamic": 0
+        },
+        {
+          "static": 11191,
+          "dynamic": 0
+        },
+        {
+          "static": 11244,
+          "dynamic": 0
+        },
+        {
+          "static": 11289,
+          "dynamic": 0
+        },
+        {
+          "static": 11347,
+          "dynamic": 0
+        },
+        {
+          "static": 11405,
+          "dynamic": 0
+        },
+        {
+          "static": 11456,
+          "dynamic": 0
+        },
+        {
+          "static": 11504,
+          "dynamic": 0
+        },
+        {
+          "static": 11595,
+          "dynamic": 0
+        }
+      ],
+      "static_time_policy": "first observation <= query, fit normals only from known points",
+      "dynamic_time_policy": "current frame owner1..99 only, never memory union",
+      "normal_policy": "PCA planar patch facing observing camera",
+      "distance_semantics": "local observed half-space proxy; unknown holes/deep interiors not guaranteed",
+      "older_segment_points_without_observer_camera_excluded": true
+    },
+    "GT_surface_reference": {
+      "observed_halfspace_mean_depth_cm": 0.0,
+      "observed_halfspace_p95_depth_cm": null,
+      "observed_halfspace_max_depth_cm": 0.0,
+      "observed_halfspace_over1cm_fraction": 0.0,
+      "observed_halfspace_query_coverage": 0.0,
+      "observed_halfspace_frames_with_over1cm": 0,
+      "mesh_sample_count": 468,
+      "not_closed_mesh_collision": true
+    }
+  }
+]

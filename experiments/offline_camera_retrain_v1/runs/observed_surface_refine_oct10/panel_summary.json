@@ -1,0 +1,76 @@
+{
+  "scope": "8 exposed sequences, one seed, preliminary; no holdout/generalization claim",
+  "identity_selection": [
+    0,
+    3,
+    12,
+    15,
+    24,
+    27,
+    36,
+    39
+  ],
+  "summary": {
+    "history_raw": {
+      "mpjpe_cm": 13.719668507575989,
+      "pa_mpjpe_mm": 98.69517046850271,
+      "pelvis_orientation_mean_deg": 22.14799201216188,
+      "head_cm": 7.964104235172272,
+      "head_orientation_mean_deg": 20.812501164459515,
+      "gt_stance_slide_cm_frame": 0.7194555401802063,
+      "observed_halfspace_p95_depth_cm": 8.116602897644043,
+      "observed_halfspace_query_coverage": 0.10041965171694756
+    },
+    "history_spline": {
+      "mpjpe_cm": 8.81843101978302,
+      "pa_mpjpe_mm": 67.31799597037903,
+      "pelvis_orientation_mean_deg": 14.522984533158153,
+      "head_cm": 1.2024095095694065,
+      "head_orientation_mean_deg": 1.2852090831251575,
+      "gt_stance_slide_cm_frame": 0.7276246249675751,
+      "observed_halfspace_p95_depth_cm": 7.483235225081444,
+      "observed_halfspace_query_coverage": 0.10102659068070352
+    },
+    "scene_contact": {
+      "mpjpe_cm": 9.688469290733337,
+      "pa_mpjpe_mm": 75.42892582095087,
+      "pelvis_orientation_mean_deg": 15.215957046286213,
+      "head_cm": 0.6182784587144852,
+      "head_orientation_mean_deg": 3.51557091635362,
+      "gt_stance_slide_cm_frame": 0.8291650041937828,
+      "observed_halfspace_p95_depth_cm": 4.486447125673294,
+      "observed_halfspace_query_coverage": 0.10953969694674015
+    }
+  },
+  "wins": {
+    "mpjpe_cm": 5,
+    "gt_stance_slide_cm_frame": 3,
+    "observed_halfspace_p95_depth_cm": 3
+  },
+  "eligible_comparisons": {
+    "mpjpe_cm": 8,
+    "gt_stance_slide_cm_frame": 8,
+    "observed_halfspace_p95_depth_cm": 4
+  },
+  "new_checkpoints": 0,
+  "summary_recovered_from_completed_rows": true,
+  "seed": 2026101099,
+  "batch_size": 8,
+  "ddim_steps": 20,
+  "history_frames": 16,
+  "future_frames_scored": 32,
+  "frequency_hz": 20,
+  "weights": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/body_history_replan_oct10/delta_history/last.pt",
+    "model_sha256": "d2e101d021287fdb5b984316938e02ad928810d830c9922e0f805ba76e79dd79",
+    "step": 500
+  },
+  "source_sha256": {
+    "evaluate_observed_scene_panel.py": "80dcd7016805128f12b91ec509fdd4bc0754e8e6eefc9c579117416bb8eb9004",
+    "observed_body_surfaces.py": "fc83b1c4ff43160331acb94e0459c6d34a30523d1ca4cd7cc55c1077b2eff74f",
+    "native_surface_points.py": "879de9607aac0ee50db1aaf237bccd4b653804c41d6ea92be602bf975067d694",
+    "observed_scene_refinement.py": "232b5e0a91d4739aac494f021fe8a419f7db85fbc545537f446e358a31dc264c"
+  },
+  "elapsed_s": null,
+  "elapsed_note": "All eight rows completed before summary writer failed on absent geometry metrics; recovered from saved rows without rerunning generation."
+}
