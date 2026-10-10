@@ -1,0 +1,29 @@
+{
+  "status": "training_completed",
+  "steps": 600,
+  "batch_size": 4,
+  "lr": 2e-05,
+  "warmup_steps": 50,
+  "seed": 2026101031,
+  "variants": [
+    "continued_control",
+    "turn_path"
+  ],
+  "initialization": "original55k; no body GT conditioning or prefix",
+  "condition": "head-only raw camera and exact20 native scene/body template; no hard head projection",
+  "lengths": [
+    64,
+    128,
+    192
+  ],
+  "duration_alpha": 0.5,
+  "low_noise_fraction": 0.5,
+  "optimizer": "AdamW weight_decay .01; clip1",
+  "source_sha256": "9dbdb58b5118d4100412535aba81648280ffa679788f383c02cc266e46235db7",
+  "guard": "training target local root/leg step + 3deg margin; not universal physical joint limits",
+  "acceptance": "paired full128: turning and torso/leg spikes improve, feet/world/PA do not regress; fixed850/906 must show improvement; exposed panel not independent holdout",
+  "storage": "one final evaluation-only last.pt per arm; no optimizer or numbered/best checkpoints",
+  "free_disk_before": 108851929088,
+  "elapsed_s": 1053.7683418609959,
+  "free_disk_after": 107866759168
+}

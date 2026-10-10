@@ -13,8 +13,9 @@ from experiments.offline_camera_retrain_v1.evaluate_body_history import measure
 from experiments.offline_camera_retrain_v1.evaluate_state_spline_confirmation import leg_motion
 from experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations
 from experiments.offline_camera_retrain_v1.supervision import forward_kinematics
+from experiments.offline_camera_retrain_v1.native_surface_points import NativeSurfacePoints
 H=Path(__file__).parent;O=H/'runs/turn_path_training_oct10'
-METRICS=('mpjpe_cm','pa_mpjpe_mm','pelvis_orientation_mean_deg','head_orientation_mean_deg','gt_stance_slide_cm_frame','meaningful_opposite_turn','under_turn','leg_angular_step_p95_deg','leg_angular_accel_p95_deg_frame2','root_step_max_deg','root_step_p95_deg','leg_global_rotation_step_max_deg','ankle_cross_fraction')
+METRICS=('mpjpe_cm','pa_mpjpe_mm','pelvis_orientation_mean_deg','head_orientation_mean_deg','gt_stance_slide_cm_frame','meaningful_opposite_turn','under_turn','leg_angular_step_p95_deg','leg_angular_accel_p95_deg_frame2','root_step_max_deg','root_step_p95_deg','leg_global_rotation_step_max_deg','ankle_cross_fraction','native_sole_stance_horizontal_cm_frame')
 def extra_metrics(m,rest):
     g=global_rotations(m)[0].cpu().numpy();delta=g[1:,0]@g[:-1,0].transpose(0,2,1)
     angles=np.rad2deg(Rotation.from_matrix(delta.copy()).magnitude())
@@ -37,8 +38,9 @@ def main():
     members=[dict(scope='demo',index=d['index'],seed=d['seed'],window=historic[d['index']]['window']) for d in demos]+[dict(scope='panel',index=i,seed=seed,window=w) for seed in protocol['seeds'] for i,w in enumerate(panel)]
     for member in members:
         w=member['window'];sample,identity=data.sample(128,w['group'],sequence_index=w['sequence_index'],start_index=w['start_index']);batch={k:v.cuda() for k,v in collate([sample]).items()};values={};saved={}
+        skin=NativeSurfacePoints(identity['native_body']);gt_soles=skin.soles(skin(batch['motion'][0]));sole_stance=torch.diff(gt_soles,dim=0).norm(dim=-1)<.01
         for label,model in models.items():
-            motion=generate_without_body_initialization(model,batch,seed=member['seed']);result=measure(motion,batch,turn_threshold=30);result.update(leg_motion(motion));result.update(extra_metrics(motion,batch['rest']));values[label]=result
+            motion=generate_without_body_initialization(model,batch,seed=member['seed']);result=measure(motion,batch,turn_threshold=30);result.update(leg_motion(motion));result.update(extra_metrics(motion,batch['rest']));soles=skin.soles(skin(motion[0]));slide=torch.diff(soles,dim=0)[...,[0,2]].norm(dim=-1);result['native_sole_stance_horizontal_cm_frame']=float((slide*sole_stance).sum()/sole_stance.sum().clamp_min(1)*100);values[label]=result
             if member['scope']=='demo':
                 if label=='original55k':
                     with np.load(H/f"runs/state_relative_spline_oct10/demo/{member['index']}.npz") as a:assert np.max(abs(motion[0].cpu().numpy()-a['official55k_motion']))<1e-5
