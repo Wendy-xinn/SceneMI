@@ -1,0 +1,112 @@
+"""Rebuild compact paired-control report and camera/head comparison intervals."""
+import json,hashlib,shutil
+from collections import defaultdict
+from pathlib import Path
+import numpy as np
+root=Path(__file__).resolve().parent;p=root/'runs/state_relative_spline_oct10/paired_55k_audit';s=json.loads((p/'summary.json').read_text());camera=json.loads((p/'camera55k_summary.json').read_text());selected=json.loads((p/'protocol.json').read_text())['selected'];rows=[json.loads(r) for r in (p/'rows.jsonl').read_text().splitlines()];camrows={(r['index'],r['replicate']):r for r in map(json.loads,(p/'camera55k_rows.jsonl').read_text().splitlines())}
+paired={};rng=np.random.default_rng(20261012)
+for horizon in ['short32','after_initial_0p4s','future112']:
+ paired[horizon]={}
+ for metric in ['mpjpe_cm','pa_mpjpe_mm','pelvis_orientation_mean_deg','gt_stance_slide_cm_frame']:
+  diffs=defaultdict(list);recordings={}
+  for r in rows:
+   if r['condition']!='clean':continue
+   k=r['group']+'/'+r['identity']['sequence_id'];diffs[k].append(r['variants']['history_refined'][horizon][metric]-camrows[(r['index'],r['replicate'])]['variants']['official55k_camera'][horizon][metric]);recordings[k]=selected[r['index']]['holdout_recording']
+  values={k:np.mean(v) for k,v in diffs.items()};clusters=sorted(set(recordings.values()));boot=[]
+  for draw in rng.integers(0,len(clusters),size=(2000,len(clusters))):boot.append(np.mean([v for j in draw for k,v in values.items() if recordings[k]==clusters[j]]))
+  paired[horizon][metric]={'difference':float(np.mean(list(values.values()))),'recording_cluster_ci95':np.quantile(boot,[.025,.975]).tolist(),'improved_sequence_roles':int(sum(v<0 for v in values.values())),'sequence_roles':len(values),'note':'different head/camera semantics AND history availability; total system comparison, not isolated causal effect'}
+(p/'camera55k_paired_differences.json').write_text(json.dumps(paired,indent=2))
+labels={'official55k':'55k + 统一头部输入','official55k_prefix':'55k + 统一头部 + 固定历史','history_prefix':'微调模型 + 固定历史（红色）','official55k_refined':'55k + 统一头部 + 固定历史 + 修正','history_refined':'微调模型 + 固定历史 + 修正（绿色）'}
+text='''# 原55k对照与未来GT隔离验收（2026-10-10）
+
+本轮没有修改权重或样条方案参数，未新增checkpoint。结果支持“状态相对修正的短期重建收益可重复，且不需要未来身体/接触GT进入优化”；不能因此认定已解决反向转身、无oracle视频输入、真实碰撞或仿真闭环。
+
+## 对照设计与重要的输入语义区别
+
+固定此前确认面板的48窗口、16身体序列、12录制、两个种子。它已经暴露过，本轮是补充配对控制，不再次称为未见holdout。全部预测采用同一窗口身份、场景缓存与DDIM20随机种子。native20Hz，历史16帧0.8秒；未来112帧5.6秒。分别评分开头32帧1.6秒、去掉最初8帧0.4秒后的1.2秒、完整5.6秒。按序列角色先平均，再按12录制聚类bootstrap，窗口及同录制角色不当作独立样本。
+
+原55k训练/原采样的trajectory第15槽实际是**相机轨迹**。当前微调模型采用**解剖头部关节轨迹**。这不能混为同一个输入：将统一头部直接交给55k也会改变输入分布，因此同时提供55k原相机输入参考和统一头部输入控制。
+
+- `official55k_camera`：正式55k原权重、原相机输入、普通DDIM，无身体历史，橙色。按新固定种子重新生成，不冒充旧演示数组原样回放。
+- `official55k`：同一55k原权重、改用统一解剖头部、普通DDIM，无身体历史，紫色（默认隐藏）。用于与其他统一头部组控制变量，不能替代前一组描述原55k效果。
+- `official55k_prefix`：55k、统一头部、固定已执行身体前缀。
+- `history_prefix`：joint_all1000 → delta_history500微调权重、统一头部和历史、固定前缀，无本轮样条修正，红色。
+- `official55k_refined`：55k、统一头部、固定历史，再加冻结样条修正。
+- `history_refined`：同一红色生成样本，再加冻结样条修正，绿色。
+
+原55k+前缀采样器不会引入身体历史编码支路，过去状态通过扩散前缀固定。两种refined均采用同一冻结pose32、60次修正、4帧样条控制点、relative_root=True。训练数据、场景处理与正式55k保持不动。
+
+## 开头1.6秒结果
+
+|组别|世界MPJPE cm ↓|PA-MPJPE mm ↓|骨盆朝向误差 ° ↓|GT支撑期脚滑 cm/帧 ↓|
+|---|---:|---:|---:|---:|
+'''
+m=camera['models']['short32'];text+=f"|55k + 原相机输入（橙色）|{m['mpjpe_cm']:.3f}|{m['pa_mpjpe_mm']:.3f}|{m['pelvis_orientation_mean_deg']:.3f}|{m['gt_stance_slide_cm_frame']:.3f}|\n"
+for label in labels:
+ m=s['clean']['short32']['models'][label];text+=f"|{labels[label]}|{m['mpjpe_cm']:.3f}|{m['pa_mpjpe_mm']:.3f}|{m['pelvis_orientation_mean_deg']:.3f}|{m['gt_stance_slide_cm_frame']:.3f}|\n"
+x=s['clean']['short32']['paired']['history_refined-history_prefix']['mpjpe_cm'];text+=f'''
+同一微调模型加修正，16/16序列角色的短期世界误差下降；平均变化{x['difference']:.3f}cm，录制聚类95%探索区间[{x['recording_cluster_ci95'][0]:.3f}, {x['recording_cluster_ci95'][1]:.3f}]。55k统一头部/固定历史组加同一修正也有16/16改善（17.228→9.667cm），说明收益不只来自后来微调权重。
+
+相对于真正的55k原相机输入，当前总方案世界误差14.718→9.205cm，但包含输入语义、权重、历史和修正四项变化，不能把全部收益归给后处理。脚滑0.608→0.703cm/帧，**增加约15.5%**；此前约1.6%仅是红色→绿色的增量。本轮不能声称相对55k全部指标均改善。足部高度/穿透是GT支撑掩码下的代理指标，不是真实scene mesh碰撞。
+
+统一头部组短期世界误差按数据角色：
+
+|角色|55k普通采样|微调固定历史|55k固定历史+修正|微调固定历史+修正|
+|---|---:|---:|---:|---:|
+'''
+for group,models in s['clean']['short32']['per_group'].items():text+=f"|{group}|"+'|'.join(f"{models[k]['mpjpe_cm']:.3f}" for k in ['official55k','history_prefix','official55k_refined','history_refined'])+'|\n'
+text+='''
+RICH/TRUMANS上，微调+修正的世界误差并没有优于55k固定历史+同一修正；当前微调权重不是在所有数据角色上都更优。原55k camera与统一head参考分别保留，不能用紫色表现较差来夸大橙色原模型的问题。
+
+## 排除初始状态复制带来的虚假收益
+
+排除最初0.4秒后，红色→绿色世界误差13.888→10.897cm，15/16序列角色改善；配对差−2.991cm，录制区间[−3.948,−1.857]。完整5.6秒为14.747→13.060cm，14/16改善，区间[−2.467,−0.679]。完整段有2条序列变差（LectureHall_003_wipingchairs1及TRUMANS 2023-02-17@10-53-45），不是所有时长都稳定获益。
+
+这排除了“只有第一帧贴住GT历史才降低平均误差”的解释，但前1.6秒仍处于32帧姿态过渡范围内，不能声称其收益全来自模型自主预测。全未来PA-MPJPE95.133→92.165mm，改善明显小于短期；本方案更适合短块执行的候选验证。
+
+## 未来GT隔离：真实数据端到端测试
+
+在48个真实窗口上，通过正式planner API重新采样并修正：先冻结允许的头部/场景/身体参数/过去历史，再把未来motion、joints、contact_target、contact_valid替换为1234，把未来非头部轨迹与可用性替换为异常值。两组同种子输出逐元素完全相同，原采样与最终修正最大差均为0。推理白名单删除body/contact字段，非头部轨迹清零；优化只更新样条姿态参数，不用评估误差选参数。评分阶段才读取未来身体及支撑掩码。
+
+另外，将新评估的非头部GT输入在采样前剥离，192次clean/head_large配对结果与此前确认记录的四项主指标完全复现，最大差0；不存在因新控制实验换了输入而悄悄重算出更好红/绿结果。
+
+必须保留以下oracle限制：
+
+- **未来头部位置和朝向仍由GT模拟**，它们明确是本任务允许的已知条件，并不是已验证的视频估计器输出。冻结头部后破坏未来body的测试只证明没有额外body标签偷跑，不证明头部不是GT来源。
+- 过去身体来自前16帧GT，是可信实际sim状态的代理；body rest/model/scale来自数据集人体参数。部署必须提供相应实际状态和身体参数，不能在未来人体拟合中偷取它们。
+- 未来场景/BPS与动态物体逐时刻信息是已知录像条件；不能将录像未来当成无未来信息的在线预测。占用记忆与动态物体仍遵循既有缓存合同，本轮不改变、不额外累积动态轨迹，没有新的ghost合并路径。
+- split身份检查：TRUMANS train469/val40录制，EgoBody train64/val30录制，RICH train62/val28序列，交集均空。TRUMANS部分val录制因缺少动态源被正式管线排除；身份不交叉不能代替内容哈希审计，也不意味着人物/场景完全不重叠。
+
+## 噪声与一次初始化后的滚动检查
+
+同一48窗口，未来头部末端8cm/30°漂移、合成置信度0.2时，红色→绿色短期世界误差13.290→9.235cm。过去身体施加一致3cm/8°/3°偏差时，13.366→9.755cm；排除开头0.4秒后13.895→11.215cm。头部漂移在整个6.4秒内线性增长，短期并未达到末端幅度；这些不是校准后的真实估计误差。
+
+另用按身份固定的8窗口（每角色2个），只初始化一次GT历史，之后每次执行8帧0.4秒、连续4次重规划，后续历史从各自生成动作更新，**不再刷新GT身体**。身体GT只在最终评分阶段使用。红色→绿色1.6秒世界误差14.509→9.104cm，PA100.568→65.801mm，骨盆22.821→13.480°，支撑期脚滑1.584→0.979cm/帧。
+
+这是精确执行生成动作的**运动学反馈代理**，没有仿真跟踪器、物理接触或碰撞。仍保留已知头部/BPS、原窗口坐标锚点和初始静态记忆；首次规划128帧，随后64帧。它说明收益不要求每次重新拿GT姿态初始化，不能证明真实tracking失败后稳定恢复，也不能和48窗口单次生成脚滑均值直接比较。
+
+## 仍需解决与下一步判断
+
+- 反向转身仍未被修正：clean红绿有意义反向率均1.92%。合成历史偏差时红0→绿1.92%，也记录为退化，不用总体朝向误差掩盖。
+- 相对55k原输入脚滑增加15.5%；需要真实接触几何和跟踪可达性验收，不宜只提高头部权重。
+- 短期重建收益有重复证据、未来身体/接触标签没有进入运行时优化，因此可作为仿真候选继续；尚不满足“全部转向与脚步都解决”的结论，不直接据此启动新55k。
+- 优先接入实际tracked state、测量边界速度与接触/穿透，再考虑把状态相对表示及短块前缀训练写入模型。当前模型仍输出每帧状态，头部delta是输入特征；相对增量锚定发生在推理修正阶段。
+
+## 可视化与记录
+
+Viser http://127.0.0.1:8780：蓝GT、橙55k原相机输入、紫55k统一头部输入（默认隐藏）、红微调固定历史、绿红色基础上修正。850/906仍是固定历史失败身份，未按新分数筛选。人物mesh同一原生SMPL/SMPL-X模型；相机、可见点、当前动态物体仍可切换。
+
+`protocol.json`记录权重指纹与条件；`rows.jsonl`288配对记录含1440预测变体，`camera55k_rows.jsonl`另96原相机预测；`summary.json`含按角色结果、逐序列配对差及按录制区间；`GT_mutation_audit.json`、`split_identity_audit.json`、`previous_confirmation_reproduction.json`和`kinematic_feedback_proxy.json`保留检验证据。本轮只有小型指标记录和原地扩展的薄demo数组，没有新checkpoint或大型mesh缓存。
+'''
+(p/'ASSESSMENT_zh.md').write_text(text)
+parent=p.parent/'ASSESSMENT_zh.md';source=parent.read_text().split('\n\n## 原55k对照与GT隔离补充')[0];source=source.replace('|干净头部/身体历史|原前缀生成|新方案|','|干净头部/身体历史|微调模型固定前缀（红色）|同一生成加修正（绿色）|');source+='''
+
+## 原55k对照与GT隔离补充
+
+本页此前“原前缀生成”实际是joint_all1000→delta_history500微调权重、固定实际身体历史后的生成，不是原55k。正式55k原输入第15槽是相机；后来改成解剖头部，必须分开对照。
+
+已补齐原55k相机参考、统一头部的55k、固定历史和两种模型加同一修正的六组结果。原55k相机输入短期世界误差14.718cm，当前总方案9.205cm；脚滑0.608→0.703cm/帧（+15.5%），不能将红→绿+1.6%描述为相对55k的全部代价。48窗口真实API未来body/contact/非头部轨迹破坏测试输出差0；去掉前0.4秒后仍改善。只初始化一次GT身体的8窗口运动学滚动也保留收益；未来头部和场景仍是理想已知条件，不等于真实视频/仿真验证。
+
+详见[六组对照与GT隔离报告](paired_55k_audit/ASSESSMENT_zh.md)。Viser已标明橙55k原相机、紫55k统一头部（默认隐藏）、红微调固定历史、绿修正；当前模型仍输出状态，非增量预测。
+''';parent.write_text(source)
+print('report written',p/'ASSESSMENT_zh.md')

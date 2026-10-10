@@ -1,0 +1,22 @@
+{
+  "status": "completed",
+  "source_sha256": {
+    "audit_state_plan_comparison.py": "d4cd232f1595991a6c3dd745062b74f08a40dcc96886b267ae439342bbeab89b",
+    "audit_state_plan_camera55k.py": "1300b277c21817a94d6017265526915b88bfc02307141664219af17f246435c6",
+    "audit_state_plan_rollout.py": "2de58f447476c5a6c634dd689a723e7455a33b3570601f921e72af65d0aa17e6",
+    "augment_state_demo_55k.py": "e4d9abd35e943746706ce9879a375b10e3c3b5f2b55110cef4c7d81761300349",
+    "summarize_state_plan_audit.py": "aebe27624c386e0679de84a6376ad8829cf3a5b529c00fdca2151dff96309e43",
+    "view_state_refinement.py": "27eff26fbe5b6aa45988972f29a5021489513042edff8b629e18fb2cd63ad06e"
+  },
+  "viser_http_status": 200,
+  "no_new_checkpoint": true,
+  "disk_free_bytes": 108867731456,
+  "compact_audit_bytes": 12023747,
+  "viewer_provenance": {
+    "official55k": "orange; original55k weights + ORIGINAL CAMERA input, standard DDIM, same scene/seed, regenerated not historical sample replay",
+    "official55k_joint": "purple; original55k weights + anatomical head input, matched head/scene/seed, standard DDIM, no body prefix",
+    "original": "red; joint_all1000 -> delta_history500 weights + executed prefix inpainting; no spline IK",
+    "refined": "green; same red draw + state-relative spline IK",
+    "gt": "blue; future reference only; first16 history and head simulator are allowed oracle observations"
+  }
+}
