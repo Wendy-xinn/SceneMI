@@ -1,0 +1,778 @@
+{
+  "means": {
+    "original55k": {
+      "mpjpe_cm": 15.19128292798996,
+      "pa_mpjpe_mm": 98.82116124121913,
+      "pelvis_orientation_mean_deg": 29.680105778949283,
+      "head_orientation_mean_deg": 27.86907098881414,
+      "gt_stance_slide_cm_frame": 0.6609916100278497,
+      "meaningful_opposite_turn": 0.05,
+      "under_turn": 0.7,
+      "leg_angular_step_p95_deg": 4.073309434125809,
+      "leg_angular_accel_p95_deg_frame2": 1.4139010302368566,
+      "root_step_max_deg": 4.0007821958726515,
+      "root_step_p95_deg": 2.9723859108519948,
+      "leg_global_rotation_step_max_deg": 7.283379910946541,
+      "ankle_cross_fraction": 0.044677734375,
+      "native_sole_stance_horizontal_cm_frame": 0.5942124705761671,
+      "contact_coverage": 0.7092765769921243,
+      "support_floating_m": 0.0015190877120403457,
+      "support_penetration_m": 0.017373397276969627,
+      "native_sole_envelope_abs_cm": 3.627288917079568,
+      "native_sole_positive_envelope_cm": 1.183784128865227,
+      "post80_stance_slide_cm_frame": 0.7989641735330224,
+      "post80_floating_proxy_cm": 0.08895697248476608
+    },
+    "prior_turn600": {
+      "mpjpe_cm": 15.067612528800964,
+      "pa_mpjpe_mm": 96.66584573138472,
+      "pelvis_orientation_mean_deg": 25.10559319338578,
+      "head_orientation_mean_deg": 24.24727902905642,
+      "gt_stance_slide_cm_frame": 0.6521056098863482,
+      "meaningful_opposite_turn": 0.0,
+      "under_turn": 0.35,
+      "leg_angular_step_p95_deg": 4.096696800574202,
+      "leg_angular_accel_p95_deg_frame2": 1.496962209779369,
+      "root_step_max_deg": 4.059550483254031,
+      "root_step_p95_deg": 2.9261695545406328,
+      "leg_global_rotation_step_max_deg": 7.520508439668848,
+      "ankle_cross_fraction": 0.042724609375,
+      "native_sole_stance_horizontal_cm_frame": 0.6040254672989249,
+      "contact_coverage": 0.6596948825754225,
+      "support_floating_m": 0.006202234008014784,
+      "support_penetration_m": 0.013085563230561092,
+      "native_sole_envelope_abs_cm": 3.8592601493000984,
+      "native_sole_positive_envelope_cm": 1.9633418987505138,
+      "post80_stance_slide_cm_frame": 0.7021303591318429,
+      "post80_floating_proxy_cm": 0.8297899766148475
+    },
+    "turn_control": {
+      "mpjpe_cm": 15.814489901065826,
+      "pa_mpjpe_mm": 103.29010430167624,
+      "pelvis_orientation_mean_deg": 27.008553446243713,
+      "head_orientation_mean_deg": 26.316007988467682,
+      "gt_stance_slide_cm_frame": 0.7539368337020278,
+      "meaningful_opposite_turn": 0.0,
+      "under_turn": 0.35,
+      "leg_angular_step_p95_deg": 4.4715173123157905,
+      "leg_angular_accel_p95_deg_frame2": 1.6094701317962776,
+      "root_step_max_deg": 5.256187002649629,
+      "root_step_p95_deg": 3.2854766006819283,
+      "leg_global_rotation_step_max_deg": 8.428908970581524,
+      "ankle_cross_fraction": 0.065185546875,
+      "native_sole_stance_horizontal_cm_frame": 0.6934212883934379,
+      "contact_coverage": 0.630536416079849,
+      "support_floating_m": 0.006269576991144277,
+      "support_penetration_m": 0.021938746445812285,
+      "native_sole_envelope_abs_cm": 4.611310686916113,
+      "native_sole_positive_envelope_cm": 1.811155421892181,
+      "post80_stance_slide_cm_frame": 0.892230689059943,
+      "post80_floating_proxy_cm": 0.7584551431136788
+    },
+    "sole_support": {
+      "mpjpe_cm": 15.32970929145813,
+      "pa_mpjpe_mm": 103.56305772571577,
+      "pelvis_orientation_mean_deg": 25.25301229605039,
+      "head_orientation_mean_deg": 25.14523202998314,
+      "gt_stance_slide_cm_frame": 0.6528630750253797,
+      "meaningful_opposite_turn": 0.0,
+      "under_turn": 0.4,
+      "leg_angular_step_p95_deg": 4.120647072682582,
+      "leg_angular_accel_p95_deg_frame2": 1.5176438662940832,
+      "root_step_max_deg": 4.223309707366747,
+      "root_step_p95_deg": 2.993341134794367,
+      "leg_global_rotation_step_max_deg": 7.412925692366189,
+      "ankle_cross_fraction": 0.0390625,
+      "native_sole_stance_horizontal_cm_frame": 0.5980626521632075,
+      "contact_coverage": 0.6273375961463898,
+      "support_floating_m": 0.005559783403441543,
+      "support_penetration_m": 0.024656653637066483,
+      "native_sole_envelope_abs_cm": 4.682725453749299,
+      "native_sole_positive_envelope_cm": 1.6179512966191396,
+      "post80_stance_slide_cm_frame": 0.7757969261147082,
+      "post80_floating_proxy_cm": 0.6636699179125571
+    }
+  },
+  "paired": {
+    "sole_support-original55k": {
+      "mpjpe_cm": {
+        "mean_difference": 0.13842636346817017,
+        "exploratory_ci95": [
+          -0.5697222419083119,
+          0.9683481030166148
+        ],
+        "sequences": 16
+      },
+      "pa_mpjpe_mm": {
+        "mean_difference": 4.741896484496632,
+        "exploratory_ci95": [
+          0.006343321860105595,
+          10.378612010321708
+        ],
+        "sequences": 16
+      },
+      "pelvis_orientation_mean_deg": {
+        "mean_difference": -4.427093482898899,
+        "exploratory_ci95": [
+          -7.2049347258623975,
+          -2.077029247115844
+        ],
+        "sequences": 16
+      },
+      "head_orientation_mean_deg": {
+        "mean_difference": -2.7238389588309975,
+        "exploratory_ci95": [
+          -5.768491764969927,
+          0.1438399551568857
+        ],
+        "sequences": 16
+      },
+      "gt_stance_slide_cm_frame": {
+        "mean_difference": -0.008128535002470016,
+        "exploratory_ci95": [
+          -0.06587569115217776,
+          0.04389410818694156
+        ],
+        "sequences": 16
+      },
+      "meaningful_opposite_turn": {
+        "mean_difference": -0.05,
+        "exploratory_ci95": [
+          -0.15,
+          0.0
+        ],
+        "sequences": 10
+      },
+      "under_turn": {
+        "mean_difference": -0.3,
+        "exploratory_ci95": [
+          -0.65,
+          0.1
+        ],
+        "sequences": 10
+      },
+      "leg_angular_step_p95_deg": {
+        "mean_difference": 0.04733763855677328,
+        "exploratory_ci95": [
+          -0.304752056143322,
+          0.40487552105251584
+        ],
+        "sequences": 16
+      },
+      "leg_angular_accel_p95_deg_frame2": {
+        "mean_difference": 0.10374283605722676,
+        "exploratory_ci95": [
+          0.04715026971784825,
+          0.16293305997705632
+        ],
+        "sequences": 16
+      },
+      "root_step_max_deg": {
+        "mean_difference": 0.22252751149409528,
+        "exploratory_ci95": [
+          -0.5295428267621574,
+          0.8363478535146348
+        ],
+        "sequences": 16
+      },
+      "root_step_p95_deg": {
+        "mean_difference": 0.020955223942372,
+        "exploratory_ci95": [
+          -0.5067154048395467,
+          0.4586257659376413
+        ],
+        "sequences": 16
+      },
+      "leg_global_rotation_step_max_deg": {
+        "mean_difference": 0.12954578141964684,
+        "exploratory_ci95": [
+          -0.2330697213735774,
+          0.49844847376311957
+        ],
+        "sequences": 16
+      },
+      "ankle_cross_fraction": {
+        "mean_difference": -0.005615234375,
+        "exploratory_ci95": [
+          -0.02613525390625,
+          0.01611328125
+        ],
+        "sequences": 16
+      },
+      "native_sole_stance_horizontal_cm_frame": {
+        "mean_difference": 0.0038501815870404243,
+        "exploratory_ci95": [
+          -0.03670438781846315,
+          0.04128286400809884
+        ],
+        "sequences": 16
+      },
+      "contact_coverage": {
+        "mean_difference": -0.08193898084573448,
+        "exploratory_ci95": [
+          -0.18861651712795718,
+          0.023019188432954186
+        ],
+        "sequences": 16
+      },
+      "support_floating_m": {
+        "mean_difference": 0.004040695691401197,
+        "exploratory_ci95": [
+          0.0003408846485854156,
+          0.009901408626114959
+        ],
+        "sequences": 16
+      },
+      "support_penetration_m": {
+        "mean_difference": 0.007283256360096857,
+        "exploratory_ci95": [
+          -0.002445235579943983,
+          0.01847497239286895
+        ],
+        "sequences": 16
+      },
+      "native_sole_envelope_abs_cm": {
+        "mean_difference": 1.0554365366697311,
+        "exploratory_ci95": [
+          0.15766751747578384,
+          2.061247174069285
+        ],
+        "sequences": 16
+      },
+      "native_sole_positive_envelope_cm": {
+        "mean_difference": 0.4341671677539125,
+        "exploratory_ci95": [
+          -0.230264705044101,
+          1.1624947174481346
+        ],
+        "sequences": 16
+      },
+      "post80_stance_slide_cm_frame": {
+        "mean_difference": -0.02316724741831422,
+        "exploratory_ci95": [
+          -0.10231960435630753,
+          0.037566312320996026
+        ],
+        "sequences": 16
+      },
+      "post80_floating_proxy_cm": {
+        "mean_difference": 0.574712945427791,
+        "exploratory_ci95": [
+          -0.06878592306520659,
+          1.6943127134327083
+        ],
+        "sequences": 16
+      }
+    },
+    "sole_support-prior_turn600": {
+      "mpjpe_cm": {
+        "mean_difference": 0.2620967626571655,
+        "exploratory_ci95": [
+          -0.35006426125764845,
+          1.0065375559031962
+        ],
+        "sequences": 16
+      },
+      "pa_mpjpe_mm": {
+        "mean_difference": 6.897211994331058,
+        "exploratory_ci95": [
+          1.5975258524011131,
+          12.794155497941134
+        ],
+        "sequences": 16
+      },
+      "pelvis_orientation_mean_deg": {
+        "mean_difference": 0.14741910266460723,
+        "exploratory_ci95": [
+          -0.8393169943294644,
+          1.1477111585790856
+        ],
+        "sequences": 16
+      },
+      "head_orientation_mean_deg": {
+        "mean_difference": 0.8979530009267245,
+        "exploratory_ci95": [
+          -0.5225258154622101,
+          2.4890486849095783
+        ],
+        "sequences": 16
+      },
+      "gt_stance_slide_cm_frame": {
+        "mean_difference": 0.0007574651390314102,
+        "exploratory_ci95": [
+          -0.032964013784658165,
+          0.03508235154440623
+        ],
+        "sequences": 16
+      },
+      "meaningful_opposite_turn": {
+        "mean_difference": 0.0,
+        "exploratory_ci95": [
+          0.0,
+          0.0
+        ],
+        "sequences": 10
+      },
+      "under_turn": {
+        "mean_difference": 0.05,
+        "exploratory_ci95": [
+          -0.15,
+          0.3
+        ],
+        "sequences": 10
+      },
+      "leg_angular_step_p95_deg": {
+        "mean_difference": 0.023950272108380577,
+        "exploratory_ci95": [
+          -0.13044968428996034,
+          0.15258008719238678
+        ],
+        "sequences": 16
+      },
+      "leg_angular_accel_p95_deg_frame2": {
+        "mean_difference": 0.02068165651471438,
+        "exploratory_ci95": [
+          -0.020921072050530076,
+          0.06791161754325006
+        ],
+        "sequences": 16
+      },
+      "root_step_max_deg": {
+        "mean_difference": 0.16375922411271598,
+        "exploratory_ci95": [
+          -0.06943198087926147,
+          0.3780548214313601
+        ],
+        "sequences": 16
+      },
+      "root_step_p95_deg": {
+        "mean_difference": 0.06717158025373429,
+        "exploratory_ci95": [
+          -0.09542984620391637,
+          0.23540147343663995
+        ],
+        "sequences": 16
+      },
+      "leg_global_rotation_step_max_deg": {
+        "mean_difference": -0.10758274730265988,
+        "exploratory_ci95": [
+          -0.47809959854543976,
+          0.19143025139815575
+        ],
+        "sequences": 16
+      },
+      "ankle_cross_fraction": {
+        "mean_difference": -0.003662109375,
+        "exploratory_ci95": [
+          -0.01611328125,
+          0.0087890625
+        ],
+        "sequences": 16
+      },
+      "native_sole_stance_horizontal_cm_frame": {
+        "mean_difference": -0.005962815135717392,
+        "exploratory_ci95": [
+          -0.03740634374553338,
+          0.02411657329648733
+        ],
+        "sequences": 16
+      },
+      "contact_coverage": {
+        "mean_difference": -0.03235728642903268,
+        "exploratory_ci95": [
+          -0.11948204045766034,
+          0.04798535881564019
+        ],
+        "sequences": 16
+      },
+      "support_floating_m": {
+        "mean_difference": -0.0006424506045732414,
+        "exploratory_ci95": [
+          -0.0024615771205162675,
+          0.0009201653522040937
+        ],
+        "sequences": 16
+      },
+      "support_penetration_m": {
+        "mean_difference": 0.011571090406505391,
+        "exploratory_ci95": [
+          -0.00014969892872613853,
+          0.027372397991712198
+        ],
+        "sequences": 16
+      },
+      "native_sole_envelope_abs_cm": {
+        "mean_difference": 0.8234653044492006,
+        "exploratory_ci95": [
+          -0.31883150595240295,
+          2.48509165123105
+        ],
+        "sequences": 16
+      },
+      "native_sole_positive_envelope_cm": {
+        "mean_difference": -0.3453906021313742,
+        "exploratory_ci95": [
+          -0.8176650425099069,
+          0.03344898566429018
+        ],
+        "sequences": 16
+      },
+      "post80_stance_slide_cm_frame": {
+        "mean_difference": 0.07366656698286533,
+        "exploratory_ci95": [
+          -0.006993766420055181,
+          0.20229297637706614
+        ],
+        "sequences": 16
+      },
+      "post80_floating_proxy_cm": {
+        "mean_difference": -0.1661200587022904,
+        "exploratory_ci95": [
+          -0.5439928777832392,
+          0.05541998431908716
+        ],
+        "sequences": 16
+      }
+    },
+    "sole_support-turn_control": {
+      "mpjpe_cm": {
+        "mean_difference": -0.48478060960769653,
+        "exploratory_ci95": [
+          -1.3993564017117024,
+          0.218736142665147
+        ],
+        "sequences": 16
+      },
+      "pa_mpjpe_mm": {
+        "mean_difference": 0.27295342403954015,
+        "exploratory_ci95": [
+          -3.4750061755490473,
+          3.836260884328252
+        ],
+        "sequences": 16
+      },
+      "pelvis_orientation_mean_deg": {
+        "mean_difference": -1.755541150193328,
+        "exploratory_ci95": [
+          -5.329618520408864,
+          0.5766597821860965
+        ],
+        "sequences": 16
+      },
+      "head_orientation_mean_deg": {
+        "mean_difference": -1.170775958484537,
+        "exploratory_ci95": [
+          -4.16959158140822,
+          0.8785583101268768
+        ],
+        "sequences": 16
+      },
+      "gt_stance_slide_cm_frame": {
+        "mean_difference": -0.10107375867664814,
+        "exploratory_ci95": [
+          -0.16416340039577335,
+          -0.04503792180912572
+        ],
+        "sequences": 16
+      },
+      "meaningful_opposite_turn": {
+        "mean_difference": 0.0,
+        "exploratory_ci95": [
+          0.0,
+          0.0
+        ],
+        "sequences": 10
+      },
+      "under_turn": {
+        "mean_difference": 0.05,
+        "exploratory_ci95": [
+          0.0,
+          0.15
+        ],
+        "sequences": 10
+      },
+      "leg_angular_step_p95_deg": {
+        "mean_difference": -0.35087023963320785,
+        "exploratory_ci95": [
+          -0.7642327448687766,
+          -0.09961441294313222
+        ],
+        "sequences": 16
+      },
+      "leg_angular_accel_p95_deg_frame2": {
+        "mean_difference": -0.09182626550219439,
+        "exploratory_ci95": [
+          -0.1572826252629044,
+          -0.04374517885051928
+        ],
+        "sequences": 16
+      },
+      "root_step_max_deg": {
+        "mean_difference": -1.0328772952828809,
+        "exploratory_ci95": [
+          -2.873511152106688,
+          -0.025434695929497673
+        ],
+        "sequences": 16
+      },
+      "root_step_p95_deg": {
+        "mean_difference": -0.2921354658875617,
+        "exploratory_ci95": [
+          -0.7724868217253423,
+          0.016774889700951152
+        ],
+        "sequences": 16
+      },
+      "leg_global_rotation_step_max_deg": {
+        "mean_difference": -1.0159832782153355,
+        "exploratory_ci95": [
+          -2.6832564972967,
+          -0.05931965786703402
+        ],
+        "sequences": 16
+      },
+      "ankle_cross_fraction": {
+        "mean_difference": -0.026123046875,
+        "exploratory_ci95": [
+          -0.05347900390625,
+          -0.004388427734375033
+        ],
+        "sequences": 16
+      },
+      "native_sole_stance_horizontal_cm_frame": {
+        "mean_difference": -0.09535863623023033,
+        "exploratory_ci95": [
+          -0.1628477098303847,
+          -0.043830074230209
+        ],
+        "sequences": 16
+      },
+      "contact_coverage": {
+        "mean_difference": -0.0031988199334591627,
+        "exploratory_ci95": [
+          -0.054256889276439325,
+          0.04380228563677518
+        ],
+        "sequences": 16
+      },
+      "support_floating_m": {
+        "mean_difference": -0.0007097935877027339,
+        "exploratory_ci95": [
+          -0.002136604985548729,
+          0.000641202198562496
+        ],
+        "sequences": 16
+      },
+      "support_penetration_m": {
+        "mean_difference": 0.0027179071912541986,
+        "exploratory_ci95": [
+          -0.001458112746331608,
+          0.00818506112264002
+        ],
+        "sequences": 16
+      },
+      "native_sole_envelope_abs_cm": {
+        "mean_difference": 0.07141476683318615,
+        "exploratory_ci95": [
+          -0.4410486626904458,
+          0.7233617980033159
+        ],
+        "sequences": 16
+      },
+      "native_sole_positive_envelope_cm": {
+        "mean_difference": -0.19320412527304143,
+        "exploratory_ci95": [
+          -0.45720462970202785,
+          0.0487828004115724
+        ],
+        "sequences": 16
+      },
+      "post80_stance_slide_cm_frame": {
+        "mean_difference": -0.11643376294523478,
+        "exploratory_ci95": [
+          -0.19796550120227038,
+          -0.05248558251187209
+        ],
+        "sequences": 16
+      },
+      "post80_floating_proxy_cm": {
+        "mean_difference": -0.09478522520112165,
+        "exploratory_ci95": [
+          -0.2341486511795665,
+          0.026243012393933816
+        ],
+        "sequences": 16
+      }
+    },
+    "turn_control-prior_turn600": {
+      "mpjpe_cm": {
+        "mean_difference": 0.7468773722648621,
+        "exploratory_ci95": [
+          -0.04712560623884201,
+          1.68807253986597
+        ],
+        "sequences": 16
+      },
+      "pa_mpjpe_mm": {
+        "mean_difference": 6.624258570291517,
+        "exploratory_ci95": [
+          2.185103742286421,
+          11.379508765995896
+        ],
+        "sequences": 16
+      },
+      "pelvis_orientation_mean_deg": {
+        "mean_difference": 1.9029602528579357,
+        "exploratory_ci95": [
+          -0.4324035892984325,
+          5.6320294217297695
+        ],
+        "sequences": 16
+      },
+      "head_orientation_mean_deg": {
+        "mean_difference": 2.0687289594112612,
+        "exploratory_ci95": [
+          -0.27144958116883905,
+          4.925583836460595
+        ],
+        "sequences": 16
+      },
+      "gt_stance_slide_cm_frame": {
+        "mean_difference": 0.10183122381567955,
+        "exploratory_ci95": [
+          0.03716578579042107,
+          0.1797289452282711
+        ],
+        "sequences": 16
+      },
+      "meaningful_opposite_turn": {
+        "mean_difference": 0.0,
+        "exploratory_ci95": [
+          0.0,
+          0.0
+        ],
+        "sequences": 10
+      },
+      "under_turn": {
+        "mean_difference": 0.0,
+        "exploratory_ci95": [
+          -0.2,
+          0.25
+        ],
+        "sequences": 10
+      },
+      "leg_angular_step_p95_deg": {
+        "mean_difference": 0.3748205117415884,
+        "exploratory_ci95": [
+          0.1008160696458037,
+          0.8024199975405568
+        ],
+        "sequences": 16
+      },
+      "leg_angular_accel_p95_deg_frame2": {
+        "mean_difference": 0.11250792201690875,
+        "exploratory_ci95": [
+          0.043550788185814295,
+          0.19703581506816675
+        ],
+        "sequences": 16
+      },
+      "root_step_max_deg": {
+        "mean_difference": 1.1966365193955968,
+        "exploratory_ci95": [
+          0.10846480700839982,
+          3.0545506768696162
+        ],
+        "sequences": 16
+      },
+      "root_step_p95_deg": {
+        "mean_difference": 0.35930704614129605,
+        "exploratory_ci95": [
+          -0.0510691057950637,
+          0.9529823379613278
+        ],
+        "sequences": 16
+      },
+      "leg_global_rotation_step_max_deg": {
+        "mean_difference": 0.9084005309126755,
+        "exploratory_ci95": [
+          0.030384320105618954,
+          2.5188773146449432
+        ],
+        "sequences": 16
+      },
+      "ankle_cross_fraction": {
+        "mean_difference": 0.0224609375,
+        "exploratory_ci95": [
+          0.000244140625,
+          0.0510437011718749
+        ],
+        "sequences": 16
+      },
+      "native_sole_stance_horizontal_cm_frame": {
+        "mean_difference": 0.08939582109451294,
+        "exploratory_ci95": [
+          0.03505117574241012,
+          0.15817095611710097
+        ],
+        "sequences": 16
+      },
+      "contact_coverage": {
+        "mean_difference": -0.02915846649557352,
+        "exploratory_ci95": [
+          -0.09868971596006304,
+          0.043691559124272236
+        ],
+        "sequences": 16
+      },
+      "support_floating_m": {
+        "mean_difference": 6.73429831294925e-05,
+        "exploratory_ci95": [
+          -0.0015435473148727396,
+          0.001385203775771515
+        ],
+        "sequences": 16
+      },
+      "support_penetration_m": {
+        "mean_difference": 0.008853183215251192,
+        "exploratory_ci95": [
+          0.0007380215538432822,
+          0.022217465622816224
+        ],
+        "sequences": 16
+      },
+      "native_sole_envelope_abs_cm": {
+        "mean_difference": 0.7520505376160145,
+        "exploratory_ci95": [
+          -0.026510547287762153,
+          1.9904250816442068
+        ],
+        "sequences": 16
+      },
+      "native_sole_positive_envelope_cm": {
+        "mean_difference": -0.15218647685833275,
+        "exploratory_ci95": [
+          -0.6515188608726021,
+          0.20916844379680694
+        ],
+        "sequences": 16
+      },
+      "post80_stance_slide_cm_frame": {
+        "mean_difference": 0.1901003299281001,
+        "exploratory_ci95": [
+          0.0627065614797175,
+          0.36030839479062704
+        ],
+        "sequences": 16
+      },
+      "post80_floating_proxy_cm": {
+        "mean_difference": -0.07133483350116876,
+        "exploratory_ci95": [
+          -0.47902277960929496,
+          0.2005275983572118
+        ],
+        "sequences": 16
+      }
+    }
+  }
+}

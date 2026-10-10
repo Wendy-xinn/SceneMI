@@ -1,0 +1,30 @@
+{
+  "status": "training_completed",
+  "steps": 400,
+  "batch_size": 4,
+  "lr": 2e-05,
+  "warmup_steps": 50,
+  "seed": 2026101107,
+  "variants": [
+    "turn_control",
+    "sole_support"
+  ],
+  "initialization": "600-step turn_path candidate; both arms same; original55k foot teacher",
+  "condition": "head-only raw camera and exact20 native scene/body template; no hard head projection",
+  "lengths": [
+    64,
+    128,
+    192
+  ],
+  "duration_alpha": 0.5,
+  "low_noise_fraction": 0.5,
+  "optimizer": "AdamW weight_decay .01; clip1",
+  "source_sha256": "46bcc2beae1e432dc2518805b9ccc0d8b7f7499c165493d2aea6ba21bcc196ee",
+  "guard": "training target local root/leg step + 3deg margin; not universal physical joint limits",
+  "acceptance": "fixed protocol in pre_registered_evaluation.json; preserve 906 turn direction and improve support/feet on exposed panel",
+  "storage": "one final evaluation-only last.pt per arm; no optimizer or numbered/best checkpoints",
+  "free_disk_before": 107897135104,
+  "support": "native sole centroid LBS/pose correctives; clean training support envelope and stance; no scene floor or inference GT projection",
+  "elapsed_s": 1102.3604738559952,
+  "free_disk_after": 106915201024
+}

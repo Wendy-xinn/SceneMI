@@ -1,0 +1,96 @@
+{
+  "adopt": false,
+  "gates": {
+    "panel_joint_slide_ratio": {
+      "value": 0.9877025141028227,
+      "threshold": 1.02,
+      "direction": "max",
+      "passed": true
+    },
+    "panel_native_sole_slide_ratio": {
+      "value": 1.0064794695124912,
+      "threshold": 1.02,
+      "direction": "max",
+      "passed": true
+    },
+    "panel_leg_accel_ratio": {
+      "value": 1.0733734779441015,
+      "threshold": 1.02,
+      "direction": "max",
+      "passed": false
+    },
+    "906_net_turn_deg": {
+      "value": -105.16365051269531,
+      "threshold": 0,
+      "direction": "max",
+      "passed": true
+    },
+    "906_root_peak_deg": {
+      "value": 5.526527875987579,
+      "threshold": 7,
+      "direction": "max",
+      "passed": true
+    },
+    "906_slide_ratio": {
+      "value": 1.0477601136522106,
+      "threshold": 1.02,
+      "direction": "max",
+      "passed": false
+    },
+    "850_slide_ratio": {
+      "value": 1.23159780755636,
+      "threshold": 1.02,
+      "direction": "max",
+      "passed": false
+    },
+    "906_floating_proxy_cm": {
+      "value": 0.7781646214425564,
+      "threshold": 1,
+      "direction": "max",
+      "passed": true
+    },
+    "906_contact_proxy": {
+      "value": 0.0,
+      "threshold": 0.3,
+      "direction": "min",
+      "passed": false
+    },
+    "850_floating_proxy_increase_cm": {
+      "value": 0.2631442854180932,
+      "threshold": 0.5,
+      "direction": "max",
+      "passed": true
+    },
+    "panel_heading_vs_prior_ratio": {
+      "value": 1.0058719625355617,
+      "threshold": 1.05,
+      "direction": "max",
+      "passed": true
+    }
+  },
+  "trace_steps": {
+    "turn_control": 400,
+    "sole_support": 400
+  },
+  "paired_training_inputs_match": true,
+  "weights": [
+    {
+      "variant": "turn_control",
+      "bytes": 486180753,
+      "step": 400,
+      "evaluation_only": true,
+      "optimizer_present": false,
+      "all_tensors_finite": true
+    },
+    {
+      "variant": "sole_support",
+      "bytes": 486180753,
+      "step": 400,
+      "evaluation_only": true,
+      "optimizer_present": false,
+      "all_tensors_finite": true
+    }
+  ],
+  "free_disk_bytes": 106913959936,
+  "cleanup": "two final evaluation-only weights; no optimizer/best/numbered copies; preserve original55k and prior600; do not delete active preprocessing dependencies"
+}

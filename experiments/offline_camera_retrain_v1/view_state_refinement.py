@@ -11,7 +11,7 @@ ROOT=Path(__file__).parent/'runs/state_relative_spline_oct10/demo'
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=8780);parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--scene-refinement',type=Path);parser.add_argument('--legacy-history-diagnostic',action='store_true');parser.add_argument('--turn-coordination',type=Path);parser.add_argument('--turn-training',type=Path);args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=8780);parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--scene-refinement',type=Path);parser.add_argument('--legacy-history-diagnostic',action='store_true');parser.add_argument('--turn-coordination',type=Path);parser.add_argument('--turn-training',type=Path);parser.add_argument('--support-refinement',type=Path);args=parser.parse_args()
     gt_free=not (args.legacy_history_diagnostic or args.scene_refinement)
     frame_count=48 if args.scene_refinement else 128
     mesh_keys=['gt','original','refined','scene_contact'] if args.scene_refinement else ['gt','official55k','official55k_joint','original','refined']
@@ -19,12 +19,14 @@ def main():
     labels={'gt':'GT蓝色','official55k':'55k原相机输入橙色','official55k_joint':'55k统一头部输入紫色','original':'微调固定历史红色','refined':'旧样条修正紫色' if args.scene_refinement else '样条修正绿色','scene_contact':'场景接触修正绿色'}
     if gt_free:
         mesh_keys=['gt','official55k'];colors['official55k']=(240,65,60);labels['official55k']='55k无身体GT初始化红色'
-    if args.turn_training and args.turn_coordination:parser.error('Choose one turn diagnostic')
-    turn_root=args.turn_training or args.turn_coordination
-    turn_variant='turn_path' if args.turn_training else 'camera_soft'
+    if sum(bool(x) for x in [args.turn_training,args.turn_coordination,args.support_refinement])>1:parser.error('Choose one turn diagnostic')
+    turn_root=args.support_refinement or args.turn_training or args.turn_coordination
+    turn_variant='sole_support' if args.support_refinement else ('turn_path' if args.turn_training else 'camera_soft')
     if turn_root:
         if not gt_free:parser.error('Turn diagnostics require GT-free default mode')
-        mesh_keys.append('turn_coordination');colors['turn_coordination']=(45,205,90);labels['turn_coordination']='转向路径600步绿色（未通过）' if args.turn_training else '转向保脚开发候选绿色'
+        mesh_keys.append('turn_coordination');colors['turn_coordination']=(45,205,90);labels['turn_coordination']='足底支撑400步绿色（未通过）' if args.support_refinement else ('转向路径600步绿色（未通过）' if args.turn_training else '转向保脚开发候选绿色')
+        if args.support_refinement:
+            mesh_keys.extend(['prior_turn600','turn_control']);colors.update(prior_turn600=(245,145,30),turn_control=(155,80,215));labels.update(prior_turn600='上轮转向600步橙色',turn_control='继续转向400步紫色')
         if args.turn_training:
             mesh_keys.append('continued_control');colors['continued_control']=(155,80,215);labels['continued_control']='继续原目标600步紫色'
     turn_rows={r['index']:r for r in json.loads((turn_root/'rows.json').read_text()) if r['scope']=='demo'} if turn_root else {}
@@ -40,6 +42,9 @@ def main():
             with np.load(turn_root/f"{case['index']}.npz") as turn_arrays:
                 arrays['turn_coordination_motion']=turn_arrays[turn_variant]
                 if args.turn_training:arrays['continued_control_motion']=turn_arrays['continued_control']
+                if args.support_refinement:arrays['turn_control_motion']=turn_arrays['turn_control']
+            if args.support_refinement:
+                with np.load(ROOT.parent.parent/f"turn_path_training_oct10/{case['index']}.npz") as prior:arrays['prior_turn600_motion']=prior['turn_path']
         camera_heads={}
         for label in mesh_keys:
             vertices,faces,joints=decode_native_mesh(arrays[label+'_motion'][:frame_count],body,models[key]);arrays[label+'_vertices']=(vertices@arrays['anchor_rotation']+arrays['camera'][0]).astype(np.float32);arrays['faces']=faces
@@ -54,6 +59,7 @@ def main():
         name=f"{case['index']} · {case['identity']['sequence_id']}";cases[name]=(case,arrays)
     server=viser.ViserServer(port=args.port,label='SceneMI · 状态相对生成');server.scene.set_up_direction('+y')
     if gt_free:server.gui.add_markdown('**850/906：严格无身体GT初始化基线。** 蓝GT仅对照 · 红真正原55k，从随机扩散噪声生成全部128帧。输入仅已知相机/场景与配置身体模板，没有GT身体前缀或初始姿态对齐。TRUMANS相机仍是模拟已知条件，非真实视频估计。红色已切回原55k，与此前微调+GT历史红色不同；可选绿色为转向开发诊断，尚未通过验收。')
+    if args.support_refinement:server.gui.add_markdown('**足底支撑400步诊断：** 红原55k · 橙上轮转向600步 · 紫继续转向400步 · 绿新增足底支撑400步。全部无GT身体初始化；native足底监督用训练GT包络，未做推理GT投影。906漂浮减少但支撑未恢复；850脚滑仍退化，未通过联合验收。')
     if args.turn_training:server.gui.add_markdown('**600步转向诊断，未通过足部验收。** 绿色使用同一原55k架构和相机语义，无GT身体初始化。906净转向改为负向、峰值降低，但悬浮代理3.63cm；850脚滑增加约38%。紫色是相同采样/种子的继续训练对照。')
     if not gt_free and not args.scene_refinement:server.gui.add_markdown('**历史实验诊断，含GT前16帧身体代理，不作为无GT初始化结果。** 蓝GT · 橙55k相机 · 紫55k头部 · 红微调固定历史 · 绿旧样条。')
     if args.scene_refinement:server.gui.add_markdown('**场景接触开发诊断：仅未来1.6秒。** 蓝GT · 红微调固定历史 · 紫旧样条 · 绿场景+软接触。局部观察表面约束不是完整碰撞证书；GT本身与场景有厘米级几何冲突信号，当前不宣称通过物理验收。')
@@ -62,7 +68,7 @@ def main():
     options=['完整生成0–127','短期预测16–47'] if gt_free else (['短期预测16–47','含历史0–47'] if args.scene_refinement else ['短期预测16–47','完整预测16–127','含历史0–127'])
     range_select=server.gui.add_dropdown('播放范围',options=options,initial_value=options[0] if gt_free or args.scene_refinement else '完整预测16–127')
     frame=server.gui.add_slider('帧',min=0,max=frame_count-1,step=1,initial_value=0 if gt_free else 16);opacity=server.gui.add_slider('人物透明度',min=.1,max=1,step=.05,initial_value=.55)
-    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','输入相机与轨迹','生成相机与轨迹']}
+    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色','足底支撑400步绿色（未通过）','上轮转向600步橙色','继续转向400步紫色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','输入相机与轨迹','生成相机与轨迹']}
     server.gui.add_markdown('**相机诊断：** 紫色是已知输入；红/绿/紫生成相机随对应mesh开关显示。相机由生成身体FK头部重建，未吸附输入。固定安装偏置由GT首帧仅作绘图标定，非生成输入。位置和朝向误差均在完整128帧记录。')
     camera_size=server.gui.add_slider('相机线框深度（米）',min=.04,max=.8,step=.02,initial_value=.5)
     follow=server.gui.add_checkbox('观察相机视角',initial_value=False);reset=server.gui.add_button('外部视角');info=server.gui.add_markdown('')
@@ -100,14 +106,17 @@ def main():
                 handles[key+'_camera'].visible=handles[key+'_camera_path'].visible=checks['生成相机与轨迹'].value and checks[labels[key]].value
             if follow.value:
                 for client in server.get_clients().values():client.camera.position=tuple(pos);client.camera.look_at=tuple(pos+r[:,2]);client.camera.up_direction=tuple(r[:,1])
-            horizon='short32' if args.scene_refinement or range_select.value=='短期预测16–47' else 'future112';old=case['metrics']['original'][horizon];new=case['metrics']['refined'][horizon];official=case['metrics']['official55k'][horizon]
-            info.content=f"帧{t} · {(t-16)/20:.2f}s（预测起点=16）\n\n世界MPJPE：55k相机输入 {official['mpjpe_cm']:.2f} / 微调固定历史 {old['mpjpe_cm']:.2f} / 修正 {new['mpjpe_cm']:.2f} cm\n\nPA-MPJPE：微调固定历史{old['pa_mpjpe_mm']:.1f} / 新{new['pa_mpjpe_mm']:.1f} mm\n\n骨盆朝向误差：微调固定历史{old['pelvis_orientation_mean_deg']:.1f} / 新{new['pelvis_orientation_mean_deg']:.1f}°\n\nGT支撑期脚滑：微调固定历史{old['gt_stance_slide_cm_frame']:.3f} / 新{new['gt_stance_slide_cm_frame']:.3f} cm/帧\n\n固定失败例子850/906，用于观察；平均效果见完整开发/确认集报告。未证明mesh无碰撞或实时仿真跟踪。"
+            if not gt_free:
+                horizon='short32' if args.scene_refinement or range_select.value=='短期预测16–47' else 'future112';old=case['metrics']['original'][horizon];new=case['metrics']['refined'][horizon];official=case['metrics']['official55k'][horizon]
+                info.content=f"帧{t} · {(t-16)/20:.2f}s（预测起点=16）\n\n世界MPJPE：55k相机输入 {official['mpjpe_cm']:.2f} / 微调固定历史 {old['mpjpe_cm']:.2f} / 修正 {new['mpjpe_cm']:.2f} cm\n\nPA-MPJPE：微调固定历史{old['pa_mpjpe_mm']:.1f} / 新{new['pa_mpjpe_mm']:.1f} mm\n\n骨盆朝向误差：微调固定历史{old['pelvis_orientation_mean_deg']:.1f} / 新{new['pelvis_orientation_mean_deg']:.1f}°\n\nGT支撑期脚滑：微调固定历史{old['gt_stance_slide_cm_frame']:.3f} / 新{new['gt_stance_slide_cm_frame']:.3f} cm/帧\n\n固定失败例子850/906，用于观察；平均效果见完整开发/确认集报告。未证明mesh无碰撞或实时仿真跟踪。"
             if gt_free:
                 m=init_audit[case['index']]['full128_metrics'];info.content=f"帧{t} · {t/20:.2f}s。全部128帧由噪声生成，无GT初始身体。\n\n完整6.4秒世界MPJPE {m['mpjpe_cm']:.2f} cm / PA {m['pa_mpjpe_mm']:.1f} mm\n\n骨盆朝向误差 {m['pelvis_orientation_mean_deg']:.1f}° / 脚滑 {m['gt_stance_slide_cm_frame']:.3f} cm/帧\n\n身体/接触/历史GT破坏测试输出差0；当前是原55k问题诊断，非已修好版本。"
             if turn_root:
                 candidate=turn_rows[case['index']]['metrics'][turn_variant]
-                info.content+=f"\n\n绿色开发候选：朝向 {candidate['pelvis_orientation_mean_deg']:.1f}° / 脚滑 {candidate['gt_stance_slide_cm_frame']:.3f} cm/帧。未通过足部验收，不作为正式结果。"
-                if args.turn_training:info.content+=f"\n\n绿色净转向 {candidate['pelvis_turn_deg']:.1f}° / 根部最大步长 {candidate['root_step_max_deg']:.2f}° / 悬浮代理 {candidate['support_floating_m']*100:.2f}cm（相对GT足部支撑高度，非场景地板真值）。"
+                info.content+=f"\n\n绿色开发候选：朝向 {candidate['pelvis_orientation_mean_deg']:.1f}° / 脚滑 {candidate['gt_stance_slide_cm_frame']:.3f} cm/帧。开发候选，联合验收结果见报告。"
+                if args.turn_training or args.support_refinement:info.content+=f"\n\n绿色净转向 {candidate['pelvis_turn_deg']:.1f}° / 根部最大步长 {candidate['root_step_max_deg']:.2f}° / 悬浮代理 {candidate['support_floating_m']*100:.2f}cm（相对GT足部支撑高度，非场景地板真值）。"
+            if args.support_refinement:
+                info.content+=f"\n\n最后48帧：脚滑 {candidate['post80_stance_slide_cm_frame']:.3f}cm/帧 / 悬浮代理 {candidate['post80_floating_proxy_cm']:.2f}cm。native足底包络绝对误差 {candidate['native_sole_envelope_abs_cm']:.2f}cm。"
             if args.scene_refinement:
                 current=case['metrics']['scene_contact']['short32'];info.content=f"未来1.6秒开发诊断，帧{t}。\n\n世界MPJPE：旧样条 {new['mpjpe_cm']:.2f} / 场景接触 {current['mpjpe_cm']:.2f} cm\n\n脚滑：旧 {new['gt_stance_slide_cm_frame']:.3f} / 场景接触 {current['gt_stance_slide_cm_frame']:.3f} cm/帧\n\n观察半空间P95深度：{current['observed_halfspace_p95_depth_cm']:.2f} cm（局部代理，非完整mesh验收）。\n\n头部误差：{current['head_cm']:.2f} cm。完整场景独立诊断及GT冲突见 observed_surface_refine_oct10 报告。"
             info.content+='\n\n**生成相机 vs 已知输入（固定安装标定）**'
