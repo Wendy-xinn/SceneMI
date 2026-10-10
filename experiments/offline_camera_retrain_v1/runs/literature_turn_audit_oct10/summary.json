@@ -1,0 +1,917 @@
+{
+  "protocol": "horizontal hip-axis net yaw; same FK-joint definition for GT/prediction; y up",
+  "scope": "official55k cached head-camera conditioning, one prediction per window per scene variant; not typed-head trials",
+  "limitations": [
+    "hip heading is a geometric proxy, not the previous native root-forward metric",
+    "overlapping windows and sequences are correlated; affected-sequence counts depend on windows per sequence",
+    "net turn excludes out-and-back turns; mismatch to GT is not automatically physically invalid",
+    "projection validity is essential for rolled bodies; report reliable-only denominators too"
+  ],
+  "rows_sha256": "bd743cfdbf6890b042136291c23ae7e5f4be67a3f1260cd09a1c15fa8f5f40f6",
+  "all": {
+    "30": {
+      "windows": 12913,
+      "sequences": 139,
+      "eligible_windows": 6133,
+      "eligible_sequences": 107,
+      "scene_on": {
+        "opposite_any": {
+          "windows": 1175,
+          "fraction": 0.19158649926626448,
+          "sequences_with_any": 80,
+          "sequence_balanced_fraction": 0.16366725321864262,
+          "reliable_prediction_denominator": 6133,
+          "reliable_prediction_numerator": 1175
+        },
+        "opposite_at_least15deg": {
+          "windows": 756,
+          "fraction": 0.12326756888961357,
+          "sequences_with_any": 60,
+          "sequence_balanced_fraction": 0.08147367808934465,
+          "reliable_prediction_denominator": 6133,
+          "reliable_prediction_numerator": 756
+        },
+        "under_half_gt": {
+          "windows": 3377,
+          "fraction": 0.5506277515082342,
+          "sequences_with_any": 100,
+          "sequence_balanced_fraction": 0.5836764722189149,
+          "reliable_prediction_denominator": 6133,
+          "reliable_prediction_numerator": 3377
+        },
+        "near_static_under15deg": {
+          "windows": 1169,
+          "fraction": 0.190608185227458,
+          "sequences_with_any": 94,
+          "sequence_balanced_fraction": 0.2769323019635302,
+          "reliable_prediction_denominator": 6133,
+          "reliable_prediction_numerator": 1169
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 6133,
+          "reliable_prediction_numerator": 0
+        }
+      },
+      "scene_off": {
+        "opposite_any": {
+          "windows": 1114,
+          "fraction": 0.18164030653839883,
+          "sequences_with_any": 83,
+          "sequence_balanced_fraction": 0.18141436472528275,
+          "reliable_prediction_denominator": 6133,
+          "reliable_prediction_numerator": 1114
+        },
+        "opposite_at_least15deg": {
+          "windows": 717,
+          "fraction": 0.1169085276373716,
+          "sequences_with_any": 60,
+          "sequence_balanced_fraction": 0.09210811396460702,
+          "reliable_prediction_denominator": 6133,
+          "reliable_prediction_numerator": 717
+        },
+        "under_half_gt": {
+          "windows": 3347,
+          "fraction": 0.5457361813142019,
+          "sequences_with_any": 99,
+          "sequence_balanced_fraction": 0.5875208811058651,
+          "reliable_prediction_denominator": 6133,
+          "reliable_prediction_numerator": 3347
+        },
+        "near_static_under15deg": {
+          "windows": 1065,
+          "fraction": 0.17365074188814608,
+          "sequences_with_any": 95,
+          "sequence_balanced_fraction": 0.28126240598714036,
+          "reliable_prediction_denominator": 6133,
+          "reliable_prediction_numerator": 1065
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 6133,
+          "reliable_prediction_numerator": 0
+        }
+      }
+    },
+    "60": {
+      "windows": 12913,
+      "sequences": 139,
+      "eligible_windows": 4173,
+      "eligible_sequences": 82,
+      "scene_on": {
+        "opposite_any": {
+          "windows": 831,
+          "fraction": 0.199137311286844,
+          "sequences_with_any": 56,
+          "sequence_balanced_fraction": 0.1460147350661811,
+          "reliable_prediction_denominator": 4173,
+          "reliable_prediction_numerator": 831
+        },
+        "opposite_at_least15deg": {
+          "windows": 620,
+          "fraction": 0.14857416726575606,
+          "sequences_with_any": 50,
+          "sequence_balanced_fraction": 0.10947309843034561,
+          "reliable_prediction_denominator": 4173,
+          "reliable_prediction_numerator": 620
+        },
+        "under_half_gt": {
+          "windows": 2395,
+          "fraction": 0.5739276300023963,
+          "sequences_with_any": 78,
+          "sequence_balanced_fraction": 0.603365786104227,
+          "reliable_prediction_denominator": 4173,
+          "reliable_prediction_numerator": 2395
+        },
+        "near_static_under15deg": {
+          "windows": 475,
+          "fraction": 0.1138269829858615,
+          "sequences_with_any": 52,
+          "sequence_balanced_fraction": 0.1113081800718901,
+          "reliable_prediction_denominator": 4173,
+          "reliable_prediction_numerator": 475
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 4173,
+          "reliable_prediction_numerator": 0
+        }
+      },
+      "scene_off": {
+        "opposite_any": {
+          "windows": 748,
+          "fraction": 0.17924754373352506,
+          "sequences_with_any": 58,
+          "sequence_balanced_fraction": 0.14478927909253955,
+          "reliable_prediction_denominator": 4173,
+          "reliable_prediction_numerator": 748
+        },
+        "opposite_at_least15deg": {
+          "windows": 588,
+          "fraction": 0.1409058231488138,
+          "sequences_with_any": 48,
+          "sequence_balanced_fraction": 0.10354677630376222,
+          "reliable_prediction_denominator": 4173,
+          "reliable_prediction_numerator": 588
+        },
+        "under_half_gt": {
+          "windows": 2380,
+          "fraction": 0.5703330936975797,
+          "sequences_with_any": 80,
+          "sequence_balanced_fraction": 0.6202114906697064,
+          "reliable_prediction_denominator": 4173,
+          "reliable_prediction_numerator": 2380
+        },
+        "near_static_under15deg": {
+          "windows": 387,
+          "fraction": 0.0927390366642703,
+          "sequences_with_any": 57,
+          "sequence_balanced_fraction": 0.13994209924571296,
+          "reliable_prediction_denominator": 4173,
+          "reliable_prediction_numerator": 387
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 4173,
+          "reliable_prediction_numerator": 0
+        }
+      }
+    },
+    "90": {
+      "windows": 12913,
+      "sequences": 139,
+      "eligible_windows": 2877,
+      "eligible_sequences": 62,
+      "scene_on": {
+        "opposite_any": {
+          "windows": 582,
+          "fraction": 0.20229405630865485,
+          "sequences_with_any": 49,
+          "sequence_balanced_fraction": 0.18983605390453975,
+          "reliable_prediction_denominator": 2877,
+          "reliable_prediction_numerator": 582
+        },
+        "opposite_at_least15deg": {
+          "windows": 518,
+          "fraction": 0.18004866180048662,
+          "sequences_with_any": 46,
+          "sequence_balanced_fraction": 0.16553869353871617,
+          "reliable_prediction_denominator": 2877,
+          "reliable_prediction_numerator": 518
+        },
+        "under_half_gt": {
+          "windows": 1655,
+          "fraction": 0.5752519986096628,
+          "sequences_with_any": 61,
+          "sequence_balanced_fraction": 0.6094031136276319,
+          "reliable_prediction_denominator": 2877,
+          "reliable_prediction_numerator": 1655
+        },
+        "near_static_under15deg": {
+          "windows": 171,
+          "fraction": 0.05943691345151199,
+          "sequences_with_any": 31,
+          "sequence_balanced_fraction": 0.06319105922775635,
+          "reliable_prediction_denominator": 2877,
+          "reliable_prediction_numerator": 171
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 2877,
+          "reliable_prediction_numerator": 0
+        }
+      },
+      "scene_off": {
+        "opposite_any": {
+          "windows": 543,
+          "fraction": 0.18873826903023982,
+          "sequences_with_any": 48,
+          "sequence_balanced_fraction": 0.18693327096540804,
+          "reliable_prediction_denominator": 2877,
+          "reliable_prediction_numerator": 543
+        },
+        "opposite_at_least15deg": {
+          "windows": 497,
+          "fraction": 0.17274939172749393,
+          "sequences_with_any": 45,
+          "sequence_balanced_fraction": 0.16216909138290023,
+          "reliable_prediction_denominator": 2877,
+          "reliable_prediction_numerator": 497
+        },
+        "under_half_gt": {
+          "windows": 1666,
+          "fraction": 0.5790754257907542,
+          "sequences_with_any": 62,
+          "sequence_balanced_fraction": 0.6098560626421364,
+          "reliable_prediction_denominator": 2877,
+          "reliable_prediction_numerator": 1666
+        },
+        "near_static_under15deg": {
+          "windows": 115,
+          "fraction": 0.03997219325686479,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.06101377270663229,
+          "reliable_prediction_denominator": 2877,
+          "reliable_prediction_numerator": 115
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 2877,
+          "reliable_prediction_numerator": 0
+        }
+      }
+    }
+  },
+  "datasets": {
+    "camera_wearer": {
+      "windows": 1332,
+      "sequences": 37,
+      "eligible_windows": 146,
+      "eligible_sequences": 22,
+      "scene_on": {
+        "opposite_any": {
+          "windows": 22,
+          "fraction": 0.1506849315068493,
+          "sequences_with_any": 12,
+          "sequence_balanced_fraction": 0.1757159507159507,
+          "reliable_prediction_denominator": 146,
+          "reliable_prediction_numerator": 22
+        },
+        "opposite_at_least15deg": {
+          "windows": 6,
+          "fraction": 0.0410958904109589,
+          "sequences_with_any": 5,
+          "sequence_balanced_fraction": 0.029220779220779224,
+          "reliable_prediction_denominator": 146,
+          "reliable_prediction_numerator": 6
+        },
+        "under_half_gt": {
+          "windows": 105,
+          "fraction": 0.7191780821917808,
+          "sequences_with_any": 20,
+          "sequence_balanced_fraction": 0.7211163836163835,
+          "reliable_prediction_denominator": 146,
+          "reliable_prediction_numerator": 105
+        },
+        "near_static_under15deg": {
+          "windows": 64,
+          "fraction": 0.4383561643835616,
+          "sequences_with_any": 18,
+          "sequence_balanced_fraction": 0.4702575202575202,
+          "reliable_prediction_denominator": 146,
+          "reliable_prediction_numerator": 64
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 146,
+          "reliable_prediction_numerator": 0
+        }
+      },
+      "scene_off": {
+        "opposite_any": {
+          "windows": 27,
+          "fraction": 0.18493150684931506,
+          "sequences_with_any": 14,
+          "sequence_balanced_fraction": 0.20230186480186482,
+          "reliable_prediction_denominator": 146,
+          "reliable_prediction_numerator": 27
+        },
+        "opposite_at_least15deg": {
+          "windows": 6,
+          "fraction": 0.0410958904109589,
+          "sequences_with_any": 6,
+          "sequence_balanced_fraction": 0.10672660672660671,
+          "reliable_prediction_denominator": 146,
+          "reliable_prediction_numerator": 6
+        },
+        "under_half_gt": {
+          "windows": 107,
+          "fraction": 0.7328767123287672,
+          "sequences_with_any": 19,
+          "sequence_balanced_fraction": 0.6681748806748806,
+          "reliable_prediction_denominator": 146,
+          "reliable_prediction_numerator": 107
+        },
+        "near_static_under15deg": {
+          "windows": 70,
+          "fraction": 0.4794520547945205,
+          "sequences_with_any": 17,
+          "sequence_balanced_fraction": 0.4286838161838162,
+          "reliable_prediction_denominator": 146,
+          "reliable_prediction_numerator": 70
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 146,
+          "reliable_prediction_numerator": 0
+        }
+      }
+    },
+    "interactee": {
+      "windows": 1269,
+      "sequences": 41,
+      "eligible_windows": 228,
+      "eligible_sequences": 28,
+      "scene_on": {
+        "opposite_any": {
+          "windows": 36,
+          "fraction": 0.15789473684210525,
+          "sequences_with_any": 15,
+          "sequence_balanced_fraction": 0.12343845928075899,
+          "reliable_prediction_denominator": 228,
+          "reliable_prediction_numerator": 36
+        },
+        "opposite_at_least15deg": {
+          "windows": 12,
+          "fraction": 0.05263157894736842,
+          "sequences_with_any": 5,
+          "sequence_balanced_fraction": 0.027419400774663927,
+          "reliable_prediction_denominator": 228,
+          "reliable_prediction_numerator": 12
+        },
+        "under_half_gt": {
+          "windows": 145,
+          "fraction": 0.6359649122807017,
+          "sequences_with_any": 24,
+          "sequence_balanced_fraction": 0.5928102906729429,
+          "reliable_prediction_denominator": 228,
+          "reliable_prediction_numerator": 145
+        },
+        "near_static_under15deg": {
+          "windows": 89,
+          "fraction": 0.39035087719298245,
+          "sequences_with_any": 23,
+          "sequence_balanced_fraction": 0.4024027054312898,
+          "reliable_prediction_denominator": 228,
+          "reliable_prediction_numerator": 89
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 228,
+          "reliable_prediction_numerator": 0
+        }
+      },
+      "scene_off": {
+        "opposite_any": {
+          "windows": 48,
+          "fraction": 0.21052631578947367,
+          "sequences_with_any": 16,
+          "sequence_balanced_fraction": 0.19169351249821823,
+          "reliable_prediction_denominator": 228,
+          "reliable_prediction_numerator": 48
+        },
+        "opposite_at_least15deg": {
+          "windows": 12,
+          "fraction": 0.05263157894736842,
+          "sequences_with_any": 5,
+          "sequence_balanced_fraction": 0.027419400774663927,
+          "reliable_prediction_denominator": 228,
+          "reliable_prediction_numerator": 12
+        },
+        "under_half_gt": {
+          "windows": 155,
+          "fraction": 0.6798245614035088,
+          "sequences_with_any": 24,
+          "sequence_balanced_fraction": 0.6478270940450096,
+          "reliable_prediction_denominator": 228,
+          "reliable_prediction_numerator": 155
+        },
+        "near_static_under15deg": {
+          "windows": 97,
+          "fraction": 0.42543859649122806,
+          "sequences_with_any": 24,
+          "sequence_balanced_fraction": 0.45674818764331343,
+          "reliable_prediction_denominator": 228,
+          "reliable_prediction_numerator": 97
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 228,
+          "reliable_prediction_numerator": 0
+        }
+      }
+    },
+    "rich": {
+      "windows": 8284,
+      "sequences": 28,
+      "eligible_windows": 4239,
+      "eligible_sequences": 24,
+      "scene_on": {
+        "opposite_any": {
+          "windows": 844,
+          "fraction": 0.199103562160887,
+          "sequences_with_any": 20,
+          "sequence_balanced_fraction": 0.18920311567635287,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 844
+        },
+        "opposite_at_least15deg": {
+          "windows": 510,
+          "fraction": 0.12031139419674451,
+          "sequences_with_any": 18,
+          "sequence_balanced_fraction": 0.11408616341681815,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 510
+        },
+        "under_half_gt": {
+          "windows": 2422,
+          "fraction": 0.5713611700872847,
+          "sequences_with_any": 23,
+          "sequence_balanced_fraction": 0.6206443600043637,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 2422
+        },
+        "near_static_under15deg": {
+          "windows": 884,
+          "fraction": 0.20853974994102384,
+          "sequences_with_any": 22,
+          "sequence_balanced_fraction": 0.20516436756437387,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 884
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 0
+        }
+      },
+      "scene_off": {
+        "opposite_any": {
+          "windows": 767,
+          "fraction": 0.1809389006841236,
+          "sequences_with_any": 20,
+          "sequence_balanced_fraction": 0.16208954336647693,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 767
+        },
+        "opposite_at_least15deg": {
+          "windows": 469,
+          "fraction": 0.11063930172210427,
+          "sequences_with_any": 17,
+          "sequence_balanced_fraction": 0.08748010799546091,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 469
+        },
+        "under_half_gt": {
+          "windows": 2370,
+          "fraction": 0.5590941259731068,
+          "sequences_with_any": 23,
+          "sequence_balanced_fraction": 0.6088284608796328,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 2370
+        },
+        "near_static_under15deg": {
+          "windows": 764,
+          "fraction": 0.18023118660061335,
+          "sequences_with_any": 21,
+          "sequence_balanced_fraction": 0.19369729484485357,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 764
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 0
+        }
+      }
+    },
+    "trumans": {
+      "windows": 2028,
+      "sequences": 33,
+      "eligible_windows": 1520,
+      "eligible_sequences": 33,
+      "scene_on": {
+        "opposite_any": {
+          "windows": 273,
+          "fraction": 0.17960526315789474,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.17119677401667027,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 273
+        },
+        "opposite_at_least15deg": {
+          "windows": 228,
+          "fraction": 0.15,
+          "sequences_with_any": 32,
+          "sequence_balanced_fraction": 0.13845500815177297,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 228
+        },
+        "under_half_gt": {
+          "windows": 705,
+          "fraction": 0.46381578947368424,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.4574142214823127,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 705
+        },
+        "near_static_under15deg": {
+          "windows": 132,
+          "fraction": 0.0868421052631579,
+          "sequences_with_any": 31,
+          "sequence_balanced_fraction": 0.09378394820639979,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 132
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 0
+        }
+      },
+      "scene_off": {
+        "opposite_any": {
+          "windows": 272,
+          "fraction": 0.17894736842105263,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.17282207906723235,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 272
+        },
+        "opposite_at_least15deg": {
+          "windows": 230,
+          "fraction": 0.1513157894736842,
+          "sequences_with_any": 32,
+          "sequence_balanced_fraction": 0.1406156676559379,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 230
+        },
+        "under_half_gt": {
+          "windows": 715,
+          "fraction": 0.47039473684210525,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.46708621845784043,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 715
+        },
+        "near_static_under15deg": {
+          "windows": 134,
+          "fraction": 0.0881578947368421,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.09776815619063027,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 134
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 0
+        }
+      }
+    }
+  },
+  "three_datasets": {
+    "TRUMANS": {
+      "windows": 2028,
+      "sequences": 33,
+      "eligible_windows": 1520,
+      "eligible_sequences": 33,
+      "scene_on": {
+        "opposite_any": {
+          "windows": 273,
+          "fraction": 0.17960526315789474,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.17119677401667027,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 273
+        },
+        "opposite_at_least15deg": {
+          "windows": 228,
+          "fraction": 0.15,
+          "sequences_with_any": 32,
+          "sequence_balanced_fraction": 0.13845500815177297,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 228
+        },
+        "under_half_gt": {
+          "windows": 705,
+          "fraction": 0.46381578947368424,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.4574142214823127,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 705
+        },
+        "near_static_under15deg": {
+          "windows": 132,
+          "fraction": 0.0868421052631579,
+          "sequences_with_any": 31,
+          "sequence_balanced_fraction": 0.09378394820639979,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 132
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 0
+        }
+      },
+      "scene_off": {
+        "opposite_any": {
+          "windows": 272,
+          "fraction": 0.17894736842105263,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.17282207906723235,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 272
+        },
+        "opposite_at_least15deg": {
+          "windows": 230,
+          "fraction": 0.1513157894736842,
+          "sequences_with_any": 32,
+          "sequence_balanced_fraction": 0.1406156676559379,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 230
+        },
+        "under_half_gt": {
+          "windows": 715,
+          "fraction": 0.47039473684210525,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.46708621845784043,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 715
+        },
+        "near_static_under15deg": {
+          "windows": 134,
+          "fraction": 0.0881578947368421,
+          "sequences_with_any": 33,
+          "sequence_balanced_fraction": 0.09776815619063027,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 134
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 1520,
+          "reliable_prediction_numerator": 0
+        }
+      }
+    },
+    "EgoBody": {
+      "windows": 2601,
+      "sequences": 78,
+      "eligible_windows": 374,
+      "eligible_sequences": 50,
+      "scene_on": {
+        "opposite_any": {
+          "windows": 58,
+          "fraction": 0.15508021390374332,
+          "sequences_with_any": 27,
+          "sequence_balanced_fraction": 0.14644055551224336,
+          "reliable_prediction_denominator": 374,
+          "reliable_prediction_numerator": 58
+        },
+        "opposite_at_least15deg": {
+          "windows": 18,
+          "fraction": 0.0481283422459893,
+          "sequences_with_any": 10,
+          "sequence_balanced_fraction": 0.02821200729095466,
+          "reliable_prediction_denominator": 374,
+          "reliable_prediction_numerator": 18
+        },
+        "under_half_gt": {
+          "windows": 250,
+          "fraction": 0.6684491978609626,
+          "sequences_with_any": 44,
+          "sequence_balanced_fraction": 0.6492649715680568,
+          "reliable_prediction_denominator": 374,
+          "reliable_prediction_numerator": 250
+        },
+        "near_static_under15deg": {
+          "windows": 153,
+          "fraction": 0.4090909090909091,
+          "sequences_with_any": 41,
+          "sequence_balanced_fraction": 0.4322588239548313,
+          "reliable_prediction_denominator": 374,
+          "reliable_prediction_numerator": 153
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 374,
+          "reliable_prediction_numerator": 0
+        }
+      },
+      "scene_off": {
+        "opposite_any": {
+          "windows": 75,
+          "fraction": 0.20053475935828877,
+          "sequences_with_any": 30,
+          "sequence_balanced_fraction": 0.19636118751182274,
+          "reliable_prediction_denominator": 374,
+          "reliable_prediction_numerator": 75
+        },
+        "opposite_at_least15deg": {
+          "windows": 18,
+          "fraction": 0.0481283422459893,
+          "sequences_with_any": 11,
+          "sequence_balanced_fraction": 0.062314571393518765,
+          "reliable_prediction_denominator": 374,
+          "reliable_prediction_numerator": 18
+        },
+        "under_half_gt": {
+          "windows": 262,
+          "fraction": 0.7005347593582888,
+          "sequences_with_any": 43,
+          "sequence_balanced_fraction": 0.6567801201621529,
+          "reliable_prediction_denominator": 374,
+          "reliable_prediction_numerator": 262
+        },
+        "near_static_under15deg": {
+          "windows": 167,
+          "fraction": 0.446524064171123,
+          "sequences_with_any": 41,
+          "sequence_balanced_fraction": 0.44439986420113464,
+          "reliable_prediction_denominator": 374,
+          "reliable_prediction_numerator": 167
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 374,
+          "reliable_prediction_numerator": 0
+        }
+      }
+    },
+    "RICH": {
+      "windows": 8284,
+      "sequences": 28,
+      "eligible_windows": 4239,
+      "eligible_sequences": 24,
+      "scene_on": {
+        "opposite_any": {
+          "windows": 844,
+          "fraction": 0.199103562160887,
+          "sequences_with_any": 20,
+          "sequence_balanced_fraction": 0.18920311567635287,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 844
+        },
+        "opposite_at_least15deg": {
+          "windows": 510,
+          "fraction": 0.12031139419674451,
+          "sequences_with_any": 18,
+          "sequence_balanced_fraction": 0.11408616341681815,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 510
+        },
+        "under_half_gt": {
+          "windows": 2422,
+          "fraction": 0.5713611700872847,
+          "sequences_with_any": 23,
+          "sequence_balanced_fraction": 0.6206443600043637,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 2422
+        },
+        "near_static_under15deg": {
+          "windows": 884,
+          "fraction": 0.20853974994102384,
+          "sequences_with_any": 22,
+          "sequence_balanced_fraction": 0.20516436756437387,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 884
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 0
+        }
+      },
+      "scene_off": {
+        "opposite_any": {
+          "windows": 767,
+          "fraction": 0.1809389006841236,
+          "sequences_with_any": 20,
+          "sequence_balanced_fraction": 0.16208954336647693,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 767
+        },
+        "opposite_at_least15deg": {
+          "windows": 469,
+          "fraction": 0.11063930172210427,
+          "sequences_with_any": 17,
+          "sequence_balanced_fraction": 0.08748010799546091,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 469
+        },
+        "under_half_gt": {
+          "windows": 2370,
+          "fraction": 0.5590941259731068,
+          "sequences_with_any": 23,
+          "sequence_balanced_fraction": 0.6088284608796328,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 2370
+        },
+        "near_static_under15deg": {
+          "windows": 764,
+          "fraction": 0.18023118660061335,
+          "sequences_with_any": 21,
+          "sequence_balanced_fraction": 0.19369729484485357,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 764
+        },
+        "prediction_projection_unreliable": {
+          "windows": 0,
+          "fraction": 0.0,
+          "sequences_with_any": 0,
+          "sequence_balanced_fraction": 0.0,
+          "reliable_prediction_denominator": 4239,
+          "reliable_prediction_numerator": 0
+        }
+      }
+    }
+  }
+}
