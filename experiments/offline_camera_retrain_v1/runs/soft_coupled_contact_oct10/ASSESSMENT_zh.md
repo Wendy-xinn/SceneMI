@@ -27,3 +27,8 @@
 训练只原子覆盖last.pt，未生成best或编号副本。失败组已移除优化器，逐个核验保留模型张量相同；保留配置、小型随机状态、模型和结果，支持推理/审计/init-from，不支持resume。baseline及正式55k仍保留完整状态。中间预测缓存已合并并删除。
 
 详细指标见[RESULTS_zh.md](RESULTS_zh.md)，筛查阈值见screen_protocol.json，清理见storage_cleanup.json和cache_cleanup.json。
+
+
+### 后续存储角色更新
+
+身体历史配对500步试验完成后，当前控制已由body_history_replan_oct10/baseline接替。此目录baseline为完成的历史对照，已核验模型张量并移除优化器，保留模型、配置、RNG与指标，支持推理/init-from，不再支持resume；正式55k保持完整。清理记录见../body_history_replan_oct10/storage_cleanup.json。

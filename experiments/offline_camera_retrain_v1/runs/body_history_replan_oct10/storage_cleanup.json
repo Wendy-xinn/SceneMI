@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "path": "experiments/offline_camera_retrain_v1/runs/body_history_replan_oct10/delta/last.pt",
+      "before_bytes": 1450335735,
+      "after_bytes": 487975559,
+      "model_verified": true,
+      "optimizer_removed": true
+    },
+    {
+      "path": "experiments/offline_camera_retrain_v1/runs/soft_coupled_contact_oct10/baseline/last.pt",
+      "before_bytes": 1450207127,
+      "after_bytes": 487932815,
+      "model_verified": true,
+      "optimizer_removed": true
+    }
+  ],
+  "reclaimed_bytes": 1924634488,
+  "retained_full": [
+    "official55k",
+    "bounded_head_adaptation/joint_all1000 warm start",
+    "body_history_replan/baseline500 control",
+    "body_history_replan/delta_history500 useful inpainting candidate"
+  ],
+  "free_after_bytes": 108974411776,
+  "reason": "delta increments alone did not improve; previous soft-loss baseline is completed and superseded as active control, model/RNG/config retained; candidate not accepted for long training"
+}

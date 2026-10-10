@@ -1,0 +1,270 @@
+{
+  "output": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/body_history_replan_oct10/delta_history",
+  "steps": 500,
+  "batch_size": 4,
+  "save_every": 500,
+  "validation_samples": 1,
+  "latent_dim": 256,
+  "dim_mults": [
+    1,
+    2,
+    4
+  ],
+  "lr": 2e-05,
+  "seed": 2026,
+  "scene_dropout": 0.1,
+  "disable_scene": false,
+  "ddim_every": 0,
+  "resume": null,
+  "source_recovery_audit": null,
+  "init_from": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/bounded_head_adaptation_oct10/joint_all/last.pt",
+  "loss_profile": "orientation_v5",
+  "hard_head_rotation": false,
+  "ddim_head_only": false,
+  "allow_legacy_scene_for_diagnostics": false,
+  "temporal_scene_manifest": "experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/manifest.jsonl",
+  "rich_causal_scene": false,
+  "rich_contact_root": "experiments/offline_camera_retrain_v1/data/rich_contact_native20_v1",
+  "contact_loss_weight": 0.1,
+  "body_protocol": "native_v1",
+  "skeleton_profile": "trumans_male_v2",
+  "domain_duration_alpha": 0.5,
+  "trumans_window_protocol": "temporal_valid_v1",
+  "trumans_scene_manifest": "experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/manifest.jsonl",
+  "rich_source": "native20_faceout_oct07",
+  "precision": "float32",
+  "low_noise_fraction": 0.25,
+  "keep_inference_every": 500,
+  "observation_protocol": "joint",
+  "encoder_only_steps": 0,
+  "warmup_steps": 100,
+  "repair_objective": "baseline",
+  "conditioning_trial": "delta_history",
+  "body_conditioning": true,
+  "contact_prediction": true,
+  "source_hash": "b3305238913f87f12ce6b0da2aae2886f86c41cea63b8e0424cd2055e113a25d",
+  "duration_sampling_plan": {
+    "unique_eligible_frames": {
+      "trumans": 685808,
+      "camera_wearer": 62748,
+      "interactee": 60000,
+      "rich": 24320
+    },
+    "domain_probabilities": {
+      "trumans": 0.6205872515204395,
+      "egobody": 0.2625480449502149,
+      "rich": 0.11686470352934575
+    },
+    "group_probabilities": {
+      "trumans": 0.6205872515204395,
+      "rich": 0.11686470352934575,
+      "camera_wearer": 0.13421289735503703,
+      "interactee": 0.1283351475951779
+    },
+    "alpha": 0.5
+  },
+  "expected_window_draw_deficits": {
+    "trumans/64": [
+      33132,
+      344
+    ],
+    "trumans/128": [
+      31615,
+      540
+    ],
+    "trumans/192": [
+      30102,
+      360
+    ],
+    "camera_wearer/64": [
+      2910,
+      120
+    ],
+    "camera_wearer/128": [
+      2643,
+      136
+    ],
+    "camera_wearer/192": [
+      2391,
+      56
+    ],
+    "interactee/64": [
+      2748,
+      92
+    ],
+    "interactee/128": [
+      2451,
+      96
+    ],
+    "interactee/192": [
+      2175,
+      48
+    ],
+    "rich/64": [
+      20414,
+      52
+    ],
+    "rich/128": [
+      16446,
+      96
+    ],
+    "rich/192": [
+      12812,
+      60
+    ]
+  },
+  "trumans_scene_protocol": "TRUMANS per-frame first-hit dynamic; recording causal static memory; target-start global occupancy",
+  "architecture": "SceneMI original AdaGN TemporalUnet + ViT occupancy + BPS MLP",
+  "motion_representation": "SMPL(-X) root translation, 22 identity-centred residual 6D rotations, 22 global joints",
+  "condition": "masked per-joint position/orientation trajectories (head-dominant mixture) + visible static map + camera-centered BPS",
+  "control_mode_probabilities": {
+    "head": 1.0
+  },
+  "scene_condition_enabled": true,
+  "scene_dropout_probability": 0.1,
+  "contact_protocol": "22 native body-region labels; masked BCE on RICH only; no GT contact input; inferred after generated motion",
+  "rich_scene_protocol": "exact20 first-hit causal recording prefix",
+  "losses": "x0 + rotation matrix + FK joint/velocity/acceleration + emphasized head path + stance-foot stillness + direct/FK consistency",
+  "schedule_bucket_steps": {
+    "trumans/128": 135,
+    "camera_wearer/192": 14,
+    "interactee/128": 24,
+    "rich/64": 13,
+    "trumans/192": 90,
+    "trumans/64": 86,
+    "rich/192": 15,
+    "interactee/64": 23,
+    "camera_wearer/128": 34,
+    "interactee/192": 12,
+    "rich/128": 24,
+    "camera_wearer/64": 30
+  },
+  "train_summary": {
+    "trumans": {
+      "64": {
+        "sequences": 469,
+        "starts": 33132
+      },
+      "128": {
+        "sequences": 469,
+        "starts": 31615
+      },
+      "192": {
+        "sequences": 469,
+        "starts": 30102
+      }
+    },
+    "camera_wearer": {
+      "64": {
+        "sequences": 89,
+        "starts": 2910
+      },
+      "128": {
+        "sequences": 84,
+        "starts": 2643
+      },
+      "192": {
+        "sequences": 74,
+        "starts": 2391
+      }
+    },
+    "interactee": {
+      "64": {
+        "sequences": 99,
+        "starts": 2748
+      },
+      "128": {
+        "sequences": 92,
+        "starts": 2451
+      },
+      "192": {
+        "sequences": 79,
+        "starts": 2175
+      }
+    },
+    "rich": {
+      "64": {
+        "sequences": 62,
+        "starts": 20414
+      },
+      "128": {
+        "sequences": 62,
+        "starts": 16446
+      },
+      "192": {
+        "sequences": 52,
+        "starts": 12812
+      }
+    }
+  },
+  "validation_summary": {
+    "trumans": {
+      "64": {
+        "sequences": 33,
+        "starts": 2132
+      },
+      "128": {
+        "sequences": 33,
+        "starts": 2028
+      },
+      "192": {
+        "sequences": 33,
+        "starts": 1923
+      }
+    },
+    "camera_wearer": {
+      "64": {
+        "sequences": 37,
+        "starts": 1437
+      },
+      "128": {
+        "sequences": 35,
+        "starts": 1326
+      },
+      "192": {
+        "sequences": 30,
+        "starts": 1221
+      }
+    },
+    "interactee": {
+      "64": {
+        "sequences": 41,
+        "starts": 1386
+      },
+      "128": {
+        "sequences": 39,
+        "starts": 1263
+      },
+      "192": {
+        "sequences": 31,
+        "starts": 1146
+      }
+    },
+    "rich": {
+      "64": {
+        "sequences": 28,
+        "starts": 10012
+      },
+      "128": {
+        "sequences": 27,
+        "starts": 8237
+      },
+      "192": {
+        "sequences": 23,
+        "starts": 6672
+      }
+    }
+  },
+  "skeleton_template_sha256": "59d39e914b93ae359bc58b3bd293b620a976ece7461e76cd03b08f1385804050",
+  "observation_schema": "typed14-v1: pos3/rot6/pos_mask/rot_mask/pos_conf/rot_conf/type",
+  "observation_simulator": "GT anatomical head simulator; training confidence stays one; exclusive 20pct quota per five steps; mild position norm <=1cm and yaw <=3deg; evaluation synthetic confidence not estimator-calibrated",
+  "objective_sha256": "088206bc44ec2df06841315bdb1502d3f2f7fd87c1193133d715f6732fdc796b",
+  "checkpoint_retention": "one resumable atomic last.pt during training; strip optimizer after rejected completed trial; no best or numbered copies",
+  "repair_protocol": "head-only forecast with optional local increments and soft executed prefix; same future-only losses",
+  "history_frames": 16,
+  "history_training": "50pct clean,40pct coherent3cm/8deg/3deg,10pct10cm/20deg/6deg; deterministic per-step FK-valid perturbation, not simulator",
+  "loss_scope": "all three trials exclude first16 known/history frames from supervised/contact losses",
+  "new_branch_initialization": "zero final layer, exact old model mapping before training",
+  "initial_checkpoint_step": 1000,
+  "initial_total_steps": 56000
+}

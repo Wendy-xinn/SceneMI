@@ -1,0 +1,23 @@
+{
+  "sample_noise_timestep_head_mask_scene_exact_pairing": true,
+  "model_sha256": {
+    "baseline": "c51c8db78da8d6c7f32bbad663ae88dab5b596f119bbe550758a9c203fbf708a",
+    "delta": "a20d29120aefdadc07dbe1dadf4a5cd3d85f3911391a79bb60d55231833e52ef",
+    "delta_history": "d2e101d021287fdb5b984316938e02ad928810d830c9922e0f805ba76e79dd79"
+  },
+  "windows": 48,
+  "replicates": 2,
+  "conditions": [
+    "head_only",
+    "oracle_history",
+    "execution_error",
+    "large_execution_error",
+    "prior_generated_history",
+    "history_only_forecast"
+  ],
+  "unique_predictions": 960,
+  "paired_rows": 576,
+  "metric_scope": "exclude16 history; future112 and first32 forecast frames",
+  "future_causal_probe": "history_only_forecast masks future head and repeats only t15 BPS/valid; initial occupancy is already past-only; no future camera queries or observed surfaces",
+  "limitations": "synthetic execution errors and generated-prefix feedback; no simulator rollout or action-tracking success measured; oracle past history is diagnostic only"
+}
