@@ -43,7 +43,7 @@ def main():
             cache.update(static=(p[take]-origin)@anchor.T,static_times=times[take])
             cache['handles']['static']=server.scene.add_point_cloud('/static',np.empty((0,3),np.float32),colors=(150,160,150),point_size=.008)
             cache['handles']['visible']=server.scene.add_point_cloud('/visible',np.empty((0,3),np.float32),colors=(240,190,40),point_size=.012)
-            cache['handles']['path']=server.scene.add_line_segments('/camera_path',np.stack((cache['camera'][:-1],cache['camera'][1:]),1),colors=(180,45,215),thickness=2)
+            cache['handles']['path']=server.scene.add_line_segments('/camera_path',np.stack((cache['camera'][:-1],cache['camera'][1:]),1),colors=(180,45,215),thickness=2,thickness_units='screen')
             cache['handles']['camera']=server.scene.add_camera_frustum('/camera',fov=1.,aspect=1.4,scale=.15,color=(180,45,215))
             center=cache['vertices']['gt'][16].mean(0);server.initial_camera.look_at=tuple(center);server.initial_camera.position=tuple(center+[2,1,2])
             for client in server.get_clients().values():client.camera.look_at=tuple(center);client.camera.position=tuple(center+[2,1,2])

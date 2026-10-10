@@ -26,13 +26,13 @@ def main():
             vertices,faces,joints=decode_native_mesh(arrays[label+'_motion'][:frame_count],body,models[key]);arrays[label+'_vertices']=(vertices@arrays['anchor_rotation']+arrays['camera'][0]).astype(np.float32);arrays['faces']=faces
         name=f"{case['index']} · {case['identity']['sequence_id']}";cases[name]=(case,arrays)
     server=viser.ViserServer(port=args.port,label='SceneMI · 状态相对生成');server.scene.set_up_direction('+y')
-    if not args.scene_refinement:server.gui.add_markdown('### 状态衔接与软头部约束\n蓝色GT · 橙色55k原权重/原相机输入 · 紫色55k原权重/统一头部输入 · 红色微调模型/固定历史 · 绿色红色基础上样条修正。同一场景与种子；橙色使用原相机输入，紫红绿使用统一头部输入。橙紫没有身体历史输入，红绿前16帧固定实际历史代理。未来头部来自GT模拟，非真实视频效果；默认播放随后1.6秒。修正不读取未来身体或接触GT；动态物体只显示当前姿态。')
+    if not args.scene_refinement:server.gui.add_markdown('### 状态衔接与软头部约束\n蓝色GT · 橙色55k原权重/原相机输入 · 紫色55k原权重/统一头部输入 · 红色微调模型/固定历史 · 绿色红色基础上样条修正。同一场景与种子；橙色使用原相机输入，紫红绿使用统一头部输入。橙紫没有身体历史输入，红绿前16帧固定实际历史代理。未来头部来自GT模拟，非真实视频效果；默认播放完整未来5.6秒，蓝GT与红参考显示，其他对照可手动开启。修正不读取未来身体或接触GT；动态物体只显示当前姿态。')
     if args.scene_refinement:server.gui.add_markdown('**场景接触开发诊断：仅未来1.6秒。** 蓝GT · 红微调固定历史 · 紫旧样条 · 绿场景+软接触。局部观察表面约束不是完整碰撞证书；GT本身与场景有厘米级几何冲突信号，当前不宣称通过物理验收。')
     select=server.gui.add_dropdown('例子',options=list(cases),initial_value=next(iter(cases)))
     play=server.gui.add_checkbox('播放',initial_value=True);speed=server.gui.add_slider('速度',min=.25,max=2,step=.25,initial_value=.75)
-    range_select=server.gui.add_dropdown('播放范围',options=['短期预测16–47','含历史0–47'] if args.scene_refinement else ['短期预测16–47','完整预测16–127','含历史0–127'],initial_value='短期预测16–47')
+    range_select=server.gui.add_dropdown('播放范围',options=['短期预测16–47','含历史0–47'] if args.scene_refinement else ['短期预测16–47','完整预测16–127','含历史0–127'],initial_value='短期预测16–47' if args.scene_refinement else '完整预测16–127')
     frame=server.gui.add_slider('帧',min=0,max=frame_count-1,step=1,initial_value=16);opacity=server.gui.add_slider('人物透明度',min=.1,max=1,step=.05,initial_value=.55)
-    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['55k统一头部输入紫色','旧样条修正紫色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','相机与轨迹']}
+    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','相机与轨迹']}
     follow=server.gui.add_checkbox('观察相机视角',initial_value=False);reset=server.gui.add_button('外部视角');info=server.gui.add_markdown('')
     handles={};active=None;lock=threading.RLock()
     def external(client,g):
