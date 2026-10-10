@@ -26,4 +26,4 @@
 
 ## 后续实测
 
-四组1000步分阶段/独立观测消融已完成9472次预测，见[验收结论](../bounded_head_adaptation_oct10/ASSESSMENT_zh.md)。朝向缺失的收益已独立确认，但完整输入和足部支撑仍有代价；当前追加[冻结完整输入基模型的位置支路](../position_adapter_head_oct10/README_zh.md)验证兼容性。
+四组1000步分阶段/独立观测消融已完成9472次预测，见[验收结论](../bounded_head_adaptation_oct10/ASSESSMENT_zh.md)。朝向缺失的收益已独立确认，但完整输入和足部支撑仍有代价；追加[冻结完整输入基模型的位置支路](../position_adapter_head_oct10/ASSESSMENT_zh.md)已完成：完整输出零差异，仅位置误差改善9.17cm，但穿透上升、方向未可靠改善，未通过联合验收。

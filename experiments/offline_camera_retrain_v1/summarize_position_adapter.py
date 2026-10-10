@@ -10,8 +10,8 @@ def main():
    vals=[v['mpjpe_cm'],v['pa_mpjpe_mm'],v['pelvis_orientation_mean_deg'],v['gt_stance_slide_cm_frame'],v['support_floating_m']*100,v['support_penetration_m']*100,v['opposite_turn']*100]
    text.append('|'+c+'/'+label+'|'+'|'.join(f'{x:.3f}' for x in vals)+'|')
  b=s['position_only']['all']['variants']['joint_all'];a=s['position_only']['all']['variants']['adapter']
- improved=a['mpjpe_cm']<b['mpjpe_cm'] and a['gt_stance_slide_cm_frame']<=b['gt_stance_slide_cm_frame'] and a['support_floating_m']<=b['support_floating_m'] and a['support_penetration_m']<=b['support_penetration_m']
- text+=['','仅位置同时改善误差、脚滑及支撑代理：'+str(improved)+'。这只是探索性筛查，不能证明完整输入转身已解决。','', '核心128帧144窗口按人体序列平均，另检查64/192帧；192窗口×2种子×2条件×2模型=1536次预测。观测为GT模拟理想关节轨迹，场景缓存未加入估计误差，尚不能代表真实视频输入。悬空和穿透为GT支撑足代理指标。','', '独立48窗口面板评估与否另行记录。未启动新的55k；未加硬投影。']
+ improved=a['mpjpe_cm']<b['mpjpe_cm'] and a['gt_stance_slide_cm_frame']<=b['gt_stance_slide_cm_frame'] and a['support_floating_m']<=b['support_floating_m'] and a['support_penetration_m']<=b['support_penetration_m'] and a['pelvis_orientation_mean_deg']<=b['pelvis_orientation_mean_deg'] and a['opposite_turn']<=b['opposite_turn'] and a['under_turn']<=b['under_turn']
+ text+=['','仅位置改善误差，且朝向、转身率、脚滑及支撑代理均不退化：'+str(improved)+'。这只是探索性筛查，不能证明完整输入转身已解决。','', '核心128帧144窗口按人体序列平均，另检查64/192帧；192窗口×2种子×2条件×2模型=1536次预测。观测为GT模拟理想关节轨迹，场景缓存未加入估计误差，尚不能代表真实视频输入。悬空和穿透为GT支撑足代理指标。','', ('开发筛查通过，独立48窗口结果另行确认。' if improved else '联合筛查未通过，预留48窗口面板未使用。')+'未启动新的55k；未加硬投影。详见[验收结论](ASSESSMENT_zh.md)。']
  (OUT/'RESULTS_zh.md').write_text('\n'.join(text)+'\n')
  (OUT/'verification.json').write_text(json.dumps(dict(evaluation_completed=True,quality_screen_passed=improved,complete_input_unchanged=audit['maximum_complete_motion_difference']<=1e-6,new_55k_started=False,hard_projection=False),indent=2))
  print('\n'.join(text))

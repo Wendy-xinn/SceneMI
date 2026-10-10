@@ -96,4 +96,4 @@ RICH固定4窗口有场景接触F1=0.9302，含正样本区域macro F1=0.8150；
 
 ### 10月10日追加分阶段消融
 
-四组1000步、9472预测已完成。20%朝向缺失训练改善仅位置误差约9cm，但完整输入、朝向及脚部仍有退化；分阶段和小幅漂移未通过联合验收。见[结论](../bounded_head_adaptation_oct10/ASSESSMENT_zh.md)。正在追加[冻结基模型的位置支路](../position_adapter_head_oct10/README_zh.md)，当前不替换55k。
+四组1000步、9472预测已完成。20%朝向缺失训练改善仅位置误差约9cm，但完整输入、朝向及脚部仍有退化；分阶段和小幅漂移未通过联合验收。见[结论](../bounded_head_adaptation_oct10/ASSESSMENT_zh.md)。追加[冻结基模型的位置支路](../position_adapter_head_oct10/ASSESSMENT_zh.md)也已完成1000步和1536预测，完整输入输出一致，只有位置误差改善9.17cm，但穿透上升且转身未可靠改善，当前不替换55k。
