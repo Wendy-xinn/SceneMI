@@ -23,10 +23,15 @@ class AdapterTests(unittest.TestCase):
    optimizer=torch.optim.AdamW(model.position_encoder.parameters(),lr=.01)
    output=model(x,t,batch,control_mask=mask);output.square().mean().backward();optimizer.step()
    self.assertEqual(before,frozen_base_fingerprint(model))
+   self.assertTrue(all(p.grad is None for n,p in model.named_parameters() if not n.startswith('position_encoder.')))
    changed=model(x,t,batch,control_mask=mask)
    self.assertFalse(torch.equal(changed,base(x,t,batch,control_mask=mask)))
    batch['trajectory'][:,:,15,3:]=torch.randn(2,64,6)*100
    self.assertTrue(torch.equal(changed,model(x,t,batch,control_mask=mask)))
+   batch['observation_meta'][:,:32,15,1]=1
+   mixed=model(x,t,batch,control_mask=mask);full=base(x,t,batch,control_mask=mask)
+   self.assertTrue(torch.equal(mixed[:,:32],full[:,:32]))
+   self.assertTrue(torch.equal(mixed[:,32:],changed[:,32:]))
    batch['observation_meta'][:,:,15,1]=1
    self.assertTrue(torch.equal(base(x,t,batch,control_mask=mask),model(x,t,batch,control_mask=mask)))
    self.assertTrue(torch.equal(base(x,t,batch,control_mask=mask,use_control=False),model(x,t,batch,control_mask=mask,use_control=False)))

@@ -93,3 +93,7 @@ RICH固定4窗口有场景接触F1=0.9302，含正样本区域macro F1=0.8150；
 ## 头部语义与可靠性筛选（2026-10-10）
 
 四组各500步配对短训和7936次预测已完成。仅位置输入下有明确收益，完整轨迹的朝向与支撑未改善；悬浮降低同时穿透代理上升，当前不通过联合验收。原55k权重保留，未启动新长训。见[结果](../typed_head_track_oct10/RESULTS_zh.md)、[验收结论](../typed_head_track_oct10/ASSESSMENT_zh.md)与[下一轮方案](../typed_head_track_oct10/NEXT_zh.md)。
+
+### 10月10日追加分阶段消融
+
+四组1000步、9472预测已完成。20%朝向缺失训练改善仅位置误差约9cm，但完整输入、朝向及脚部仍有退化；分阶段和小幅漂移未通过联合验收。见[结论](../bounded_head_adaptation_oct10/ASSESSMENT_zh.md)。正在追加[冻结基模型的位置支路](../position_adapter_head_oct10/README_zh.md)，当前不替换55k。
