@@ -91,10 +91,11 @@ class SkinAnchorCache:
 
 def skin_points(motion, asset):
     t = len(motion)
+    count = len(asset['vertices'])
     local = rotation_from_6d(motion[:, 3:135].reshape(t, 22, 6))
     eye = torch.eye(3, device=motion.device, dtype=motion.dtype)
     rotations = torch.cat((local, asset['extra_rotations'][None].expand(t, -1, -1, -1)), 1)
-    posed = asset['vertices'][None] + ((rotations[:, 1:] - eye).reshape(t, -1) @ asset['posedirs']).reshape(t, 67, 3)
+    posed = asset['vertices'][None] + ((rotations[:, 1:] - eye).reshape(t, -1) @ asset['posedirs']).reshape(t, count, 3)
     _, transforms = batch_rigid_transform(rotations, asset['joints'][None].expand(t, -1, -1), asset['parents'])
     transform = torch.einsum('vj,tjkl->tvkl', asset['weights'], transforms)
     homogeneous = torch.cat((posed, torch.ones_like(posed[:, :, :1])), -1)

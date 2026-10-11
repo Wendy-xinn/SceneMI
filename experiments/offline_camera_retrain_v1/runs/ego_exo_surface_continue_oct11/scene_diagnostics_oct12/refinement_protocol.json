@@ -1,0 +1,63 @@
+{
+  "status": "completed",
+  "selection": [
+    [
+      3,
+      "exo"
+    ],
+    [
+      4,
+      "exo"
+    ],
+    [
+      5,
+      "exo"
+    ],
+    [
+      6,
+      "exo"
+    ],
+    [
+      7,
+      "exo"
+    ],
+    [
+      8,
+      "exo"
+    ],
+    [
+      3,
+      "ego"
+    ],
+    [
+      4,
+      "ego"
+    ],
+    [
+      5,
+      "ego"
+    ]
+  ],
+  "variants": {
+    "root_only": {
+      "pose": false,
+      "geometry": false
+    },
+    "track_pose": {
+      "pose": true,
+      "geometry": false
+    },
+    "track_pose_surface": {
+      "pose": true,
+      "geometry": true
+    }
+  },
+  "iterations": 100,
+  "base": "cached 3k model, same 20-step DDIM seed",
+  "checkpoint_sha256": "344011ff6192382c8bad4982ba9abad10ab301d2700247806bf7f76dae5fd0b2",
+  "training": false,
+  "geometry_input": "own-view static observed points only; exo fixed observer; exclude ego union normal ambiguity",
+  "score_selection": "all registered settings reported; no GT reranking",
+  "dynamic_geometry": "not refined; EgoBody pilot has no dynamic objects",
+  "elapsed_s": 230.72954754601233
+}
