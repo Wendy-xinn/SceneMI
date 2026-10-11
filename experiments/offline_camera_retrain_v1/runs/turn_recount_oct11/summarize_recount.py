@@ -106,7 +106,7 @@ def main():
     fields = ['index', 'group', 'sequence', 'start_index', 'length', 'gt_turn_deg',
               'prediction_turn_deg', 'opposite_at_least15deg', 'under_half_gt']
     with (RUN / 'affected_windows.csv').open('w', newline='') as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator='\n')
         writer.writeheader()
         for r in rows:
             f = flags(r, 'scene_on')
