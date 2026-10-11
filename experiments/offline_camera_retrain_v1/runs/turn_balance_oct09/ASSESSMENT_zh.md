@@ -17,3 +17,8 @@
 ## 中断恢复与持久化
 
 中断前v3日志到达1000步，但best.pt/last.pt缺少zip中心目录，无法加载；损坏目录保留为orientation_v3_interrupted。此次从同一55k按相同协议重跑v3，并完成v3_hard。原训练已采用临时写入加rename，新代码补充文件与目录fsync、保存中断回归测试。两组有效checkpoint均可加载，三组训练样本trace逐行一致。30项相关测试通过。
+
+
+## 2026-10-11存储更新
+
+v3/v3_hard的last/best已剥离optimizer，模型逐张量哈希一致、配置及RNG保留；这些退休候选只供评估。清理记录见[storage_cleanup.json](../projected_replay_final_oct11/storage_cleanup.json)。

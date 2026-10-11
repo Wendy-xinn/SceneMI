@@ -35,3 +35,8 @@ TRUMANS和EgoBody wearer改善较多；EgoBody interactee的W-MPJPE 12.892→13.
 按[NEXT_zh.md](NEXT_zh.md)先版本化camera/body_joint观测类型与位置/旋转各自的mask和可靠性，并加入时间相关偏差、漂移和缺失训练。GT人体目标保持不变，头部继续软条件。支持只有位置的关键点；未知安装关系不能用GT做推理标定。之后做新的配对短训和独立录制验证，同时保留骨盆、胸部、局部颈部、脚滑和支撑审核。
 
 保留本轮neck_parent权重用于对照或后续初始化，不覆盖原55k，也没有启动新的长训。[完整指标](RESULTS_zh.md)、[配对区间](paired_intervals.json)、[GT局部旋转参考](gt_rotation_reference.json)、[输入类型统计](head_condition_semantics.json)及[数据依赖恢复](SOURCE_RECOVERY_zh.md)均已保存。权重和动作缓存仅留本机，源码和小型报告上传GitHub。
+
+
+## 2026-10-11存储更新
+
+非首选noise_gate的last/best已剥离optimizer，模型逐张量哈希一致、配置及RNG保留；neck_parent与官方55k未改。清理记录见[storage_cleanup.json](../projected_replay_final_oct11/storage_cleanup.json)。

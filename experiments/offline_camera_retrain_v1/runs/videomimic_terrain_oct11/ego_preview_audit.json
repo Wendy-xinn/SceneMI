@@ -1,0 +1,38 @@
+{
+  "sequence": "megahunter_megasam_reconstruction_results_IMG_8044_cam01_frame_0_350_subsample_1",
+  "source": "/home/wenxin/projects/VideoMimic/simulation/data/videomimic_captures/megahunter_megasam_reconstruction_results_IMG_8044_cam01_frame_0_350_subsample_1",
+  "body": "G1 robot, NOT SMPL or original human",
+  "frames": 300,
+  "header_fps": 30.0,
+  "source_rate_preserved": true,
+  "timing": "header FPS only, not certified source RGB timing; export hardcodes30/subsample and simulation config contains overrides. Resolve before20Hz training.",
+  "gravity_axis": "world+Z, retained for preview",
+  "quat": "xyzw",
+  "camera_mount_in_head_visual_frame_m": [
+    0.09398403018712997,
+    5.731062628910877e-05,
+    0.48469117283821106
+  ],
+  "mount_reason": "head_link origin is near torso; mesh extent places actual head0.325..0.531m above frame",
+  "camera_SO3_max_error": 1.7881393432617188e-07,
+  "camera_clearance_m": 0.02,
+  "camera_protocol": "virtual sensor rigidly mounted on moving G1 head mesh; proper +Z optical / +Y up renderer frame; fixed20deg downward mounting pitch for terrain preview, not a human head calibration",
+  "geometry": "first-hit mesh raycasting; static background plus same-frame robot occlusion with head removed; body owners100 are occluders, never scene hits; no accumulated body or dynamic trails",
+  "fov_degrees": [
+    66.56,
+    40.49
+  ],
+  "depth_resolution": [
+    128,
+    96
+  ],
+  "depth_range_m": [
+    0.05,
+    4.0
+  ],
+  "visible_scene_fraction_mean": 0.9390169270833333,
+  "terrain_height_span_m": 1.8570664,
+  "elapsed_s": 25.465285485988716,
+  "current55k_training_ready": false,
+  "missing": "native human SMPL parameters, reliable source timestamps and human/world alignment"
+}

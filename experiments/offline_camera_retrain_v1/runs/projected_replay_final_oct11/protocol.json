@@ -1,0 +1,21 @@
+{
+  "status": "training_complete",
+  "base": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/last.pt",
+  "base_sha256": "35795d68bbb3d9f9747af250584770401ebe5161dc5db16219cc4796b0d3c56d",
+  "steps": 1200,
+  "frames": 128,
+  "batch_size": 2,
+  "seed": 2026101151,
+  "lr": 2e-05,
+  "initialization": "original55k only",
+  "training": "50% ordinary clean-target diffusion; 50% original TRAIN all-noise generation projected to inferred root/head path then re-noised t<300. Student raw supervised to TRAIN target; projected student geometry also supervised for native stance/swing/landing and rotation coordination.",
+  "inference": "all-noise DDIM20; constrained x0 last10 steps; original55k supplies generated initial root offset, never GT root. Raw sampling is diagnostic.",
+  "observed_mount": "fixed TRAIN-only synthetic TRUMANS mount; not real PV calibration",
+  "limitations": "inferred heading hypothesis assumes head/body turn coupling; not valid universally; planar foot geometry targets do not certify full body collision",
+  "acceptance": "both850/906 two seeds: root mean error at least20% lower than original; GT stance and native foot stance slide <=original*1.02, ankle crossing <=original+.02; fixed broader development panel aggregate same non-regression gates. No further tuning if failed.",
+  "sampling": "projected replay batches use TRAIN TRUMANS only: the TRAIN synthetic mount is not real EgoBody PV calibration. Remaining batches follow original duration sampler.",
+  "free_disk_before": 70178758656,
+  "source_sha256": "15d984deb2c1d2fd318bb10acc088f7814d1c2510cb14d5243a9ed9af73afa9d",
+  "elapsed_s": 913.0761132980115,
+  "free_disk_after": 69095436288
+}

@@ -1,0 +1,3217 @@
+{
+  "checked": "2026-10-11",
+  "issues": [
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/26",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/26/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/26/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/26/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/26",
+      "id": 4687493417,
+      "node_id": "I_kwDOOSmR488AAAABF2V5KQ",
+      "number": 26,
+      "title": "Error installing mmcv==1.3.9: ModuleNotFoundError: No module named 'pkg_resources'",
+      "user": {
+        "login": "YaNLlan-ljb",
+        "id": 204547656,
+        "node_id": "U_kgDODDEmSA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/204547656?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/YaNLlan-ljb",
+        "html_url": "https://github.com/YaNLlan-ljb",
+        "followers_url": "https://api.github.com/users/YaNLlan-ljb/followers",
+        "following_url": "https://api.github.com/users/YaNLlan-ljb/following{/other_user}",
+        "gists_url": "https://api.github.com/users/YaNLlan-ljb/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/YaNLlan-ljb/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/YaNLlan-ljb/subscriptions",
+        "organizations_url": "https://api.github.com/users/YaNLlan-ljb/orgs",
+        "repos_url": "https://api.github.com/users/YaNLlan-ljb/repos",
+        "events_url": "https://api.github.com/users/YaNLlan-ljb/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/YaNLlan-ljb/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 0,
+      "created_at": "2026-06-17T22:24:50Z",
+      "updated_at": "2026-06-20T21:05:26Z",
+      "closed_at": "2026-06-20T21:05:26Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Hi, thanks for your work on this project.\n\nI am installing the dependencies required by `real2sim` following the installation instructions. However, I encountered an error when installing `mmcv==1.3.9`.\n\nThe command I ran was:\n\n```bash\nmim install mmcv==1.3.9\n```\n\nIt failed with the following traceback:\n\n```text\nTraceback (most recent call last):\n  File \"/root/miniconda3/envs/vm1rs/bin/mim\", line 3, in <module>\n    from mim.cli import cli\n  File \"/root/miniconda3/envs/vm1rs/lib/python3.12/site-packages/mim/__init__.py\", line 16, in <module>\n    from .commands import (\n  File \"/root/miniconda3/envs/vm1rs/lib/python3.12/site-packages/mim/commands/__init__.py\", line 2, in <module>\n    from .download import download\n  File \"/root/miniconda3/envs/vm1rs/lib/python3.12/site-packages/mim/commands/download.py\", line 12, in <module>\n    from mim.click import (\n  File \"/root/miniconda3/envs/vm1rs/lib/python3.12/site-packages/mim/click/__init__.py\", line 2, in <module>\n    from .autocompletion import (\n  File \"/root/miniconda3/envs/vm1rs/lib/python3.12/site-packages/mim/click/autocompletion.py\", line 2, in <module>\n    from mim.commands.list import list_package\n  File \"/root/miniconda3/envs/vm1rs/lib/python3.12/site-packages/mim/commands/list.py\", line 4, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n```\n\nMy environment includes:\n\n```text\nPython: 3.12\nCUDA: 12.4\nPyTorch: 2.5.1+cu124\n```\n\nBefore running:\n\n```bash\npip install --upgrade setuptools\n```\n\nmy `setuptools` version was:\n\n```text\nsetuptools==60.2.0\n```\n\nAfter upgrading, it became:\n\n```text\nsetuptools==82.0.1\n```\n\nIt seems that newer versions of `setuptools` no longer provide `pkg_resources` in the same way, while `mim` / `mmcv` still depends on it. Is there any good solution to this problem?\n",
+      "closed_by": {
+        "login": "YaNLlan-ljb",
+        "id": 204547656,
+        "node_id": "U_kgDODDEmSA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/204547656?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/YaNLlan-ljb",
+        "html_url": "https://github.com/YaNLlan-ljb",
+        "followers_url": "https://api.github.com/users/YaNLlan-ljb/followers",
+        "following_url": "https://api.github.com/users/YaNLlan-ljb/following{/other_user}",
+        "gists_url": "https://api.github.com/users/YaNLlan-ljb/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/YaNLlan-ljb/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/YaNLlan-ljb/subscriptions",
+        "organizations_url": "https://api.github.com/users/YaNLlan-ljb/orgs",
+        "repos_url": "https://api.github.com/users/YaNLlan-ljb/repos",
+        "events_url": "https://api.github.com/users/YaNLlan-ljb/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/YaNLlan-ljb/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/26/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/26/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/25",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/25/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/25/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/25/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/25",
+      "id": 4426855654,
+      "node_id": "I_kwDOOSmR488AAAABB9x05g",
+      "number": 25,
+      "title": "Reproducing VideoMimic",
+      "user": {
+        "login": "Bromophenone",
+        "id": 167162550,
+        "node_id": "U_kgDOCfaytg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/167162550?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Bromophenone",
+        "html_url": "https://github.com/Bromophenone",
+        "followers_url": "https://api.github.com/users/Bromophenone/followers",
+        "following_url": "https://api.github.com/users/Bromophenone/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Bromophenone/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Bromophenone/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Bromophenone/subscriptions",
+        "organizations_url": "https://api.github.com/users/Bromophenone/orgs",
+        "repos_url": "https://api.github.com/users/Bromophenone/repos",
+        "events_url": "https://api.github.com/users/Bromophenone/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Bromophenone/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2026-05-12T06:48:43Z",
+      "updated_at": "2026-06-03T08:47:42Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Is anyone currently reproducing VideoMimic? I\u2019m also trying to reproduce this work. Could I discuss it with you?\n",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/25/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/25/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/24",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/24/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/24/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/24/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/24",
+      "id": 4184805104,
+      "node_id": "I_kwDOOSmR4875bw7w",
+      "number": 24,
+      "title": "Sim2Real for Sitting & Standing Policy \u2013 Debug Mode Stability & Model Usage Questions",
+      "user": {
+        "login": "yozhu-stack",
+        "id": 248838541,
+        "node_id": "U_kgDODtT5jQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/248838541?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/yozhu-stack",
+        "html_url": "https://github.com/yozhu-stack",
+        "followers_url": "https://api.github.com/users/yozhu-stack/followers",
+        "following_url": "https://api.github.com/users/yozhu-stack/following{/other_user}",
+        "gists_url": "https://api.github.com/users/yozhu-stack/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/yozhu-stack/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/yozhu-stack/subscriptions",
+        "organizations_url": "https://api.github.com/users/yozhu-stack/orgs",
+        "repos_url": "https://api.github.com/users/yozhu-stack/repos",
+        "events_url": "https://api.github.com/users/yozhu-stack/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/yozhu-stack/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 0,
+      "created_at": "2026-04-01T07:29:24Z",
+      "updated_at": "2026-04-01T07:31:36Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Thank you for your work!\nI am currently preparing to run sim-to-real testing for the sitting and standing policy.\n\nIssue 1: Debug Mode Stability\n\nWhen entering debug mode, the robot becomes unpowered , and without a gantry or external support, it is very difficult to stabilize it manually.\n\nQuestion:\nBased on your experience, is it recommended to start testing with a gantry (or similar support system) to ensure safety and stability during early-stage sim-to-real validation?\n\nIssue 2: Default Model Path vs Heightmap Model Path\n\nI have some confusion regarding the usage of the default model and the heightmap model.\n\nFrom my current understanding:\n\nBoth paths point to the same distilled policy model\nThe main difference is whether heightmap (camera) input is used\n\nQuestions:\nIs my understanding correct that both configurations use the same trained/distilled model?\nIs the only difference the inclusion of heightmap (vision) input?\nAre there any additional differences in observation space or deployment setup that I should be aware of?\n",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/24/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/24/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/23",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/23/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/23/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/23/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/23",
+      "id": 4093869609,
+      "node_id": "I_kwDOOSmR4870A34p",
+      "number": 23,
+      "title": "numpy version warning and `ImportError: cannot import name 'Deprecated' from 'wandb.proto.wandb_telemetry_pb2'` with `vm1recon`",
+      "user": {
+        "login": "Luffy966",
+        "id": 56009034,
+        "node_id": "MDQ6VXNlcjU2MDA5MDM0",
+        "avatar_url": "https://avatars.githubusercontent.com/u/56009034?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Luffy966",
+        "html_url": "https://github.com/Luffy966",
+        "followers_url": "https://api.github.com/users/Luffy966/followers",
+        "following_url": "https://api.github.com/users/Luffy966/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Luffy966/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Luffy966/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Luffy966/subscriptions",
+        "organizations_url": "https://api.github.com/users/Luffy966/orgs",
+        "repos_url": "https://api.github.com/users/Luffy966/repos",
+        "events_url": "https://api.github.com/users/Luffy966/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Luffy966/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 0,
+      "created_at": "2026-03-18T09:26:31Z",
+      "updated_at": "2026-03-18T09:26:41Z",
+      "closed_at": "2026-03-18T09:26:41Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "I'd like to record how I solved this issue.\n\n# Reproduction\nI have successfully download the environment `vm1recon` by following https://github.com/hongsukchoi/VideoMimic/blob/main/real2sim/docs/setup.md#2-reconstruction-environment-vm1reocn\n\nNotably, I additionally ran `pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118` before downloading `torch-scatter` but after `pip install -r requirements.txt`, because it downloaded the cpu version of torch 2.0.1  with previous commands.\n\nThen I followed the instruction in https://github.com/hongsukchoi/VideoMimic/issues/17#issuecomment-3561278478 to solve issues with NKSR.\n\n# Issue and Solution\nEverything went well until I ran `python stage1_reconstruction/megasam_reconstruction.py ...`. I met the following warning and error:\n```\nA module that was compiled using NumPy 1.x cannot be run in                                                                                                                                                       NumPy 2.2.6 as it may crash. To support both 1.x and 2.x                                                                                                                                                          versions of NumPy, modules must be compiled with NumPy 2.0.                                                                                                                                                       Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.                                                                                                                                                                                                                                                                                                                                                                 If you are a user of the module, the easiest solution will be to                                                                                                                                                  downgrade to 'numpy<2' or try to upgrade the affected module.                                                                                                                                                     We expect that some modules will need time to support NumPy 2. \n\nTraceback (most recent call last):  File \"....../VideoMimic/real2sim/stage1_reconstruction/megasam_reconstruction.py\", line 25, in <module>                                         from torchvision.transforms import Compose\n......\nImportError: cannot import name 'Deprecated' from 'wandb.proto.wandb_telemetry_pb2' (~/anaconda3/envs/vm1recon/lib/python3.10/site-packages/wandb/proto/wandb_telemetry_pb2.py)\n```\n\nBy downgradion `pip install \"numpy<2\"` and `pip install wandb==0.16.6 protobuf==3.20.3`, it works fine now.",
+      "closed_by": {
+        "login": "Luffy966",
+        "id": 56009034,
+        "node_id": "MDQ6VXNlcjU2MDA5MDM0",
+        "avatar_url": "https://avatars.githubusercontent.com/u/56009034?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Luffy966",
+        "html_url": "https://github.com/Luffy966",
+        "followers_url": "https://api.github.com/users/Luffy966/followers",
+        "following_url": "https://api.github.com/users/Luffy966/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Luffy966/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Luffy966/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Luffy966/subscriptions",
+        "organizations_url": "https://api.github.com/users/Luffy966/orgs",
+        "repos_url": "https://api.github.com/users/Luffy966/repos",
+        "events_url": "https://api.github.com/users/Luffy966/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Luffy966/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/23/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/23/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/22",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/22/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/22/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/22/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/22",
+      "id": 3884444117,
+      "node_id": "I_kwDOOSmR487nh-nV",
+      "number": 22,
+      "title": "Qestions regarding simulation stages and numerical instability",
+      "user": {
+        "login": "Bromophenone",
+        "id": 167162550,
+        "node_id": "U_kgDOCfaytg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/167162550?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Bromophenone",
+        "html_url": "https://github.com/Bromophenone",
+        "followers_url": "https://api.github.com/users/Bromophenone/followers",
+        "following_url": "https://api.github.com/users/Bromophenone/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Bromophenone/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Bromophenone/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Bromophenone/subscriptions",
+        "organizations_url": "https://api.github.com/users/Bromophenone/orgs",
+        "repos_url": "https://api.github.com/users/Bromophenone/repos",
+        "events_url": "https://api.github.com/users/Bromophenone/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Bromophenone/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 0,
+      "created_at": "2026-02-02T07:37:00Z",
+      "updated_at": "2026-03-20T03:25:58Z",
+      "closed_at": "2026-03-20T03:25:58Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Thank you for your open-source work. I have a few questions regarding the simulation phases:\n\nNumber of Iterations per Stage: In the four simulation training stages, how many iterations are required for each stage u\n\n<img width=\"1031\" height=\"598\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/9761f590-1c77-47b7-9976-8d9980f8e18c\" />\n\nnder your experimental setup ?\n\nNumerical Instability Issues: Did you encounter any numerical instability issues during your training process (see attached image)? Even when I use the official checkpoint for the second stage and train for 20k epochs, this problem persists. Are there any specific points to pay attention to regarding this?\n\nTotal Training Time: Under your experimental setup, what was the total time taken for the entire training pipeline?\n\nI would greatly appreciate your help. Thank you again for your open-source contributions!",
+      "closed_by": {
+        "login": "Bromophenone",
+        "id": 167162550,
+        "node_id": "U_kgDOCfaytg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/167162550?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Bromophenone",
+        "html_url": "https://github.com/Bromophenone",
+        "followers_url": "https://api.github.com/users/Bromophenone/followers",
+        "following_url": "https://api.github.com/users/Bromophenone/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Bromophenone/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Bromophenone/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Bromophenone/subscriptions",
+        "organizations_url": "https://api.github.com/users/Bromophenone/orgs",
+        "repos_url": "https://api.github.com/users/Bromophenone/repos",
+        "events_url": "https://api.github.com/users/Bromophenone/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Bromophenone/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/22/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/22/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/21",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/21/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/21/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/21/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/21",
+      "id": 3763605681,
+      "node_id": "I_kwDOOSmR487gVBCx",
+      "number": 21,
+      "title": "Issue with G1 + Inspire Dexterous Hands",
+      "user": {
+        "login": "francesco-dorati",
+        "id": 36961170,
+        "node_id": "MDQ6VXNlcjM2OTYxMTcw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/36961170?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/francesco-dorati",
+        "html_url": "https://github.com/francesco-dorati",
+        "followers_url": "https://api.github.com/users/francesco-dorati/followers",
+        "following_url": "https://api.github.com/users/francesco-dorati/following{/other_user}",
+        "gists_url": "https://api.github.com/users/francesco-dorati/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/francesco-dorati/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/francesco-dorati/subscriptions",
+        "organizations_url": "https://api.github.com/users/francesco-dorati/orgs",
+        "repos_url": "https://api.github.com/users/francesco-dorati/repos",
+        "events_url": "https://api.github.com/users/francesco-dorati/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/francesco-dorati/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 2,
+      "created_at": "2025-12-26T15:04:58Z",
+      "updated_at": "2026-06-01T09:52:35Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "### Environment\n- **Robot:** Unitree G1 with Inspire Dexterous Hands\n- **Hardware:** 1x RTX 4090\n\n\n### Problem Summary\nI'm attempting to adapt VideoMimic for a G1 robot equipped with Inspire Dexterous hands, but encountering issues both with the pretrained model and retraining from scratch.\n\n### Issue 1: Pretrained Sim2Real Model Unstable with Dexterous Hands\n**Observation:** When loading the pretrained sim2real policy on the modified URDF (G1 + Inspire hands), the robot leans forward significantly and cannot maintain balance.\nUsing `g1_with_inspire_hands.urdf` with fixed wrist and hand joints.\n\n**Question:** Are the pretrained models sensitive to mass distribution changes? Should the models be retrained even for minor changes like adding hands?\n\n### Issue 2: Stage 1 Retraining Stagnates at Low Performance\n**Training attempts** (both failed similarly):\n\n**Attempt 1: Original `train_stage_1.sh` script**\nUsed default training script with modified URDF and only walking clips (`lafan_replay_data/*walk*.pkl`)\n\n**Attempt 2: Modified config using `g1_deepmimic_mocap` task and paper's rewards**\n- Task: `g1_deepmimic_mocap` (noticed this task exists but isn't used in original scripts)\n- Config changes based on paper recommendations:\n```\nREWARD_ACTION_RATE = -8.0\nREW_POS_ERROR_THRESHOLD = 0.3 \nCONTACT_NO_VEL = -100.0\nALIVE_REWARD = 300.0\nUSE_ALT_FILES = False \nAMASS_TERRAIN_DIFFICULTY = 1 \n...\n```\n- Walking clips only\n- Added hand links to `penalize_contacts_on`\n\n\n**Both attempts show identical stagnation:**\n- **Success rate:** Plateaus at ~0.02 (2%)\n- **Episode length:** Stuck around 30 steps \n- **Training duration:** ~50,000 iterations over 3 days each\n\n### Questions for Authors\n1. **URDF Compatibility:** Should Stage 1 policies be retrained when modifying the robot URDF (adding hands)? Or should the pretrained model transfer better?\n2. **Task Selection:** I notice `g1_deepmimic_mocap` task exists but isn't used in `train_stage_1.sh`. What's the intended use case for this task? Should it be used for retraining with modified morphologies?\n3. **What should I do to resolve this stagnation?** Any guidance on debugging approach, configuration changes, or expected training behavior?\n",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/21/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/21/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/20",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/20/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/20/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/20/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/20",
+      "id": 3650489764,
+      "node_id": "I_kwDOOSmR487Zlg2k",
+      "number": 20,
+      "title": "download the dataset and weights",
+      "user": {
+        "login": "markAKB",
+        "id": 31383717,
+        "node_id": "MDQ6VXNlcjMxMzgzNzE3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/31383717?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/markAKB",
+        "html_url": "https://github.com/markAKB",
+        "followers_url": "https://api.github.com/users/markAKB/followers",
+        "following_url": "https://api.github.com/users/markAKB/following{/other_user}",
+        "gists_url": "https://api.github.com/users/markAKB/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/markAKB/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/markAKB/subscriptions",
+        "organizations_url": "https://api.github.com/users/markAKB/orgs",
+        "repos_url": "https://api.github.com/users/markAKB/repos",
+        "events_url": "https://api.github.com/users/markAKB/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/markAKB/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 3,
+      "created_at": "2025-11-21T07:02:03Z",
+      "updated_at": "2025-11-21T08:27:03Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Excellent work. However, due to our company's network restrictions, we are unable to access Google Drive. Could you please let me know if there are alternative ways to download the dataset and weights for this project?",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/20/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/20/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/19",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/19/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/19/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/19/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/19",
+      "id": 3620079869,
+      "node_id": "I_kwDOOSmR487Xxgj9",
+      "number": 19,
+      "title": "Missing `g1_29dof_anneal_23dof_foot.urdf` - asset download broken",
+      "user": {
+        "login": "kicat217",
+        "id": 243734430,
+        "node_id": "U_kgDODocXng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/243734430?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/kicat217",
+        "html_url": "https://github.com/kicat217",
+        "followers_url": "https://api.github.com/users/kicat217/followers",
+        "following_url": "https://api.github.com/users/kicat217/following{/other_user}",
+        "gists_url": "https://api.github.com/users/kicat217/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/kicat217/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/kicat217/subscriptions",
+        "organizations_url": "https://api.github.com/users/kicat217/orgs",
+        "repos_url": "https://api.github.com/users/kicat217/repos",
+        "events_url": "https://api.github.com/users/kicat217/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/kicat217/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2025-11-13T08:21:45Z",
+      "updated_at": "2025-11-16T16:02:16Z",
+      "closed_at": "2025-11-16T16:02:16Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Hi,\nThanks for your great work!\n\nThe asset download link appears broken, and the retargeting code references `g1_29dof_anneal_23dof_foot.urdf` which isn't in the repo. Could you please share this file or document how you modified the standard `g1_29dof.urdf` (relaxed joint limits, etc.)?\n\nCurrently falling back to the standard URDF, but this messes up retargeting. \n\nThanks again!",
+      "closed_by": {
+        "login": "kicat217",
+        "id": 243734430,
+        "node_id": "U_kgDODocXng",
+        "avatar_url": "https://avatars.githubusercontent.com/u/243734430?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/kicat217",
+        "html_url": "https://github.com/kicat217",
+        "followers_url": "https://api.github.com/users/kicat217/followers",
+        "following_url": "https://api.github.com/users/kicat217/following{/other_user}",
+        "gists_url": "https://api.github.com/users/kicat217/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/kicat217/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/kicat217/subscriptions",
+        "organizations_url": "https://api.github.com/users/kicat217/orgs",
+        "repos_url": "https://api.github.com/users/kicat217/repos",
+        "events_url": "https://api.github.com/users/kicat217/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/kicat217/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/19/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/19/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/18",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/18/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/18/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/18/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/18",
+      "id": 3593465170,
+      "node_id": "I_kwDOOSmR487WL-1S",
+      "number": 18,
+      "title": "Any other mothed to download asset?",
+      "user": {
+        "login": "hbj52152",
+        "id": 134506408,
+        "node_id": "U_kgDOCARnqA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/134506408?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hbj52152",
+        "html_url": "https://github.com/hbj52152",
+        "followers_url": "https://api.github.com/users/hbj52152/followers",
+        "following_url": "https://api.github.com/users/hbj52152/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hbj52152/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hbj52152/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hbj52152/subscriptions",
+        "organizations_url": "https://api.github.com/users/hbj52152/orgs",
+        "repos_url": "https://api.github.com/users/hbj52152/repos",
+        "events_url": "https://api.github.com/users/hbj52152/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hbj52152/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2025-11-06T01:32:40Z",
+      "updated_at": "2025-11-14T03:46:13Z",
+      "closed_at": "2025-11-14T03:46:13Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Hi, thanks for your work. And I am now following the process to download and test. \n\nI got one problem, and no suitable solution, can anyone help me?\n\nfollowing  this  real2sim/docs/directory.md\n```bash\n./download_gdrive_data.sh\n```\n\nfailed might due to Internet Speed.\n\nI tried to download data from \n```\n# following gdown --id \"$FILE_ID\" --output \"$ZIP_NAME\"\n\n https://drive.google.com/uc?export=download&id=19S36Pqo-_99E0Pnqe8LVYuP_LDfej6wa\n```\n\nbut the file is 32G, and when click, it said that too many users click or download that file.\n\nSo, any other method to download?\n\nThanks.",
+      "closed_by": {
+        "login": "hongsukchoi",
+        "id": 31090011,
+        "node_id": "MDQ6VXNlcjMxMDkwMDEx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/31090011?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hongsukchoi",
+        "html_url": "https://github.com/hongsukchoi",
+        "followers_url": "https://api.github.com/users/hongsukchoi/followers",
+        "following_url": "https://api.github.com/users/hongsukchoi/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hongsukchoi/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hongsukchoi/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hongsukchoi/subscriptions",
+        "organizations_url": "https://api.github.com/users/hongsukchoi/orgs",
+        "repos_url": "https://api.github.com/users/hongsukchoi/repos",
+        "events_url": "https://api.github.com/users/hongsukchoi/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hongsukchoi/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/18/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/18/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/17",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/17/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/17/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/17/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/17",
+      "id": 3589910484,
+      "node_id": "I_kwDOOSmR487V-a_U",
+      "number": 17,
+      "title": "ERROR while installing NKSR",
+      "user": {
+        "login": "Wenzhi-Huang",
+        "id": 204964860,
+        "node_id": "U_kgDODDeD_A",
+        "avatar_url": "https://avatars.githubusercontent.com/u/204964860?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Wenzhi-Huang",
+        "html_url": "https://github.com/Wenzhi-Huang",
+        "followers_url": "https://api.github.com/users/Wenzhi-Huang/followers",
+        "following_url": "https://api.github.com/users/Wenzhi-Huang/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Wenzhi-Huang/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Wenzhi-Huang/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Wenzhi-Huang/subscriptions",
+        "organizations_url": "https://api.github.com/users/Wenzhi-Huang/orgs",
+        "repos_url": "https://api.github.com/users/Wenzhi-Huang/repos",
+        "events_url": "https://api.github.com/users/Wenzhi-Huang/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Wenzhi-Huang/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 2,
+      "created_at": "2025-11-05T08:37:15Z",
+      "updated_at": "2025-11-21T09:23:49Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "  Thank you for your work!\n  I'm installing the dependencies required by real2sim according to the instructions. But I'm now encountering problems installing NKSR.\n  When I run the following command:\n\n`pip install -f https://pycg.huangjh.tech/packages/index.html python-pycg[full]==0.5.2 randomname pykdtree plyfile flatten-dict pyntcloud`\n\n  it throws an error:\n\n`Could not fetch URL https://pycg.huangjh.tech/packages/index.html: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pycg.huangjh.tech', port=443): Max retries exceeded with url: /packages/index.html (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1017)'))) - skipping\nINFO: pip is looking at multiple versions of python-pycg[full] to determine which version is compatible with other requirements. This could take a while.\nERROR: Could not find a version that satisfies the requirement open3d==0.16.1+c65c7ef; extra == \"full\" (from python-pycg[full]) (from versions: 0.16.0, 0.17.0, 0.18.0, 0.19.0)\nERROR: No matching distribution found for open3d==0.16.1+c65c7ef; extra == \"full\"`\n\n It seems I can't connect to \"https://pycg.huangjh.tech/packages/index.html\" and download the corresponding version of Open3D. Is there any good solution to this problem?",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/17/reactions",
+        "total_count": 2,
+        "+1": 1,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 1
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/17/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/16",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/16/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/16/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/16/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/16",
+      "id": 3580757283,
+      "node_id": "I_kwDOOSmR487VbgUj",
+      "number": 16,
+      "title": "Wrong environment name in setup guide",
+      "user": {
+        "login": "CrisWang6",
+        "id": 152083254,
+        "node_id": "U_kgDOCRCbNg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/152083254?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/CrisWang6",
+        "html_url": "https://github.com/CrisWang6",
+        "followers_url": "https://api.github.com/users/CrisWang6/followers",
+        "following_url": "https://api.github.com/users/CrisWang6/following{/other_user}",
+        "gists_url": "https://api.github.com/users/CrisWang6/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/CrisWang6/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/CrisWang6/subscriptions",
+        "organizations_url": "https://api.github.com/users/CrisWang6/orgs",
+        "repos_url": "https://api.github.com/users/CrisWang6/repos",
+        "events_url": "https://api.github.com/users/CrisWang6/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/CrisWang6/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2025-11-03T06:33:46Z",
+      "updated_at": "2025-11-21T00:01:17Z",
+      "closed_at": "2025-11-21T00:01:17Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "In the section 2 of the setup guide(2. Reconstruction Environment (vm1reocn)), we found the package from requirements.txt & environment.yml donn't install correctly, which is because the mistake at the very beginning: while creating the environment **vm1reocn**, author make it **vm1recon** in the doc  'environment.yml', locate at /third_party/megasam-package. \n\n",
+      "closed_by": {
+        "login": "hongsukchoi",
+        "id": 31090011,
+        "node_id": "MDQ6VXNlcjMxMDkwMDEx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/31090011?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hongsukchoi",
+        "html_url": "https://github.com/hongsukchoi",
+        "followers_url": "https://api.github.com/users/hongsukchoi/followers",
+        "following_url": "https://api.github.com/users/hongsukchoi/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hongsukchoi/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hongsukchoi/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hongsukchoi/subscriptions",
+        "organizations_url": "https://api.github.com/users/hongsukchoi/orgs",
+        "repos_url": "https://api.github.com/users/hongsukchoi/repos",
+        "events_url": "https://api.github.com/users/hongsukchoi/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hongsukchoi/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/16/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/16/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/15",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/15/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/15/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/15/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/15",
+      "id": 3521743724,
+      "node_id": "I_kwDOOSmR487R6Yts",
+      "number": 15,
+      "title": "the match between given checkpoint and config",
+      "user": {
+        "login": "ganyz",
+        "id": 30039015,
+        "node_id": "MDQ6VXNlcjMwMDM5MDE1",
+        "avatar_url": "https://avatars.githubusercontent.com/u/30039015?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/ganyz",
+        "html_url": "https://github.com/ganyz",
+        "followers_url": "https://api.github.com/users/ganyz/followers",
+        "following_url": "https://api.github.com/users/ganyz/following{/other_user}",
+        "gists_url": "https://api.github.com/users/ganyz/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/ganyz/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/ganyz/subscriptions",
+        "organizations_url": "https://api.github.com/users/ganyz/orgs",
+        "repos_url": "https://api.github.com/users/ganyz/repos",
+        "events_url": "https://api.github.com/users/ganyz/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/ganyz/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 5,
+      "created_at": "2025-10-16T12:45:45Z",
+      "updated_at": "2026-01-26T10:26:42Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Thanks for the great work!\nThere is a problem when I sim2real:\nI use the the checkpoint below but the robot becomes unstable and moves on its own.\n<img width=\"2396\" height=\"432\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/68d1685f-9d5d-4c2f-beef-37bdaca58079\" />\nI want to check if the config matches the checkpoint, so  I want to ask the config with the given checkpoint. Is the given g1_deepmimic_config.py? \n\n<img width=\"947\" height=\"756\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/fc14313e-61ec-417a-8259-bb4eb1b3a809\" />\n\n<img width=\"718\" height=\"659\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/08146673-4f42-4e16-8228-4403231e3005\" />\n\n<img width=\"722\" height=\"1136\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/ad6b09f3-8927-442f-98ab-2657e4e0fb58\" />\n\n\nThanks so much!",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/15/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/15/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/14",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/14/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/14/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/14/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/14",
+      "id": 3506785078,
+      "node_id": "I_kwDOOSmR487RBUs2",
+      "number": 14,
+      "title": "The problem of retargeting",
+      "user": {
+        "login": "Micro-han",
+        "id": 44750451,
+        "node_id": "MDQ6VXNlcjQ0NzUwNDUx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/44750451?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Micro-han",
+        "html_url": "https://github.com/Micro-han",
+        "followers_url": "https://api.github.com/users/Micro-han/followers",
+        "following_url": "https://api.github.com/users/Micro-han/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Micro-han/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Micro-han/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Micro-han/subscriptions",
+        "organizations_url": "https://api.github.com/users/Micro-han/orgs",
+        "repos_url": "https://api.github.com/users/Micro-han/repos",
+        "events_url": "https://api.github.com/users/Micro-han/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Micro-han/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 2,
+      "created_at": "2025-10-12T07:39:10Z",
+      "updated_at": "2025-11-21T02:42:43Z",
+      "closed_at": "2025-11-21T02:42:43Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Thank you for your work, but in actual use, I found that the robot and the human body model are not aligned. How can I solve this problem?\n\n![Image](https://github.com/user-attachments/assets/b9b988e2-054b-4557-bd9b-b6639821097c)",
+      "closed_by": {
+        "login": "hongsukchoi",
+        "id": 31090011,
+        "node_id": "MDQ6VXNlcjMxMDkwMDEx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/31090011?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hongsukchoi",
+        "html_url": "https://github.com/hongsukchoi",
+        "followers_url": "https://api.github.com/users/hongsukchoi/followers",
+        "following_url": "https://api.github.com/users/hongsukchoi/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hongsukchoi/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hongsukchoi/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hongsukchoi/subscriptions",
+        "organizations_url": "https://api.github.com/users/hongsukchoi/orgs",
+        "repos_url": "https://api.github.com/users/hongsukchoi/repos",
+        "events_url": "https://api.github.com/users/hongsukchoi/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hongsukchoi/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/14/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/14/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/13",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/13/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/13/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/13/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/13",
+      "id": 3504970208,
+      "node_id": "I_kwDOOSmR487Q6Zng",
+      "number": 13,
+      "title": "sam2_segmentation.py",
+      "user": {
+        "login": "ls0417",
+        "id": 181936052,
+        "node_id": "U_kgDOCtgftA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/181936052?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/ls0417",
+        "html_url": "https://github.com/ls0417",
+        "followers_url": "https://api.github.com/users/ls0417/followers",
+        "following_url": "https://api.github.com/users/ls0417/following{/other_user}",
+        "gists_url": "https://api.github.com/users/ls0417/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/ls0417/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/ls0417/subscriptions",
+        "organizations_url": "https://api.github.com/users/ls0417/orgs",
+        "repos_url": "https://api.github.com/users/ls0417/repos",
+        "events_url": "https://api.github.com/users/ls0417/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/ls0417/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 3,
+      "created_at": "2025-10-11T01:44:33Z",
+      "updated_at": "2025-11-21T08:01:34Z",
+      "closed_at": "2025-11-21T08:01:34Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Thanks for your great work\uff01\nWhen I run your sam2_segmentation.py using the sitting_standing dataset you provided, the bbox values x1, y1, x2, y2 in the output mask_json are all 0. Why is this?\n{\"mask_name\": \"mask_00003.npy\", \"mask_height\": 1920, \"mask_width\": 1080, \"promote_type\": \"mask\", \"labels\": {\"1\": {\"instance_id\": 1, \"class_name\": \"person\", \"x1\": 0, \"y1\": 0, \"x2\": 0, \"y2\": 0, \"logit\": 0.0, \"score\": 0.2566264271736145}}, \"area_ranking\": [1], \"areas\": {\"1\": 0}}\nThis is one set of data I obtained from json_data. Could you please help me take a look at what might be causing this? \nThank you very much\uff01",
+      "closed_by": {
+        "login": "hongsukchoi",
+        "id": 31090011,
+        "node_id": "MDQ6VXNlcjMxMDkwMDEx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/31090011?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hongsukchoi",
+        "html_url": "https://github.com/hongsukchoi",
+        "followers_url": "https://api.github.com/users/hongsukchoi/followers",
+        "following_url": "https://api.github.com/users/hongsukchoi/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hongsukchoi/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hongsukchoi/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hongsukchoi/subscriptions",
+        "organizations_url": "https://api.github.com/users/hongsukchoi/orgs",
+        "repos_url": "https://api.github.com/users/hongsukchoi/repos",
+        "events_url": "https://api.github.com/users/hongsukchoi/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hongsukchoi/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/13/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/13/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/12",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/12/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/12/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/12/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/12",
+      "id": 3502544035,
+      "node_id": "I_kwDOOSmR487QxJSj",
+      "number": 12,
+      "title": "replay_data.py",
+      "user": {
+        "login": "hint7",
+        "id": 56393966,
+        "node_id": "MDQ6VXNlcjU2MzkzOTY2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/56393966?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hint7",
+        "html_url": "https://github.com/hint7",
+        "followers_url": "https://api.github.com/users/hint7/followers",
+        "following_url": "https://api.github.com/users/hint7/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hint7/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hint7/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hint7/subscriptions",
+        "organizations_url": "https://api.github.com/users/hint7/orgs",
+        "repos_url": "https://api.github.com/users/hint7/repos",
+        "events_url": "https://api.github.com/users/hint7/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hint7/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2025-10-10T11:47:29Z",
+      "updated_at": "2025-10-14T20:16:53Z",
+      "closed_at": "2025-10-14T20:16:53Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Thank you for your open-source work\uff01In `simulation/videomimic_gym/README.md`, it says:\n\n> The loading is done in replay_data.py (legged_gym/utils/replay_data.py). This class takes a list of pickle files. We then sample from it using the member methods. The motion clips are ingested as .pkl files. They are expected to be picked up from a file called retargeted_data which is cloned into the same folder as the videomimic_gym repository. You can get some example data from Arthur's repo here (https://github.com/ArthurAllshire/retargeted_data)\n\n1. However, replay_data.py now seems to be located in legged_gym/tensor_utils/replay_data.py.\n2. Also, https://github.com/ArthurAllshire/retargeted_data appears to be empty\n",
+      "closed_by": {
+        "login": "ArthurAllshire",
+        "id": 7277887,
+        "node_id": "MDQ6VXNlcjcyNzc4ODc=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/7277887?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/ArthurAllshire",
+        "html_url": "https://github.com/ArthurAllshire",
+        "followers_url": "https://api.github.com/users/ArthurAllshire/followers",
+        "following_url": "https://api.github.com/users/ArthurAllshire/following{/other_user}",
+        "gists_url": "https://api.github.com/users/ArthurAllshire/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/ArthurAllshire/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/ArthurAllshire/subscriptions",
+        "organizations_url": "https://api.github.com/users/ArthurAllshire/orgs",
+        "repos_url": "https://api.github.com/users/ArthurAllshire/repos",
+        "events_url": "https://api.github.com/users/ArthurAllshire/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/ArthurAllshire/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/12/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/12/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/11",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/11/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/11/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/11/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/11",
+      "id": 3463516257,
+      "node_id": "I_kwDOOSmR487OcRBh",
+      "number": 11,
+      "title": "Question on the paper",
+      "user": {
+        "login": "victkk",
+        "id": 38455236,
+        "node_id": "MDQ6VXNlcjM4NDU1MjM2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/38455236?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/victkk",
+        "html_url": "https://github.com/victkk",
+        "followers_url": "https://api.github.com/users/victkk/followers",
+        "following_url": "https://api.github.com/users/victkk/following{/other_user}",
+        "gists_url": "https://api.github.com/users/victkk/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/victkk/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/victkk/subscriptions",
+        "organizations_url": "https://api.github.com/users/victkk/orgs",
+        "repos_url": "https://api.github.com/users/victkk/repos",
+        "events_url": "https://api.github.com/users/victkk/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/victkk/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2025-09-29T06:53:44Z",
+      "updated_at": "2025-10-16T20:11:13Z",
+      "closed_at": "2025-10-16T20:11:06Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Great work! I have some questions on the paper. As I'm not quite familiar with this field my questions might be silly, but I would really appreciate it if you could explain it.\nWhat does the per-frame local pose \u03b8 means? From VIMO's paper it seems to mean the pose(T \u2208 R4*4) of human body in the camera coordinate. But this interpretation doesn't quite make sense since you are optimizing \u03b8 together with the global human body pose \u03b3, \u03d5.  Another interpretation would be local pose \u03b8 represents the relative rotation between limbs and body. But then SMPL 3D joints J could be calculated from the \u03b2 and \u03b8, making J redundant in this sentence.\n<img width=\"1395\" height=\"401\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/44481c12-ec29-4857-8b24-ec137f381593\" />",
+      "closed_by": {
+        "login": "hongsukchoi",
+        "id": 31090011,
+        "node_id": "MDQ6VXNlcjMxMDkwMDEx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/31090011?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hongsukchoi",
+        "html_url": "https://github.com/hongsukchoi",
+        "followers_url": "https://api.github.com/users/hongsukchoi/followers",
+        "following_url": "https://api.github.com/users/hongsukchoi/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hongsukchoi/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hongsukchoi/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hongsukchoi/subscriptions",
+        "organizations_url": "https://api.github.com/users/hongsukchoi/orgs",
+        "repos_url": "https://api.github.com/users/hongsukchoi/repos",
+        "events_url": "https://api.github.com/users/hongsukchoi/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hongsukchoi/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/11/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/11/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/10",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/10/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/10/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/10/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/10",
+      "id": 3421504536,
+      "node_id": "I_kwDOOSmR487L8AQY",
+      "number": 10,
+      "title": "Video Dataset",
+      "user": {
+        "login": "Starry-lei",
+        "id": 30002136,
+        "node_id": "MDQ6VXNlcjMwMDAyMTM2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/30002136?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Starry-lei",
+        "html_url": "https://github.com/Starry-lei",
+        "followers_url": "https://api.github.com/users/Starry-lei/followers",
+        "following_url": "https://api.github.com/users/Starry-lei/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Starry-lei/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Starry-lei/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Starry-lei/subscriptions",
+        "organizations_url": "https://api.github.com/users/Starry-lei/orgs",
+        "repos_url": "https://api.github.com/users/Starry-lei/repos",
+        "events_url": "https://api.github.com/users/Starry-lei/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Starry-lei/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 2,
+      "created_at": "2025-09-16T10:11:22Z",
+      "updated_at": "2025-10-18T09:19:31Z",
+      "closed_at": "2025-09-18T03:30:44Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Hi, thanks for sharing the great work. I am wondering where the video data is. I didn't find it.",
+      "closed_by": {
+        "login": "Starry-lei",
+        "id": 30002136,
+        "node_id": "MDQ6VXNlcjMwMDAyMTM2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/30002136?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Starry-lei",
+        "html_url": "https://github.com/Starry-lei",
+        "followers_url": "https://api.github.com/users/Starry-lei/followers",
+        "following_url": "https://api.github.com/users/Starry-lei/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Starry-lei/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Starry-lei/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Starry-lei/subscriptions",
+        "organizations_url": "https://api.github.com/users/Starry-lei/orgs",
+        "repos_url": "https://api.github.com/users/Starry-lei/repos",
+        "events_url": "https://api.github.com/users/Starry-lei/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Starry-lei/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/10/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/10/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/9",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/9/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/9/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/9/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/9",
+      "id": 3382669868,
+      "node_id": "I_kwDOOSmR487Jn3Is",
+      "number": 9,
+      "title": "Unable to download NKSR weights (ks.pth)",
+      "user": {
+        "login": "QiuJunning",
+        "id": 82791534,
+        "node_id": "MDQ6VXNlcjgyNzkxNTM0",
+        "avatar_url": "https://avatars.githubusercontent.com/u/82791534?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/QiuJunning",
+        "html_url": "https://github.com/QiuJunning",
+        "followers_url": "https://api.github.com/users/QiuJunning/followers",
+        "following_url": "https://api.github.com/users/QiuJunning/following{/other_user}",
+        "gists_url": "https://api.github.com/users/QiuJunning/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/QiuJunning/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/QiuJunning/subscriptions",
+        "organizations_url": "https://api.github.com/users/QiuJunning/orgs",
+        "repos_url": "https://api.github.com/users/QiuJunning/repos",
+        "events_url": "https://api.github.com/users/QiuJunning/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/QiuJunning/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 4,
+      "created_at": "2025-09-04T08:22:28Z",
+      "updated_at": "2025-09-04T09:39:55Z",
+      "closed_at": "2025-09-04T09:39:55Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Hi, thanks for the amazing Video Mimic project!\n\nThe code tries to download NKSR weights from:\n\n\nhttps://nksr.huangjh.tech/ks.pth\n\n\nBut the link is not accessible. Could you please provide a working link or include the weights in the project assets?\n\nThanks!",
+      "closed_by": {
+        "login": "QiuJunning",
+        "id": 82791534,
+        "node_id": "MDQ6VXNlcjgyNzkxNTM0",
+        "avatar_url": "https://avatars.githubusercontent.com/u/82791534?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/QiuJunning",
+        "html_url": "https://github.com/QiuJunning",
+        "followers_url": "https://api.github.com/users/QiuJunning/followers",
+        "following_url": "https://api.github.com/users/QiuJunning/following{/other_user}",
+        "gists_url": "https://api.github.com/users/QiuJunning/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/QiuJunning/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/QiuJunning/subscriptions",
+        "organizations_url": "https://api.github.com/users/QiuJunning/orgs",
+        "repos_url": "https://api.github.com/users/QiuJunning/repos",
+        "events_url": "https://api.github.com/users/QiuJunning/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/QiuJunning/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/9/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/9/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/8",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/8/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/8/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/8/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/8",
+      "id": 3332780368,
+      "node_id": "I_kwDOOSmR487GpjFQ",
+      "number": 8,
+      "title": "Render retargeting results",
+      "user": {
+        "login": "Strive21",
+        "id": 76506186,
+        "node_id": "MDQ6VXNlcjc2NTA2MTg2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/76506186?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Strive21",
+        "html_url": "https://github.com/Strive21",
+        "followers_url": "https://api.github.com/users/Strive21/followers",
+        "following_url": "https://api.github.com/users/Strive21/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Strive21/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Strive21/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Strive21/subscriptions",
+        "organizations_url": "https://api.github.com/users/Strive21/orgs",
+        "repos_url": "https://api.github.com/users/Strive21/repos",
+        "events_url": "https://api.github.com/users/Strive21/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Strive21/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "open",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 4,
+      "created_at": "2025-08-19T03:45:02Z",
+      "updated_at": "2025-08-27T10:01:57Z",
+      "closed_at": null,
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Thanks for your great work\uff01Viser can be used to visualize robots and 3DGS together, but it need to open up WebGUI. I would like to know if there is any code to render robots and 3dgs at the same time without opening a client.",
+      "closed_by": null,
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/8/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/8/timeline",
+      "performed_via_github_app": null,
+      "state_reason": null,
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/7",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/7/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/7/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/7/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/7",
+      "id": 3290186180,
+      "node_id": "I_kwDOOSmR487EHEHE",
+      "number": 7,
+      "title": "Missing Dependencies",
+      "user": {
+        "login": "Nabla7",
+        "id": 49974392,
+        "node_id": "MDQ6VXNlcjQ5OTc0Mzky",
+        "avatar_url": "https://avatars.githubusercontent.com/u/49974392?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Nabla7",
+        "html_url": "https://github.com/Nabla7",
+        "followers_url": "https://api.github.com/users/Nabla7/followers",
+        "following_url": "https://api.github.com/users/Nabla7/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Nabla7/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Nabla7/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Nabla7/subscriptions",
+        "organizations_url": "https://api.github.com/users/Nabla7/orgs",
+        "repos_url": "https://api.github.com/users/Nabla7/repos",
+        "events_url": "https://api.github.com/users/Nabla7/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Nabla7/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2025-08-04T17:06:02Z",
+      "updated_at": "2025-10-16T20:06:45Z",
+      "closed_at": "2025-10-16T20:06:45Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "I've been going through the setup as described in real2sim/docs/setup.md \n\nThe conda vm1rs environment built successfully\n\nHowever, for vm1recon at line 169 the requirements.txt file seems to be missing from the megasam-package directory.\n\nIf I skip step 169 and get to line 180  `pip install torch-scatter==2.1.2` then I get the following error:\n\n___\n(vm1recon) root@C.24685995:~/VideoMimic/real2sim/third_party/megasam-package$ pip install torch-scatter==2.1.2\nCollecting torch-scatter==2.1.2\n  Using cached torch_scatter-2.1.2.tar.gz (108 kB)\n  Preparing metadata (setup.py) ... error\n  error: subprocess-exited-with-error\n  \n  \u00d7 python setup.py egg_info did not run successfully.\n  \u2502 exit code: 1\n  \u2570\u2500> [8 lines of output]\n      Traceback (most recent call last):\n        File \"<string>\", line 2, in <module>\n        File \"<pip-setuptools-caller>\", line 35, in <module>\n        File \"/tmp/pip-install-3pxd5jot/torch-scatter_c6cb7db431374317bf26ea5b5b87aa02/setup.py\", line 8, in <module>\n          import torch\n        File \"/root/miniconda3/envs/vm1recon/lib/python3.10/site-packages/torch/__init__.py\", line 229, in <module>\n          from torch._C import *  # noqa: F403\n      ImportError: /root/miniconda3/envs/vm1recon/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so: undefined symbol: iJIT_NotifyEvent\n      [end of output]\n  \n  note: This error originates from a subprocess, and is likely not a problem with pip.\nerror: metadata-generation-failed\n\n\u00d7 Encountered error while generating package metadata.\n\u2570\u2500> See above for output.\n\nnote: This is an issue with the package mentioned above, not pip.\nhint: See above for details.\n___\n\nMost likely this is due to the missing requirements.txt from the megasam-package, for now I will try to build the repository according to the megasam-package README.\n\nMany thanks in advance",
+      "closed_by": {
+        "login": "hongsukchoi",
+        "id": 31090011,
+        "node_id": "MDQ6VXNlcjMxMDkwMDEx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/31090011?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hongsukchoi",
+        "html_url": "https://github.com/hongsukchoi",
+        "followers_url": "https://api.github.com/users/hongsukchoi/followers",
+        "following_url": "https://api.github.com/users/hongsukchoi/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hongsukchoi/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hongsukchoi/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hongsukchoi/subscriptions",
+        "organizations_url": "https://api.github.com/users/hongsukchoi/orgs",
+        "repos_url": "https://api.github.com/users/hongsukchoi/repos",
+        "events_url": "https://api.github.com/users/hongsukchoi/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hongsukchoi/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/7/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/7/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/6",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/6/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/6/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/6/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/6",
+      "id": 3268296446,
+      "node_id": "I_kwDOOSmR487Czj7-",
+      "number": 6,
+      "title": "Question - Is \"base linear velocity\" used as an observation?",
+      "user": {
+        "login": "arjun-kg",
+        "id": 22150161,
+        "node_id": "MDQ6VXNlcjIyMTUwMTYx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/22150161?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arjun-kg",
+        "html_url": "https://github.com/arjun-kg",
+        "followers_url": "https://api.github.com/users/arjun-kg/followers",
+        "following_url": "https://api.github.com/users/arjun-kg/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arjun-kg/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arjun-kg/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arjun-kg/subscriptions",
+        "organizations_url": "https://api.github.com/users/arjun-kg/orgs",
+        "repos_url": "https://api.github.com/users/arjun-kg/repos",
+        "events_url": "https://api.github.com/users/arjun-kg/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arjun-kg/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2025-07-28T06:19:08Z",
+      "updated_at": "2025-08-26T01:31:58Z",
+      "closed_at": "2025-08-26T01:31:58Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "I wanted to know if the base linear velocity of the humanoid is used as an observation, since it is not mentioned in the \"Observations\" section of the paper under \"Policy Learning\" but it is mentioned in the appendix. \n\nSince base linear velocity is not readily obtained from relevant sensors and needs to be estimated but there is no mention of this in the paper, so I was just curious. \n\nThank you! ",
+      "closed_by": {
+        "login": "arjun-kg",
+        "id": 22150161,
+        "node_id": "MDQ6VXNlcjIyMTUwMTYx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/22150161?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arjun-kg",
+        "html_url": "https://github.com/arjun-kg",
+        "followers_url": "https://api.github.com/users/arjun-kg/followers",
+        "following_url": "https://api.github.com/users/arjun-kg/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arjun-kg/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arjun-kg/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arjun-kg/subscriptions",
+        "organizations_url": "https://api.github.com/users/arjun-kg/orgs",
+        "repos_url": "https://api.github.com/users/arjun-kg/repos",
+        "events_url": "https://api.github.com/users/arjun-kg/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arjun-kg/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/6/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/6/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/5",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/5/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/5/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/5/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/5",
+      "id": 3265194559,
+      "node_id": "I_kwDOOSmR487Cnuo_",
+      "number": 5,
+      "title": "Question about \"13 key links\" for tracking reward",
+      "user": {
+        "login": "hesic73",
+        "id": 59533230,
+        "node_id": "MDQ6VXNlcjU5NTMzMjMw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/59533230?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hesic73",
+        "html_url": "https://github.com/hesic73",
+        "followers_url": "https://api.github.com/users/hesic73/followers",
+        "following_url": "https://api.github.com/users/hesic73/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hesic73/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hesic73/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hesic73/subscriptions",
+        "organizations_url": "https://api.github.com/users/hesic73/orgs",
+        "repos_url": "https://api.github.com/users/hesic73/repos",
+        "events_url": "https://api.github.com/users/hesic73/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hesic73/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 2,
+      "created_at": "2025-07-26T06:22:27Z",
+      "updated_at": "2025-08-26T00:46:38Z",
+      "closed_at": "2025-08-26T00:46:38Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Hello, could you please clarify which 13 key links are used for the tracking reward? Thanks!",
+      "closed_by": {
+        "login": "hesic73",
+        "id": 59533230,
+        "node_id": "MDQ6VXNlcjU5NTMzMjMw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/59533230?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hesic73",
+        "html_url": "https://github.com/hesic73",
+        "followers_url": "https://api.github.com/users/hesic73/followers",
+        "following_url": "https://api.github.com/users/hesic73/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hesic73/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hesic73/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hesic73/subscriptions",
+        "organizations_url": "https://api.github.com/users/hesic73/orgs",
+        "repos_url": "https://api.github.com/users/hesic73/repos",
+        "events_url": "https://api.github.com/users/hesic73/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hesic73/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/5/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/5/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/4",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/4/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/4/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/4/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/4",
+      "id": 3264171281,
+      "node_id": "I_kwDOOSmR487Cj00R",
+      "number": 4,
+      "title": "Motion re-targeting, network design and dataset release",
+      "user": {
+        "login": "JerryXu0907",
+        "id": 12792006,
+        "node_id": "MDQ6VXNlcjEyNzkyMDA2",
+        "avatar_url": "https://avatars.githubusercontent.com/u/12792006?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/JerryXu0907",
+        "html_url": "https://github.com/JerryXu0907",
+        "followers_url": "https://api.github.com/users/JerryXu0907/followers",
+        "following_url": "https://api.github.com/users/JerryXu0907/following{/other_user}",
+        "gists_url": "https://api.github.com/users/JerryXu0907/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/JerryXu0907/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/JerryXu0907/subscriptions",
+        "organizations_url": "https://api.github.com/users/JerryXu0907/orgs",
+        "repos_url": "https://api.github.com/users/JerryXu0907/repos",
+        "events_url": "https://api.github.com/users/JerryXu0907/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/JerryXu0907/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2025-07-25T19:23:06Z",
+      "updated_at": "2025-09-17T18:14:40Z",
+      "closed_at": "2025-09-17T18:14:40Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Thank you very much for your wonderful project! I am trying to reproduce the pipeline afterwards so I have some questions regarding MPT pretraining and network designs:\n\n1. Can you elaborate on how you do the motion-retargeting from LAFAN datasets to G1 robots? If you replicated other's work, can you kindly point out which project/repo you refer to? If you can release this dataset, it will be great as well!\n\n2. Network design: From your paper, the heightmap in stage 2 is integrated to the original policy network in a residual fashion. Are the heightmap residuals added in every level or only in some specific levels? What is the schedule of the weight factor of the residual throughout the training, or the weight is actually a learnable parameter? \n\nAlso, what will be the timeline for releasing your video dataset?\n\nThank you in advance for answering my questions. ",
+      "closed_by": {
+        "login": "ArthurAllshire",
+        "id": 7277887,
+        "node_id": "MDQ6VXNlcjcyNzc4ODc=",
+        "avatar_url": "https://avatars.githubusercontent.com/u/7277887?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/ArthurAllshire",
+        "html_url": "https://github.com/ArthurAllshire",
+        "followers_url": "https://api.github.com/users/ArthurAllshire/followers",
+        "following_url": "https://api.github.com/users/ArthurAllshire/following{/other_user}",
+        "gists_url": "https://api.github.com/users/ArthurAllshire/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/ArthurAllshire/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/ArthurAllshire/subscriptions",
+        "organizations_url": "https://api.github.com/users/ArthurAllshire/orgs",
+        "repos_url": "https://api.github.com/users/ArthurAllshire/repos",
+        "events_url": "https://api.github.com/users/ArthurAllshire/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/ArthurAllshire/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/4/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/4/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/3",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/3/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/3/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/3/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/3",
+      "id": 3244358939,
+      "node_id": "I_kwDOOSmR487BYP0b",
+      "number": 3,
+      "title": "[Question] Unexpected Retargeting Improvement with --vis Flag",
+      "user": {
+        "login": "hesic73",
+        "id": 59533230,
+        "node_id": "MDQ6VXNlcjU5NTMzMjMw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/59533230?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hesic73",
+        "html_url": "https://github.com/hesic73",
+        "followers_url": "https://api.github.com/users/hesic73/followers",
+        "following_url": "https://api.github.com/users/hesic73/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hesic73/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hesic73/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hesic73/subscriptions",
+        "organizations_url": "https://api.github.com/users/hesic73/orgs",
+        "repos_url": "https://api.github.com/users/hesic73/repos",
+        "events_url": "https://api.github.com/users/hesic73/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hesic73/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 7,
+      "created_at": "2025-07-18T20:56:35Z",
+      "updated_at": "2025-07-25T06:33:51Z",
+      "closed_at": "2025-07-25T06:33:51Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "\n\nHello,\n\nI've observed an unexpected phenomenon during the retargeting step of your `real2sim` pipeline.\n\nThe `process_video.sh` script calls `robot_motion_retargeting.py` as follows:\n\n```bash\npython stage4_retargeting/robot_motion_retargeting.py \\\n    --src-dir \"./demo_data/output_calib_mesh/megahunter_megasam_reconstruction_results_${VIDEO_NAME}_cam01_frame_${START_FRAME}_${END_FRAME}_subsample_${SUBSAMPLE_FACTOR}\" \\\n    --contact-dir \"./demo_data/input_contacts/${VIDEO_NAME}/cam01\"\n```\n\nQualitatively, I've noticed that adding the **`--vis`** flag and then saving the result through the GUI seems to lead to a better retargeting outcome.\n\nDo you have any insights into why this might be happening? Thanks!\n",
+      "closed_by": {
+        "login": "hesic73",
+        "id": 59533230,
+        "node_id": "MDQ6VXNlcjU5NTMzMjMw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/59533230?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hesic73",
+        "html_url": "https://github.com/hesic73",
+        "followers_url": "https://api.github.com/users/hesic73/followers",
+        "following_url": "https://api.github.com/users/hesic73/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hesic73/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hesic73/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hesic73/subscriptions",
+        "organizations_url": "https://api.github.com/users/hesic73/orgs",
+        "repos_url": "https://api.github.com/users/hesic73/repos",
+        "events_url": "https://api.github.com/users/hesic73/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hesic73/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/3/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/3/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/2",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/2/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/2/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/2/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/2",
+      "id": 3218320092,
+      "node_id": "I_kwDOOSmR486_06rc",
+      "number": 2,
+      "title": "Environment Name Discrepancy in Setup Documentation",
+      "user": {
+        "login": "hesic73",
+        "id": 59533230,
+        "node_id": "MDQ6VXNlcjU5NTMzMjMw",
+        "avatar_url": "https://avatars.githubusercontent.com/u/59533230?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hesic73",
+        "html_url": "https://github.com/hesic73",
+        "followers_url": "https://api.github.com/users/hesic73/followers",
+        "following_url": "https://api.github.com/users/hesic73/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hesic73/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hesic73/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hesic73/subscriptions",
+        "organizations_url": "https://api.github.com/users/hesic73/orgs",
+        "repos_url": "https://api.github.com/users/hesic73/repos",
+        "events_url": "https://api.github.com/users/hesic73/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hesic73/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2025-07-10T08:00:55Z",
+      "updated_at": "2025-07-11T23:52:29Z",
+      "closed_at": "2025-07-11T23:52:29Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Thanks for open-sourcing your real2sim pipeline! It's very helpful!\n\nI noticed an environment name inconsistency: in megasam-package, `environment.yaml` uses `mega_sam`. However, the doc refers to it as `vm1recon`. \n\nAdding this step to the instructions would resolve the discrepancy:\n\n```bash\nconda rename -n mega_sam vm1recon\n```",
+      "closed_by": {
+        "login": "hongsukchoi",
+        "id": 31090011,
+        "node_id": "MDQ6VXNlcjMxMDkwMDEx",
+        "avatar_url": "https://avatars.githubusercontent.com/u/31090011?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/hongsukchoi",
+        "html_url": "https://github.com/hongsukchoi",
+        "followers_url": "https://api.github.com/users/hongsukchoi/followers",
+        "following_url": "https://api.github.com/users/hongsukchoi/following{/other_user}",
+        "gists_url": "https://api.github.com/users/hongsukchoi/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/hongsukchoi/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/hongsukchoi/subscriptions",
+        "organizations_url": "https://api.github.com/users/hongsukchoi/orgs",
+        "repos_url": "https://api.github.com/users/hongsukchoi/repos",
+        "events_url": "https://api.github.com/users/hongsukchoi/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/hongsukchoi/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/2/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/2/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    },
+    {
+      "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/1",
+      "repository_url": "https://api.github.com/repos/hongsukchoi/VideoMimic",
+      "labels_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/1/labels{/name}",
+      "comments_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/1/comments",
+      "events_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/1/events",
+      "html_url": "https://github.com/hongsukchoi/VideoMimic/issues/1",
+      "id": 3148298274,
+      "node_id": "I_kwDOOSmR4867pzgi",
+      "number": 1,
+      "title": "When will the  real\u2011to\u2011sim pipeline be released",
+      "user": {
+        "login": "Wu-Sikai",
+        "id": 104186148,
+        "node_id": "U_kgDOBjXBJA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/104186148?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Wu-Sikai",
+        "html_url": "https://github.com/Wu-Sikai",
+        "followers_url": "https://api.github.com/users/Wu-Sikai/followers",
+        "following_url": "https://api.github.com/users/Wu-Sikai/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Wu-Sikai/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Wu-Sikai/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Wu-Sikai/subscriptions",
+        "organizations_url": "https://api.github.com/users/Wu-Sikai/orgs",
+        "repos_url": "https://api.github.com/users/Wu-Sikai/repos",
+        "events_url": "https://api.github.com/users/Wu-Sikai/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Wu-Sikai/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "labels": [],
+      "state": "closed",
+      "locked": false,
+      "assignees": [],
+      "milestone": null,
+      "comments": 1,
+      "created_at": "2025-06-16T01:53:45Z",
+      "updated_at": "2025-06-16T07:01:16Z",
+      "closed_at": "2025-06-16T01:59:32Z",
+      "assignee": null,
+      "author_association": "NONE",
+      "active_lock_reason": null,
+      "sub_issues_summary": {
+        "total": 0,
+        "completed": 0,
+        "percent_completed": 0
+      },
+      "issue_dependencies_summary": {
+        "blocked_by": 0,
+        "total_blocked_by": 0,
+        "blocking": 0,
+        "total_blocking": 0
+      },
+      "body": "Thanks for your work, i want to know when the  real\u2011to\u2011sim pipeline will be released?",
+      "closed_by": {
+        "login": "Wu-Sikai",
+        "id": 104186148,
+        "node_id": "U_kgDOBjXBJA",
+        "avatar_url": "https://avatars.githubusercontent.com/u/104186148?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Wu-Sikai",
+        "html_url": "https://github.com/Wu-Sikai",
+        "followers_url": "https://api.github.com/users/Wu-Sikai/followers",
+        "following_url": "https://api.github.com/users/Wu-Sikai/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Wu-Sikai/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Wu-Sikai/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Wu-Sikai/subscriptions",
+        "organizations_url": "https://api.github.com/users/Wu-Sikai/orgs",
+        "repos_url": "https://api.github.com/users/Wu-Sikai/repos",
+        "events_url": "https://api.github.com/users/Wu-Sikai/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Wu-Sikai/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/1/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/hongsukchoi/VideoMimic/issues/1/timeline",
+      "performed_via_github_app": null,
+      "state_reason": "completed",
+      "pinned_comment": null
+    }
+  ],
+  "relevant_comments": [
+    {
+      "issue": 20,
+      "user": "markAKB",
+      "url": "https://github.com/hongsukchoi/VideoMimic/issues/20#issuecomment-3561717672",
+      "body": "If it is possible to upload the dataset and weights to the Hugging Face website, I would be very grateful\uff01"
+    },
+    {
+      "issue": 20,
+      "user": "hongsukchoi",
+      "url": "https://github.com/hongsukchoi/VideoMimic/issues/20#issuecomment-3561873937",
+      "body": "Hi! I just updated the `assets` download to use huggingface. \nhttps://github.com/hongsukchoi/VideoMimic/blob/main/real2sim/download_gdrive_data.sh\n\n"
+    },
+    {
+      "issue": 20,
+      "user": "markAKB",
+      "url": "https://github.com/hongsukchoi/VideoMimic/issues/20#issuecomment-3561947248",
+      "body": "You are really great, thank you very much. Could you also upload the simulation data and checkpoints?\n\nhttps://github.com/hongsukchoi/VideoMimic/blob/main/simulation/data/download_videomimic_data.sh"
+    },
+    {
+      "issue": 19,
+      "user": "hongsukchoi",
+      "url": "https://github.com/hongsukchoi/VideoMimic/issues/19#issuecomment-3530455442",
+      "body": "[g1_29dof_anneal_23dof_foot.urdf.zip](https://github.com/user-attachments/files/23537685/g1_29dof_anneal_23dof_foot.urdf.zip)\n\nHi! Here it is. I modified the standard urdf to fit the foot direction to human. "
+    },
+    {
+      "issue": 12,
+      "user": "ArthurAllshire",
+      "url": "https://github.com/hongsukchoi/VideoMimic/issues/12#issuecomment-3403468810",
+      "body": "My apologies, I updated this part of the readme. The data should be stored in the `simulation/data` folder after downloading as mentioned in the README [here](https://github.com/hongsukchoi/VideoMimic/tree/main/simulation#download-data). Let me know if yuo have other issues."
+    },
+    {
+      "issue": 10,
+      "user": "ArthurAllshire",
+      "url": "https://github.com/hongsukchoi/VideoMimic/issues/10#issuecomment-3300346288",
+      "body": "Hi, apologies this part is not yet released (only the reconstructed motions). We are putting together the video dataset and will get back on this soon (in the next week). Thanks for your patience."
+    },
+    {
+      "issue": 10,
+      "user": "dsdf783",
+      "url": "https://github.com/hongsukchoi/VideoMimic/issues/10#issuecomment-3418097392",
+      "body": "Can you help me, where is the video datasets?"
+    },
+    {
+      "issue": 4,
+      "user": "ArthurAllshire",
+      "url": "https://github.com/hongsukchoi/VideoMimic/issues/4#issuecomment-3221647950",
+      "body": "Hi; apologies for the slow response. \n\n1. For the mocap pretraining dataset, we used the dataset retargeted by Unitree. They took the original repository down (presumably for copyright related reasons), but seems like a mirror is available [here](https://huggingface.co/datasets/lvhaidong/LAFAN1_Retargeting_Dataset).\n2. We project onto the dimension of the first hidden layer of the MLP and each dimension has a learnable parameter with weight zero.\n\nWe will release checkpoints, code for training policies and dataset in the coming couple of weeks."
+    }
+  ],
+  "assets_zip_entries": [
+    {
+      "name": "assets/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/configs/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/configs/vitpose/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/configs/vitpose/coco_wholebody.py",
+      "compressed_bytes": 3505,
+      "bytes": 30735
+    },
+    {
+      "name": "assets/configs/vitpose/ViTPose_huge_wholebody_256x192.py",
+      "compressed_bytes": 1336,
+      "bytes": 4181
+    },
+    {
+      "name": "assets/configs/vitpose/default_runtime.py",
+      "compressed_bytes": 287,
+      "bytes": 475
+    },
+    {
+      "name": "assets/configs/config_vimo.yaml",
+      "compressed_bytes": 540,
+      "bytes": 876
+    },
+    {
+      "name": "assets/configs/bstro_hrnet_w64.yaml",
+      "compressed_bytes": 514,
+      "bytes": 1395
+    },
+    {
+      "name": "assets/checkpoints/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/checkpoints/Align3R_Moge_Monst3R.pth",
+      "compressed_bytes": 4294967295,
+      "bytes": 4294967295
+    },
+    {
+      "name": "assets/checkpoints/Align3R_Moge_ViTLarge_BaseDecoder_512_dpt.pth",
+      "compressed_bytes": 4294967295,
+      "bytes": 4294967295
+    },
+    {
+      "name": "assets/checkpoints/megasam_final.pth",
+      "compressed_bytes": 19442141,
+      "bytes": 20812149
+    },
+    {
+      "name": "assets/checkpoints/hsi_hrnet_3dpw_b32_checkpoint_15.bin",
+      "compressed_bytes": 901034912,
+      "bytes": 972833184
+    },
+    {
+      "name": "assets/checkpoints/sam2.1_hiera_large.pt",
+      "compressed_bytes": 834046503,
+      "bytes": 898083611
+    },
+    {
+      "name": "assets/checkpoints/vitpose_huge_wholebody.pth",
+      "compressed_bytes": 3541252533,
+      "bytes": 3807742341
+    },
+    {
+      "name": "assets/checkpoints/MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric.pth",
+      "compressed_bytes": 2561122894,
+      "bytes": 2754910614
+    },
+    {
+      "name": "assets/checkpoints/MonST3R_PO-TA-S-W_ViTLarge_BaseDecoder_512_dpt.pth",
+      "compressed_bytes": 2121606371,
+      "bytes": 2285102204
+    },
+    {
+      "name": "assets/checkpoints/ViTPose_huge_wholebody_256x192.py",
+      "compressed_bytes": 1336,
+      "bytes": 4181
+    },
+    {
+      "name": "assets/checkpoints/align3r_depthpro.pth",
+      "compressed_bytes": 4294967295,
+      "bytes": 4294967295
+    },
+    {
+      "name": "assets/checkpoints/depth_anything_vitl14.pth",
+      "compressed_bytes": 1244195978,
+      "bytes": 1341401882
+    },
+    {
+      "name": "assets/checkpoints/depth_pro.pt",
+      "compressed_bytes": 1758603703,
+      "bytes": 1904446787
+    },
+    {
+      "name": "assets/checkpoints/vimo_checkpoint.pth.tar",
+      "compressed_bytes": 2589280586,
+      "bytes": 2791701351
+    },
+    {
+      "name": "assets/checkpoints/DUSt3R_ViTLarge_BaseDecoder_512_dpt.pth",
+      "compressed_bytes": 2121636227,
+      "bytes": 2285005731
+    },
+    {
+      "name": "assets/body_models/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smpl_old/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smplh/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smplh/male/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smplh/male/model.npz",
+      "compressed_bytes": 39033060,
+      "bytes": 134255746
+    },
+    {
+      "name": "assets/body_models/smplh/female/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smplh/female/model.npz",
+      "compressed_bytes": 39057741,
+      "bytes": 134255746
+    },
+    {
+      "name": "assets/body_models/smplh/neutral/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smplh/neutral/model.npz",
+      "compressed_bytes": 39057797,
+      "bytes": 134255746
+    },
+    {
+      "name": "assets/body_models/smplx/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smplx/SMPLX_NEUTRAL.npz",
+      "compressed_bytes": 30277793,
+      "bytes": 30304063
+    },
+    {
+      "name": "assets/body_models/smplx/SMPLX_NEUTRAL.pkl",
+      "compressed_bytes": 42936523,
+      "bytes": 248316067
+    },
+    {
+      "name": "assets/body_models/smplx/version.txt",
+      "compressed_bytes": 32,
+      "bytes": 32
+    },
+    {
+      "name": "assets/body_models/smplx/SMPLX_FEMALE.npz",
+      "compressed_bytes": 30320167,
+      "bytes": 30349104
+    },
+    {
+      "name": "assets/body_models/smplx/SMPLX_FEMALE.pkl",
+      "compressed_bytes": 42964752,
+      "bytes": 248354200
+    },
+    {
+      "name": "assets/body_models/smplx/SMPLX_MALE.npz",
+      "compressed_bytes": 30286750,
+      "bytes": 30314214
+    },
+    {
+      "name": "assets/body_models/smplx/SMPLX_MALE.pkl",
+      "compressed_bytes": 42942214,
+      "bytes": 248399540
+    },
+    {
+      "name": "assets/body_models/smpl_to_smplx.pkl",
+      "compressed_bytes": 1276314,
+      "bytes": 578366660
+    },
+    {
+      "name": "assets/body_models/smpla/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smpla/SMPLA_NEUTRAL.pth",
+      "compressed_bytes": 17894291,
+      "bytes": 21141764
+    },
+    {
+      "name": "assets/body_models/smpl/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smpl/smpl_mean_params.npz",
+      "compressed_bytes": 842,
+      "bytes": 1310
+    },
+    {
+      "name": "assets/body_models/smpl/smpl_vert_segmentation.json",
+      "compressed_bytes": 18855,
+      "bytes": 110266
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0.zip",
+      "compressed_bytes": 330607275,
+      "bytes": 330607275
+    },
+    {
+      "name": "assets/body_models/smpl/J_regressor_extra.npy",
+      "compressed_bytes": 1567,
+      "bytes": 771808
+    },
+    {
+      "name": "assets/body_models/smpl/mesh_downsampling.npz",
+      "compressed_bytes": 612660,
+      "bytes": 1720359
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_MALE.pkl",
+      "compressed_bytes": 110073918,
+      "bytes": 247101031
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/.DS_Store",
+      "compressed_bytes": 232,
+      "bytes": 6148
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/lbs.py",
+      "compressed_bytes": 1144,
+      "bytes": 2831
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/serialization.py",
+      "compressed_bytes": 1445,
+      "bytes": 4455
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/hello_world/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/hello_world/hello_smpl.py",
+      "compressed_bytes": 1106,
+      "bytes": 2115
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/hello_world/render_smpl.py",
+      "compressed_bytes": 1495,
+      "bytes": 3028
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/__init__.py",
+      "compressed_bytes": 328,
+      "bytes": 534
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/LICENSE.txt",
+      "compressed_bytes": 1973,
+      "bytes": 4305
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/verts.py",
+      "compressed_bytes": 1163,
+      "bytes": 3253
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/README.txt",
+      "compressed_bytes": 873,
+      "bytes": 1743
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/smpl_webuser/posemapper.py",
+      "compressed_bytes": 698,
+      "bytes": 1423
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/models/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/models/basicmodel_f_lbs_10_207_0_v1.1.0.pkl",
+      "compressed_bytes": 110154115,
+      "bytes": 247530000
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/models/basicmodel_neutral_lbs_10_207_0_v1.1.0.pkl",
+      "compressed_bytes": 110120958,
+      "bytes": 247186228
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/models/basicmodel_m_lbs_10_207_0_v1.1.0.pkl",
+      "compressed_bytes": 110073918,
+      "bytes": 247101031
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_python_v.1.1.0/smpl/__init__.py",
+      "compressed_bytes": 328,
+      "bytes": 535
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_NEUTRAL.pkl",
+      "compressed_bytes": 35199631,
+      "bytes": 39001280
+    },
+    {
+      "name": "assets/body_models/smpl/smplx_vert_segmentation.json",
+      "compressed_bytes": 30723,
+      "bytes": 168072
+    },
+    {
+      "name": "assets/body_models/smpl/J_regressor_h36m_correct.npy",
+      "compressed_bytes": 2291,
+      "bytes": 937168
+    },
+    {
+      "name": "assets/body_models/smpl/SMPL_FEMALE.pkl",
+      "compressed_bytes": 110154115,
+      "bytes": 247530000
+    },
+    {
+      "name": "assets/body_models/smpl/smpl_symm.npy",
+      "compressed_bytes": 10782,
+      "bytes": 55248
+    },
+    {
+      "name": "assets/body_models/smpl/basicmodel_neutral_lbs_10_207_0_v1.1.0.pkl",
+      "compressed_bytes": 110120958,
+      "bytes": 247186228
+    },
+    {
+      "name": "assets/body_models/smpl_J_extra_for_vimo/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smpl_J_extra_for_vimo/SMPL_MALE.pkl",
+      "compressed_bytes": 110073918,
+      "bytes": 247101031
+    },
+    {
+      "name": "assets/body_models/smpl_J_extra_for_vimo/J_regressor_extra.npy",
+      "compressed_bytes": 1272,
+      "bytes": 496160
+    },
+    {
+      "name": "assets/body_models/smpl_J_extra_for_vimo/J_regressor_h36m.npy",
+      "compressed_bytes": 2280,
+      "bytes": 937168
+    },
+    {
+      "name": "assets/body_models/smpl_J_extra_for_vimo/smpl_mean_params.npz",
+      "compressed_bytes": 842,
+      "bytes": 1310
+    },
+    {
+      "name": "assets/body_models/smpl_J_extra_for_vimo/SMPL_python_v.1.1.0.zip",
+      "compressed_bytes": 330607275,
+      "bytes": 330607275
+    },
+    {
+      "name": "assets/body_models/smpl_J_extra_for_vimo/SMPL_NEUTRAL.pkl",
+      "compressed_bytes": 35199631,
+      "bytes": 39001280
+    },
+    {
+      "name": "assets/body_models/smpl_J_extra_for_vimo/SMPL_FEMALE.pkl",
+      "compressed_bytes": 110154115,
+      "bytes": 247530000
+    },
+    {
+      "name": "assets/body_models/smpl_J_extra_for_vimo/kintree_table.pkl",
+      "compressed_bytes": 192,
+      "bytes": 349
+    },
+    {
+      "name": "assets/body_models/smil/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/smil/._smplx_kid_template.npy",
+      "compressed_bytes": 398,
+      "bytes": 4096
+    },
+    {
+      "name": "assets/body_models/smil/._smil_packed_info.pth",
+      "compressed_bytes": 228,
+      "bytes": 4096
+    },
+    {
+      "name": "assets/body_models/smil/smil_packed_info.pth",
+      "compressed_bytes": 17036195,
+      "bytes": 20232071
+    },
+    {
+      "name": "assets/body_models/smil/smplx_kid_template.npy",
+      "compressed_bytes": 186985,
+      "bytes": 251528
+    },
+    {
+      "name": "assets/body_models/.DS_Store",
+      "compressed_bytes": 410,
+      "bytes": 6148
+    },
+    {
+      "name": "assets/body_models/mano_v1_2/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/body_models/mano_v1_2/MANO_RIGHT.pkl",
+      "compressed_bytes": 3434896,
+      "bytes": 3821356
+    },
+    {
+      "name": "assets/robot_asset/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/robot_asset/g1/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/robot_asset/g1/g1_29dof_anneal_23dof_spheres.urdf",
+      "compressed_bytes": 3672,
+      "bytes": 37865
+    },
+    {
+      "name": "assets/robot_asset/g1/g1_29dof_anneal_23dof.urdf",
+      "compressed_bytes": 3664,
+      "bytes": 37865
+    },
+    {
+      "name": "assets/robot_asset/g1/g1_29dof_anneal_23dof.usd",
+      "compressed_bytes": 8031179,
+      "bytes": 26620403
+    },
+    {
+      "name": "assets/robot_asset/g1/g1_29dof_anneal_23dof.xml",
+      "compressed_bytes": 3917,
+      "bytes": 27864
+    },
+    {
+      "name": "assets/robot_asset/g1/g1_29dof_anneal_23dof_foot.urdf",
+      "compressed_bytes": 3800,
+      "bytes": 38801
+    },
+    {
+      "name": "assets/robot_asset/g1/g1_29dof_anneal_23dof_fitmotionONLY.xml",
+      "compressed_bytes": 3155,
+      "bytes": 20512
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hip_pitch_link.STL",
+      "compressed_bytes": 77472,
+      "bytes": 181284
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hip_roll_link.STL",
+      "compressed_bytes": 83690,
+      "bytes": 192184
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_wrist_pitch_link.STL",
+      "compressed_bytes": 37916,
+      "bytes": 85984
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hand_middle_0_link.STL",
+      "compressed_bytes": 170469,
+      "bytes": 475984
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/waist_roll_link.STL",
+      "compressed_bytes": 6077,
+      "bytes": 24184
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/pelvis.STL",
+      "compressed_bytes": 435997,
+      "bytes": 1060884
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hip_yaw_link.STL",
+      "compressed_bytes": 131583,
+      "bytes": 296284
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hand_middle_1_link.STL",
+      "compressed_bytes": 677457,
+      "bytes": 1521784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/waist_yaw_link.STL",
+      "compressed_bytes": 100100,
+      "bytes": 336284
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hip_yaw_link.STL",
+      "compressed_bytes": 131170,
+      "bytes": 296284
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_wrist_roll_link.STL",
+      "compressed_bytes": 149355,
+      "bytes": 356184
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_rubber_hand.STL",
+      "compressed_bytes": 1075272,
+      "bytes": 2287484
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/torso_constraint_L_rod_link.STL",
+      "compressed_bytes": 28241,
+      "bytes": 74884
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hand_thumb_0_link.STL",
+      "compressed_bytes": 1827,
+      "bytes": 8884
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_foot_link.STL",
+      "compressed_bytes": 214,
+      "bytes": 1760
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_shoulder_yaw_link.STL",
+      "compressed_bytes": 108332,
+      "bytes": 249984
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hand_index_1_link.STL",
+      "compressed_bytes": 677457,
+      "bytes": 1521784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/waist_support_link.STL",
+      "compressed_bytes": 70529,
+      "bytes": 150484
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hand_middle_1_link.STL",
+      "compressed_bytes": 675741,
+      "bytes": 1521784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hip_pitch_link.STL",
+      "compressed_bytes": 77677,
+      "bytes": 181684
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_elbow_link.STL",
+      "compressed_bytes": 39274,
+      "bytes": 88784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hand_middle_0_link.STL",
+      "compressed_bytes": 170912,
+      "bytes": 475984
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hand_thumb_2_link.STL",
+      "compressed_bytes": 675350,
+      "bytes": 1521784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_wrist_roll_link.STL",
+      "compressed_bytes": 150423,
+      "bytes": 356084
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/torso_link.STL",
+      "compressed_bytes": 928417,
+      "bytes": 2232984
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_shoulder_pitch_link.STL",
+      "compressed_bytes": 77408,
+      "bytes": 176784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hand_index_0_link.STL",
+      "compressed_bytes": 170912,
+      "bytes": 475984
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/waist_constraint_R.STL",
+      "compressed_bytes": 41977,
+      "bytes": 114684
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_wrist_pitch_link.STL",
+      "compressed_bytes": 35532,
+      "bytes": 79584
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_knee_link.STL",
+      "compressed_bytes": 389307,
+      "bytes": 852284
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_shoulder_pitch_link.STL",
+      "compressed_bytes": 77333,
+      "bytes": 176784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hand_thumb_1_link.STL",
+      "compressed_bytes": 179255,
+      "bytes": 475984
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/pelvis_contour_link.STL",
+      "compressed_bytes": 819449,
+      "bytes": 1805184
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hand_palm_link.STL",
+      "compressed_bytes": 951520,
+      "bytes": 2140184
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_wrist_yaw_link.STL",
+      "compressed_bytes": 147479,
+      "bytes": 341484
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_hand_thumb_2_link.STL",
+      "compressed_bytes": 677042,
+      "bytes": 1521784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/logo_link.STL",
+      "compressed_bytes": 103979,
+      "bytes": 243384
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_elbow_link_merge.STL",
+      "compressed_bytes": 1434828,
+      "bytes": 3136784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_ankle_pitch_link.STL",
+      "compressed_bytes": 28839,
+      "bytes": 71184
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_ankle_roll_link.STL",
+      "compressed_bytes": 301261,
+      "bytes": 653784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hand_index_0_link.STL",
+      "compressed_bytes": 170469,
+      "bytes": 475984
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_shoulder_roll_link.STL",
+      "compressed_bytes": 178392,
+      "bytes": 400284
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_knee_link.STL",
+      "compressed_bytes": 390742,
+      "bytes": 854884
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/torso_constraint_R_rod_link.STL",
+      "compressed_bytes": 28371,
+      "bytes": 74884
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hip_roll_link.STL",
+      "compressed_bytes": 83881,
+      "bytes": 192684
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hand_thumb_1_link.STL",
+      "compressed_bytes": 178778,
+      "bytes": 475984
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_elbow_link.STL",
+      "compressed_bytes": 39121,
+      "bytes": 88784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_wrist_roll_rubber_hand.STL",
+      "compressed_bytes": 1596706,
+      "bytes": 3481584
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/head_link.STL",
+      "compressed_bytes": 424068,
+      "bytes": 932784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hand_palm_link.STL",
+      "compressed_bytes": 954798,
+      "bytes": 2140184
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_wrist_yaw_link.STL",
+      "compressed_bytes": 138792,
+      "bytes": 318684
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_wrist_roll_rubber_hand.STL",
+      "compressed_bytes": 1597142,
+      "bytes": 3484884
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/waist_constraint_L.STL",
+      "compressed_bytes": 41740,
+      "bytes": 114684
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_rubber_hand.STL",
+      "compressed_bytes": 1028646,
+      "bytes": 2192684
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/torso_constraint_L_link.STL",
+      "compressed_bytes": 66728,
+      "bytes": 203584
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/torso_constraint_R_link.STL",
+      "compressed_bytes": 66576,
+      "bytes": 203584
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_foot_link.STL",
+      "compressed_bytes": 216,
+      "bytes": 1762
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hand_thumb_0_link.STL",
+      "compressed_bytes": 1799,
+      "bytes": 8884
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_ankle_pitch_link.STL",
+      "compressed_bytes": 28826,
+      "bytes": 71184
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_elbow_link_merge.STL",
+      "compressed_bytes": 1396524,
+      "bytes": 3058284
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_shoulder_yaw_link.STL",
+      "compressed_bytes": 108043,
+      "bytes": 249184
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_hand_index_1_link.STL",
+      "compressed_bytes": 675741,
+      "bytes": 1521784
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/left_ankle_roll_link.STL",
+      "compressed_bytes": 301055,
+      "bytes": 653384
+    },
+    {
+      "name": "assets/robot_asset/g1/meshes/right_shoulder_roll_link.STL",
+      "compressed_bytes": 179844,
+      "bytes": 401884
+    },
+    {
+      "name": "assets/robot_asset/g1/known_betas.json",
+      "compressed_bytes": 155,
+      "bytes": 226
+    },
+    {
+      "name": "assets/ckpt_raft/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/ckpt_raft/raft-things.pth",
+      "compressed_bytes": 19570993,
+      "bytes": 21108000
+    },
+    {
+      "name": "assets/ckpt_raft/Tartan-C-T-TSKH-spring540x960-M.pth",
+      "compressed_bytes": 73220873,
+      "bytes": 78899562
+    },
+    {
+      "name": "assets/ckpt_sam2/",
+      "compressed_bytes": 0,
+      "bytes": 0
+    },
+    {
+      "name": "assets/ckpt_sam2/sam2.1_hiera_large.pt",
+      "compressed_bytes": 834046503,
+      "bytes": 898083611
+    }
+  ],
+  "inference": "Public packages checked contain no native human H5; run official preprocessing/reconstruction/alignment/gravity stages0-3 to recover SMPL data. No explicit maintainer statement that human H5 is unreleased was found."
+}
