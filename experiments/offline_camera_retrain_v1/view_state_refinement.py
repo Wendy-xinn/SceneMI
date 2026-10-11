@@ -11,7 +11,11 @@ ROOT=Path(__file__).parent/'runs/state_relative_spline_oct10/demo'
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=8780);parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--scene-refinement',type=Path);parser.add_argument('--legacy-history-diagnostic',action='store_true');parser.add_argument('--turn-coordination',type=Path);parser.add_argument('--turn-training',type=Path);parser.add_argument('--support-refinement',type=Path);parser.add_argument('--fresh55k-replay',type=Path);parser.add_argument('--fresh55k-winding',type=Path);parser.add_argument('--fresh55k-physics',type=Path);parser.add_argument('--fresh55k-coverage',type=Path);parser.add_argument('--scale-body-scene',type=Path);parser.add_argument('--angular-balance',type=Path);args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=8780);parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--scene-refinement',type=Path);parser.add_argument('--legacy-history-diagnostic',action='store_true');parser.add_argument('--turn-coordination',type=Path);parser.add_argument('--turn-training',type=Path);parser.add_argument('--support-refinement',type=Path);parser.add_argument('--fresh55k-replay',type=Path);parser.add_argument('--fresh55k-winding',type=Path);parser.add_argument('--fresh55k-physics',type=Path);parser.add_argument('--fresh55k-coverage',type=Path);parser.add_argument('--scale-body-scene',type=Path);parser.add_argument('--root-facing',type=Path);parser.add_argument('--angular-balance',type=Path);args=parser.parse_args()
+    root_mode=bool(args.root_facing)
+    if root_mode:
+        if args.angular_balance:parser.error('Choose angular balance or absolute root')
+        args.angular_balance=args.root_facing
     angular_mode=bool(args.angular_balance)
     if angular_mode:
         if args.scale_body_scene:parser.error('Choose one angular/body-local trial')
@@ -59,7 +63,8 @@ def main():
         if args.turn_training:
             mesh_keys.append('continued_control');colors['continued_control']=(155,80,215);labels['continued_control']='继续原目标600步紫色'
     if scale_mode:
-        turn_variant='angular_balanced' if angular_mode else 'body_local';labels['turn_coordination']='角度分项平衡绿色（开发候选）' if angular_mode else '身体局部场景绿色（开发候选）';labels['continued_control']='尺度校准紫色（开发候选）';colors['continued_control']=(155,80,215)
+        turn_variant='root_facing' if root_mode else ('angular_balanced' if angular_mode else 'body_local');labels['turn_coordination']='角度分项平衡绿色（开发候选）' if angular_mode else '身体局部场景绿色（开发候选）';labels['continued_control']='尺度校准紫色（开发候选）';colors['continued_control']=(155,80,215)
+        if root_mode:labels['turn_coordination']='骨盆绝对朝向绿色（开发候选）';labels['continued_control']='角度平衡紫色（参考）'
         mesh_keys.append('support_reference');colors['support_reference']=(245,145,30);labels['support_reference']='上轮支撑覆盖橙色（参考）'
     turn_rows={r['index']:r for r in json.loads((turn_root/'rows.json').read_text()) if r['scope']=='demo'} if turn_root else {}
     init_audit={r['index']:r for r in json.loads((ROOT.parent.parent/'no_body_initialization_oct10/audit.json').read_text())['rows']} if gt_free else {}
@@ -73,7 +78,7 @@ def main():
         if turn_root:
             with np.load(turn_root/f"{case['index']}.npz") as turn_arrays:
                 arrays['turn_coordination_motion']=turn_arrays[turn_variant]
-                if args.turn_training or args.fresh55k_replay:arrays['continued_control_motion']=turn_arrays['scale_calibrated' if scale_mode else ('scene_reference' if coverage_mode else ('guard_reference' if physics_mode else ('replay_reference' if winding_mode else ('denoise_control' if args.fresh55k_replay else 'continued_control'))))]
+                if args.turn_training or args.fresh55k_replay:arrays['continued_control_motion']=turn_arrays['angular_balanced' if root_mode else ('scale_calibrated' if scale_mode else ('scene_reference' if coverage_mode else ('guard_reference' if physics_mode else ('replay_reference' if winding_mode else ('denoise_control' if args.fresh55k_replay else 'continued_control')))))]
                 if scale_mode:
                     arrays['support_reference_motion']=turn_arrays['support_reference']
                     if not angular_mode:
@@ -98,7 +103,8 @@ def main():
         name=f"{case['index']} · {case['identity']['sequence_id']}";cases[name]=(case,arrays)
     server=viser.ViserServer(port=args.port,label='SceneMI · 状态相对生成');server.scene.set_up_direction('+y')
     if gt_free:server.gui.add_markdown('**850/906：严格无身体GT初始化基线。** 蓝GT仅对照 · 红真正原55k，从随机扩散噪声生成全部128帧。输入仅已知相机/场景与配置身体模板，没有GT身体前缀或初始姿态对齐。TRUMANS相机仍是模拟已知条件，非真实视频估计。红色已切回原55k，与此前微调+GT历史红色不同；可选绿色为转向开发诊断，尚未通过验收。')
-    if angular_mode:server.gui.add_markdown('**第三项角度分项平衡600步：** 红原55k · 橙支撑覆盖参考 · 紫原尺度校准 · 绿单独增强绝对head及head-body角度、高噪声身体耦合。均从原55k独立初始化，全128帧纯噪声，没有GT身体初态/历史或推理投影。本组没有身体局部适配器；是否通过请看angular_balance_eval报告，不能只看转向方向。')
+    if root_mode:server.gui.add_markdown('**第四项骨盆绝对朝向600步：** 红原55k · 橙支撑覆盖参考 · 紫角度平衡 · 绿新增TRAIN绝对骨盆朝向。均从原55k独立开始，全128帧纯噪声，无GT身体初态/历史/推理投影。其他头部和足部目标不变；本组没有身体局部适配器。采用与否以root_facing_eval联合验收为准。')
+    if angular_mode and not root_mode:server.gui.add_markdown('**第三项角度分项平衡600步：** 红原55k · 橙支撑覆盖参考 · 紫原尺度校准 · 绿单独增强绝对head及head-body角度、高噪声身体耦合。均从原55k独立初始化，全128帧纯噪声，没有GT身体初态/历史或推理投影。本组没有身体局部适配器；是否通过请看angular_balance_eval报告，不能只看转向方向。')
     if scale_mode and not angular_mode:server.gui.add_markdown('**两项独立600步对照，均从原55k开始。** 红原55k · 橙上轮支撑覆盖 · 紫约束尺度校准 · 绿同一校准加身体局部场景查询。全128帧从噪声生成，无GT身体初始化或推理投影。局部查询来自每步预生成FK关节，静态记忆按观测时间截断，动态几何只取当前帧。不是完整碰撞约束，联合结果见control_scale_body_scene_oct11报告。')
     if coverage_mode and not scale_mode:server.gui.add_markdown('**支撑覆盖配对实验，全部从原55k独立初始化。** 红原55k · 橙上轮场景接触参考 · 绿支撑patch覆盖修复。全128帧纯噪声，无GT身体初态，无推理投影；头部约束与上轮相同。本轮是否通过必须查看fresh55k_support_coverage_oct11评估，默认不启用开发候选。')
     if physics_mode and not coverage_mode:server.gui.add_markdown('**本轮全部从原55k独立初始化。** 红原55k · 橙累计转向参考 · 绿累计转向＋已观测地面接触组。全128帧从噪声生成，无GT身体初始化、无推理投影。850改善，906转向改善但转身后仍离地滑动，未通过。参考组只用于对照，没有作为绿色训练起点。')
@@ -113,7 +119,7 @@ def main():
     options=['完整生成0–127','短期预测16–47'] if gt_free else (['短期预测16–47','含历史0–47'] if args.scene_refinement else ['短期预测16–47','完整预测16–127','含历史0–127'])
     range_select=server.gui.add_dropdown('播放范围',options=options,initial_value=options[0] if gt_free or args.scene_refinement else '完整预测16–127')
     frame=server.gui.add_slider('帧',min=0,max=frame_count-1,step=1,initial_value=0 if gt_free else 16);opacity=server.gui.add_slider('人物透明度',min=.1,max=1,step=.05,initial_value=.55)
-    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['角度分项平衡绿色（开发候选）','身体局部场景绿色（开发候选）','尺度校准紫色（开发候选）','上轮支撑覆盖橙色（参考）','原55k独立支撑覆盖组绿色（开发候选）','原55k独立上轮场景接触参考橙色','原55k独立场景接触组绿色（未通过）','原55k独立累计转向参考橙色','55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色','足底支撑400步绿色（未通过）','上轮转向600步橙色','继续转向400步紫色','55k回放微调绿色（开发候选）','55k标准加噪对照紫色','55k累计转向微调绿色（开发候选）','55k回放标准DDIM紫色','累计转向末端一次橙色','回放末端一次青色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','输入相机与轨迹','生成相机与轨迹']}
+    checks={label:server.gui.add_checkbox(label,initial_value=(label not in ['骨盆绝对朝向绿色（开发候选）','角度平衡紫色（参考）','角度分项平衡绿色（开发候选）','身体局部场景绿色（开发候选）','尺度校准紫色（开发候选）','上轮支撑覆盖橙色（参考）','原55k独立支撑覆盖组绿色（开发候选）','原55k独立上轮场景接触参考橙色','原55k独立场景接触组绿色（未通过）','原55k独立累计转向参考橙色','55k原相机输入橙色','55k统一头部输入紫色','旧样条修正紫色','样条修正绿色','场景接触修正绿色','转向保脚开发候选绿色','转向路径600步绿色（未通过）','继续原目标600步紫色','足底支撑400步绿色（未通过）','上轮转向600步橙色','继续转向400步紫色','55k回放微调绿色（开发候选）','55k标准加噪对照紫色','55k累计转向微调绿色（开发候选）','55k回放标准DDIM紫色','累计转向末端一次橙色','回放末端一次青色'])) for label in [*[labels[key] for key in mesh_keys],'静态记忆','当前可见点','动态物体','输入相机与轨迹','生成相机与轨迹']}
     server.gui.add_markdown('**相机诊断：** 紫色是已知输入；红/绿/紫生成相机随对应mesh开关显示。相机由生成身体FK头部重建，未吸附输入。固定安装偏置由GT首帧仅作绘图标定，非生成输入。位置和朝向误差均在完整128帧记录。')
     body_queries=server.gui.add_checkbox('身体局部查询（最后扩散步预生成关节）',initial_value=False) if scale_mode and not angular_mode else None
     camera_size=server.gui.add_slider('相机线框深度（米）',min=.04,max=.8,step=.02,initial_value=.5)
