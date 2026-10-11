@@ -17,8 +17,9 @@ from experiments.offline_camera_retrain_v1.fresh55k_replay_objective import repl
 H=Path(__file__).parent;O=H/'runs/fresh55k_replay_oct11';BASE=H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt'
 def main():
     global O
-    p=argparse.ArgumentParser();p.add_argument('--steps',type=int,default=600);p.add_argument('--guard-only',action='store_true');p.add_argument('--physics-only',action='store_true');p.add_argument('--coverage-only',action='store_true');p.add_argument('--angular-only',action='store_true');p.add_argument('--scale-only',action='store_true');p.add_argument('--body-local-only',action='store_true');args=p.parse_args();torch.set_num_threads(4)
-    if sum((args.guard_only,args.physics_only,args.coverage_only,args.scale_only,args.body_local_only,args.angular_only))>1:p.error('Choose one trial')
+    p=argparse.ArgumentParser();p.add_argument('--steps',type=int,default=600);p.add_argument('--guard-only',action='store_true');p.add_argument('--physics-only',action='store_true');p.add_argument('--coverage-only',action='store_true');p.add_argument('--root-facing-only',action='store_true');p.add_argument('--angular-only',action='store_true');p.add_argument('--scale-only',action='store_true');p.add_argument('--body-local-only',action='store_true');args=p.parse_args();torch.set_num_threads(4)
+    if sum((args.guard_only,args.physics_only,args.coverage_only,args.scale_only,args.body_local_only,args.angular_only,args.root_facing_only))>1:p.error('Choose one trial')
+    if args.root_facing_only:args.angular_only=True
     if args.angular_only:args.scale_only=True
     if args.scale_only or args.body_local_only:args.coverage_only=True
     if args.coverage_only:args.physics_only=True
@@ -27,7 +28,7 @@ def main():
     if args.coverage_only:O=H/'runs/fresh55k_support_coverage_oct11'
     if args.scale_only or args.body_local_only:O=H/'runs/control_scale_body_scene_oct11'
     O.mkdir(exist_ok=True)
-    expected_variant='angular_balanced' if args.angular_only else ('body_local' if args.body_local_only else 'scale_calibrated')
+    expected_variant='root_facing' if args.root_facing_only else ('angular_balanced' if args.angular_only else ('body_local' if args.body_local_only else 'scale_calibrated'))
     if args.scale_only or args.body_local_only:
         if (O/expected_variant/'last.pt').exists():raise FileExistsError('Do not overwrite scored arm')
     elif any(O.rglob('last.pt')):raise FileExistsError('Do not overwrite a scored trial')
@@ -59,6 +60,9 @@ def main():
     if args.angular_only:
         from experiments.offline_camera_retrain_v1.calibrated_control_objective import angular_balanced_control_losses as calibrated_control_losses
         protocol['control']='TRAIN split full-model gradient audit: position .020, absolute head rotation .020, body-relative rotation .100; body noise weight .25+.75alpha; other losses unchanged'
+    if args.root_facing_only:
+        from experiments.offline_camera_retrain_v1.absolute_root_objective import root_facing_control_losses as calibrated_control_losses,ROOT_WEIGHT
+        protocol['absolute_root']=dict(weight=ROOT_WEIGHT,tolerance_deg=15.,noise_floor=.25,source_sha256=hashlib.sha256((H/'absolute_root_objective.py').read_bytes()).hexdigest(),scope='TRAIN native root orientation only, no GT inference pose')
     if args.body_local_only:
         from experiments.offline_camera_retrain_v1.body_local_scene import BodySceneCache
         body_scenes=BodySceneCache();protocol['source_body_local_sha256']={f:hashlib.sha256((H/f).read_bytes()).hexdigest() for f in ['body_local_scene.py','body_local_scene_model.py']}

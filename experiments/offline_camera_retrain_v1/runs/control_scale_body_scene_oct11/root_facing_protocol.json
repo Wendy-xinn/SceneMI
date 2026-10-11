@@ -1,9 +1,9 @@
 {
-  "status": "training_completed",
+  "status": "training_running",
   "base": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/last.pt",
   "base_model_sha256": "35795d68bbb3d9f9747af250584770401ebe5161dc5db16219cc4796b0d3c56d",
   "variants": [
-    "angular_balanced"
+    "root_facing"
   ],
   "steps": 600,
   "batch_size": 2,
@@ -15,10 +15,10 @@
   "supervision": "same turn+native sole support+head/neck+stance displacement; no frozen old foot position, no GT body input",
   "storage": "one final evaluation-only last.pt per arm; no optimizer/best/numbered weights",
   "source_sha256": {
-    "train_fresh55k_replay.py": "9c005f7a248113a0d8b452b95a4149f4f4a87533a7532114e27909c8d50967e8",
+    "train_fresh55k_replay.py": "37f4382050dcf0a642d14b70593ee337b3409d81b295cf11f5b41c9198d3fd29",
     "fresh55k_replay_objective.py": "48fec54f55ad2ebbad0510e17b9013dc86724c3a962b8c89c5f3b22dec117b31"
   },
-  "free_disk_before": 103469629440,
+  "free_disk_before": 102972809216,
   "guard": "head/root winding at all noise with .25+.75alpha weight; top10% root/neck/head/legs relative-rotation and excess-rate supervision",
   "source_guard_sha256": "6f7ac18778c84d8e4261a02aa5e04a1943673534c0c0a260c7a973ace83fe91b",
   "physics": "full native foot vertices; TRAIN reference support patch independent of predicted height; observed-plane patch height plus reference rolling velocity/4,8-frame displacement; same penetration and alpha squared; old region labels/BCE unchanged",
@@ -27,6 +27,11 @@
   "comparison": "winding_scene600 only for evaluation, NEVER initialization; same schedule/noise/replay/scene dropout/guard",
   "control": "TRAIN split full-model gradient audit: position .020, absolute head rotation .020, body-relative rotation .100; body noise weight .25+.75alpha; other losses unchanged",
   "source_control_sha256": "5f5c9e281466d4e30ab567ccd36f0492cee67ba89d05bdff97108224bdd8f97a",
-  "elapsed_s": 824.1386544990237,
-  "free_disk_after": 102975741952
+  "absolute_root": {
+    "weight": 0.2,
+    "tolerance_deg": 15.0,
+    "noise_floor": 0.25,
+    "source_sha256": "c7db91733a06086db71f75823ce920f5748d2653296046c572c3b8d53359f3f5",
+    "scope": "TRAIN native root orientation only, no GT inference pose"
+  }
 }

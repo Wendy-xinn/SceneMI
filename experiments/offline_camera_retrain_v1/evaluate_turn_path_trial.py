@@ -25,7 +25,8 @@ def extra_metrics(m,rest):
 @torch.inference_mode()
 def main():
     global O
-    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');parser.add_argument('--fresh55k-winding',action='store_true');parser.add_argument('--fresh55k-physics',action='store_true');parser.add_argument('--fresh55k-coverage',action='store_true');parser.add_argument('--scale-body-scene',action='store_true');parser.add_argument('--angular-balance',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');parser.add_argument('--fresh55k-winding',action='store_true');parser.add_argument('--fresh55k-physics',action='store_true');parser.add_argument('--fresh55k-coverage',action='store_true');parser.add_argument('--scale-body-scene',action='store_true');parser.add_argument('--root-facing',action='store_true');parser.add_argument('--angular-balance',action='store_true');args=parser.parse_args()
+    if args.root_facing:args.angular_balance=True
     if args.angular_balance:args.scale_body_scene=True
     if args.scale_body_scene:args.fresh55k_coverage=True
     if args.fresh55k_coverage:
@@ -47,7 +48,7 @@ def main():
     if args.scale_body_scene:O=H/'runs/control_scale_body_scene_oct11';labels=['original55k','support_reference','scale_calibrated','body_local']
     training_root=O
     if args.angular_balance:
-        labels=['original55k','support_reference','scale_calibrated','angular_balanced'];O=O/'angular_balance_eval';O.mkdir(exist_ok=True)
+        labels=['original55k','support_reference','angular_balanced','root_facing'] if args.root_facing else ['original55k','support_reference','scale_calibrated','angular_balanced'];O=O/('root_facing_eval' if args.root_facing else 'angular_balance_eval');O.mkdir(exist_ok=True)
     torch.set_num_threads(4);start=time.monotonic();models={};digests={}
     for label in labels:
         path=H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt' if label=='original55k' else (training_root if args.angular_balance else O)/label/'last.pt'
@@ -129,7 +130,7 @@ def main():
                 if label=='body_local':
                     qj=model.last_body_query_joints[0];features=model.last_body_query_features[0];r=model.last_body_query_rotations[0]
                     saved['body_query_joints']=qj;saved['body_query_surface_points']=qj+np.einsum('tjik,tjk->tji',r,features[...,:3]*.75);saved['body_query_valid']=features[...,4]>0;saved['body_query_dynamic']=features[...,5]>0
-            if member['scope']=='demo' and (member['index']==850 or args.angular_balance) and (label in ((['scale_calibrated','angular_balanced'] if args.angular_balance else ['scale_calibrated','body_local']) if args.scale_body_scene else (['coverage_support'] if args.fresh55k_coverage else (['winding_scene'] if args.fresh55k_physics else (['winding_guard','guard_terminal'] if args.fresh55k_winding else ['rollout_replay','replay_terminal'])))) if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
+            if member['scope']=='demo' and (member['index']==850 or args.angular_balance) and (label in ((['angular_balanced','root_facing'] if args.root_facing else ['scale_calibrated','angular_balanced'] if args.angular_balance else ['scale_calibrated','body_local']) if args.scale_body_scene else (['coverage_support'] if args.fresh55k_coverage else (['winding_scene'] if args.fresh55k_physics else (['winding_guard','guard_terminal'] if args.fresh55k_winding else ['rollout_replay','replay_terminal'])))) if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
                 poisoned=dict(batch)
                 for key in ['motion','joints','trajectory','contact_target','contact_valid']:
                     if key in poisoned:poisoned[key]=torch.rand_like(poisoned[key].float())*100
@@ -154,6 +155,7 @@ def main():
     if args.fresh55k_coverage:pairs=[('coverage_support','original55k'),('coverage_support','scene_reference')]
     if args.scale_body_scene:pairs=[('scale_calibrated','support_reference'),('body_local','scale_calibrated'),('body_local','original55k')]
     if args.angular_balance:pairs=[('angular_balanced','original55k'),('angular_balanced','scale_calibrated'),('angular_balanced','support_reference')]
+    if args.root_facing:pairs=[('root_facing','original55k'),('root_facing','angular_balanced'),('root_facing','support_reference')]
     for label,base in pairs:
         paired[label+'-'+base]={}
         for m in METRICS:

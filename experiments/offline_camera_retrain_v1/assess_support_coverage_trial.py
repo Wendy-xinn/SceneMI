@@ -5,12 +5,12 @@ import torch,shutil
 H=Path(__file__).parent;O=H/'runs/fresh55k_support_coverage_oct11'
 def main():
  import argparse
- parser=argparse.ArgumentParser();parser.add_argument('--scale-body-scene',action='store_true');parser.add_argument('--variant',default='scale_calibrated',choices=['scale_calibrated','body_local','angular_balanced']);args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--scale-body-scene',action='store_true');parser.add_argument('--variant',default='scale_calibrated',choices=['scale_calibrated','body_local','angular_balanced','root_facing']);args=parser.parse_args()
  global O
  variant=args.variant if args.scale_body_scene else 'coverage_support'
  if args.scale_body_scene:O=H/'runs/control_scale_body_scene_oct11'
- if variant=='angular_balanced':O=O/'angular_balance_eval'
- checkpoint_root=O.parent if variant=='angular_balanced' else O
+ if variant in ('angular_balanced','root_facing'):O=O/('root_facing_eval' if variant=='root_facing' else 'angular_balance_eval')
+ checkpoint_root=O.parent if variant in ('angular_balanced','root_facing') else O
  reference='support_reference' if args.scale_body_scene else 'scene_reference'
  rows=json.loads((O/'rows.json').read_text());s=json.loads((O/'summary.json').read_text());d={r['index']:r for r in rows if r['scope']=='demo'};p=json.loads((O/'pre_registered_evaluation.json').read_text());foot=[];turn=[]
  def add(out,name,good):out.append(dict(check=name,passed=bool(good)))
@@ -37,11 +37,12 @@ def main():
    a=r['metrics'][v];f=a['observed_floor_support'];text+=f"|{i}/{v}|{a['pelvis_turn_deg']:.2f}|{a['horizontal_root_yaw_final_abs_deg']:.2f}|{a['root_turn_progress_error_deg']:.2f}|{f['observed_contact_frame_fraction']:.3f}|{f['lowest_foot_height_post80_mean_cm']:.2f}|{f['full']['contact_vertex_slide_cm_frame']:.3f}/{f['post80']['contact_vertex_slide_cm_frame']:.3f}|\n"
  text+='\n所有版本使用完整native足部顶点同样重评分。接触滑动只在接触点对上计算，必须一起看帧覆盖、点对数和动作幅度；GT支撑期关节脚滑仍另外保留。主面板16窗口×2种子，另32窗口×2种子确认，加850/906，共98条开发评估；不能宣称独立测试性能。\n\n|主面板指标|原55k|上轮参考|本组候选|\n|---|---:|---:|---:|\n'
  for title,m in [('朝向误差°','pelvis_orientation_mean_deg'),('GT支撑期脚滑cm/帧','gt_stance_slide_cm_frame'),('腿角加速度P95','leg_angular_accel_p95_deg_frame2'),('PA-MPJPE mm','pa_mpjpe_mm'),('世界MPJPE cm','mpjpe_cm')]:text+='|'+title+'|'+'|'.join(f"{s['means'][v][m]:.3f}" for v in ('original55k',reference,variant))+'|\n'
- if args.scale_body_scene and variant!='angular_balanced':
+ if args.scale_body_scene and variant not in ('angular_balanced','root_facing'):
   text+='\n本组新增容差归一化的head位置/绝对朝向及head-body耦合目标，系数由TRAIN32条件编码器梯度审计缩放到.1。body_local另加当前生成x0关节的局部表面查询，所有GT身体/接触仅训练标签与评分；body_local并非在scale_calibrated上继续训练。\n'
  if variant=='angular_balanced':text+='\n本组分别提高角度系数：位置.02、head绝对旋转.02、head-body相对旋转.10；身体耦合噪声权重从alpha改为.25+.75alpha，系数依据TRAIN32完整主干分项梯度。没有加载body-local适配器；其他目标和采样保持一致。\n'
+ if variant=='root_facing':text+='\n本组在角度平衡目标上新增TRAIN骨盆绝对SO(3)朝向监督，容差15度，系数见协议，噪声权重.25+.75alpha；GT只作训练标签，不用GT身体初始化。没有加载body-local适配器；其他目标和随机安排不变。\n'
  text+='\n未通过检查：'+', '.join(x['check'] for x in foot+turn if not x['passed'])+'。没有仅靠平均指标下降宣称解决。\n'
- if args.scale_body_scene and variant!='angular_balanced':
+ if args.scale_body_scene and variant not in ('angular_balanced','root_facing'):
   text+='\n本组头部目标已改变，body_local在每个扩散步按初步生成x0的FK身体重新查询观测局部场景，额外一次网络前向。这里只是距离/方向条件，没有全场景SDF或人体碰撞证书。未知表面保留mask，动态物体只查当帧。600步采样/噪声/回放严格配对，GT仅训练标签与评分；未引入GT初态或GT安装变换进行生成。\n'
  elif not args.scale_body_scene:
   text+='\n本组头部目标与上轮相同，只检验支撑覆盖。局部BPS仍为相机固定网格，没有身体随姿态查询或碰撞证书。\n'
