@@ -65,6 +65,8 @@ def main():
     parser.add_argument('--batch-size', type=int, default=2)
     parser.add_argument('--output', type=Path, default=OUTPUT)
     parser.add_argument('--resume', action='store_true')
+    parser.add_argument('--accept-code-update', action='store_true',
+                        help='Explicitly record a compatible code revision when resuming')
     parser.add_argument('--integration-only', action='store_true')
     args = parser.parse_args(); folder = args.output; folder.mkdir(parents=True, exist_ok=True)
     checks = json.loads((OUTPUT / 'input_checks.json').read_text())
@@ -111,7 +113,13 @@ def main():
         state = torch.load(folder / 'last.pt', map_location='cpu', weights_only=False)
         old_protocol = json.loads((folder / 'protocol.json').read_text())
         if old_protocol['code_sha256'] != code_hashes:
-            raise ValueError('Resume code changed; register a new continuation explicitly')
+            if not args.accept_code_update:
+                raise ValueError('Resume code changed; use --accept-code-update after compatibility checks')
+            old_protocol.setdefault('code_updates', []).append(dict(step=state['step'],
+                         before=old_protocol['code_sha256'], after=code_hashes,
+                         reason='explicitly accepted compatible revision after input/backward checks',
+                         preserved='model, optimizer, data/condition/torch RNG states'))
+            old_protocol['code_sha256'] = code_hashes
         model.load_state_dict(state['model']); optimizer.load_state_dict(state['optimizer'])
         for entry in optimizer.state.values():
             for key, value in entry.items():

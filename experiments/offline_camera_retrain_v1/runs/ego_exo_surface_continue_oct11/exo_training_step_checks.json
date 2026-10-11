@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "scope": "one TRAIN exo optimization step from55k; model discarded, not a performance result",
+  "identities": [
+    {
+      "dataset": "egobody",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+      "source_start_30fps": 1451,
+      "camera_source": "real_PV_pose_synthetic_scene_depth",
+      "dynamic_object_points": 0,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+      "scene_observation_fps": 20,
+      "scene_history_points": 0,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_camera_wearer",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smpl",
+        "gender": "female",
+        "betas": [
+          -0.8590788841247559,
+          1.293657898902893,
+          0.686110258102417,
+          -0.09008333086967468,
+          -0.9006412029266357,
+          0.9631812572479248,
+          1.990786075592041,
+          0.5611613988876343,
+          -1.241333246231079,
+          0.05211188644170761
+        ],
+        "scale": 1.0,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.0
+    },
+    {
+      "dataset": "egobody",
+      "group": "interactee",
+      "sequence_id": "recording_20210910_S05_S06_01_interactee_1451-3881",
+      "source_start_30fps": 1451,
+      "camera_source": "synthetic_head_xright_yup_zforward",
+      "dynamic_object_points": 0,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_interactee_1451-3881",
+      "scene_observation_fps": 20,
+      "scene_history_points": 0,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_interactee",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smpl",
+        "gender": "male",
+        "betas": [
+          1.615274429321289,
+          0.43722623586654663,
+          0.555803656578064,
+          -0.7264747619628906,
+          0.7336475253105164,
+          0.46627095341682434,
+          0.9347855448722839,
+          -0.8164171576499939,
+          -0.43286916613578796,
+          -0.2513654828071594
+        ],
+        "scale": 1.0,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.0
+    }
+  ],
+  "seed": 2026101153,
+  "timesteps": [
+    30,
+    500
+  ],
+  "loss": 0.4782956838607788,
+  "gradient_norm": 22.335702896118164,
+  "observed_position_entries": 757,
+  "rotation_available_entries": 0,
+  "terms": {
+    "position": 4.78242826461792,
+    "rotation": 0.0,
+    "velocity": 1.6571693420410156,
+    "acceleration": 2.145659923553467,
+    "angular_velocity": 0.0,
+    "body_turn_rate": 0.7426450848579407
+  }
+}

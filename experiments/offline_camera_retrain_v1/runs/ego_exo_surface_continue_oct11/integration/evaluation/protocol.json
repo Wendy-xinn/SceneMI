@@ -1,0 +1,47 @@
+{
+  "status": "completed",
+  "selected": [
+    {
+      "group": "trumans",
+      "sequence_index": 0,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "camera_wearer",
+      "sequence_index": 0,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "interactee",
+      "sequence_index": 0,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "rich",
+      "sequence_index": 0,
+      "start_index": 0,
+      "frames": 128
+    }
+  ],
+  "seed": 2026101149,
+  "ddim_steps": 10,
+  "checkpoint_step": 32,
+  "checkpoint_sha256": "429cf522b8bfd461c981c716a8481a96e99e01143e2575ca520690b2d7d082f3",
+  "frame_clock": "20Hz",
+  "input": "same frozen own-view observations and native body calibration; no prefix",
+  "baseline_exo": "original55k zero-shot position-only sparse transport; no added GT rotations",
+  "comparison": "ego across three domains; ego/exo mode comparison only matched EgoBody person/time windows",
+  "holdout": "validation development panel; input checks used first windows; not a pristine test set",
+  "metric_checks": {
+    "similarity_invariance": true,
+    "drift_distinguishes_first2_and_full": true,
+    "joints": 22,
+    "fps": 20,
+    "segment": 100,
+    "partial_tail": "excluded from aligned100 metrics"
+  },
+  "elapsed_s": 35.15236087300582
+}

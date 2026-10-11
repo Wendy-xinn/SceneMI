@@ -77,10 +77,17 @@ def run_checks(cp, output):
         hidden['trajectory'] = trajectory
         hidden_output = model(noisy, t, hidden, control_mask=mask)
         assert torch.equal(reference, hidden_output)
+        gap_control = mask.clone(); gap_control[:, 42, 15] = False
+        control_poison = dict(known, trajectory=known['trajectory'].clone())
+        control_poison['trajectory'][:, 42, 15] = 1e6
+        gap_reference = model(noisy, t, known, control_mask=gap_control)
+        gap_poisoned = model(noisy, t, control_poison, control_mask=gap_control)
+        assert torch.equal(gap_reference, gap_poisoned)
         empty = dict(known, surface_windows=[ObservedSurfaceWindow(np.empty((0, 3)))])
         assert torch.isfinite(model(noisy, t, empty, control_mask=mask)).all()
     report['checks'].update(label_poison_exact_equal=True, hidden_nan_exact_equal=True,
-                            empty_scene_finite=True, query_pose_source='generated proposal; no body labels')
+                            externally_masked_frame_exact_equal=True, empty_scene_finite=True,
+                            query_pose_source='generated proposal; no body labels')
     gap_meta = known['observation_meta'].clone(); gap_meta[:, 40:45, 15, :4] = 0
     *_, derivative_masks = observation_derivatives(known['trajectory'], gap_meta)
     assert not derivative_masks[0, 40:46, 15, 0].any()

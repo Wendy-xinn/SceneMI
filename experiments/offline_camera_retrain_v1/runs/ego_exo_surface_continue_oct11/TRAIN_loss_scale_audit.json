@@ -1,0 +1,153 @@
+{
+  "reference_gradient_norm": 0.12066402286291122,
+  "terms": {
+    "position": {
+      "loss": 1.2409464120864868,
+      "gradient_norm": 1.1638127565383911,
+      "coefficient": 0.010367992805115024,
+      "weighted_gradient_ratio": 0.1,
+      "target_ratio": 0.1,
+      "scale": 0.05
+    },
+    "rotation": {
+      "loss": 3.28344988822937,
+      "gradient_norm": 0.7819557189941406,
+      "coefficient": 0.00617242229614362,
+      "weighted_gradient_ratio": 0.04,
+      "target_ratio": 0.04,
+      "scale": 0.17453292519943295
+    },
+    "velocity": {
+      "loss": 0.7440640926361084,
+      "gradient_norm": 6.717160224914551,
+      "coefficient": 0.0005389064075709741,
+      "weighted_gradient_ratio": 0.03,
+      "target_ratio": 0.03,
+      "scale": 0.15
+    },
+    "acceleration": {
+      "loss": 1.6772396564483643,
+      "gradient_norm": 74.93242645263672,
+      "coefficient": 8.05152245664836e-06,
+      "weighted_gradient_ratio": 0.005,
+      "target_ratio": 0.005,
+      "scale": 1.0
+    },
+    "angular_velocity": {
+      "loss": 6.177615642547607,
+      "gradient_norm": 6.393807411193848,
+      "coefficient": 0.0002830802097315148,
+      "weighted_gradient_ratio": 0.015,
+      "target_ratio": 0.015,
+      "scale": 0.3490658503988659
+    },
+    "body_turn_rate": {
+      "loss": 0.8700011372566223,
+      "gradient_norm": 3.5240206718444824,
+      "coefficient": 0.000513606619111099,
+      "weighted_gradient_ratio": 0.015,
+      "target_ratio": 0.015,
+      "scale": 0.3490658503988659
+    }
+  },
+  "fitting_split": "train",
+  "method": "shared output gradient norm",
+  "identities": [
+    {
+      "dataset": "egobody",
+      "group": "interactee",
+      "sequence_id": "recording_20220312_S28_S29_06_interactee_2051-2501",
+      "source_start_30fps": 2261,
+      "camera_source": "synthetic_head_xright_yup_zforward",
+      "dynamic_object_points": 0,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20220312_S28_S29_06_interactee_2051-2501",
+      "scene_observation_fps": 20,
+      "scene_history_points": 4918,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20220312_S28_S29_06_interactee",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smpl",
+        "gender": "female",
+        "betas": [
+          0.46577930450439453,
+          0.5057988166809082,
+          1.4692648649215698,
+          -0.5093148946762085,
+          -0.7243871092796326,
+          -0.16775818169116974,
+          0.9955141544342041,
+          -0.5061808824539185,
+          -1.5244877338409424,
+          0.976733922958374
+        ],
+        "scale": 1.0,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.0
+    },
+    {
+      "dataset": "egobody",
+      "group": "interactee",
+      "sequence_id": "recording_20210921_S10_S11_02_interactee_2201-3191",
+      "source_start_30fps": 2411,
+      "camera_source": "synthetic_head_xright_yup_zforward",
+      "dynamic_object_points": 0,
+      "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+      "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210921_S10_S11_02_interactee_2201-3191",
+      "scene_observation_fps": 20,
+      "scene_history_points": 14646,
+      "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210921_S10_S11_02_interactee",
+      "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+      "native_body": {
+        "model": "smpl",
+        "gender": "female",
+        "betas": [
+          -0.7693048715591431,
+          -1.2382676601409912,
+          1.7351579666137695,
+          -0.639919638633728,
+          0.2216741293668747,
+          -0.3733612895011902,
+          0.6680335998535156,
+          -0.43063217401504517,
+          -0.5422133803367615,
+          0.3487427234649658
+        ],
+        "scale": 1.0,
+        "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+        "missing_hand_face_supervision": true
+      },
+      "archived_joint_difference_mean_m": 0.0
+    }
+  ],
+  "timesteps": [
+    45,
+    16
+  ],
+  "joint_weights": [
+    2.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.5,
+    1.5,
+    1.0,
+    1.5,
+    1.5,
+    1.0,
+    1.0,
+    1.0,
+    2.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.5,
+    1.5
+  ]
+}

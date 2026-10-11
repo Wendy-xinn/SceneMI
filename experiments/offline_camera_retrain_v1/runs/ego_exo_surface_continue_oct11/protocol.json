@@ -1,0 +1,134 @@
+{
+  "status": "training",
+  "steps": 3000,
+  "ego_warmup": 500,
+  "batch_size": 2,
+  "seed": 2026101143,
+  "initialization": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/last.pt",
+  "original_step": 55000,
+  "optimizer": "new AdamW for changed interface; original resumable checkpoint retained",
+  "input": "offline frozen camera/anatomical position/rotation with separate availability and confidence; no body prefix",
+  "shape": "known native body calibration; ideal geometry observations, not estimated real video input",
+  "exo": "EgoBody master Kinect, first-hit visibility; positions only; head/wrists initially",
+  "scene": "own-view observed surfaces only; offline static union, current dynamic objects; unknown is masked",
+  "surface": "67 fixed native vertex IDs, generated-pose LBS; 13 local probes; masked cross-attention and predicted-contact feedback",
+  "length": 128,
+  "accepted_inference_lengths": [
+    64,
+    128,
+    192
+  ],
+  "inference": "full-window DDIM, not frame autoregression",
+  "low_noise_fraction": 0.25,
+  "loss_profile": "coordination_v1 retained plus physical observation derivatives",
+  "derivative_base_equivalence": {
+    "velocity_coefficient": 0.025,
+    "acceleration_coefficient": 1.25e-05,
+    "explanation": "old per-frame base terms retained exactly; physical-unit equivalents"
+  },
+  "joint_weights": [
+    2.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.5,
+    1.5,
+    1.0,
+    1.5,
+    1.5,
+    1.0,
+    1.0,
+    1.0,
+    2.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.5,
+    1.5
+  ],
+  "scales": {
+    "position": 0.05,
+    "rotation": 0.17453292519943295,
+    "velocity": 0.15,
+    "acceleration": 1.0,
+    "angular_velocity": 0.3490658503988659,
+    "body_turn_rate": 0.3490658503988659
+  },
+  "sampling_plan": {
+    "valid_frames": {
+      "trumans": 683060,
+      "camera_wearer": 61932,
+      "interactee": 58956,
+      "rich": 24320
+    },
+    "group_probabilities": {
+      "trumans": 0.6213567173804633,
+      "rich": 0.1172447368405906,
+      "camera_wearer": 0.13391680511863613,
+      "interactee": 0.12748174066030987
+    },
+    "domain_probabilities": {
+      "trumans": 0.6213567173804633,
+      "egobody": 0.261398545778946,
+      "rich": 0.1172447368405906
+    },
+    "alpha": 0.5,
+    "length": 128,
+    "exo_given_egobody": 0.5
+  },
+  "source_sha256": "9d771510c16af5d71b8d4f8ae6c4269517814ebb382a0884e84a2ddb4f707363",
+  "code_sha256": {
+    "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+    "unified_geometry.py": "50b01fab4a3a43416e410693837e88d81e4375f9640043f58e41c76bd407ea1d",
+    "unified_observations.py": "2d3747fd0b6b2d8109e07d817974e074a944524f4c73bd76c1fdee0c53afa63f",
+    "unified_model.py": "f8391ca9ca28a3ff71eaaa255db227519f46e912b66b090e7c680c21363b4c47",
+    "unified_losses.py": "acbfab1b00c4372c14b09affd2e24b33298dca23e7bd898e8cf65b6fe2a72ebb",
+    "train_unified_continue.py": "fa1b17ad821361fd9f685427feca0d3323a9fa8d3290c8ae9ac89ba6fadc7111",
+    "audit_exo_observations.py": "cb3190b909cf043b90bb687d7bf1b08ad288d05c4d2952c02f450ee703f81923",
+    "unified_metrics.py": "70508258268678afe6bbdef2a956c737a150587e16ab8ac4353fd3e2fc9b924d",
+    "evaluate_unified_continue.py": "5194475bebce394dc9f17f55478d5e17edbec879739f2fbc7d24a1f415e01743"
+  },
+  "free_disk_before": 73245646848,
+  "completed_steps": 200,
+  "counts": {
+    "interactee/ego": 42,
+    "trumans/ego": 276,
+    "camera_wearer/ego": 54,
+    "rich/ego": 28
+  },
+  "elapsed_s": 463.2157774180232,
+  "free_disk_after": 72616058880,
+  "code_updates": [
+    {
+      "step": 100,
+      "before": {
+        "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+        "unified_geometry.py": "50b01fab4a3a43416e410693837e88d81e4375f9640043f58e41c76bd407ea1d",
+        "unified_observations.py": "2d3747fd0b6b2d8109e07d817974e074a944524f4c73bd76c1fdee0c53afa63f",
+        "unified_model.py": "9ff20466e2eae060af1345cc453ae9dceec9adff746d7e631c91694e57b133cb",
+        "unified_losses.py": "acbfab1b00c4372c14b09affd2e24b33298dca23e7bd898e8cf65b6fe2a72ebb",
+        "train_unified_continue.py": "08729e7bf75186b9535a5cfddb0be149ef132a8f28034f330c2ab52e70d7a690",
+        "audit_exo_observations.py": "cb3190b909cf043b90bb687d7bf1b08ad288d05c4d2952c02f450ee703f81923",
+        "unified_metrics.py": "70508258268678afe6bbdef2a956c737a150587e16ab8ac4353fd3e2fc9b924d",
+        "evaluate_unified_continue.py": "5194475bebce394dc9f17f55478d5e17edbec879739f2fbc7d24a1f415e01743"
+      },
+      "after": {
+        "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+        "unified_geometry.py": "50b01fab4a3a43416e410693837e88d81e4375f9640043f58e41c76bd407ea1d",
+        "unified_observations.py": "2d3747fd0b6b2d8109e07d817974e074a944524f4c73bd76c1fdee0c53afa63f",
+        "unified_model.py": "f8391ca9ca28a3ff71eaaa255db227519f46e912b66b090e7c680c21363b4c47",
+        "unified_losses.py": "acbfab1b00c4372c14b09affd2e24b33298dca23e7bd898e8cf65b6fe2a72ebb",
+        "train_unified_continue.py": "fa1b17ad821361fd9f685427feca0d3323a9fa8d3290c8ae9ac89ba6fadc7111",
+        "audit_exo_observations.py": "cb3190b909cf043b90bb687d7bf1b08ad288d05c4d2952c02f450ee703f81923",
+        "unified_metrics.py": "70508258268678afe6bbdef2a956c737a150587e16ab8ac4353fd3e2fc9b924d",
+        "evaluate_unified_continue.py": "5194475bebce394dc9f17f55478d5e17edbec879739f2fbc7d24a1f415e01743"
+      },
+      "reason": "explicitly accepted compatible revision after input/backward checks",
+      "preserved": "model, optimizer, data/condition/torch RNG states"
+    }
+  ]
+}

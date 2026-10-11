@@ -42,7 +42,9 @@ class UnifiedSceneMI(OfflineSceneMI):
             pm, rm = control * meta[..., 0], control * meta[..., 1]
             position = torch.where(pm[..., None] > 0, batch['trajectory'][..., :3], 0.)
             rotation = torch.where(rm[..., None] > 0, batch['trajectory'][..., 3:], 0.)
-            v, a, w, masks = observation_derivatives(batch['trajectory'], meta)
+            effective_meta = meta.clone()
+            effective_meta[..., :2] *= control[..., None]
+            v, a, w, masks = observation_derivatives(batch['trajectory'], effective_meta)
             masks = masks.to(noisy) * control[..., None]
             derivatives = torch.cat((v / .15, a / 1., w / np.deg2rad(20)), -1)
             derivatives = derivatives * masks.repeat_interleave(3, -1)
