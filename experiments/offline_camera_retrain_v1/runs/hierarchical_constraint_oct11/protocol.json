@@ -1,0 +1,68 @@
+{
+  "status": "complete",
+  "members": [
+    {
+      "index": 850,
+      "seed": 2026101881,
+      "window": {
+        "index": 850,
+        "group": "trumans",
+        "length": 128,
+        "sequence_index": 14,
+        "start_index": 86,
+        "sequence_id": "2023-02-18@16-39-58"
+      },
+      "scope": "demo"
+    },
+    {
+      "index": 906,
+      "seed": 2026101937,
+      "window": {
+        "index": 906,
+        "group": "trumans",
+        "length": 128,
+        "sequence_index": 15,
+        "start_index": 54,
+        "sequence_id": "2023-02-18@16-44-19"
+      },
+      "scope": "demo"
+    },
+    {
+      "index": 850,
+      "seed": 2026101144,
+      "window": {
+        "index": 850,
+        "group": "trumans",
+        "length": 128,
+        "sequence_index": 14,
+        "start_index": 86,
+        "sequence_id": "2023-02-18@16-39-58"
+      },
+      "scope": "second_seed"
+    },
+    {
+      "index": 906,
+      "seed": 2026101144,
+      "window": {
+        "index": 906,
+        "group": "trumans",
+        "length": 128,
+        "sequence_index": 15,
+        "start_index": 54,
+        "sequence_id": "2023-02-18@16-44-19"
+      },
+      "scope": "second_seed"
+    }
+  ],
+  "frames": 128,
+  "iterations": 160,
+  "model": "original55k frozen; no candidate checkpoint warm-start",
+  "constraints": "calibrated known head pose only; support inferred once from generated native feet and observed static plane",
+  "turn_scaffold": "separate candidate from original55k: gravity-twist continuous head path, initial root-head offset inferred from original motion clipped to 60deg, relative turn-path drift soft bound45deg, intrinsic gait velocity; not GT pelvis or a universally valid head==body assumption",
+  "GT": "TRAIN calibration and final scoring only; no validation body prefix/initialization/root/contacts/mount fit",
+  "limitations": "two exposed development windows/two seeds, no statistical generalization claim; unknown/collision outside support patch not solved; head-track calibration approximation reported separately",
+  "elapsed_seconds": 73.21153590001632,
+  "GT_poison_generation_max_diff": 0.0,
+  "GT_poison_repair_max_diff": 0.0,
+  "new_checkpoints": 0
+}

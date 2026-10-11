@@ -1,3 +1,5 @@
+> 2026-10-11 最新：已完成原55k的强头部约束、全身/支撑及连续转向路径对照，并实现未训练的身体—表面attention原型。转向明显改善，但腿部联合验收未通过；新方法方案和结果见 [hierarchical_constraint_oct11/ASSESSMENT_zh.md](../hierarchical_constraint_oct11/ASSESSMENT_zh.md)。
+
 > Oct11最新：4组均从原55k独立600步、固定98条配对评估。骨盆绝对朝向组通过相对原55k的脚部组件门槛，但大幅转向仍未修好；未替换正式55k。详见[最新验收](../control_scale_body_scene_oct11/root_facing_eval/ASSESSMENT_zh.md)。
 
 # 实质改善候选：实际身体状态 + 相对运动 + 连续软约束修正

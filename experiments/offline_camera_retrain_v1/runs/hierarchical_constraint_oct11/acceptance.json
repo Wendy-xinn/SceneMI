@@ -1,0 +1,50 @@
+{
+  "adopt": false,
+  "scope": "four exposed development generations only, no full-validation/new-scene claim",
+  "rows": [
+    {
+      "index": 850,
+      "scope": "demo",
+      "turn_direction_correct": true,
+      "GT_stance_non_regression": false,
+      "ankle_cross_proxy_non_regression": false,
+      "native_contact_slide_improved": true,
+      "known_head_max_position_cm": 8.940696716308594e-06
+    },
+    {
+      "index": 906,
+      "scope": "demo",
+      "turn_direction_correct": true,
+      "GT_stance_non_regression": false,
+      "ankle_cross_proxy_non_regression": false,
+      "native_contact_slide_improved": true,
+      "known_head_max_position_cm": 1.2731557035294827e-05
+    },
+    {
+      "index": 850,
+      "scope": "second_seed",
+      "turn_direction_correct": true,
+      "GT_stance_non_regression": true,
+      "ankle_cross_proxy_non_regression": true,
+      "native_contact_slide_improved": true,
+      "known_head_max_position_cm": 1.1151008038723376e-05
+    },
+    {
+      "index": 906,
+      "scope": "second_seed",
+      "turn_direction_correct": true,
+      "GT_stance_non_regression": false,
+      "ankle_cross_proxy_non_regression": false,
+      "native_contact_slide_improved": true,
+      "known_head_max_position_cm": 1.4466411812463775e-05
+    }
+  ],
+  "unresolved": [
+    "GT stance slide increased in three of four generations",
+    "ankle-cross proxy worse in three of four, not a mesh self-collision certificate",
+    "full body-sofa collision and uncertain real video observations not evaluated",
+    "head-turn scaffold assumption needs look-only/backward-motion counterexamples",
+    "scene attention model has no training-quality evidence"
+  ],
+  "new_checkpoint_files": 0
+}

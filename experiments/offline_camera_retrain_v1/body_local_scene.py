@@ -28,6 +28,46 @@ class BodySceneWindow:
             out.append(feature)
         return np.asarray(out,np.float32)
 
+    def neighbourhoods(self,joints,rotation=None,*,radii=(.25,.75,2.),k=8):
+        """Multi-surface, multi-scale tokens. Unknown slots remain masked.
+
+        Static observations obey each query's timestamp. Moving surfaces are
+        queried only at that exact time, never accumulated into static memory.
+        Features: body-local displacement/radius, distance/radius, valid,
+        dynamic. Selection is discrete; callers must not claim a signed SDF.
+        """
+        if k<1 or any(r<=0 for r in radii):raise ValueError('Invalid neighbourhood')
+        joints=np.asarray(joints)
+        if len(joints)!=len(self.queries):raise ValueError('Body query time mismatch')
+        out=np.zeros((*joints.shape[:2],len(radii),k,6),np.float32)
+        for t,v in enumerate(joints):
+            n=int(np.searchsorted(self.times,self.queries[t],side='right'))
+            if n not in self.trees:self.trees[n]=cKDTree(self.points[:n]) if n else None
+            if t not in self.dynamic_trees:self.dynamic_trees[t]=cKDTree(self.dynamic[t]) if len(self.dynamic[t]) else None
+            # Separate radii must see different spatial extents, rather than
+            # re-encoding the same nearest k points three times. Bounded,
+            # deterministic candidate sampling + farthest-point selection.
+            for j,point in enumerate(v):
+                for s,r in enumerate(radii):
+                    patches=[];tags=[]
+                    for tree,moving in ((self.trees[n],False),(self.dynamic_trees[t],True)):
+                        if tree is None:continue
+                        ix=tree.query_ball_point(point,r,return_sorted=True)
+                        if not len(ix):continue
+                        if len(ix)>128:ix=np.asarray(ix)[np.linspace(0,len(ix)-1,128).astype(int)]
+                        patches.append(tree.data[ix]);tags.extend([moving]*len(ix))
+                    if not patches:continue
+                    points=np.concatenate(patches);delta=points-point;d=np.linalg.norm(delta,axis=1)
+                    selected=[int(d.argmin())];distance=np.full(len(points),np.inf)
+                    for _ in range(min(k,len(points))-1):
+                        distance=np.minimum(distance,((points-points[selected[-1]])**2).sum(-1));distance[selected]=-1
+                        selected.append(int(distance.argmax()))
+                    delta=delta[selected]
+                    if rotation is not None:delta=delta@rotation[t,j]
+                    count=len(selected)
+                    out[t,j,s,:count]=np.column_stack((delta/r,d[selected]/r,np.ones(count),np.asarray(tags)[selected]))
+        return out
+
 class BodySceneCache:
     def __init__(self,limit=4):self.limit=limit;self.cache=OrderedDict()
     def get(self,identity,frames=128):
