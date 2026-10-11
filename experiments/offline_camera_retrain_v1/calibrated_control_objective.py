@@ -17,7 +17,7 @@ def rotation_residual(a,b,tolerance_deg):
     # sqrt-chordal = 2 sin(theta/2); finite gradient at identical rotations.
     distance=(.5*(a-b).square().sum((-1,-2))+1e-8).sqrt()-1e-4
     return distance/(2*math.sin(math.radians(tolerance_deg)/2))
-def calibrated_control_losses(pred,truth,rest,signal,confidence=None):
+def calibrated_control_losses(pred,truth,rest,signal,confidence=None,*,body_signal_floor=0.):
     confidence=pred.new_ones(len(pred)) if confidence is None else confidence.detach().to(pred).clamp(0,1)
     weight=(.25+.75*signal.detach().reshape(-1))*confidence
     def reduce(x,w):return (x.flatten(1).mean(1)*w).mean()
@@ -26,10 +26,19 @@ def calibrated_control_losses(pred,truth,rest,signal,confidence=None):
     pos=reduce(F.smooth_l1_loss((j[:,:,15]-gtj[:,:,15])/POSITION_TOLERANCE_M,torch.zeros_like(j[:,:,15]),reduction='none').sum(-1),weight)
     angle=rotation_residual(p[:,:,15],t[:,:,15],HEAD_TOLERANCE_DEG)
     orient=reduce(F.smooth_l1_loss(angle,torch.zeros_like(angle),reduction='none'),weight)
+    if not 0<=body_signal_floor<=1:raise ValueError("Body signal floor must lie in[0,1]")
+    body_weight=signal.detach().reshape(-1)*confidence if body_signal_floor==0 else (body_signal_floor+(1-body_signal_floor)*signal.detach().reshape(-1))*confidence
     relative=[]
     for joint in (0,9,12):
         rp=p[:,:,joint].transpose(-1,-2)@p[:,:,15];rt=t[:,:,joint].transpose(-1,-2)@t[:,:,15]
         residual=rotation_residual(rp,rt,BODY_RELATIVE_TOLERANCE_DEG)
-        relative.append(reduce(F.smooth_l1_loss(residual,torch.zeros_like(residual),reduction='none'),signal.detach().reshape(-1)*confidence))
+        relative.append(reduce(F.smooth_l1_loss(residual,torch.zeros_like(residual),reduction='none'),body_weight))
     coupling=torch.stack(relative).mean()
     return dict(calibrated_head_position=pos,calibrated_head_orientation=orient,calibrated_head_body_relative=coupling,calibrated_control_total=CONTROL_WEIGHT_SCALE*(.20*pos+.02*orient+.10*coupling))
+
+
+def angular_balanced_control_losses(pred,truth,rest,signal,confidence=None):
+    """Separate angular scales selected by TRAIN full-model gradient audit."""
+    losses=calibrated_control_losses(pred,truth,rest,signal,confidence,body_signal_floor=.25)
+    losses["calibrated_control_total"]=(.02*losses["calibrated_head_position"]+.02*losses["calibrated_head_orientation"]+.10*losses["calibrated_head_body_relative"])
+    return losses

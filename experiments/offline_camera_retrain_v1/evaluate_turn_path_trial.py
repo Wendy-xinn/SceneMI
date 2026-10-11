@@ -25,7 +25,8 @@ def extra_metrics(m,rest):
 @torch.inference_mode()
 def main():
     global O
-    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');parser.add_argument('--fresh55k-winding',action='store_true');parser.add_argument('--fresh55k-physics',action='store_true');parser.add_argument('--fresh55k-coverage',action='store_true');parser.add_argument('--scale-body-scene',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--support-refinement',action='store_true');parser.add_argument('--fresh55k-replay',action='store_true');parser.add_argument('--fresh55k-winding',action='store_true');parser.add_argument('--fresh55k-physics',action='store_true');parser.add_argument('--fresh55k-coverage',action='store_true');parser.add_argument('--scale-body-scene',action='store_true');parser.add_argument('--angular-balance',action='store_true');args=parser.parse_args()
+    if args.angular_balance:args.scale_body_scene=True
     if args.scale_body_scene:args.fresh55k_coverage=True
     if args.fresh55k_coverage:
         if args.fresh55k_physics or args.fresh55k_winding or args.fresh55k_replay or args.support_refinement:parser.error('Choose coverage alone')
@@ -44,9 +45,12 @@ def main():
     if args.fresh55k_physics:labels=['original55k','guard_reference','winding_scene']
     if args.fresh55k_coverage:labels=['original55k','scene_reference','coverage_support']
     if args.scale_body_scene:O=H/'runs/control_scale_body_scene_oct11';labels=['original55k','support_reference','scale_calibrated','body_local']
+    training_root=O
+    if args.angular_balance:
+        labels=['original55k','support_reference','scale_calibrated','angular_balanced'];O=O/'angular_balance_eval';O.mkdir(exist_ok=True)
     torch.set_num_threads(4);start=time.monotonic();models={};digests={}
     for label in labels:
-        path=H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt' if label=='original55k' else O/label/'last.pt'
+        path=H/'runs/native_dynamic_scene20_contact_55k_oct07/last.pt' if label=='original55k' else (training_root if args.angular_balance else O)/label/'last.pt'
         if label=='prior_turn600':path=H/'runs/turn_path_training_oct10/turn_path/last.pt'
         if label=='replay_reference':path=H/'runs/fresh55k_replay_oct11/rollout_replay/last.pt'
         if label=='support_reference':path=H/'runs/fresh55k_support_coverage_oct11/coverage_support/last.pt'
@@ -125,7 +129,7 @@ def main():
                 if label=='body_local':
                     qj=model.last_body_query_joints[0];features=model.last_body_query_features[0];r=model.last_body_query_rotations[0]
                     saved['body_query_joints']=qj;saved['body_query_surface_points']=qj+np.einsum('tjik,tjk->tji',r,features[...,:3]*.75);saved['body_query_valid']=features[...,4]>0;saved['body_query_dynamic']=features[...,5]>0
-            if member['scope']=='demo' and member['index']==850 and (label in (['scale_calibrated','body_local'] if args.scale_body_scene else (['coverage_support'] if args.fresh55k_coverage else (['winding_scene'] if args.fresh55k_physics else (['winding_guard','guard_terminal'] if args.fresh55k_winding else ['rollout_replay','replay_terminal'])))) if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
+            if member['scope']=='demo' and (member['index']==850 or args.angular_balance) and (label in ((['scale_calibrated','angular_balanced'] if args.angular_balance else ['scale_calibrated','body_local']) if args.scale_body_scene else (['coverage_support'] if args.fresh55k_coverage else (['winding_scene'] if args.fresh55k_physics else (['winding_guard','guard_terminal'] if args.fresh55k_winding else ['rollout_replay','replay_terminal'])))) if args.fresh55k_replay else label==('sole_support' if args.support_refinement else 'turn_path')):
                 poisoned=dict(batch)
                 for key in ['motion','joints','trajectory','contact_target','contact_valid']:
                     if key in poisoned:poisoned[key]=torch.rand_like(poisoned[key].float())*100
@@ -133,6 +137,7 @@ def main():
                     regenerated_base=generate_without_body_initialization(models['original55k'],poisoned,seed=member['seed']);regenerated=model(regenerated_base,torch.zeros(len(regenerated_base),device='cuda',dtype=torch.long),camera_inputs_only(poisoned),control_mask=fixed_control_mask(len(regenerated_base),128,'head','cuda'),use_scene=True)
                 else:regenerated=generate_without_body_initialization(model,poisoned,seed=member['seed'])
                 assert torch.equal(regenerated,motion);protocol['body_GT_poison_output_max_diff']=float((regenerated-motion).abs().max())
+                protocol.setdefault('GT_poison_by_case',{}).setdefault(str(member['index']),{})[label]=float((regenerated-motion).abs().max())
                 protocol.setdefault('GT_poison_by_variant',{})[label]=float((regenerated-motion).abs().max())
         if saved:np.savez_compressed(O/f"{member['index']}.npz",**saved)
         rows.append(dict(**member,identity=identity,metrics=values,gt_geometry=extra_metrics(batch['motion'],batch['rest'])));(O/'rows.json').write_text(json.dumps(rows,indent=2))
@@ -148,6 +153,7 @@ def main():
     if args.fresh55k_physics:pairs=[('winding_scene','original55k'),('winding_scene','guard_reference')]
     if args.fresh55k_coverage:pairs=[('coverage_support','original55k'),('coverage_support','scene_reference')]
     if args.scale_body_scene:pairs=[('scale_calibrated','support_reference'),('body_local','scale_calibrated'),('body_local','original55k')]
+    if args.angular_balance:pairs=[('angular_balanced','original55k'),('angular_balanced','scale_calibrated'),('angular_balanced','support_reference')]
     for label,base in pairs:
         paired[label+'-'+base]={}
         for m in METRICS:

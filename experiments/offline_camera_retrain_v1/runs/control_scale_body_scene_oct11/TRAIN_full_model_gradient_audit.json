@@ -1,0 +1,2461 @@
+{
+  "scope": "8 TRAIN windows x4 noise/replay settings=32; full model parameters including main backbone; fixed current .1 control multiplier; no optimizer or coefficient selection",
+  "rows": [
+    {
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-15@23-36-07",
+        "source_start_30fps": 1650,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 1876,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-15@23-36-07",
+        "scene_observation_fps": 20,
+        "scene_history_points": 63684,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-15@23-36-07",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.00011475649080239236
+      },
+      "timestep": 50,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.045557901263237,
+          "output_translation_norm": 0.1936337947845459,
+          "output_rotation_norm": 0.12849359214305878,
+          "full_model_gradient_norm": 1.502799153327942
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.00037568784318864346,
+          "output_translation_norm": 0.003956470638513565,
+          "output_rotation_norm": 0.0019013445125892758,
+          "full_model_gradient_norm": 0.23258621990680695
+        },
+        "winding": {
+          "weighted_loss": 0.8397800326347351,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 4.0776214599609375,
+          "full_model_gradient_norm": 22.11876106262207
+        },
+        "support": {
+          "weighted_loss": 0.06287094950675964,
+          "output_translation_norm": 0.7709216475486755,
+          "output_rotation_norm": 0.44182202219963074,
+          "full_model_gradient_norm": 24.25004005432129
+        },
+        "calibrated": {
+          "weighted_loss": 0.02343926765024662,
+          "output_translation_norm": 0.0452345609664917,
+          "output_rotation_norm": 0.023084035143256187,
+          "full_model_gradient_norm": 2.697089672088623
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": -0.10112833231687546,
+        "calibrated_winding": 0.03999069333076477,
+        "head_position_existing_support": -0.09829876571893692
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-15@23-36-07",
+        "source_start_30fps": 1650,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 1876,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-15@23-36-07",
+        "scene_observation_fps": 20,
+        "scene_history_points": 63684,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-15@23-36-07",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.00011475649080239236
+      },
+      "timestep": 500,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.4920959770679474,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.046249162405729294,
+          "output_translation_norm": 0.1131400614976883,
+          "output_rotation_norm": 0.07380786538124084,
+          "full_model_gradient_norm": 1.5096642971038818
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.000308171845972538,
+          "output_translation_norm": 0.003583363490179181,
+          "output_rotation_norm": 0.0016392242396250367,
+          "full_model_gradient_norm": 0.137753427028656
+        },
+        "winding": {
+          "weighted_loss": 0.3161744177341461,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 1.0924185514450073,
+          "full_model_gradient_norm": 4.662853717803955
+        },
+        "support": {
+          "weighted_loss": 0.016940074041485786,
+          "output_translation_norm": 0.23279719054698944,
+          "output_rotation_norm": 0.1447150707244873,
+          "full_model_gradient_norm": 6.615501880645752
+        },
+        "calibrated": {
+          "weighted_loss": 0.012302382849156857,
+          "output_translation_norm": 0.025564316660165787,
+          "output_rotation_norm": 0.013849461451172829,
+          "full_model_gradient_norm": 1.078352928161621
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": -0.6814494132995605,
+        "calibrated_winding": 0.06065986305475235,
+        "head_position_existing_support": -0.7211203575134277
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-15@23-36-07",
+        "source_start_30fps": 1650,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 1876,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-15@23-36-07",
+        "scene_observation_fps": 20,
+        "scene_history_points": 63684,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-15@23-36-07",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.00011475649080239236
+      },
+      "timestep": 950,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.005817912518978119,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.04260070621967316,
+          "output_translation_norm": 0.03912868723273277,
+          "output_rotation_norm": 0.0236017107963562,
+          "full_model_gradient_norm": 0.8714883923530579
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0002856311621144414,
+          "output_translation_norm": 0.0034498260356485844,
+          "output_rotation_norm": 0.001678358530625701,
+          "full_model_gradient_norm": 0.08959626406431198
+        },
+        "winding": {
+          "weighted_loss": 0.11325030028820038,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.23793263733386993,
+          "full_model_gradient_norm": 0.9830750823020935
+        },
+        "support": {
+          "weighted_loss": 2.1318055587471463e-06,
+          "output_translation_norm": 3.130172990495339e-05,
+          "output_rotation_norm": 1.9168814105796628e-05,
+          "full_model_gradient_norm": 0.0010421411134302616
+        },
+        "calibrated": {
+          "weighted_loss": 0.002087303204461932,
+          "output_translation_norm": 0.010096026584506035,
+          "output_rotation_norm": 0.0052479226142168045,
+          "full_model_gradient_norm": 0.26335272192955017
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": -0.3618703782558441,
+        "calibrated_winding": 0.004353050142526627,
+        "head_position_existing_support": -0.3496178984642029
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-15@23-36-07",
+        "source_start_30fps": 1650,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 1876,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-15@23-36-07",
+        "scene_observation_fps": 20,
+        "scene_history_points": 63684,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-15@23-36-07",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.00011475649080239236
+      },
+      "timestep": 50,
+      "basis": "frozen55k_replay",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.08426447957754135,
+          "output_translation_norm": 0.22751125693321228,
+          "output_rotation_norm": 0.1570049673318863,
+          "full_model_gradient_norm": 1.417763590812683
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0006307576550170779,
+          "output_translation_norm": 0.005126555450260639,
+          "output_rotation_norm": 0.00244859978556633,
+          "full_model_gradient_norm": 0.16762956976890564
+        },
+        "winding": {
+          "weighted_loss": 0.4739750921726227,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 1.1375575065612793,
+          "full_model_gradient_norm": 3.997694730758667
+        },
+        "support": {
+          "weighted_loss": 0.09112557023763657,
+          "output_translation_norm": 1.1642889976501465,
+          "output_rotation_norm": 0.5537459850311279,
+          "full_model_gradient_norm": 56.74833297729492
+        },
+        "calibrated": {
+          "weighted_loss": 0.025504136458039284,
+          "output_translation_norm": 0.05323069915175438,
+          "output_rotation_norm": 0.029189007356762886,
+          "full_model_gradient_norm": 1.92444908618927
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": -0.395027756690979,
+        "calibrated_winding": 0.2562227249145508,
+        "head_position_existing_support": -0.383745402097702
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-15@00-08-06",
+        "source_start_30fps": 1800,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 1064,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-15@00-08-06",
+        "scene_observation_fps": 20,
+        "scene_history_points": 50526,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-15@00-08-06",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0001517454074928537
+      },
+      "timestep": 50,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.05615392327308655,
+          "output_translation_norm": 0.28294575214385986,
+          "output_rotation_norm": 0.200884610414505,
+          "full_model_gradient_norm": 2.0555286407470703
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.001546686515212059,
+          "output_translation_norm": 0.00802778173238039,
+          "output_rotation_norm": 0.003982644993811846,
+          "full_model_gradient_norm": 0.3499141335487366
+        },
+        "winding": {
+          "weighted_loss": 0.6105514168739319,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 11.251032829284668,
+          "full_model_gradient_norm": 74.2891616821289
+        },
+        "support": {
+          "weighted_loss": 0.158091202378273,
+          "output_translation_norm": 2.155121326446533,
+          "output_rotation_norm": 1.4550728797912598,
+          "full_model_gradient_norm": 49.054039001464844
+        },
+        "calibrated": {
+          "weighted_loss": 0.03648866340517998,
+          "output_translation_norm": 0.07499101012945175,
+          "output_rotation_norm": 0.03783533722162247,
+          "full_model_gradient_norm": 3.3191757202148438
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": -0.08138272166252136,
+        "calibrated_winding": 0.16469916701316833,
+        "head_position_existing_support": -0.0769406110048294
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-15@00-08-06",
+        "source_start_30fps": 1800,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 1064,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-15@00-08-06",
+        "scene_observation_fps": 20,
+        "scene_history_points": 50526,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-15@00-08-06",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0001517454074928537
+      },
+      "timestep": 500,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.4920959770679474,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.05047420412302017,
+          "output_translation_norm": 0.1658434122800827,
+          "output_rotation_norm": 0.11711112409830093,
+          "full_model_gradient_norm": 1.5509235858917236
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.001549612614326179,
+          "output_translation_norm": 0.008035372011363506,
+          "output_rotation_norm": 0.004017385188490152,
+          "full_model_gradient_norm": 0.314133882522583
+        },
+        "winding": {
+          "weighted_loss": 0.4335402846336365,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 8.22088623046875,
+          "full_model_gradient_norm": 56.72380828857422
+        },
+        "support": {
+          "weighted_loss": 0.026258118450641632,
+          "output_translation_norm": 0.4195947051048279,
+          "output_rotation_norm": 0.3125680983066559,
+          "full_model_gradient_norm": 5.095217227935791
+        },
+        "calibrated": {
+          "weighted_loss": 0.021890779957175255,
+          "output_translation_norm": 0.048483263701200485,
+          "output_rotation_norm": 0.02493247203528881,
+          "full_model_gradient_norm": 1.9751213788986206
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0795368179678917,
+        "calibrated_winding": 0.16290181875228882,
+        "head_position_existing_support": 0.10717649012804031
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-15@00-08-06",
+        "source_start_30fps": 1800,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 1064,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-15@00-08-06",
+        "scene_observation_fps": 20,
+        "scene_history_points": 50526,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-15@00-08-06",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0001517454074928537
+      },
+      "timestep": 950,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.005817912518978119,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.05452033132314682,
+          "output_translation_norm": 0.142497256398201,
+          "output_rotation_norm": 0.07149817049503326,
+          "full_model_gradient_norm": 5.8228373527526855
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.003333581145852804,
+          "output_translation_norm": 0.011785551905632019,
+          "output_rotation_norm": 0.005695686209946871,
+          "full_model_gradient_norm": 0.4655851423740387
+        },
+        "winding": {
+          "weighted_loss": 0.10550380498170853,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.43882444500923157,
+          "full_model_gradient_norm": 2.413078546524048
+        },
+        "support": {
+          "weighted_loss": 1.3362873687583487e-05,
+          "output_translation_norm": 9.80077893473208e-05,
+          "output_rotation_norm": 5.749106639996171e-05,
+          "full_model_gradient_norm": 0.0034175431355834007
+        },
+        "calibrated": {
+          "weighted_loss": 0.01107363123446703,
+          "output_translation_norm": 0.025109538808465004,
+          "output_rotation_norm": 0.01255740039050579,
+          "full_model_gradient_norm": 0.989744246006012
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.528735339641571,
+        "calibrated_winding": 0.18693101406097412,
+        "head_position_existing_support": 0.41117504239082336
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-15@00-08-06",
+        "source_start_30fps": 1800,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 1064,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-15@00-08-06",
+        "scene_observation_fps": 20,
+        "scene_history_points": 50526,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-15@00-08-06",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0001517454074928537
+      },
+      "timestep": 50,
+      "basis": "frozen55k_replay",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.18981227278709412,
+          "output_translation_norm": 0.3360823392868042,
+          "output_rotation_norm": 0.24960005283355713,
+          "full_model_gradient_norm": 9.879926681518555
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.003949170932173729,
+          "output_translation_norm": 0.012827658094465733,
+          "output_rotation_norm": 0.005708003416657448,
+          "full_model_gradient_norm": 0.5818517804145813
+        },
+        "winding": {
+          "weighted_loss": 0.8452840447425842,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 9.158563613891602,
+          "full_model_gradient_norm": 49.72556686401367
+        },
+        "support": {
+          "weighted_loss": 0.217462956905365,
+          "output_translation_norm": 2.470975637435913,
+          "output_rotation_norm": 1.6143832206726074,
+          "full_model_gradient_norm": 60.89786148071289
+        },
+        "calibrated": {
+          "weighted_loss": 0.06250976771116257,
+          "output_translation_norm": 0.09993793815374374,
+          "output_rotation_norm": 0.04666699841618538,
+          "full_model_gradient_norm": 4.166312217712402
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.5849312543869019,
+        "calibrated_winding": 0.0688864067196846,
+        "head_position_existing_support": 0.5015264749526978
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+        "source_start_30fps": 3691,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14793,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20211002_S03_S18_04_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.2660890817642212,
+            -0.051125820726156235,
+            0.7817806005477905,
+            -0.1501304656267166,
+            -0.17307737469673157,
+            0.05409102514386177,
+            0.9148656129837036,
+            -0.15696480870246887,
+            -0.6930665969848633,
+            0.41316038370132446
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 50,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.01310823205858469,
+          "output_translation_norm": 0.0828649029135704,
+          "output_rotation_norm": 0.047237589955329895,
+          "full_model_gradient_norm": 2.0101683139801025
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0002954469819087535,
+          "output_translation_norm": 0.003508602501824498,
+          "output_rotation_norm": 0.0013698225375264883,
+          "full_model_gradient_norm": 0.12425893545150757
+        },
+        "winding": {
+          "weighted_loss": 0.05566052347421646,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.44620826840400696,
+          "full_model_gradient_norm": 1.7276980876922607
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.006465632002800703,
+          "output_translation_norm": 0.04182989522814751,
+          "output_rotation_norm": 0.01768866926431656,
+          "full_model_gradient_norm": 1.48853600025177
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": -0.028080623596906662,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+        "source_start_30fps": 3691,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14793,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20211002_S03_S18_04_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.2660890817642212,
+            -0.051125820726156235,
+            0.7817806005477905,
+            -0.1501304656267166,
+            -0.17307737469673157,
+            0.05409102514386177,
+            0.9148656129837036,
+            -0.15696480870246887,
+            -0.6930665969848633,
+            0.41316038370132446
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 500,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.4920959770679474,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.023589421063661575,
+          "output_translation_norm": 0.1159408763051033,
+          "output_rotation_norm": 0.02682586759328842,
+          "full_model_gradient_norm": 8.817776679992676
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0008908740128390491,
+          "output_translation_norm": 0.00609259819611907,
+          "output_rotation_norm": 0.0017173653468489647,
+          "full_model_gradient_norm": 0.4285963475704193
+        },
+        "winding": {
+          "weighted_loss": 0.06365009397268295,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.3669438362121582,
+          "full_model_gradient_norm": 1.3514553308486938
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.009128313511610031,
+          "output_translation_norm": 0.04456907510757446,
+          "output_rotation_norm": 0.012539045885205269,
+          "full_model_gradient_norm": 3.163363218307495
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": -0.03786939010024071,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+        "source_start_30fps": 3691,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14793,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20211002_S03_S18_04_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.2660890817642212,
+            -0.051125820726156235,
+            0.7817806005477905,
+            -0.1501304656267166,
+            -0.17307737469673157,
+            0.05409102514386177,
+            0.9148656129837036,
+            -0.15696480870246887,
+            -0.6930665969848633,
+            0.41316038370132446
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 950,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.005817912518978119,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.022445011883974075,
+          "output_translation_norm": 0.09019714593887329,
+          "output_rotation_norm": 0.013466913253068924,
+          "full_model_gradient_norm": 6.961789608001709
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0011431870516389608,
+          "output_translation_norm": 0.006901651155203581,
+          "output_rotation_norm": 0.002124713035300374,
+          "full_model_gradient_norm": 0.46891355514526367
+        },
+        "winding": {
+          "weighted_loss": 0.0361638143658638,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.09652381390333176,
+          "full_model_gradient_norm": 0.7099868655204773
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.004774994216859341,
+          "output_translation_norm": 0.02047649398446083,
+          "output_rotation_norm": 0.006055639591068029,
+          "full_model_gradient_norm": 1.4101632833480835
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.0028151478618383408,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+        "source_start_30fps": 3691,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14793,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20211002_S03_S18_04_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.2660890817642212,
+            -0.051125820726156235,
+            0.7817806005477905,
+            -0.1501304656267166,
+            -0.17307737469673157,
+            0.05409102514386177,
+            0.9148656129837036,
+            -0.15696480870246887,
+            -0.6930665969848633,
+            0.41316038370132446
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 50,
+      "basis": "frozen55k_replay",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.06332966685295105,
+          "output_translation_norm": 0.13663414120674133,
+          "output_rotation_norm": 0.0601954348385334,
+          "full_model_gradient_norm": 8.390243530273438
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0012525543570518494,
+          "output_translation_norm": 0.007224248722195625,
+          "output_rotation_norm": 0.002365142572671175,
+          "full_model_gradient_norm": 0.5329173803329468
+        },
+        "winding": {
+          "weighted_loss": 0.1637839674949646,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.9069875478744507,
+          "full_model_gradient_norm": 5.023798942565918
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.021072568371891975,
+          "output_translation_norm": 0.08382430672645569,
+          "output_rotation_norm": 0.027027636766433716,
+          "full_model_gradient_norm": 6.201845169067383
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.040628790855407715,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20210918_S05_S06_03_camera_wearer_1001-2891",
+        "source_start_30fps": 1391,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210918_S05_S06_03_camera_wearer_1001-2891",
+        "scene_observation_fps": 20,
+        "scene_history_points": 24735,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210918_S05_S06_03_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8573955297470093,
+            1.386448860168457,
+            0.4623669385910034,
+            0.3844350278377533,
+            -1.3165534734725952,
+            0.7336345911026001,
+            1.1161848306655884,
+            0.6428329944610596,
+            -0.9438246488571167,
+            0.17386533319950104
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 50,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.022660378366708755,
+          "output_translation_norm": 0.06348386406898499,
+          "output_rotation_norm": 0.03068944253027439,
+          "full_model_gradient_norm": 2.469986915588379
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0003373034705873579,
+          "output_translation_norm": 0.0037489079404622316,
+          "output_rotation_norm": 0.0014015460619702935,
+          "full_model_gradient_norm": 0.3052379786968231
+        },
+        "winding": {
+          "weighted_loss": 0.013072608038783073,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.17209161818027496,
+          "full_model_gradient_norm": 1.3163789510726929
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.010091478936374187,
+          "output_translation_norm": 0.04469483345746994,
+          "output_rotation_norm": 0.01880740560591221,
+          "full_model_gradient_norm": 3.6970763206481934
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.14861981570720673,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20210918_S05_S06_03_camera_wearer_1001-2891",
+        "source_start_30fps": 1391,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210918_S05_S06_03_camera_wearer_1001-2891",
+        "scene_observation_fps": 20,
+        "scene_history_points": 24735,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210918_S05_S06_03_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8573955297470093,
+            1.386448860168457,
+            0.4623669385910034,
+            0.3844350278377533,
+            -1.3165534734725952,
+            0.7336345911026001,
+            1.1161848306655884,
+            0.6428329944610596,
+            -0.9438246488571167,
+            0.17386533319950104
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 500,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.4920959770679474,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.027704905718564987,
+          "output_translation_norm": 0.07748601585626602,
+          "output_rotation_norm": 0.034503307193517685,
+          "full_model_gradient_norm": 4.252126216888428
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.00044988523586653173,
+          "output_translation_norm": 0.0043295747600495815,
+          "output_rotation_norm": 0.0017108441097661853,
+          "full_model_gradient_norm": 0.318685382604599
+        },
+        "winding": {
+          "weighted_loss": 0.016649460420012474,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.1132141724228859,
+          "full_model_gradient_norm": 0.809675395488739
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.007822009734809399,
+          "output_translation_norm": 0.032163821160793304,
+          "output_rotation_norm": 0.014366162940859795,
+          "full_model_gradient_norm": 2.418290376663208
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.18744201958179474,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20210918_S05_S06_03_camera_wearer_1001-2891",
+        "source_start_30fps": 1391,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210918_S05_S06_03_camera_wearer_1001-2891",
+        "scene_observation_fps": 20,
+        "scene_history_points": 24735,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210918_S05_S06_03_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8573955297470093,
+            1.386448860168457,
+            0.4623669385910034,
+            0.3844350278377533,
+            -1.3165534734725952,
+            0.7336345911026001,
+            1.1161848306655884,
+            0.6428329944610596,
+            -0.9438246488571167,
+            0.17386533319950104
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 950,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.005817912518978119,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.05826590955257416,
+          "output_translation_norm": 0.12973637878894806,
+          "output_rotation_norm": 0.04401349276304245,
+          "full_model_gradient_norm": 9.936771392822266
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0005412900354713202,
+          "output_translation_norm": 0.00474907923489809,
+          "output_rotation_norm": 0.0016678128158673644,
+          "full_model_gradient_norm": 0.3348201513290405
+        },
+        "winding": {
+          "weighted_loss": 0.004601265769451857,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.04431091248989105,
+          "full_model_gradient_norm": 0.28778326511383057
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.0024284799583256245,
+          "output_translation_norm": 0.014047106727957726,
+          "output_rotation_norm": 0.00527173513546586,
+          "full_model_gradient_norm": 1.0146031379699707
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.1707298308610916,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20210918_S05_S06_03_camera_wearer_1001-2891",
+        "source_start_30fps": 1391,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210918_S05_S06_03_camera_wearer_1001-2891",
+        "scene_observation_fps": 20,
+        "scene_history_points": 24735,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210918_S05_S06_03_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8573955297470093,
+            1.386448860168457,
+            0.4623669385910034,
+            0.3844350278377533,
+            -1.3165534734725952,
+            0.7336345911026001,
+            1.1161848306655884,
+            0.6428329944610596,
+            -0.9438246488571167,
+            0.17386533319950104
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 50,
+      "basis": "frozen55k_replay",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.20637786388397217,
+          "output_translation_norm": 0.2328837513923645,
+          "output_rotation_norm": 0.10763486474752426,
+          "full_model_gradient_norm": 19.97842025756836
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0005292891291901469,
+          "output_translation_norm": 0.0046961382031440735,
+          "output_rotation_norm": 0.0012168247485533357,
+          "full_model_gradient_norm": 0.3637760579586029
+        },
+        "winding": {
+          "weighted_loss": 0.035794585943222046,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.6598427891731262,
+          "full_model_gradient_norm": 1.8923488855361938
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.013285988941788673,
+          "output_translation_norm": 0.055987779051065445,
+          "output_rotation_norm": 0.015056096948683262,
+          "full_model_gradient_norm": 4.34637975692749
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.08178680390119553,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210921_S10_S11_02_interactee_2201-3191",
+        "source_start_30fps": 2501,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210921_S10_S11_02_interactee_2201-3191",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14790,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210921_S10_S11_02_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.7693048715591431,
+            -1.2382676601409912,
+            1.7351579666137695,
+            -0.639919638633728,
+            0.2216741293668747,
+            -0.3733612895011902,
+            0.6680335998535156,
+            -0.43063217401504517,
+            -0.5422133803367615,
+            0.3487427234649658
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 50,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.03669091314077377,
+          "output_translation_norm": 0.15354503691196442,
+          "output_rotation_norm": 0.07979922741651535,
+          "full_model_gradient_norm": 1.794924020767212
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0004377236473374069,
+          "output_translation_norm": 0.004270654171705246,
+          "output_rotation_norm": 0.0012440071441233158,
+          "full_model_gradient_norm": 0.1395883560180664
+        },
+        "winding": {
+          "weighted_loss": 0.2552168667316437,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 2.1308200359344482,
+          "full_model_gradient_norm": 10.528231620788574
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.01693170703947544,
+          "output_translation_norm": 0.04792379215359688,
+          "output_rotation_norm": 0.016133325174450874,
+          "full_model_gradient_norm": 1.6527212858200073
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.11818311363458633,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210921_S10_S11_02_interactee_2201-3191",
+        "source_start_30fps": 2501,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210921_S10_S11_02_interactee_2201-3191",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14790,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210921_S10_S11_02_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.7693048715591431,
+            -1.2382676601409912,
+            1.7351579666137695,
+            -0.639919638633728,
+            0.2216741293668747,
+            -0.3733612895011902,
+            0.6680335998535156,
+            -0.43063217401504517,
+            -0.5422133803367615,
+            0.3487427234649658
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 500,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.4920959770679474,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.0526835098862648,
+          "output_translation_norm": 0.10919331759214401,
+          "output_rotation_norm": 0.06428449600934982,
+          "full_model_gradient_norm": 3.1267595291137695
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0004826191288884729,
+          "output_translation_norm": 0.004484320525079966,
+          "output_rotation_norm": 0.0011417496716603637,
+          "full_model_gradient_norm": 0.19870205223560333
+        },
+        "winding": {
+          "weighted_loss": 0.13121770322322845,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.8853628635406494,
+          "full_model_gradient_norm": 3.832711696624756
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.010300682857632637,
+          "output_translation_norm": 0.030769335106015205,
+          "output_rotation_norm": 0.009052516892552376,
+          "full_model_gradient_norm": 1.40201997756958
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.06477566808462143,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210921_S10_S11_02_interactee_2201-3191",
+        "source_start_30fps": 2501,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210921_S10_S11_02_interactee_2201-3191",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14790,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210921_S10_S11_02_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.7693048715591431,
+            -1.2382676601409912,
+            1.7351579666137695,
+            -0.639919638633728,
+            0.2216741293668747,
+            -0.3733612895011902,
+            0.6680335998535156,
+            -0.43063217401504517,
+            -0.5422133803367615,
+            0.3487427234649658
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 950,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.005817912518978119,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.029943369328975677,
+          "output_translation_norm": 0.033497586846351624,
+          "output_rotation_norm": 0.008746979758143425,
+          "full_model_gradient_norm": 0.7691006064414978
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.00042962701991200447,
+          "output_translation_norm": 0.00423097237944603,
+          "output_rotation_norm": 0.0012329232413321733,
+          "full_model_gradient_norm": 0.10027268528938293
+        },
+        "winding": {
+          "weighted_loss": 0.051281750202178955,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.31803855299949646,
+          "full_model_gradient_norm": 1.4612287282943726
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.003502328647300601,
+          "output_translation_norm": 0.012868880294263363,
+          "output_rotation_norm": 0.0038145019207149744,
+          "full_model_gradient_norm": 0.31170448660850525
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.19486157596111298,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210921_S10_S11_02_interactee_2201-3191",
+        "source_start_30fps": 2501,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210921_S10_S11_02_interactee_2201-3191",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14790,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210921_S10_S11_02_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.7693048715591431,
+            -1.2382676601409912,
+            1.7351579666137695,
+            -0.639919638633728,
+            0.2216741293668747,
+            -0.3733612895011902,
+            0.6680335998535156,
+            -0.43063217401504517,
+            -0.5422133803367615,
+            0.3487427234649658
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 50,
+      "basis": "frozen55k_replay",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.1532987654209137,
+          "output_translation_norm": 0.23043952882289886,
+          "output_rotation_norm": 0.13845312595367432,
+          "full_model_gradient_norm": 9.667312622070312
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0006979042664170265,
+          "output_translation_norm": 0.005392526742070913,
+          "output_rotation_norm": 0.0017850102158263326,
+          "full_model_gradient_norm": 0.2542545795440674
+        },
+        "winding": {
+          "weighted_loss": 0.17144173383712769,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 1.1209758520126343,
+          "full_model_gradient_norm": 5.3596014976501465
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.019180847331881523,
+          "output_translation_norm": 0.06238578259944916,
+          "output_rotation_norm": 0.020819494500756264,
+          "full_model_gradient_norm": 2.9352667331695557
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.07707582414150238,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210911_S07_S06_02_interactee_901-1711",
+        "source_start_30fps": 1441,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210911_S07_S06_02_interactee_901-1711",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14117,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210911_S07_S06_02_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.957552194595337,
+            0.3182399272918701,
+            0.21022681891918182,
+            0.7868251800537109,
+            0.5611757040023804,
+            -0.17546403408050537,
+            0.7460505962371826,
+            -0.7819479703903198,
+            0.8446490168571472,
+            -1.0061113834381104
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 50,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.043187305331230164,
+          "output_translation_norm": 0.15338920056819916,
+          "output_rotation_norm": 0.09817604720592499,
+          "full_model_gradient_norm": 0.9335345029830933
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0010690632043406367,
+          "output_translation_norm": 0.0066741518676280975,
+          "output_rotation_norm": 0.0024192624259740114,
+          "full_model_gradient_norm": 0.3634021282196045
+        },
+        "winding": {
+          "weighted_loss": 0.2635531425476074,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 1.1524616479873657,
+          "full_model_gradient_norm": 5.146474361419678
+        },
+        "support": {
+          "weighted_loss": 0.1936197727918625,
+          "output_translation_norm": 3.2470035552978516,
+          "output_rotation_norm": 1.7715697288513184,
+          "full_model_gradient_norm": 65.22056579589844
+        },
+        "calibrated": {
+          "weighted_loss": 0.038334038108587265,
+          "output_translation_norm": 0.07605299353599548,
+          "output_rotation_norm": 0.03175608813762665,
+          "full_model_gradient_norm": 4.30033540725708
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.4752359390258789,
+        "calibrated_winding": 0.2198704332113266,
+        "head_position_existing_support": 0.4905158579349518
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210911_S07_S06_02_interactee_901-1711",
+        "source_start_30fps": 1441,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210911_S07_S06_02_interactee_901-1711",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14117,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210911_S07_S06_02_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.957552194595337,
+            0.3182399272918701,
+            0.21022681891918182,
+            0.7868251800537109,
+            0.5611757040023804,
+            -0.17546403408050537,
+            0.7460505962371826,
+            -0.7819479703903198,
+            0.8446490168571472,
+            -1.0061113834381104
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 500,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.4920959770679474,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.08060228079557419,
+          "output_translation_norm": 0.10163170844316483,
+          "output_rotation_norm": 0.0832250639796257,
+          "full_model_gradient_norm": 1.2451350688934326
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0012139345053583384,
+          "output_translation_norm": 0.007112004794180393,
+          "output_rotation_norm": 0.002440782729536295,
+          "full_model_gradient_norm": 0.3906993865966797
+        },
+        "winding": {
+          "weighted_loss": 0.21704356372356415,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.5172401070594788,
+          "full_model_gradient_norm": 2.5265045166015625
+        },
+        "support": {
+          "weighted_loss": 0.09733329713344574,
+          "output_translation_norm": 0.9430690407752991,
+          "output_rotation_norm": 0.5095609426498413,
+          "full_model_gradient_norm": 22.348722457885742
+        },
+        "calibrated": {
+          "weighted_loss": 0.0226784348487854,
+          "output_translation_norm": 0.047521863132715225,
+          "output_rotation_norm": 0.020008817315101624,
+          "full_model_gradient_norm": 2.7524874210357666
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.5793489813804626,
+        "calibrated_winding": 0.26568853855133057,
+        "head_position_existing_support": 0.6476572751998901
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210911_S07_S06_02_interactee_901-1711",
+        "source_start_30fps": 1441,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210911_S07_S06_02_interactee_901-1711",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14117,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210911_S07_S06_02_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.957552194595337,
+            0.3182399272918701,
+            0.21022681891918182,
+            0.7868251800537109,
+            0.5611757040023804,
+            -0.17546403408050537,
+            0.7460505962371826,
+            -0.7819479703903198,
+            0.8446490168571472,
+            -1.0061113834381104
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 950,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.005817912518978119,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.028944872319698334,
+          "output_translation_norm": 0.05890810862183571,
+          "output_rotation_norm": 0.026380179449915886,
+          "full_model_gradient_norm": 1.1587551832199097
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0011416937923058867,
+          "output_translation_norm": 0.006897142622619867,
+          "output_rotation_norm": 0.002498447662219405,
+          "full_model_gradient_norm": 0.4348788857460022
+        },
+        "winding": {
+          "weighted_loss": 0.07662567496299744,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.1384289264678955,
+          "full_model_gradient_norm": 0.8370780944824219
+        },
+        "support": {
+          "weighted_loss": 1.1382436241547111e-05,
+          "output_translation_norm": 0.00013409624807536602,
+          "output_rotation_norm": 7.1126596594695e-05,
+          "full_model_gradient_norm": 0.003394158324226737
+        },
+        "calibrated": {
+          "weighted_loss": 0.006064928136765957,
+          "output_translation_norm": 0.018612531945109367,
+          "output_rotation_norm": 0.007720992434769869,
+          "full_model_gradient_norm": 1.2288038730621338
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.48952043056488037,
+        "calibrated_winding": 0.28314051032066345,
+        "head_position_existing_support": 0.506622314453125
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210911_S07_S06_02_interactee_901-1711",
+        "source_start_30fps": 1441,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210911_S07_S06_02_interactee_901-1711",
+        "scene_observation_fps": 20,
+        "scene_history_points": 14117,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210911_S07_S06_02_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.957552194595337,
+            0.3182399272918701,
+            0.21022681891918182,
+            0.7868251800537109,
+            0.5611757040023804,
+            -0.17546403408050537,
+            0.7460505962371826,
+            -0.7819479703903198,
+            0.8446490168571472,
+            -1.0061113834381104
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "timestep": 50,
+      "basis": "frozen55k_replay",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.24637630581855774,
+          "output_translation_norm": 0.2033984661102295,
+          "output_rotation_norm": 0.1789243221282959,
+          "full_model_gradient_norm": 5.936511039733887
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0015188716351985931,
+          "output_translation_norm": 0.007955269888043404,
+          "output_rotation_norm": 0.003161655506119132,
+          "full_model_gradient_norm": 0.4734058082103729
+        },
+        "winding": {
+          "weighted_loss": 0.3258548080921173,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.8490726351737976,
+          "full_model_gradient_norm": 4.24763298034668
+        },
+        "support": {
+          "weighted_loss": 0.5300396084785461,
+          "output_translation_norm": 4.881831645965576,
+          "output_rotation_norm": 2.360445499420166,
+          "full_model_gradient_norm": 143.3770751953125
+        },
+        "calibrated": {
+          "weighted_loss": 0.04280055686831474,
+          "output_translation_norm": 0.08006260544061661,
+          "output_rotation_norm": 0.03571508079767227,
+          "full_model_gradient_norm": 5.178013801574707
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.38141918182373047,
+        "calibrated_winding": 0.2701030373573303,
+        "head_position_existing_support": 0.3539367914199829
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "Pavallion_013_phonesiteat",
+        "source_start_30fps": 363.5,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/Pavallion_013_phonesiteat",
+        "scene_observation_fps": 20,
+        "scene_history_points": 61014,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/Pavallion_013_phonesiteat",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "female",
+          "betas": [
+            -1.2210816144943237,
+            -0.5887261629104614,
+            0.10889122635126114,
+            0.42334508895874023,
+            -0.9368839263916016,
+            -0.9970421195030212,
+            0.4571110010147095,
+            0.40893620252609253,
+            0.7505634427070618,
+            0.014663211070001125
+          ],
+          "scale": 1.0085147834852377,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.02676803432404995
+      },
+      "timestep": 50,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.07171684503555298,
+          "output_translation_norm": 0.176595076918602,
+          "output_rotation_norm": 0.107709601521492,
+          "full_model_gradient_norm": 2.083258628845215
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.002029065042734146,
+          "output_translation_norm": 0.009194801561534405,
+          "output_rotation_norm": 0.004166153725236654,
+          "full_model_gradient_norm": 0.6112585067749023
+        },
+        "winding": {
+          "weighted_loss": 0.17952609062194824,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.5504100918769836,
+          "full_model_gradient_norm": 4.588626384735107
+        },
+        "support": {
+          "weighted_loss": 0.06505870819091797,
+          "output_translation_norm": 1.5684295892715454,
+          "output_rotation_norm": 0.9703728556632996,
+          "full_model_gradient_norm": 4.720850944519043
+        },
+        "calibrated": {
+          "weighted_loss": 0.039606593549251556,
+          "output_translation_norm": 0.07461708039045334,
+          "output_rotation_norm": 0.02924601174890995,
+          "full_model_gradient_norm": 4.5345072746276855
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.05128735303878784,
+        "calibrated_winding": -0.08856146782636642,
+        "head_position_existing_support": 0.07443706691265106
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "Pavallion_013_phonesiteat",
+        "source_start_30fps": 363.5,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/Pavallion_013_phonesiteat",
+        "scene_observation_fps": 20,
+        "scene_history_points": 61014,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/Pavallion_013_phonesiteat",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "female",
+          "betas": [
+            -1.2210816144943237,
+            -0.5887261629104614,
+            0.10889122635126114,
+            0.42334508895874023,
+            -0.9368839263916016,
+            -0.9970421195030212,
+            0.4571110010147095,
+            0.40893620252609253,
+            0.7505634427070618,
+            0.014663211070001125
+          ],
+          "scale": 1.0085147834852377,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.02676803432404995
+      },
+      "timestep": 500,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.4920959770679474,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.07731898874044418,
+          "output_translation_norm": 0.13024230301380157,
+          "output_rotation_norm": 0.0775580033659935,
+          "full_model_gradient_norm": 3.2952044010162354
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0011566467583179474,
+          "output_translation_norm": 0.006942162290215492,
+          "output_rotation_norm": 0.003019689815118909,
+          "full_model_gradient_norm": 0.4449394643306732
+        },
+        "winding": {
+          "weighted_loss": 0.13367368280887604,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.5312361717224121,
+          "full_model_gradient_norm": 2.9828035831451416
+        },
+        "support": {
+          "weighted_loss": 0.020753102377057076,
+          "output_translation_norm": 0.3965928554534912,
+          "output_rotation_norm": 0.23719464242458344,
+          "full_model_gradient_norm": 7.163552284240723
+        },
+        "calibrated": {
+          "weighted_loss": 0.017855165526270866,
+          "output_translation_norm": 0.04550112411379814,
+          "output_rotation_norm": 0.017963694408535957,
+          "full_model_gradient_norm": 2.775691032409668
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": -0.03293626382946968,
+        "calibrated_winding": -0.07074139267206192,
+        "head_position_existing_support": -0.026334421709179878
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "Pavallion_013_phonesiteat",
+        "source_start_30fps": 363.5,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/Pavallion_013_phonesiteat",
+        "scene_observation_fps": 20,
+        "scene_history_points": 61014,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/Pavallion_013_phonesiteat",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "female",
+          "betas": [
+            -1.2210816144943237,
+            -0.5887261629104614,
+            0.10889122635126114,
+            0.42334508895874023,
+            -0.9368839263916016,
+            -0.9970421195030212,
+            0.4571110010147095,
+            0.40893620252609253,
+            0.7505634427070618,
+            0.014663211070001125
+          ],
+          "scale": 1.0085147834852377,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.02676803432404995
+      },
+      "timestep": 950,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.005817912518978119,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.07997344434261322,
+          "output_translation_norm": 0.06412054598331451,
+          "output_rotation_norm": 0.017280375584959984,
+          "full_model_gradient_norm": 3.829608917236328
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.0008591838413849473,
+          "output_translation_norm": 0.005983253940939903,
+          "output_rotation_norm": 0.0024521155282855034,
+          "full_model_gradient_norm": 0.3296196758747101
+        },
+        "winding": {
+          "weighted_loss": 0.09575041383504868,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.4437006711959839,
+          "full_model_gradient_norm": 2.652557373046875
+        },
+        "support": {
+          "weighted_loss": 4.929801434627734e-06,
+          "output_translation_norm": 7.408444071188569e-05,
+          "output_rotation_norm": 4.133678157813847e-05,
+          "full_model_gradient_norm": 0.0015195361338555813
+        },
+        "calibrated": {
+          "weighted_loss": 0.005471333861351013,
+          "output_translation_norm": 0.017396429553627968,
+          "output_rotation_norm": 0.007730037439614534,
+          "full_model_gradient_norm": 0.9973390698432922
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.7546083331108093,
+        "calibrated_winding": 0.17732957005500793,
+        "head_position_existing_support": 0.7525555491447449
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "Pavallion_013_phonesiteat",
+        "source_start_30fps": 363.5,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/Pavallion_013_phonesiteat",
+        "scene_observation_fps": 20,
+        "scene_history_points": 61014,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/Pavallion_013_phonesiteat",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "female",
+          "betas": [
+            -1.2210816144943237,
+            -0.5887261629104614,
+            0.10889122635126114,
+            0.42334508895874023,
+            -0.9368839263916016,
+            -0.9970421195030212,
+            0.4571110010147095,
+            0.40893620252609253,
+            0.7505634427070618,
+            0.014663211070001125
+          ],
+          "scale": 1.0085147834852377,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.02676803432404995
+      },
+      "timestep": 50,
+      "basis": "frozen55k_replay",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.19745324552059174,
+          "output_translation_norm": 0.29250258207321167,
+          "output_rotation_norm": 0.19158729910850525,
+          "full_model_gradient_norm": 11.132737159729004
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.001228234963491559,
+          "output_translation_norm": 0.007153772283345461,
+          "output_rotation_norm": 0.00264626438729465,
+          "full_model_gradient_norm": 0.37287768721580505
+        },
+        "winding": {
+          "weighted_loss": 0.3628142178058624,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 1.9464328289031982,
+          "full_model_gradient_norm": 11.346983909606934
+        },
+        "support": {
+          "weighted_loss": 0.3960551619529724,
+          "output_translation_norm": 3.161675453186035,
+          "output_rotation_norm": 1.3821314573287964,
+          "full_model_gradient_norm": 148.11102294921875
+        },
+        "calibrated": {
+          "weighted_loss": 0.03420070558786392,
+          "output_translation_norm": 0.07534505426883698,
+          "output_rotation_norm": 0.02810966782271862,
+          "full_model_gradient_norm": 3.9390010833740234
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.4187587797641754,
+        "calibrated_winding": 0.014142045751214027,
+        "head_position_existing_support": 0.41192421317100525
+      },
+      "valid_floor": true
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "ParkingLot2_008_eating1",
+        "source_start_30fps": 741.0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/ParkingLot2_008_eating1",
+        "scene_observation_fps": 20,
+        "scene_history_points": 39298,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/ParkingLot2_008_eating1",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            1.710416555404663,
+            0.4414472281932831,
+            -1.3038156032562256,
+            -0.17536349594593048,
+            0.11614922434091568,
+            -1.4078563451766968,
+            2.5690250396728516,
+            0.025285590440034866,
+            -0.40212270617485046,
+            0.414435476064682
+          ],
+          "scale": 1.0057461176830529,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.026652658358216286
+      },
+      "timestep": 50,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.057135459035634995,
+          "output_translation_norm": 0.1644057035446167,
+          "output_rotation_norm": 0.10730212926864624,
+          "full_model_gradient_norm": 2.2189505100250244
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.00022043815988581628,
+          "output_translation_norm": 0.0030306640546768904,
+          "output_rotation_norm": 0.0013049611588940024,
+          "full_model_gradient_norm": 0.12343768030405045
+        },
+        "winding": {
+          "weighted_loss": 0.21992850303649902,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 1.0909395217895508,
+          "full_model_gradient_norm": 9.349413871765137
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.033622194081544876,
+          "output_translation_norm": 0.036126501858234406,
+          "output_rotation_norm": 0.019291259348392487,
+          "full_model_gradient_norm": 1.7143791913986206
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.34016329050064087,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "ParkingLot2_008_eating1",
+        "source_start_30fps": 741.0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/ParkingLot2_008_eating1",
+        "scene_observation_fps": 20,
+        "scene_history_points": 39298,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/ParkingLot2_008_eating1",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            1.710416555404663,
+            0.4414472281932831,
+            -1.3038156032562256,
+            -0.17536349594593048,
+            0.11614922434091568,
+            -1.4078563451766968,
+            2.5690250396728516,
+            0.025285590440034866,
+            -0.40212270617485046,
+            0.414435476064682
+          ],
+          "scale": 1.0057461176830529,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.026652658358216286
+      },
+      "timestep": 500,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.4920959770679474,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.05672911927103996,
+          "output_translation_norm": 0.10505262762308121,
+          "output_rotation_norm": 0.0715407058596611,
+          "full_model_gradient_norm": 2.460214853286743
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.00031803708407096565,
+          "output_translation_norm": 0.003640267299488187,
+          "output_rotation_norm": 0.001584138022735715,
+          "full_model_gradient_norm": 0.19028116762638092
+        },
+        "winding": {
+          "weighted_loss": 0.18309055268764496,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.3984401226043701,
+          "full_model_gradient_norm": 4.799150466918945
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.018819112330675125,
+          "output_translation_norm": 0.027042048051953316,
+          "output_rotation_norm": 0.013979854993522167,
+          "full_model_gradient_norm": 1.5311025381088257
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.23920601606369019,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "ParkingLot2_008_eating1",
+        "source_start_30fps": 741.0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/ParkingLot2_008_eating1",
+        "scene_observation_fps": 20,
+        "scene_history_points": 39298,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/ParkingLot2_008_eating1",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            1.710416555404663,
+            0.4414472281932831,
+            -1.3038156032562256,
+            -0.17536349594593048,
+            0.11614922434091568,
+            -1.4078563451766968,
+            2.5690250396728516,
+            0.025285590440034866,
+            -0.40212270617485046,
+            0.414435476064682
+          ],
+          "scale": 1.0057461176830529,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.026652658358216286
+      },
+      "timestep": 950,
+      "basis": "GT_qnoise",
+      "alpha_bar": 0.005817912518978119,
+      "terms": {
+        "base": {
+          "weighted_loss": 0.05293162539601326,
+          "output_translation_norm": 0.07788217067718506,
+          "output_rotation_norm": 0.02913854643702507,
+          "full_model_gradient_norm": 4.67822790145874
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.00031019572634249926,
+          "output_translation_norm": 0.0035951111931353807,
+          "output_rotation_norm": 0.0013615500647574663,
+          "full_model_gradient_norm": 0.11076807975769043
+        },
+        "winding": {
+          "weighted_loss": 0.04469844698905945,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.1420435756444931,
+          "full_model_gradient_norm": 1.296837329864502
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.004249442834407091,
+          "output_translation_norm": 0.010743450373411179,
+          "output_rotation_norm": 0.004396533127874136,
+          "full_model_gradient_norm": 0.362722247838974
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.35158777236938477,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "ParkingLot2_008_eating1",
+        "source_start_30fps": 741.0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/ParkingLot2_008_eating1",
+        "scene_observation_fps": 20,
+        "scene_history_points": 39298,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/ParkingLot2_008_eating1",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            1.710416555404663,
+            0.4414472281932831,
+            -1.3038156032562256,
+            -0.17536349594593048,
+            0.11614922434091568,
+            -1.4078563451766968,
+            2.5690250396728516,
+            0.025285590440034866,
+            -0.40212270617485046,
+            0.414435476064682
+          ],
+          "scale": 1.0057461176830529,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.026652658358216286
+      },
+      "timestep": 50,
+      "basis": "frozen55k_replay",
+      "alpha_bar": 0.9913435578346252,
+      "terms": {
+        "base": {
+          "weighted_loss": 1.3804731369018555,
+          "output_translation_norm": 0.6320793628692627,
+          "output_rotation_norm": 0.4318452477455139,
+          "full_model_gradient_norm": 60.1815299987793
+        },
+        "head_position_existing": {
+          "weighted_loss": 0.007836911827325821,
+          "output_translation_norm": 0.018070362508296967,
+          "output_rotation_norm": 0.006848868913948536,
+          "full_model_gradient_norm": 1.6892001628875732
+        },
+        "winding": {
+          "weighted_loss": 0.23367324471473694,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 1.0185372829437256,
+          "full_model_gradient_norm": 7.411139965057373
+        },
+        "support": {
+          "weighted_loss": 0.0,
+          "output_translation_norm": 0.0,
+          "output_rotation_norm": 0.0,
+          "full_model_gradient_norm": 0.0
+        },
+        "calibrated": {
+          "weighted_loss": 0.09087931364774704,
+          "output_translation_norm": 0.1114119291305542,
+          "output_rotation_norm": 0.039600908756256104,
+          "full_model_gradient_norm": 10.675843238830566
+        }
+      },
+      "full_model_gradient_cosine": {
+        "calibrated_support": 0.0,
+        "calibrated_winding": 0.13455428183078766,
+        "head_position_existing_support": 0.0
+      },
+      "valid_floor": false
+    }
+  ],
+  "units": {
+    "root_motion": "half meters, FK restores x2",
+    "head_position_existing": "m squared",
+    "rotation": "dimensionless chordal",
+    "physical_height": "3cm normalization",
+    "calibrated": "5cm/5deg and15deg Huber; fixed .20/.02/.10",
+    "winding": "cumulative radians squared, scales with duration"
+  }
+}
