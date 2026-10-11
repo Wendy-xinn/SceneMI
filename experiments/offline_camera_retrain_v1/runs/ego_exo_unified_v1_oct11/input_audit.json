@@ -1,0 +1,46 @@
+{
+  "status": "input_audit_only_not_trained",
+  "base_checkpoint": "native_dynamic_scene20_contact_55k_oct07/last.pt",
+  "splits": {
+    "train": {
+      "segments": 213,
+      "recordings": 64,
+      "roles": {
+        "camera_wearer": 99,
+        "interactee": 114
+      },
+      "person_frames_20hz": 125940,
+      "missing_master_calibration": [],
+      "invalid_master_calibration": []
+    },
+    "validation": {
+      "segments": 99,
+      "recordings": 30,
+      "roles": {
+        "camera_wearer": 47,
+        "interactee": 52
+      },
+      "person_frames_20hz": 62400,
+      "missing_master_calibration": [],
+      "invalid_master_calibration": []
+    },
+    "test": {
+      "segments": 68,
+      "recordings": 29,
+      "roles": {
+        "camera_wearer": 34,
+        "interactee": 34
+      },
+      "person_frames_20hz": 71040,
+      "missing_master_calibration": [],
+      "invalid_master_calibration": []
+    }
+  },
+  "recording_overlap": {
+    "train_validation": [],
+    "train_test": [],
+    "validation_test": []
+  },
+  "external_rgb_root_present": false,
+  "source_protocol": "native-source-recovery-v1; use recording/frame identities, not historical positional indices"
+}
