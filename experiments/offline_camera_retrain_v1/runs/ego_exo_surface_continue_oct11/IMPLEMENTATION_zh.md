@@ -64,3 +64,7 @@ unified_metrics.py把世界坐标未对齐误差明确叫world_unaligned_mpjpe_m
 ## 文件与存储
 
 正式日志/tmp/unified_formal_resume.log；trace.jsonl逐步保存身份、噪声t、模式、scene开关和loss，protocol.json记录配置/代码迁移，last.pt每100步原子覆盖并保留optimizer及RNG。模型与数组仅留本地。32步integration已完成评分，无续训计划，移除其optimizer并逐tensor校验model摘要一致，释放约963MB；原55k及正式last保持可续训。
+
+完整exo导出及逐文件审计已通过：train {'segments': 213, 'recordings': 64, 'person_frames': 125940, 'any_head_wrist_frames': 125850, 'no_head_wrist_frames': 90, 'partial_head_wrist_frames': 22675}；validation {'segments': 99, 'recordings': 30, 'person_frames': 62400, 'any_head_wrist_frames': 62294, 'no_head_wrist_frames': 106, 'partial_head_wrist_frames': 9286}。全片段完全缺少场景或头/腕观测的条目数 0，保留为unknown而不补GT场景。
+
+评分进一步区分相机没有可靠观测的region关节（含遮挡、画外、像素不足）和相机可见但未选作头/腕输入的关节；同报camera/anatomical轨迹位置、线速度/加速度、可用朝向/角速度一致性及根/头GT全局朝向。region可用性只用于评分，不能进入模型输入。度量修订记录独立evaluation_code_sha256，未改变进行中的训练目标。

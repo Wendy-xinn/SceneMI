@@ -32,6 +32,7 @@ def evaluate(folder, windows_per_group=3, ddim_steps=20):
         models[name] = model
     step = state['step']; del state, original
     data = dataset(c, 'validation', seed=2026101149)
+    mounts = json.loads((folder / 'TRAIN_camera_mounts.json').read_text())
     builder = ObservationBuilder(SkinAnchorCache()); selected = []
     for group in ('trumans', 'camera_wearer', 'interactee', 'rich'):
         source_members = data.rich_members if group == 'rich' else data.base.groups[group]
@@ -45,6 +46,9 @@ def evaluate(folder, windows_per_group=3, ddim_steps=20):
                     baseline_exo='original55k zero-shot position-only sparse transport; no added GT rotations',
                     comparison='ego across three domains; ego/exo mode comparison only matched EgoBody person/time windows',
                     holdout='validation development panel; input checks used first windows; not a pristine test set',
+                    visibility='Camera-region unavailable includes occlusion/out-of-frame/low skin pixel support; distinguished from visible but deliberately unconditioned joints',
+                    evaluation_code_sha256={name: hashlib.sha256((HERE / name).read_bytes()).hexdigest() for name in
+                                            ('unified_metrics.py', 'evaluate_unified_continue.py')},
                     metric_checks=metric_checks())
     (output / 'protocol.json').write_text(json.dumps(protocol, indent=2) + '\n')
     rows = []; started = time.monotonic()
@@ -55,10 +59,15 @@ def evaluate(folder, windows_per_group=3, ddim_steps=20):
             observed, scene, asset = builder.build(data, sample, identity, mode, joints=(15,) if mode == 'ego' else (15, 20, 21))
             batch = collate_observations([(observed, scene, asset, mode)])
             known = inference_payload(batch); mask = batch['observation_meta'][..., :2].amax(-1) > 0
+            full_visible = None
+            if mode == 'exo':
+                frozen = builder.exo[identity['sequence_id']]
+                first = int(np.searchsorted(frozen['source_frame_ids'], identity['source_start_30fps']))
+                full_visible = np.asarray(frozen['position_available'][first:first + 128])
             for label, model in models.items():
                 motion = ddim_sample(model, known, 128, steps=ddim_steps, seed=2026101149,
                                      control_mask=mask, use_scene=True)
-                values, joints = score(motion, batch)
+                values, joints = score(motion, batch, full_visible, mounts[w['group']])
                 rows.append(dict(window=selected_window, identity=identity, mode=mode, model=label, metrics=values))
                 np.savez_compressed(output / f'{number:03d}_{mode}_{label}.npz', motion=motion[0].cpu().numpy(), joints=joints,
                                     observation_meta=observed['observation_meta'], trajectory=observed['trajectory'])
@@ -72,6 +81,11 @@ def evaluate(folder, windows_per_group=3, ddim_steps=20):
                         if any(r[name] is not None for r in values) else None for name in values[0]}
         summary[key]['windows'] = len(values)
         summary[key]['turn_denominator'] = sum(r['turn_eligible'] for r in values)
+        for metric, count in (('camera_unavailable_region_joint_mpjpe_mm', 'camera_unavailable_region_joint_entries'),
+                              ('camera_visible_unconditioned_joint_mpjpe_mm', 'camera_visible_unconditioned_joint_entries')):
+            if count in values[0]:
+                denominator = sum(r[count] for r in values)
+                summary[key][metric + '_entry_weighted'] = sum((r[metric] or 0.) * r[count] for r in values) / denominator if denominator else None
     (output / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
     protocol.update(status='completed', elapsed_s=time.monotonic() - started)
     (output / 'protocol.json').write_text(json.dumps(protocol, indent=2) + '\n')

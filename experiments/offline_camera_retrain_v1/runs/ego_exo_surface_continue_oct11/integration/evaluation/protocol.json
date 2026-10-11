@@ -29,12 +29,17 @@
   "seed": 2026101149,
   "ddim_steps": 10,
   "checkpoint_step": 32,
-  "checkpoint_sha256": "429cf522b8bfd461c981c716a8481a96e99e01143e2575ca520690b2d7d082f3",
+  "checkpoint_sha256": "ae79a13ef40721ae2275f0562dad4c739e1c04b213fd70acb642c367a7371f35",
   "frame_clock": "20Hz",
   "input": "same frozen own-view observations and native body calibration; no prefix",
   "baseline_exo": "original55k zero-shot position-only sparse transport; no added GT rotations",
   "comparison": "ego across three domains; ego/exo mode comparison only matched EgoBody person/time windows",
   "holdout": "validation development panel; input checks used first windows; not a pristine test set",
+  "visibility": "Camera-region unavailable includes occlusion/out-of-frame/low skin pixel support; distinguished from visible but deliberately unconditioned joints",
+  "evaluation_code_sha256": {
+    "unified_metrics.py": "3daacb956e51e11c5e54dddcaa7cbdf1fe4a7d63cb802b9d24bc0dbba57f0357",
+    "evaluate_unified_continue.py": "6b1014022ce35d81e673439984184ac0829311d5331a48444f6043187737bad2"
+  },
   "metric_checks": {
     "similarity_invariance": true,
     "drift_distinguishes_first2_and_full": true,
@@ -43,5 +48,5 @@
     "segment": 100,
     "partial_tail": "excluded from aligned100 metrics"
   },
-  "elapsed_s": 35.15236087300582
+  "elapsed_s": 33.875494948995765
 }

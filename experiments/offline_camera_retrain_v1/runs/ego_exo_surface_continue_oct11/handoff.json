@@ -1,0 +1,30 @@
+{
+  "export_status": "complete_and_audited",
+  "protocol": "offline-egobody-master-exo-nearclip-firsthit-distorted-pixels-v2",
+  "counts": {
+    "validation": {
+      "segments": 99,
+      "recordings": 30,
+      "person_frames": 62400,
+      "any_head_wrist_frames": 62294,
+      "no_head_wrist_frames": 106,
+      "partial_head_wrist_frames": 9286
+    },
+    "train": {
+      "segments": 213,
+      "recordings": 64,
+      "person_frames": 125940,
+      "any_head_wrist_frames": 125850,
+      "no_head_wrist_frames": 90,
+      "partial_head_wrist_frames": 22675
+    }
+  },
+  "audit_sha256": "6e56754253c668c86acb9c28c79035e6454a7d7f601ac4e47e0373d9fdc3ed18",
+  "code_revision": "dc569a1",
+  "training": "active continuation; mixed mode starts after step500 warmup",
+  "checkpoints": "one atomic resumable formal last.pt plus retained original55k; integration evaluation-only",
+  "current_step": 523,
+  "current_mode": "ego",
+  "training_log": "/tmp/unified_formal_resume.log",
+  "evaluation": "automatic after3000 steps; paired original55k/ego/exo development panel"
+}

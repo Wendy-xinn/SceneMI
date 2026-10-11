@@ -4,6 +4,9 @@ import torch
 from experiments.offline_camera_retrain_v1.standard_motion_metrics import standard_motion_metrics
 from experiments.offline_camera_retrain_v1.audit_full_validation_turns import hip_turn
 from experiments.offline_camera_retrain_v1.supervision import forward_kinematics
+from experiments.offline_camera_retrain_v1.supervision import rotation_from_6d, IDENTITY_6D
+from experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations
+from pytorch3d.transforms import matrix_to_axis_angle
 from experiments.offline_camera_retrain_v1.unified_geometry import skin_points
 
 
@@ -34,7 +37,7 @@ def aligned_world_metrics(prediction, truth, segment=100):
 
 
 @torch.no_grad()
-def score(motion, batch):
+def score(motion, batch, camera_region_available=None, camera_mount=None):
     pred = forward_kinematics(motion, batch['rest'])[0].cpu().numpy()
     truth = (batch['joints'][0] * 2).cpu().numpy()
     values = standard_motion_metrics(pred, truth)
@@ -46,8 +49,53 @@ def score(motion, batch):
     hidden = ~observed_anatomical
     error = np.linalg.norm(pred - truth, axis=-1) * 1000
     values['unobserved_anatomical_mpjpe_mm'] = float(error[hidden].mean()) if hidden.any() else None
+    if camera_region_available is not None:
+        visible = np.asarray(camera_region_available, bool)
+        if visible.shape != error.shape:
+            raise ValueError('Camera-region visibility/target shape mismatch')
+        unavailable = ~visible
+        available_not_input = visible & ~observed_anatomical
+        values['camera_unavailable_region_joint_mpjpe_mm'] = float(error[unavailable].mean()) if unavailable.any() else None
+        values['camera_visible_unconditioned_joint_mpjpe_mm'] = float(error[available_not_input].mean()) if available_not_input.any() else None
+        values['camera_unavailable_region_joint_entries'] = int(unavailable.sum())
+        values['camera_visible_unconditioned_joint_entries'] = int(available_not_input.sum())
     obs = (batch['trajectory'][0, ..., :3] * 2).cpu().numpy()
     values['observed_anatomical_error_mm'] = float(np.linalg.norm(pred - obs, axis=-1)[observed_anatomical].mean() * 1000) if observed_anatomical.any() else None
+    rotation = global_rotations(motion)[0]
+    target_rotation = global_rotations(batch['motion'])[0]
+    for label, joint in (('root', 0), ('head', 15)):
+        angle = matrix_to_axis_angle(rotation[:, joint] @ target_rotation[:, joint].transpose(-1, -2)).norm(dim=-1)
+        values[label + '_global_orientation_error_deg'] = float(torch.rad2deg(angle).mean())
+    predicted_observation = pred.copy()
+    if camera_mount is not None:
+        offset = rotation[:, 15] @ rotation.new_tensor(camera_mount['translation_m'])[:, None]
+        camera_prediction = pred[:, 15] + offset[:, :, 0].cpu().numpy()
+        predicted_observation[:, 15] = np.where(anatomical[:, 15, None], pred[:, 15], camera_prediction)
+    camera_input = observed & ~anatomical
+    values['camera_track_position_error_mm'] = float(np.linalg.norm(predicted_observation - obs, axis=-1)[camera_input].mean() * 1000) if camera_input.any() and camera_mount is not None else None
+    velocity_valid = observed[1:] & observed[:-1]
+    acceleration_valid = velocity_valid[1:] & velocity_valid[:-1]
+    observation_error = predicted_observation - obs
+    velocity_error = np.linalg.norm(np.diff(observation_error, axis=0) * 20, axis=-1)
+    acceleration_error = np.linalg.norm(np.diff(observation_error, n=2, axis=0) * 400, axis=-1)
+    values['observed_linear_velocity_error_mm_s'] = float(velocity_error[velocity_valid].mean() * 1000) if velocity_valid.any() else None
+    values['observed_linear_acceleration_error_mm_s2'] = float(acceleration_error[acceleration_valid].mean() * 1000) if acceleration_valid.any() else None
+    rot_mask = batch['observation_meta'][0, ..., 1].bool()
+    predicted_observation_rotation = rotation.clone()
+    if camera_mount is not None:
+        sensor_rotation = rotation[:, 15] @ rotation.new_tensor(camera_mount['rotation'])
+        anatomical_head = batch['observation_meta'][0, :, 15, 4] > .5
+        predicted_observation_rotation[:, 15] = torch.where(anatomical_head[:, None, None], rotation[:, 15], sensor_rotation)
+    supplied6 = batch['trajectory'][0, ..., 3:]
+    supplied6 = torch.where(rot_mask[..., None], supplied6, supplied6.new_tensor(IDENTITY_6D))
+    supplied_rotation = rotation_from_6d(supplied6 - supplied6.new_tensor(IDENTITY_6D))
+    angles = matrix_to_axis_angle(predicted_observation_rotation @ supplied_rotation.transpose(-1, -2)).norm(dim=-1)
+    values['observed_orientation_error_deg'] = float(torch.rad2deg(angles[rot_mask]).mean()) if rot_mask.any() else None
+    angular_mask = rot_mask[1:] & rot_mask[:-1]
+    pw = matrix_to_axis_angle(predicted_observation_rotation[1:] @ predicted_observation_rotation[:-1].transpose(-1, -2)) * 20
+    tw = matrix_to_axis_angle(supplied_rotation[1:] @ supplied_rotation[:-1].transpose(-1, -2)) * 20
+    angular_error = (pw - tw).norm(dim=-1)
+    values['observed_angular_velocity_error_deg_s'] = float(torch.rad2deg(angular_error[angular_mask]).mean()) if angular_mask.any() else None
     gt_turn, reliability = hip_turn(truth); turn, pred_reliability = hip_turn(pred)
     eligible = reliability >= .95 and abs(gt_turn) >= 30
     values.update(gt_hip_turn_deg=gt_turn, predicted_hip_turn_deg=turn,
