@@ -1,0 +1,100 @@
+{
+  "status": "completed",
+  "selected": [
+    {
+      "group": "trumans",
+      "sequence_index": 0,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "trumans",
+      "sequence_index": 16,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "trumans",
+      "sequence_index": 32,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "camera_wearer",
+      "sequence_index": 0,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "camera_wearer",
+      "sequence_index": 17,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "camera_wearer",
+      "sequence_index": 34,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "interactee",
+      "sequence_index": 0,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "interactee",
+      "sequence_index": 19,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "interactee",
+      "sequence_index": 38,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "rich",
+      "sequence_index": 0,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "rich",
+      "sequence_index": 13,
+      "start_index": 0,
+      "frames": 128
+    },
+    {
+      "group": "rich",
+      "sequence_index": 26,
+      "start_index": 0,
+      "frames": 128
+    }
+  ],
+  "seed": 2026101149,
+  "ddim_steps": 20,
+  "checkpoint_step": 3000,
+  "checkpoint_sha256": "344011ff6192382c8bad4982ba9abad10ab301d2700247806bf7f76dae5fd0b2",
+  "frame_clock": "20Hz",
+  "input": "same frozen own-view observations and native body calibration; no prefix",
+  "baseline_exo": "original55k zero-shot position-only sparse transport; no added GT rotations",
+  "comparison": "ego across three domains; ego/exo mode comparison only matched EgoBody person/time windows",
+  "holdout": "validation development panel; input checks used first windows; not a pristine test set",
+  "visibility": "Camera-region unavailable includes occlusion/out-of-frame/low skin pixel support; distinguished from visible but deliberately unconditioned joints",
+  "evaluation_code_sha256": {
+    "unified_metrics.py": "3daacb956e51e11c5e54dddcaa7cbdf1fe4a7d63cb802b9d24bc0dbba57f0357",
+    "evaluate_unified_continue.py": "6b1014022ce35d81e673439984184ac0829311d5331a48444f6043187737bad2"
+  },
+  "metric_checks": {
+    "similarity_invariance": true,
+    "drift_distinguishes_first2_and_full": true,
+    "joints": 22,
+    "fps": 20,
+    "segment": 100,
+    "partial_tail": "excluded from aligned100 metrics"
+  },
+  "elapsed_s": 172.64441916701617
+}
