@@ -1,6 +1,6 @@
 # 当前模型、观测定义、监督与修正：10 月 12 日核对
 
-**按用户要求暂不训练，不修改模型或训练配置。本文件记录已经执行的实现；计划中的设计单独标注。**
+**按用户要求暂不训练，本文件记录原3k已执行的实现及配置。** 用户随后要求完成相机/观测/配置前3项，独立v2实现已新增，见[实现记录](../ego_exo_camera_config_oct12/IMPLEMENTATION_zh.md)；原55k/3k权重和缓存不变。v2仅通过零更新核查，不替代本文件的已训练结果。
 
 实际配置快照：[EFFECTIVE_CONFIG_OCT12.json](EFFECTIVE_CONFIG_OCT12.json)。权重仍是原 55k 和已完成 3000 步的 ego/exo 候选。本轮只读 checkpoint、代码、记录，并在 CPU 上核验差分单位，没有模型优化。
 
@@ -16,7 +16,7 @@
 
 还需区分观察相机佩戴者自身与观察画面里另一个人。interactee 本身没有佩戴 PV，当前 interactee/ego 按目标身体构造 synthetic ego，是有意利用 exo 身体数据生成 ego 条件辅助训练的增广，应保留；不是导出错误。真实 wearer PV 看对方是另一条未来数据分支，应保留 PV 相机、interactee 身份和该视角下的遮挡，而不把 PV 相机轨迹填成 interactee 的头轨迹。相机在观察者头上，不代表它与被生成目标之间也是“佩戴者自身”的关系。
 
-最新优先级和逐步任务表见 [OBSERVER_TARGET_UNIFICATION_zh.md](OBSERVER_TARGET_UNIFICATION_zh.md)：先加独立相机编码和可信观测适配，第一版共用生成主干/动作输出头，场景结构保持现状，长缺失补全放到最后。上述全部为设计，尚未接入训练；输出残差适配器只作出现持续模式冲突时的条件性对照。
+最新优先级和逐步任务表见 [OBSERVER_TARGET_UNIFICATION_zh.md](OBSERVER_TARGET_UNIFICATION_zh.md)：相机编码、可信观测适配和配置已在独立v2中接入，第一版共用生成主干/动作输出头，场景结构保持现状，长缺失补全放到最后。原3k仍按下面记录运行；v2尚未训练，输出残差适配器仍只作条件性后续对照。
 
 ## 2. 输入坐标、相机朝向与人体朝向
 

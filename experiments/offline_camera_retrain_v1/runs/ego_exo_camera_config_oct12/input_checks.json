@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "optimizer_steps": 0,
+  "source_checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/ego_exo_surface_continue_oct11/last.pt",
+  "source_sha256_before": "344011ff6192382c8bad4982ba9abad10ab301d2700247806bf7f76dae5fd0b2",
+  "free_disk_before": 71440490496,
+  "checks": {
+    "scene_inputs_unchanged_all_six_branches": true,
+    "label_free_frozen_exo_loader_matches_controlled": true,
+    "self_camera_sensor_augmentation_coupled": true,
+    "zero_init_legacy_max_error": 0.0,
+    "label_and_hidden_poison_invariant": true,
+    "camera_and_mount_masking": true,
+    "camera_effect_max": 0.0009236335754394531,
+    "typed_adapter_effect_max": 0.13857579231262207,
+    "relation_guard": true,
+    "activated_parameter_gradient_norms": {
+      "camera_encoder.0.weight": 0.005516831763088703,
+      "camera_encoder.0.bias": 0.0014602614101022482,
+      "camera_encoder.2.weight": 0.008881306275725365,
+      "camera_encoder.2.bias": 0.004895892925560474,
+      "camera_projection.weight": 0.024400025606155396,
+      "camera_projection.bias": 0.06447841972112656,
+      "joint_embedding.weight": 0.003288865089416504,
+      "sensor_adapter.0.weight": 0.0013845324283465743,
+      "sensor_adapter.0.bias": 0.00030170418904162943,
+      "sensor_adapter.2.weight": 0.0015862325672060251,
+      "sensor_adapter.2.bias": 0.0011034554336220026,
+      "anatomical_adapter.0.weight": 0.047737427055835724,
+      "anatomical_adapter.0.bias": 0.009412478655576706,
+      "anatomical_adapter.2.weight": 0.05346405506134033,
+      "anatomical_adapter.2.bias": 0.026905637234449387,
+      "observation_projection.weight": 0.2195284068584442,
+      "observation_projection.bias": 0.06447841972112656
+    },
+    "physical_units_and_no_gap_derivatives": true,
+    "full_objective_backward_no_step": {
+      "loss": 2.188878059387207,
+      "new_exit_gradients": {
+        "camera_projection.weight": 0.997789740562439,
+        "camera_projection.bias": 2.4560179710388184,
+        "observation_projection.weight": 7.514868259429932,
+        "observation_projection.bias": 2.4560179710388184
+      }
+    }
+  },
+  "native_heights_m": {
+    "trumans/ego": 1.7937837839126587,
+    "camera_wearer/ego": 1.6186509132385254,
+    "interactee/ego": 1.6767349243164062,
+    "rich/ego": 1.8065117597579956,
+    "camera_wearer/exo": 1.6186509132385254,
+    "interactee/exo": 1.6767349243164062
+  },
+  "known_shape_policy": "per-subject native shape/rest/scale; unknown shape estimation not implemented",
+  "source_sha256_after": "344011ff6192382c8bad4982ba9abad10ab301d2700247806bf7f76dae5fd0b2",
+  "free_disk_after": 71440474112,
+  "scope": "plumbing, units and initial TRAIN gradients; no trained quality claim"
+}

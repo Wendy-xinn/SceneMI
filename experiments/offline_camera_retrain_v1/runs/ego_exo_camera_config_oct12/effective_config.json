@@ -1,0 +1,219 @@
+{
+  "config": {
+    "version": "ego_exo_camera_v2",
+    "initialization": "runs/ego_exo_surface_continue_oct11/last.pt",
+    "mount_defaults": "runs/ego_exo_surface_continue_oct11/TRAIN_camera_mounts.json",
+    "prepared_output": "runs/ego_exo_camera_config_oct12",
+    "seed": 2026101247,
+    "frames": 128,
+    "fps": 20,
+    "batch_size": 2,
+    "mode_probabilities": {
+      "ego": 0.7,
+      "exo": 0.3
+    },
+    "ego_head_wrists_probability": 0.35,
+    "exo_joint_policy": "all_available_22",
+    "ego_only_warmup_steps": 0,
+    "camera": {
+      "features": 48,
+      "latent": 64,
+      "relation": "self_other",
+      "intrinsics": "fx/w_fy/h_cx/w_cy/h",
+      "image_y_sign": "ego=-1,master_exo=+1",
+      "unknown_mount": "explicit_invalid_no_head_sensor_loss",
+      "mount": "per_stream_fixed_supplied_or_TRAIN_profile; never_universal"
+    },
+    "observations": {
+      "joint_embedding": 16,
+      "typed_latent": 32,
+      "ordered_joints": 22,
+      "condition_latent": 64,
+      "zero_initial_residuals": true
+    },
+    "body": {
+      "policy": "known_native_shape_and_scale",
+      "unknown_shape_estimation": false,
+      "height": "native_shape_vertex_extent; not_current_camera_height"
+    },
+    "scene": {
+      "architecture": "unchanged_offline_surface_v1",
+      "freeze_weights": false,
+      "dropout_probability": 0.1,
+      "surface_bps_weight": 1.0
+    },
+    "output": {
+      "shared": true,
+      "channels": 201,
+      "prediction": "x0"
+    },
+    "optimizer": {
+      "type": "AdamW",
+      "existing_lr": 2e-05,
+      "new_lr": 0.0001,
+      "weight_decay": 0.01,
+      "warmup_steps": 50,
+      "floor_fraction": 0.1,
+      "clip_norm": 1.0
+    },
+    "noise": {
+      "steps": 1000,
+      "extra_low_noise_probability": 0.25,
+      "low_noise_steps": 100
+    },
+    "supervision": {
+      "base_profile": "coordination_v1",
+      "contact_coefficient": 0.1,
+      "scales": {
+        "position": 0.05,
+        "rotation": 0.17453292519943295,
+        "velocity": 0.15,
+        "acceleration": 1.0,
+        "angular_velocity": 0.3490658503988659,
+        "body_turn_rate": 0.3490658503988659
+      },
+      "target_gradient_ratios": {
+        "position": 0.1,
+        "rotation": 0.04,
+        "velocity": 0.03,
+        "acceleration": 0.005,
+        "angular_velocity": 0.015,
+        "body_turn_rate": 0.015
+      },
+      "coefficient_caps": {
+        "position": 0.1,
+        "rotation": 0.025,
+        "velocity": 0.015,
+        "acceleration": 0.001,
+        "angular_velocity": 0.005,
+        "body_turn_rate": 0.0025
+      },
+      "calibration_noise_steps": [
+        25,
+        300,
+        800
+      ],
+      "calibration_split": "train",
+      "calibration": "equal_mode_mean_of_within_mode_median_output_gradient_ratio",
+      "confidence": "attenuation_outside_valid_denominator",
+      "derivatives": "20Hz_physical_units_valid_stencils_only"
+    },
+    "deferred": [
+      "separate_ego_exo_output_heads",
+      "scene_redesign",
+      "PV_observing_interactee",
+      "long_gap_completion"
+    ]
+  },
+  "inherited_dataset_configuration": {
+    "latent_dim": 256,
+    "dim_mults": [
+      1,
+      2,
+      4
+    ],
+    "skeleton_profile": "trumans_male_v2",
+    "rich_source": "native20_faceout_oct07",
+    "trumans_scene_manifest": "experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/manifest.jsonl",
+    "trumans_window_protocol": "temporal_valid_v1",
+    "temporal_scene_manifest": "experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/manifest.jsonl",
+    "rich_contact_root": "experiments/offline_camera_retrain_v1/data/rich_contact_native20_v1"
+  },
+  "source_sha256": "344011ff6192382c8bad4982ba9abad10ab301d2700247806bf7f76dae5fd0b2",
+  "sampling_plan": {
+    "branch_probabilities": {
+      "trumans/ego": 0.4349497021663243,
+      "rich/ego": 0.08207131578841341,
+      "camera_wearer/ego": 0.09374176358304528,
+      "interactee/ego": 0.08923721846221691,
+      "camera_wearer/exo": 0.1536926742108398,
+      "interactee/exo": 0.14630732578916023
+    },
+    "valid_frames": {
+      "trumans": 683060,
+      "camera_wearer": 61932,
+      "interactee": 58956,
+      "rich": 24320
+    },
+    "ego_domain_probabilities": {
+      "trumans": 0.6213567173804633,
+      "egobody": 0.261398545778946,
+      "rich": 0.1172447368405906
+    },
+    "weighting": "ego domains sqrt covered duration; roles by covered duration; exo EgoBody only",
+    "exo_joint_policy": "all22 subject to frozen first-hit availability/confidence",
+    "frames": 128,
+    "mode_probabilities": {
+      "ego": 0.7,
+      "exo": 0.3
+    }
+  },
+  "optimizer_groups": [
+    {
+      "lr": 2e-05,
+      "name": "existing",
+      "parameters": 120353472
+    },
+    {
+      "lr": 0.0001,
+      "name": "camera_observation",
+      "parameters": 73824
+    }
+  ],
+  "mount_defaults_sha256": "803d58e7b9dda83fbddf5089bab454c467fb1283a7042a9c55f89c11d840b762",
+  "observation_coefficients": {
+    "position": 0.028750788892678653,
+    "rotation": 0.025,
+    "velocity": 0.0021246322386409807,
+    "acceleration": 2.8661901625934807e-05,
+    "angular_velocity": 0.0021911073760835335,
+    "body_turn_rate": 0.0025
+  },
+  "joint_weights": [
+    2.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.5,
+    1.5,
+    1.0,
+    1.5,
+    1.5,
+    1.0,
+    1.0,
+    1.0,
+    2.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.5,
+    1.5
+  ],
+  "training_started": false,
+  "optimizer_steps": 0,
+  "code_sha256": {
+    "camera_v2_config.py": "6238f468cb2f44f3810e46b58a2e5cce55f8a462239d67ecc7e158cdf54e38b1",
+    "camera_v2_model.py": "74dc047b12ed3a3aa9beea8e476e9f7f4e350e8746df6d03713e4abc7a0568bd",
+    "camera_v2_observations.py": "afe09e0d397091e83d467dd99c8b3c1cb61fa7177127184548a0b9e70597073e",
+    "prepare_camera_v2.py": "dd9b0ade7ea55424bdd3d447efd090d7f0e78dfcb73b9e5ddbf8fb163cbf1f94",
+    "train_camera_v2.py": "9d4cae9bcf04e6d775b69f533239c34f0896980b6c7494786429458e7d423a2f",
+    "unified_model.py": "f8391ca9ca28a3ff71eaaa255db227519f46e912b66b090e7c680c21363b4c47",
+    "unified_losses.py": "acbfab1b00c4372c14b09affd2e24b33298dca23e7bd898e8cf65b6fe2a72ebb",
+    "unified_observations.py": "2d3747fd0b6b2d8109e07d817974e074a944524f4c73bd76c1fdee0c53afa63f",
+    "unified_geometry.py": "ace4f37c11bffcf6f7d2ef76675b0e45a2e1c102c32719c2e29343303c248733",
+    "scene_model.py": "19882da0e640d089fb8068213c7b76bea11c5ef561936492f9a3fe15e4354f9e",
+    "supervision.py": "dff0548ef3f4b8eb44198bde12367e746bd5a8646238bcbcf1666f67b2533e58",
+    "native_body_data.py": "ff30a331e4cfa4c452196a3f5738b84c6bf671029bef32a9131d376ed2a62c05",
+    "data.py": "9868acdc4207092a837f1ac8e44560c828ed287e6322fdede0282013b0e6eb14",
+    "contact_supervision.py": "70e96305c875de2cb394f874a8cbb740829ccfe3de7f3e57bb70d98fe45069cd",
+    "training_contract_v2.py": "49e95bb7a9404d43f4cb035d2f28dcacddb53a08e77f252733fe2219723e542f",
+    "checkpoint_io.py": "5c845fcce92ce449fc0186cf140d692a3604099b0a1261734dfdd59525f31989",
+    "frozen_exo_inputs.py": "e4d0141367558a8fc69ffad01b095c5d3056b9695a58f3a6e176e70a377b46d6",
+    "orientation_supervision.py": "0512aaf7715a210997264cdb8bd747e0cce04c4d3b8a8549a6dfce4b967132c3",
+    "model/mdm_scene_unet.py": "63d05dad6ecc08f9e2180132b45e443421fee5224daf13faeaa404b894d1ce31"
+  }
+}

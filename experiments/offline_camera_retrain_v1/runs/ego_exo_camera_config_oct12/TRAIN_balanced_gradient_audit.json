@@ -1,0 +1,3166 @@
+{
+  "status": "passed",
+  "rows": [
+    {
+      "branch": "trumans/ego",
+      "noise_step": 25,
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-14@22-06-10",
+        "source_start_30fps": 0,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 2035,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-14@22-06-10",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-14@22-06-10",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0001119164444389753
+      },
+      "body_height_m": 1.7937837839126587,
+      "base_gradient_norm": 0.5332467555999756,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 2.4484076499938965,
+          "gradient_norm": 2.153031587600708,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.11608388800177363
+        },
+        "rotation": {
+          "loss": 4.265114784240723,
+          "gradient_norm": 0.7596246600151062,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.03561318714262146
+        },
+        "velocity": {
+          "loss": 1.2268006801605225,
+          "gradient_norm": 13.500349044799805,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.053789875910665454
+        },
+        "acceleration": {
+          "loss": 2.933767795562744,
+          "gradient_norm": 162.64920043945312,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.008742360518044513
+        },
+        "angular_velocity": {
+          "loss": 2.192448616027832,
+          "gradient_norm": 6.416196823120117,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.026364110119571946
+        },
+        "body_turn_rate": {
+          "loss": 0.4521857798099518,
+          "gradient_norm": 2.9074785709381104,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.013631018568818104
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.580953061580658,
+              "gradient_norm": 3.474917411804199,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.18735532073489544
+            },
+            "rotation": {
+              "loss": 2.136453151702881,
+              "gradient_norm": 1.124051570892334,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.05269847209982657
+            },
+            "velocity": {
+              "loss": 0.3501933813095093,
+              "gradient_norm": 19.632648468017578,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.0782229941898544
+            },
+            "acceleration": {
+              "loss": 1.8458753824234009,
+              "gradient_norm": 220.91766357421875,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.011874278229168674
+            },
+            "angular_velocity": {
+              "loss": 0.7932020425796509,
+              "gradient_norm": 7.649274826049805,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0314308194415362
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 3.693377733230591,
+              "gradient_norm": 2.296266794204712,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.1238066263847526
+            },
+            "rotation": {
+              "loss": 5.6842217445373535,
+              "gradient_norm": 0.9359430074691772,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.04387945156910112
+            },
+            "velocity": {
+              "loss": 1.8112057447433472,
+              "gradient_norm": 13.467883110046387,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.05366052084022135
+            },
+            "acceleration": {
+              "loss": 3.659029483795166,
+              "gradient_norm": 163.98956298828125,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.008814404724810241
+            },
+            "angular_velocity": {
+              "loss": 3.1252799034118652,
+              "gradient_norm": 8.842105865478516,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.036332154257859565
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "trumans/ego",
+      "noise_step": 300,
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-14@22-06-10",
+        "source_start_30fps": 0,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 2035,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-14@22-06-10",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-14@22-06-10",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0001119164444389753
+      },
+      "body_height_m": 1.7937837839126587,
+      "base_gradient_norm": 0.4347023367881775,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 1.7570500373840332,
+          "gradient_norm": 1.4058860540390015,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.09298393343243617
+        },
+        "rotation": {
+          "loss": 2.610262393951416,
+          "gradient_norm": 0.46691402792930603,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.02685251426177775
+        },
+        "velocity": {
+          "loss": 0.8259081244468689,
+          "gradient_norm": 8.310310363769531,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.040617111567496866
+        },
+        "acceleration": {
+          "loss": 1.9316134452819824,
+          "gradient_norm": 98.44561767578125,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.006490967198785876
+        },
+        "angular_velocity": {
+          "loss": 1.3311415910720825,
+          "gradient_norm": 3.888723373413086,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.019601022920623937
+        },
+        "body_turn_rate": {
+          "loss": 0.39392516016960144,
+          "gradient_norm": 1.7727280855178833,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.010195068760245136
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.6853083372116089,
+              "gradient_norm": 2.197628974914551,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.14534903858359116
+            },
+            "rotation": {
+              "loss": 1.1888974905014038,
+              "gradient_norm": 0.6995700597763062,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.04023270641613746
+            },
+            "velocity": {
+              "loss": 0.27899569272994995,
+              "gradient_norm": 12.231989860534668,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.059784541745137344
+            },
+            "acceleration": {
+              "loss": 1.2217785120010376,
+              "gradient_norm": 134.74679565429688,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.008884468921857505
+            },
+            "angular_velocity": {
+              "loss": 0.4910569190979004,
+              "gradient_norm": 5.186347484588623,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.02614166814095551
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 2.4715445041656494,
+              "gradient_norm": 1.43942129611969,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.09520192166008301
+            },
+            "rotation": {
+              "loss": 3.5578389167785645,
+              "gradient_norm": 0.5870933532714844,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0337641015234273
+            },
+            "velocity": {
+              "loss": 1.1905163526535034,
+              "gradient_norm": 8.040875434875488,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.03930023312517285
+            },
+            "acceleration": {
+              "loss": 2.404836893081665,
+              "gradient_norm": 97.44200134277344,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.006424794210576548
+            },
+            "angular_velocity": {
+              "loss": 1.891197919845581,
+              "gradient_norm": 5.03381872177124,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.025372850333939868
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "trumans/ego",
+      "noise_step": 800,
+      "identity": {
+        "dataset": "trumans",
+        "group": "trumans",
+        "sequence_id": "2023-01-14@22-06-10",
+        "source_start_30fps": 0,
+        "camera_source": "synthetic_head_from_smplx",
+        "dynamic_object_points": 2035,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/train/2023-01-14@22-06-10",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/trumans/2023-01-14@22-06-10",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0001119164444389753
+      },
+      "body_height_m": 1.7937837839126587,
+      "base_gradient_norm": 0.09500003606081009,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 0.02939019165933132,
+          "gradient_norm": 0.020579665899276733,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.0062282253174432926
+        },
+        "rotation": {
+          "loss": 0.0408034548163414,
+          "gradient_norm": 0.006980299949645996,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0018369203421085716
+        },
+        "velocity": {
+          "loss": 0.010084402747452259,
+          "gradient_norm": 0.12336084991693497,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.0027589088340124637
+        },
+        "acceleration": {
+          "loss": 0.02703044004738331,
+          "gradient_norm": 1.3273416757583618,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.00040046444308965677
+        },
+        "angular_velocity": {
+          "loss": 0.01708552986383438,
+          "gradient_norm": 0.060420237481594086,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.0013935492395592117
+        },
+        "body_turn_rate": {
+          "loss": 0.005075192078948021,
+          "gradient_norm": 0.026469573378562927,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.0006965674560802165
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.013976591639220715,
+              "gradient_norm": 0.03233055770397186,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.00978451248938962
+            },
+            "rotation": {
+              "loss": 0.01736738346517086,
+              "gradient_norm": 0.010452676564455032,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0027507033149345894
+            },
+            "velocity": {
+              "loss": 0.0037528725806623697,
+              "gradient_norm": 0.1859091818332672,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.004157773592101513
+            },
+            "acceleration": {
+              "loss": 0.018207183107733727,
+              "gradient_norm": 1.8585584163665771,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0005607347186884613
+            },
+            "angular_velocity": {
+              "loss": 0.006212799344211817,
+              "gradient_norm": 0.07476034015417099,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0017242933744305486
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 0.03966592624783516,
+              "gradient_norm": 0.023393539711833,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.007079815435826582
+            },
+            "rotation": {
+              "loss": 0.05642750486731529,
+              "gradient_norm": 0.008720220997929573,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.002294794128380043
+            },
+            "velocity": {
+              "loss": 0.014305423013865948,
+              "gradient_norm": 0.12397681176662445,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.002772684538295202
+            },
+            "acceleration": {
+              "loss": 0.032912611961364746,
+              "gradient_norm": 1.3486016988754272,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0004068786795090659
+            },
+            "angular_velocity": {
+              "loss": 0.024334019050002098,
+              "gradient_norm": 0.07968094199895859,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0018377835102656864
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "camera_wearer/ego",
+      "noise_step": 25,
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8590788841247559,
+            1.293657898902893,
+            0.686110258102417,
+            -0.09008333086967468,
+            -0.9006412029266357,
+            0.9631812572479248,
+            1.990786075592041,
+            0.5611613988876343,
+            -1.241333246231079,
+            0.05211188644170761
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6186509132385254,
+      "base_gradient_norm": 0.1204797625541687,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 1.331639051437378,
+          "gradient_norm": 1.7076365947723389,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.40750328686644144
+        },
+        "rotation": {
+          "loss": 2.4850478172302246,
+          "gradient_norm": 0.6347589492797852,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.13171484899681643
+        },
+        "velocity": {
+          "loss": 1.1741788387298584,
+          "gradient_norm": 7.203639984130859,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.1270344946020817
+        },
+        "acceleration": {
+          "loss": 1.6062262058258057,
+          "gradient_norm": 91.61383056640625,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.021794752443081898
+        },
+        "angular_velocity": {
+          "loss": 4.103327751159668,
+          "gradient_norm": 5.072922706604004,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.09225880035864228
+        },
+        "body_turn_rate": {
+          "loss": 0.5818052291870117,
+          "gradient_norm": 3.8487634658813477,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.07986327712405043
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.620597779750824,
+              "gradient_norm": 2.659477949142456,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.6346467444783579
+            },
+            "rotation": {
+              "loss": 0.40652066469192505,
+              "gradient_norm": 0.6800636649131775,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.14111574643239674
+            },
+            "velocity": {
+              "loss": 0.4176959693431854,
+              "gradient_norm": 11.124958038330078,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.19618601498435942
+            },
+            "acceleration": {
+              "loss": 0.7725375294685364,
+              "gradient_norm": 170.28387451171875,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0405102031766001
+            },
+            "angular_velocity": {
+              "loss": 1.4110796451568604,
+              "gradient_norm": 6.535813331604004,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.11886368711213167
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 1.8056665658950806,
+              "gradient_norm": 2.510366201400757,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.5990633378559184
+            },
+            "rotation": {
+              "loss": 3.8707327842712402,
+              "gradient_norm": 0.8988873958587646,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.18652248659907042
+            },
+            "velocity": {
+              "loss": 1.678500771522522,
+              "gradient_norm": 9.11470890045166,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.16073574486852626
+            },
+            "acceleration": {
+              "loss": 2.1620187759399414,
+              "gradient_norm": 93.88360595703125,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.022334727602227916
+            },
+            "angular_velocity": {
+              "loss": 5.898159980773926,
+              "gradient_norm": 6.9968647956848145,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.12724860788459233
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "camera_wearer/ego",
+      "noise_step": 300,
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8590788841247559,
+            1.293657898902893,
+            0.686110258102417,
+            -0.09008333086967468,
+            -0.9006412029266357,
+            0.9631812572479248,
+            1.990786075592041,
+            0.5611613988876343,
+            -1.241333246231079,
+            0.05211188644170761
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6186509132385254,
+      "base_gradient_norm": 0.12794579565525055,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 0.8652128577232361,
+          "gradient_norm": 0.9319792985916138,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.20942571757772807
+        },
+        "rotation": {
+          "loss": 1.5522866249084473,
+          "gradient_norm": 0.39085766673088074,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0763717292798048
+        },
+        "velocity": {
+          "loss": 0.8502529859542847,
+          "gradient_norm": 4.825523376464844,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.08013129686244716
+        },
+        "acceleration": {
+          "loss": 1.1579370498657227,
+          "gradient_norm": 60.91316604614258,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.013645522027492463
+        },
+        "angular_velocity": {
+          "loss": 2.631024122238159,
+          "gradient_norm": 3.1941137313842773,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.05470008702547455
+        },
+        "body_turn_rate": {
+          "loss": 0.38121914863586426,
+          "gradient_norm": 2.3657920360565186,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.04622645128627627
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.38527655601501465,
+              "gradient_norm": 1.6622098684310913,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.37351633774164034
+            },
+            "rotation": {
+              "loss": 0.2853122353553772,
+              "gradient_norm": 0.42912501096725464,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.08384898635581789
+            },
+            "velocity": {
+              "loss": 0.2830452024936676,
+              "gradient_norm": 7.546315670013428,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.12531201571228953
+            },
+            "acceleration": {
+              "loss": 0.5712742805480957,
+              "gradient_norm": 103.13704681396484,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.023104345669446646
+            },
+            "angular_velocity": {
+              "loss": 0.9187974333763123,
+              "gradient_norm": 4.253684043884277,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.07284552365594824
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 1.1851704120635986,
+              "gradient_norm": 1.5443390607833862,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.3470295064242595
+            },
+            "rotation": {
+              "loss": 2.3969364166259766,
+              "gradient_norm": 0.5550785660743713,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.10845971202719869
+            },
+            "velocity": {
+              "loss": 1.2283916473388672,
+              "gradient_norm": 5.7404046058654785,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.0953235596840377
+            },
+            "acceleration": {
+              "loss": 1.5490456819534302,
+              "gradient_norm": 61.08180618286133,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.013683300111438581
+            },
+            "angular_velocity": {
+              "loss": 3.7725086212158203,
+              "gradient_norm": 4.309079647064209,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.07379418878486889
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "camera_wearer/ego",
+      "noise_step": 800,
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8590788841247559,
+            1.293657898902893,
+            0.686110258102417,
+            -0.09008333086967468,
+            -0.9006412029266357,
+            0.9631812572479248,
+            1.990786075592041,
+            0.5611613988876343,
+            -1.241333246231079,
+            0.05211188644170761
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6186509132385254,
+      "base_gradient_norm": 0.04067564383149147,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 0.014224124141037464,
+          "gradient_norm": 0.013387818820774555,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.00946291973260711
+        },
+        "rotation": {
+          "loss": 0.025525175034999847,
+          "gradient_norm": 0.006113619543612003,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.003757543192763664
+        },
+        "velocity": {
+          "loss": 0.012313062325119972,
+          "gradient_norm": 0.07207489758729935,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.003764725928988651
+        },
+        "acceleration": {
+          "loss": 0.017963508144021034,
+          "gradient_norm": 0.8538705110549927,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.0006016758503081696
+        },
+        "angular_velocity": {
+          "loss": 0.03862974792718887,
+          "gradient_norm": 0.04335309937596321,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.00233533601120807
+        },
+        "body_turn_rate": {
+          "loss": 0.00799962505698204,
+          "gradient_norm": 0.032749615609645844,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.002012851704653952
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.005041053518652916,
+              "gradient_norm": 0.02250050939619541,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.015904048090983253
+            },
+            "rotation": {
+              "loss": 0.005191775970160961,
+              "gradient_norm": 0.006206484045833349,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.003814619426520442
+            },
+            "velocity": {
+              "loss": 0.004261035937815905,
+              "gradient_norm": 0.11499201506376266,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.006006438236181227
+            },
+            "acceleration": {
+              "loss": 0.009162290021777153,
+              "gradient_norm": 1.497524380683899,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0010552235303125138
+            },
+            "angular_velocity": {
+              "loss": 0.013904535211622715,
+              "gradient_norm": 0.055222444236278534,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0029747114856432453
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 0.020346172153949738,
+              "gradient_norm": 0.022441331297159195,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.015862219200959808
+            },
+            "rotation": {
+              "loss": 0.039080776274204254,
+              "gradient_norm": 0.008283714763820171,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.005091323691234877
+            },
+            "velocity": {
+              "loss": 0.017681080847978592,
+              "gradient_norm": 0.08691108226776123,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.004539672144987734
+            },
+            "acceleration": {
+              "loss": 0.02383098378777504,
+              "gradient_norm": 0.9217426776885986,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0006495016541540907
+            },
+            "angular_velocity": {
+              "loss": 0.05511322617530823,
+              "gradient_norm": 0.05988968163728714,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0032261252884006955
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "interactee/ego",
+      "noise_step": 25,
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210910_S05_S06_01_interactee_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_interactee_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.615274429321289,
+            0.43722623586654663,
+            0.555803656578064,
+            -0.7264747619628906,
+            0.7336475253105164,
+            0.46627095341682434,
+            0.9347855448722839,
+            -0.8164171576499939,
+            -0.43286916613578796,
+            -0.2513654828071594
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6767349243164062,
+      "base_gradient_norm": 0.1332399994134903,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 0.6628637909889221,
+          "gradient_norm": 1.7046875953674316,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.36784083907324566
+        },
+        "rotation": {
+          "loss": 1.3923254013061523,
+          "gradient_norm": 0.7215554714202881,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.13538642198223244
+        },
+        "velocity": {
+          "loss": 0.9480688571929932,
+          "gradient_norm": 10.130560874938965,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.1615409511044404
+        },
+        "acceleration": {
+          "loss": 2.007540225982666,
+          "gradient_norm": 114.71365356445312,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.02467660963741363
+        },
+        "angular_velocity": {
+          "loss": 2.8949673175811768,
+          "gradient_norm": 7.068085670471191,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.11623337372809785
+        },
+        "body_turn_rate": {
+          "loss": 0.6990161538124084,
+          "gradient_norm": 4.329654693603516,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.08123789238708798
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.5180674195289612,
+              "gradient_norm": 2.8336217403411865,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.6114444672536193
+            },
+            "rotation": {
+              "loss": 1.6290662288665771,
+              "gradient_norm": 1.2375401258468628,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.23220131553857623
+            },
+            "velocity": {
+              "loss": 0.6537332534790039,
+              "gradient_norm": 13.480985641479492,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.21496650276661236
+            },
+            "acceleration": {
+              "loss": 1.5256068706512451,
+              "gradient_norm": 152.8289031982422,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.03287576559854013
+            },
+            "angular_velocity": {
+              "loss": 2.0388152599334717,
+              "gradient_norm": 10.240326881408691,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.1684002991753939
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 0.7593947052955627,
+              "gradient_norm": 2.3547418117523193,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.5081108152541768
+            },
+            "rotation": {
+              "loss": 1.234498381614685,
+              "gradient_norm": 1.0316132307052612,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.1935629756916699
+            },
+            "velocity": {
+              "loss": 1.1442925930023193,
+              "gradient_norm": 12.613593101501465,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.2011351446000991
+            },
+            "acceleration": {
+              "loss": 2.328828811645508,
+              "gradient_norm": 129.31558227539062,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0278177012473212
+            },
+            "angular_velocity": {
+              "loss": 3.46573543548584,
+              "gradient_norm": 9.706080436706543,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.15961471428507482
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "interactee/ego",
+      "noise_step": 300,
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210910_S05_S06_01_interactee_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_interactee_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.615274429321289,
+            0.43722623586654663,
+            0.555803656578064,
+            -0.7264747619628906,
+            0.7336475253105164,
+            0.46627095341682434,
+            0.9347855448722839,
+            -0.8164171576499939,
+            -0.43286916613578796,
+            -0.2513654828071594
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6767349243164062,
+      "base_gradient_norm": 0.12191541492938995,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 0.4167407155036926,
+          "gradient_norm": 1.0675630569458008,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.2517588124327682
+        },
+        "rotation": {
+          "loss": 0.9246254563331604,
+          "gradient_norm": 0.4731740653514862,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.09702917092673138
+        },
+        "velocity": {
+          "loss": 0.6748564839363098,
+          "gradient_norm": 6.645545959472656,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.11581260004769246
+        },
+        "acceleration": {
+          "loss": 1.331468105316162,
+          "gradient_norm": 74.10196685791016,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.017421121730995283
+        },
+        "angular_velocity": {
+          "loss": 1.8521260023117065,
+          "gradient_norm": 4.5349225997924805,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.08150324849509938
+        },
+        "body_turn_rate": {
+          "loss": 0.5322302579879761,
+          "gradient_norm": 2.5733017921447754,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.05276817934867303
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.43025878071784973,
+              "gradient_norm": 1.8677138090133667,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.4404549290668829
+            },
+            "rotation": {
+              "loss": 1.1535834074020386,
+              "gradient_norm": 0.7712628245353699,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.15815531304676772
+            },
+            "velocity": {
+              "loss": 0.46756595373153687,
+              "gradient_norm": 8.825573921203613,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.15380416732665356
+            },
+            "acceleration": {
+              "loss": 1.0063856840133667,
+              "gradient_norm": 97.67889404296875,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.022963977554529648
+            },
+            "angular_velocity": {
+              "loss": 1.3394553661346436,
+              "gradient_norm": 6.219569683074951,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.11178032750447402
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 0.4077286422252655,
+              "gradient_norm": 1.3556492328643799,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.31969693848131814
+            },
+            "rotation": {
+              "loss": 0.7719869017601013,
+              "gradient_norm": 0.6506733298301697,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.1334272065199921
+            },
+            "velocity": {
+              "loss": 0.8130502104759216,
+              "gradient_norm": 7.962502956390381,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.13876334252907402
+            },
+            "acceleration": {
+              "loss": 1.5481899976730347,
+              "gradient_norm": 81.7725601196289,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.019224452258207732
+            },
+            "angular_velocity": {
+              "loss": 2.193906307220459,
+              "gradient_norm": 6.312116622924805,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.11344361415822833
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "interactee/ego",
+      "noise_step": 800,
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210910_S05_S06_01_interactee_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_interactee_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.615274429321289,
+            0.43722623586654663,
+            0.555803656578064,
+            -0.7264747619628906,
+            0.7336475253105164,
+            0.46627095341682434,
+            0.9347855448722839,
+            -0.8164171576499939,
+            -0.43286916613578796,
+            -0.2513654828071594
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6767349243164062,
+      "base_gradient_norm": 0.044699784368276596,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 0.009454453364014626,
+          "gradient_norm": 0.018753083422780037,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.012061936096447618
+        },
+        "rotation": {
+          "loss": 0.016778655350208282,
+          "gradient_norm": 0.007714239414781332,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.004314472387173372
+        },
+        "velocity": {
+          "loss": 0.008951847441494465,
+          "gradient_norm": 0.09333652257919312,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.004436392428217908
+        },
+        "acceleration": {
+          "loss": 0.018970249220728874,
+          "gradient_norm": 1.0431312322616577,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.0006688650780884407
+        },
+        "angular_velocity": {
+          "loss": 0.02561039663851261,
+          "gradient_norm": 0.06441093981266022,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.003157314678774001
+        },
+        "body_turn_rate": {
+          "loss": 0.0067609865218400955,
+          "gradient_norm": 0.03803477808833122,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.00212723498702851
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.007844720967113972,
+              "gradient_norm": 0.02767808921635151,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.017802477377873056
+            },
+            "rotation": {
+              "loss": 0.0241992324590683,
+              "gradient_norm": 0.010928197763860226,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.006111996913577932
+            },
+            "velocity": {
+              "loss": 0.006337916478514671,
+              "gradient_norm": 0.11980502307415009,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.005694470744586273
+            },
+            "acceleration": {
+              "loss": 0.013451142236590385,
+              "gradient_norm": 1.4078242778778076,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0009027095215200512
+            },
+            "angular_velocity": {
+              "loss": 0.018224753439426422,
+              "gradient_norm": 0.08638967573642731,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.004234674918429558
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 0.010527610778808594,
+              "gradient_norm": 0.026032771915197372,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.01674421342748751
+            },
+            "rotation": {
+              "loss": 0.011831603944301605,
+              "gradient_norm": 0.008853091858327389,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.004951417542301625
+            },
+            "velocity": {
+              "loss": 0.010694469325244427,
+              "gradient_norm": 0.11686073988676071,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.005554525573305857
+            },
+            "acceleration": {
+              "loss": 0.022649647668004036,
+              "gradient_norm": 1.1785978078842163,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.00075572745827593
+            },
+            "angular_velocity": {
+              "loss": 0.030534155666828156,
+              "gradient_norm": 0.08934193104505539,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0043793894505964655
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "rich/ego",
+      "noise_step": 25,
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "BBQ_001_guitar",
+        "source_start_30fps": 5.0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/BBQ_001_guitar",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/BBQ_001_guitar",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.08221326768398285,
+            -0.005883470643311739,
+            0.039318837225437164,
+            -0.019869301468133926,
+            0.007497054059058428,
+            -0.019659390673041344,
+            -0.0009391164057888091,
+            -0.010500366799533367,
+            0.0011033499613404274,
+            0.00892170611768961
+          ],
+          "scale": 1.0105812634214424,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.035634126514196396
+      },
+      "body_height_m": 1.8065117597579956,
+      "base_gradient_norm": 1.8507531881332397,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 4.729929447174072,
+          "gradient_norm": 1.5521866083145142,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.024112663851578203
+        },
+        "rotation": {
+          "loss": 6.516647815704346,
+          "gradient_norm": 0.8106164336204529,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.010949818144553359
+        },
+        "velocity": {
+          "loss": 3.272935628890991,
+          "gradient_norm": 14.03818130493164,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.01611558621840269
+        },
+        "acceleration": {
+          "loss": 7.706532001495361,
+          "gradient_norm": 126.28471374511719,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.0019557227108563035
+        },
+        "angular_velocity": {
+          "loss": 6.452254295349121,
+          "gradient_norm": 8.783658981323242,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.010398977079376061
+        },
+        "body_turn_rate": {
+          "loss": 1.9267520904541016,
+          "gradient_norm": 5.376893997192383,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.007263115946075691
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 2.855891227722168,
+              "gradient_norm": 3.9413394927978516,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.06122729947914064
+            },
+            "rotation": {
+              "loss": 2.481621265411377,
+              "gradient_norm": 1.302011489868164,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.017587589450290732
+            },
+            "velocity": {
+              "loss": 2.321908950805664,
+              "gradient_norm": 18.354963302612305,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.021071176330722446
+            },
+            "acceleration": {
+              "loss": 5.388720512390137,
+              "gradient_norm": 194.91246032714844,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.003018534183480472
+            },
+            "angular_velocity": {
+              "loss": 3.5217649936676025,
+              "gradient_norm": 11.413517951965332,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.013512468076220148
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 5.979287147521973,
+              "gradient_norm": 2.9276950359344482,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.04548069535149423
+            },
+            "rotation": {
+              "loss": 9.2066650390625,
+              "gradient_norm": 1.0256779193878174,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.013854871707966182
+            },
+            "velocity": {
+              "loss": 3.9069533348083496,
+              "gradient_norm": 18.687625885009766,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.02145306714776008
+            },
+            "acceleration": {
+              "loss": 9.251740455627441,
+              "gradient_norm": 145.32766723632812,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.002250633595317817
+            },
+            "angular_velocity": {
+              "loss": 8.405913352966309,
+              "gradient_norm": 12.071728706359863,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.014291724028995811
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "rich/ego",
+      "noise_step": 300,
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "BBQ_001_guitar",
+        "source_start_30fps": 5.0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/BBQ_001_guitar",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/BBQ_001_guitar",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.08221326768398285,
+            -0.005883470643311739,
+            0.039318837225437164,
+            -0.019869301468133926,
+            0.007497054059058428,
+            -0.019659390673041344,
+            -0.0009391164057888091,
+            -0.010500366799533367,
+            0.0011033499613404274,
+            0.00892170611768961
+          ],
+          "scale": 1.0105812634214424,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.035634126514196396
+      },
+      "body_height_m": 1.8065117597579956,
+      "base_gradient_norm": 1.6783971786499023,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 3.1054582595825195,
+          "gradient_norm": 1.031180500984192,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.01766402688896991
+        },
+        "rotation": {
+          "loss": 4.387358665466309,
+          "gradient_norm": 0.517373263835907,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.007706359233934135
+        },
+        "velocity": {
+          "loss": 2.2003848552703857,
+          "gradient_norm": 8.660243034362793,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.010962739796830418
+        },
+        "acceleration": {
+          "loss": 4.915735721588135,
+          "gradient_norm": 82.09778594970703,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.0014019796354104723
+        },
+        "angular_velocity": {
+          "loss": 4.125589370727539,
+          "gradient_norm": 5.245660305023193,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.006848084072692794
+        },
+        "body_turn_rate": {
+          "loss": 1.279666781425476,
+          "gradient_norm": 3.0780296325683594,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.004584775391252023
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 2.0618724822998047,
+              "gradient_norm": 2.4312167167663574,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.04164651815747671
+            },
+            "rotation": {
+              "loss": 1.7162017822265625,
+              "gradient_norm": 0.799521267414093,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.01190899981220812
+            },
+            "velocity": {
+              "loss": 1.7235615253448486,
+              "gradient_norm": 11.099467277526855,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.014050480011259142
+            },
+            "acceleration": {
+              "loss": 3.6114652156829834,
+              "gradient_norm": 120.38255310058594,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.002055766619688525
+            },
+            "angular_velocity": {
+              "loss": 2.226867437362671,
+              "gradient_norm": 6.643449783325195,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.00867286480700212
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 3.8011817932128906,
+              "gradient_norm": 1.6062356233596802,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.02751466810511547
+            },
+            "rotation": {
+              "loss": 6.168129920959473,
+              "gradient_norm": 0.66120845079422,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.009848807826972368
+            },
+            "velocity": {
+              "loss": 2.5182671546936035,
+              "gradient_norm": 11.069873809814453,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.01401301853530175
+            },
+            "acceleration": {
+              "loss": 5.78524923324585,
+              "gradient_norm": 92.3711929321289,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0015774180739630366
+            },
+            "angular_velocity": {
+              "loss": 5.391403675079346,
+              "gradient_norm": 7.352606296539307,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.009598651674774993
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "rich/ego",
+      "noise_step": 800,
+      "identity": {
+        "dataset": "rich",
+        "group": "rich",
+        "sequence_id": "BBQ_001_guitar",
+        "source_start_30fps": 5.0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/BBQ_001_guitar",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/rich/BBQ_001_guitar",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.08221326768398285,
+            -0.005883470643311739,
+            0.039318837225437164,
+            -0.019869301468133926,
+            0.007497054059058428,
+            -0.019659390673041344,
+            -0.0009391164057888091,
+            -0.010500366799533367,
+            0.0011033499613404274,
+            0.00892170611768961
+          ],
+          "scale": 1.0105812634214424,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.035634126514196396
+      },
+      "body_height_m": 1.8065117597579956,
+      "base_gradient_norm": 0.28006643056869507,
+      "position_entries": 384,
+      "rotation_entries": 384,
+      "terms": {
+        "position": {
+          "loss": 0.04375612735748291,
+          "gradient_norm": 0.016275664791464806,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.0016708114626848534
+        },
+        "rotation": {
+          "loss": 0.060341838747262955,
+          "gradient_norm": 0.007961204275488853,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0007106532063949127
+        },
+        "velocity": {
+          "loss": 0.02942640893161297,
+          "gradient_norm": 0.11612303555011749,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.0008809293726408129
+        },
+        "acceleration": {
+          "loss": 0.06842027604579926,
+          "gradient_norm": 0.9733536839485168,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 9.961267932013269e-05
+        },
+        "angular_velocity": {
+          "loss": 0.056012045592069626,
+          "gradient_norm": 0.07401720434427261,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.0005790756216891129
+        },
+        "body_turn_rate": {
+          "loss": 0.016708172857761383,
+          "gradient_norm": 0.04696311056613922,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.0004192140278181255
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.03115496039390564,
+              "gradient_norm": 0.03388624265789986,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.003478661141376577
+            },
+            "rotation": {
+              "loss": 0.02209140732884407,
+              "gradient_norm": 0.011299120262265205,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0010086107284726633
+            },
+            "velocity": {
+              "loss": 0.02262440323829651,
+              "gradient_norm": 0.15913477540016174,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.001207223848347455
+            },
+            "acceleration": {
+              "loss": 0.050434064120054245,
+              "gradient_norm": 1.5116620063781738,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.00015470296683003256
+            },
+            "angular_velocity": {
+              "loss": 0.030895523726940155,
+              "gradient_norm": 0.09915342181921005,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0007757295062847753
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 256,
+          "terms": {
+            "position": {
+              "loss": 0.05215691775083542,
+              "gradient_norm": 0.026656417176127434,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.0027364687060487643
+            },
+            "rotation": {
+              "loss": 0.08584214001893997,
+              "gradient_norm": 0.009862415492534637,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0008803639436997405
+            },
+            "velocity": {
+              "loss": 0.033961083739995956,
+              "gradient_norm": 0.14944636821746826,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.0011337259207320905
+            },
+            "acceleration": {
+              "loss": 0.08041107654571533,
+              "gradient_norm": 1.1545016765594482,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.00011815130222258928
+            },
+            "angular_velocity": {
+              "loss": 0.07275637984275818,
+              "gradient_norm": 0.10094410926103592,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0007897389984401817
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "camera_wearer/exo",
+      "noise_step": 25,
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8590788841247559,
+            1.293657898902893,
+            0.686110258102417,
+            -0.09008333086967468,
+            -0.9006412029266357,
+            0.9631812572479248,
+            1.990786075592041,
+            0.5611613988876343,
+            -1.241333246231079,
+            0.05211188644170761
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6186509132385254,
+      "base_gradient_norm": 0.3996950089931488,
+      "position_entries": 2631,
+      "rotation_entries": 0,
+      "terms": {
+        "position": {
+          "loss": 2.2311480045318604,
+          "gradient_norm": 2.4422879219055176,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.17567821183138163
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.9313966035842896,
+          "gradient_norm": 7.428354263305664,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.039486409869420994
+        },
+        "acceleration": {
+          "loss": 1.6851013898849487,
+          "gradient_norm": 108.83850860595703,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.007804747511447838
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 1.0160506963729858,
+          "gradient_norm": 4.056094646453857,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.02536993554580127
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 1.6532269716262817,
+              "gradient_norm": 3.6715128421783447,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.264098595847209
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 1.1096949577331543,
+              "gradient_norm": 13.085368156433105,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.06955702326550797
+            },
+            "acceleration": {
+              "loss": 1.9519751071929932,
+              "gradient_norm": 181.79403686523438,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.013036346923466908
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 248,
+          "terms": {
+            "position": {
+              "loss": 3.6402440071105957,
+              "gradient_norm": 2.717756509780884,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.19549316833163832
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 2.0392863750457764,
+              "gradient_norm": 10.952465057373047,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.05821929178475802
+            },
+            "acceleration": {
+              "loss": 3.1263294219970703,
+              "gradient_norm": 129.63702392578125,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.00929619720846549
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "lower": {
+          "valid_entries": 996,
+          "terms": {
+            "position": {
+              "loss": 2.3421781063079834,
+              "gradient_norm": 2.7118639945983887,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.19506930899827918
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.6479582786560059,
+              "gradient_norm": 8.3252534866333,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.044253997559580566
+            },
+            "acceleration": {
+              "loss": 1.3832119703292847,
+              "gradient_norm": 138.79324340820312,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.009952784496687399
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "torso_arms": {
+          "valid_entries": 1259,
+          "terms": {
+            "position": {
+              "loss": 1.8600661754608154,
+              "gradient_norm": 2.892274856567383,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.20804659039962298
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.8572081923484802,
+              "gradient_norm": 8.915839195251465,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.04739333482419046
+            },
+            "acceleration": {
+              "loss": 1.521502137184143,
+              "gradient_norm": 126.67509460449219,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.009083798942488609
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "camera_wearer/exo",
+      "noise_step": 300,
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8590788841247559,
+            1.293657898902893,
+            0.686110258102417,
+            -0.09008333086967468,
+            -0.9006412029266357,
+            0.9631812572479248,
+            1.990786075592041,
+            0.5611613988876343,
+            -1.241333246231079,
+            0.05211188644170761
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6186509132385254,
+      "base_gradient_norm": 0.45153021812438965,
+      "position_entries": 2631,
+      "rotation_entries": 0,
+      "terms": {
+        "position": {
+          "loss": 1.9460153579711914,
+          "gradient_norm": 1.683968186378479,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.10722519088460407
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.669891357421875,
+          "gradient_norm": 5.113493919372559,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.0240610563747488
+        },
+        "acceleration": {
+          "loss": 1.177972435951233,
+          "gradient_norm": 73.05252838134766,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.004637174430295118
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.6866372227668762,
+          "gradient_norm": 2.396132707595825,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.013266735045713636
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 1.8311151266098022,
+              "gradient_norm": 2.2544174194335938,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.14354804329896864
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.7147938013076782,
+              "gradient_norm": 8.76820182800293,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.04125793475366857
+            },
+            "acceleration": {
+              "loss": 1.2978397607803345,
+              "gradient_norm": 115.31574249267578,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.007319927514433109
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 248,
+          "terms": {
+            "position": {
+              "loss": 2.9421117305755615,
+              "gradient_norm": 1.664422869682312,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.10598066006116039
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 1.4932701587677002,
+              "gradient_norm": 7.082810401916504,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.03332748665771001
+            },
+            "acceleration": {
+              "loss": 2.2568953037261963,
+              "gradient_norm": 78.00738525390625,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.00495169517453629
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "lower": {
+          "valid_entries": 996,
+          "terms": {
+            "position": {
+              "loss": 1.5762320756912231,
+              "gradient_norm": 1.673568606376648,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.106563006788826
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.4759160876274109,
+              "gradient_norm": 5.2710394859313965,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.02480237196411574
+            },
+            "acceleration": {
+              "loss": 0.9314642548561096,
+              "gradient_norm": 79.6583251953125,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.005056492320533453
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "torso_arms": {
+          "valid_entries": 1259,
+          "terms": {
+            "position": {
+              "loss": 2.0325231552124023,
+              "gradient_norm": 1.9480865001678467,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.12404269185716675
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.6160628199577332,
+              "gradient_norm": 6.151840686798096,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.028946897739087336
+            },
+            "acceleration": {
+              "loss": 1.0889300107955933,
+              "gradient_norm": 86.42494201660156,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.005486018624393705
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "camera_wearer/exo",
+      "noise_step": 800,
+      "identity": {
+        "dataset": "egobody",
+        "group": "camera_wearer",
+        "sequence_id": "recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "real_PV_pose_synthetic_scene_depth",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_camera_wearer_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_camera_wearer",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8590788841247559,
+            1.293657898902893,
+            0.686110258102417,
+            -0.09008333086967468,
+            -0.9006412029266357,
+            0.9631812572479248,
+            1.990786075592041,
+            0.5611613988876343,
+            -1.241333246231079,
+            0.05211188644170761
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6186509132385254,
+      "base_gradient_norm": 0.3996581733226776,
+      "position_entries": 2631,
+      "rotation_entries": 0,
+      "terms": {
+        "position": {
+          "loss": 0.04753440245985985,
+          "gradient_norm": 0.023922931402921677,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.0017209785671119318
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.011792308650910854,
+          "gradient_norm": 0.08190776407718658,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.0004354317958934525
+        },
+        "acceleration": {
+          "loss": 0.020722730085253716,
+          "gradient_norm": 1.2558345794677734,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 9.00634831908994e-05
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.016675692051649094,
+          "gradient_norm": 0.03240519016981125,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.00020270566407037933
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.04123753681778908,
+              "gradient_norm": 0.03203420341014862,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.0023044908901355106
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.010078947059810162,
+              "gradient_norm": 0.1540568321943283,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.0008189851580958547
+            },
+            "acceleration": {
+              "loss": 0.023491794243454933,
+              "gradient_norm": 1.8475362062454224,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.00013249798084575884
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 248,
+          "terms": {
+            "position": {
+              "loss": 0.05857642740011215,
+              "gradient_norm": 0.01876421831548214,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.0013498687516869292
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.02246750146150589,
+              "gradient_norm": 0.0911959558725357,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.0004848089713006636
+            },
+            "acceleration": {
+              "loss": 0.032875485718250275,
+              "gradient_norm": 1.1063677072525024,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 7.934431097391729e-05
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "lower": {
+          "valid_entries": 996,
+          "terms": {
+            "position": {
+              "loss": 0.04122905060648918,
+              "gradient_norm": 0.02380053885281086,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.0017121738369571165
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.0101077351719141,
+              "gradient_norm": 0.08103212714195251,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.00043077680173563
+            },
+            "acceleration": {
+              "loss": 0.01698187179863453,
+              "gradient_norm": 1.2433782815933228,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 8.917016683174016e-05
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "torso_arms": {
+          "valid_entries": 1259,
+          "terms": {
+            "position": {
+              "loss": 0.05140400677919388,
+              "gradient_norm": 0.02742748148739338,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.001973090462647005
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.010774639435112476,
+              "gradient_norm": 0.10305747389793396,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.0005478662669552555
+            },
+            "acceleration": {
+              "loss": 0.020322374999523163,
+              "gradient_norm": 1.595844030380249,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0001144476146423367
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "interactee/exo",
+      "noise_step": 25,
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210910_S05_S06_01_interactee_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_interactee_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.615274429321289,
+            0.43722623586654663,
+            0.555803656578064,
+            -0.7264747619628906,
+            0.7336475253105164,
+            0.46627095341682434,
+            0.9347855448722839,
+            -0.8164171576499939,
+            -0.43286916613578796,
+            -0.2513654828071594
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6767349243164062,
+      "base_gradient_norm": 0.2660812735557556,
+      "position_entries": 2663,
+      "rotation_entries": 0,
+      "terms": {
+        "position": {
+          "loss": 4.01448392868042,
+          "gradient_norm": 2.945439100265503,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.3182625242141661
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.8773595690727234,
+          "gradient_norm": 7.814516067504883,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.06239812574754445
+        },
+        "acceleration": {
+          "loss": 1.936453104019165,
+          "gradient_norm": 96.20769500732422,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.01036335798122242
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 1.0577350854873657,
+          "gradient_norm": 4.750677108764648,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.044635583005141234
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 4.794858455657959,
+              "gradient_norm": 3.8370604515075684,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.4146045812826576
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 1.2098593711853027,
+              "gradient_norm": 15.039725303649902,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.12009069564883665
+            },
+            "acceleration": {
+              "loss": 2.4858577251434326,
+              "gradient_norm": 192.1443634033203,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.020697521355969577
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 253,
+          "terms": {
+            "position": {
+              "loss": 4.947772026062012,
+              "gradient_norm": 3.4309802055358887,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.3707265312816216
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 1.4056158065795898,
+              "gradient_norm": 14.954253196716309,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.1194082094615566
+            },
+            "acceleration": {
+              "loss": 3.6095685958862305,
+              "gradient_norm": 157.87571716308594,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0170061508424947
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "lower": {
+          "valid_entries": 912,
+          "terms": {
+            "position": {
+              "loss": 3.312603712081909,
+              "gradient_norm": 2.834322214126587,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.3062560493010702
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.5271346569061279,
+              "gradient_norm": 6.920482635498047,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.05525935860816311
+            },
+            "acceleration": {
+              "loss": 1.1608113050460815,
+              "gradient_norm": 90.0372543334961,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.00969868676547499
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "torso_arms": {
+          "valid_entries": 1370,
+          "terms": {
+            "position": {
+              "loss": 4.165707111358643,
+              "gradient_norm": 3.4132933616638184,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.3688154207868911
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.9461922645568848,
+              "gradient_norm": 9.630927085876465,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.07690198525138242
+            },
+            "acceleration": {
+              "loss": 1.991807460784912,
+              "gradient_norm": 116.50323486328125,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.012549565071345905
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "interactee/exo",
+      "noise_step": 300,
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210910_S05_S06_01_interactee_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_interactee_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.615274429321289,
+            0.43722623586654663,
+            0.555803656578064,
+            -0.7264747619628906,
+            0.7336475253105164,
+            0.46627095341682434,
+            0.9347855448722839,
+            -0.8164171576499939,
+            -0.43286916613578796,
+            -0.2513654828071594
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6767349243164062,
+      "base_gradient_norm": 0.28245797753334045,
+      "position_entries": 2663,
+      "rotation_entries": 0,
+      "terms": {
+        "position": {
+          "loss": 2.744403600692749,
+          "gradient_norm": 1.8708419799804688,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.19042897385197913
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.6329280138015747,
+          "gradient_norm": 5.21225118637085,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.03920624583935163
+        },
+        "acceleration": {
+          "loss": 1.236387848854065,
+          "gradient_norm": 68.15729522705078,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.006916135660062701
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.6690118312835693,
+          "gradient_norm": 2.912595748901367,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.02577901830155933
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 3.5335850715637207,
+              "gradient_norm": 2.35823130607605,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.24003928312874556
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.8603661060333252,
+              "gradient_norm": 9.469138145446777,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.07122629833879121
+            },
+            "acceleration": {
+              "loss": 1.5978671312332153,
+              "gradient_norm": 118.53121948242188,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.012027736593158367
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 253,
+          "terms": {
+            "position": {
+              "loss": 3.14180850982666,
+              "gradient_norm": 2.169376850128174,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.22081619500138633
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.9711500406265259,
+              "gradient_norm": 8.816824913024902,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.06631963669871757
+            },
+            "acceleration": {
+              "loss": 2.1967661380767822,
+              "gradient_norm": 94.52484130859375,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.009591733703022142
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "lower": {
+          "valid_entries": 912,
+          "terms": {
+            "position": {
+              "loss": 2.032899856567383,
+              "gradient_norm": 1.7430076599121094,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.17741699386960924
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.39965730905532837,
+              "gradient_norm": 4.704222679138184,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.03538488538764419
+            },
+            "acceleration": {
+              "loss": 0.7716553211212158,
+              "gradient_norm": 61.24863815307617,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.006215092442410243
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "torso_arms": {
+          "valid_entries": 1370,
+          "terms": {
+            "position": {
+              "loss": 3.037024974822998,
+              "gradient_norm": 2.132164716720581,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.2170284521265312
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.681211531162262,
+              "gradient_norm": 6.3195061683654785,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.047534952472762064
+            },
+            "acceleration": {
+              "loss": 1.2747128009796143,
+              "gradient_norm": 82.90589141845703,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.008412722220832882
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "branch": "interactee/exo",
+      "noise_step": 800,
+      "identity": {
+        "dataset": "egobody",
+        "group": "interactee",
+        "sequence_id": "recording_20210910_S05_S06_01_interactee_1451-3881",
+        "source_start_30fps": 1451,
+        "camera_source": "synthetic_head_xright_yup_zforward",
+        "dynamic_object_points": 0,
+        "scene_protocol": "exact20 first-hit; immutable causal recording first-observation memory/current dynamic; window-independent BPS",
+        "scene_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/train/recording_20210910_S05_S06_01_interactee_1451-3881",
+        "scene_observation_fps": 20,
+        "scene_history_points": 0,
+        "memory_bundle": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/causal_scene20_memory_v1/train/egobody/recording_20210910_S05_S06_01_interactee",
+        "memory_protocol": "causal20-first-world-voxel25mm-current-dynamic-v1",
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.615274429321289,
+            0.43722623586654663,
+            0.555803656578064,
+            -0.7264747619628906,
+            0.7336475253105164,
+            0.46627095341682434,
+            0.9347855448722839,
+            -0.8164171576499939,
+            -0.43286916613578796,
+            -0.2513654828071594
+          ],
+          "scale": 1.0,
+          "root_translation_protocol": "native rest-root compensation; TRUMANS measured pelvis",
+          "missing_hand_face_supervision": true
+        },
+        "archived_joint_difference_mean_m": 0.0
+      },
+      "body_height_m": 1.6767349243164062,
+      "base_gradient_norm": 0.30773720145225525,
+      "position_entries": 2663,
+      "rotation_entries": 0,
+      "terms": {
+        "position": {
+          "loss": 0.07531656324863434,
+          "gradient_norm": 0.02731189876794815,
+          "coefficient": 0.028750788892678653,
+          "weighted_gradient_ratio": 0.002551653267885181
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.01038427371531725,
+          "gradient_norm": 0.09128690510988235,
+          "coefficient": 0.0021246322386409807,
+          "weighted_gradient_ratio": 0.0006302491237553781
+        },
+        "acceleration": {
+          "loss": 0.021010328084230423,
+          "gradient_norm": 1.1085916757583618,
+          "coefficient": 2.8661901625934807e-05,
+          "weighted_gradient_ratio": 0.00010325155816056287
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.0021911073760835335,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.009172231890261173,
+          "gradient_norm": 0.04070182889699936,
+          "coefficient": 0.0025,
+          "weighted_gradient_ratio": 0.0003306541157919947
+        }
+      },
+      "body_buckets": {
+        "head": {
+          "valid_entries": 128,
+          "terms": {
+            "position": {
+              "loss": 0.08796993643045425,
+              "gradient_norm": 0.03309134393930435,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.003091606212327139
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.014372614212334156,
+              "gradient_norm": 0.14752879738807678,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.0010185458162986234
+            },
+            "acceleration": {
+              "loss": 0.026455136016011238,
+              "gradient_norm": 1.6880851984024048,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.00015722418890038874
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "wrists": {
+          "valid_entries": 253,
+          "terms": {
+            "position": {
+              "loss": 0.07903753221035004,
+              "gradient_norm": 0.03109302744269371,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.0029049106309555007
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.015406858175992966,
+              "gradient_norm": 0.14020733535289764,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.0009679980950594641
+            },
+            "acceleration": {
+              "loss": 0.03568688780069351,
+              "gradient_norm": 1.4988195896148682,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.00013959644602549076
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "lower": {
+          "valid_entries": 912,
+          "terms": {
+            "position": {
+              "loss": 0.05989765375852585,
+              "gradient_norm": 0.02449166588485241,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.0022881689706749976
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.0065307896584272385,
+              "gradient_norm": 0.08134672045707703,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.0005616216173254441
+            },
+            "acceleration": {
+              "loss": 0.013515682891011238,
+              "gradient_norm": 0.9636451005935669,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 8.975158331584435e-05
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        },
+        "torso_arms": {
+          "valid_entries": 1370,
+          "terms": {
+            "position": {
+              "loss": 0.08365732431411743,
+              "gradient_norm": 0.03020530939102173,
+              "coefficient": 0.028750788892678653,
+              "weighted_gradient_ratio": 0.0028219743002831075
+            },
+            "rotation": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.025,
+              "weighted_gradient_ratio": 0.0
+            },
+            "velocity": {
+              "loss": 0.011285633780062199,
+              "gradient_norm": 0.11065950244665146,
+              "coefficient": 0.0021246322386409807,
+              "weighted_gradient_ratio": 0.0007639984548524045
+            },
+            "acceleration": {
+              "loss": 0.02190064825117588,
+              "gradient_norm": 1.343874216079712,
+              "coefficient": 2.8661901625934807e-05,
+              "weighted_gradient_ratio": 0.0001251652071869606
+            },
+            "angular_velocity": {
+              "loss": 0.0,
+              "gradient_norm": 0.0,
+              "coefficient": 0.0021911073760835335,
+              "weighted_gradient_ratio": 0.0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "coefficients": {
+    "position": 0.028750788892678653,
+    "rotation": 0.025,
+    "velocity": 0.0021246322386409807,
+    "acceleration": 2.8661901625934807e-05,
+    "angular_velocity": 0.0021911073760835335,
+    "body_turn_rate": 0.0025
+  },
+  "calibration_split": "train",
+  "optimizer_steps": 0,
+  "scope": "six TRAIN windows, six branches and three noise steps; initial calibration, not full-distribution guarantee"
+}
