@@ -1,8 +1,8 @@
 # 10 月 12 日：ego/exo 统一模型任务表与输出头选择
 
-用户随后重新讨论30Hz重训、相机→人体头部统一与场景反馈，最新建议及待实现顺序见 [MODEL_DESIGN_zh.md](../ego_exo_retrain_design_oct12/MODEL_DESIGN_zh.md)。已执行状态仍是下述20Hz v2零步配置；本轮只新增8窗口头部逆变换审计，没有改网络/缓存或启动训练。“场景先不动”是前一阶段执行范围，新场景方案尚未接入。
+用户已同意30Hz重训方案，并补充接触反馈需要修正位置。**最新代码为独立 native30 版本：统一 anatomical 观测、相机几何编码、场景 patch/动态 owner token、多尺度 vertex 查询、时序 root 位移与 SO(3) 反馈均已接入。** 实现、配置、输入回放和零步验收见 [native30 实现记录](../ego_exo_native30_oct12/IMPLEMENTATION_zh.md)。训练仍暂停，当前只有检查用的8段 raw30缓存，全量训练缓存未导出。
 
-**最新范围：独立编码相机；场景结构保持现状；第一版共享生成主干和动作输出头；长缺失—补全排在最后。** 用户已要求完成前3项配置，现已新增独立v2模型/输入/配置和零步检查，见[实现记录](../ego_exo_camera_config_oct12/IMPLEMENTATION_zh.md)。原55k/3k权重和场景缓存未改，训练继续暂停。旧3k已执行模型见 [CURRENT_MODEL_AND_CONFIG_zh.md](CURRENT_MODEL_AND_CONFIG_zh.md)，实际参数见 [EFFECTIVE_CONFIG_OCT12.json](EFFECTIVE_CONFIG_OCT12.json)。
+下文保留此前20Hz v2阶段的讨论及任务表，**“场景保持现状”等状态只适用于该旧阶段**。第一版共享 ego/exo 输出、保留 interactee 合成 ego 和最后再处理长缺失的决策继续适用。旧v2零步配置见[实现记录](../ego_exo_camera_config_oct12/IMPLEMENTATION_zh.md)，旧3k见 [CURRENT_MODEL_AND_CONFIG_zh.md](CURRENT_MODEL_AND_CONFIG_zh.md)。原55k/3k权重与20Hz数据保留。
 
 ## 1. 合成 interactee ego 是训练增广，继续保留
 

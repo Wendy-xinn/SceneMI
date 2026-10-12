@@ -1,0 +1,35 @@
+{
+  "version": "native30-observer-target-v1",
+  "fps": 30,
+  "frames": 192,
+  "seed": 2026101267,
+  "initialization": "from_scratch",
+  "shared_output_initialization": "normal_std_0.001_bias_zero",
+  "train_manifest": "data/native30_observer_target_v1/manifest.jsonl",
+  "review_manifest": "data/native30_observer_target_review_oct12/manifest.jsonl",
+  "prepared_output": "runs/ego_exo_native30_oct12",
+  "mount_defaults": "runs/ego_exo_surface_continue_oct11/TRAIN_camera_mounts.json",
+  "batch_size": 2,
+  "latent_dim": 256,
+  "dim_mults": [1, 2, 4],
+  "ego_probability": 0.7,
+  "ego_head_only_probability": 0.65,
+  "noise": {"steps": 1000, "extra_low_noise_probability": 0.25, "low_noise_steps": 100},
+  "sampling": {"ddim_steps": 20, "global_tokens_reuse": "one sampling call only"},
+  "scene": {"dropout_probability": 0.1, "patch_tokens": 16, "neighbors_per_scale": 8, "scales_m": [0.08, 0.25, 0.6], "observation_budget": "current complete 192-frame window", "unknown_policy": "surface-only; no free-space inference"},
+  "anchor_protocol": "native_body_dominant_only_67_low_foot_v1",
+  "dynamic_condition": "current_visible_owner_patch_tokens_plus_local_queries; source_known_simulation_velocities_only",
+  "feedback": {"root_limit_m": 0.08, "rotation_limit_rad": 0.12, "feedback_gain": 1.0, "gate": "cosine_alpha_squared", "placement": "inside x0 before DDIM update", "position_protocol": "root translation and SO3 FK, fixed bone lengths"},
+  "optimizer": {"lr": 0.0001, "weight_decay": 0.01, "clip_norm": 1.0, "warmup_steps": 200, "floor_fraction": 0.2},
+  "observation": {
+    "scales": {"position": 0.05, "rotation": 0.17453292519943295, "velocity": 0.15, "acceleration": 1.0, "angular_velocity": 0.3490658503988659, "body_turn_rate": 0.3490658503988659},
+    "target_gradient_ratios": {"position": 0.1, "rotation": 0.04, "velocity": 0.03, "acceleration": 0.005, "angular_velocity": 0.015, "body_turn_rate": 0.015},
+    "maximum_coefficients": {"position": 0.1, "rotation": 0.025, "velocity": 0.015, "acceleration": 0.001, "angular_velocity": 0.005, "body_turn_rate": 0.0025}
+  },
+  "geometry": {
+    "tolerance_m": 0.02,
+    "slip_tolerance_m_s": 0.2,
+    "coefficients": {"contact": 0.1, "contact_distance_m2": 0.2, "contact_relative_slip_m2_s2": 0.01, "observed_plane_proxy_m2": 0.02, "correspondence": 0.01, "feedback_smoothness": 0.0001}
+  },
+  "training_status": "paused; zero-step preparation only"
+}

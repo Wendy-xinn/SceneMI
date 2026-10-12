@@ -1,6 +1,6 @@
 # 10 月 12 日：exo 可视化验收与场景改进方案
 
-关于最新30Hz重训、统一头部关节、相机条件、去噪阶段局部查询、接触反馈、动态物体与root朝向的完整建议，见 [MODEL_DESIGN_zh.md](../ego_exo_retrain_design_oct12/MODEL_DESIGN_zh.md)。以下保留之前冻结模型的实际结果和早期方案；新建议尚未训练或接入当前绿色模型。
+**最新实现：** 用户已同意30Hz方案和位置反馈，独立native30代码、配置、输入回放及零优化器步核验见 [IMPLEMENTATION_zh.md](../ego_exo_native30_oct12/IMPLEMENTATION_zh.md)。全局patch、动态owner token、多尺度vertex查询和root位置/SO(3)反馈均已接入；全量缓存与训练未执行。当前绿色3k旧模型不随新代码改变。以下保留此前冻结模型结果和研究记录，旧“场景先不动/待接入”状态只适用于此前v2阶段。
 
 **本轮没有续训。正式模型仍保留原 55k；3000 步 ego/exo 候选权重未改变。先验收输入和生成动作，再决定结构训练。**
 
