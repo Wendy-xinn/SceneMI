@@ -1,0 +1,92 @@
+{
+  "training_steps": 0,
+  "training_started": false,
+  "disk_before_df_rounded": "67 GiB available",
+  "cases": [
+    {
+      "id": "EgoBody_01_person_crossing",
+      "output_sha256_verified": true,
+      "integer_raw30_clock": true,
+      "production_sanitizer_nan_mask_verified": true,
+      "derivative_stencil_no_gap": true
+    },
+    {
+      "id": "EgoBody_02_partner_occlusion",
+      "output_sha256_verified": true,
+      "integer_raw30_clock": true,
+      "production_sanitizer_nan_mask_verified": true,
+      "derivative_stencil_no_gap": true
+    },
+    {
+      "id": "TRUMANS_01_moving_chair",
+      "output_sha256_verified": true,
+      "integer_raw30_clock": true,
+      "production_sanitizer_nan_mask_verified": true,
+      "derivative_stencil_no_gap": true
+    },
+    {
+      "id": "TRUMANS_02_sit_down",
+      "output_sha256_verified": true,
+      "integer_raw30_clock": true,
+      "production_sanitizer_nan_mask_verified": true,
+      "derivative_stencil_no_gap": true
+    },
+    {
+      "id": "RICH_01_wiping_chairs",
+      "output_sha256_verified": true,
+      "integer_raw30_clock": true,
+      "production_sanitizer_nan_mask_verified": true,
+      "derivative_stencil_no_gap": true
+    },
+    {
+      "id": "RICH_02_over_fence",
+      "output_sha256_verified": true,
+      "integer_raw30_clock": true,
+      "production_sanitizer_nan_mask_verified": true,
+      "derivative_stencil_no_gap": true
+    }
+  ],
+  "code_sha256": {
+    "exo_occlusion_review.py": "d9ab3c2f630475e7db2ff1701ac95eca9c3d77230d7fb4b3dd4e349a7304decc",
+    "view_exo_occlusion_review.py": "a95d0cde0fa718cb379f55635dafc1b5716873482696b67c8dab271b7973e0e9",
+    "test_exo_occlusion_review.py": "d68bfba4fdda6c8e11576791c343ef0203eea7927c1a10e0b6750446a9370d37",
+    "native30_export.py": "ad69ebd5d91b10dc6ef80b41b8f4b1c1b039f44e63ad646dc4ada7f30e2d6908",
+    "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+    "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+    "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+    "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f",
+    "prepare_rich_pseudo_ego.py": "6bf3dfd4610d563ae5216f1d4f85cb33d266628b85d32970e85de0e47b52275d",
+    "native30_observations.py": "d06b6ab4050f0b1533227dedfb8747ec788d71ed903562f2c6eca8ce9ad5702b"
+  },
+  "protected_checkpoints": {
+    "runs/ego_exo_surface_continue_oct11/last.pt": {
+      "sha256": "344011ff6192382c8bad4982ba9abad10ab301d2700247806bf7f76dae5fd0b2",
+      "bytes": 1451363472,
+      "unchanged": true
+    },
+    "runs/native_dynamic_scene20_contact_55k_oct07/last.pt": {
+      "sha256": "9d771510c16af5d71b8d4f8ae6c4269517814ebb382a0884e84a2ddb4f707363",
+      "bytes": 1449880654,
+      "unchanged": true
+    }
+  },
+  "cleanup": {
+    "removed_directory": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/exo_occlusion_review_oct12/TRUMANS_02_seated_keyboard",
+    "removed_bytes": 58451702,
+    "source_assets_removed": false
+  },
+  "selected_cache_bytes": 427370099,
+  "run_artifact_bytes": 11615397,
+  "disk_after_free_bytes": 70791655424,
+  "unit_tests": {
+    "passed": 5,
+    "failed": 0
+  },
+  "status": "passed",
+  "rich_example_image_size_verification": {
+    "url": "https://raw.githubusercontent.com/paulchhuang/rich_toolkit/main/samples/tmp.jpg",
+    "width": 4112,
+    "height": 3008,
+    "selected_clip_rgb_present": false
+  }
+}

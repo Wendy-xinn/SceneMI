@@ -1,0 +1,2266 @@
+{
+  "protocol": "diagnostic-exo-firsthit-owner-regions-native30-v1",
+  "cases": [
+    {
+      "protocol": "diagnostic-exo-firsthit-owner-regions-native30-v1",
+      "diagnostic_only": true,
+      "training_steps": 0,
+      "spec": {
+        "id": "EgoBody_01_person_crossing",
+        "split": "validation",
+        "sequence_id": "recording_20210907_S04_S03_01_camera_wearer_2001-2901",
+        "start": 2481,
+        "frames": 192,
+        "description": "master \u771f\u5b9e\u6807\u5b9a\u89c6\u89d2\uff1b\u53e6\u4e00\u4eba\u9010\u6e10\u6321\u4f4f camera wearer"
+      },
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/exo_occlusion_review_oct12/EgoBody_01_person_crossing",
+      "sequence_id": "recording_20210907_S04_S03_01_camera_wearer_2001-2901",
+      "dataset": "egobody",
+      "group": "camera_wearer",
+      "split": "validation",
+      "fps": 30,
+      "frames": 192,
+      "camera": {
+        "kind": "released_calibrated",
+        "name": "EgoBody Kinect master",
+        "position": [
+          -0.6849263160394952,
+          -0.4792354698455745,
+          2.887512806158444
+        ],
+        "rotation": [
+          [
+            0.718967938589424,
+            -0.0854097393587232,
+            0.6897755284896544
+          ],
+          [
+            -0.013824958036209914,
+            -0.9939820361576085,
+            -0.10866730111347925
+          ],
+          [
+            0.6949057301647507,
+            0.06859218773785698,
+            -0.7158220015936552
+          ]
+        ],
+        "K": [
+          [
+            918.241638,
+            0.0,
+            958.487976
+          ],
+          [
+            0.0,
+            918.177368,
+            551.059509
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "distortion": [
+          0.668987334,
+          -2.77296114,
+          0.000896319165,
+          -0.000250226411,
+          1.5344249,
+          0.545520306,
+          -2.60093617,
+          1.46634293
+        ],
+        "source_size": [
+          1920,
+          1080
+        ],
+        "size": [
+          192,
+          108
+        ],
+        "calibration": "/home/wenxin/projects/egobody/kinect_cam_params/kinect_master/Color.json",
+        "image_size_source": "official Kinect master RGB dimensions",
+        "near": 0.1,
+        "far": 12.0
+      },
+      "people": 2,
+      "objects": [],
+      "source_mesh": "/home/wenxin/projects/egobody/scene_mesh/seminar_g110/seminar_g110.obj",
+      "source_sha256": "ed44512aff186cf65aa0d38f7e47ae6df5b3a39df3a2293e241f15ae94600366",
+      "native_body": {
+        "model": "smpl",
+        "gender": "male",
+        "betas": [
+          0.7618235945701599,
+          0.4692724943161011,
+          1.327592372894287,
+          0.651837944984436,
+          0.3400156795978546,
+          0.19006139039993286,
+          0.41674840450286865,
+          -0.27038949728012085,
+          0.32349610328674316,
+          -0.5600777864456177
+        ],
+        "scale": 1.0
+      },
+      "input_kind": "ideal_GT_joint_tracker_simulation_geometry_confidence",
+      "current_policy": "visible>=2 pixels AND visible/target-alone>=0.15; confidence=fraction*min(visible/12,1)",
+      "high_policy": "diagnostic filter: current availability AND confidence>=0.7; training configuration unchanged",
+      "critical_frame": 172,
+      "statistics": {
+        "mean_available_joints": 13.786458333333334,
+        "mean_high_joints": 4.328125,
+        "min_high_joints": 0,
+        "max_high_joints": 10,
+        "external_person_fraction": 0.3625470042617197,
+        "external_static_fraction": 0.061243419403359235,
+        "external_rigid_fraction": 0.0,
+        "person_occluded_frames": 104,
+        "static_occluded_frames": 181,
+        "rigid_occluded_frames": 0,
+        "high_with_partial_external_occlusion": 181,
+        "high_out_of_joint_fov": 0,
+        "invalid_frames": 0,
+        "target_skin_in_scene_points": 0
+      },
+      "per_joint": [
+        {
+          "joint": "pelvis",
+          "available_frames": 164,
+          "high_frames": 119,
+          "person_blocked_pixels": 1567,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_hip",
+          "available_frames": 143,
+          "high_frames": 17,
+          "person_blocked_pixels": 1627,
+          "static_blocked_pixels": 1343,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_hip",
+          "available_frames": 73,
+          "high_frames": 0,
+          "person_blocked_pixels": 2103,
+          "static_blocked_pixels": 418,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine1",
+          "available_frames": 131,
+          "high_frames": 44,
+          "person_blocked_pixels": 1227,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_knee",
+          "available_frames": 137,
+          "high_frames": 84,
+          "person_blocked_pixels": 674,
+          "static_blocked_pixels": 544,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_knee",
+          "available_frames": 69,
+          "high_frames": 29,
+          "person_blocked_pixels": 1023,
+          "static_blocked_pixels": 132,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine2",
+          "available_frames": 155,
+          "high_frames": 48,
+          "person_blocked_pixels": 1169,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_ankle",
+          "available_frames": 126,
+          "high_frames": 0,
+          "person_blocked_pixels": 77,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_ankle",
+          "available_frames": 104,
+          "high_frames": 0,
+          "person_blocked_pixels": 148,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine3",
+          "available_frames": 167,
+          "high_frames": 89,
+          "person_blocked_pixels": 1213,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_foot",
+          "available_frames": 98,
+          "high_frames": 0,
+          "person_blocked_pixels": 121,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_foot",
+          "available_frames": 64,
+          "high_frames": 0,
+          "person_blocked_pixels": 72,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "neck",
+          "available_frames": 152,
+          "high_frames": 0,
+          "person_blocked_pixels": 110,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_collar",
+          "available_frames": 170,
+          "high_frames": 41,
+          "person_blocked_pixels": 113,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_collar",
+          "available_frames": 33,
+          "high_frames": 0,
+          "person_blocked_pixels": 326,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "head",
+          "available_frames": 168,
+          "high_frames": 139,
+          "person_blocked_pixels": 759,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_shoulder",
+          "available_frames": 170,
+          "high_frames": 114,
+          "person_blocked_pixels": 210,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_shoulder",
+          "available_frames": 55,
+          "high_frames": 0,
+          "person_blocked_pixels": 708,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_elbow",
+          "available_frames": 172,
+          "high_frames": 105,
+          "person_blocked_pixels": 187,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_elbow",
+          "available_frames": 52,
+          "high_frames": 2,
+          "person_blocked_pixels": 619,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_wrist",
+          "available_frames": 171,
+          "high_frames": 0,
+          "person_blocked_pixels": 115,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_wrist",
+          "available_frames": 73,
+          "high_frames": 0,
+          "person_blocked_pixels": 294,
+          "static_blocked_pixels": 6,
+          "rigid_blocked_pixels": 0
+        }
+      ],
+      "checks": {
+        "world_camera_roundtrip_max_m": 9.85878045867139e-14,
+        "current_masked_positions_zero": true,
+        "high_masked_positions_zero": true,
+        "count_partition_exact": true,
+        "target_skin_excluded": true,
+        "optical_rotation_error": 3.397282455352979e-14,
+        "current_input_gt_max_m": 0.0
+      },
+      "export_sha256": "d9ab3c2f630475e7db2ff1701ac95eca9c3d77230d7fb4b3dd4e349a7304decc",
+      "elapsed_s": 5.105028436053544,
+      "output_sha256": {
+        "available.npy": "626e7b20d0cd4b3983cb6810215dd2d373a845de2fc43612d1002d57da08d2d9",
+        "complete_scan_reference.npy": "73b69e6228f56b1a9123e139d95feb1b719b5c958d18de9cbe5cc99c86edc1ca",
+        "confidence.npy": "b424743acc104c7e0e37be6874aec107798c28b97d1e0a9f7d61c1670babcc75",
+        "current_input_confidence.npy": "b424743acc104c7e0e37be6874aec107798c28b97d1e0a9f7d61c1670babcc75",
+        "current_input_positions.npy": "d2c0eb52e4e59c07c45e0ff0c90ff98187538f0b9b2bd15f6c4ed6854508cb96",
+        "depth.npy": "dc08c203fe422c69c216f7e9efc0f1221cad856fd5c812a10ab93a79b4a0c625",
+        "fraction.npy": "6d12445358c2d849f32d20d3802849ce1539ff3f67ee02d4418ed926941789de",
+        "frame_owner.npy": "bb507bbcfb1b07b56e65ad5aa225bc4beaefd050abbf3c707fe6c10423bec6f2",
+        "frame_points.npy": "ea837dc792f04a0613f5d747d7e5a662db3352bc9d6b7efc46f8a2fb2f6325ed",
+        "gt_joints_reference.npy": "1ee169e375ebab237f4d867637f844c7a241c4224b72e93699702538e3617a52",
+        "high.npy": "fa5030e8d5ca81222a0b076e1fbef1c49b836ef47a0443e99ba0daa3382f3dda",
+        "high_input_confidence.npy": "5c158bc9573d63b1367564941b430cbf0685991c29642f927006ebd6a3ffd653",
+        "high_input_positions.npy": "9fcaae834626c2ecae150317154343cb92f91154994dcec03f25d459466c5219",
+        "joint_in_fov.npy": "c5cf00b4d6b6e7f88aecad778a691fc9ae56413d07f9c49a4d201bbcb9b252f6",
+        "joint_pixels.npy": "376b30241f0cdf38c4933821e1d7549aafcbcaf47fb40cf61e8d26ca53a82ff7",
+        "observation_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "owner.npy": "f99f726383b6b2af2e5da65c3b23cbe8a3a6f5ef1e5964cea2dee64792ead093",
+        "person.npy": "70d247f54061c00027be7288824dfaf4e83dcc004fe9489ef8b94cba01505506",
+        "person_0_faces.npy": "dbc05fcd8ae814277543e9cf338f6b6c661d79fd810ee9816713eedb6438523d",
+        "person_0_vertices.npy": "5e03cf4dd967347f6aff086f830cdfb97795c2ddb02db944b117434cc11c5a74",
+        "person_1_faces.npy": "dbc05fcd8ae814277543e9cf338f6b6c661d79fd810ee9816713eedb6438523d",
+        "person_1_vertices.npy": "66e832b6647a7da1341f4c7578fbd71da4ed00fa2e00a2c9fc4f44aba5f174d8",
+        "reference.npy": "42e18a893270a779a927dcc1c02e8cf80fb839ec8d5802c1f2e2475b8ce852b4",
+        "rigid.npy": "b47e5b6d9e83fb4d4d1de38dac213452e9c9d63d9a41770f9c065354d69c0ae4",
+        "source_frame_ids.npy": "c527f019edb57b61422df77a18c16d77e114542cf9c17e3d2d8651bd4a23585d",
+        "static.npy": "a1b2ee42c2be8f85f2d643fafbb4ac45fe540da626b004bd1f2f7fd37c100d77",
+        "target_parts.npy": "8aa00372108454bd0a2fe0d4fe649fea0e47aafc59552326664347199a44b6f7",
+        "visible.npy": "d98c54798a32ec433b51b8fb4b0e31c27d9ba71684ca04db2c1d845cec0d28da"
+      }
+    },
+    {
+      "protocol": "diagnostic-exo-firsthit-owner-regions-native30-v1",
+      "diagnostic_only": true,
+      "training_steps": 0,
+      "spec": {
+        "id": "EgoBody_02_partner_occlusion",
+        "split": "validation",
+        "sequence_id": "recording_20210907_S04_S03_02_interactee_1601-2681",
+        "start": 2291,
+        "frames": 192,
+        "description": "master \u771f\u5b9e\u6807\u5b9a\u89c6\u89d2\uff1binteractee \u4ece\u53ef\u89c1\u8f6c\u4e3a\u88ab\u53e6\u4e00\u4eba\u906e\u6321"
+      },
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/exo_occlusion_review_oct12/EgoBody_02_partner_occlusion",
+      "sequence_id": "recording_20210907_S04_S03_02_interactee_1601-2681",
+      "dataset": "egobody",
+      "group": "interactee",
+      "split": "validation",
+      "fps": 30,
+      "frames": 192,
+      "camera": {
+        "kind": "released_calibrated",
+        "name": "EgoBody Kinect master",
+        "position": [
+          -0.6849263160394952,
+          -0.4792354698455745,
+          2.887512806158444
+        ],
+        "rotation": [
+          [
+            0.718967938589424,
+            -0.0854097393587232,
+            0.6897755284896544
+          ],
+          [
+            -0.013824958036209914,
+            -0.9939820361576085,
+            -0.10866730111347925
+          ],
+          [
+            0.6949057301647507,
+            0.06859218773785698,
+            -0.7158220015936552
+          ]
+        ],
+        "K": [
+          [
+            918.241638,
+            0.0,
+            958.487976
+          ],
+          [
+            0.0,
+            918.177368,
+            551.059509
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "distortion": [
+          0.668987334,
+          -2.77296114,
+          0.000896319165,
+          -0.000250226411,
+          1.5344249,
+          0.545520306,
+          -2.60093617,
+          1.46634293
+        ],
+        "source_size": [
+          1920,
+          1080
+        ],
+        "size": [
+          192,
+          108
+        ],
+        "calibration": "/home/wenxin/projects/egobody/kinect_cam_params/kinect_master/Color.json",
+        "image_size_source": "official Kinect master RGB dimensions",
+        "near": 0.1,
+        "far": 12.0
+      },
+      "people": 2,
+      "objects": [],
+      "source_mesh": "/home/wenxin/projects/egobody/scene_mesh/seminar_g110/seminar_g110.obj",
+      "source_sha256": "f6ad10c7faa35aae8dedb51d6e69f67ab7da4b31ed3485f4038561ac05d458b2",
+      "native_body": {
+        "model": "smpl",
+        "gender": "female",
+        "betas": [
+          -0.3546028733253479,
+          0.13792535662651062,
+          1.1253080368041992,
+          -0.1534920334815979,
+          0.5239479541778564,
+          0.6032835841178894,
+          0.839491605758667,
+          0.05787009745836258,
+          -0.9837669134140015,
+          0.46570152044296265
+        ],
+        "scale": 1.0
+      },
+      "input_kind": "ideal_GT_joint_tracker_simulation_geometry_confidence",
+      "current_policy": "visible>=2 pixels AND visible/target-alone>=0.15; confidence=fraction*min(visible/12,1)",
+      "high_policy": "diagnostic filter: current availability AND confidence>=0.7; training configuration unchanged",
+      "critical_frame": 191,
+      "statistics": {
+        "mean_available_joints": 9.25,
+        "mean_high_joints": 4.036458333333333,
+        "min_high_joints": 0,
+        "max_high_joints": 10,
+        "external_person_fraction": 0.3808783135321177,
+        "external_static_fraction": 0.005956911672237482,
+        "external_rigid_fraction": 0.0,
+        "person_occluded_frames": 117,
+        "static_occluded_frames": 62,
+        "rigid_occluded_frames": 0,
+        "high_with_partial_external_occlusion": 41,
+        "high_out_of_joint_fov": 0,
+        "invalid_frames": 0,
+        "target_skin_in_scene_points": 0
+      },
+      "per_joint": [
+        {
+          "joint": "pelvis",
+          "available_frames": 123,
+          "high_frames": 99,
+          "person_blocked_pixels": 1807,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_hip",
+          "available_frames": 87,
+          "high_frames": 49,
+          "person_blocked_pixels": 138,
+          "static_blocked_pixels": 26,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_hip",
+          "available_frames": 106,
+          "high_frames": 91,
+          "person_blocked_pixels": 1862,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine1",
+          "available_frames": 126,
+          "high_frames": 86,
+          "person_blocked_pixels": 785,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_knee",
+          "available_frames": 102,
+          "high_frames": 53,
+          "person_blocked_pixels": 188,
+          "static_blocked_pixels": 94,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_knee",
+          "available_frames": 121,
+          "high_frames": 108,
+          "person_blocked_pixels": 1127,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine2",
+          "available_frames": 114,
+          "high_frames": 9,
+          "person_blocked_pixels": 476,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_ankle",
+          "available_frames": 78,
+          "high_frames": 0,
+          "person_blocked_pixels": 103,
+          "static_blocked_pixels": 2,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_ankle",
+          "available_frames": 119,
+          "high_frames": 0,
+          "person_blocked_pixels": 264,
+          "static_blocked_pixels": 3,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine3",
+          "available_frames": 120,
+          "high_frames": 98,
+          "person_blocked_pixels": 1112,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_foot",
+          "available_frames": 8,
+          "high_frames": 0,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 7,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_foot",
+          "available_frames": 10,
+          "high_frames": 0,
+          "person_blocked_pixels": 64,
+          "static_blocked_pixels": 25,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "neck",
+          "available_frames": 93,
+          "high_frames": 0,
+          "person_blocked_pixels": 133,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_collar",
+          "available_frames": 25,
+          "high_frames": 0,
+          "person_blocked_pixels": 11,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_collar",
+          "available_frames": 110,
+          "high_frames": 13,
+          "person_blocked_pixels": 480,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "head",
+          "available_frames": 121,
+          "high_frames": 108,
+          "person_blocked_pixels": 1087,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_shoulder",
+          "available_frames": 20,
+          "high_frames": 0,
+          "person_blocked_pixels": 17,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_shoulder",
+          "available_frames": 101,
+          "high_frames": 61,
+          "person_blocked_pixels": 901,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_elbow",
+          "available_frames": 8,
+          "high_frames": 0,
+          "person_blocked_pixels": 81,
+          "static_blocked_pixels": 9,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_elbow",
+          "available_frames": 85,
+          "high_frames": 0,
+          "person_blocked_pixels": 532,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_wrist",
+          "available_frames": 15,
+          "high_frames": 0,
+          "person_blocked_pixels": 136,
+          "static_blocked_pixels": 14,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_wrist",
+          "available_frames": 84,
+          "high_frames": 0,
+          "person_blocked_pixels": 205,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        }
+      ],
+      "checks": {
+        "world_camera_roundtrip_max_m": 8.526512829121202e-14,
+        "current_masked_positions_zero": true,
+        "high_masked_positions_zero": true,
+        "count_partition_exact": true,
+        "target_skin_excluded": true,
+        "optical_rotation_error": 3.397282455352979e-14,
+        "current_input_gt_max_m": 0.0
+      },
+      "export_sha256": "d9ab3c2f630475e7db2ff1701ac95eca9c3d77230d7fb4b3dd4e349a7304decc",
+      "elapsed_s": 4.484402113012038,
+      "output_sha256": {
+        "available.npy": "c332afa93cca3a412c0220ed33c7532edc91d948163c635d629643c05d795128",
+        "complete_scan_reference.npy": "73b69e6228f56b1a9123e139d95feb1b719b5c958d18de9cbe5cc99c86edc1ca",
+        "confidence.npy": "5ffafd1afd24cd872fc9bae4add4c20ae12c5b365ad9c529321d85fb4b6675cc",
+        "current_input_confidence.npy": "5ffafd1afd24cd872fc9bae4add4c20ae12c5b365ad9c529321d85fb4b6675cc",
+        "current_input_positions.npy": "f7f61e6245c82475838a12e4156a8b83d5a15a3a738b7a48ee0cdbb67f65ceb8",
+        "depth.npy": "6bfd07b467817fff9bdb90cd7c1e232eaf1c5bd97ec696fa76b05024e632471e",
+        "fraction.npy": "9453f6f424a96a74e57f6e4db032b209a5b3e035484a56a98c0b4a20d13ff5ad",
+        "frame_owner.npy": "73861ed08b9db571ddb81f87c7629d67e6b3c32a64906d23e778f4cf06de87d1",
+        "frame_points.npy": "9fe77435491ac1f43e54754e5692275fe4fd9261c4fd1997e62de259de956b38",
+        "gt_joints_reference.npy": "c30c127b852db0239291c2bbbfda21c6daafcd09b0c66788f323740050191ccf",
+        "high.npy": "09b3f85335b2c3c8811baade15888c179961dbfba3a700345382c2aa7e8b7195",
+        "high_input_confidence.npy": "045f14535cafa715b4c45d91181af891817ac124251c7433994c81703d0342cf",
+        "high_input_positions.npy": "af2f6c654d410ca7cdb4365691a6472fd2e9c5beb235fcb5e0132ce805c8dc23",
+        "joint_in_fov.npy": "c5cf00b4d6b6e7f88aecad778a691fc9ae56413d07f9c49a4d201bbcb9b252f6",
+        "joint_pixels.npy": "50e9c85bbf65373f5f73f8c15f9d377ba6f55909ecb93a3c74f3d7b2c030b63a",
+        "observation_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "owner.npy": "487992b226d6fecf229fed30670210704a841ec33b4a3a4cc6a64e6ddeb7531c",
+        "person.npy": "5ae5a399651b702b1bf0cc346005f50b360168d1ec9bba658f09f61be2ff46b4",
+        "person_0_faces.npy": "dbc05fcd8ae814277543e9cf338f6b6c661d79fd810ee9816713eedb6438523d",
+        "person_0_vertices.npy": "766c579b5347042e3396634658474a6b548fe59d9d46ac17ac0a0d229128780d",
+        "person_1_faces.npy": "dbc05fcd8ae814277543e9cf338f6b6c661d79fd810ee9816713eedb6438523d",
+        "person_1_vertices.npy": "cac1b8195637eb9109b62c9dc066dd8c3f9d29e6bbdea58ce7a7235fa868f3c4",
+        "reference.npy": "3b41b1619b0c72430cb549dfae5310459cb080286647571e7bb40033e7278cbd",
+        "rigid.npy": "b47e5b6d9e83fb4d4d1de38dac213452e9c9d63d9a41770f9c065354d69c0ae4",
+        "source_frame_ids.npy": "c2479248364a9ab60b205b8d9e9548fc1fe3444f4e32995c3a2d57c22f0e316c",
+        "static.npy": "e004b911dce40ddabb14c4d11ca2b11825bf000b74fb80069c58cc68e1f4230f",
+        "target_parts.npy": "8dd3c602a1f948b675d7daa641ae97702bc010a641d73dc99ca604ca270ff2ff",
+        "visible.npy": "bc07e405cac6ffac2d5c1280e7c35f3bf4147dcb9635161a847bf99c336232e0"
+      }
+    },
+    {
+      "protocol": "diagnostic-exo-firsthit-owner-regions-native30-v1",
+      "diagnostic_only": true,
+      "training_steps": 0,
+      "spec": {
+        "id": "TRUMANS_01_moving_chair",
+        "split": "train",
+        "sequence_id": "2023-02-13@18-03-43",
+        "start": 816,
+        "frames": 192,
+        "azimuth": 0.0,
+        "description": "\u5408\u6210\u56fa\u5b9a exo\uff1b\u5750\u59ff\u79fb\u52a8\u6905\u5b50\uff0c\u521a\u4f53\u6905\u5b50\u53ca\u9759\u6001\u573a\u666f\u906e\u6321"
+      },
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/exo_occlusion_review_oct12/TRUMANS_01_moving_chair",
+      "sequence_id": "2023-02-13@18-03-43",
+      "dataset": "trumans",
+      "group": "trumans",
+      "split": "train",
+      "fps": 30,
+      "frames": 192,
+      "camera": {
+        "kind": "synthetic_diagnostic",
+        "name": "TRUMANS synthetic fixed observer yaw 0.0000",
+        "position": [
+          0.1542966365814209,
+          1.65,
+          3.1497960545122625
+        ],
+        "rotation": [
+          [
+            1.0,
+            -0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.9799873195820535,
+            -0.19905992429010458
+          ],
+          [
+            0.0,
+            0.19905992429010458,
+            -0.9799873195820535
+          ]
+        ],
+        "K": [
+          [
+            146.25726438668818,
+            0.0,
+            96.0
+          ],
+          [
+            0.0,
+            146.25726438668818,
+            54.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "distortion": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_size": [
+          192,
+          108
+        ],
+        "size": [
+          192,
+          108
+        ],
+        "calibration": null,
+        "image_size_source": "explicit diagnostic camera configuration",
+        "near": 0.1,
+        "far": 12.0
+      },
+      "people": 1,
+      "objects": [
+        {
+          "name": "movable_chair_base_02(1.00,1.00,1.00)",
+          "source": "object_mat + variant mesh",
+          "path": "/home/wenxin/projects/TRUMANS/Object_chairs/Object_mesh/movable_chair_base_02(1.00,1.00,1.00).obj",
+          "sha256": "551b9859148bd4276408ccd574b2b6cedeb1e24a5753a28c6f8848ee4e212a29",
+          "owner": 1
+        },
+        {
+          "name": "movable_chair_seat_02(1.00,1.00,1.00)",
+          "source": "object_mat + variant mesh",
+          "path": "/home/wenxin/projects/TRUMANS/Object_chairs/Object_mesh/movable_chair_seat_02(1.00,1.00,1.00).obj",
+          "sha256": "94e98029090e1df1587d180d4a8f88f427aeb98b29cb8bc657de275b0eef2f26",
+          "owner": 2
+        },
+        {
+          "name": "cup_01",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/cup_01.obj",
+          "sha256": "91be4d5ccf46fb3a6baf7e901565d34a6a039b16654de187658b635210127f71",
+          "owner": 3
+        },
+        {
+          "name": "microwave_base_2",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/microwave_base_2.obj",
+          "sha256": "d781bac770e561c5b065eee9957030d07b8905a9dd0481ab0b3da972097d6f06",
+          "owner": 4
+        },
+        {
+          "name": "microwave_door_2",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/microwave_door_2.obj",
+          "sha256": "4edab6082f98e346ae3a5318b4f4272c210a461a1c3a46d6620a2aa4418f856c",
+          "owner": 5
+        },
+        {
+          "name": "keyboard_02",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/keyboard_02.obj",
+          "sha256": "8d9c2ce1eba02daff96fa222ce19c41ced44deef8ba4c39851c0077eb6a15277",
+          "owner": 6
+        },
+        {
+          "name": "mouse_01",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/mouse_01.obj",
+          "sha256": "8dea5ac8ef421bd0a2645173e5e7107c748afc9d179814d9735fcafdcdf6bf39",
+          "owner": 7
+        },
+        {
+          "name": "phone_01",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/phone_01.obj",
+          "sha256": "6d21ed11d89f036441a0f8d1cc82cfc2f123c66ec929b1973a3a0b5f083e322d",
+          "owner": 8
+        }
+      ],
+      "source_mesh": "/home/wenxin/projects/TRUMANS/Scene_mesh/2bd0d4f8-3f19-462f-b2cc-a4c17a75989f.obj",
+      "source_sha256": "8e68017c0df8ab3a8a152928b16f085b4648521f37fe63b97eba0b1a520eb238",
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "input_kind": "ideal_GT_joint_tracker_simulation_geometry_confidence",
+      "current_policy": "visible>=2 pixels AND visible/target-alone>=0.15; confidence=fraction*min(visible/12,1)",
+      "high_policy": "diagnostic filter: current availability AND confidence>=0.7; training configuration unchanged",
+      "critical_frame": 90,
+      "statistics": {
+        "mean_available_joints": 17.515625,
+        "mean_high_joints": 14.807291666666666,
+        "min_high_joints": 12,
+        "max_high_joints": 18,
+        "external_person_fraction": 0.0,
+        "external_static_fraction": 0.06430560051796698,
+        "external_rigid_fraction": 0.030333441243120752,
+        "person_occluded_frames": 0,
+        "static_occluded_frames": 192,
+        "rigid_occluded_frames": 192,
+        "high_with_partial_external_occlusion": 475,
+        "high_out_of_joint_fov": 0,
+        "invalid_frames": 0,
+        "target_skin_in_scene_points": 0
+      },
+      "per_joint": [
+        {
+          "joint": "pelvis",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 4035
+        },
+        {
+          "joint": "left_hip",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 489
+        },
+        {
+          "joint": "right_hip",
+          "available_frames": 192,
+          "high_frames": 182,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine1",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 13
+        },
+        {
+          "joint": "left_knee",
+          "available_frames": 192,
+          "high_frames": 77,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 3509,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_knee",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 182,
+          "rigid_blocked_pixels": 45
+        },
+        {
+          "joint": "spine2",
+          "available_frames": 192,
+          "high_frames": 178,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 17
+        },
+        {
+          "joint": "left_ankle",
+          "available_frames": 60,
+          "high_frames": 4,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 3937,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_ankle",
+          "available_frames": 101,
+          "high_frames": 45,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 1215,
+          "rigid_blocked_pixels": 6
+        },
+        {
+          "joint": "spine3",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_foot",
+          "available_frames": 60,
+          "high_frames": 19,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 945,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_foot",
+          "available_frames": 31,
+          "high_frames": 0,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 144,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "neck",
+          "available_frames": 192,
+          "high_frames": 173,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_collar",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_collar",
+          "available_frames": 67,
+          "high_frames": 1,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "head",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_shoulder",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_shoulder",
+          "available_frames": 148,
+          "high_frames": 122,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_elbow",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_elbow",
+          "available_frames": 171,
+          "high_frames": 115,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 44
+        },
+        {
+          "joint": "left_wrist",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 2
+        },
+        {
+          "joint": "right_wrist",
+          "available_frames": 37,
+          "high_frames": 7,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 34
+        }
+      ],
+      "checks": {
+        "world_camera_roundtrip_max_m": 8.881784197001252e-16,
+        "current_masked_positions_zero": true,
+        "high_masked_positions_zero": true,
+        "count_partition_exact": true,
+        "target_skin_excluded": true,
+        "optical_rotation_error": 2.7641201568497023e-18,
+        "current_input_gt_max_m": 0.0
+      },
+      "export_sha256": "d9ab3c2f630475e7db2ff1701ac95eca9c3d77230d7fb4b3dd4e349a7304decc",
+      "elapsed_s": 5.042282139998861,
+      "output_sha256": {
+        "available.npy": "990d7cab6d35fe60d7ba24ce80f4a6f7d75f9d39e1ed011a9438dcb91462ef32",
+        "complete_scan_reference.npy": "1f648cd69d358810fe1d3c61a42dd3abecf7e3d4700f0481a11a8ed5627e7403",
+        "confidence.npy": "42316a63baf2e3662ee754a7c49977abcb2257a1424410d3eaae236764073ff3",
+        "current_input_confidence.npy": "42316a63baf2e3662ee754a7c49977abcb2257a1424410d3eaae236764073ff3",
+        "current_input_positions.npy": "10fee13194248430568c54c2beb90a0457c3240d87f8421a1fab7ddcabd57758",
+        "depth.npy": "648bddc617de261a340f357e24da35f4b97c1f014a14f9ab9e496eebfc367acd",
+        "fraction.npy": "4f4a5f2492f674383be1031ff0690a5bfad52966e9837ea626a322da703a3a81",
+        "frame_owner.npy": "7107c3aada5aa6da3a9059ed44c59b5507f752ce22e5d024ba7b4a63c997bb7a",
+        "frame_points.npy": "33ffb7db54589b34320204831133b964a72973c06b697421621eb233193ed174",
+        "gt_joints_reference.npy": "df9c9c6eec721bfdd0e3cd7067d4681454047dfd2e1064b402236d6f07b24e76",
+        "high.npy": "49efe8261efc07066b014e7524ff21e773dd4cb383e4f3d9da4c8e7b557f44df",
+        "high_input_confidence.npy": "cdcab9b718b74f47e619f4256517b60abea4c8fd62d7c0dbad3fe2d83ec317b0",
+        "high_input_positions.npy": "ebdc5c019b806e764dcfe7d1586ad49cea9d92e8c057ccd4bdcec745dbdb3031",
+        "joint_in_fov.npy": "c5cf00b4d6b6e7f88aecad778a691fc9ae56413d07f9c49a4d201bbcb9b252f6",
+        "joint_pixels.npy": "c8892675697237e90b057293bf3a5193c21c193d0ffa3b90ad99ade78ca72c90",
+        "object_0_faces.npy": "c91e9ca699a90a16c29ac38fb021fb6ceacde959710e26d3f85a486a4c776a05",
+        "object_0_positions.npy": "6dc4140d1108ea04109b1f0cce2707d01aa792bea0c84be9dc37a19b905886d1",
+        "object_0_rotations.npy": "8a2019b2e0b225aa3790ccf0051f02ae5b0ffa67c9edf54d6f6d05ca59965f4f",
+        "object_0_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_0_vertices.npy": "330683bcaee1bf946e3c53228b49625abc6937905a224a133a4435b243a31584",
+        "object_1_faces.npy": "a3a1af2c0a1d3cdf862ff8f42bb33bc14e323519363fcef0108d66ef98755dfc",
+        "object_1_positions.npy": "d68390de5bd7b7c82a539539c714dc9ade59194f54356da525a9bf696c71d134",
+        "object_1_rotations.npy": "d38650e516e0711fcbc7460cca1cf1cd0394aacd9ff84705779e24e62d1bcfe8",
+        "object_1_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_1_vertices.npy": "e9e97b3592467ae88348a8e3ec69833a06ce4ee0dce157a080f69c07ca8399c5",
+        "object_2_faces.npy": "96be5a086140f3106b365fe9eb8efb1cd987ce1fb61f80535b7a744d3bcc48bf",
+        "object_2_positions.npy": "c85009ce78115576bd7391420a837f6197e9c986e35f753ac8fef71abd07bff5",
+        "object_2_rotations.npy": "6bbee001a66090f2471132f5c131c7381d0b82996ed46c2f145e84fd824396e5",
+        "object_2_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_2_vertices.npy": "62175fd06278270b8b15df61e75dbdbadbcbada2f14f5d3acb1fff0cc95c2c01",
+        "object_3_faces.npy": "1eb111bba46429a45fa6204635c88fe199461e6cab419a2d51e40b4040d2b667",
+        "object_3_positions.npy": "add19a19e4fb135e73cda89f7fcb4285eb03cb9c49595ab89905c2948cc71139",
+        "object_3_rotations.npy": "f60e95d3274782133c2fa89bee3e9e8fb1264bb50bf4e09b7dcc005c4eab38f5",
+        "object_3_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_3_vertices.npy": "58c4cda572e206d7fb122871b08c8ea4586781abbe291fe096c671179b8a4341",
+        "object_4_faces.npy": "ee184301de3ea6a8c3fecbcc269f9697131235de0e884974a4f1ed8b2c7f00fb",
+        "object_4_positions.npy": "fa8c3ec6c1996f732539af826525ff5f70c73021280046af24ada542800d2227",
+        "object_4_rotations.npy": "b089628f856e28aa533ca5ebbfb0cc2c430e658e538a8475bf04ad4e7f7d89b5",
+        "object_4_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_4_vertices.npy": "525c2a90204d5ee2257b649047b97d871829357c1b2107baf02c8318dd3adb9e",
+        "object_5_faces.npy": "87e6c833f16d792c039c105b0aa07d6f70fa4272010a424b1bd229eaae937dfb",
+        "object_5_positions.npy": "f917766f6619d9a3eb1a32933e268f7159d04fb3c5c08ee929f710940917e112",
+        "object_5_rotations.npy": "4f159fa7f13122d4f003b624dffe4aaf54bd350d3f53946e2ecd4fdb75c106c7",
+        "object_5_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_5_vertices.npy": "a9ec1164432683ada4a6246be17ac76d4b23308dcbfe3761de7ea322af3e8744",
+        "object_6_faces.npy": "b647256856a47326f4112667bbec9ccf979610f3c306a6653a261256ce2e77be",
+        "object_6_positions.npy": "0ed59aaeb0182dc3c0e644caa42fc041bf4dd4b73864ad53fb0f65f208219658",
+        "object_6_rotations.npy": "da2e8f858916d6c4f7ad8aa3be37f9153cdd0a9bd6a0dbaa50484e457c233405",
+        "object_6_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_6_vertices.npy": "900689d0f11c76c9d08a1f20578f8f8ab54fa81282595adc36bfae59a10fff2b",
+        "object_7_faces.npy": "3f5d36aba8fe0f44dda31c2a1b00171e3278c39d9fdb07d1fbb4da1fa688aaa6",
+        "object_7_positions.npy": "3a9f88f081691c97f4b75ea078bb68baf70a0364b1fe2aacac17bb3b88af68f2",
+        "object_7_rotations.npy": "01f59a7c615d1008f53adb827c3e45c6d06e29610fc72c90c257ab53be0af9c9",
+        "object_7_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_7_vertices.npy": "0f4981e0a9a9229cab579efb930cad5de2c3ea8c9b4d443ba1822829aaf390ab",
+        "observation_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "owner.npy": "d597a5685e34bb9b07d26389e9d1e05d697b64fae56c4642cf91f1fdd3a2f70c",
+        "person.npy": "b47e5b6d9e83fb4d4d1de38dac213452e9c9d63d9a41770f9c065354d69c0ae4",
+        "person_0_faces.npy": "c08e8e7e0c8ee38f4409fffe169556f510e194c7eae9f5ec2ca12959902c76e4",
+        "person_0_vertices.npy": "da0fbe54ce572605d475be27ca66972e40f8d720c9702b37aa2d5d3c711927f8",
+        "reference.npy": "6d029147e93ac1b62558569a9b7e3d205ced7751e8db64fae55508ef4894353b",
+        "rigid.npy": "77f366a4b5f8b0210640c1d7bf54171493a912498a1bb50b64d837e30d7e9f06",
+        "source_frame_ids.npy": "62377847d0d50a970baac9d924034e9fa357ee887ed5747b0f13e421b5606296",
+        "static.npy": "6d5271f96cce6d8b4cdaf4d723ca78210aecafd5c09907621d4b9dfcbdae70b6",
+        "target_parts.npy": "6c82f37cfc55ecef15f5d743fda8569b7e45f1720c3dd519649d67aa4e34c5b1",
+        "visible.npy": "c3337397dbd6921a9fda87731a1c9287c484a5bbfef744e1cc79ee805c873c5d"
+      }
+    },
+    {
+      "protocol": "diagnostic-exo-firsthit-owner-regions-native30-v1",
+      "diagnostic_only": true,
+      "training_steps": 0,
+      "spec": {
+        "id": "TRUMANS_02_sit_down",
+        "split": "validation",
+        "sequence_id": "2023-02-13@22-31-47",
+        "start": 30,
+        "frames": 192,
+        "azimuth": 3.141592653589793,
+        "description": "\u5408\u6210\u56fa\u5b9a exo\uff1b\u5750\u4e0b\u4e0e\u8d77\u8eab\u524d\u52a8\u4f5c\uff0c\u68c0\u67e5\u6905\u5b50\u53ca\u684c\u9762\u906e\u6321"
+      },
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/exo_occlusion_review_oct12/TRUMANS_02_sit_down",
+      "sequence_id": "2023-02-13@22-31-47",
+      "dataset": "trumans",
+      "group": "trumans",
+      "split": "validation",
+      "fps": 30,
+      "frames": 192,
+      "camera": {
+        "kind": "synthetic_diagnostic",
+        "name": "TRUMANS synthetic fixed observer yaw 3.1416",
+        "position": [
+          -0.3554445207118984,
+          1.65,
+          -1.9573249340057375
+        ],
+        "rotation": [
+          [
+            -1.0,
+            2.4171974665454714e-17,
+            -1.1900049066070017e-16
+          ],
+          [
+            0.0,
+            -0.9799873195820535,
+            -0.19905992429010458
+          ],
+          [
+            -1.2143064331837647e-16,
+            -0.19905992429010458,
+            0.9799873195820535
+          ]
+        ],
+        "K": [
+          [
+            146.25726438668818,
+            0.0,
+            96.0
+          ],
+          [
+            0.0,
+            146.25726438668818,
+            54.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "distortion": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_size": [
+          192,
+          108
+        ],
+        "size": [
+          192,
+          108
+        ],
+        "calibration": null,
+        "image_size_source": "explicit diagnostic camera configuration",
+        "near": 0.1,
+        "far": 12.0
+      },
+      "people": 1,
+      "objects": [
+        {
+          "name": "movable_chair_base_02(1.00,1.00,1.00)",
+          "source": "object_mat + variant mesh",
+          "path": "/home/wenxin/projects/TRUMANS/Object_chairs/Object_mesh/movable_chair_base_02(1.00,1.00,1.00).obj",
+          "sha256": "551b9859148bd4276408ccd574b2b6cedeb1e24a5753a28c6f8848ee4e212a29",
+          "owner": 1
+        },
+        {
+          "name": "movable_chair_seat_02(1.00,1.00,1.00)",
+          "source": "object_mat + variant mesh",
+          "path": "/home/wenxin/projects/TRUMANS/Object_chairs/Object_mesh/movable_chair_seat_02(1.00,1.00,1.00).obj",
+          "sha256": "94e98029090e1df1587d180d4a8f88f427aeb98b29cb8bc657de275b0eef2f26",
+          "owner": 2
+        },
+        {
+          "name": "cup_01",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/cup_01.obj",
+          "sha256": "91be4d5ccf46fb3a6baf7e901565d34a6a039b16654de187658b635210127f71",
+          "owner": 3
+        },
+        {
+          "name": "microwave_base_2",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/microwave_base_2.obj",
+          "sha256": "d781bac770e561c5b065eee9957030d07b8905a9dd0481ab0b3da972097d6f06",
+          "owner": 4
+        },
+        {
+          "name": "microwave_door_2",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/microwave_door_2.obj",
+          "sha256": "4edab6082f98e346ae3a5318b4f4272c210a461a1c3a46d6620a2aa4418f856c",
+          "owner": 5
+        },
+        {
+          "name": "keyboard_02",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/keyboard_02.obj",
+          "sha256": "8d9c2ce1eba02daff96fa222ce19c41ced44deef8ba4c39851c0077eb6a15277",
+          "owner": 6
+        },
+        {
+          "name": "mouse_01",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/mouse_01.obj",
+          "sha256": "8dea5ac8ef421bd0a2645173e5e7107c748afc9d179814d9735fcafdcdf6bf39",
+          "owner": 7
+        },
+        {
+          "name": "phone_01",
+          "source": "raw Euler xyz radians",
+          "path": "/home/wenxin/projects/TRUMANS/Object_all/Object_mesh/phone_01.obj",
+          "sha256": "6d21ed11d89f036441a0f8d1cc82cfc2f123c66ec929b1973a3a0b5f083e322d",
+          "owner": 8
+        }
+      ],
+      "source_mesh": "/home/wenxin/projects/TRUMANS/Scene_mesh/2c6130fe-0d6d-4b7c-a496-e211c5c8a75a.obj",
+      "source_sha256": "776d035d3080d5bbf886575e1d58379e4ab189a542bc081daa3004663f886b3c",
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "input_kind": "ideal_GT_joint_tracker_simulation_geometry_confidence",
+      "current_policy": "visible>=2 pixels AND visible/target-alone>=0.15; confidence=fraction*min(visible/12,1)",
+      "high_policy": "diagnostic filter: current availability AND confidence>=0.7; training configuration unchanged",
+      "critical_frame": 27,
+      "statistics": {
+        "mean_available_joints": 21.479166666666668,
+        "mean_high_joints": 20.984375,
+        "min_high_joints": 14,
+        "max_high_joints": 22,
+        "external_person_fraction": 0.0,
+        "external_static_fraction": 0.006316819718464589,
+        "external_rigid_fraction": 0.0,
+        "person_occluded_frames": 0,
+        "static_occluded_frames": 186,
+        "rigid_occluded_frames": 0,
+        "high_with_partial_external_occlusion": 584,
+        "high_out_of_joint_fov": 0,
+        "invalid_frames": 0,
+        "target_skin_in_scene_points": 0
+      },
+      "per_joint": [
+        {
+          "joint": "pelvis",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 1,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_hip",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 100,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_hip",
+          "available_frames": 189,
+          "high_frames": 187,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 108,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine1",
+          "available_frames": 192,
+          "high_frames": 191,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_knee",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_knee",
+          "available_frames": 192,
+          "high_frames": 187,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine2",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_ankle",
+          "available_frames": 179,
+          "high_frames": 158,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 444,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_ankle",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 278,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine3",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_foot",
+          "available_frames": 175,
+          "high_frames": 173,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 47,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_foot",
+          "available_frames": 192,
+          "high_frames": 161,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 287,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "neck",
+          "available_frames": 157,
+          "high_frames": 131,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_collar",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_collar",
+          "available_frames": 185,
+          "high_frames": 181,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "head",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_shoulder",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_shoulder",
+          "available_frames": 183,
+          "high_frames": 181,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_elbow",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_elbow",
+          "available_frames": 184,
+          "high_frames": 184,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_wrist",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_wrist",
+          "available_frames": 184,
+          "high_frames": 183,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        }
+      ],
+      "checks": {
+        "world_camera_roundtrip_max_m": 4.440892098500626e-16,
+        "current_masked_positions_zero": true,
+        "high_masked_positions_zero": true,
+        "count_partition_exact": true,
+        "target_skin_excluded": true,
+        "optical_rotation_error": 2.7641201568497023e-18,
+        "current_input_gt_max_m": 0.0
+      },
+      "export_sha256": "d9ab3c2f630475e7db2ff1701ac95eca9c3d77230d7fb4b3dd4e349a7304decc",
+      "elapsed_s": 4.537430706026498,
+      "output_sha256": {
+        "available.npy": "b2de9c2f899c0d1e0343180d47c401e5ec94db51ed51afc3ccf36c1da2367092",
+        "complete_scan_reference.npy": "5f5a1f9ec0e86fa631d6b35d0bdb76dbb07b04e3e3ec6e398a1b19ec6e758e8e",
+        "confidence.npy": "087f82e52c53958c9756d651531f3883a3bd4b058be2e2495bfc754b2c348282",
+        "current_input_confidence.npy": "087f82e52c53958c9756d651531f3883a3bd4b058be2e2495bfc754b2c348282",
+        "current_input_positions.npy": "74e46a37ea4f43d83a459131d35c3672bf4e0fed0488550ac23c24ee572ad840",
+        "depth.npy": "d0b82bdc9de4e3ea313e585750d5e6c8f7f157e6203a526ea7d314e52fb2b065",
+        "fraction.npy": "8d425d23fa0a3f4797202062fb68f9de6c93c9ba218d6c5dd308586e5d1d472d",
+        "frame_owner.npy": "5d8e9329f0f890d9ef17088126d3f6e4e29133686e3aa672ee480203700cc866",
+        "frame_points.npy": "f5c1d30df983a81c7b714a599697c2e5a1efed50fe0375cc7b70c1d5d4c9e344",
+        "gt_joints_reference.npy": "64a5851b71029f4a1e71f33999fef12f8f4d88c576dc9fa8e9f4da382a1cb0ca",
+        "high.npy": "36bd2ecb7599895ae2f0ccaa6c7336f18e5a708a86f80afcb5189231ac1a3e8c",
+        "high_input_confidence.npy": "7cb093065844eeedff1d9ebdd8b0e3a936a5eba6946ea79846f49b14078859b9",
+        "high_input_positions.npy": "33d52ef6ebc625848b343d6bffc3cb90a01cba40b5c5bc122448d7510608ba7d",
+        "joint_in_fov.npy": "89e5790650066d72559f6e723a8b7949333475c80a759261981bee7edf784b2c",
+        "joint_pixels.npy": "95cac9edd4396774138c1cc1d81ceb00852793e133e30e268706390ca4827686",
+        "object_0_faces.npy": "c91e9ca699a90a16c29ac38fb021fb6ceacde959710e26d3f85a486a4c776a05",
+        "object_0_positions.npy": "c554d31df8dc31ff6bf05b2f1cddca9f52128c3d032c227770fc4f5f4b3270b4",
+        "object_0_rotations.npy": "f723bc637501bca66723830dea2a4fe91db6f8c9a575d140f43ef9d41d221608",
+        "object_0_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_0_vertices.npy": "330683bcaee1bf946e3c53228b49625abc6937905a224a133a4435b243a31584",
+        "object_1_faces.npy": "a3a1af2c0a1d3cdf862ff8f42bb33bc14e323519363fcef0108d66ef98755dfc",
+        "object_1_positions.npy": "8aded0f5d1d274e4a872d356afd6bbb15a57a6f5462817ba531ebb8f02a4bc97",
+        "object_1_rotations.npy": "1a633ded34f37f879e7e63ecfab22e96db6c156a12013fe84cbc707b5d4d4adc",
+        "object_1_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_1_vertices.npy": "e9e97b3592467ae88348a8e3ec69833a06ce4ee0dce157a080f69c07ca8399c5",
+        "object_2_faces.npy": "96be5a086140f3106b365fe9eb8efb1cd987ce1fb61f80535b7a744d3bcc48bf",
+        "object_2_positions.npy": "c234598bfe3fea279c211a2d74e717ea93db707025129ebcf883dab6b89e1589",
+        "object_2_rotations.npy": "e13fb539c46854d906f404439283fbfa5f6ef6dfa06a91528ec8c32191c93023",
+        "object_2_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_2_vertices.npy": "62175fd06278270b8b15df61e75dbdbadbcbada2f14f5d3acb1fff0cc95c2c01",
+        "object_3_faces.npy": "1eb111bba46429a45fa6204635c88fe199461e6cab419a2d51e40b4040d2b667",
+        "object_3_positions.npy": "1cbd599abc9111b006f86d1cf5389c0e8eb1139116494d19bd3fc82efa697554",
+        "object_3_rotations.npy": "c25cfc96532c5b8101189344e407b154b3afe09fff391ce726484e1f0dd07c60",
+        "object_3_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_3_vertices.npy": "58c4cda572e206d7fb122871b08c8ea4586781abbe291fe096c671179b8a4341",
+        "object_4_faces.npy": "ee184301de3ea6a8c3fecbcc269f9697131235de0e884974a4f1ed8b2c7f00fb",
+        "object_4_positions.npy": "7aff0196fa36cfd813eb182e2ecab1a8b29b8c6c543f39403289622016abd997",
+        "object_4_rotations.npy": "d0fe42ed576bce967aea8c33e83c7255af903970ab043d8f0b865a389c7e5b97",
+        "object_4_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_4_vertices.npy": "525c2a90204d5ee2257b649047b97d871829357c1b2107baf02c8318dd3adb9e",
+        "object_5_faces.npy": "87e6c833f16d792c039c105b0aa07d6f70fa4272010a424b1bd229eaae937dfb",
+        "object_5_positions.npy": "bfed8d7db3e51f645a915ed395c9befe73c3feb125060ac259577b87e6e5343a",
+        "object_5_rotations.npy": "a5be2ec6a2e77ca966b93ffd4111a6e56bd4d7990eb2a7e4698ed87dbad4b8ee",
+        "object_5_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_5_vertices.npy": "a9ec1164432683ada4a6246be17ac76d4b23308dcbfe3761de7ea322af3e8744",
+        "object_6_faces.npy": "b647256856a47326f4112667bbec9ccf979610f3c306a6653a261256ce2e77be",
+        "object_6_positions.npy": "ad97dcf43b7cee259e0e3d9dfce65beff03ff1984e2df740e7ee2bb096a9c78a",
+        "object_6_rotations.npy": "4fded0808db0d7af12bd8276a0c16d8981a3647eb29391c8807c9b4834e82c80",
+        "object_6_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_6_vertices.npy": "900689d0f11c76c9d08a1f20578f8f8ab54fa81282595adc36bfae59a10fff2b",
+        "object_7_faces.npy": "3f5d36aba8fe0f44dda31c2a1b00171e3278c39d9fdb07d1fbb4da1fa688aaa6",
+        "object_7_positions.npy": "f1f3d8e07f258db66510e753da1a6a9f0a1e6aa07b1001348d5292443a28159d",
+        "object_7_rotations.npy": "3ee6de7dc14007d5fcb738b5beeb82c70aea0af44f0f6d0bda2639cbc2fc3788",
+        "object_7_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "object_7_vertices.npy": "0f4981e0a9a9229cab579efb930cad5de2c3ea8c9b4d443ba1822829aaf390ab",
+        "observation_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "owner.npy": "2c08a9a0ecd14615537085436df5ca8d28dbf5381e928804cdc818c12db1dc57",
+        "person.npy": "b47e5b6d9e83fb4d4d1de38dac213452e9c9d63d9a41770f9c065354d69c0ae4",
+        "person_0_faces.npy": "c08e8e7e0c8ee38f4409fffe169556f510e194c7eae9f5ec2ca12959902c76e4",
+        "person_0_vertices.npy": "2b87e5a807cc51e35c556819bb212f739de322379905f577b2505eae01fccf11",
+        "reference.npy": "38ed6391710801ba7138eeb1a8ca203072a0634440d8911da0f9c11b51a86bca",
+        "rigid.npy": "b47e5b6d9e83fb4d4d1de38dac213452e9c9d63d9a41770f9c065354d69c0ae4",
+        "source_frame_ids.npy": "0455d49129aabb6933ca0a08defb4b93f3ee9a87ec9efceccfed51e6e4075f56",
+        "static.npy": "be0960ad89d4b6e8903354861a8abcab5327ff435145949c4ea78302ca30a534",
+        "target_parts.npy": "4889dbf385095302d25b4832bde1c1085662ff858f0171887666a37d521447d9",
+        "visible.npy": "44a4dc8aeedcddaa27dda8ac2e6336c6c4b131cae78a97341173b17288aa653c"
+      }
+    },
+    {
+      "protocol": "diagnostic-exo-firsthit-owner-regions-native30-v1",
+      "diagnostic_only": true,
+      "training_steps": 0,
+      "spec": {
+        "id": "RICH_01_wiping_chairs",
+        "split": "validation",
+        "sequence_id": "LectureHall_003_wipingchairs1",
+        "start": 70,
+        "frames": 192,
+        "camera_id": 0,
+        "description": "cam_00 \u771f\u5b9e\u6807\u5b9a\u89c6\u89d2\uff1b\u6905\u5b50\u906e\u6321\u64e6\u62ed\u52a8\u4f5c"
+      },
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/exo_occlusion_review_oct12/RICH_01_wiping_chairs",
+      "sequence_id": "LectureHall_003_wipingchairs1",
+      "dataset": "rich",
+      "group": "rich",
+      "split": "validation",
+      "fps": 30,
+      "frames": 192,
+      "camera": {
+        "kind": "released_calibrated",
+        "name": "RICH cam_00",
+        "position": [
+          -9.34337043762207,
+          0.5041700005531311,
+          -6.410035133361816
+        ],
+        "rotation": [
+          [
+            -0.5165712833404541,
+            -0.2785298824310303,
+            0.8096759915351868
+          ],
+          [
+            0.021985987201333046,
+            -0.9496163725852966,
+            -0.31264257431030273
+          ],
+          [
+            0.8559618592262268,
+            -0.14370065927505493,
+            0.4966683089733124
+          ]
+        ],
+        "K": [
+          [
+            3577.3743073134974,
+            0.0,
+            1988.4433524324681
+          ],
+          [
+            0.0,
+            3577.3743073134974,
+            1489.3284266037767
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "distortion": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_size": [
+          4112,
+          3008
+        ],
+        "size": [
+          256,
+          192
+        ],
+        "calibration": "/home/wenxin/projects/RICH/extracted/scan_calibration/LectureHall/calibration/000.xml",
+        "image_size_source": "RICH toolkit sample image dimensions (verified separately)",
+        "near": 0.1,
+        "far": 20.0
+      },
+      "people": 1,
+      "objects": [],
+      "source_mesh": "/home/wenxin/projects/RICH/extracted/scan_calibration/LectureHall/scan_chair_scene_camcoord.ply",
+      "source_sha256": "9f21c2f2c04a94fbe146e9d1a3d8fe433f9c1d674920e1cf4d4eb7ed15b21779",
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          -0.34659865498542786,
+          -0.3736152648925781,
+          -0.17872750759124756,
+          -1.9578384160995483,
+          1.5789836645126343,
+          0.2062685191631317,
+          0.6446425914764404,
+          0.10404720157384872,
+          -0.5467309951782227,
+          0.2934948801994324
+        ],
+        "scale": 1.006566842415469
+      },
+      "input_kind": "ideal_GT_joint_tracker_simulation_geometry_confidence",
+      "current_policy": "visible>=2 pixels AND visible/target-alone>=0.15; confidence=fraction*min(visible/12,1)",
+      "high_policy": "diagnostic filter: current availability AND confidence>=0.7; training configuration unchanged",
+      "critical_frame": 43,
+      "statistics": {
+        "mean_available_joints": 19.578125,
+        "mean_high_joints": 16.890625,
+        "min_high_joints": 13,
+        "max_high_joints": 21,
+        "external_person_fraction": 0.0,
+        "external_static_fraction": 0.027939980481457384,
+        "external_rigid_fraction": 0.0,
+        "person_occluded_frames": 0,
+        "static_occluded_frames": 112,
+        "rigid_occluded_frames": 0,
+        "high_with_partial_external_occlusion": 64,
+        "high_out_of_joint_fov": 0,
+        "invalid_frames": 0,
+        "target_skin_in_scene_points": 0
+      },
+      "per_joint": [
+        {
+          "joint": "pelvis",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_hip",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_hip",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine1",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_knee",
+          "available_frames": 192,
+          "high_frames": 174,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 1056,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_knee",
+          "available_frames": 192,
+          "high_frames": 152,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 1919,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine2",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_ankle",
+          "available_frames": 177,
+          "high_frames": 126,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 1135,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_ankle",
+          "available_frames": 148,
+          "high_frames": 143,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 1217,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine3",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_foot",
+          "available_frames": 170,
+          "high_frames": 46,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 121,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_foot",
+          "available_frames": 141,
+          "high_frames": 47,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 595,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "neck",
+          "available_frames": 157,
+          "high_frames": 133,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_collar",
+          "available_frames": 165,
+          "high_frames": 127,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_collar",
+          "available_frames": 135,
+          "high_frames": 120,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "head",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_shoulder",
+          "available_frames": 154,
+          "high_frames": 148,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_shoulder",
+          "available_frames": 110,
+          "high_frames": 109,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_elbow",
+          "available_frames": 167,
+          "high_frames": 157,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 10,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_elbow",
+          "available_frames": 178,
+          "high_frames": 134,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_wrist",
+          "available_frames": 162,
+          "high_frames": 138,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 818,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_wrist",
+          "available_frames": 167,
+          "high_frames": 145,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        }
+      ],
+      "checks": {
+        "world_camera_roundtrip_max_m": 9.2445467725355e-08,
+        "current_masked_positions_zero": true,
+        "high_masked_positions_zero": true,
+        "count_partition_exact": true,
+        "target_skin_excluded": true,
+        "optical_rotation_error": 2.9965185888158885e-08,
+        "current_input_gt_max_m": 0.0
+      },
+      "export_sha256": "d9ab3c2f630475e7db2ff1701ac95eca9c3d77230d7fb4b3dd4e349a7304decc",
+      "elapsed_s": 6.522667351004202,
+      "output_sha256": {
+        "available.npy": "47f7fb61cac99d8d0257f20ef978cd868112817ed34d1798734b39abcb9a9376",
+        "complete_scan_reference.npy": "fa17e5b33daf346d3caa4edd1fbf606d6698aa7d94ee169d55365956f5c28dcb",
+        "confidence.npy": "cd01be86f384a951f210ef3c433bdae95d45c7466974e2b24b621326b62ed9b3",
+        "current_input_confidence.npy": "cd01be86f384a951f210ef3c433bdae95d45c7466974e2b24b621326b62ed9b3",
+        "current_input_positions.npy": "257f1d9b7acee19d6f4e7e564c22cd050ffc44abb00e2225e0373693729ef883",
+        "depth.npy": "e47e606835e2a6c26446a430192284c2126f5023bf6009eef2e4c64afd958e62",
+        "fraction.npy": "4f2ca0fe73456d21521a6ade1cd5668bdc66af7fb08b2f64b0c172b4de96609a",
+        "frame_owner.npy": "c39307d6a7dcc2debdd9a66ed7a33ffc6382d74bb30cbd71e36c6868b9ef46ce",
+        "frame_points.npy": "0203a6fef836ec35b891fb6fbc89493a9537d8c37d3bf129c8cfbaf42e960b6f",
+        "gt_joints_reference.npy": "ca772a3051a2405a6d44e136aca23cd262bae51433158ab280ad77ac93b0d7ff",
+        "high.npy": "8e3369e3902e61a9cbaf6883f46716267cfc7143e4257a9d8fe0e8e63cf01964",
+        "high_input_confidence.npy": "5f0bb30643aad6ba8000d474c359cdfcf5d38b0c52489af7e0c0f22cf1b29efb",
+        "high_input_positions.npy": "300019cb7158b94520aa2b2f5fb0601abd0f6ce43d714990f5a1f97bdb76032e",
+        "joint_in_fov.npy": "c5cf00b4d6b6e7f88aecad778a691fc9ae56413d07f9c49a4d201bbcb9b252f6",
+        "joint_pixels.npy": "938fc1ad78d93c89a35617ac87cdc1acddcbe0413a8808e0439569b6670a2e0b",
+        "observation_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "owner.npy": "f458b0ccd5d222be81cb86fc6d0f2073e14dadf33743dc00300268e5a34d5bfb",
+        "person.npy": "b47e5b6d9e83fb4d4d1de38dac213452e9c9d63d9a41770f9c065354d69c0ae4",
+        "person_0_faces.npy": "c08e8e7e0c8ee38f4409fffe169556f510e194c7eae9f5ec2ca12959902c76e4",
+        "person_0_vertices.npy": "d3086073251aff293b2b4f3496b37d12e9fb47a8f68e622a7e9e2ad8ea0c119b",
+        "reference.npy": "c73b3c0424f5b55c3701ef70252baee0bdc8c5f520ae9075e26e256e8f4f18ed",
+        "rigid.npy": "b47e5b6d9e83fb4d4d1de38dac213452e9c9d63d9a41770f9c065354d69c0ae4",
+        "source_frame_ids.npy": "9577b4a59d8d43d0728fbb5381bb539c7edd740cfc8388d4fbc4ce90b97b6642",
+        "static.npy": "cf7f0a5550bec106d3ab33aa0d9adeaa90e3bea666ec0815f3acc5e1fb7b9dbf",
+        "target_parts.npy": "a396aae8c609b0b1255c7a1ab3a9178ef0e947047369ecf1ff7301798ee43724",
+        "visible.npy": "444b00d76c9540520e6b9fe21ed23a80759281312a88f49c95bcec604442d669"
+      }
+    },
+    {
+      "protocol": "diagnostic-exo-firsthit-owner-regions-native30-v1",
+      "diagnostic_only": true,
+      "training_steps": 0,
+      "spec": {
+        "id": "RICH_02_over_fence",
+        "split": "train",
+        "sequence_id": "ParkingLot1_002_overfence2",
+        "start": 55,
+        "frames": 192,
+        "camera_id": 0,
+        "description": "cam_00 \u771f\u5b9e\u6807\u5b9a\u89c6\u89d2\uff1b\u7ffb\u8d8a\u56f4\u680f\u7684\u4e0b\u80a2\u906e\u6321"
+      },
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/exo_occlusion_review_oct12/RICH_02_over_fence",
+      "sequence_id": "ParkingLot1_002_overfence2",
+      "dataset": "rich",
+      "group": "rich",
+      "split": "train",
+      "fps": 30,
+      "frames": 192,
+      "camera": {
+        "kind": "released_calibrated",
+        "name": "RICH cam_00",
+        "position": [
+          7.230000019073486,
+          -0.2540000081062317,
+          -2.013000011444092
+        ],
+        "rotation": [
+          [
+            -0.07571782916784286,
+            0.12723708152770996,
+            -0.9889780282974243
+          ],
+          [
+            -0.04892919212579727,
+            -0.9911045432090759,
+            -0.12376457452774048
+          ],
+          [
+            -0.9959281086921692,
+            0.03901870921254158,
+            0.08126989752054214
+          ]
+        ],
+        "K": [
+          [
+            3574.468255769686,
+            0.0,
+            1955.518860851122
+          ],
+          [
+            0.0,
+            3574.468255769686,
+            1470.9856123334564
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "distortion": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_size": [
+          4112,
+          3008
+        ],
+        "size": [
+          256,
+          192
+        ],
+        "calibration": "/home/wenxin/projects/RICH/extracted/scan_calibration/ParkingLot1/calibration/000.xml",
+        "image_size_source": "RICH toolkit sample image dimensions (verified separately)",
+        "near": 0.1,
+        "far": 20.0
+      },
+      "people": 1,
+      "objects": [],
+      "source_mesh": "/home/wenxin/projects/RICH/extracted/scan_calibration/ParkingLot1/scan_camcoord.ply",
+      "source_sha256": "e0dd98bfe3333a0a0a6305ed041c22322c8d2829629c1bdf5e1132b724270dcd",
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          -0.00041885580867528915,
+          -1.121319055557251,
+          -0.575271725654602,
+          0.6905356049537659,
+          -0.647469162940979,
+          -2.583606243133545,
+          -0.9269155859947205,
+          -0.5011665225028992,
+          1.2047134637832642,
+          0.7643142342567444
+        ],
+        "scale": 1.006576756111272
+      },
+      "input_kind": "ideal_GT_joint_tracker_simulation_geometry_confidence",
+      "current_policy": "visible>=2 pixels AND visible/target-alone>=0.15; confidence=fraction*min(visible/12,1)",
+      "high_policy": "diagnostic filter: current availability AND confidence>=0.7; training configuration unchanged",
+      "critical_frame": 109,
+      "statistics": {
+        "mean_available_joints": 20.057291666666668,
+        "mean_high_joints": 18.432291666666668,
+        "min_high_joints": 11,
+        "max_high_joints": 22,
+        "external_person_fraction": 0.0,
+        "external_static_fraction": 0.07278390991716684,
+        "external_rigid_fraction": 0.0,
+        "person_occluded_frames": 0,
+        "static_occluded_frames": 192,
+        "rigid_occluded_frames": 0,
+        "high_with_partial_external_occlusion": 659,
+        "high_out_of_joint_fov": 0,
+        "invalid_frames": 0,
+        "target_skin_in_scene_points": 0
+      },
+      "per_joint": [
+        {
+          "joint": "pelvis",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 101,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_hip",
+          "available_frames": 191,
+          "high_frames": 189,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 2240,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_hip",
+          "available_frames": 191,
+          "high_frames": 189,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 2309,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine1",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_knee",
+          "available_frames": 192,
+          "high_frames": 146,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 5407,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_knee",
+          "available_frames": 192,
+          "high_frames": 143,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 5720,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine2",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_ankle",
+          "available_frames": 141,
+          "high_frames": 93,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 3548,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_ankle",
+          "available_frames": 115,
+          "high_frames": 110,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 4083,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "spine3",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_foot",
+          "available_frames": 129,
+          "high_frames": 67,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 1138,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_foot",
+          "available_frames": 115,
+          "high_frames": 88,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 1144,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "neck",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_collar",
+          "available_frames": 192,
+          "high_frames": 164,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_collar",
+          "available_frames": 182,
+          "high_frames": 173,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "head",
+          "available_frames": 192,
+          "high_frames": 192,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_shoulder",
+          "available_frames": 162,
+          "high_frames": 160,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_shoulder",
+          "available_frames": 181,
+          "high_frames": 173,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_elbow",
+          "available_frames": 185,
+          "high_frames": 182,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_elbow",
+          "available_frames": 188,
+          "high_frames": 183,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "left_wrist",
+          "available_frames": 159,
+          "high_frames": 150,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 152,
+          "rigid_blocked_pixels": 0
+        },
+        {
+          "joint": "right_wrist",
+          "available_frames": 184,
+          "high_frames": 177,
+          "person_blocked_pixels": 0,
+          "static_blocked_pixels": 0,
+          "rigid_blocked_pixels": 0
+        }
+      ],
+      "checks": {
+        "world_camera_roundtrip_max_m": 6.657026085932216e-08,
+        "current_masked_positions_zero": true,
+        "high_masked_positions_zero": true,
+        "count_partition_exact": true,
+        "target_skin_excluded": true,
+        "optical_rotation_error": 5.3179134873460043e-08,
+        "current_input_gt_max_m": 0.0
+      },
+      "export_sha256": "d9ab3c2f630475e7db2ff1701ac95eca9c3d77230d7fb4b3dd4e349a7304decc",
+      "elapsed_s": 15.206391990999691,
+      "output_sha256": {
+        "available.npy": "33f2690d07a91ab59bac55e2e99426c33402579a6e6db90228f93d0294402517",
+        "complete_scan_reference.npy": "9cff52841aeb35c5b5d3f30ab4a98aef983dbdb8783f30a1f70ba8d1b5aa0b26",
+        "confidence.npy": "3c1da6bdea08174c61ece60015369a851f4ba4e149c5fe525d6f3bf37658669a",
+        "current_input_confidence.npy": "3c1da6bdea08174c61ece60015369a851f4ba4e149c5fe525d6f3bf37658669a",
+        "current_input_positions.npy": "d05913ad03bd3644cd2f3875808bc075220594712ce59bb221c85fd5da0b09d7",
+        "depth.npy": "a30f1d6162ef572089d59c9518e5948e5d33fa62c9aa00f84457ee868743f2e8",
+        "fraction.npy": "03fb1c2a394f4c8d87476be8f3fc22d0f576da4157bd49caf89cfc55081c0852",
+        "frame_owner.npy": "c39307d6a7dcc2debdd9a66ed7a33ffc6382d74bb30cbd71e36c6868b9ef46ce",
+        "frame_points.npy": "03076ea3b023fc80c505c982a0ee85de2f30d028f9b1a37fa164110b9b73b7df",
+        "gt_joints_reference.npy": "5c7e1d8d1eee380b56384ba5cd8825ec95305e1700a9485738d662e2ac0fbf76",
+        "high.npy": "816bdd3b5719f4794e1bab511cb0a44a7b1790b3e72b057f2f144b2e8f18e660",
+        "high_input_confidence.npy": "cf677ff57c8dbd5ed99a29ac2564b26ccc8997cbe7dcbd8886dda64d78c58e1b",
+        "high_input_positions.npy": "28159b178a5e0a0df23387f032657b398d06fe55a5cd5a66aa5955078fc2b04f",
+        "joint_in_fov.npy": "c5cf00b4d6b6e7f88aecad778a691fc9ae56413d07f9c49a4d201bbcb9b252f6",
+        "joint_pixels.npy": "29a44fcace1e13462274d01e7be6f775d333a0d3f60143e7d4202ed71bad74b2",
+        "observation_valid.npy": "8ff1cded9e1336e8376ee8aa3dc24b82e8bab03ba38eeb8bf514652db44c7f1c",
+        "owner.npy": "67e804bcbdf0b8d213e96c846f838f9b189e8a0e18f0f5123a981a3561e16de3",
+        "person.npy": "b47e5b6d9e83fb4d4d1de38dac213452e9c9d63d9a41770f9c065354d69c0ae4",
+        "person_0_faces.npy": "c08e8e7e0c8ee38f4409fffe169556f510e194c7eae9f5ec2ca12959902c76e4",
+        "person_0_vertices.npy": "93701c86e370763441d5697b865e5d1b8e193c8f8f1446009e90ee9389c1b0b1",
+        "reference.npy": "c805fead34d73af158d99fc1c505289c5499fb4285aa0873fa901c5c0aafbff5",
+        "rigid.npy": "b47e5b6d9e83fb4d4d1de38dac213452e9c9d63d9a41770f9c065354d69c0ae4",
+        "source_frame_ids.npy": "4ed4876d083dcbb245da015b7c1a04e3dd7f7228699b3e11ced14cbbfa179ba6",
+        "static.npy": "d21bd2c869eb862ec51652a52ec9a4e25f8b2ccd33ad2272bdf5851ef54be7b7",
+        "target_parts.npy": "0fcbf8adb1ca2abc2c7a4ea64b91c197a256ba13de4875ceacdd859675ae4840",
+        "visible.npy": "ce6d393e9010091a8122c7ac28a796d143b379a773f84895785819cf693c5b7d"
+      }
+    }
+  ],
+  "training_steps": 0
+}
