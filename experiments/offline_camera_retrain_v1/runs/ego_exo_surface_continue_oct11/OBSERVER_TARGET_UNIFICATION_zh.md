@@ -70,7 +70,9 @@ PV-other 以后若新增缓存，只按正确视角复用既有观测协议，�
 
 ## 4. 相机和观测模块的接入细节
 
-当前 `OfflineSceneMI` 设置 `offline_camera_condition=False`，没有独立的外部相机条件。底层 `MDM_Scene_UNET` 已有可选9D camera MLP，但只打开该开关还不能表达 self/other、视锥及有效性，而且会改变 U-Net 输入通道和旧权重形状。任务1应设计兼容旧权重的新增条件投影，不能把现成开关当成完整解决方案。
+旧3k的 `OfflineSceneMI` 设置 `offline_camera_condition=False`，没有独立的外部相机条件。底层 `MDM_Scene_UNET` 已有可选9D camera MLP，但只打开该开关还不能表达 self/other、视锥及有效性，而且会改变 U-Net 输入通道和旧权重形状。新增v2已通过兼容旧权重的48D→64D条件残差完成相机编码接入；这里区分旧模型与已接入但未训练的v2。
+
+相机编码并不是安装标定或相机→头部逆变换：当前保留typed sensor输入，监督正向将生成头部映射到相机。置信度是观测适配的核心，仍须保留部位ID和sensor/anatomical语义；相机与旧共享条件通路尚未保证零置信度严格归零。20Hz来自现有训练/缓存协议，并非任务硬要求。完整接口、30Hz迁移要求和ego前端方法见 [FRONTEND_CAMERA_FPS_zh.md](../ego_exo_camera_config_oct12/FRONTEND_CAMERA_FPS_zh.md)。
 
 位置/rotation 的有效性和 confidence 继续独立；相机和身体导数按20Hz使用米/秒/弧度。self 比较生成头部经安装变换后的相机位姿；other 比较可信关节与 native FK。没有可靠肩髋方向时，不能用相机光轴或平移速度强行给人体根朝向。已有完整身体GT旋转/FK监督继续约束根朝向。
 

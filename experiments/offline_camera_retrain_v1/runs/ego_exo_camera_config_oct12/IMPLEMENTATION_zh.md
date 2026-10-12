@@ -2,6 +2,8 @@
 
 已完成独立相机编码、可信观测适配和可执行训练配置。初始化使用保留的 3k 候选，新增条件零初始化；原 55k/3k 权重与 optimizer 未改。准备检查只做 forward、梯度计算和输入绘图，**optimizer_steps=0**。没有新训练权重或动作质量结论。
 
+关于相机→头部的几何变换、confidence 的实际门控边界、20/30Hz 和网络 ego 视频前端，见 [FRONTEND_CAMERA_FPS_zh.md](FRONTEND_CAMERA_FPS_zh.md)。当前输入保留 typed sensor，相机编码器未在输入端显式反算 anatomical 头部；未知视频的设备标定和体型估计尚未完成。
+
 ## 已执行的实现
 
 |任务|实现|核查|
