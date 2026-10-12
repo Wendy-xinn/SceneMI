@@ -2,11 +2,15 @@
 
 2026-10-12。**训练暂停，本轮优化器步数为 0。** 当前工作包括三套数据各两个 exo 输入片段的 viser 检查，以及 native30 新模型的设置整理。这里的可视化是输入和 GT 几何参考，不是生成质量评估。
 
+后续复核见 [遮挡恢复定位、手臂源拟合异常及 TRUMANS 外参恢复](FOLLOWUP_DESIGN_AND_AUDIT_zh.md)：保留 confidence 降权；viser 默认当前策略且末尾停止；两套 TRUMANS SMPL-X 已恢复并验证逐帧外参，内参仍待确认。下面六例的 TRUMANS 输入仍来自合成固定相机。
+
 ## 1. 查看六个例子
 
 打开 [viser：exo 遮挡与可信轨迹](http://127.0.0.1:8783)，在「片段」下拉框选择例子。每段为原始 30 Hz 的连续 192 帧，时间跨度 191/30≈6.37 秒；按采样窗口预算称为 6.4 秒。源帧、当前有效关节数、高置信度关节数和逐关节遮挡像素均随时间更新。
 
 建议先播放，再按「跳到外部遮挡最强帧」，随后「切到 exo 光学视角」。右侧几何 first-hit 图提供准确的有畸变像素归属；viser 三维光学视角是普通透视显示，不精确复现镜头畸变或偏心主点，应以右侧图核查可见性。可以选择某个关节查看近 3 秒可信轨迹；轨迹不会连接中间缺失的帧。
+
+默认播放到末尾停止；循环需主动开启，非周期片段末尾→开头会有跳变。第一个 EgoBody 片段开头右臂源拟合有明显跳变，已直接复算验证并在视图提示，不能据此判断生成质量。
 
 |显示|含义与输入边界|
 |---|---|
@@ -22,7 +26,7 @@
 两种关节输入策略分开展示：
 
 - **当前配置**：区域可见像素至少 2 个，且可见比例至少 0.15；所有有效关节继续按 confidence 降权，没有 0.7 硬阈值。
-- **高置信度筛选**：在当前有效性基础上只保留 `confidence≥0.7`。这是本轮诊断策略，尚未写入训练配置。默认显示此策略，便于检查“仅可信关节输入”的效果。
+- **高置信度筛选**：在当前有效性基础上只保留 `confidence≥0.7`。这是本轮诊断策略，尚未写入训练配置。默认显示当前降权策略，可主动切换来检查阈值影响。
 
 六例身份、相机、源帧、逐关节统计和数组 SHA256 见 [manifest.json](manifest.json)；选择设置见 [selection.json](selection.json)。逐例数值结论见 [OCCLUSION_FINDINGS_zh.md](OCCLUSION_FINDINGS_zh.md)。
 
@@ -32,7 +36,7 @@
 
 **RICH** 用所选场景的真实 `calibration/000.xml`，包含 camera-0 坐标到该观察相机的 `R,t,K`。同时对人体、扫描和相机应用同一个 `multicam2world` 相似变换，再转成 SceneMI y-up。相机中心用 `-Rᵀt`；相似变换的 scale 作用于位置／深度，不缩放旋转。诊断射线网格 256×192。使用的图像边界为 4112×3008，已核实 [官方 toolkit 示例原图](https://raw.githubusercontent.com/paulchhuang/rich_toolkit/main/samples/tmp.jpg) 的尺寸；本地没有这两个片段的原始 RGB，尚未逐片段核对原图边界及真实像素重投影。外参、K 和几何处理来自本地实际标定，并非虚构相机。[官方坐标说明](https://github.com/paulchhuang/rich_toolkit)、[官方投影实现](https://github.com/paulchhuang/rich_toolkit/blob/main/utils.py)。
 
-**TRUMANS** 本地释放的是全局动作、场景、对象网格和对象轨迹；原始渲染相机的可复用内外参未在本地确认。本轮明确使用**合成固定 exo**：观察位置由该片段 pelvis 中位位置、半径 3.2 m、相机高度 1.65 m、朝向设定确定，注视目标高度 1 m；水平视角 66.56°，192×108，近／远裁剪 0.1／12 m。最终相机位置和完整矩阵保存于 manifest。不能把这两例称为真实 exo 视频测试。TRUMANS 官方释放确有 camera-coordinate SMPL-X 和 30 FPS 的 RGB 渲染视频，但这不意味着当前本地导出已恢复其原始渲染相机。[官方数据说明](https://github.com/jnnan/trumans_utils#trumans-dataset)。
+**TRUMANS** 本地有配对 world／camera-coordinate SMPL-X，本次后续复核已恢复并验证两条逐帧相机外参，K／图像边界与像素轴约定仍需确认，见[复核记录](FOLLOWUP_DESIGN_AND_AUDIT_zh.md)。此前六例缓存使用**合成固定 exo**，本轮没有替换：观察位置由片段 pelvis 中位位置、半径 3.2 m、相机高度 1.65 m、朝向设定确定，注视目标高度 1 m；水平视角 66.56°，192×108，近／远裁剪 0.1／12 m。最终相机位置和完整矩阵保存于 manifest。不能把这两例称为真实 exo 视频测试。[官方数据说明](https://github.com/jnnan/trumans_utils#trumans-dataset)。
 
 三个数据集的可见关节与环境表面在各自同一米制世界坐标中模拟。visor 直接展示这个坐标，避免把“显示时朝向错”与“模型生成朝向错”混为一谈。正式模型输入则由首光学相机位置／水平朝向锚定，再共同做 world-yaw 增广；人体、场景、相机一起变换，不用 GT pelvis 朝向决定输入坐标。
 

@@ -22,6 +22,12 @@ HIGH = '高置信度筛选 ≥ 0.7（诊断）'
 CURRENT = '当前配置：有效关节 + confidence 降权'
 
 
+def playback_next(frame, count, loop=False):
+    """Do not present a noncyclic clip boundary as one adjacent motion frame."""
+    if frame+1<count:return frame+1,True
+    return (0,True) if loop else (count-1,False)
+
+
 def owner_rgb(owner):
     color=np.full((*owner.shape,3),240,np.uint8)
     color[owner==0]=[140,155,165]
@@ -84,11 +90,12 @@ class ReviewViewer:
         self.labels=[f"{i+1}. {c['spec']['id']}" for i,c in enumerate(self.cases)]
         server.gui.add_markdown('## Exo 遮挡检查 · 6 个片段\n\n绿=输入关节，红=未输入 GT，蓝=目标，紫红=他人，黄=刚体。**模拟输入检查；训练暂停。**')
         self.select=server.gui.add_dropdown('片段',self.labels,initial_value=self.labels[0])
-        self.policy=server.gui.add_dropdown('关节输入策略',[HIGH,CURRENT],initial_value=HIGH)
+        self.policy=server.gui.add_dropdown('关节输入策略',[CURRENT,HIGH],initial_value=CURRENT)
         self.frame=server.gui.add_slider('帧',min=0,max=191,step=1,initial_value=0)
         self.header=server.gui.add_markdown('');self.info=server.gui.add_markdown('')
         self.image=server.gui.add_image(np.zeros((216,384,3),np.uint8),label='几何 first-hit 与关节筛选（非 RGB）')
         self.play=server.gui.add_checkbox('播放',initial_value=False)
+        self.loop=server.gui.add_checkbox('循环播放（末尾→开头有跳变）',initial_value=False)
         self.speed=server.gui.add_number('倍速',initial_value=1.,min=.25,max=2.,step=.25)
         self.joint=server.gui.add_dropdown('检查关节',['全部']+[f'{j}: {n}' for j,n in enumerate(JOINTS)],initial_value='全部')
         self.body_visible=server.gui.add_checkbox('目标完整网格（GT 参考）',initial_value=True)
@@ -102,6 +109,8 @@ class ReviewViewer:
         camera=server.gui.add_button('切到 exo 光学视角')
         reset=server.gui.add_button('重置外部视角')
         self.table=server.gui.add_markdown('')
+        audit_path=RUN/'FOLLOWUP_AUDIT.json'
+        self.source_audit=json.loads(audit_path.read_text()) if audit_path.exists() else None
 
         @self.select.on_update
         def _(_):self.load_case(self.labels.index(self.select.value))
@@ -171,6 +180,8 @@ class ReviewViewer:
             for client in self.server.get_clients().values():self.set_camera(client,external=client.client_id not in self.pose_clients)
             self.frame.max=self.case['frames']-1;self.frame.value=t
             self.header.content=f"### {self.case['spec']['description']}\n\n`{self.case['sequence_id']}`\n\n相机：{camera['name']}；{'真实标定' if camera['kind']=='released_calibrated' else '**合成诊断相机**'}。30 Hz，192 帧。\n\n高置信度阈值仅供本轮检查，**训练配置仍用当前有效关节及降权**。"
+            if self.source_audit and self.case['spec']['id']==self.source_audit['ego_arm']['case']:
+                self.header.content+='\n\n**源动作质量提示：2481–2501 帧右臂有拟合跳变，原始 SMPL 直接复算与本视图一致；不是生成模型输出。未平滑或替换参考动作。**'
             self.update(t)
 
     def set_camera(self,client,external=False):
@@ -214,7 +225,10 @@ class ReviewViewer:
         print('EXO_VISER_READY',flush=True)
         while True:
             time.sleep(1/(30*float(self.speed.value)))
-            if self.play.value:self.frame.value=(int(self.frame.value)+1)%self.case['frames']
+            with self.lock:
+                if self.play.value:
+                    next_frame,playing=playback_next(int(self.frame.value),self.case['frames'],self.loop.value)
+                    self.frame.value=next_frame;self.play.value=playing
 
 
 def main():

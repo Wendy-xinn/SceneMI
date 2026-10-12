@@ -1,5 +1,7 @@
 # 10 月 12 日：exo 可视化验收与场景改进方案
 
+后续复核见 [源拟合异常、TRUMANS 外参和局部查询阶段设计](../exo_occlusion_review_oct12/FOLLOWUP_DESIGN_AND_AUDIT_zh.md)：当前局部查询覆盖全预测身体，可信支点逐步开放方案尚待实现。训练继续暂停。
+
 本次输入检查已补齐EgoBody/TRUMANS/RICH各两例：[viser](http://127.0.0.1:8783)、[实验设置与模型架构](../exo_occlusion_review_oct12/EXPERIMENT_AND_ARCHITECTURE_zh.md)、[遮挡结果](../exo_occlusion_review_oct12/OCCLUSION_FINDINGS_zh.md)。展示当前confidence降权输入及≥0.7诊断筛选，区分人、静态场景／物体和动态刚体遮挡。RICH为真实标定，TRUMANS为合成观察相机。训练保持暂停。
 
 **最新实现：** 用户已同意30Hz方案和位置反馈，独立native30代码、配置、输入回放及零优化器步核验见 [IMPLEMENTATION_zh.md](../ego_exo_native30_oct12/IMPLEMENTATION_zh.md)。全局patch、动态owner token、多尺度vertex查询和root位置/SO(3)反馈均已接入；全量缓存与训练未执行。当前绿色3k旧模型不随新代码改变。以下保留此前冻结模型结果和研究记录，旧“场景先不动/待接入”状态只适用于此前v2阶段。

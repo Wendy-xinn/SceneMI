@@ -7,7 +7,9 @@ import trimesh
 from experiments.offline_camera_retrain_v1.exo_occlusion_review import (
     first_hit, rays_for, regional_observations, sampled_environment)
 from experiments.offline_camera_retrain_v1.scene_visibility_v2 import static_ray_scene
-from experiments.offline_camera_retrain_v1.view_exo_occlusion_review import trajectory_segments
+from experiments.offline_camera_retrain_v1.view_exo_occlusion_review import trajectory_segments, playback_next
+from experiments.offline_camera_retrain_v1.audit_exo_followup import recover_world_to_camera
+from scipy.spatial.transform import Rotation
 
 
 class ExoOcclusionReviewTests(unittest.TestCase):
@@ -61,6 +63,26 @@ class ExoOcclusionReviewTests(unittest.TestCase):
         p=np.arange(12,dtype=np.float32).reshape(4,1,3);mask=np.array([[True],[False],[True],[True]])
         segments=trajectory_segments(p,mask,3)
         np.testing.assert_array_equal(segments,np.stack((p[2,0],p[3,0]))[None])
+
+    def test_noncyclic_motion_stops_without_false_boundary_velocity(self):
+        self.assertEqual(playback_next(190,192),(191,True))
+        self.assertEqual(playback_next(191,192),(191,False))
+        self.assertEqual(playback_next(191,192,loop=True),(0,True))
+
+    def test_paired_body_camera_recovery_respects_nonzero_root_pivot(self):
+        rw=Rotation.from_euler('xyz',[[.3,.1,-.2],[-.1,.5,.2]]).as_matrix()
+        known_r=Rotation.from_euler('xyz',[[.2,-.6,.1],[.1,-.4,-.2]]).as_matrix()
+        known_t=np.array([[1.,2.,3.],[-2.,1.,4.]])
+        tw=np.array([[.2,.3,.4],[-.3,.4,.2]]);rest=np.array([.01,-.3,.02])
+        tc=np.einsum('tij,tj->ti',known_r,tw+rest)+known_t-rest
+        r,t,centre=recover_world_to_camera(Rotation.from_matrix(rw).as_rotvec(),
+                    Rotation.from_matrix(known_r@rw).as_rotvec(),tw,tc,rest)
+        np.testing.assert_allclose(r,known_r,atol=1e-12)
+        np.testing.assert_allclose(t,known_t,atol=1e-12)
+        np.testing.assert_allclose(np.einsum('tij,tj->ti',r,centre)+t,0.,atol=1e-12)
+        naive=tc-np.einsum('tij,tj->ti',r,tw)
+        np.testing.assert_allclose(naive-known_t,np.einsum('tij,j->ti',r,rest)-rest,atol=1e-12)
+        self.assertGreater(float(np.linalg.norm(naive-known_t)),.01)
 
 
 if __name__=='__main__':unittest.main()
