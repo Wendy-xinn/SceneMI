@@ -4,7 +4,7 @@
 
 当前模型/配置及用户关于exo定义、世界坐标、朝向、尺度和vertex修正的逐项核对，见[CURRENT_MODEL_AND_CONFIG_zh.md](CURRENT_MODEL_AND_CONFIG_zh.md)。实际执行参数与checkpoint继承字段已在[EFFECTIVE_CONFIG_OCT12.json](EFFECTIVE_CONFIG_OCT12.json)分开，不把原55k的batch/lr当续训配置。
 
-新增用户澄清：真实 wearer PV 同时可服务自身恢复和观察对方；后者天然有上半身视野、整个人出画再进入。对应的相机/目标分离、共享先验及缺失补全设计见 [OBSERVER_TARGET_UNIFICATION_zh.md](OBSERVER_TARGET_UNIFICATION_zh.md)。当前 master exo 和 synthetic interactee ego 尚未覆盖这条 PV-other 分支，仍暂停训练。
+最新用户澄清：interactee 的合成 ego 是利用 exo 身体数据辅助 ego 训练的有意增广，继续保留。当前优先加独立相机编码和可信观测适配，第一版共享动作输出头；场景结构暂不改，长缺失补全排最后。逐步任务和是否分输出头的依据见 [OBSERVER_TARGET_UNIFICATION_zh.md](OBSERVER_TARGET_UNIFICATION_zh.md)。以下场景新设计保留为参考，暂不进入执行顺序，仍暂停训练。
 
 结论：6 个登记 exo 窗口的坐标、相机和时间处理通过检查，生成动作尚未通过。冻结模型的轨迹与姿态修正改善世界误差，但局部姿态和脚部指标仍有退化。直接加强表面惩罚会把动作改坏；更合适的下一步是保留身体区域的几何证据，让接触参与受限姿态修正，并单独处理未知空间和输入不确定性。
 

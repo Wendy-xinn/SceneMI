@@ -14,9 +14,9 @@
 
 目前已经模拟了实际物体/另一人遮挡和画外区域；额外训练扰动只有头/腕的小幅连续漂移与短缺失。**没有系统构造上半身-only 的相机裁切，也没有多种全身可信关节集合训练。** 当前 availability 按皮肤区域像素支持度，不是严格关节点可见性或真实估计器置信度，二者不能混称。
 
-还需区分观察相机佩戴者自身与观察画面里另一个人。当前面板的 interactee/ego 是目标头部的 synthetic ego，不是直接使用真实 wearer PV 看对方的视角。真实 wearer PV 观察 interactee 应保留 PV 相机、interactee 身份和该视角下的遮挡，而不把 PV 相机轨迹填成 interactee 的头轨迹。相机在观察者头上，不代表它与被生成目标之间也是“佩戴者自身”的关系。
+还需区分观察相机佩戴者自身与观察画面里另一个人。interactee 本身没有佩戴 PV，当前 interactee/ego 按目标身体构造 synthetic ego，是有意利用 exo 身体数据生成 ego 条件辅助训练的增广，应保留；不是导出错误。真实 wearer PV 看对方是另一条未来数据分支，应保留 PV 相机、interactee 身份和该视角下的遮挡，而不把 PV 相机轨迹填成 interactee 的头轨迹。相机在观察者头上，不代表它与被生成目标之间也是“佩戴者自身”的关系。
 
-用户进一步明确的真实 PV 上半身视野、出画再进入及统一机制见 [OBSERVER_TARGET_UNIFICATION_zh.md](OBSERVER_TARGET_UNIFICATION_zh.md)。该文区分 self/other 与固定/移动相机，提出共享先验、观测适配和离线缺失补全方案，全部为设计，尚未接入训练。
+最新优先级和逐步任务表见 [OBSERVER_TARGET_UNIFICATION_zh.md](OBSERVER_TARGET_UNIFICATION_zh.md)：先加独立相机编码和可信观测适配，第一版共用生成主干/动作输出头，场景结构保持现状，长缺失补全放到最后。上述全部为设计，尚未接入训练；输出残差适配器只作出现持续模式冲突时的条件性对照。
 
 ## 2. 输入坐标、相机朝向与人体朝向
 
