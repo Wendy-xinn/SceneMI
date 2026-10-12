@@ -1,5 +1,7 @@
 # 10 月 12 日：ego/exo 统一模型任务表与输出头选择
 
+用户随后重新讨论30Hz重训、相机→人体头部统一与场景反馈，最新建议及待实现顺序见 [MODEL_DESIGN_zh.md](../ego_exo_retrain_design_oct12/MODEL_DESIGN_zh.md)。已执行状态仍是下述20Hz v2零步配置；本轮只新增8窗口头部逆变换审计，没有改网络/缓存或启动训练。“场景先不动”是前一阶段执行范围，新场景方案尚未接入。
+
 **最新范围：独立编码相机；场景结构保持现状；第一版共享生成主干和动作输出头；长缺失—补全排在最后。** 用户已要求完成前3项配置，现已新增独立v2模型/输入/配置和零步检查，见[实现记录](../ego_exo_camera_config_oct12/IMPLEMENTATION_zh.md)。原55k/3k权重和场景缓存未改，训练继续暂停。旧3k已执行模型见 [CURRENT_MODEL_AND_CONFIG_zh.md](CURRENT_MODEL_AND_CONFIG_zh.md)，实际参数见 [EFFECTIVE_CONFIG_OCT12.json](EFFECTIVE_CONFIG_OCT12.json)。
 
 ## 1. 合成 interactee ego 是训练增广，继续保留
