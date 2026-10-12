@@ -76,6 +76,31 @@ def inverse_head(camera, available, confidence, mount):
     return result,available.astype(np.float32),(confidence*available).astype(np.float32)
 
 
+def perturb_input_tracks(trajectory, meta, cam, ca, cc, mode, joints, noise_rng):
+    """Historical position/gap profile; ego wrists stay unchanged by request.
+
+    Mutates observation arrays only. Head inversion follows the same perturbed
+    camera stream in the builder. Native visibility/confidence is preserved for
+    ego wrists; a natural absence is never filled by this augmentation.
+    """
+    frames=len(cam)
+    drift=noise_rng.normal(0,.01,(1,22,3))+np.linspace(0,1,frames)[:,None,None]*noise_rng.normal(0,.02,(1,22,3))
+    noise_joints=tuple(joints)
+    if mode=='ego':
+        drift[:,np.arange(22)!=15]=0
+        noise_joints=(15,) if 15 in joints else ()
+    trajectory[...,:3]+=drift/2
+    meta[...,2]*=np.exp(-np.linalg.norm(drift,axis=-1)/.05)
+    if mode=='ego':
+        cam[:,:3]+=drift[:,15]/2
+        cc[:,0]*=np.exp(-np.linalg.norm(drift[:,15],axis=-1)/.05)
+    if noise_rng.random()<.3 and noise_joints:
+        joint=int(noise_rng.choice(noise_joints));first=int(noise_rng.integers(max(1,frames-18)))
+        meta[first:first+18,joint,:4]=0
+        if mode=='ego' and joint==15:
+            ca[first:first+18]=0;cc[first:first+18]=0
+
+
 class Native30ObservationBuilder:
     def __init__(self, skin_cache, mounts):
         self.skin_cache=skin_cache;self.mounts=mounts
@@ -126,15 +151,7 @@ class Native30ObservationBuilder:
         selected=np.zeros(22,bool);selected[list(joints)]=True;meta[...,:4]*=selected[None,:,None]
         if noise_rng is not None:
             # One perturbed sensor stream: head conversion follows sensor noise/dropout.
-            drift=noise_rng.normal(0,.01,(1,22,3))+np.linspace(0,1,frames)[:,None,None]*noise_rng.normal(0,.02,(1,22,3))
-            trajectory[...,:3]+=drift/2;meta[...,2]*=np.exp(-np.linalg.norm(drift,axis=-1)/.05)
-            if mode=='ego':
-                cam[:,:3]+=drift[:,15]/2;cc[:,0]*=np.exp(-np.linalg.norm(drift[:,15],axis=-1)/.05)
-            if noise_rng.random()<.3:
-                joint=int(noise_rng.choice(joints));first=int(noise_rng.integers(max(1,frames-18)))
-                meta[first:first+18,joint,:4]=0
-                if mode=='ego' and joint==15:
-                    ca[first:first+18]=0;cc[first:first+18]=0
+            perturb_input_tracks(trajectory,meta,cam,ca,cc,mode,joints,noise_rng)
         if mode=='ego':
             head,ha,hc=inverse_head(cam,ca,cc,mount)
             trajectory[:,15]=head;meta[:,15,:2]=ha;meta[:,15,2:4]=hc
