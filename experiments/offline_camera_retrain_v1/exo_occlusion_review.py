@@ -165,7 +165,7 @@ def serial_camera(camera):
 
 def scout():
     torch.set_num_threads(1);RUN.mkdir(parents=True,exist_ok=True)
-    sources=inventory('train')+inventory('validation')
+    sources=inventory('train',split_protocol='legacy-internal-scene-v1')+inventory('validation',split_protocol='legacy-internal-scene-v1')
     names=[('recording_20210907_S04_S03_01_camera_wearer_2001-2901','validation'),
            ('recording_20210907_S04_S03_02_interactee_1601-2681','validation'),
            ('2023-02-13@18-03-43','train'),('2023-02-13@22-31-47','validation'),
@@ -198,7 +198,7 @@ def scout():
 
 
 def export_case(spec):
-    row=next(r for r in inventory(spec['split']) if r['sequence_id']==spec['sequence_id'])
+    row=next(r for r in inventory(spec['split'],split_protocol='legacy-internal-scene-v1') if r['sequence_id']==spec['sequence_id'])
     q=np.arange(spec['start'],spec['start']+spec.get('frames',192),dtype=float)
     if q[0]<row['raw_first'] or q[-1]>=row['raw_last_exclusive']:raise ValueError('Review crosses scoped source boundary')
     folder=CACHE/spec['id'];folder.mkdir(parents=True,exist_ok=True)

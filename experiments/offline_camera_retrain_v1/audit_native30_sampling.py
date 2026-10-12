@@ -10,6 +10,7 @@ import numpy as np
 import torch
 
 from experiments.offline_camera_retrain_v1.native30_export import inventory
+from experiments.offline_camera_retrain_v1.native30_splits import LEGACY_SPLIT_PROTOCOL
 from experiments.offline_camera_retrain_v1.data import HERE, PROJECTS, SOURCE, PARENTS
 from experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAnchorCache
 from experiments.offline_camera_retrain_v1.native30_geometry import Native30SurfaceWindow
@@ -31,7 +32,7 @@ def scene_key(row):
 
 def main():
     torch.set_num_threads(1);before=shutil.disk_usage(HERE).free
-    rows={split:inventory(split) for split in ('train','validation')}
+    rows={split:inventory(split,split_protocol=LEGACY_SPLIT_PROTOCOL) for split in ('train','validation')}
     groups=('trumans','camera_wearer','interactee','rich');summary={}
     for split,items in rows.items():
         summary[split]={}

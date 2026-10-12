@@ -1,211 +1,83 @@
-# Exo 遮挡检查、实验设置与统一模型架构
+# Ego/exo 模型与实验唯一总清单
 
-2026-10-12。**训练暂停，本轮优化器步数为 0。** 当前工作包括三套数据各两个 exo 输入片段的 viser 检查，以及 native30 新模型的设置整理。这里的可视化是输入和 GT 几何参考，不是生成质量评估。
+更新：2026-10-12。**训练暂停；本轮优化器 0 步。以后只维护这一份总清单，不再新增按讨论命名的方案文档。** 历史报告仅作证据存档，不代表当前配置。已完成指代码接通并有检查，不能等同于生成质量达标。
 
-后续复核见 [遮挡恢复定位、手臂源拟合异常及 TRUMANS 外参恢复](FOLLOWUP_DESIGN_AND_AUDIT_zh.md)：保留 confidence 降权；viser 默认当前策略且末尾停止；两套 TRUMANS SMPL-X 已恢复并验证逐帧外参，内参仍待确认。下面六例的 TRUMANS 输入仍来自合成固定相机。
+当前目标固定为：共享动作生成器，在相同世界坐标下使用可信人体轨迹与观察到的场景；exo 重点改善遮挡部位，同时保持整体运动精度；ego 保留头部相机约束。先关闭以下清单，再开展模型效果实验。
 
-最新训练协议核对见 [输入扰动、GT质量、窗口与重训建议](TRAINING_PROTOCOL_RECOMMENDATION_zh.md)。当前随机192帧允许重叠，静态记忆仅限当前窗口。另已确认EgoBody是内部场景划分，TRAIN含12个官方test recording；正式论文比较前应另建官方benchmark版本，不能把内部验证结果当官方test结果。本轮未改旧划分或启动训练。
+## 1. 总清单与完成标准
 
-## 1. 查看六个例子
+|编号|事项|当前状态|完成标准／剩余工作|
+|---|---|---|---|
+|D1|EgoBody 官方划分|**已完成源索引与入口约束**|直接使用官方 CSV；65/17/43 recording，无跨 split recording；旧 test 来源也重新归位。全量新缓存导出归 D6。|
+|D2|窗口与跨窗场景记忆|**已实现并检查**|动作固定192帧、随机有重叠；静态记忆保留同观察者截至窗口末尾的已观察表面；跨源片段与换锚点均可查询；动态不累计。|
+|D3|相机、头部和体型|**接口完成，标定待重做**|ego 相机反算 anatomical head，exo 独立观察相机编码；旧 mount 使用了内部 TRAIN，须只用官方 TRAIN 重拟合并记录来源。native SMPL/SMPL-X 体型条件已接入。|
+|D4|三套数据的 exo 入口|**诊断完成，正式覆盖未完成**|EgoBody master 已接正式采样；RICH 真标定、TRUMANS 合成视点各两例已查。两者尚须接正式导出／采样；TRUMANS K/轴约定未确认，不能称真实相机 benchmark。|
+|M1|共享生成器与场景条件|**代码及零步检查完成**|共享输出；静态 patch、动态 owner、预测身体局部查询、位置/旋转接触反馈已接入。训练后的场景利用效果归 E2。|
+|D5|GT 质量与观测扰动|**部分完成，训练前必补**|位置漂移和短缺失已实现；首例右臂源拟合异常已定位。须将 GT 质量 mask 接入全部相应 loss 和导数，并配置分部位位置／旋转扰动；不修改 raw GT。|
+|S1|监督尺度与配置入口|**当前单位有检查，参数化未完成**|30Hz 物理导数、绝对朝向、转向与骨长已查；须让 JSON 真正控制尺度／关节权重／噪声参数，并重新标定官方 TRAIN 上梯度比例。|
+|D6|全量 native30 与输入验收|**待完成**|按 D1 重导出完整来源；记录官方标定和输入哈希；真实／虚拟相机、身体与场景可视化验收；禁止用8个旧诊断窗口代替全量数据。|
+|E1|正式 validation 和训练运行闭环|**待完成**|实现固定 val 样本／噪声种子／指标、非重叠全序列输出及重叠边界处理、预先固定评估规则；test 不参与调参。当前训练循环没有正式 validation。|
+|E2|效果实验与验收|**未开始**|先短程训练及可视化，再按已定 val 规则扩展；比较整体/可见/遮挡误差、朝向、滑动和场景接触，做无场景／错场景／反馈消融以及分开训练对照。训练仍保持暂停。|
 
-打开 [viser：exo 遮挡与可信轨迹](http://127.0.0.1:8783)，在「片段」下拉框选择例子。每段为原始 30 Hz 的连续 192 帧，时间跨度 191/30≈6.37 秒；按采样窗口预算称为 6.4 秒。源帧、当前有效关节数、高置信度关节数和逐关节遮挡像素均随时间更新。
+**执行顺序：D3、D4、D5、S1 → D6、E1 → E2。** D1/D2/M1 不重复开设计分支；发现实现错误在原编号下修复。任意网络视频、长出画的多假设补全、未知体型推断、真实动态物体轨迹估计、ego/exo 独立输出头、渐进扩大查询范围均放到第一版验收之后，不扩充训练前清单。
 
-建议先播放，再按「跳到外部遮挡最强帧」，随后「切到 exo 光学视角」。右侧几何 first-hit 图提供准确的有畸变像素归属；viser 三维光学视角是普通透视显示，不精确复现镜头畸变或偏心主点，应以右侧图核查可见性。可以选择某个关节查看近 3 秒可信轨迹；轨迹不会连接中间缺失的帧。
+## 2. 已冻结的窗口和记忆方案
 
-默认播放到末尾停止；循环需主动开启，非周期片段末尾→开头会有跳变。第一个 EgoBody 片段开头右臂源拟合有明显跳变，已直接复算验证并在视图提示，不能据此判断生成质量。
+192帧@30Hz 是一个动作计算窗口，约6.4秒。训练从连续有效区间内随机选起点，允许重叠；重叠用于增加动作样本，**不能代替跨窗场景记忆**。当前是整段扩散生成，不是逐帧自回归。主训练固定长度；64/128帧仅有接口检查，质量尚未验证。
 
-|显示|含义与输入边界|
+静态地图在源世界坐标保存，按2.5cm体素去重，并记录表面首次观察的源帧。一个动作窗口使用同一观察者序列中 **首次观察时间 ≤ 当前窗口末帧** 的静态表面。离线允许当前窗口内的完整观察；后续窗口的观察不提前进入。采样乱序时，每次根据源时间取前缀，不按 batch 顺序累积，避免串样或读到未来。
+
+例子：窗口A里看到固定椅子，窗口B里走近坐下，即使B里椅子出画，B的全局场景编码和身体局部查询仍能访问A留下的椅子。地图查询时才变换到B的相机锚点，并与身体、可信关节、相机共同旋转；重新锚定不会让椅子相对人体转错。
+
+同 recording、同角色、同观察模式、同世界系的多个已导出源片段可以共享此前静态观察。ego真实佩戴者、interactee虚拟ego和master exo分开记忆；不同 recording、split 或世界系不混合。只保留 owner=0 的实际观察静态点，不从完整扫描补墙后/未见表面。未导出时间段的观察仍未知；如果需要间隔里的场景，也必须先导出该段观察。
+
+人和已标识的可移动物体只取当前帧：椅子若标记为动态，不把旧位置写入静态地图。刚体速度来自已知源轨迹；他人皮肤速度无可信估计则失效。错误地把移动物体标为静态仍会导致残影，真实视频动态分离归后置工作。跨窗持久保存的是几何；transformer token按当前窗口重新编码，避免复用旧锚点、旧权重下的特征。
+
+静态记忆的可访问性已检查；这不保证模型学会坐下，更不保证不同窗口生成的人体动作连续。动作接缝和身份连续性在 E1/E2 单独验收。
+
+## 3. 官方划分与新数据版本
+
+新配置：[native30_config.json](../../native30_config.json)。版本 `native30-official-observer-memory-v2`，新数据目录 `data/native30_official_memory_v2`，与旧20Hz/旧诊断缓存分开。
+
+|官方集合|官方 recording|新源索引 recording|EgoBody源片段|其中exo-only|
+|---|---:|---:|---:|---:|
+|train|65|65|202|2|
+|val|17|17|53|0|
+|test|43|43|129|2|
+
+读取 `/home/wenxin/projects/egobody/data_splits.csv`，代码内部 `validation` 等同官方 `val`；CLI也接受 `val`。使用原 train/validation/test 全部源片段重新归位，按 recording 检查官方归属、CSV指纹和输入模式。旧内部训练曾包含12个官方test recording，**旧55k/3k结果不能作为官方 benchmark 结果**；其权重和数据仍保留。
+
+两个 recording 的 PV 因长缺口没有 ≥192帧连续区间：官方train `recording_20210923_S05_S13_02`、官方test `recording_20210921_S05_S12_03`。原始身体、场景与master标定在本地，所以补为真实master **exo-only** 来源，不外推PV、不伪装真实ego。故官方recording索引完整，ego可用覆盖仍依赖PV有效区间；评估须报告各模式实际有效帧范围。
+
+已生成 `source_index.jsonl`，不等于全部native30表面缓存已导出。全三语料当前源数为train733、val114、test187；RICH本地只有train/val，test明确缺失，不再把val冒充test。其他两套沿用原语料协议，后续指标分别报告。个体GT betas使用来源profile，或exo-only原始拟合的固定median；它是已知体型条件，与必须仅在官方TRAIN拟合的相机mount/损失标定分开。
+
+## 4. 当前模型和训练设置
+
+|模块|实际实现|
 |---|---|
-|绿点／绿线|当前策略选中的关节位置输入／相邻帧轨迹|
-|红点|未输入的 GT 参考关节，只帮助检查缺失的位置|
-|蓝色目标网格|完整 GT 参考人体，模拟器用于遮挡判断；不是生成模型的输入|
-|紫红色网格|另一人的完整参考几何；模型只得到当前视角看到的该人皮肤点|
-|黄色网格|TRUMANS 中带源姿态的刚体参考；模型只看到 first-hit 表面|
-|当前帧可见环境点|512 个采样槽位，排除目标皮肤，保留静态、物体、另一人的可见表面|
-|本窗口观察静态记忆|同一 192 帧窗口的静态可见点并集，2.5 cm 去重；可含其他帧看到、本帧被挡的表面|
-|扫描点云与近人网格|只用于对照，默认关闭；源扫描网格按GT窗口范围裁剪以便显示，这个裁剪只用于显示，不会成为模型的环境条件|
+|共享动作空间|201D：root 3＋body22局部6D旋转132＋全局关节66；位置传输m/2，计算物理量时还原米；最终关节由FK重写。|
+|人体条件|native SMPL/SMPL-X、gender、betas、rest骨架、scale；共享22关节拓扑；SMPL-X细手指/表情未生成。|
+|相机/观测|ego逆安装变换得到头部位置/朝向；exo提供可信关节位置；availability、confidence、uncertainty、相机K/位姿/模式单独编码；缺失不借GT补。|
+|全局静态|观察表面occupancy [24,48,48]；ViT为16个patch＋CLS；patch经cross-attention，CLS作AdaGN条件。粗网格只表征已见表面。|
+|动态|逐帧可见owner摘要token及局部表面；不把动态积入静态；缺失速度不当0速度监督。|
+|局部|每步先预测x0并FK，固定67个native vertex查询8/25/60cm三尺度，每尺度8邻点；局部cross-attention进入第二遍共享core。|
+|查询可靠性|目前从第一步就查全预测身体；高噪声中心向可信关节混合、低噪声回到预测皮肤。渐进扩大范围尚未实现，本版不追加。|
+|接触反馈|内部x0的root位移≤8cm、22关节SO3残差≤0.12rad，再FK保持骨长；时序感受野9帧，alpha_bar²和接触/对应/几何有效性门控；无独立生成后优化。|
+|扩散/采样|cosine1000；25%额外抽低噪声t<100；默认DDIM20步，每步两次共享core，约40次forward。|
+|初始化/优化器|从头初始化；latent256，dim_mults=(1,2,4)，约122.4M参数；AdamW batch2，lr1e-4，weight_decay0.01，clip1，warmup200。|
+|模式和数据平衡|ego70%/exo30%；按有效窗口时长采样，ego语料平方根平衡；exo-only来源不会进入ego。|
+|ego关节组合|65%仅head，35%head+双wrist；当前仍是受控数据集输入模拟，非真实前端误差分布。|
 
-两种关节输入策略分开展示：
+生成链：可信关节与相机上下文＋静态patch/动态owner → 共享生成器初估 → 预测皮肤局部查询 → 共享生成器更新 → 位置/旋转接触反馈 → DDIM下一步。共享头是否损害两种模式的性能归E2对照，不能仅靠架构图证明统一有效。
 
-- **当前配置**：区域可见像素至少 2 个，且可见比例至少 0.15；所有有效关节继续按 confidence 降权，没有 0.7 硬阈值。
-- **高置信度筛选**：在当前有效性基础上只保留 `confidence≥0.7`。这是本轮诊断策略，尚未写入训练配置。默认显示当前降权策略，可主动切换来检查阈值影响。
+监督已有：x0/FK/旋转、30Hz速度加速度、root/head/neck绝对朝向、head-root协调、相对转向、脚滑动、可信轨迹以及接触/表面对应。观测标准尺度为位置5cm、旋转10°、速度0.15m/s、加速度1m/s²、角速度/转向20°/s，使用confidence和连续有效导数mask；当前JSON需与固定代码常量一致，尚不支持任意改数值。完整系数与计算见 [native30_losses.py](../../native30_losses.py)，接通与重标定归S1。
 
-六例身份、相机、源帧、逐关节统计和数组 SHA256 见 [manifest.json](manifest.json)；选择设置见 [selection.json](selection.json)。逐例数值结论见 [OCCLUSION_FINDINGS_zh.md](OCCLUSION_FINDINGS_zh.md)。
+相机负责坐标/视点，不负责替模型决定人体朝向。GT源异常不能靠更强速度/加速度loss修复。局部观察法向只是平面代理，不是完整SDF；缺点云是unknown，不能作为无障碍空区域。场景是否真正改善动作必须通过E2实验证明。
 
-## 2. 相机来源与坐标
+## 5. 核验、可视化与记录规则
 
-**EgoBody** 用真实 Kinect master 的官方 RGB 光学标定，内参／有理畸变来自 `kinect_cam_params/kinect_master/Color.json`，外参来自对应 recording 的 `kinect12_to_world/<scene>.json`。原图范围 1920×1080，诊断射线网格 192×108。两个人都使用完整 SMPL 网格参与最近交点判断；target 随所选角色改变。master 是独立外部观察者，不转换为 target 的头部相机。
+本次检查包含跨窗椅子查询、跨源片段记忆、随机窗口顺序不读未来、动态无旧帧残影、不同观察者隔离、世界系换锚点、失效历史/目标皮肤排除、官方test误归TRAIN拒绝、exo-only采样边界，并回归原30Hz与first-hit遮挡检查。25项单元/回归检查通过；真实缓存的ego/exo、start=64、64帧输入与不读人体GT的frozen入口场景/occupancy一致；两套新增exo-only源读取未调用PV。机器记录：[PROTOCOL_V2_AUDIT.json](PROTOCOL_V2_AUDIT.json)、[PROTOCOL_V2_INTEGRATION.json](PROTOCOL_V2_INTEGRATION.json)。不启动优化器。
 
-**RICH** 用所选场景的真实 `calibration/000.xml`，包含 camera-0 坐标到该观察相机的 `R,t,K`。同时对人体、扫描和相机应用同一个 `multicam2world` 相似变换，再转成 SceneMI y-up。相机中心用 `-Rᵀt`；相似变换的 scale 作用于位置／深度，不缩放旋转。诊断射线网格 256×192。使用的图像边界为 4112×3008，已核实 [官方 toolkit 示例原图](https://raw.githubusercontent.com/paulchhuang/rich_toolkit/main/samples/tmp.jpg) 的尺寸；本地没有这两个片段的原始 RGB，尚未逐片段核对原图边界及真实像素重投影。外参、K 和几何处理来自本地实际标定，并非虚构相机。[官方坐标说明](https://github.com/paulchhuang/rich_toolkit)、[官方投影实现](https://github.com/paulchhuang/rich_toolkit/blob/main/utils.py)。
+[viser六例](http://127.0.0.1:8783)是输入/GT诊断面板，不是生成效果；TRUMANS仍为合成exo。首例右臂开头跳变已回溯到源拟合，当前显示保留以便追查，GT质量mask尚待D5。原RGB不在本地，不能断言真实动作绝不可能跳动。此前零步反传和2步DDIM smoke只证明接口/梯度，不代表场景或朝向效果。
 
-**TRUMANS** 本地有配对 world／camera-coordinate SMPL-X，本次后续复核已恢复并验证两条逐帧相机外参，K／图像边界与像素轴约定仍需确认，见[复核记录](FOLLOWUP_DESIGN_AND_AUDIT_zh.md)。此前六例缓存使用**合成固定 exo**，本轮没有替换：观察位置由片段 pelvis 中位位置、半径 3.2 m、相机高度 1.65 m、朝向设定确定，注视目标高度 1 m；水平视角 66.56°，192×108，近／远裁剪 0.1／12 m。最终相机位置和完整矩阵保存于 manifest。不能把这两例称为真实 exo 视频测试。[官方数据说明](https://github.com/jnnan/trumans_utils#trumans-dataset)。
-
-三个数据集的可见关节与环境表面在各自同一米制世界坐标中模拟。visor 直接展示这个坐标，避免把“显示时朝向错”与“模型生成朝向错”混为一谈。正式模型输入则由首光学相机位置／水平朝向锚定，再共同做 world-yaw 增广；人体、场景、相机一起变换，不用 GT pelvis 朝向决定输入坐标。
-
-## 3. 遮挡和置信度到底如何计算
-
-每帧用标定射线分别查询完整目标、其他完整人体、静态扫描和有效动态刚体，保留每条射线的**最近交点**。owner 为 `0=静态场景`、`1…99=刚体`、`100=目标`、`101+=其他人`、`-1=未知`。有物体在前面时，后方的人／场景表面不会成为该帧可见输入；目标皮肤始终从环境点中排除。
-
-SMPL／SMPL-X 的三角面通过 skinning 权重映射到 22 个解剖部位，手指／脸部附属关节归并到 body22 祖先。对关节 j：
-
-```text
-reference[j] = 只渲染目标时，该部位首先命中的像素数
-visible[j]   = 加入所有遮挡物后，仍首先命中目标该部位的像素数
-fraction[j]  = visible[j] / max(reference[j], 1)
-available[j] = visible[j]≥2 且 fraction[j]≥0.15 且源帧有效
-confidence[j] = available[j] × fraction[j] × min(visible[j]/12, 1)
-```
-
-本轮分别统计 reference 像素最终被另一人、静态场景／物体、动态刚体取代的数量，逐帧检查 `reference = visible + person + static + rigid`。完整外部遮挡的部位 confidence 为 0；输入位置置零并附失效 mask。部分区域仍可见时允许输入，因而“高置信度”也可以有少量被遮挡皮肤。
-
-**这是理想关节跟踪器的几何模拟。** 有效位置直接取数据集拟合的 anatomical joint，confidence 不是 Human3R 等前端的实际预测；可见区域不等于内部关节中心直接可见。目标单独 first-hit 已处理自身表面的前后关系，但 reference 不计目标自身遮住的区域面积；reference=0 也可能来自出画或分辨率不足，当前不能独立区分这些原因。因此不能宣称已经标定了所有自遮挡情况下的关节估计误差。
-
-像素支撑项还依赖分辨率和距离。RICH 与 EgoBody／TRUMANS 的诊断网格不同，不能直接把平均 confidence 或高置信度关节数解释成数据集难度排名。0.7 目前用于检查，不是已经验证的通用前端阈值。正式接真实前端时需要置信度校准、目标身份关联以及重投影／时序一致性检查。
-
-## 4. 当前实验状态和数据设置
-
-|项目|native30 新模型当前设置|
-|---|---|
-|实现与配置|[native30_model.py](../../native30_model.py)、[native30_config.json](../../native30_config.json)|
-|模型状态|从头初始化；尚未训练；当前只有零优化器步接口／梯度验收|
-|既有模型|55k 原模型与续训 3k 权重均属于旧 20 Hz 路线，保持可恢复；本轮没有覆盖它们|
-|时间轴|直接读 raw30 整数源帧；固定 192 帧训练窗口；不从旧 20 Hz 缓存插值场景或 contact|
-|划分|延用既有 source-scoped TRAIN／validation 边界，不跨段边界；没有新增 test 性能结论|
-|源库存|904 段：TRAIN 744、validation 160；全量 raw30 导出尚未开始|
-|已有新模型输入面板|8 段×192 帧，12 种来源／模式组合；这是诊断面板，不能作为全量训练替代|
-|本轮六例|单独诊断缓存，192×6 帧；用于遮挡查看，不进入训练 sampler|
-|正式 exo 采样覆盖|目前仅 EgoBody master 的 wearer／interactee；RICH、TRUMANS 本轮诊断尚未接入正式 sampler|
-|模式比例|ego 70%，exo 30%；exo 两角色按有效窗口时长分配|
-|ego 观测组合|65% 仅 head；35% head 与两 wrist（15／20／21）；后者仍为数据集模拟的可信观测|
-|语料平衡|ego 语料按可用时长平方根平衡，EgoBody 内角色按时长；序列与窗口按有效窗口数采样|
-|体型|已知 native SMPL／SMPL-X、gender、betas、scale；未知视频中的形态／身高推断未接入|
-|离线场景预算|同一完整 192 帧的观察静态并集，加当前帧动态表面；不是全 recording 的完整扫描|
-|增广|共同 world yaw；位置初始漂移 σ=1 cm，加窗口内线性漂移 σ=2 cm；30% 概率单关节缺失 18 帧；无新的旋转噪声增广|
-|噪声|1000 步 cosine 扩散；另以 25% 概率改抽 t∈[0,99]，增强低噪声学习|
-|优化器|AdamW；batch=2；lr=1e-4；weight decay=0.01；clip norm=1；warmup=200 步；cosine schedule，最低倍率 0.2|
-|训练预算|未确定，不自动启动；入口要求显式正 steps、全量数据及匹配的零步验收|
-|采样|默认 DDIM 20 步，整段生成；每步两次共享 core forward，约 40 次；2 步只做过接口 smoke|
-|长度|主训练固定 192；接口允许 64／128／192，其他长度动作质量尚未验证；不是逐帧自回归|
-|随机与存储|seed=2026101267；未来仅一个原子可恢复 last.pt，包含 optimizer、RNG、sampler 状态|
-
-本轮诊断脚本独立于训练代码，没有改变正式输入策略／loss／采样比例。新文件也会改变训练入口检查的全目录代码指纹；正式训练前仍需重新做 full-data preparation，不能拿旧审计记录绕过 guard。
-
-配置还存在两个需要在训练前补齐的接口边界：`train_native30.py` 当前会建立validation数据对象，但训练循环只写TRAIN trace与checkpoint，尚没有正式validation采样／指标循环；观测尺度和joint importance目前由loss代码导入的固定常量提供，数值与当前JSON一致，但修改JSON尺度不会自动修改loss。1000步noise schedule也有固定代码约束。正式开展新配置实验时应先接通这些参数与native30评估，不能把配置文件中存在字段等同于该字段任意修改已受支持。本轮没有改变这些训练实现。
-
-## 5. 统一模型架构
-
-```mermaid
-flowchart TD
-    C[相机 pose / K / 安装标定 / self-other] --> O[ego 相机反算 head；exo 可见关节]
-    O --> J[22 关节与 confidence、mask、物理导数编码]
-    C --> CE[49D 相机上下文编码]
-    S[同窗口可见静态点] --> V[表面 occupancy ViT：16 patch + CLS]
-    D[当前可见物体 / 他人表面] --> DE[动态 owner token]
-    X[xt、扩散时刻 t、native 体型] --> P[第一遍共享 U-Net：x0 proposal]
-    J --> P
-    CE --> P
-    V --> P
-    DE --> P
-    P --> L[预测身体 FK / 固定 67 vertex / 三尺度表面查询]
-    L --> R[22 部位局部 cross-attention 条件]
-    R --> F[第二遍同一个 U-Net：raw x0]
-    F --> H[预测 contact 与 correspondence；9 帧时序反馈]
-    H --> M[root 米制位移 + 22 关节 SO3 残差；重新 FK]
-    M --> U[修正 x0 进入下一次 DDIM 更新]
-```
-
-### 5.1 统一输出和人体条件
-
-共享动作表示为 201D：root translation 3D＋22×6D local rotation 132D＋22×3D world joints 66D。位置通道按 `m/2` 传输，计算距离、速度、反馈时还原米；旋转用 identity-centered residual 6D。root 包含 native rest-root 补偿，最终 global-joint 通道由 FK 重写，保持骨长。
-
-ego/exo 使用**同一个 U-Net 和同一个输出头**。差异在观测可用性与相机上下文表达，不按相机模式改变动作定义。native relative rest 66D、body type 2D、scale 1D 经 `69→128→256` 身体编码加入条件；betas 另外决定 native skinning 资产。主干 latent=256、dim_mults=(1,2,4)、AdaGN 条件注入；新模型约 122.4M 参数。
-
-共享输出小随机初始化 `std=0.001,bias=0`，确保首步身体 loss 能传到观测与场景编码器；位置／旋转反馈出口零初始化，让起始反馈为零。退化 6D 使用 proper SO(3) 兜底，原始 6D 保留直接监督。
-
-### 5.2 观测和相机编码
-
-统一人体输入为 `[B,T,22,9]`：位置3＋旋转6；meta 的 position／rotation availability、两类 confidence 和类型字段分开保存，还有每关节 position／rotation uncertainty。缺失值不会借 GT 填补；confidence 为零／NaN／退化旋转会屏蔽对应通路。
-
-每关节使用 pose、meta、v/a/角速度、导数 stencil mask、uncertainty 和 joint ID，合计 43D；MLP `43→64→32` 后保留有序 22 槽，再投影到 64D 条件。v/a/角速度为 m/s、m/s²、rad/s，只在连续有效帧计算，缺失处不会跨 gap。导数和编码同时受置信度门控。
-
-ego optical camera 根据 `R_head=R_camera R_mountᵀ`、`p_head=p_camera−R_head t_mount` 转成 anatomical head 输入；旋转缺失且安装偏移非零时 head position 也失效。虚拟相机用实际固定安装参数；真实 PV 用冻结 TRAIN 近似，并保留安装 p90 不确定性。self camera 编码器只提供安装／K 等几何上下文，不重复走一条未屏蔽的干净 head 运动通路。
-
-other/exo camera 保留独立观察相机 pose／K、相对可信身体的位移、固定／移动与真实／合成来源等上下文。静态 master 的相机导数自然为零，但它仍描述视点、观察方向和可见性；移动 observer 可以有独立相机轨迹。49D 特征经 `49→128→64` 条件编码。exo 目前只有可信位置，没有直接喂 GT joint rotation。
-
-### 5.3 全局静态和当前动态场景
-
-静态并集先按 2.5 cm 去重，再建立 `[24,48,48]` **观察表面占据**。x/z 范围约 ±6.4 m、步长约 26.67 cm；y 范围 −3.1…1.7 m、步长 20 cm，均在相机锚定坐标下。点云不需要 RGB，也不需要先制造 depth 文件；几何渲染的深度／first-hit 只是用于截取该相机可见表面的中间结果。
-
-ViT 将高度作为 channels、水平面分成 4×4 patch；每个 patch 覆盖 3.2×3.2 m，hidden=1024、6 层、16 heads、MLP=2048。**不只一个 token**：CLS 变成 256D AdaGN summary；16 patch 加米制位置后投影到64D，22 个部位 query 做 4-head cross-attention，保留有序 22×64，再汇总为64D条件。没有观察点的 patch 视为 unknown，null token 防止全 mask 导致 NaN；但非空 patch 内仍只有粗糙二值表面编码，不能当完整 free-space／SDF。
-
-当前动态表面按 owner 形成11D可见摘要：中心、范围、可用速度、支撑数量、速度有效性，加8D owner embedding 后 `19→64→64`，逐帧进入部位 cross-attention。动态不累积成静态并集。刚体点速度为 `v_obj+ω×(p−center)`，目前来自已知源轨迹；另一人的皮肤速度没有可信估计，mask=0。
-
-### 5.4 固定 vertex、局部 BPS 与接触反馈
-
-局部查询使用固定 67 个 native vertex，约每部位3点、head额外1点；选 body22 dominant 区域，避开生成器不输出的细手指／jaw／eye，脚／踝偏向低支撑面。ID 随 betas 不变，位置跟随预测身体 skinning。
-
-每个扩散步第一遍预测 x0 proposal，做 SO(3) 与 FK 一致化，然后查询该预测的皮肤；不拿随机 xt 或 GT 身体作查询。高噪声时查询中心按可信关节位置混合，权重约 `(1−alpha_bar)×confidence`；低噪声时逐渐回到预测皮肤。三半径为 8／25／60 cm，每尺度取8个覆盖邻点，加 null token；位置差、距离、局部法向／可靠性、局部平面距离、moving、速度／mask、owner 等22D编码到64D，与 vertex query cross-attention。67点再按22部位保留有序局部 token，形成32D局部主干条件；宽半径最近点差也保留原 BPS 通路。
-
-BPS 表达邻近空间关系；contact 表达某部位应否接触以及对应表面是否可靠，功能不同。contact 由局部 context 与第二遍预测身体的13D位置／速度／旋转／噪声状态共同预测；correspondence 从局部 context 预测。门控为 contact probability × correspondence probability × 有效几何 × `alpha_bar²`。
-
-两层 kernel=5 时序卷积，直接感受野9帧，生成 root 位移3D和22×3D axis-angle旋转残差。root 向量限幅8 cm；关节旋转向量限幅0.12 rad，之后再乘门控。位置通过 root 平移和局部 SO(3)／FK 改变，不给各 vertex 独立位移；无邻域时反馈严格为零。修正发生在生成器内部的 x0、下一次 DDIM 更新之前，当前没有生成后的独立场景优化器。
-
-## 6. 监督、单位和实际系数
-
-### 6.1 完整动作监督
-
-|项|系数／单位|
-|---|---|
-|最终201D x0直接误差|1；root三个通道权重2，位置通道仍为m/2|
-|第二遍原始201D x0|0.5；保留原始6D纠错梯度，避免纯归一化旋转在恰好180°处驻点|
-|FK关节位置／head位置|2／1；m²|
-|global rotation matrix|0.2；旋转矩阵元素平方误差|
-|物理速度／加速度|0.025／0.0000125；m²/s²、m²/s⁴，乘 alpha_bar²|
-|绝对root／head／neck朝向|0.25／0.5／0.25；SO(3) chordal|
-|head相对root方向协调|0.1；相对旋转矩阵误差|
-|相对转向|0.02；lag=1／6／12帧，乘(30/lag)²及alpha_bar²|
-|脚速度／planting|0.075／0.1；stance 阈值0.2m/s；不是每帧静止脚的假设|
-|原始global joints与自身FK一致性|0.5；m²|
-
-朝向不能交给相机编码“自动解决”。相机处理观察坐标与安装关系；人体绝对朝向、head-root协调和转向由生成器学习及上述监督处理。速度／加速度无法单独消除恒定180°朝向错误。严重遮挡时，位置观测本身可能不足以唯一确定面向方向。
-
-### 6.2 每条可信观测轨迹
-
-位置、旋转、v/a/角速度分别用标准尺度归一化，再计算 SmoothL1；按 availability、confidence、stencil 和 joint importance 加权。位置尺度5 cm、旋转10°、速度0.15m/s、加速度1m/s²、角速度20°/s；真实PV安装p90更大时提高位置／旋转尺度。归一化分母不包含 confidence，避免把降权抵消。
-
-joint importance 为 pelvis/head=2，ankle/foot/wrist=1.5，其余=1。当前小面板标定的真实系数为：position **0.0966844**，rotation **0.025**，velocity **0.00171691**，acceleration **0.0000312168**，angular_velocity **0.00198077**，body_turn_rate **0.0025**。最后的 body_turn_rate 实际使用 GT root 角速度，是训练辅助监督，不是前端提供的可见 pelvis 轨迹；不要把它当可部署输入约束。
-
-这些系数由6类TRAIN输入×t=25／300／800共18桶的共享输出梯度比例上限确定；位置／旋转／v/a/角速度／body-turn比例目标依次0.1／0.04／0.03／0.005／0.015／0.015。[原始标定记录](../ego_exo_native30_oct12/TRAIN_gradient_scales.json)。这是初始小面板标定，尚未证明全量或重遮挡情况下各轨迹梯度同样平衡。
-
-### 6.3 几何与接触
-
-contact BCE系数0.1；contact surface distance0.2 m²；relative slip0.01 m²/s²；观察平面弱代理0.02 m²；correspondence0.01；feedback smoothness0.0001。距离／弱半空间容差2 cm，relative slip容差0.2m/s。
-
-RICH 原始顶点接触标签按原帧聚合到22部位；缺失标签 mask，不作为negative。有标接触且邻域可靠才施加距离／相对滑动；没有可信表面速度就不监督相对滑动。局部法向是朝观察相机定向的PCA平面代理，**不是完整场景SDF，不能保证无穿模**。当前没有人体-人体物理接触标签或密集自碰撞约束。
-
-## 7. 验证结果与后续需补的部分
-
-本轮 first-hit 的人／静态／刚体遮挡、远处物体不覆盖近处目标、失效源帧屏蔽、目标皮肤排除、当前与高置信度策略区分、缺失轨迹不连接均有单元检查；结果见 [UNIT_TESTS.log](UNIT_TESTS.log)。六例检查了原始整数时间轴、遮挡计数分区、失效位置置零、米制相机往返与输入／GT对应。浏览器实际交互证据见 [BROWSER_CHECKS.json](BROWSER_CHECKS.json)，截图留本地。
-
-新模型之前通过9项物理／接口检查、batch=2×192完整目标反向传播及2步DDIM有限性检查；未分配Adam状态时峰值显存约2.60GiB。场景／相机／观测条件有梯度并能影响输出，位置反馈改变动作且保持骨长。**这些证据不代表学会使用场景或朝向已修复**；未训练exo proposal还可能完全错位，导致局部覆盖率为0，反馈会关闭。[此前零步记录](../ego_exo_native30_oct12/IMPLEMENTATION_zh.md)。
-
-正式训练前建议依次落实：
-
-1. 用户查看六例并确认相机／人体／场景关系；核对RICH真实RGB边界及重投影，合成TRUMANS相机先检查可用位置，排除墙外视点。
-2. 决定正式输入是否加入硬confidence阈值；校准不同分辨率／距离／来源的可靠性，保留soft confidence和连续缺失mask，不把几何可见当实际关节精度保证。
-3. 将已验收的RICH/TRUMANS exo协议接到正式raw30导出与sampler，再重算模式／语料比例；本轮仅做diagnostic，尚未执行此项。
-4. 全量raw30导出与零步验收；接通配置尺度／noise schedule及正式native30 validation循环，重算30Hz相关指标，重新标定重遮挡／各部位监督梯度。开始训练的具体步数和质量验收另定，不自动续训旧权重。
-5. 训练后的同噪声scene移除／错配对照、局部／contact反馈消融、朝向／FK／观察误差与contact/slip统计，证明场景影响正确；与前端比较时使用同相机、坐标、尺度和可见／遮挡关节划分，分开报告整体与遮挡部位结果。
-6. 长出画／再入画、多假设自然补全、未知形态、真实前端误差和动态物体估计继续后置。六例中已有完全无高置信度关节的时刻，应保留unknown，而不是用GT补输入。跟踪身份交换、物体漏重建、反光／透明材质等真实视频问题，本轮几何模拟没有覆盖。
-
-## 8. 复现与资源
-
-在SceneMI根目录，用 `/home/wenxin/miniconda3/envs/scenemi/bin/python`：
-
-```bash
-python -m experiments.offline_camera_retrain_v1.exo_occlusion_review
-python -m unittest experiments.offline_camera_retrain_v1.test_exo_occlusion_review -v
-python -m experiments.offline_camera_retrain_v1.view_exo_occlusion_review --port 8783
-```
-
-导出器独立写 `data/exo_occlusion_review_oct12`，不打开训练器或权重。已存在的本轮缓存校验身份、协议和数组SHA256后复用，过期导出拒绝静默覆盖。大网格数组和浏览器截图留本地；代码、配置、manifest及紧凑检查记录备份到授权user-backup。磁盘库存与未选候选处理见 [VALIDATION.json](VALIDATION.json)。
+后续每次只更新上面表格的状态、证据与剩余项。可复现脚本和机器JSON保留；历史文档入口指向这里，其内容按历史日期理解。只保留一个原子可恢复last.pt；原55k与选中的3k权重保留。第一次正式训练仍须完成本清单前置项及输入可视化验收，当前暂停状态不变。

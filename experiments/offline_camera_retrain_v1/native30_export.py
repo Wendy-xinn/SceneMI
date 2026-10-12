@@ -20,6 +20,8 @@ from scipy.spatial.transform import Rotation
 from smplx.lbs import blend_shapes, vertices2joints
 
 from experiments.offline_camera_retrain_v1.data import HERE, PROJECTS, SOURCE, PARENTS
+from experiments.offline_camera_retrain_v1.native30_splits import (
+    SPLIT_PROTOCOL, LEGACY_SPLIT_PROTOCOL, normalize_split, official_sources)
 if str(HERE) not in sys.path:
     sys.path.insert(0, str(HERE))
 from experiments.offline_camera_retrain_v1.export_native20_training_scenes import (
@@ -34,27 +36,36 @@ from experiments.offline_camera_retrain_v1.export_egobody_exo import (
     camera_rays, cast_body, regional_faces)
 
 PROTOCOL = 'native30-observer-target-v1-raw-firsthit'
-DEFAULT_OUTPUT = HERE / 'data/native30_observer_target_v1'
+DEFAULT_OUTPUT = HERE / 'data/native30_official_memory_v2'
 
 
 def rows(path):
     return [json.loads(line) for line in Path(path).read_text().splitlines() if line]
 
 
-def inventory(split):
+def inventory(split, *, split_protocol=SPLIT_PROTOCOL):
+    split = normalize_split(split)
+    if split_protocol not in (SPLIT_PROTOCOL, LEGACY_SPLIT_PROTOCOL):
+        raise ValueError('Unknown split protocol')
     result = []
     exclusions = {r['sequence_id'] for r in json.loads((HERE / 'data/trumans_temporal_training_v3/exclusions.json').read_text())}
     # The old manifest provides identities/split boundaries, never 20Hz values.
     for group in ('trumans', 'egobody'):
-        for row in rows(SOURCE / f'{group}_sequences/{split}.jsonl'):
+        candidates = ([r for r in official_sources() if r['split'] == split]
+                      if group == 'egobody' and split_protocol == SPLIT_PROTOCOL
+                      else rows(SOURCE / f'{group}_sequences/{split}.jsonl'))
+        for row in candidates:
             if row['sequence_id'] in exclusions:
                 continue
-            row = dict(row, group=row.get('role', 'trumans'))
+            row = dict(row, group=row.get('role', 'trumans'), split_protocol=split_protocol)
             first = row.get('source_first_frame', 0)
             row['raw_first'] = int(first)
-            row['raw_last_exclusive'] = int(row.get('source_last_frame_exclusive',
-                np.floor(first + (row['frames_20fps'] - 1) * 1.5) + 1))
+            row['raw_last_exclusive'] = int(row['source_last_frame_exclusive'] if 'source_last_frame_exclusive' in row
+                else np.floor(first + (row['frames_20fps'] - 1) * 1.5) + 1)
             result.append(row)
+    # RICH test was not downloaded; never silently substitute val for test.
+    if split == 'test':
+        return result
     root = HERE / f"data/scene_visibility_v2_oct05/rich_{'train' if split == 'train' else 'val'}_smpl_native20_faceout_oct07"
     for folder in sorted(root.iterdir()):
         if not (folder / 'metadata.json').exists():
@@ -62,7 +73,7 @@ def inventory(split):
         meta = json.loads((folder / 'metadata.json').read_text())
         source = PROJECTS / 'RICH/extracted' / ('train_body' if split == 'train' else 'val_body') / folder.name
         ids = sorted(int(p.name) for p in source.iterdir() if p.is_dir())
-        result.append(dict(meta, group='rich', dataset='rich', split=split,
+        result.append(dict(meta, group='rich', dataset='rich', split=split, split_protocol=split_protocol,
                            sequence_id=folder.name, raw_first=ids[0], raw_last_exclusive=ids[-1]+1))
     return result
 
@@ -123,10 +134,11 @@ def raw_scene(row, q, digest):
             model = load_model('smpl', gender_role)
             fits = read_fits([fit_dir / f'results/frame_{int(f):05d}/000.pkl' for f in q], digest)
             params = resample_fits(fits, np.arange(len(q), dtype=float), 'smpl')
-            # Shape calibration uses the original TRAIN/validation profile,
-            # independent of how a sequence is chopped into export chunks.
-            pose_meta = next(r for r in rows(HERE / f'data/poses/{split}.jsonl')
-                             if r['sequence_id'] == name) if role == group else None
+            # Per-person GT shape uses its original profile path; this is not
+            # a TRAIN-fitted camera mount or population normalization statistic.
+            profile_split=row.get('pose_profile_split',split)
+            pose_meta = next(r for r in rows(HERE / f'data/poses/{profile_split}.jsonl')
+                             if r['sequence_id'] == name) if role == group and profile_split is not None else None
             beta = np.asarray(pose_meta['betas']) if pose_meta else np.median(params['betas'], 0)
             params['betas'] = np.broadcast_to(beta, params['betas'].shape).copy().astype(np.float32)
             people.append((model, params))
@@ -134,10 +146,15 @@ def raw_scene(row, q, digest):
         matrix = np.asarray(json.loads(tf.read_text())['trans']); digest.update(tf.read_bytes())
         transform = (1., matrix[:3, :3], matrix[:3, 3])
         scan = Path(sources[f'{record}/{group}']['scene_mesh'])
-        p, r, intr = raw_pv_camera(root, record, row['scene_id'], q, digest)
-        camera = (p, r) if group == 'camera_wearer' else None
-        if camera is None:
-            intr = np.broadcast_to(np.median(intr[:20], 0), intr.shape).copy()
+        if row.get('allowed_modes')==['exo']:
+            # Do not require a covered PV trajectory for a static master input.
+            # Virtual head fields below are unused and never sampled as ego.
+            camera,intr=None,None
+        else:
+            p, r, intr = raw_pv_camera(root, record, row['scene_id'], q, digest)
+            camera = (p, r) if group == 'camera_wearer' else None
+            if camera is None:
+                intr = np.broadcast_to(np.median(intr[:20], 0), intr.shape).copy()
         kind = 'smpl'; gender = info[f"body_idx_{int(Path(sources[f'{record}/{group}']['body_fits']).name.rsplit('_',1)[1])}"].split()[-1].lower()
     elif group == 'rich':
         root = PROJECTS / 'RICH/extracted'; original = 'train' if split == 'train' else 'val'
@@ -335,10 +352,18 @@ def export(row, output=DEFAULT_OUTPUT, start=None, frames=None):
         sequence_id=row['sequence_id'], bundle_id=name, split=row['split'], group=row['group'],
         dataset=row['dataset'], fps=30, frames=n, source_first=int(q[0]), source_last=int(q[-1]),
         native_body=profile, actual_virtual_mount=mount, diagnostic_only=diagnostic,
-        observation_budget='same complete sampled window; no recording-prefix/full-recording union',
+        observation_budget='static observed prefix through window end; current-frame dynamics',
         scene_unknown_policy='observed surface occupancy only; absence of points means unknown',
         dynamic_velocity_protocol='source-known rigid object poses; partner velocities unavailable',
         input_sha256=digest.hexdigest(), elapsed_s=time.monotonic()-started)
+    meta.update(split_protocol=row.get('split_protocol', LEGACY_SPLIT_PROTOCOL),
+        recording=row.get('recording'), scene_id=row.get('scene_id',row.get('scene')),
+        pose_profile_split=row.get('pose_profile_split', row['split']),
+        allowed_modes=row.get('allowed_modes',['ego','exo'] if row['group'] in ('camera_wearer','interactee') else ['ego']))
+    if row.get('official_split_csv_sha256'):
+        meta['official_split_csv_sha256'] = row['official_split_csv_sha256']
+    meta['world_frame_id'] = hashlib.sha256(np.r_[transform[0],
+        np.asarray(transform[1]).ravel(), np.asarray(transform[2]).ravel()].tobytes()).hexdigest()
     meta['output_sha256'] = {p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(folder.glob('*.npy'))}
     temp = folder / 'metadata.tmp'; temp.write_text(json.dumps(meta,indent=2)); temp.replace(folder/'metadata.json')
     return dict(path=str(folder), **meta)
@@ -347,9 +372,10 @@ def export(row, output=DEFAULT_OUTPUT, start=None, frames=None):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument('--split', choices=['train','validation'], default='train')
+    parser.add_argument('--split', choices=['train','val','validation','test'], default='train')
     parser.add_argument('--sequence'); parser.add_argument('--start', type=int)
     parser.add_argument('--frames', type=int); args = parser.parse_args()
+    args.split = normalize_split(args.split)
     candidates = inventory(args.split)
     if args.sequence:
         candidates = [r for r in candidates if r['sequence_id']==args.sequence]

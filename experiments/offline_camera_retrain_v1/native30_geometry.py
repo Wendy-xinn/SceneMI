@@ -17,7 +17,7 @@ class Native30SurfaceWindow:
     Normals are oriented towards observing cameras. A local half-plane is a
     reliable surface-patch description, never a complete signed scene SDF.
     """
-    def __init__(self, frame_points, frame_owners, cameras, *, object_positions=None,
+    def __init__(self, frame_points, frame_owners, cameras, *, static_memory=None, object_positions=None,
                  object_rotations=None, object_valid=None, fps=30., voxel=.025):
         if fps != 30:
             raise ValueError('This surface protocol requires native30')
@@ -29,6 +29,10 @@ class Native30SurfaceWindow:
             raise ValueError('Nonfinite observed surface')
         static = owners == 0
         p = points[static]; cam = np.broadcast_to(self.cameras[:,None], points.shape)[static]
+        if static_memory is not None:
+            p, cam = (np.asarray(v, np.float32) for v in static_memory)
+            if p.shape != cam.shape or p.ndim != 2 or p.shape[1] != 3 or not np.isfinite([p, cam]).all():
+                raise ValueError('Invalid observed static memory points/cameras')
         if len(p):
             _, ix = np.unique(np.floor(p/voxel).astype(np.int32), axis=0, return_index=True)
             ix.sort(); p, cam = p[ix], cam[ix]

@@ -1,0 +1,94 @@
+{
+  "split_protocol": "egobody-official-recording-v2",
+  "memory_protocol": "observed-static-prefix-through-window-end-v2",
+  "optimizer_steps": 0,
+  "official_egobody": {
+    "train": {
+      "official_recordings": 65,
+      "available_recordings": 65,
+      "available_segments": 202,
+      "roles": {
+        "camera_wearer": 94,
+        "interactee": 108
+      },
+      "exo_only_segments": 2,
+      "missing_recordings": []
+    },
+    "validation": {
+      "official_recordings": 17,
+      "available_recordings": 17,
+      "available_segments": 53,
+      "roles": {
+        "camera_wearer": 25,
+        "interactee": 28
+      },
+      "exo_only_segments": 0,
+      "missing_recordings": []
+    },
+    "test": {
+      "official_recordings": 43,
+      "available_recordings": 43,
+      "available_segments": 129,
+      "roles": {
+        "camera_wearer": 63,
+        "interactee": 66
+      },
+      "exo_only_segments": 2,
+      "missing_recordings": []
+    }
+  },
+  "source_index": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_official_memory_v2/source_index.jsonl",
+  "source_counts": {
+    "train": {
+      "trumans": 469,
+      "camera_wearer": 94,
+      "interactee": 108,
+      "rich": 62
+    },
+    "validation": {
+      "trumans": 33,
+      "camera_wearer": 25,
+      "interactee": 28,
+      "rich": 28
+    },
+    "test": {
+      "trumans": 58,
+      "camera_wearer": 63,
+      "interactee": 66
+    }
+  },
+  "checks": {
+    "passed": 9,
+    "errors": 0,
+    "failures": 0
+  },
+  "memory_budget": "same-observer observed static prefix through window end; dynamics current frame",
+  "memory_scope": "available exported observation segments only; no surfaces from gaps/full scans",
+  "training_ready": false,
+  "pending": [
+    "full_raw30_export",
+    "official_TRAIN_camera_mount_refit",
+    "GT_quality_masks",
+    "observation_noise_and_loss_config",
+    "formal_validation",
+    "visual_acceptance"
+  ],
+  "input_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_splits.py": "6c3515b57d82fede2012c717c1e849c373a7cd7be723967feb38c41f68e408a1",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_memory.py": "06edc0cd244a4a1cbb1fc03e13a578405915169986063e449aee822eab46a415",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_data.py": "e9360356c9e22912e78e3e6b1f44b5dc856623b1bb772040ad11711ff2f5a702",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_export.py": "1cb2657adddd8d5019b0df9c027a3ded153464cb2b6bb582a826518fb72d951f",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observations.py": "c15e99c54b3cd6f3ebcb357a0b0af5731bcc2fbe41cd5bd3bbe18b12c64a64ff",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_geometry.py": "cec1ff780ce807c0b653ebb872f5f974319762984eead2b0d3615c3c4bb553d8",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_config.json": "cbc28fb86a1d699f4a3e831169e4cdf3b3099721fa3ce43edd3480b402659590",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_native30_protocol_v2.py": "8d6f73c5f63746eaef0c8cf1f4ddef8a9ffec9ee2a40e3a143039c716c7b9bb5",
+    "/home/wenxin/projects/egobody/data_splits.csv": "196a9953e118f378b929ec303cd42b4af3719507dc75ef650c8372dbb577a639",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_official_memory_v2/source_index.jsonl": "e6f7150adc5ec29acb1c03d896a0f6a84f4b46b254c1be5462b8ef21193442a2",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data/sequences.jsonl": "f5f514a45524ce931b771ecb90d5d5eb7a38473d32df04ef633299fbf089578f",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data/egobody_sequences/train.jsonl": "75b3e2e49e9b4a1bb72b9d60c0b714959ca68b3e96858b9bb84f64c284f00b99",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data/egobody_sequences/validation.jsonl": "0abde6a9da167826e8b645a514b9aea1a1c6ef198d616b335fbddecbe9893b76",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data/egobody_sequences/test.jsonl": "db86dcaff0f1a5b8defe8900d3ddbbd83d3441573b1b363f9f074cf928bb6af0"
+  },
+  "disk_free_bytes_before": 70784110592,
+  "disk_free_bytes_after": 70784110592
+}

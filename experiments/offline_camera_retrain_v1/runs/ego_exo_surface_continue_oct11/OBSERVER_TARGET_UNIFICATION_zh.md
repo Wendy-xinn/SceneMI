@@ -1,14 +1,6 @@
+> 历史方案存档，不再更新。当前模型、实验设置与全部待办只看 [唯一总清单](../exo_occlusion_review_oct12/EXPERIMENT_AND_ARCHITECTURE_zh.md)。
+
 # 10 月 12 日：ego/exo 统一模型任务表与输出头选择
-
-重训前的新核对见 [GT质量、输入扰动、窗口／场景记忆与benchmark划分](../exo_occlusion_review_oct12/TRAINING_PROTOCOL_RECOMMENDATION_zh.md)。当前EgoBody是内部场景划分，包含官方test来源；正式比较应另建版本化官方协议。训练继续暂停。
-
-后续定位与排查见 [exo 遮挡恢复方案、源手臂异常及 TRUMANS 外参](../exo_occlusion_review_oct12/FOLLOWUP_DESIGN_AND_AUDIT_zh.md)：保留降权，以遮挡部位修复和场景增益为主；共享输出效果需消融验证。训练保持暂停。
-
-最新 exo 检查：EgoBody、TRUMANS、RICH 各两个原始30Hz片段，见 [viser 六例检查](http://127.0.0.1:8783)、[详细实验设置与模型架构](../exo_occlusion_review_oct12/EXPERIMENT_AND_ARCHITECTURE_zh.md)、[遮挡统计与问题](../exo_occlusion_review_oct12/OCCLUSION_FINDINGS_zh.md)。当前有效关节加confidence降权与≥0.7硬筛选分开展示；后者只用于诊断。EgoBody/RICH使用真实标定，TRUMANS明确为合成exo。训练继续暂停；新增RICH/TRUMANS检查数据尚未接入正式训练sampler。
-
-用户已同意30Hz重训方案，并补充接触反馈需要修正位置。**最新代码为独立 native30 版本：统一 anatomical 观测、相机几何编码、场景 patch/动态 owner token、多尺度 vertex 查询、时序 root 位移与 SO(3) 反馈均已接入。** 实现、配置、输入回放和零步验收见 [native30 实现记录](../ego_exo_native30_oct12/IMPLEMENTATION_zh.md)。训练仍暂停，当前只有检查用的8段 raw30缓存，全量训练缓存未导出。
-
-下文保留此前20Hz v2阶段的讨论及任务表，**“场景保持现状”等状态只适用于该旧阶段**。第一版共享 ego/exo 输出、保留 interactee 合成 ego 和最后再处理长缺失的决策继续适用。旧v2零步配置见[实现记录](../ego_exo_camera_config_oct12/IMPLEMENTATION_zh.md)，旧3k见 [CURRENT_MODEL_AND_CONFIG_zh.md](CURRENT_MODEL_AND_CONFIG_zh.md)。原55k/3k权重与20Hz数据保留。
 
 ## 1. 合成 interactee ego 是训练增广，继续保留
 

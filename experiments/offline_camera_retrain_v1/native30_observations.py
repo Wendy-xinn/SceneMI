@@ -10,6 +10,7 @@ from experiments.offline_camera_retrain_v1.data import rotation6d
 from experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations
 from experiments.offline_camera_retrain_v1.supervision import IDENTITY_6D, rotation_from_6d
 from experiments.offline_camera_retrain_v1.native30_geometry import Native30SurfaceWindow
+from experiments.offline_camera_retrain_v1.native30_memory import ObservedStaticPrefix, frozen_memory_entries
 from experiments.offline_camera_retrain_v1.unified_geometry import occupancy_from_points
 from experiments.offline_camera_retrain_v1.camera_v2_observations import validate_mount, CAMERA_KEYS
 
@@ -84,6 +85,8 @@ class Native30ObservationBuilder:
                 raise ValueError('Approximate real mounts must be frozen on TRAIN')
 
     def build(self,data,sample,identity,mode='ego',joints=None,noise_rng=None):
+        if mode not in identity.get('allowed_modes',['ego','exo']):
+            raise ValueError('Observer mode unavailable in this source bundle')
         prepared={k:v.copy() for k,v in sample.items()}; frames=len(prepared['camera'])
         folder=identity['path'];sl=slice(identity['start'],identity['start']+frames)
         origin=np.asarray(identity['origin']);anchor=np.asarray(identity['anchor'])
@@ -145,7 +148,11 @@ class Native30ObservationBuilder:
             kwargs=dict(object_positions=(np.asarray(data.load(folder,'object_positions')[sl])-origin)@anchor.T,
                         object_rotations=anchor[None,None]@np.asarray(data.load(folder,'object_rotations')[sl]),
                         object_valid=np.asarray(data.load(folder,'object_valid')[sl]))
-        scene=Native30SurfaceWindow(points,owners,observing_cameras,**kwargs)
+        if not hasattr(data,'scene_memory'):
+            # Standalone observation loaders retain the whole exported prefix.
+            data.scene_memory=ObservedStaticPrefix(data.load,[identity])
+        scene=Native30SurfaceWindow(points,owners,observing_cameras,
+            static_memory=data.scene_memory.window(identity,mode,frames),**kwargs)
         prepared.update(trajectory=trajectory,observation_meta=meta,observation_uncertainty=uncertainty,
             camera=cam,camera_available=ca,camera_confidence=cc,camera_intrinsics=np.asarray(intr,np.float32),
             camera_intrinsics_valid=np.ones(frames,np.float32),camera_context=context,
@@ -158,7 +165,7 @@ class Native30ObservationBuilder:
         return prepared,scene,self.skin_cache.get(identity['native_body'])
 
 
-def load_frozen_exo(folder,*,start=0,frames=192,skin_cache,device='cuda'):
+def load_frozen_exo(folder,*,start=0,frames=192,skin_cache,device='cuda',memory_manifest=None):
     """Deployment-style master input: never open body-motion/contact labels."""
     from experiments.offline_camera_retrain_v1.data import anchor_rotation,collate
     folder=Path(folder);meta=json.loads((folder/'metadata.json').read_text())
@@ -168,13 +175,14 @@ def load_frozen_exo(folder,*,start=0,frames=192,skin_cache,device='cuda'):
         raise ValueError('Frozen observation window uncovered')
     allowed={'exo_sensor_to_world','exo_intrinsics','exo_trajectory_world','exo_position_available',
              'exo_position_confidence','exo_frame_points_world','exo_frame_owner','object_positions',
-             'object_rotations','object_valid','rest'}
+             'object_rotations','object_valid','rest','source_frame_ids','observation_valid'}
     class ObservationsOnly:
         def load(self,path,key):
             if key not in allowed:
                 raise ValueError(f'Body truth is forbidden in frozen input loader: {key}')
             return np.load(Path(path)/f'{key}.npy',mmap_mode='r')
     source=ObservationsOnly();transform=source.load(folder,'exo_sensor_to_world')
+    source.scene_memory=ObservedStaticPrefix(source.load,frozen_memory_entries(folder,meta,memory_manifest))
     camera_r=np.broadcast_to(transform[:3,:3],(frames,3,3));anchor=np.asarray(anchor_rotation(camera_r),np.float64)
     camera=np.concatenate((np.zeros((frames,3)),rotation6d(anchor[None]@camera_r)), -1).astype(np.float32)
     sample=dict(camera=camera,rest=np.asarray(source.load(folder,'rest')).copy(),
@@ -188,7 +196,7 @@ def load_frozen_exo(folder,*,start=0,frames=192,skin_cache,device='cuda'):
     return inference_payload(batch)
 
 
-def load_frozen_ego(folder,*,mounts,start=0,frames=192,skin_cache,device='cuda'):
+def load_frozen_ego(folder,*,mounts,start=0,frames=192,skin_cache,device='cuda',memory_manifest=None):
     """Camera-only self input; source body-motion and contact files are forbidden."""
     from experiments.offline_camera_retrain_v1.data import anchor_rotation,collate
     folder=Path(folder);meta=json.loads((folder/'metadata.json').read_text())
@@ -196,12 +204,13 @@ def load_frozen_ego(folder,*,mounts,start=0,frames=192,skin_cache,device='cuda')
         raise ValueError('Uncovered raw30 self observation window')
     allowed={'camera_position_scenemi_yup','camera_rotation_scenemi_yup','camera_intrinsics_128x96',
              'visible_frame_points_scenemi_yup','visible_frame_owner','observation_valid','rest',
-             'object_positions','object_rotations','object_valid'}
+             'object_positions','object_rotations','object_valid','source_frame_ids'}
     class ObservationsOnly:
         def load(self,path,key):
             if key not in allowed:raise ValueError(f'Body truth forbidden: {key}')
             return np.load(Path(path)/f'{key}.npy',mmap_mode='r')
     source=ObservationsOnly();sl=slice(start,start+frames)
+    source.scene_memory=ObservedStaticPrefix(source.load,frozen_memory_entries(folder,meta,memory_manifest))
     p=np.asarray(source.load(folder,'camera_position_scenemi_yup')[sl]);r=np.asarray(source.load(folder,'camera_rotation_scenemi_yup')[sl])
     anchor=np.asarray(anchor_rotation(r),np.float64);origin=p[0]
     camera=np.concatenate(((p-origin)@anchor.T/2,rotation6d(anchor[None]@r)), -1).astype(np.float32)

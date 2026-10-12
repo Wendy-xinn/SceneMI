@@ -1,3 +1,5 @@
+> 历史方案存档，不再更新。当前模型、实验设置与全部待办只看 [唯一总清单](../exo_occlusion_review_oct12/EXPERIMENT_AND_ARCHITECTURE_zh.md)。
+
 # 10 月 12 日：exo 可视化验收与场景改进方案
 
 最新窗口／场景记忆与重训顺序见 [训练协议建议](../exo_occlusion_review_oct12/TRAINING_PROTOCOL_RECOMMENDATION_zh.md)：当前仅同窗口静态观察并集；正式训练前需补GT质量、扰动／评估接口及EgoBody官方benchmark划分。

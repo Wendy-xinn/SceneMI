@@ -57,6 +57,10 @@ def read_config(path=CONFIG_PATH):
         raise ValueError('Observation scale definitions changed')
     if config['scene']['scales_m']!=[.08,.25,.6] or config['scene']['patch_tokens']!=16 or config['scene']['neighbors_per_scale']!=8:
         raise ValueError('Scene representation differs from current implementation')
+    from experiments.offline_camera_retrain_v1.native30_splits import SPLIT_PROTOCOL
+    from experiments.offline_camera_retrain_v1.native30_memory import MEMORY_PROTOCOL
+    if config.get('split_protocol')!=SPLIT_PROTOCOL or config['scene'].get('memory_protocol')!=MEMORY_PROTOCOL:
+        raise ValueError('Official splits and cross-window observed memory must be configured explicitly')
     if config['noise']['steps']!=1000 or config['noise']['low_noise_steps']>1000:
         raise ValueError('Feedback schedule requires the registered cosine1000 clock')
     if not 0<config['ego_probability']<1 or not 0<=config['ego_head_only_probability']<=1:
@@ -75,6 +79,10 @@ def make_model(config):
 
 def dataset_digest(data):
     report={str(data.manifest.resolve()):sha256(data.manifest)}
+    from experiments.offline_camera_retrain_v1.native30_splits import OFFICIAL_CSV, SPLITS
+    from experiments.offline_camera_retrain_v1.data import SOURCE
+    for path in [OFFICIAL_CSV,SOURCE/'sequences.jsonl']+[SOURCE/f'{g}_sequences/{s}.jsonl' for g in ('egobody','trumans') for s in SPLITS]:
+        report[str(path.resolve())]=sha256(path)
     # Skinning depends on immutable native templates/weights too, rather than
     # only cached rest joints. Future training checks the same fingerprints.
     body_paths=list((HERE.parents[1]/'body_models/smplx').glob('SMPLX_*.*'))
@@ -104,7 +112,7 @@ def export_review(config):
     audit=json.loads((HERE/'runs/ego_exo_retrain_design_oct12/READONLY_HEAD_AUDIT.json').read_text())
     result=[]
     for entry in audit['rows']:
-        row=next(r for r in inventory(entry['split']) if r['sequence_id']==entry['sequence_id'])
+        row=next(r for r in inventory(entry['split'],split_protocol='legacy-internal-scene-v1') if r['sequence_id']==entry['sequence_id'])
         result.append(export(row,folder,start=int(entry['source_start_30fps']),frames=config['frames']))
         temp=folder/'manifest.tmp';temp.write_text(''.join(json.dumps(r)+'\n' for r in result));temp.replace(folder/'manifest.jsonl')
     write_json(folder/'review_scope.json',dict(diagnostic_only=True,full_training_coverage=False,
@@ -122,12 +130,22 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     manifest=HERE/config['train_manifest' if full_data else 'review_manifest']
     data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'])
     validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'])
-    mounts=json.loads((HERE/config['mount_defaults']).read_text());skins=Native30SkinAnchorCache()
+    mount_path=HERE/config['mount_defaults' if full_data else 'diagnostic_mount_defaults']
+    mounts=json.loads(mount_path.read_text());skins=Native30SkinAnchorCache()
+    if full_data:
+        from experiments.offline_camera_retrain_v1.native30_splits import SPLIT_PROTOCOL, OFFICIAL_CSV, official_recordings
+        for mount in mounts.values():
+            records=mount.get('fitting_recordings',[])
+            if mount.get('split_protocol')!=SPLIT_PROTOCOL or mount.get('official_split_csv_sha256')!=sha256(OFFICIAL_CSV) or not records:
+                raise ValueError('Refit camera mounts on official TRAIN and record calibration provenance')
+            if any(official_recordings().get(r)!='train' for r in records):
+                raise ValueError('Camera mount calibration contains official val/test recordings')
     builder=Native30ObservationBuilder(skins,mounts);cases=[];train_cases=[];alignment=[]
     for source in (data,validation):
         for group in source.members:
             for mode in ('ego','exo') if group in ('camera_wearer','interactee') else ('ego',):
-                sample,identity=source.sample(group,mode,member=0,start=int(source.members[group][0][1][0]),yaw=0)
+                mi=next(i for i,(meta,_) in enumerate(source.members[group]) if mode in meta.get('allowed_modes',['ego','exo']))
+                sample,identity=source.sample(group,mode,member=mi,start=int(source.members[group][mi][1][0]),yaw=0)
                 sample,scene,asset=builder.build(source,sample,identity,mode,joints=None)
                 item=(sample,scene,asset,mode);label=f'{source.split}/{group}/{mode}'
                 cases.append((label,item,identity))
@@ -224,14 +242,14 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     # Independent frozen loader cannot read GT motion/contact even accidentally.
     item=exo;label,_,identity=next(x for x in train_cases if x[0]=='train/camera_wearer/exo')
     baseline=collate_observations([item]);known=inference_payload(baseline)
-    frozen=load_frozen_exo(identity['path'],skin_cache=skins)
+    frozen=load_frozen_exo(identity['path'],start=identity['start'],skin_cache=skins,memory_manifest=manifest)
     for key in ('trajectory','observation_meta','camera','occupancy'):
         if not torch.equal(known[key],frozen[key]):raise AssertionError(f'Frozen observations differ: {key}')
     checks['frozen_no_body_truth_loader']=True
     for label,item,identity in cases:
         if item[3]!='ego':continue
         expected=inference_payload(collate_observations([item]))
-        actual=load_frozen_ego(identity['path'],start=identity['start'],skin_cache=skins,mounts=mounts)
+        actual=load_frozen_ego(identity['path'],start=identity['start'],skin_cache=skins,mounts=mounts,memory_manifest=manifest)
         for key in ('trajectory','observation_meta','camera','occupancy'):
             if not torch.equal(expected[key],actual[key]):raise AssertionError(f'Frozen self input mismatch: {label}/{key}')
     checks['frozen_self_camera_head_without_body_truth']=True
@@ -317,7 +335,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
         alignment=alignment)
     fingerprints=dataset_digest(data)|dataset_digest(validation)
     effective=dict(config=config,data_mode=report['data_mode'],sampling_plan=data.sampling_plan(config['ego_probability']),
-        observation_coefficients=weights,mount_defaults_sha256=sha256(HERE/config['mount_defaults']),
+        observation_coefficients=weights,mount_defaults_sha256=sha256(mount_path),
         data_sha256=fingerprints,code_sha256=code_hashes(),torch_version=torch.__version__,
         normalization='motion positions m/2; physical derivatives SI',optimizer_steps=0)
     write_json(folder/'effective_config.json',effective);write_json(folder/'input_checks.json',report)
