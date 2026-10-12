@@ -7,13 +7,14 @@ from scipy.spatial.transform import Rotation
 
 from experiments.offline_camera_retrain_v1.native30_export import PROTOCOL, inventory
 from experiments.offline_camera_retrain_v1.native30_splits import normalize_split, validate_official_bundle
-from experiments.offline_camera_retrain_v1.native30_memory import ObservedStaticPrefix
+from experiments.offline_camera_retrain_v1.native30_memory import ObservedStaticMemory, OFFLINE_MEMORY_PROTOCOL
 from experiments.offline_camera_retrain_v1.data import anchor_rotation, rotation6d
 from experiments.offline_camera_retrain_v1.supervision import IDENTITY_6D
 
 
 class Native30Data:
-    def __init__(self, manifest, split, seed=20261012, *, diagnostic=False, frames=192):
+    def __init__(self, manifest, split, seed=20261012, *, diagnostic=False, frames=192,
+                 memory_protocol=OFFLINE_MEMORY_PROTOCOL):
         split=normalize_split(split)
         self.manifest=Path(manifest); self.split=split; self.rng=np.random.default_rng(seed)
         self.frames=frames; self.members={g:[] for g in ('trumans','camera_wearer','interactee','rich')}
@@ -58,7 +59,7 @@ class Native30Data:
             covered={(r['group'],r['sequence_id']) for r in all_rows if r['split']==split and not r['diagnostic_only']}
             if expected-covered:
                 raise ValueError(f'Full raw30 coverage missing {len(expected-covered)} sources; no native20 fallback')
-        self.scene_memory=ObservedStaticPrefix(self.load,memory_entries)
+        self.scene_memory=ObservedStaticMemory(self.load,memory_entries,protocol=memory_protocol)
 
     def load(self, folder, key):
         cache=self.arrays.setdefault(str(folder),{})

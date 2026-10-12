@@ -9,7 +9,7 @@ from experiments.offline_camera_retrain_v1.native30_splits import (
 from experiments.offline_camera_retrain_v1.native30_export import inventory
 from experiments.offline_camera_retrain_v1.native30_geometry import Native30SurfaceWindow
 from experiments.offline_camera_retrain_v1.native30_data import Native30Data
-from experiments.offline_camera_retrain_v1.native30_memory import ObservedStaticPrefix
+from experiments.offline_camera_retrain_v1.native30_memory import ObservedStaticPrefix, ObservedStaticMemory, OFFLINE_MEMORY_PROTOCOL
 from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder
 
 
@@ -104,6 +104,43 @@ class MemoryTests(unittest.TestCase):
         p,c=memory.window(shifted,'ego',2)
         np.testing.assert_allclose(p@a+origin,[[.2,0,0]],atol=1e-6)
         np.testing.assert_allclose(c@a+origin,[[0,0,0]],atol=1e-6)
+
+    def test_offline_union_uses_later_static_observation_but_no_dynamic_history(self):
+        memory=ObservedStaticMemory(self.load,[self.meta],protocol=OFFLINE_MEMORY_PROTOCOL)
+        static=memory.window(self.meta,'ego',2)
+        np.testing.assert_allclose(static[0],[[.2,0,0],[9,0,0]])
+        prefix=ObservedStaticPrefix(self.load,[self.meta]).window(self.meta,'ego',2)
+        np.testing.assert_allclose(prefix[0],[[.2,0,0]])
+        scene=Native30SurfaceWindow(self.arrays['visible_frame_points_scenemi_yup'][2:4],
+            self.arrays['visible_frame_owner'][2:4],np.zeros((2,3)),static_memory=static)
+        for t,cloud in enumerate(scene.dynamic):
+            np.testing.assert_allclose(cloud['points'],[[4+t,0,0]])
+
+    def test_offline_union_is_window_order_independent_and_split_world_isolated(self):
+        other_split=dict(self.meta,path='/observations/test',split='test')
+        other_world=dict(self.meta,path='/observations/otherworld',world_frame_id='different-world')
+        def load(path,key):
+            value=self.load(path,key).copy()
+            if path!=self.meta['path'] and key=='visible_frame_points_scenemi_yup':value+=100
+            return value
+        memory=ObservedStaticMemory(load,[self.meta,other_split,other_world])
+        a=memory.window(dict(self.meta,start=0),'ego',2)[0]
+        b=memory.window(dict(self.meta,start=4),'ego',2)[0]
+        np.testing.assert_allclose(a,b)
+        self.assertLess(a.max(),100)
+
+    def test_offline_union_can_be_restricted_to_supplied_benchmark_segment(self):
+        later=dict(self.meta,path='/observations/later',sequence_id='later',source_first=6)
+        def load(path,key):
+            value=self.load(path,key).copy()
+            if path==later['path']:
+                if key=='source_frame_ids':value+=6
+                if key=='visible_frame_points_scenemi_yup':value+=100
+            return value
+        full=ObservedStaticMemory(load,[self.meta,later]).window(self.meta,'ego',2)[0]
+        restricted=ObservedStaticMemory(load,[self.meta]).window(self.meta,'ego',2)[0]
+        self.assertEqual(len(full),4)
+        self.assertEqual(len(restricted),2)
 
     def test_prior_source_segment_persists_and_observers_are_isolated(self):
         part_b=dict(self.meta,path='/observations/partB',sequence_id='partB',source_first=6,start=0)

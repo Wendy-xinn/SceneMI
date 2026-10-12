@@ -38,8 +38,8 @@ def train(config_path,steps,output=None,resume=False):
     if (folder/'last.pt').exists()!=bool(resume):
         raise ValueError('Existing checkpoints require explicit resume; missing checkpoint cannot resume')
     torch.set_num_threads(4);torch.manual_seed(config['seed']);np.random.seed(config['seed'])
-    data=Native30Data(HERE/config['train_manifest'],'train',config['seed'])
-    val=Native30Data(HERE/config['train_manifest'],'validation',config['seed']+1)
+    data=Native30Data(HERE/config['train_manifest'],'train',config['seed'],memory_protocol=config['scene']['memory_protocol'])
+    val=Native30Data(HERE/config['train_manifest'],'validation',config['seed']+1,memory_protocol=config['scene']['memory_protocol'])
     if dataset_digest(data)|dataset_digest(val)!=effective['data_sha256']:
         raise ValueError('Native30 data changed after preparation')
     plan=data.sampling_plan(config['ego_probability'])

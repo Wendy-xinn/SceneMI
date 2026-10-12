@@ -58,8 +58,8 @@ def read_config(path=CONFIG_PATH):
     if config['scene']['scales_m']!=[.08,.25,.6] or config['scene']['patch_tokens']!=16 or config['scene']['neighbors_per_scale']!=8:
         raise ValueError('Scene representation differs from current implementation')
     from experiments.offline_camera_retrain_v1.native30_splits import SPLIT_PROTOCOL
-    from experiments.offline_camera_retrain_v1.native30_memory import MEMORY_PROTOCOL
-    if config.get('split_protocol')!=SPLIT_PROTOCOL or config['scene'].get('memory_protocol')!=MEMORY_PROTOCOL:
+    from experiments.offline_camera_retrain_v1.native30_memory import MEMORY_PROTOCOLS
+    if config.get('split_protocol')!=SPLIT_PROTOCOL or config['scene'].get('memory_protocol') not in MEMORY_PROTOCOLS:
         raise ValueError('Official splits and cross-window observed memory must be configured explicitly')
     if config['noise']['steps']!=1000 or config['noise']['low_noise_steps']>1000:
         raise ValueError('Feedback schedule requires the registered cosine1000 clock')
@@ -128,8 +128,9 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     write_json(folder/'input_checks.json',report);started=time.monotonic()
     torch.set_num_threads(4);torch.manual_seed(config['seed']);np.random.seed(config['seed'])
     manifest=HERE/config['train_manifest' if full_data else 'review_manifest']
-    data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'])
-    validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'])
+    memory_protocol=config['scene']['memory_protocol']
+    data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol)
+    validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol)
     mount_path=HERE/config['mount_defaults' if full_data else 'diagnostic_mount_defaults']
     mounts=json.loads(mount_path.read_text());skins=Native30SkinAnchorCache()
     if full_data:
@@ -242,14 +243,14 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     # Independent frozen loader cannot read GT motion/contact even accidentally.
     item=exo;label,_,identity=next(x for x in train_cases if x[0]=='train/camera_wearer/exo')
     baseline=collate_observations([item]);known=inference_payload(baseline)
-    frozen=load_frozen_exo(identity['path'],start=identity['start'],skin_cache=skins,memory_manifest=manifest)
+    frozen=load_frozen_exo(identity['path'],start=identity['start'],skin_cache=skins,memory_manifest=manifest,memory_protocol=memory_protocol)
     for key in ('trajectory','observation_meta','camera','occupancy'):
         if not torch.equal(known[key],frozen[key]):raise AssertionError(f'Frozen observations differ: {key}')
     checks['frozen_no_body_truth_loader']=True
     for label,item,identity in cases:
         if item[3]!='ego':continue
         expected=inference_payload(collate_observations([item]))
-        actual=load_frozen_ego(identity['path'],start=identity['start'],skin_cache=skins,mounts=mounts,memory_manifest=manifest)
+        actual=load_frozen_ego(identity['path'],start=identity['start'],skin_cache=skins,mounts=mounts,memory_manifest=manifest,memory_protocol=memory_protocol)
         for key in ('trajectory','observation_meta','camera','occupancy'):
             if not torch.equal(expected[key],actual[key]):raise AssertionError(f'Frozen self input mismatch: {label}/{key}')
     checks['frozen_self_camera_head_without_body_truth']=True

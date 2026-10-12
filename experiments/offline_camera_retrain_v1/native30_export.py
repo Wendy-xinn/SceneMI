@@ -352,7 +352,7 @@ def export(row, output=DEFAULT_OUTPUT, start=None, frames=None):
         sequence_id=row['sequence_id'], bundle_id=name, split=row['split'], group=row['group'],
         dataset=row['dataset'], fps=30, frames=n, source_first=int(q[0]), source_last=int(q[-1]),
         native_body=profile, actual_virtual_mount=mount, diagnostic_only=diagnostic,
-        observation_budget='static observed prefix through window end; current-frame dynamics',
+        observation_budget='consumer selects recording observed-static union or prefix; current-frame dynamics',
         scene_unknown_policy='observed surface occupancy only; absence of points means unknown',
         dynamic_velocity_protocol='source-known rigid object poses; partner velocities unavailable',
         input_sha256=digest.hexdigest(), elapsed_s=time.monotonic()-started)

@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-13",
+  "optimizer_steps": 0,
+  "training_ready": false,
+  "main_memory_protocol": "observed-static-recording-union-v3",
+  "control_memory_protocol": "observed-static-prefix-through-window-end-v2",
+  "source_coverage": "available exported same-observer segments only; full recording observations not yet exported",
+  "checks": {
+    "passed": 28,
+    "failures": 0,
+    "errors": 0
+  },
+  "real_input_equivalence": [
+    {
+      "protocol": "observed-static-recording-union-v3",
+      "mode": "ego",
+      "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+      "source_first": 1551,
+      "window_start": 64,
+      "window_frames": 64,
+      "static_points": 7443,
+      "frozen_matches_training_input": true
+    },
+    {
+      "protocol": "observed-static-recording-union-v3",
+      "mode": "exo",
+      "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+      "source_first": 1551,
+      "window_start": 64,
+      "window_frames": 64,
+      "static_points": 6549,
+      "frozen_matches_training_input": true
+    },
+    {
+      "protocol": "observed-static-prefix-through-window-end-v2",
+      "mode": "ego",
+      "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+      "source_first": 1551,
+      "window_start": 64,
+      "window_frames": 64,
+      "static_points": 4932,
+      "frozen_matches_training_input": true
+    },
+    {
+      "protocol": "observed-static-prefix-through-window-end-v2",
+      "mode": "exo",
+      "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+      "source_first": 1551,
+      "window_start": 64,
+      "window_frames": 64,
+      "static_points": 5335,
+      "frozen_matches_training_input": true
+    }
+  ],
+  "legacy_3k_noise": {
+    "completed_steps": 3000,
+    "code_sha256": {
+      "unified_observations.py": "2d3747fd0b6b2d8109e07d817974e074a944524f4c73bd76c1fdee0c53afa63f",
+      "train_unified_continue.py": "fa1b17ad821361fd9f685427feca0d3323a9fa8d3290c8ae9ac89ba6fadc7111"
+    },
+    "position_drift_probability": 0.5,
+    "offset_sigma_m": 0.01,
+    "linear_drift_endpoint_sigma_m": 0.02,
+    "gap_probability": 0.3,
+    "gap_frames": 12,
+    "fps": 20,
+    "rotation_noise": false
+  },
+  "native30_noise": {
+    "training_steps": 0,
+    "offset_sigma_m": 0.01,
+    "linear_drift_endpoint_sigma_m": 0.02,
+    "gap_probability": 0.3,
+    "gap_frames": 18,
+    "fps": 30,
+    "rotation_noise": false,
+    "validation": "ordinary frozen inputs do not request random noise"
+  },
+  "input_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_memory.py": "989d79df12dda099ea61083aa4c1fe02099e9b290cb1f55b97e9752a55f8f2a8",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_data.py": "61ad8e930a717607b9546508ba27a146cfadc55a5ee7ab8ae9642ac2b973dc20",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observations.py": "ba69d225da6a2f2395137910694e5efd4e79c8fffdfec88c33db5edab24d057e",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_config.json": "08dd7402665c03a78a3d1db15e650cfa391a4cd854c539933f1d6faf2ae37ae6",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/prepare_native30.py": "3636aebaca9ed71fecbb269d9220958de27cf97864548669193a1d8104a7c77a",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/train_native30.py": "f65b61737d76f6049ed2f3a25f7a5b3a7d18a8e32fac843c435366b7637a9244",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_native30_protocol_v2.py": "b84c926036a1f9d481ffc98c39b432cd292bc4d2d4470827a3fda3ead45ead64",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_observer_target_review_oct12/manifest.jsonl": "8f98576e2f5b5ead18e613de777114e39232d3888ec89245b6a4607287609f8d",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/ego_exo_surface_continue_oct11/protocol.json": "e3e016aecb8e5ed0d43eb5fe0de831250969cb2462a8e1ef911533df9727d333",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/config.json": "18e7a4cbeb86e30da1269b082e1eb58731f74e04b6c296f6b5a8a993be7258ac",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/literature_turn_audit_oct10/summary.json": "4f134f78ee7ff5b42a289fa83bfc3787e4e8bfa4a0b17a37886f3ce3110d2568"
+  },
+  "disk_free_bytes_before": 70782136320,
+  "disk_free_bytes_after": 70782132224,
+  "elapsed_s": 2.213008868973702
+}

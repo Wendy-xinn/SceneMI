@@ -1,7 +1,8 @@
 """World-space observed static maps, independent of motion-window sampling.
 
-Only owner=0 first-hit observations enter memory. First-seen timestamps keep
-later windows from using future observations. Dynamic surfaces remain per-frame.
+Only owner=0 first-hit observations enter memory. Offline reconstruction uses
+the supplied recording's observed union; a timestamp-filtered prefix remains
+available as a separate control. Dynamic surfaces remain per-frame.
 """
 from collections import OrderedDict
 from pathlib import Path
@@ -10,6 +11,8 @@ import re
 import numpy as np
 
 MEMORY_PROTOCOL = 'observed-static-prefix-through-window-end-v2'
+OFFLINE_MEMORY_PROTOCOL = 'observed-static-recording-union-v3'
+MEMORY_PROTOCOLS = (MEMORY_PROTOCOL, OFFLINE_MEMORY_PROTOCOL)
 
 
 def observer_stream_key(meta, mode):
@@ -26,8 +29,11 @@ def observer_stream_key(meta, mode):
             meta.get('scene_id', meta.get('scene')), meta.get('world_frame_id'))
 
 
-class ObservedStaticPrefix:
-    def __init__(self, load, entries, *, voxel=.025, cached_streams=2):
+class ObservedStaticMemory:
+    def __init__(self, load, entries, *, protocol=OFFLINE_MEMORY_PROTOCOL, voxel=.025, cached_streams=2):
+        if protocol not in MEMORY_PROTOCOLS:
+            raise ValueError('Unsupported observed scene-memory protocol')
+        self.protocol = protocol
         self.load = load
         self.entries = entries
         self.voxel = voxel
@@ -92,9 +98,15 @@ class ObservedStaticPrefix:
         if identity['start'] < 0 or last >= len(ids):
             raise ValueError('Memory window outside observed source')
         p, c, first_seen = self._map(identity, mode)
-        select = first_seen <= ids[last]
+        select = first_seen <= ids[last] if self.protocol == MEMORY_PROTOCOL else np.ones(len(p),bool)
         origin, anchor = np.asarray(identity['origin']), np.asarray(identity['anchor'])
         return ((p[select]-origin)@anchor.T).astype(np.float32), ((c[select]-origin)@anchor.T).astype(np.float32)
+
+
+class ObservedStaticPrefix(ObservedStaticMemory):
+    """Explicit legacy prefix control; preserve reproducibility of v2 checks."""
+    def __init__(self, load, entries, *, voxel=.025, cached_streams=2):
+        super().__init__(load,entries,protocol=MEMORY_PROTOCOL,voxel=voxel,cached_streams=cached_streams)
 
 
 def frozen_memory_entries(folder, meta, manifest=None):

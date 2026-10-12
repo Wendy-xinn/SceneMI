@@ -1,5 +1,5 @@
 {
-  "version": "native30-official-observer-memory-v2",
+  "version": "native30-official-offline-observer-memory-v3",
   "fps": 30,
   "frames": 192,
   "seed": 2026101267,
@@ -7,7 +7,7 @@
   "shared_output_initialization": "normal_std_0.001_bias_zero",
   "train_manifest": "data/native30_official_memory_v2/manifest.jsonl",
   "review_manifest": "data/native30_observer_target_review_oct12/manifest.jsonl",
-  "prepared_output": "runs/ego_exo_official_memory_v2",
+  "prepared_output": "runs/ego_exo_official_offline_memory_v3",
   "mount_defaults": "data/native30_official_memory_v2/TRAIN_camera_mounts.json",
   "batch_size": 2,
   "latent_dim": 256,
@@ -36,10 +36,12 @@
       0.25,
       0.6
     ],
-    "observation_budget": "same-observer sequence prefix through current window end; static owner0 only; dynamics current frame",
+    "observation_budget": "entire supplied recording observed-static union; same observer/world/split only; dynamics current frame",
     "unknown_policy": "surface-only; no free-space inference",
-    "memory_protocol": "observed-static-prefix-through-window-end-v2",
-    "coordinate_protocol": "persistent world map; transform to current window anchor at query"
+    "memory_protocol": "observed-static-recording-union-v3",
+    "coordinate_protocol": "persistent world map; transform to current window anchor at query",
+    "memory_control_protocol": "observed-static-prefix-through-window-end-v2",
+    "evaluation_input_scope": "supplied recording only; restricted benchmark clips must use a restricted observation manifest"
   },
   "anchor_protocol": "native_body_dominant_only_67_low_foot_v1",
   "dynamic_condition": "current_visible_owner_patch_tokens_plus_local_queries; source_known_simulation_velocities_only",
