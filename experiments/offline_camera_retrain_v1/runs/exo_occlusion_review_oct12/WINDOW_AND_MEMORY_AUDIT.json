@@ -1,0 +1,343 @@
+{
+  "protocol": "native30-sampling-memory-audit-v1",
+  "date": "2026-10-12",
+  "training_steps": 0,
+  "config_modified": false,
+  "source_data_modified": false,
+  "window_frames": 192,
+  "fps": 30,
+  "train_start_stride_candidates": 1,
+  "train_overlap_allowed": true,
+  "validation_loop_implemented": false,
+  "exact_valid_window_count_available": false,
+  "candidate_counts_apply_source_validity_masks": false,
+  "source_summary": {
+    "train": {
+      "trumans": {
+        "scoped_segments": 469,
+        "raw_frames": 1030745,
+        "segments_shorter_than_192": 0,
+        "candidate_starts_upper_bound": 941166
+      },
+      "camera_wearer": {
+        "scoped_segments": 99,
+        "raw_frames": 96210,
+        "segments_shorter_than_192": 15,
+        "candidate_starts_upper_bound": 78366
+      },
+      "interactee": {
+        "scoped_segments": 114,
+        "raw_frames": 92700,
+        "segments_shorter_than_192": 22,
+        "candidate_starts_upper_bound": 72518
+      },
+      "rich": {
+        "scoped_segments": 62,
+        "raw_frames": 36478,
+        "segments_shorter_than_192": 0,
+        "candidate_starts_upper_bound": 24636
+      }
+    },
+    "validation": {
+      "trumans": {
+        "scoped_segments": 33,
+        "raw_frames": 66615,
+        "segments_shorter_than_192": 0,
+        "candidate_starts_upper_bound": 60312
+      },
+      "camera_wearer": {
+        "scoped_segments": 47,
+        "raw_frames": 47340,
+        "segments_shorter_than_192": 12,
+        "candidate_starts_upper_bound": 39395
+      },
+      "interactee": {
+        "scoped_segments": 52,
+        "raw_frames": 46260,
+        "segments_shorter_than_192": 13,
+        "candidate_starts_upper_bound": 37461
+      },
+      "rich": {
+        "scoped_segments": 28,
+        "raw_frames": 17661,
+        "segments_shorter_than_192": 1,
+        "candidate_starts_upper_bound": 12339
+      }
+    }
+  },
+  "split_separation": {
+    "egobody": {
+      "train_sources": 64,
+      "validation_sources": 30,
+      "shared_sources": [],
+      "overlap_pairs": [],
+      "train_scene_families": 7,
+      "validation_scene_families": 2,
+      "shared_scene_families": []
+    },
+    "trumans": {
+      "train_sources": 469,
+      "validation_sources": 33,
+      "shared_sources": [],
+      "overlap_pairs": [],
+      "train_scene_families": 45,
+      "validation_scene_families": 4,
+      "shared_scene_families": []
+    },
+    "rich": {
+      "train_sources": 62,
+      "validation_sources": 28,
+      "shared_sources": [],
+      "overlap_pairs": [],
+      "train_scene_families": 5,
+      "validation_scene_families": 4,
+      "shared_scene_families": [
+        "LectureHall",
+        "ParkingLot1",
+        "ParkingLot2",
+        "Pavallion"
+      ]
+    }
+  },
+  "egobody_official_split_provenance": {
+    "train": {
+      "recordings_by_official_split": {
+        "train": 43,
+        "test": 12,
+        "val": 9
+      },
+      "scoped_segments_by_official_split": {
+        "train": 136,
+        "test": 46,
+        "val": 31
+      },
+      "official_test_recordings": [
+        "recording_20210911_S03_S08_01",
+        "recording_20210911_S03_S08_02",
+        "recording_20210921_S05_S12_01",
+        "recording_20210921_S05_S12_02",
+        "recording_20211002_S17_S15_01",
+        "recording_20211002_S17_S15_02",
+        "recording_20211002_S17_S15_03",
+        "recording_20220312_S29_S28_01",
+        "recording_20220312_S29_S28_02",
+        "recording_20220312_S29_S28_03",
+        "recording_20220312_S29_S28_04",
+        "recording_20220312_S29_S28_05"
+      ]
+    },
+    "validation": {
+      "recordings_by_official_split": {
+        "train": 12,
+        "test": 10,
+        "val": 8
+      },
+      "scoped_segments_by_official_split": {
+        "train": 44,
+        "test": 33,
+        "val": 22
+      },
+      "official_test_recordings": [
+        "recording_20210907_S03_S04_01",
+        "recording_20220225_S24_S25_01",
+        "recording_20220225_S24_S25_02",
+        "recording_20220225_S25_S24_01",
+        "recording_20220225_S27_S26_01",
+        "recording_20220225_S27_S26_02",
+        "recording_20220225_S27_S26_03",
+        "recording_20220225_S27_S26_04",
+        "recording_20220415_S35_S36_01",
+        "recording_20220415_S35_S36_02"
+      ]
+    }
+  },
+  "official_egobody_benchmark_training_ready": false,
+  "native_body_compatibility": {
+    "smpl": {
+      "native_vertices": 6890,
+      "common_joints": 22,
+      "common_parent_tree_matches": true,
+      "anchors": 67,
+      "anchor_ids": [
+        3159,
+        3143,
+        705,
+        952,
+        3128,
+        1007,
+        4436,
+        6549,
+        4496,
+        3023,
+        917,
+        4142,
+        1372,
+        1002,
+        3203,
+        4845,
+        4486,
+        6603,
+        3077,
+        4379,
+        722,
+        3363,
+        3427,
+        3445,
+        6763,
+        6858,
+        6848,
+        3073,
+        4212,
+        724,
+        3354,
+        3357,
+        3218,
+        6754,
+        6757,
+        6616,
+        3727,
+        825,
+        3736,
+        2891,
+        674,
+        713,
+        6350,
+        4092,
+        4203,
+        6249,
+        253,
+        299,
+        1541,
+        1404,
+        1648,
+        5365,
+        4875,
+        5220,
+        1581,
+        2106,
+        1659,
+        5057,
+        5128,
+        5567,
+        1981,
+        2730,
+        2060,
+        5442,
+        6206,
+        5520,
+        331
+      ],
+      "unsupported_extra_rotations_fixed": true
+    },
+    "smplx": {
+      "native_vertices": 10475,
+      "common_joints": 22,
+      "common_parent_tree_matches": true,
+      "anchors": 67,
+      "anchor_ids": [
+        4298,
+        3511,
+        6310,
+        3580,
+        4145,
+        3626,
+        6341,
+        6889,
+        6394,
+        5408,
+        6114,
+        5405,
+        4003,
+        3638,
+        5757,
+        6749,
+        8449,
+        6399,
+        6053,
+        5419,
+        8243,
+        5917,
+        8887,
+        8908,
+        8601,
+        8675,
+        8689,
+        5395,
+        3427,
+        6146,
+        5909,
+        5773,
+        5911,
+        8603,
+        8467,
+        8605,
+        2531,
+        11,
+        3919,
+        5470,
+        3232,
+        4497,
+        8200,
+        6044,
+        8214,
+        1410,
+        8967,
+        3142,
+        4171,
+        4033,
+        4319,
+        6915,
+        6780,
+        7057,
+        4209,
+        4289,
+        4721,
+        6953,
+        7113,
+        7457,
+        4690,
+        4844,
+        4674,
+        7426,
+        7584,
+        7529,
+        9008
+      ],
+      "unsupported_extra_rotations_fixed": true
+    }
+  },
+  "scene_memory_demo": {
+    "source_frames": 6,
+    "sampled_interval": [
+      2,
+      5
+    ],
+    "static_memory_frame_ids": [
+      2,
+      3,
+      4
+    ],
+    "prefix_excluded": true,
+    "suffix_excluded": true,
+    "within_window_future_static_allowed": true,
+    "dynamic_memory": "current frame only",
+    "static_voxel_m": 0.025,
+    "global_token_reuse": "one DDIM call, not across windows"
+  },
+  "input_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_native30_sampling.py": "d22be313cb645bd820c7e14202499c697890525e642ce88e8f3c6b21fd2c103f",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_data.py": "feee72f1f7d4af1565c5cd8d6eda0123088e68123ca8104b40f4d65d5cb55d03",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observations.py": "d06b6ab4050f0b1533227dedfb8747ec788d71ed903562f2c6eca8ce9ad5702b",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_geometry.py": "fa48b5f26b285403678371a64cac710f22fd3b24080387596c3074c6f067afa8",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_config.json": "e7a1bf4feaa3605abddbbf41e9de10d1fce0177ada93eba0d029e974ee2a3f03",
+    "/home/wenxin/projects/egobody/data_splits.csv": "196a9953e118f378b929ec303cd42b4af3719507dc75ef650c8372dbb577a639",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/exclusions.json": "ef4c5ee8d5a17b10973167fce3dcd79731a57f09441c153b7b2d877e14d06cbf",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data/egobody_sequences/train.jsonl": "75b3e2e49e9b4a1bb72b9d60c0b714959ca68b3e96858b9bb84f64c284f00b99",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data/egobody_sequences/validation.jsonl": "0abde6a9da167826e8b645a514b9aea1a1c6ef198d616b335fbddecbe9893b76",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data/trumans_sequences/train.jsonl": "191bffb85ec6ce72906e65d96ea504507ae3bea4d1f1c52a8c07a9a24bbb86cc",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data/trumans_sequences/validation.jsonl": "c0bbf39b28a23f97c17f73cc366c135b3ca4e12b649861f3e33abb9c2f6e3d29"
+  },
+  "inventory_identity_sha256": "c9c2203da3aecc1d67d3c5daa7f9f24c2ede2b91757c63e4de9fa5000642db9a",
+  "disk_free_bytes_before": 70787100672,
+  "disk_free_bytes_after": 70787100672
+}

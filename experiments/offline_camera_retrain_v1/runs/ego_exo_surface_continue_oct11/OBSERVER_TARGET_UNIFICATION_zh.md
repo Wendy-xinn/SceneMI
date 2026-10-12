@@ -1,5 +1,7 @@
 # 10 月 12 日：ego/exo 统一模型任务表与输出头选择
 
+重训前的新核对见 [GT质量、输入扰动、窗口／场景记忆与benchmark划分](../exo_occlusion_review_oct12/TRAINING_PROTOCOL_RECOMMENDATION_zh.md)。当前EgoBody是内部场景划分，包含官方test来源；正式比较应另建版本化官方协议。训练继续暂停。
+
 后续定位与排查见 [exo 遮挡恢复方案、源手臂异常及 TRUMANS 外参](../exo_occlusion_review_oct12/FOLLOWUP_DESIGN_AND_AUDIT_zh.md)：保留降权，以遮挡部位修复和场景增益为主；共享输出效果需消融验证。训练保持暂停。
 
 最新 exo 检查：EgoBody、TRUMANS、RICH 各两个原始30Hz片段，见 [viser 六例检查](http://127.0.0.1:8783)、[详细实验设置与模型架构](../exo_occlusion_review_oct12/EXPERIMENT_AND_ARCHITECTURE_zh.md)、[遮挡统计与问题](../exo_occlusion_review_oct12/OCCLUSION_FINDINGS_zh.md)。当前有效关节加confidence降权与≥0.7硬筛选分开展示；后者只用于诊断。EgoBody/RICH使用真实标定，TRUMANS明确为合成exo。训练继续暂停；新增RICH/TRUMANS检查数据尚未接入正式训练sampler。

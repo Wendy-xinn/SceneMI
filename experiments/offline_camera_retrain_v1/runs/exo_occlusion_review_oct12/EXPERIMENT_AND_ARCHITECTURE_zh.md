@@ -4,6 +4,8 @@
 
 后续复核见 [遮挡恢复定位、手臂源拟合异常及 TRUMANS 外参恢复](FOLLOWUP_DESIGN_AND_AUDIT_zh.md)：保留 confidence 降权；viser 默认当前策略且末尾停止；两套 TRUMANS SMPL-X 已恢复并验证逐帧外参，内参仍待确认。下面六例的 TRUMANS 输入仍来自合成固定相机。
 
+最新训练协议核对见 [输入扰动、GT质量、窗口与重训建议](TRAINING_PROTOCOL_RECOMMENDATION_zh.md)。当前随机192帧允许重叠，静态记忆仅限当前窗口。另已确认EgoBody是内部场景划分，TRAIN含12个官方test recording；正式论文比较前应另建官方benchmark版本，不能把内部验证结果当官方test结果。本轮未改旧划分或启动训练。
+
 ## 1. 查看六个例子
 
 打开 [viser：exo 遮挡与可信轨迹](http://127.0.0.1:8783)，在「片段」下拉框选择例子。每段为原始 30 Hz 的连续 192 帧，时间跨度 191/30≈6.37 秒；按采样窗口预算称为 6.4 秒。源帧、当前有效关节数、高置信度关节数和逐关节遮挡像素均随时间更新。

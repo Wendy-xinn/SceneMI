@@ -1,5 +1,7 @@
 # 10 月 12 日：exo 可视化验收与场景改进方案
 
+最新窗口／场景记忆与重训顺序见 [训练协议建议](../exo_occlusion_review_oct12/TRAINING_PROTOCOL_RECOMMENDATION_zh.md)：当前仅同窗口静态观察并集；正式训练前需补GT质量、扰动／评估接口及EgoBody官方benchmark划分。
+
 后续复核见 [源拟合异常、TRUMANS 外参和局部查询阶段设计](../exo_occlusion_review_oct12/FOLLOWUP_DESIGN_AND_AUDIT_zh.md)：当前局部查询覆盖全预测身体，可信支点逐步开放方案尚待实现。训练继续暂停。
 
 本次输入检查已补齐EgoBody/TRUMANS/RICH各两例：[viser](http://127.0.0.1:8783)、[实验设置与模型架构](../exo_occlusion_review_oct12/EXPERIMENT_AND_ARCHITECTURE_zh.md)、[遮挡结果](../exo_occlusion_review_oct12/OCCLUSION_FINDINGS_zh.md)。展示当前confidence降权输入及≥0.7诊断筛选，区分人、静态场景／物体和动态刚体遮挡。RICH为真实标定，TRUMANS为合成观察相机。训练保持暂停。
