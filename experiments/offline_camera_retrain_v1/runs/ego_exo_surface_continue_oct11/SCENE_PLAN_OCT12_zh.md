@@ -2,6 +2,8 @@
 
 **本轮没有续训。正式模型仍保留原 55k；3000 步 ego/exo 候选权重未改变。先验收输入和生成动作，再决定结构训练。**
 
+当前模型/配置及用户关于exo定义、世界坐标、朝向、尺度和vertex修正的逐项核对，见[CURRENT_MODEL_AND_CONFIG_zh.md](CURRENT_MODEL_AND_CONFIG_zh.md)。实际执行参数与checkpoint继承字段已在[EFFECTIVE_CONFIG_OCT12.json](EFFECTIVE_CONFIG_OCT12.json)分开，不把原55k的batch/lr当续训配置。
+
 结论：6 个登记 exo 窗口的坐标、相机和时间处理通过检查，生成动作尚未通过。冻结模型的轨迹与姿态修正改善世界误差，但局部姿态和脚部指标仍有退化。直接加强表面惩罚会把动作改坏；更合适的下一步是保留身体区域的几何证据，让接触参与受限姿态修正，并单独处理未知空间和输入不确定性。
 
 ## 先看什么

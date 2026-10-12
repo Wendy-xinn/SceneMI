@@ -1,0 +1,165 @@
+{
+  "status": "audited_no_training",
+  "scope": "actual 3000-step continuation; original55k metadata retained separately",
+  "checkpoint_step": 3000,
+  "original_step": 55000,
+  "stale_inherited_config_fields": {
+    "output": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07",
+    "steps": 55000,
+    "batch_size": 4,
+    "lr": 0.0001,
+    "seed": 2026,
+    "control_mode_probabilities": {
+      "head": 0.55,
+      "head_sparse_pelvis": 0.15,
+      "head_sparse_wrists": 0.1,
+      "pelvis": 0.08,
+      "sparse_wrists": 0.04,
+      "mixed_sparse": 0.03,
+      "short_history": 0.05
+    }
+  },
+  "effective_training": {
+    "steps": 3000,
+    "batch_size": 2,
+    "seed": 2026101143,
+    "frames": 128,
+    "fps": 20,
+    "ego_warmup_steps": 500,
+    "optimizer": "new AdamW, all model parameters trainable",
+    "weight_decay": 0.01,
+    "core_peak_lr": 2e-05,
+    "surface_adapter_peak_lr": 0.0001,
+    "lr_warmup_steps": 50,
+    "lr_schedule": "2e-5 * min(1, step/50) * max(.1, .5*(1+cos(pi*step/3000))); surface parameters x5",
+    "surface_parameter_names": [
+      "anchor_embedding",
+      "point_embedding",
+      "surface_attention",
+      "surface_projection",
+      "surface_contact"
+    ],
+    "expanded_control_mlp_in_core_lr_group": true,
+    "final_optimizer_groups": [
+      {
+        "lr": 2.0000000000000003e-06,
+        "params": 244,
+        "multiplier": 1.0
+      },
+      {
+        "lr": 1.0000000000000003e-05,
+        "params": 13,
+        "multiplier": 5.0
+      }
+    ],
+    "sampling_plan": {
+      "valid_frames": {
+        "trumans": 683060,
+        "camera_wearer": 61932,
+        "interactee": 58956,
+        "rich": 24320
+      },
+      "group_probabilities": {
+        "trumans": 0.6213567173804633,
+        "rich": 0.1172447368405906,
+        "camera_wearer": 0.13391680511863613,
+        "interactee": 0.12748174066030987
+      },
+      "domain_probabilities": {
+        "trumans": 0.6213567173804633,
+        "egobody": 0.261398545778946,
+        "rich": 0.1172447368405906
+      },
+      "alpha": 0.5,
+      "length": 128,
+      "exo_given_egobody": 0.5
+    },
+    "actual_sample_counts": {
+      "interactee/ego": 416,
+      "trumans/ego": 3784,
+      "camera_wearer/ego": 454,
+      "rich/ego": 648,
+      "camera_wearer/exo": 320,
+      "interactee/exo": 378
+    },
+    "actual_exo_steps": 349,
+    "noise_steps": 1000,
+    "low_noise_mixture": ".25 draw t in [0,99], .75 in [0,999] => expected t<100 fraction .325",
+    "scene_dropout": 0.1,
+    "exo_control_joints": [
+      15,
+      20,
+      21
+    ],
+    "ego_control": ".35 head+wrists, .65 head only; actual availability further masks",
+    "body_prefix_input": false,
+    "surface_bps_weight": 1.0
+  },
+  "architecture": {
+    "motion_channels": 201,
+    "motion_layout": "3 root translation m/2 + 22*6 identity-residual rotations + 22*3 global joints m/2",
+    "shared_joints": 22,
+    "denoiser": "AdaGN temporal U-Net; attention=False; latent256; multipliers1/2/4",
+    "global_scene": "observed surface occupancy24x48x48, ViT dim1024 depth6 heads16 output256; no recurrent memory transformer",
+    "local_scene": "67 fixed native skin vertices; 13 probes; per-anchor 64D 4-head attention; pooled output32 + ordered BPS MLP32",
+    "sparse_trajectory_channels_per_joint": 26,
+    "sparse_control_output": 64,
+    "native_shape_known": true,
+    "independent_exo_camera_token": false,
+    "position_rotation_availability_and_confidence_separate": true
+  },
+  "loss": {
+    "base_profile": "coordination_v1",
+    "scales": {
+      "position": 0.05,
+      "rotation": 0.17453292519943295,
+      "velocity": 0.15,
+      "acceleration": 1.0,
+      "angular_velocity": 0.3490658503988659,
+      "body_turn_rate": 0.3490658503988659
+    },
+    "new_observation_coefficients": {
+      "position": 0.010367992805115024,
+      "rotation": 0.00617242229614362,
+      "velocity": 0.0005389064075709741,
+      "acceleration": 8.05152245664836e-06,
+      "angular_velocity": 0.0002830802097315148,
+      "body_turn_rate": 0.000513606619111099
+    },
+    "old_velocity_equivalent_physical_coefficient": 0.025,
+    "old_acceleration_equivalent_physical_coefficient": 1.25e-05,
+    "new_scale_calibration": "two TRAIN ego samples at t45/16, fixed thereafter; not all-mode balanced",
+    "contact_bce_coefficient": 0.1,
+    "contact_labels": "RICH22 body regions only; EgoBody/TRUMANS missing labels masked",
+    "scene_sdf_collision_loss": false
+  },
+  "inference": {
+    "fixed_panel_ddim_steps": 20,
+    "core_forwards_with_scene": 40,
+    "generation": "full-window x0 prediction; no frame autoregression or hard GT prefix",
+    "internal_vertex_role": "query generated proposal skin-to-scene features; no explicit pose correction",
+    "external_review_correction": "optional frozen post-DDIM optimization of root/SO3 temporal spline; skin vertices recomputed from native pose; no network updates",
+    "future_internal_pose_residual": "design only, not trained or integrated"
+  },
+  "code_sources": [
+    "train_unified_continue.py",
+    "unified_model.py",
+    "unified_observations.py",
+    "unified_losses.py",
+    "scene_model.py",
+    "supervision.py",
+    "refine_unified_scene_review.py",
+    "staged_surface_review.py"
+  ],
+  "checkpoint_modified": false,
+  "unit_check": {
+    "execution": "CPU analytic trajectory, 24 frames at20Hz",
+    "position": "x(t)=0.3t+0.5*0.4*t^2 meters, transported /2",
+    "orientation": "yaw20deg/s",
+    "velocity_max_error_m_s": 7.152557373046875e-07,
+    "acceleration_max_error_m_s2": 2.899765968322754e-05,
+    "angular_max_error_deg_s": 4.76837158203125e-05,
+    "missing_stencil_gap_passed": true,
+    "training_or_inference_optimization_run": false
+  }
+}
