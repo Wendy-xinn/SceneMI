@@ -5,7 +5,7 @@ from torch import nn
 from pytorch3d.transforms import axis_angle_to_matrix
 
 from experiments.offline_camera_retrain_v1.native30_refinement import (
-    align_vectors, reference_from_observations, refinement_payload, sample_refinement,model_inputs,training_motion)
+    align_vectors, reference_from_observations, refinement_payload, sample_refinement,model_inputs,training_motion,confidence_anchor)
 from experiments.offline_camera_retrain_v1.native30_observations import INPUT_KEYS
 from experiments.offline_camera_retrain_v1.native30_model import reconcile_motion
 from experiments.offline_camera_retrain_v1.supervision import IDENTITY_6D, PARENTS, forward_kinematics
@@ -28,11 +28,45 @@ def example():
     meta=torch.zeros(1,8,22,5);meta[...,0]=1;meta[...,2]=1
     batch={k:torch.zeros(1) for k in INPUT_KEYS}
     batch.update(rest=rest,trajectory=trajectory,observation_meta=meta,
+        observation_uncertainty=torch.zeros(1,8,22,2),
         camera=torch.zeros(1,8,9),surface_windows=[],skin_assets=[],mode=['exo'],motion=truth)
     return batch
 
 
 class ReferenceContractTests(unittest.TestCase):
+    def test_confidence_constraint_corrects_exo_root_without_changing_bones(self):
+        batch=example();known=refinement_payload(batch)
+        shift=torch.tensor([.25,0.,-.1]).expand(1,8,3)
+        rotations=torch.zeros(1,8,22,3);rotations[:,:,0,1]=.7
+        wrong=reconcile_motion(batch['motion'],batch['rest'],shift,rotations)
+        fixed=confidence_anchor(wrong,known,torch.ones(1),1.)
+        self.assertTrue(torch.allclose(fixed[...,:9],batch['motion'][...,:9],atol=2e-5))
+        self.assertTrue(torch.allclose(forward_kinematics(fixed,batch['rest']),
+                                      forward_kinematics(batch['motion'],batch['rest']),atol=2e-5))
+        leaf=wrong.detach().requires_grad_(True)
+        confidence_anchor(leaf,known,torch.ones(1),.9).square().mean().backward()
+        self.assertTrue(torch.isfinite(leaf.grad).all())
+
+    def test_head_constraint_changes_translation_without_forcing_body_heading(self):
+        batch=example();batch['mode']=['ego'];batch['observation_meta'][:,:,:15]=0
+        batch['observation_meta'][:,:,16:]=0
+        known=refinement_payload(batch)
+        wrong=reconcile_motion(batch['motion'],batch['rest'],torch.ones(1,8,3)*.3)
+        fixed=confidence_anchor(wrong,known,torch.ones(1),1.)
+        self.assertTrue(torch.allclose(fixed[...,3:135],wrong[...,3:135],atol=1e-6))
+        self.assertTrue(torch.allclose(forward_kinematics(fixed,batch['rest'])[:,:,15],
+                                      batch['trajectory'][:,:,15,:3]*2,atol=1e-5))
+
+    def test_no_evidence_disables_constraint_and_uncertainty_weakens_it(self):
+        batch=example();wrong=reconcile_motion(batch['motion'],batch['rest'],torch.ones(1,8,3)*.3)
+        fixed=confidence_anchor(wrong,refinement_payload(batch),torch.ones(1),.9)
+        batch['observation_uncertainty'].fill_(1.)
+        uncertain=confidence_anchor(wrong,refinement_payload(batch),torch.ones(1),.9)
+        self.assertGreater((uncertain[...,:3]-batch['motion'][...,:3]).norm(),(fixed[...,:3]-batch['motion'][...,:3]).norm())
+        batch['observation_meta'].zero_();batch['trajectory'].fill_(float('nan'))
+        missing=confidence_anchor(wrong,refinement_payload(batch),torch.ones(1),.9)
+        self.assertTrue(torch.allclose(missing,wrong,atol=1e-6))
+
     def test_root_recovery_from_positions_and_fixed_bones(self):
         batch=example();reference,confidence=reference_from_observations(batch)
         self.assertTrue(torch.allclose(reference[...,:3],batch['motion'][...,:3],atol=1e-5))

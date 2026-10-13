@@ -36,6 +36,9 @@ def reconcile_motion(motion, rest, translation_m=None, rotation_axis_angle=None)
 
 
 class Native30SceneMI(OfflineSceneMI):
+    def constrain_motion(self,motion,timestep,batch):
+        return motion
+
     def __init__(self, latent_dim=256, dim_mults=(1,2,4), root_limit_m=.08,
                  rotation_limit_rad=.12, feedback_gain=1.):
         super().__init__(latent_dim,dim_mults,body_conditioning=True,contact_prediction=False)
@@ -242,6 +245,7 @@ class Native30SceneMI(OfflineSceneMI):
         with torch.no_grad():
             proposal=self._core_pass(noisy_motion,timestep,batch,scene,control_mask,use_scene,use_control)
             proposal=reconcile_motion(proposal,batch['rest'])
+            proposal=self.constrain_motion(proposal,timestep,batch)
         details={}; fine=self.alphas[timestep].square()[:,None,None]
         if use_scene and self.local_enabled:
             context,bps,valid,geometry=self.local_geometry(proposal.detach(),timestep,batch)
@@ -273,7 +277,10 @@ class Native30SceneMI(OfflineSceneMI):
             root_delta=root_direction*self.root_limit_m*fine*frame_valid*support.amax(-1,keepdim=True)*self.feedback_gain
             rot_delta=rotation_direction*self.rotation_limit_rad*fine[...,None]*support[...,None]*self.feedback_gain
         result=reconcile_motion(raw,batch['rest'],root_delta,rot_delta)
+        unconstrained=result
+        result=self.constrain_motion(result,timestep,batch)
         details.update(raw_motion=raw,proposal=proposal.detach(),root_delta_m=root_delta,rotation_delta_rad=rot_delta,
+                       observation_root_delta_m=(result[...,:3]-unconstrained[...,:3])*2,
                        region_context=context,contact_logits=contact,correspondence_logits=correspondence,
                        geometry=geometry,feedback_gate=fine)
         return (result,details) if return_details else result

@@ -10,7 +10,8 @@ from pytorch3d.transforms import axis_angle_to_matrix,matrix_to_axis_angle
 
 from experiments.offline_camera_retrain_v1.native30_model import Native30SceneMI,reconcile_motion,sample_native30
 from experiments.offline_camera_retrain_v1.native30_observations import inference_payload,sanitize_observations
-from experiments.offline_camera_retrain_v1.supervision import IDENTITY_6D,PARENTS,rotation_from_6d
+from experiments.offline_camera_retrain_v1.supervision import IDENTITY_6D,PARENTS,rotation_from_6d,forward_kinematics
+from experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations
 from experiments.offline_camera_retrain_v1.scene_model import cosine_alphas
 
 
@@ -127,7 +128,41 @@ def refinement_payload(batch):
     else:
         reference,confidence=reference_from_observations(result)
         result.update(reference_motion=reference,reference_confidence=confidence)
+    # Separate observed anchors from a possibly inaccurate full frontend prior.
+    # This is inference evidence, never a target/body-pose label.
+    observed_reference=reference_from_observations(result)[0] if 'reference_motion' in batch else reference
+    trajectory,meta=sanitize_observations(result['trajectory'],result['observation_meta'])
+    weights=meta[:,:,:4,0]*meta[:,:,:4,2]
+    _,singular,_,_=fit_rotation(result['rest'][:,None,:4].expand(*weights.shape,3),trajectory[:,:,:4,:3]*2,weights,center=True)
+    valid=((weights>0).sum(-1)>=3)&(singular[...,1]>1e-7)
+    uncertainty=result['observation_uncertainty'][:,:,:4,0].clamp_min(0)
+    confidence=(weights*.05**2/(.05**2+uncertainty.square())).sum(-1)/(weights>0).sum(-1).clamp_min(1)
+    result.update(observation_anchor_reference=observed_reference,torso_anchor_confidence=confidence*valid)
     return result
+
+
+def confidence_anchor(motion,batch,signal,gain):
+    """Soft observation proximal step within diffusion; preserves fixed bones.
+
+    Exo torso positions constrain rigid root pose. Ego head position constrains
+    translation only. Gaps/uncertain evidence weaken or disable the constraint;
+    camera orientation never forces body heading. Raw learned x0 remains under
+    GT supervision before this constraint in Native30SceneMI.forward.
+    """
+    if gain==0:return motion
+    trajectory,meta=sanitize_observations(batch['trajectory'],batch['observation_meta'])
+    exo=torch.as_tensor([m=='exo' for m in batch['mode']],device=motion.device)[:,None]
+    strength=signal[:,None]*gain
+    weight=strength*batch['torso_anchor_confidence']*exo
+    reference=batch['observation_anchor_reference']
+    current=global_rotations(motion)[:,:,0];anchor=global_rotations(reference)[:,:,0]
+    rotation_delta=motion.new_zeros(*motion.shape[:2],22,3)
+    rotation_delta[:,:,0]=matrix_to_axis_angle(anchor@current.transpose(-1,-2))*weight[...,None]
+    result=reconcile_motion(motion,batch['rest'],(reference[...,:3]-motion[...,:3])*2*weight[...,None],rotation_delta)
+    head_error=trajectory[:,:,15,:3]*2-forward_kinematics(result,batch['rest'])[:,:,15]
+    uncertainty=batch['observation_uncertainty'][:,:,15,0].clamp_min(0)
+    head_weight=strength*meta[:,:,15,0]*meta[:,:,15,2]*.05**2/(.05**2+uncertainty.square())*(~exo)
+    return reconcile_motion(result,batch['rest'],head_error*head_weight[...,None])
 
 
 def model_inputs(config,batch):
@@ -148,11 +183,16 @@ def sample_motion(model,batch,config,**kwargs):
 
 
 class Native30Refinement(Native30SceneMI):
-    def __init__(self,*args,**kwargs):
+    def __init__(self,*args,observation_anchor_gain=0.,**kwargs):
         super().__init__(*args,**kwargs)
+        if not 0<=observation_anchor_gain<=1:raise ValueError('Observation anchor gain must be in [0,1]')
+        self.observation_anchor_gain=observation_anchor_gain
         self.reference_encoder=nn.Sequential(nn.Linear(27,64),nn.SiLU(),nn.Linear(64,64))
         self.reference_attention=nn.MultiheadAttention(64,4,batch_first=True)
         self.reference_projection=nn.Linear(22*64,64,bias=False)
+
+    def constrain_motion(self,motion,timestep,batch):
+        return confidence_anchor(motion,batch,self.alphas[timestep],self.observation_anchor_gain)
 
     def observation_condition(self,batch,control_mask=None):
         condition,trajectory,meta=super().observation_condition(batch,control_mask)
