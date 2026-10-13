@@ -13,13 +13,14 @@ from experiments.offline_camera_retrain_v1.data import HERE
 from experiments.offline_camera_retrain_v1.prepare_native30 import (
     CONFIG_PATH,read_config,make_model,code_hashes,sha256,write_json,sample_item,dataset_digest,window_options)
 from experiments.offline_camera_retrain_v1.native30_data import Native30Data
-from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder,inference_payload
+from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder
 from experiments.offline_camera_retrain_v1.native30_losses import objective
 from experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAnchorCache
 from experiments.offline_camera_retrain_v1.unified_observations import collate_observations
 from experiments.offline_camera_retrain_v1.scene_model import cosine_alphas
 from experiments.offline_camera_retrain_v1.checkpoint_io import save_checkpoint
 from experiments.offline_camera_retrain_v1.native30_validation import validate
+from experiments.offline_camera_retrain_v1.native30_refinement import model_inputs,training_motion
 
 
 def train(config_path,steps,output=None,resume=False):
@@ -70,11 +71,12 @@ def train(config_path,steps,output=None,resume=False):
     with (folder/'trace.jsonl').open('a' if resume else 'w') as trace:
         for step in range(start+1,steps+1):
             pairs=[sample_item(data,builder,config,plan,rng) for _ in range(config['batch_size'])]
-            items,identities=zip(*pairs);batch=collate_observations(items);known=inference_payload(batch)
+            items,identities=zip(*pairs);batch=collate_observations(items);known=model_inputs(config,batch)
             t=torch.randint(1000,(len(items),),device='cuda')
             low=torch.rand(len(items),device='cuda')<config['noise']['extra_low_noise_probability']
             t=torch.where(low,torch.randint(config['noise']['low_noise_steps'],t.shape,device='cuda'),t)
-            signal=alphas[t];noisy=signal[:,None,None].sqrt()*batch['motion']+(1-signal[:,None,None]).sqrt()*torch.randn_like(batch['motion'])
+            target=training_motion(config,batch,known)
+            signal=alphas[t];noisy=signal[:,None,None].sqrt()*target+(1-signal[:,None,None]).sqrt()*torch.randn_like(target)
             scene_on=rng.random()>=config['scene']['dropout_probability']
             model.train();optimizer.zero_grad(set_to_none=True)
             prediction,details=model(noisy,t,known,use_scene=scene_on,return_details=True)

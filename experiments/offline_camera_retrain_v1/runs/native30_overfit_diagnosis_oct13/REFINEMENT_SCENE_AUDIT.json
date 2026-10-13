@@ -1,0 +1,1967 @@
+{
+  "step": 1000,
+  "counts": {
+    "ego": 700,
+    "exo": 300
+  },
+  "model_finite": true,
+  "model_parameters": 122639120,
+  "protocol": "fixed clean/noisy TRAIN inputs; seeded DDIM20; no GT alignment; no generalization claim",
+  "frontend": "observed-track/rest kinematic initializer; real video frontend not connected",
+  "cases": [
+    {
+      "case": 0,
+      "mode": "ego",
+      "regime": "clean",
+      "identity": {
+        "protocol": "native30-observer-target-v1-raw-firsthit",
+        "export_fingerprint": {
+          "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+          "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+          "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+          "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+          "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+          "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+        },
+        "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+        "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+        "bundle_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+        "split": "train",
+        "group": "camera_wearer",
+        "dataset": "egobody",
+        "fps": 30,
+        "frames": 1260,
+        "source_first": 1551,
+        "source_last": 2810,
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8726469278335571,
+            -0.1860993206501007,
+            1.2923369407653809,
+            -0.9735277891159058,
+            -0.30593743920326233,
+            0.8616195917129517,
+            0.3605799078941345,
+            -0.514295220375061,
+            -0.8256852626800537,
+            0.6868041753768921
+          ],
+          "scale": 1.0
+        },
+        "actual_virtual_mount": null,
+        "diagnostic_only": false,
+        "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+        "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+        "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+        "input_sha256": "39f8cb84b95bf3f375ab16c662c5c42af36a909cf4d2a59ff2c2ff079de915a3",
+        "elapsed_s": 15.363538387988228,
+        "split_protocol": "egobody-official-recording-v2",
+        "recording": "recording_20210907_S02_S01_01",
+        "scene_id": "seminar_g110",
+        "pose_profile_split": "validation",
+        "allowed_modes": [
+          "ego"
+        ],
+        "official_split_csv_sha256": "196a9953e118f378b929ec303cd42b4af3719507dc75ef650c8372dbb577a639",
+        "world_frame_id": "c115d7884858fb08e4f7b31cdacc91f609cb04a2f16c7c0278381073c6f43c28",
+        "output_sha256": {
+          "camera_intrinsics_128x96.npy": "013488cd588807efaffe4ce3fe91fba55604d8850b6786a42e2c2425406f1c7d",
+          "camera_position_scenemi_yup.npy": "bfff2034da5d6fe54eae52d4414a065bd91490d776a3d7f71ca4506405cb4e7b",
+          "camera_rotation_scenemi_yup.npy": "2acb0244862ffc97e32db87b085841acad85fb071c25b42c5c6a2a90ee232a6a",
+          "motion_world.npy": "e4bf0c50a6cb2c2aafbc2edaabc89570c49f73fc5e25aea923d2c14308d5da7a",
+          "observation_valid.npy": "f361ef5fef7f90446341192f8a1713f1fb7e79db3620821a0f26c1eb66b9e9be",
+          "rest.npy": "61cbfea6a01e87fb25e1c9f58b745ef9e20f5004ec24d4fb1715473b1fb988c9",
+          "source_frame_ids.npy": "d19dd92350ce6a2b5bde9039756cdbd342640eee27b217dc8d20ebc8695582c2",
+          "visible_frame_owner.npy": "fe99329afe451339c7f98e2954b7a8a12964453b362cfcc3fc157b391b3a6c4f",
+          "visible_frame_points_scenemi_yup.npy": "be365d97dd395b3908e81ee7309e679bb3012a14aadfb569772507a1d137f735"
+        },
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+        "start": 512,
+        "source_start_30fps": 2063,
+        "origin": [
+          1.167461633682251,
+          -0.1442340910434723,
+          1.3950390815734863
+        ],
+        "anchor": [
+          [
+            -0.9148618578910828,
+            0.0,
+            -0.40376704931259155
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.40376704931259155,
+            0.0,
+            -0.9148618578910828
+          ]
+        ],
+        "yaw_augmentation_rad": 0.0,
+        "mode": "ego",
+        "window_stride": 64
+      },
+      "static_points": 15404,
+      "dynamic_points_mean": 256.0,
+      "reference_metrics": {
+        "mpjpe_mm": {
+          "value": 167.430908203125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 23.598297119140625,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 174.28009033203125,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 167.430908203125,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 85.84844970703125,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 11.30010986328125,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 9.684676170349121,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 38.534889221191406,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.41807055473327637,
+          "count": 340
+        }
+      },
+      "variants": [
+        {
+          "variant": "full_scene",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 32.518836975097656,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 28.81220054626465,
+              "count": 192
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 32.69534683227539,
+              "count": 4032
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 32.518836975097656,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 29.230667114257812,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 1.8770666122436523,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 2.731684446334839,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 4.6996612548828125,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.13081954419612885,
+              "count": 340
+            }
+          },
+          "query_feedback": [
+            {
+              "timestep": 999,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 946,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 894,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 841,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 789,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 736,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 684,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 631,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 578,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 526,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 473,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 421,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 368,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 315,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 263,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 210,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 158,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 105,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 53,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 0,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            }
+          ]
+        },
+        {
+          "variant": "scene_off",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 127.77765655517578,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 31.678024291992188,
+              "count": 192
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 132.3538360595703,
+              "count": 4032
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 127.77765655517578,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 72.43280029296875,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 9.682550430297852,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 8.875341415405273,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 28.07758903503418,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.4259515702724457,
+              "count": 340
+            }
+          },
+          "query_feedback": []
+        },
+        {
+          "variant": "local_off",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 32.518836975097656,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 28.81220054626465,
+              "count": 192
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 32.69534683227539,
+              "count": 4032
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 32.518836975097656,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 29.230667114257812,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 1.8770666122436523,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 2.731684446334839,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 4.6996612548828125,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.13081954419612885,
+              "count": 340
+            }
+          },
+          "query_feedback": []
+        }
+      ],
+      "scene_effect_rms_mm": 96.58991241455078
+    },
+    {
+      "case": 0,
+      "mode": "ego",
+      "regime": "noisy",
+      "identity": {
+        "protocol": "native30-observer-target-v1-raw-firsthit",
+        "export_fingerprint": {
+          "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+          "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+          "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+          "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+          "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+          "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+        },
+        "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+        "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+        "bundle_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+        "split": "train",
+        "group": "camera_wearer",
+        "dataset": "egobody",
+        "fps": 30,
+        "frames": 1260,
+        "source_first": 1551,
+        "source_last": 2810,
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8726469278335571,
+            -0.1860993206501007,
+            1.2923369407653809,
+            -0.9735277891159058,
+            -0.30593743920326233,
+            0.8616195917129517,
+            0.3605799078941345,
+            -0.514295220375061,
+            -0.8256852626800537,
+            0.6868041753768921
+          ],
+          "scale": 1.0
+        },
+        "actual_virtual_mount": null,
+        "diagnostic_only": false,
+        "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+        "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+        "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+        "input_sha256": "39f8cb84b95bf3f375ab16c662c5c42af36a909cf4d2a59ff2c2ff079de915a3",
+        "elapsed_s": 15.363538387988228,
+        "split_protocol": "egobody-official-recording-v2",
+        "recording": "recording_20210907_S02_S01_01",
+        "scene_id": "seminar_g110",
+        "pose_profile_split": "validation",
+        "allowed_modes": [
+          "ego"
+        ],
+        "official_split_csv_sha256": "196a9953e118f378b929ec303cd42b4af3719507dc75ef650c8372dbb577a639",
+        "world_frame_id": "c115d7884858fb08e4f7b31cdacc91f609cb04a2f16c7c0278381073c6f43c28",
+        "output_sha256": {
+          "camera_intrinsics_128x96.npy": "013488cd588807efaffe4ce3fe91fba55604d8850b6786a42e2c2425406f1c7d",
+          "camera_position_scenemi_yup.npy": "bfff2034da5d6fe54eae52d4414a065bd91490d776a3d7f71ca4506405cb4e7b",
+          "camera_rotation_scenemi_yup.npy": "2acb0244862ffc97e32db87b085841acad85fb071c25b42c5c6a2a90ee232a6a",
+          "motion_world.npy": "e4bf0c50a6cb2c2aafbc2edaabc89570c49f73fc5e25aea923d2c14308d5da7a",
+          "observation_valid.npy": "f361ef5fef7f90446341192f8a1713f1fb7e79db3620821a0f26c1eb66b9e9be",
+          "rest.npy": "61cbfea6a01e87fb25e1c9f58b745ef9e20f5004ec24d4fb1715473b1fb988c9",
+          "source_frame_ids.npy": "d19dd92350ce6a2b5bde9039756cdbd342640eee27b217dc8d20ebc8695582c2",
+          "visible_frame_owner.npy": "fe99329afe451339c7f98e2954b7a8a12964453b362cfcc3fc157b391b3a6c4f",
+          "visible_frame_points_scenemi_yup.npy": "be365d97dd395b3908e81ee7309e679bb3012a14aadfb569772507a1d137f735"
+        },
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+        "start": 512,
+        "source_start_30fps": 2063,
+        "origin": [
+          1.167461633682251,
+          -0.1442340910434723,
+          1.3950390815734863
+        ],
+        "anchor": [
+          [
+            -0.9148618578910828,
+            0.0,
+            -0.40376704931259155
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.40376704931259155,
+            0.0,
+            -0.9148618578910828
+          ]
+        ],
+        "yaw_augmentation_rad": 0.0,
+        "mode": "ego",
+        "window_stride": 64
+      },
+      "static_points": 15404,
+      "dynamic_points_mean": 256.0,
+      "reference_metrics": {
+        "mpjpe_mm": {
+          "value": 170.79534912109375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 35.13441467285156,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 177.25540161132812,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 170.79534912109375,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 86.76213073730469,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 11.58520793914795,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 11.271594047546387,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 38.017757415771484,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.41703173518180847,
+          "count": 340
+        }
+      },
+      "variants": [
+        {
+          "variant": "full_scene",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 63.04376983642578,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 38.80849838256836,
+              "count": 192
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 64.19783020019531,
+              "count": 4032
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 63.04376983642578,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 56.802284240722656,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 6.409040451049805,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 6.03989315032959,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 7.8150739669799805,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.21555761992931366,
+              "count": 340
+            }
+          },
+          "query_feedback": [
+            {
+              "timestep": 999,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 946,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 894,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 841,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 789,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 736,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 684,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 631,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 578,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 526,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 473,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 421,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 368,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 315,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 263,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 210,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 158,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 105,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 53,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            },
+            {
+              "timestep": 0,
+              "valid_anchor_fraction": 0.0,
+              "root_feedback_max_mm": 0.0,
+              "rotation_feedback_max_rad": 0.0
+            }
+          ]
+        },
+        {
+          "variant": "scene_off",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 128.80203247070312,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 48.0902214050293,
+              "count": 192
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 132.64544677734375,
+              "count": 4032
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 128.80203247070312,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 71.8690414428711,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 10.587839126586914,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 11.502912521362305,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 30.958084106445312,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.397704154253006,
+              "count": 340
+            }
+          },
+          "query_feedback": []
+        },
+        {
+          "variant": "local_off",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 63.04376983642578,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 38.80849838256836,
+              "count": 192
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 64.19783020019531,
+              "count": 4032
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 63.04376983642578,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 56.802284240722656,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 6.409040451049805,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 6.03989315032959,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 7.8150739669799805,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.21555761992931366,
+              "count": 340
+            }
+          },
+          "query_feedback": []
+        }
+      ],
+      "scene_effect_rms_mm": 92.70539855957031
+    },
+    {
+      "case": 1,
+      "mode": "exo",
+      "regime": "clean",
+      "identity": {
+        "protocol": "native30-observer-target-v1-raw-firsthit",
+        "export_fingerprint": {
+          "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+          "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+          "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+          "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+          "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+          "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+        },
+        "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+        "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2841_master_full",
+        "bundle_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2841_master_full",
+        "split": "train",
+        "group": "camera_wearer",
+        "dataset": "egobody",
+        "fps": 30,
+        "frames": 1290,
+        "source_first": 1551,
+        "source_last": 2840,
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8754664659500122,
+            -0.18352386355400085,
+            1.2973573207855225,
+            -0.9741602540016174,
+            -0.3013802766799927,
+            0.877106249332428,
+            0.36461395025253296,
+            -0.5118645429611206,
+            -0.8259201049804688,
+            0.6803150177001953
+          ],
+          "scale": 1.0
+        },
+        "actual_virtual_mount": {
+          "rotation": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "translation_m": [
+            -0.004357050098522414,
+            0.09212258098525664,
+            0.0865315705680333
+          ],
+          "position_p90_m": 0.0,
+          "rotation_p90_rad": 0.0,
+          "source": "actual fixed raw30 virtual mount"
+        },
+        "diagnostic_only": false,
+        "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+        "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+        "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+        "input_sha256": "0b95ce37e36e5c75f5b85676c2ad0b1437b6ff58203de6aa6ae927609ecf240e",
+        "elapsed_s": 16.041025143000297,
+        "split_protocol": "egobody-official-recording-v2",
+        "recording": "recording_20210907_S02_S01_01",
+        "scene_id": "seminar_g110",
+        "pose_profile_split": null,
+        "allowed_modes": [
+          "exo"
+        ],
+        "exo_protocol": "three-corpus-calibrated-or-explicit-synthetic-firsthit-v1",
+        "exo_camera": {
+          "kind": "released_calibrated",
+          "view_id": "kinect_master",
+          "position": [
+            -0.6849263160394952,
+            -0.4792354698455745,
+            2.887512806158444
+          ],
+          "rotation": [
+            [
+              0.718967938589424,
+              -0.0854097393587232,
+              0.6897755284896544
+            ],
+            [
+              -0.013824958036209914,
+              -0.9939820361576085,
+              -0.10866730111347925
+            ],
+            [
+              0.6949057301647507,
+              0.06859218773785698,
+              -0.7158220015936552
+            ]
+          ],
+          "K": [
+            [
+              918.241638,
+              0.0,
+              958.487976
+            ],
+            [
+              0.0,
+              918.177368,
+              551.059509
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "distortion": [
+            0.668987334,
+            -2.77296114,
+            0.000896319165,
+            -0.000250226411,
+            1.5344249,
+            0.545520306,
+            -2.60093617,
+            1.46634293
+          ],
+          "source_size": [
+            1920,
+            1080
+          ],
+          "size": [
+            192,
+            108
+          ],
+          "calibration": "/home/wenxin/projects/egobody/kinect_cam_params/kinect_master/Color.json",
+          "near": 0.1,
+          "far": 12.0,
+          "benchmark_camera_verified": true
+        },
+        "exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence",
+        "exo_visibility_statistics": {
+          "reference": 1020382,
+          "visible": 1006418,
+          "person": 0,
+          "static": 13964,
+          "rigid": 0
+        },
+        "exo_mean_available_joints": 18.90077519379845,
+        "official_split_csv_sha256": "196a9953e118f378b929ec303cd42b4af3719507dc75ef650c8372dbb577a639",
+        "world_frame_id": "c115d7884858fb08e4f7b31cdacc91f609cb04a2f16c7c0278381073c6f43c28",
+        "output_sha256": {
+          "camera_intrinsics_128x96.npy": "d5bf0c0b1490abac257d96b71ba0b07901eddf3fd6628f61490d7d89e17c008c",
+          "camera_position_scenemi_yup.npy": "ba9fa0222dcfe2eb1522205de98fa856ab1bb7c96bf826695c0051c28b12f3ab",
+          "camera_rotation_scenemi_yup.npy": "925ff46731425973f854f68c38351566fd870a4051c463c4f979077cf775ec44",
+          "exo_frame_owner.npy": "2cef204f2284c8a802396130dd47eae2f872c31513907b4f1066f7e1b5cae6a3",
+          "exo_frame_points_world.npy": "4565879b808d0fdda1241926636bb7c7aa3ac471d883410982c37cdfd16452ee",
+          "exo_intrinsics.npy": "047d2e5dfb429767c2361d2291962a8520907a7514f35d3a27f23898c9e78041",
+          "exo_person_counts.npy": "ab120fb524812f9f12d41d08b6ca085c462f985da3115f06796ecd60a9e6953f",
+          "exo_position_available.npy": "2e0b7e2ee98ea3229fc93fffe52432898285fd73ab611d9b2902da1454264942",
+          "exo_position_confidence.npy": "eac192f28fece7350352331b235d0dd988c02e864924b20f3d7830ed6f34c891",
+          "exo_reference_counts.npy": "67d47eef80173978e6b9ed699e6e6f2b7b9cb5d126003fe308d3f64e903e3d21",
+          "exo_rigid_counts.npy": "ab120fb524812f9f12d41d08b6ca085c462f985da3115f06796ecd60a9e6953f",
+          "exo_sensor_to_world.npy": "a8aae20b336e888a3484c781414f7543b165ff50cdc94d7d67d3c1ef1e355fc1",
+          "exo_static_counts.npy": "93fca096b8fb5dba81bf764d0b9febfdecd3373cb60b27db99e529e622be6046",
+          "exo_trajectory_world.npy": "b854b128dabebbcf8ed97d587474570059b29aaf3b60ec6213df22d1753e4c16",
+          "exo_visible_counts.npy": "0c3158ffed7c0a06f33bec6a9bd3cb585304786a80434a56aa71879ef2fb224b",
+          "motion_world.npy": "0fcd92641a5a5d9ac9e16650458f610fb8d0a646f8d03fd67c9a04fe7a4fdf47",
+          "observation_valid.npy": "dab6b85cc9c5acf47ea5ba2f1ae14937e89246fe214ec84a65c3e954951a0b51",
+          "rest.npy": "98776053afa8beafd7bc1d304c905f157501d71dc5ad3b8dda1e646a83e81bac",
+          "source_frame_ids.npy": "311fc03c03c2f2a80935a67213ba56cc001ebe6d7d30d371f187a8e1948c5c8b",
+          "visible_frame_owner.npy": "ae470d3d8e58793c5623f75f5297d12f5a7bff54189384ad70aa901e53403e5a",
+          "visible_frame_points_scenemi_yup.npy": "94fdb4c17b97c0f54b8232624ffdfca3c4d2964d4ee5407edbdebfa8979b1c33"
+        },
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/recording_20210907_S02_S01_01_camera_wearer_1551-2841_master_full",
+        "start": 576,
+        "source_start_30fps": 2127,
+        "origin": [
+          -0.6849263310432434,
+          -0.4792354702949524,
+          2.8875129222869873
+        ],
+        "anchor": [
+          [
+            -0.7200862765312195,
+            0.0,
+            -0.693884551525116
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.693884551525116,
+            0.0,
+            -0.7200862765312195
+          ]
+        ],
+        "yaw_augmentation_rad": 0.0,
+        "mode": "exo",
+        "window_stride": 64
+      },
+      "static_points": 12207,
+      "dynamic_points_mean": 255.97395833333334,
+      "reference_metrics": {
+        "mpjpe_mm": {
+          "value": 41.15329360961914,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 15.327279090881348,
+          "count": 3439
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 154.2942352294922,
+          "count": 785
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 41.15329360961914,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.00012969823728781193,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.0,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 16.36056137084961,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 26.793190002441406,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.1296377182006836,
+          "count": 338
+        }
+      },
+      "variants": [
+        {
+          "variant": "full_scene",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 26.97157096862793,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 25.028738021850586,
+              "count": 3439
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 35.48290252685547,
+              "count": 785
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 26.97157096862793,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 17.752826690673828,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 1.3652933835983276,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 3.88081431388855,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 7.497636318206787,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.14400508999824524,
+              "count": 338
+            }
+          },
+          "query_feedback": [
+            {
+              "timestep": 999,
+              "valid_anchor_fraction": 0.5281405448913574,
+              "root_feedback_max_mm": 9.115417192026568e-17,
+              "rotation_feedback_max_rad": 2.9455560401010637e-19
+            },
+            {
+              "timestep": 946,
+              "valid_anchor_fraction": 0.5280628204345703,
+              "root_feedback_max_mm": 0.000716823386028409,
+              "rotation_feedback_max_rad": 2.313816821697401e-06
+            },
+            {
+              "timestep": 894,
+              "valid_anchor_fraction": 0.5279850363731384,
+              "root_feedback_max_mm": 0.010961917228996754,
+              "rotation_feedback_max_rad": 3.5495719203026965e-05
+            },
+            {
+              "timestep": 841,
+              "valid_anchor_fraction": 0.5269744992256165,
+              "root_feedback_max_mm": 0.05423077195882797,
+              "rotation_feedback_max_rad": 0.00017652208043728024
+            },
+            {
+              "timestep": 789,
+              "valid_anchor_fraction": 0.5274409055709839,
+              "root_feedback_max_mm": 0.16205021739006042,
+              "rotation_feedback_max_rad": 0.000528348027728498
+            },
+            {
+              "timestep": 736,
+              "valid_anchor_fraction": 0.5264303088188171,
+              "root_feedback_max_mm": 0.38013938069343567,
+              "rotation_feedback_max_rad": 0.001240214565768838
+            },
+            {
+              "timestep": 684,
+              "valid_anchor_fraction": 0.5219993591308594,
+              "root_feedback_max_mm": 0.7435364723205566,
+              "rotation_feedback_max_rad": 0.002434829715639353
+            },
+            {
+              "timestep": 631,
+              "valid_anchor_fraction": 0.5194340944290161,
+              "root_feedback_max_mm": 1.3049321174621582,
+              "rotation_feedback_max_rad": 0.004287299234420061
+            },
+            {
+              "timestep": 578,
+              "valid_anchor_fraction": 0.5187344551086426,
+              "root_feedback_max_mm": 2.0780725479125977,
+              "rotation_feedback_max_rad": 0.006843974813818932
+            },
+            {
+              "timestep": 526,
+              "valid_anchor_fraction": 0.5206001400947571,
+              "root_feedback_max_mm": 2.9965806007385254,
+              "rotation_feedback_max_rad": 0.009947801940143108
+            },
+            {
+              "timestep": 473,
+              "valid_anchor_fraction": 0.531094491481781,
+              "root_feedback_max_mm": 4.1066412925720215,
+              "rotation_feedback_max_rad": 0.013764528557658195
+            },
+            {
+              "timestep": 421,
+              "valid_anchor_fraction": 0.5360696315765381,
+              "root_feedback_max_mm": 5.384184837341309,
+              "rotation_feedback_max_rad": 0.018096232786774635
+            },
+            {
+              "timestep": 368,
+              "valid_anchor_fraction": 0.5362251400947571,
+              "root_feedback_max_mm": 6.777350425720215,
+              "rotation_feedback_max_rad": 0.02291284315288067
+            },
+            {
+              "timestep": 315,
+              "valid_anchor_fraction": 0.537235677242279,
+              "root_feedback_max_mm": 8.228242874145508,
+              "rotation_feedback_max_rad": 0.02785288356244564
+            },
+            {
+              "timestep": 263,
+              "valid_anchor_fraction": 0.5396454930305481,
+              "root_feedback_max_mm": 9.592477798461914,
+              "rotation_feedback_max_rad": 0.032528914511203766
+            },
+            {
+              "timestep": 210,
+              "valid_anchor_fraction": 0.5405783653259277,
+              "root_feedback_max_mm": 11.017617225646973,
+              "rotation_feedback_max_rad": 0.037424225360155106
+            },
+            {
+              "timestep": 158,
+              "valid_anchor_fraction": 0.5418998599052429,
+              "root_feedback_max_mm": 12.198020935058594,
+              "rotation_feedback_max_rad": 0.04149114713072777
+            },
+            {
+              "timestep": 105,
+              "valid_anchor_fraction": 0.5418221354484558,
+              "root_feedback_max_mm": 12.982553482055664,
+              "rotation_feedback_max_rad": 0.04417223855853081
+            },
+            {
+              "timestep": 53,
+              "valid_anchor_fraction": 0.5417444109916687,
+              "root_feedback_max_mm": 13.590733528137207,
+              "rotation_feedback_max_rad": 0.04628058522939682
+            },
+            {
+              "timestep": 0,
+              "valid_anchor_fraction": 0.5422885417938232,
+              "root_feedback_max_mm": 13.830294609069824,
+              "rotation_feedback_max_rad": 0.04709688574075699
+            }
+          ]
+        },
+        {
+          "variant": "scene_off",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 28.880708694458008,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 24.53721809387207,
+              "count": 3439
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 47.90907287597656,
+              "count": 785
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 28.880708694458008,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 16.745494842529297,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 1.2776826620101929,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 4.830302715301514,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 9.047036170959473,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.16230636835098267,
+              "count": 338
+            }
+          },
+          "query_feedback": []
+        },
+        {
+          "variant": "local_off",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 28.755878448486328,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 26.6600284576416,
+              "count": 3439
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 37.93755340576172,
+              "count": 785
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 28.755878448486328,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 19.691837310791016,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 1.4063395261764526,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 3.9891839027404785,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 7.753120422363281,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.15572039783000946,
+              "count": 338
+            }
+          },
+          "query_feedback": []
+        }
+      ],
+      "scene_effect_rms_mm": 13.594220161437988
+    },
+    {
+      "case": 1,
+      "mode": "exo",
+      "regime": "noisy",
+      "identity": {
+        "protocol": "native30-observer-target-v1-raw-firsthit",
+        "export_fingerprint": {
+          "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+          "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+          "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+          "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+          "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+          "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+        },
+        "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+        "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2841_master_full",
+        "bundle_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2841_master_full",
+        "split": "train",
+        "group": "camera_wearer",
+        "dataset": "egobody",
+        "fps": 30,
+        "frames": 1290,
+        "source_first": 1551,
+        "source_last": 2840,
+        "native_body": {
+          "model": "smpl",
+          "gender": "female",
+          "betas": [
+            -0.8754664659500122,
+            -0.18352386355400085,
+            1.2973573207855225,
+            -0.9741602540016174,
+            -0.3013802766799927,
+            0.877106249332428,
+            0.36461395025253296,
+            -0.5118645429611206,
+            -0.8259201049804688,
+            0.6803150177001953
+          ],
+          "scale": 1.0
+        },
+        "actual_virtual_mount": {
+          "rotation": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "translation_m": [
+            -0.004357050098522414,
+            0.09212258098525664,
+            0.0865315705680333
+          ],
+          "position_p90_m": 0.0,
+          "rotation_p90_rad": 0.0,
+          "source": "actual fixed raw30 virtual mount"
+        },
+        "diagnostic_only": false,
+        "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+        "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+        "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+        "input_sha256": "0b95ce37e36e5c75f5b85676c2ad0b1437b6ff58203de6aa6ae927609ecf240e",
+        "elapsed_s": 16.041025143000297,
+        "split_protocol": "egobody-official-recording-v2",
+        "recording": "recording_20210907_S02_S01_01",
+        "scene_id": "seminar_g110",
+        "pose_profile_split": null,
+        "allowed_modes": [
+          "exo"
+        ],
+        "exo_protocol": "three-corpus-calibrated-or-explicit-synthetic-firsthit-v1",
+        "exo_camera": {
+          "kind": "released_calibrated",
+          "view_id": "kinect_master",
+          "position": [
+            -0.6849263160394952,
+            -0.4792354698455745,
+            2.887512806158444
+          ],
+          "rotation": [
+            [
+              0.718967938589424,
+              -0.0854097393587232,
+              0.6897755284896544
+            ],
+            [
+              -0.013824958036209914,
+              -0.9939820361576085,
+              -0.10866730111347925
+            ],
+            [
+              0.6949057301647507,
+              0.06859218773785698,
+              -0.7158220015936552
+            ]
+          ],
+          "K": [
+            [
+              918.241638,
+              0.0,
+              958.487976
+            ],
+            [
+              0.0,
+              918.177368,
+              551.059509
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "distortion": [
+            0.668987334,
+            -2.77296114,
+            0.000896319165,
+            -0.000250226411,
+            1.5344249,
+            0.545520306,
+            -2.60093617,
+            1.46634293
+          ],
+          "source_size": [
+            1920,
+            1080
+          ],
+          "size": [
+            192,
+            108
+          ],
+          "calibration": "/home/wenxin/projects/egobody/kinect_cam_params/kinect_master/Color.json",
+          "near": 0.1,
+          "far": 12.0,
+          "benchmark_camera_verified": true
+        },
+        "exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence",
+        "exo_visibility_statistics": {
+          "reference": 1020382,
+          "visible": 1006418,
+          "person": 0,
+          "static": 13964,
+          "rigid": 0
+        },
+        "exo_mean_available_joints": 18.90077519379845,
+        "official_split_csv_sha256": "196a9953e118f378b929ec303cd42b4af3719507dc75ef650c8372dbb577a639",
+        "world_frame_id": "c115d7884858fb08e4f7b31cdacc91f609cb04a2f16c7c0278381073c6f43c28",
+        "output_sha256": {
+          "camera_intrinsics_128x96.npy": "d5bf0c0b1490abac257d96b71ba0b07901eddf3fd6628f61490d7d89e17c008c",
+          "camera_position_scenemi_yup.npy": "ba9fa0222dcfe2eb1522205de98fa856ab1bb7c96bf826695c0051c28b12f3ab",
+          "camera_rotation_scenemi_yup.npy": "925ff46731425973f854f68c38351566fd870a4051c463c4f979077cf775ec44",
+          "exo_frame_owner.npy": "2cef204f2284c8a802396130dd47eae2f872c31513907b4f1066f7e1b5cae6a3",
+          "exo_frame_points_world.npy": "4565879b808d0fdda1241926636bb7c7aa3ac471d883410982c37cdfd16452ee",
+          "exo_intrinsics.npy": "047d2e5dfb429767c2361d2291962a8520907a7514f35d3a27f23898c9e78041",
+          "exo_person_counts.npy": "ab120fb524812f9f12d41d08b6ca085c462f985da3115f06796ecd60a9e6953f",
+          "exo_position_available.npy": "2e0b7e2ee98ea3229fc93fffe52432898285fd73ab611d9b2902da1454264942",
+          "exo_position_confidence.npy": "eac192f28fece7350352331b235d0dd988c02e864924b20f3d7830ed6f34c891",
+          "exo_reference_counts.npy": "67d47eef80173978e6b9ed699e6e6f2b7b9cb5d126003fe308d3f64e903e3d21",
+          "exo_rigid_counts.npy": "ab120fb524812f9f12d41d08b6ca085c462f985da3115f06796ecd60a9e6953f",
+          "exo_sensor_to_world.npy": "a8aae20b336e888a3484c781414f7543b165ff50cdc94d7d67d3c1ef1e355fc1",
+          "exo_static_counts.npy": "93fca096b8fb5dba81bf764d0b9febfdecd3373cb60b27db99e529e622be6046",
+          "exo_trajectory_world.npy": "b854b128dabebbcf8ed97d587474570059b29aaf3b60ec6213df22d1753e4c16",
+          "exo_visible_counts.npy": "0c3158ffed7c0a06f33bec6a9bd3cb585304786a80434a56aa71879ef2fb224b",
+          "motion_world.npy": "0fcd92641a5a5d9ac9e16650458f610fb8d0a646f8d03fd67c9a04fe7a4fdf47",
+          "observation_valid.npy": "dab6b85cc9c5acf47ea5ba2f1ae14937e89246fe214ec84a65c3e954951a0b51",
+          "rest.npy": "98776053afa8beafd7bc1d304c905f157501d71dc5ad3b8dda1e646a83e81bac",
+          "source_frame_ids.npy": "311fc03c03c2f2a80935a67213ba56cc001ebe6d7d30d371f187a8e1948c5c8b",
+          "visible_frame_owner.npy": "ae470d3d8e58793c5623f75f5297d12f5a7bff54189384ad70aa901e53403e5a",
+          "visible_frame_points_scenemi_yup.npy": "94fdb4c17b97c0f54b8232624ffdfca3c4d2964d4ee5407edbdebfa8979b1c33"
+        },
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/recording_20210907_S02_S01_01_camera_wearer_1551-2841_master_full",
+        "start": 576,
+        "source_start_30fps": 2127,
+        "origin": [
+          -0.6849263310432434,
+          -0.4792354702949524,
+          2.8875129222869873
+        ],
+        "anchor": [
+          [
+            -0.7200862765312195,
+            0.0,
+            -0.693884551525116
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.693884551525116,
+            0.0,
+            -0.7200862765312195
+          ]
+        ],
+        "yaw_augmentation_rad": 0.0,
+        "mode": "exo",
+        "window_stride": 64
+      },
+      "static_points": 12207,
+      "dynamic_points_mean": 255.97395833333334,
+      "reference_metrics": {
+        "mpjpe_mm": {
+          "value": 66.7546615600586,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 45.241966247558594,
+          "count": 3439
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 160.9993896484375,
+          "count": 785
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 66.7546615600586,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 19.60092544555664,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 12.487772941589355,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 24.8878231048584,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 32.37671661376953,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.13975881040096283,
+          "count": 338
+        }
+      },
+      "variants": [
+        {
+          "variant": "full_scene",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 58.10392379760742,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 55.26236343383789,
+              "count": 3439
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 70.55245208740234,
+              "count": 785
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 58.10392379760742,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 35.39985656738281,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 12.046728134155273,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 13.754729270935059,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 13.879356384277344,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.1716831624507904,
+              "count": 338
+            }
+          },
+          "query_feedback": [
+            {
+              "timestep": 999,
+              "valid_anchor_fraction": 0.5237095355987549,
+              "root_feedback_max_mm": 8.05160733774621e-17,
+              "rotation_feedback_max_rad": 2.7386034641524803e-19
+            },
+            {
+              "timestep": 946,
+              "valid_anchor_fraction": 0.5236318111419678,
+              "root_feedback_max_mm": 0.0006296757492236793,
+              "rotation_feedback_max_rad": 2.140785909432452e-06
+            },
+            {
+              "timestep": 894,
+              "valid_anchor_fraction": 0.5235540866851807,
+              "root_feedback_max_mm": 0.00952525157481432,
+              "rotation_feedback_max_rad": 3.239432771806605e-05
+            },
+            {
+              "timestep": 841,
+              "valid_anchor_fraction": 0.5238650441169739,
+              "root_feedback_max_mm": 0.04712710157036781,
+              "rotation_feedback_max_rad": 0.00016186943685170263
+            },
+            {
+              "timestep": 789,
+              "valid_anchor_fraction": 0.5241760015487671,
+              "root_feedback_max_mm": 0.1412862092256546,
+              "rotation_feedback_max_rad": 0.0004859901964664459
+            },
+            {
+              "timestep": 736,
+              "valid_anchor_fraction": 0.5274409055709839,
+              "root_feedback_max_mm": 0.3321627974510193,
+              "rotation_feedback_max_rad": 0.0011466273572295904
+            },
+            {
+              "timestep": 684,
+              "valid_anchor_fraction": 0.5294620394706726,
+              "root_feedback_max_mm": 0.6491031050682068,
+              "rotation_feedback_max_rad": 0.002243186580017209
+            },
+            {
+              "timestep": 631,
+              "valid_anchor_fraction": 0.5294620394706726,
+              "root_feedback_max_mm": 1.1301088333129883,
+              "rotation_feedback_max_rad": 0.003911367151886225
+            },
+            {
+              "timestep": 578,
+              "valid_anchor_fraction": 0.5303171277046204,
+              "root_feedback_max_mm": 1.7930234670639038,
+              "rotation_feedback_max_rad": 0.006223555188626051
+            },
+            {
+              "timestep": 526,
+              "valid_anchor_fraction": 0.5317941308021545,
+              "root_feedback_max_mm": 2.625211477279663,
+              "rotation_feedback_max_rad": 0.009122348390519619
+            },
+            {
+              "timestep": 473,
+              "valid_anchor_fraction": 0.53125,
+              "root_feedback_max_mm": 3.5703418254852295,
+              "rotation_feedback_max_rad": 0.012499668635427952
+            },
+            {
+              "timestep": 421,
+              "valid_anchor_fraction": 0.5311722755432129,
+              "root_feedback_max_mm": 4.672075271606445,
+              "rotation_feedback_max_rad": 0.016428891569375992
+            },
+            {
+              "timestep": 368,
+              "valid_anchor_fraction": 0.5318718552589417,
+              "root_feedback_max_mm": 5.8781538009643555,
+              "rotation_feedback_max_rad": 0.020732469856739044
+            },
+            {
+              "timestep": 315,
+              "valid_anchor_fraction": 0.5334265828132629,
+              "root_feedback_max_mm": 7.125474452972412,
+              "rotation_feedback_max_rad": 0.02531619742512703
+            },
+            {
+              "timestep": 263,
+              "valid_anchor_fraction": 0.5323383212089539,
+              "root_feedback_max_mm": 8.305231094360352,
+              "rotation_feedback_max_rad": 0.029670270159840584
+            },
+            {
+              "timestep": 210,
+              "valid_anchor_fraction": 0.5344371795654297,
+              "root_feedback_max_mm": 9.293889999389648,
+              "rotation_feedback_max_rad": 0.03350832685828209
+            },
+            {
+              "timestep": 158,
+              "valid_anchor_fraction": 0.5370025038719177,
+              "root_feedback_max_mm": 10.171032905578613,
+              "rotation_feedback_max_rad": 0.03688895329833031
+            },
+            {
+              "timestep": 105,
+              "valid_anchor_fraction": 0.5377798676490784,
+              "root_feedback_max_mm": 11.15333080291748,
+              "rotation_feedback_max_rad": 0.040359046310186386
+            },
+            {
+              "timestep": 53,
+              "valid_anchor_fraction": 0.5382462739944458,
+              "root_feedback_max_mm": 11.503252029418945,
+              "rotation_feedback_max_rad": 0.041831184178590775
+            },
+            {
+              "timestep": 0,
+              "valid_anchor_fraction": 0.5380907654762268,
+              "root_feedback_max_mm": 11.735319137573242,
+              "rotation_feedback_max_rad": 0.04260101169347763
+            }
+          ]
+        },
+        {
+          "variant": "scene_off",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 54.18144989013672,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 50.82162857055664,
+              "count": 3439
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 68.90042877197266,
+              "count": 785
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 54.18144989013672,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 32.6064453125,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 12.163961410522461,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 15.064571380615234,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 14.117104530334473,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.1776292771100998,
+              "count": 338
+            }
+          },
+          "query_feedback": []
+        },
+        {
+          "variant": "local_off",
+          "metrics": {
+            "mpjpe_mm": {
+              "value": 58.90483474731445,
+              "count": 4224
+            },
+            "conditioned_mpjpe_mm": {
+              "value": 56.33771896362305,
+              "count": 3439
+            },
+            "unconditioned_mpjpe_mm": {
+              "value": 70.15107727050781,
+              "count": 785
+            },
+            "candidate_position_mpjpe_mm": {
+              "value": null,
+              "count": 0
+            },
+            "regular_position_mpjpe_mm": {
+              "value": 58.90483474731445,
+              "count": 4224
+            },
+            "root_position_error_mm": {
+              "value": 37.02407455444336,
+              "count": 192
+            },
+            "root_orientation_deg": {
+              "value": 12.10287094116211,
+              "count": 192
+            },
+            "head_orientation_deg": {
+              "value": 13.867515563964844,
+              "count": 192
+            },
+            "candidate_rotation_deg": {
+              "value": null,
+              "count": 0
+            },
+            "regular_rotation_deg": {
+              "value": 13.645974159240723,
+              "count": 4224
+            },
+            "foot_speed_during_GT_stance_m_s": {
+              "value": 0.17981277406215668,
+              "count": 338
+            }
+          },
+          "query_feedback": []
+        }
+      ],
+      "scene_effect_rms_mm": 19.512203216552734
+    }
+  ],
+  "query_benchmark": [
+    {
+      "case": 0,
+      "static_points": 15404,
+      "frames": 192,
+      "anchors": 67,
+      "fields_bitwise_equal": {
+        "points": true,
+        "normals": true,
+        "velocities": true,
+        "valid": true,
+        "normal_reliable": true,
+        "velocity_valid": true,
+        "owners": true
+      },
+      "median_seconds": {
+        "old": 0.34261976899870206,
+        "reused_trees": 0.016682150002452545
+      },
+      "ratio_old_over_reused": 20.53810623620645,
+      "old_code_sha256": "cec1ff780ce807c0b653ebb872f5f974319762984eead2b0d3615c3c4bb553d8"
+    },
+    {
+      "case": 1,
+      "static_points": 12207,
+      "frames": 192,
+      "anchors": 67,
+      "fields_bitwise_equal": {
+        "points": true,
+        "normals": true,
+        "velocities": true,
+        "valid": true,
+        "normal_reliable": true,
+        "velocity_valid": true,
+        "owners": true
+      },
+      "median_seconds": {
+        "old": 0.9036317550053354,
+        "reused_trees": 0.9348973840023973
+      },
+      "ratio_old_over_reused": 0.9665571542587804,
+      "old_code_sha256": "cec1ff780ce807c0b653ebb872f5f974319762984eead2b0d3615c3c4bb553d8"
+    }
+  ]
+}

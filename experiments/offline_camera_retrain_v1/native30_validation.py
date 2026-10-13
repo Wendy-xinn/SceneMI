@@ -12,8 +12,7 @@ import torch
 
 from experiments.offline_camera_retrain_v1.supervision import forward_kinematics
 from experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations
-from experiments.offline_camera_retrain_v1.native30_model import sample_native30
-from experiments.offline_camera_retrain_v1.native30_observations import inference_payload
+from experiments.offline_camera_retrain_v1.native30_refinement import model_inputs,sample_motion
 from experiments.offline_camera_retrain_v1.unified_observations import collate_observations
 
 
@@ -79,9 +78,13 @@ def validate(model,data,builder,config,folder,step):
                         observed,scene,asset=other.build(data,sample,identity,entry['mode'],entry['joints'],noise_rng=np.random.default_rng(options['seed']+i))
                     batch=collate_observations([(observed,scene,asset,entry['mode'])],device=device)
                     conditioned=torch.from_numpy(observed['observation_meta'][...,0]>0)[None].to(device)
-                    prediction=sample_native30(model,inference_payload(batch),steps=config['sampling']['ddim_steps'],seed=options['seed']+i)
+                    known=model_inputs(config,batch)
+                    prediction=sample_motion(model,known,config,steps=config['sampling']['ddim_steps'],seed=options['seed']+i)
                     if not torch.isfinite(prediction).all():raise FloatingPointError('Nonfinite DDIM validation output')
                     rows.append(dict(case=i,step=step,regime=regime,**entry,metrics=raw_metrics(prediction,batch,conditioned)))
+                    if 'reference_motion' in known:
+                        rows[-1]['reference_metrics']=raw_metrics(known['reference_motion'],batch,conditioned)
+                        saved[f'{i}_{regime}_reference_motion']=known['reference_motion'][0].cpu().numpy()
                     saved[f'{i}_{regime}_prediction']=prediction[0].cpu().numpy()
                     saved[f'{i}_{regime}_observations']=observed['trajectory']
                     saved[f'{i}_{regime}_observation_meta']=observed['observation_meta']

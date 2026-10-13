@@ -13,6 +13,7 @@ from experiments.offline_camera_retrain_v1.data import HERE
 from experiments.offline_camera_retrain_v1.native30_data import Native30Data
 from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder,inference_payload,load_frozen_exo,load_frozen_ego
 from experiments.offline_camera_retrain_v1.native30_model import Native30SceneMI,reconcile_motion
+from experiments.offline_camera_retrain_v1.native30_refinement import Native30Refinement,model_inputs,sample_motion
 from experiments.offline_camera_retrain_v1.native30_losses import base_losses,observation_losses,objective
 from experiments.offline_camera_retrain_v1.native30_preview import preview
 from experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAnchorCache
@@ -44,6 +45,8 @@ def code_hashes():
 
 def read_config(path=CONFIG_PATH):
     config=json.loads(Path(path).read_text())
+    if config.get('diffusion_target','absolute_x0') not in ('absolute_x0','reference_residual'):
+        raise ValueError('Unknown native30 diffusion target')
     from experiments.offline_camera_retrain_v1.unified_losses import SCALES
     if config['fps']!=30 or config['frames']!=192 or config['initialization']!='from_scratch':
         raise ValueError('Expected fresh native30 /192 frame configuration')
@@ -93,7 +96,8 @@ def window_options(config,full_data=True):
 
 
 def make_model(config):
-    return Native30SceneMI(config['latent_dim'],tuple(config['dim_mults']),**{k:config['feedback'][k]
+    model_type=Native30Refinement if config.get('diffusion_target','absolute_x0')=='reference_residual' else Native30SceneMI
+    return model_type(config['latent_dim'],tuple(config['dim_mults']),**{k:config['feedback'][k]
         for k in ('root_limit_m','rotation_limit_rad','feedback_gain')})
 
 
@@ -209,7 +213,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     if yaw_error>1e-5:raise AssertionError('Post-anchor world yaw is inconsistent or cancelled')
     checks['post_anchor_common_world_yaw']=dict(angle_rad=.6,maximum_joint_error_m=yaw_error)
     for label,item,identity in train_cases:
-        batch=collate_observations([item]);known=inference_payload(batch)
+        batch=collate_observations([item]);known=model_inputs(config,batch)
         state=torch.randn_like(batch['motion']);t=torch.tensor([25],device='cuda')
         with torch.no_grad():prediction,details=model(state,t,known,return_details=True)
         checks.setdefault('predicted_proposal_query_coverage',[]).append(dict(label=label,
@@ -250,7 +254,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     rich=next(item for label,item,_ in train_cases if label=='train/rich/ego')
     items=[exo,rich][:config['batch_size']]
     while len(items)<config['batch_size']:items.append(exo)
-    batch=collate_observations(items);known=inference_payload(batch);t=torch.full((len(items),),25,device='cuda')
+    batch=collate_observations(items);known=model_inputs(config,batch);t=torch.full((len(items),),25,device='cuda')
     signal=alphas[t];state=torch.randn_like(batch['motion'])
     model.train();prediction,details=model(state,t,known,return_details=True)
     loss,terms=objective(prediction,batch['motion'],batch,signal,details,config,weights)
@@ -273,7 +277,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     model.zero_grad(set_to_none=True);model.eval()
     # Independent frozen loader cannot read GT motion/contact even accidentally.
     item=exo;label,_,identity=next(x for x in train_cases if x[0]=='train/camera_wearer/exo')
-    baseline=collate_observations([item]);known=inference_payload(baseline)
+    baseline=collate_observations([item]);known=model_inputs(config,baseline)
     checked_exo=[]
     for case_label,case_item,case_identity in cases:
         if case_item[3]!='exo':continue
@@ -360,8 +364,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
             geometry='controlled observed plane',quality_claim=False)
         if checks['local_condition_reaches_output']['maximum_difference']<=0:
             raise AssertionError('Local geometry does not affect the actual output')
-        from experiments.offline_camera_retrain_v1.native30_model import sample_native30
-        sample=sample_native30(model,known,steps=2,seed=config['seed'])
+        sample=sample_motion(model,known,config,steps=2,seed=config['seed'])
         if not torch.isfinite(sample).all():raise AssertionError('Nonfinite complete-window DDIM inference')
         checks['full_window_ddim_smoke']=dict(frames=192,steps=2,core_forwards=4,finite=True,
             quality_claim=False,normal_evaluation_steps=config['sampling']['ddim_steps'],static_tokens_reused=True)

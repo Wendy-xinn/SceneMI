@@ -38,6 +38,7 @@ class Native30SurfaceWindow:
             ix.sort(); p, cam = p[ix], cam[ix]
         self.points = p.astype(np.float32)
         self.static = self._cloud(p, cam, np.zeros(len(p),np.int64), np.zeros_like(p), np.ones(len(p),bool))
+        self._static_tree = cKDTree(self.static['points']) if len(p) else None
         self.dynamic = []
         if object_positions is not None:
             pos = np.asarray(object_positions); rot = np.asarray(object_rotations); ov = np.asarray(object_valid,bool)
@@ -73,6 +74,7 @@ class Native30SurfaceWindow:
                 self.dynamic_features[t,j]=np.r_[p.mean(0)/2,p.max(0)-p.min(0),v/.2,
                                                   min(len(p)/32,1),float(vm.any())]
                 self.dynamic_valid[t,j]=True
+        self._dynamic_trees = [None] * len(self.dynamic)
 
     @staticmethod
     def _cloud(points, cameras, owners, velocities, velocity_valid):
@@ -95,23 +97,35 @@ class Native30SurfaceWindow:
         result = {k:np.zeros((*shape,3),np.float32) for k in ('points','normals','velocities')}
         result.update({k:np.zeros(shape,bool) for k in ('valid','normal_reliable','velocity_valid')})
         result['owners'] = np.zeros(shape,np.int64)
+        static_count=len(self.static['points'])
         for t in range(frames):
-            cloud = {k:np.concatenate((self.static[k],self.dynamic[t][k])) for k in self.static}
-            if not len(cloud['points']):
+            dynamic=self.dynamic[t]
+            if not static_count and not len(dynamic['points']):
                 continue
-            tree = cKDTree(cloud['points'])
+            if len(dynamic['points']) and self._dynamic_trees[t] is None:
+                self._dynamic_trees[t]=cKDTree(dynamic['points'])
+            def gather(key,ids):
+                value=np.empty((len(ids),*self.static[key].shape[1:]),dtype=self.static[key].dtype)
+                static=ids<static_count
+                value[static]=self.static[key][ids[static]]
+                value[~static]=dynamic[key][ids[~static]-static_count]
+                return value
             for si,radius in enumerate(SCALES):
-                neighborhoods = tree.query_ball_point(vertices[t],radius)
-                for a,indices in enumerate(neighborhoods):
-                    if not indices:
+                # Concatenating sorted static IDs then offset dynamic IDs
+                # preserves exactly the combined-tree neighborhood order.
+                static_hits=self._static_tree.query_ball_point(vertices[t],radius,return_sorted=True) if self._static_tree is not None else [[] for _ in range(anchors)]
+                dynamic_hits=self._dynamic_trees[t].query_ball_point(vertices[t],radius,return_sorted=True) if self._dynamic_trees[t] is not None else [[] for _ in range(anchors)]
+                for a,(sids,dids) in enumerate(zip(static_hits,dynamic_hits)):
+                    if not len(sids) and not len(dids):
                         continue
-                    ids = np.asarray(indices); delta=cloud['points'][ids]-vertices[t,a]
+                    ids=np.r_[np.asarray(sids,np.int64),np.asarray(dids,np.int64)+static_count]
+                    delta=gather('points',ids)-vertices[t,a]
                     chosen=[int(np.argmin((delta**2).sum(-1)))]; spread=np.full(len(ids),np.inf)
                     for _ in range(min(neighbors,len(ids))-1):
                         spread=np.minimum(spread,((delta-delta[chosen[-1]])**2).sum(-1));spread[chosen]=-1
                         chosen.append(int(spread.argmax()))
                     ix=ids[chosen]; n=len(ix); dest=(t,a,si,slice(0,n))
                     for key in ('points','normals','owners','velocities','velocity_valid'):
-                        result[key][dest]=cloud[key][ix]
-                    result['normal_reliable'][dest]=cloud['reliable'][ix]; result['valid'][dest]=True
+                        result[key][dest]=gather(key,ix)
+                    result['normal_reliable'][dest]=gather('reliable',ix); result['valid'][dest]=True
         return result
