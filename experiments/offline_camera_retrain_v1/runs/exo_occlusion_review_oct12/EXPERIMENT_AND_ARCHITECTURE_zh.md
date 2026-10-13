@@ -194,6 +194,10 @@ EgoBody master不依赖PV有效帧范围，整段覆盖源同步索引的`first:
 
 10:23前后WSL重启中断过导出和viser；恢复时校验已提交来源，缺失来源继续计算。此前4条来源曾遇到SMPL protocol-0读取异常；重启后三种SMPL文件均可正常加载，4条已重算成功，不将该读取异常判成GT动作问题。对重启造成的输出损坏，控制器会保留损坏的生成缓存供诊断，再重建；协议指纹不匹配则拒绝静默替换。
 
+11:00前后长驻Open3D子进程发生原生SIGSEGV，进程池中断在1071个来源、1,473,837帧；内核有pybind general protection fault记录，无本次OOM记录。控制器已改为每个新来源独立进程、保持6个并行槽位；原生崩溃最多重试3次，反复失败须报错，不能跳过来源。完整旧缓存用只读映射哈希核验后复用；信号中断仅清理对应子进程的临时输出，最终缓存仍提交后进入manifest。导出核心协议和数据内容指纹保持不变。
+
+恢复时DrvFS并发缓冲读取曾报6个旧来源哈希不一致，逐文件只读映射复核后全部与原metadata一致；另出现临时JSON替换报ENOENT而临时文件仍在。现将旧缓存核验串行化并改用mmap哈希，进度/manifest写入flush+fsync后替换，读取/替换的短暂缺口有限重试，持久错误仍报出。5项恢复检查覆盖旧缓存不重算、损坏输出保留、协议拒绝、崩溃重试上限和临时替换/读缺口恢复；与此前59项合计64项通过，见[NATIVE30_FINAL_TEST_AUDIT.json](NATIVE30_FINAL_TEST_AUDIT.json)。全量审计已重新从第一条来源开始，不能把此前1071条结果直接当最终证据。
+
 内存与盘容量分开记录：导出时Linux文件缓存一度约24GB，但可用内存仍约23–24GB，进程实际占用约5–6GB；文件缓存可回收。用户已澄清关注的是运行内存。恢复后保持6个并行任务；显卡约24GB，缓存导出不启动模型训练。实查E盘剩约298GB、Linux工作盘约67GB，正式缓存当时约15.2GiB；全量完成后再记最终值。
 
 ## 4. 当前模型和训练设置
@@ -225,6 +229,6 @@ EgoBody master不依赖PV有效帧范围，整段覆盖源同步索引的`first:
 
 [viser六例](http://127.0.0.1:8783)是输入/GT诊断面板，不是生成效果；TRUMANS仍为合成exo。首例右臂开头跳变已回溯到源拟合，当前显示保留以便追查；10月13日全索引筛查及8处原生复算见1.4。原RGB不在本地，不能断言真实动作绝不可能跳动，也不能把所有候选直接mask。此前零步反传和2步DDIM smoke只证明接口/梯度，不代表场景或朝向效果。
 
-本轮正式缓存入口为[原生mesh六例viser](http://127.0.0.1:8784)：每语料两例，来自官方validation的已提交缓存；例子按遮挡筛选仅用于显示，不作为benchmark采样策略。原生SMPL/SMPL-X使用同一整段source/body profile复算，未用简化22关节skin冒充原生GT；目标、人/物体遮挡mesh与完整扫描mesh均标为参考。模型可见环境点云及整段已见静态记忆单独显示，完整扫描不进入条件。来源和检查见[FORMAL_EXO_VISER_CASES.json](FORMAL_EXO_VISER_CASES.json)、[FORMAL_EXO_MESH_AUDIT.json](FORMAL_EXO_MESH_AUDIT.json)。显示confidence阈值不修改训练输入。当前代码59项回归通过；全量缓存完成状态仍以D6及最终audit为准。
+本轮正式缓存入口为[原生mesh六例viser](http://127.0.0.1:8784)：每语料两例，来自官方validation的已提交缓存；例子按遮挡筛选仅用于显示，不作为benchmark采样策略。原生SMPL/SMPL-X使用同一整段source/body profile复算，未用简化22关节skin冒充原生GT；目标、人/物体遮挡mesh与完整扫描mesh均标为参考。模型可见环境点云及整段已见静态记忆单独显示，完整扫描不进入条件。来源和检查见[FORMAL_EXO_VISER_CASES.json](FORMAL_EXO_VISER_CASES.json)、[FORMAL_EXO_MESH_AUDIT.json](FORMAL_EXO_MESH_AUDIT.json)。显示confidence阈值不修改训练输入。当前代码64项回归通过；全量缓存完成状态仍以D6及最终audit为准。
 
 后续每次只更新上面表格的状态、证据与剩余项。可复现脚本和机器JSON保留；历史文档入口指向这里，其内容按历史日期理解。只保留一个原子可恢复last.pt；原55k与选中的3k权重保留。第一次正式训练仍须完成本清单前置项及输入可视化验收，当前暂停状态不变。

@@ -13,19 +13,17 @@ from experiments.offline_camera_retrain_v1.native30_export import inventory,expo
 from experiments.offline_camera_retrain_v1.native30_data import Native30Data
 from experiments.offline_camera_retrain_v1.native30_splits import validate_official_bundle
 from experiments.offline_camera_retrain_v1.supervision import forward_kinematics
+from experiments.offline_camera_retrain_v1.native30_cache_io import mapped_sha256,read_json_retry,read_text_retry
 
 
 def sha(path):
-    h=hashlib.sha256()
-    with Path(path).open('rb') as stream:
-        for block in iter(lambda:stream.read(4*2**20),b''):h.update(block)
-    return h.hexdigest()
+    return mapped_sha256(path)
 
 
 def committed_entries(root,expected,follow=False):
     emitted=set()
     while True:
-        rows=[json.loads(line) for line in (root/'manifest.jsonl').read_text().splitlines()]
+        rows=[json.loads(line) for line in read_text_retry(root/'manifest.jsonl').splitlines()]
         identities=[(row['split'],row['sequence_id']) for row in rows]
         if len(set(identities))!=len(identities) or not emitted.issubset(identities):
             raise AssertionError('Committed manifest removed or duplicated an audited identity')
@@ -33,7 +31,7 @@ def committed_entries(root,expected,follow=False):
             if identity not in emitted:
                 emitted.add(identity);yield row
         if not follow:return
-        progress=json.loads((root/'export_progress.json').read_text())
+        progress=read_json_retry(root/'export_progress.json')
         if progress['status']!='running':
             if progress['status']!='complete':raise ValueError('Export ended without full completion')
             if emitted==expected:return
@@ -44,7 +42,7 @@ def committed_entries(root,expected,follow=False):
 
 def audit(root,partial=False,follow=False):
     torch.set_num_threads(1);root=Path(root).resolve();started=time.monotonic()
-    progress=json.loads((root/'export_progress.json').read_text())
+    progress=read_json_retry(root/'export_progress.json')
     if not partial and not follow and progress['status']!='complete':raise ValueError('Full export has not completed')
     sources=[r for s in ['train','validation','test'] for r in inventory(s)]
     if [json.loads(line) for line in (root/'source_index.jsonl').read_text().splitlines()]!=sources:
@@ -57,7 +55,7 @@ def audit(root,partial=False,follow=False):
         if identity in seen or identity not in expected:raise AssertionError('Duplicate or unexpected cache identity')
         seen.add(identity);source=expected[identity];folder=Path(row['path'])
         if not folder.resolve().is_relative_to(root):raise AssertionError('Cache bundle escaped E-drive root')
-        meta=json.loads((folder/'metadata.json').read_text());validate_official_bundle(meta,row['split'])
+        meta=read_json_retry(folder/'metadata.json');validate_official_bundle(meta,row['split'])
         if meta['diagnostic_only'] or meta['export_fingerprint']!=fingerprint:raise AssertionError('Diagnostic/stale cache')
         # The manifest includes path; metadata deliberately does not.
         if dict(meta,path=row['path'])!=row:raise AssertionError('Manifest metadata differs')
@@ -109,7 +107,7 @@ def audit(root,partial=False,follow=False):
         if len(seen)%50==0:print(f'AUDIT_PROGRESS {len(seen)}/{len(expected)} bundles; native FK max {fk_max:.8g} m',flush=True)
     if not partial and seen!=set(expected):raise AssertionError('Full inventory not covered')
     entries=[json.loads(x) for x in (root/'manifest.jsonl').read_text().splitlines()]
-    progress=json.loads((root/'export_progress.json').read_text())
+    progress=read_json_retry(root/'export_progress.json')
     if not partial and (progress['completed_sources']!=len(entries) or progress['errors']):
         raise AssertionError('Exporter completion record differs from complete manifest')
     sampling={}
