@@ -21,7 +21,7 @@ from experiments.offline_camera_retrain_v1.supervision import forward_kinematics
 from experiments.offline_camera_retrain_v1.scene_model import cosine_alphas
 from experiments.offline_camera_retrain_v1.native30_cache_io import atomic_text,mapped_sha256,verified_sha256
 
-CONFIG_PATH=HERE/'native30_config.json'
+CONFIG_PATH=HERE/'native30_stride64_config.json'
 
 
 def sha256(path):
@@ -75,9 +75,21 @@ def read_config(path=CONFIG_PATH):
     limit=config.get('exo_max_empty_frames')
     if limit is not None and (isinstance(limit,bool) or not isinstance(limit,int) or limit<0):
         raise ValueError('exo_max_empty_frames must be a nonnegative integer or null')
+    stride=config.get('window_stride',1)
+    if isinstance(stride,bool) or not isinstance(stride,int) or stride<1:
+        raise ValueError('window_stride must be a positive integer')
+    if stride!=1 and not config.get('window_index'):
+        raise ValueError('Nonlegacy training needs its persisted window index')
     if not 2<=config['sampling']['ddim_steps']<=1000:
         raise ValueError('DDIM inference steps outside supported schedule')
     return config
+
+
+def window_options(config,full_data=True):
+    result=dict(window_stride=config.get('window_stride',1))
+    if full_data and config.get('window_index'):
+        result['window_index']=HERE/config['window_index']
+    return result
 
 
 def make_model(config):
@@ -87,6 +99,8 @@ def make_model(config):
 
 def dataset_digest(data):
     report={str(data.manifest.resolve()):sha256(data.manifest)}
+    for path in data.window_index_files:
+        report[str(Path(path).resolve())]=sha256(path)
     from experiments.offline_camera_retrain_v1.native30_splits import OFFICIAL_CSV, SPLITS
     from experiments.offline_camera_retrain_v1.data import SOURCE
     for path in [OFFICIAL_CSV,SOURCE/'sequences.jsonl']+[SOURCE/f'{g}_sequences/{s}.jsonl' for g in ('egobody','trumans') for s in SPLITS]:
@@ -137,8 +151,8 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     torch.set_num_threads(4);torch.manual_seed(config['seed']);np.random.seed(config['seed'])
     manifest=HERE/config['train_manifest' if full_data else 'review_manifest']
     memory_protocol=config['scene']['memory_protocol']
-    data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'))
-    validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'))
+    data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'),**window_options(config,full_data))
+    validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'),**window_options(config,full_data))
     from experiments.offline_camera_retrain_v1.native30_validation import fixed_plan
     validation_plan=fixed_plan(validation,config['validation'])
     write_json(folder/'validation_plan.json',dict(seed=config['validation']['seed'],plan=validation_plan,

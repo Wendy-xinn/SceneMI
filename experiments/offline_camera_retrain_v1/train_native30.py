@@ -11,7 +11,7 @@ import torch
 
 from experiments.offline_camera_retrain_v1.data import HERE
 from experiments.offline_camera_retrain_v1.prepare_native30 import (
-    CONFIG_PATH,read_config,make_model,code_hashes,sha256,write_json,sample_item,dataset_digest)
+    CONFIG_PATH,read_config,make_model,code_hashes,sha256,write_json,sample_item,dataset_digest,window_options)
 from experiments.offline_camera_retrain_v1.native30_data import Native30Data
 from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder,inference_payload
 from experiments.offline_camera_retrain_v1.native30_losses import objective
@@ -39,8 +39,8 @@ def train(config_path,steps,output=None,resume=False):
     if (folder/'last.pt').exists()!=bool(resume):
         raise ValueError('Existing checkpoints require explicit resume; missing checkpoint cannot resume')
     torch.set_num_threads(4);torch.manual_seed(config['seed']);np.random.seed(config['seed'])
-    data=Native30Data(HERE/config['train_manifest'],'train',config['seed'],memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'))
-    val=Native30Data(HERE/config['train_manifest'],'validation',config['seed']+1,memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'))
+    data=Native30Data(HERE/config['train_manifest'],'train',config['seed'],frames=config['frames'],memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'),**window_options(config))
+    val=Native30Data(HERE/config['train_manifest'],'validation',config['seed']+1,frames=config['frames'],memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'),**window_options(config))
     if dataset_digest(data)|dataset_digest(val)!=effective['data_sha256']:
         raise ValueError('Native30 data changed after preparation')
     plan=data.sampling_plan(config['ego_probability'])

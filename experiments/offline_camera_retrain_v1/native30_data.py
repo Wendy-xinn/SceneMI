@@ -12,6 +12,7 @@ from experiments.offline_camera_retrain_v1.native30_memory import ObservedStatic
 from experiments.offline_camera_retrain_v1.data import anchor_rotation, rotation6d
 from experiments.offline_camera_retrain_v1.supervision import IDENTITY_6D
 from experiments.offline_camera_retrain_v1.native30_gt_reliability import quality_weights,DEFAULT_GT_RELIABILITY,validate_gt_reliability
+from experiments.offline_camera_retrain_v1.native30_window_index import valid_window_grid,read_window_index
 
 
 def exo_window_starts(observed,starts,frames,max_empty_frames=None):
@@ -32,12 +33,19 @@ def exo_window_starts(observed,starts,frames,max_empty_frames=None):
 
 class Native30Data:
     def __init__(self, manifest, split, seed=20261012, *, diagnostic=False, frames=192,
-                 memory_protocol=OFFLINE_MEMORY_PROTOCOL,quality_config=None,exo_max_empty_frames=None):
+                 memory_protocol=OFFLINE_MEMORY_PROTOCOL,quality_config=None,exo_max_empty_frames=None,
+                 window_stride=1,window_index=None):
         split=normalize_split(split)
         self.manifest=Path(manifest); self.split=split; self.rng=np.random.default_rng(seed)
         self.frames=frames; self.members={g:[] for g in ('trumans','camera_wearer','interactee','rich')}
         self.quality_config=validate_gt_reliability(dict(DEFAULT_GT_RELIABILITY) if quality_config is None else quality_config)
         self.exo_max_empty_frames=exo_max_empty_frames
+        valid_window_grid(np.empty(0,bool),frames,window_stride)
+        self.window_stride=int(window_stride);self.window_index_files=[]
+        indexed=None
+        if window_index is not None:
+            indexed,self.window_index_files=read_window_index(window_index,self.manifest,split,
+                frames,self.window_stride,exo_max_empty_frames)
         self.arrays={};self.mode_starts={}
         expected_sources={(r['group'],r['sequence_id']):r for r in inventory(split)} if not diagnostic else {}
         memory_entries=[]
@@ -68,12 +76,17 @@ class Native30Data:
                 if meta['dataset']=='egobody' and any(meta.get(k)!=source.get(k) for k in
                     ('recording','scene_id','pose_profile_split')):
                     raise ValueError('Official recording/scene/body profile provenance changed')
-            sums=np.r_[0,np.cumsum(~valid)]; starts=np.flatnonzero(sums[frames:]-sums[:-frames]==0)
+            starts=valid_window_grid(valid,frames,self.window_stride)
             for mode in meta.get('allowed_modes',['ego','exo']):
                 current=starts
                 if mode=='exo':
                     observed=np.asarray(self.load(folder,'exo_position_available')).any(1)
                     current=exo_window_starts(observed,starts,frames,exo_max_empty_frames)
+                if indexed is not None:
+                    stored=indexed[(str(folder),mode)]
+                    if not np.array_equal(stored,current):
+                        raise ValueError('Persisted windows differ from current source validity/visibility')
+                    current=stored
                 self.mode_starts[(str(folder),mode)]=current
             memory_entries.append(dict(meta,path=str(folder)))
             if len(starts):
@@ -168,7 +181,8 @@ class Native30Data:
             sample['contact_target']=np.asarray(self.load(folder,'contact_target')[sl]).copy()
             sample['contact_valid']=np.asarray(self.load(folder,'contact_valid')[sl]).copy()
         identity=dict(meta,start=first,source_start_30fps=int(self.load(folder,'source_frame_ids')[first]),
-                      origin=origin.tolist(),anchor=anchor.tolist(),yaw_augmentation_rad=world_yaw,mode=mode)
+                      origin=origin.tolist(),anchor=anchor.tolist(),yaw_augmentation_rad=world_yaw,mode=mode,
+                      window_stride=self.window_stride)
         return sample,identity
 
     def sampler_state(self):

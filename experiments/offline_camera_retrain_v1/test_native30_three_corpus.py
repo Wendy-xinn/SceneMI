@@ -10,9 +10,63 @@ from experiments.offline_camera_retrain_v1.data import SOURCE
 from experiments.offline_camera_retrain_v1.native30_data import Native30Data,exo_window_starts
 from experiments.offline_camera_retrain_v1.native30_exo import external_transforms,external_intrinsics
 from experiments.offline_camera_retrain_v1.native30_memory import observer_stream_key
+from experiments.offline_camera_retrain_v1.native30_window_index import valid_window_grid,PROTOCOL as WINDOW_PROTOCOL
+from experiments.offline_camera_retrain_v1.native30_cache_io import mapped_sha256
 
 
 class ThreeCorpusTests(unittest.TestCase):
+    def test_window_grid_preserves_original_offsets_around_invalid_frames(self):
+        rng=np.random.default_rng(27)
+        for n in (1,16,28):
+            valid=rng.random(n)>.15
+            for frames in (1,4,7):
+                for stride in (1,4,8):
+                    expected=[s for s in range(0,max(0,n-frames+1),stride) if valid[s:s+frames].all()]
+                    np.testing.assert_array_equal(valid_window_grid(valid,frames,stride),expected)
+        valid=np.ones(12,bool);valid[0]=False
+        np.testing.assert_array_equal(valid_window_grid(valid,4,4),[4,8])
+        for invalid in (0,-1,True,1.5):
+            with self.assertRaises(ValueError):valid_window_grid(valid,4,invalid)
+
+    def test_persisted_windows_bind_grid_masks_and_sources_without_truncating_memory(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);folder=root/'bundle';folder.mkdir()
+            meta=dict(protocol=PROTOCOL,fps=30,split='validation',group='trumans',
+                sequence_id='source',bundle_id='source',frames=12,input_sha256='fixture',
+                diagnostic_only=True,source_first=5,source_last=16,allowed_modes=['ego','exo'])
+            (folder/'metadata.json').write_text(json.dumps(meta))
+            manifest=root/'manifest.jsonl';manifest.write_text(json.dumps(dict(meta,path=str(folder)))+'\n')
+            np.save(folder/'source_frame_ids.npy',np.arange(5,17))
+            np.save(folder/'observation_valid.npy',np.ones(12,bool))
+            available=np.zeros((12,22),bool);available[0,15]=True;available[-1,20]=True
+            np.save(folder/'exo_position_available.npy',available)
+            spec=dict(protocol=WINDOW_PROTOCOL,status='complete',frames=4,window_stride=4,
+                exo_max_empty_frames=3,source_manifest_sha256=mapped_sha256(manifest),
+                bundle_paths=[str(folder)],files={})
+            for mode,starts in [('ego',[0,4,8]),('exo',[0,8])]:
+                file=root/f'validation_{mode}.npy';np.save(file,np.c_[np.zeros(len(starts),np.int64),starts])
+                spec['files'][f'validation/{mode}']=dict(file=file.name,windows=len(starts),sha256=mapped_sha256(file))
+            index=root/'dataset.json';index.write_text(json.dumps(spec))
+            options=dict(diagnostic=True,frames=4,window_stride=4,exo_max_empty_frames=3,window_index=index)
+            data=Native30Data(manifest,'validation',**options)
+            np.testing.assert_array_equal(data.starts_for('trumans',0,'ego'),[0,4,8])
+            np.testing.assert_array_equal(data.starts_for('trumans',0,'exo'),[0,8])
+            self.assertEqual(data.scene_memory.entries[0]['frames'],12)
+            with self.assertRaisesRegex(ValueError,'mismatch'):
+                Native30Data(manifest,'validation',**dict(options,window_stride=8))
+            # A damaged index is caught even though its descriptor still names
+            # the same source and number of windows.
+            file=root/'validation_exo.npy';np.save(file,np.array([[0,0],[0,4]],np.int64))
+            with self.assertRaisesRegex(ValueError,'SHA256 mismatch'):
+                Native30Data(manifest,'validation',**options)
+            # Updating the digest cannot make an unobserved window valid.
+            spec['files']['validation/exo']['sha256']=mapped_sha256(file);index.write_text(json.dumps(spec))
+            with self.assertRaisesRegex(ValueError,'validity/visibility'):
+                Native30Data(manifest,'validation',**options)
+            manifest.write_text(manifest.read_text()+'\n')
+            with self.assertRaisesRegex(ValueError,'manifest mismatch'):
+                Native30Data(manifest,'validation',**options)
+
     def test_long_all_joint_gaps_are_deferred_with_exact_window_boundaries(self):
         rng=np.random.default_rng(19)
         for frames in (4,192):
