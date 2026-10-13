@@ -1,5 +1,6 @@
 """Read mapped cache bytes and tolerate transient DrvFS metadata operations."""
 import hashlib
+import errno
 import json
 import mmap
 import os
@@ -7,13 +8,25 @@ from pathlib import Path
 import time
 
 
-def mapped_sha256(path):
+def mapped_sha256(path,*,refresh=False):
     # DrvFS buffered reads have occasionally returned short/wrong blocks under
     # concurrent load. A read-only mapping also avoids copying a whole array.
     with Path(path).open('rb') as stream:
+        if refresh and hasattr(os,'posix_fadvise'):
+            try:os.posix_fadvise(stream.fileno(),0,0,os.POSIX_FADV_DONTNEED)
+            except OSError as exc:
+                if exc.errno not in (errno.EINVAL,errno.ENOSYS,errno.EOPNOTSUPP):raise
         if os.fstat(stream.fileno()).st_size==0:return hashlib.sha256(b'').hexdigest()
         with mmap.mmap(stream.fileno(),0,access=mmap.ACCESS_READ) as mapping:
             return hashlib.sha256(mapping).hexdigest()
+
+
+def verified_sha256(path,expected):
+    """Retry stale cached reads; never accept bytes with a different hash."""
+    for attempt in range(3):
+        actual=mapped_sha256(path,refresh=attempt>0)
+        if actual==expected:return actual
+    raise ValueError(f'Cache SHA256 mismatch: {path}; expected {expected}, read {actual}')
 
 
 def read_text_retry(path):

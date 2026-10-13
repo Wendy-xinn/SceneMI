@@ -1,5 +1,5 @@
 {
-  "tests_run": 64,
+  "tests_run": 70,
   "failures": 0,
   "errors": 0,
   "passed": true,
@@ -12,6 +12,13 @@
     "test_scene_visibility_v2",
     "test_native30_export_controller"
   ],
-  "elapsed_s": 0.6408106010003394,
-  "optimizer_steps": 0
+  "elapsed_s": 3.31,
+  "optimizer_steps": 0,
+  "observation_window_counter_check": {
+    "synthetic_sequences": 100,
+    "compared_to": "brute force 19-consecutive-empty-frame detection, including window edges",
+    "passed": true
+  },
+  "verified_after_numeric_report_persistence_patch": true,
+  "verified_after_atomic_report_fsync_patch": true
 }

@@ -1,0 +1,716 @@
+{
+  "protocol": "native30-full-three-corpus-cache-audit-v1",
+  "complete": true,
+  "optimizer_steps": 0,
+  "root": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3",
+  "manifest_sha256": "0ad36607e705a6480368486e98d3b5dd4de69f2ec916a45b73f2f0d9f2c9c9cc",
+  "repairs_during_audit": [
+    {
+      "split": "train",
+      "sequence_id": "2023-02-13@18-03-43",
+      "files": [
+        {
+          "file": "visible_frame_points_scenemi_yup.npy",
+          "expected": "6445479f5ab07f85cba5bc707edc1810bd9d2686826df69182c84a014b6ea373",
+          "actual": "d44c54fd21d7ef9e4786246baf97f7d5aa6bba82b9dfc4bfa13f647fd503f117",
+          "repeat": "d44c54fd21d7ef9e4786246baf97f7d5aa6bba82b9dfc4bfa13f647fd503f117"
+        }
+      ],
+      "quarantine": [
+        "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/_interrupted_bundles/train/2023-02-13@18-03-43_1791873517587846233"
+      ],
+      "repaired": true
+    },
+    {
+      "split": "train",
+      "sequence_id": "2023-02-13@21-59-06",
+      "files": [
+        {
+          "file": "exo_frame_points_world.npy",
+          "expected": "fd764fab8b8604a8f6304d8adde0e233d71310fad9d483f761a3797eef7131d4",
+          "actual": "58ea31020b87c4c511be2de8417ac3f35289b9f0022ab5b9fa5dc5521abdf32d",
+          "repeat": "58ea31020b87c4c511be2de8417ac3f35289b9f0022ab5b9fa5dc5521abdf32d"
+        }
+      ],
+      "quarantine": [
+        "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/_interrupted_bundles/train/2023-02-13@21-59-06_1791873584374228056"
+      ],
+      "repaired": true
+    }
+  ],
+  "source_index_sha256": "63880195fbdf1106426092aaa37e12f3bb2ed6db1d4d103bb13f9751f1b90da8",
+  "export_fingerprint": {
+    "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+    "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+    "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+    "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+    "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+    "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+    "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+  },
+  "expected_bundles": 1280,
+  "audited_bundles": 1280,
+  "counts": {
+    "test": {
+      "trumans_bundles": 58,
+      "frames": 400330,
+      "ego_bundles": 185,
+      "exo_bundles": 144,
+      "camera_wearer_bundles": 105,
+      "interactee_bundles": 108
+    },
+    "train": {
+      "trumans_bundles": 469,
+      "frames": 1506331,
+      "ego_bundles": 731,
+      "exo_bundles": 661,
+      "rich_bundles": 62,
+      "camera_wearer_bundles": 158,
+      "interactee_bundles": 172
+    },
+    "validation": {
+      "trumans_bundles": 33,
+      "frames": 191205,
+      "ego_bundles": 114,
+      "exo_bundles": 95,
+      "rich_bundles": 28,
+      "camera_wearer_bundles": 42,
+      "interactee_bundles": 45
+    }
+  },
+  "exo_occlusion": {
+    "trumans": {
+      "reference": 2639984194,
+      "visible": 2432968995,
+      "person": 0,
+      "static": 119098976,
+      "rigid": 87916223,
+      "frames": 1215195,
+      "available_entries": 15336020,
+      "no_available_frames": 172642,
+      "person_occluded_frames": 0,
+      "static_occluded_frames": 561578,
+      "rigid_occluded_frames": 467443
+    },
+    "camera_wearer": {
+      "reference": 111403370,
+      "visible": 105166875,
+      "person": 54794,
+      "static": 6181701,
+      "rigid": 0,
+      "frames": 219731,
+      "available_entries": 4331969,
+      "no_available_frames": 0,
+      "person_occluded_frames": 399,
+      "static_occluded_frames": 119499,
+      "rigid_occluded_frames": 0
+    },
+    "interactee": {
+      "reference": 115244545,
+      "visible": 108786390,
+      "person": 45416,
+      "static": 6412739,
+      "rigid": 0,
+      "frames": 219731,
+      "available_entries": 4358176,
+      "no_available_frames": 39,
+      "person_occluded_frames": 477,
+      "static_occluded_frames": 120335,
+      "rigid_occluded_frames": 0
+    },
+    "rich": {
+      "reference": 89887088,
+      "visible": 87951974,
+      "person": 15,
+      "static": 1935099,
+      "rigid": 0,
+      "frames": 54139,
+      "available_entries": 1073294,
+      "no_available_frames": 877,
+      "person_occluded_frames": 9,
+      "static_occluded_frames": 31129,
+      "rigid_occluded_frames": 0
+    }
+  },
+  "cache_array_bytes": 34996055395,
+  "exo_joint_observations": {
+    "trumans": {
+      "available_frame_counts": [
+        954962,
+        845015,
+        847841,
+        944326,
+        664534,
+        663381,
+        955564,
+        232895,
+        243990,
+        964450,
+        124839,
+        130688,
+        824520,
+        793777,
+        796627,
+        865397,
+        766674,
+        761867,
+        795474,
+        793715,
+        682005,
+        683479
+      ],
+      "mean_confidence_when_available": [
+        0.9542483495245526,
+        0.9288622210705394,
+        0.9285243643485384,
+        0.9693526561667747,
+        0.8531185424990289,
+        0.8610839017973639,
+        0.971783598894819,
+        0.6352297826844602,
+        0.6648963007184289,
+        0.9770575523954755,
+        0.5089112864490414,
+        0.49594103836490483,
+        0.9300463170299691,
+        0.9111722690218579,
+        0.9179164080559014,
+        0.9833614668395982,
+        0.958410788061742,
+        0.9588828279806755,
+        0.9382727216085975,
+        0.9375453244908636,
+        0.8854443025928272,
+        0.8702483768400716
+      ],
+      "confidence_histogram": [
+        19502,
+        105259,
+        483322,
+        514695,
+        672840,
+        764429,
+        12775973
+      ]
+    },
+    "camera_wearer": {
+      "available_frame_counts": [
+        208863,
+        210052,
+        206223,
+        216083,
+        211905,
+        211372,
+        218785,
+        205635,
+        207746,
+        219247,
+        175916,
+        173856,
+        215328,
+        169248,
+        172420,
+        219244,
+        160661,
+        172809,
+        184293,
+        195056,
+        184914,
+        192313
+      ],
+      "mean_confidence_when_available": [
+        0.9625742739367384,
+        0.9148246383145417,
+        0.9025105507213987,
+        0.9155514288536195,
+        0.9395356330640162,
+        0.922276399619215,
+        0.931509582721434,
+        0.5903562253795746,
+        0.6043113239343832,
+        0.9874987060472076,
+        0.37583878443248225,
+        0.39336153373120974,
+        0.5628600453664567,
+        0.6576441469384203,
+        0.6416639830883415,
+        0.9978565508189646,
+        0.8422539662225083,
+        0.8543704772988955,
+        0.8060057081143996,
+        0.7934837613532708,
+        0.6715991172084802,
+        0.6536455092961234
+      ],
+      "confidence_histogram": [
+        2771,
+        26278,
+        440629,
+        434301,
+        556825,
+        336804,
+        2534361
+      ]
+    },
+    "interactee": {
+      "available_frame_counts": [
+        209793,
+        209072,
+        210218,
+        216445,
+        211743,
+        212490,
+        218683,
+        199536,
+        205165,
+        219140,
+        168964,
+        168466,
+        209905,
+        173545,
+        177842,
+        219131,
+        171956,
+        179255,
+        190496,
+        199022,
+        191723,
+        195586
+      ],
+      "mean_confidence_when_available": [
+        0.9564588065582624,
+        0.9026660584047319,
+        0.9009482381721363,
+        0.9223122545559008,
+        0.9328576989453633,
+        0.937796813696267,
+        0.926295229302108,
+        0.5804522977715393,
+        0.5889731769223744,
+        0.9810946139784938,
+        0.38126653820085415,
+        0.3841969577170845,
+        0.5774497527269129,
+        0.6587439984577963,
+        0.6378528741266637,
+        0.9971848843875226,
+        0.8548611152873862,
+        0.8402225123885001,
+        0.7883384382629357,
+        0.7909913170207801,
+        0.6597496094874785,
+        0.6645551699692911
+      ],
+      "confidence_histogram": [
+        5857,
+        32324,
+        447851,
+        440209,
+        546862,
+        318388,
+        2566685
+      ]
+    },
+    "rich": {
+      "available_frame_counts": [
+        52943,
+        51568,
+        51410,
+        52959,
+        50939,
+        51219,
+        52918,
+        47363,
+        47748,
+        53067,
+        43522,
+        42461,
+        48232,
+        47079,
+        43561,
+        52978,
+        47459,
+        43845,
+        48845,
+        47380,
+        48152,
+        47646
+      ],
+      "mean_confidence_when_available": [
+        0.985127055040617,
+        0.9578898084213613,
+        0.9496040127508413,
+        0.9874480485524468,
+        0.9531579505955762,
+        0.9468744806314369,
+        0.9687296331233342,
+        0.9390880304907012,
+        0.9355811775489425,
+        0.997950194275871,
+        0.7342072558124025,
+        0.6698707414440972,
+        0.8723919366825131,
+        0.9208547178958608,
+        0.896006394626051,
+        0.9972160469002715,
+        0.972180342508482,
+        0.9496981737632438,
+        0.9637551040575404,
+        0.9480387759008498,
+        0.9211229215320608,
+        0.915583890241373
+      ],
+      "confidence_histogram": [
+        421,
+        2001,
+        23957,
+        30187,
+        50127,
+        59994,
+        906607
+      ]
+    }
+  },
+  "confidence_histogram_edges": [
+    0.0,
+    0.05,
+    0.15,
+    0.3,
+    0.5,
+    0.7,
+    0.9,
+    1.0
+  ],
+  "joint_order": "native common22; indices 15=head,20=left wrist,21=right wrist",
+  "confidence_statistics_scope": "geometric simulated tracker; histogram thresholds are diagnostics, not new input masks",
+  "native_fk_max_m": 2.428889274597168e-06,
+  "native_fk_scope": "every cached frame, bounded chunks",
+  "source_checks": [
+    {
+      "split": "test",
+      "group": "trumans",
+      "sequence": "2023-01-17@01-25-00",
+      "fk_max_m": 9.5367431640625e-07
+    },
+    {
+      "split": "test",
+      "group": "camera_wearer",
+      "sequence": "recording_20210907_S03_S04_01_camera_wearer_1421-2141",
+      "fk_max_m": 7.152557373046875e-07
+    },
+    {
+      "split": "test",
+      "group": "interactee",
+      "sequence": "recording_20210907_S03_S04_01_interactee_1421-2141",
+      "fk_max_m": 5.960464477539062e-07
+    },
+    {
+      "split": "train",
+      "group": "trumans",
+      "sequence": "2023-01-14@22-06-10",
+      "fk_max_m": 1.1622905731201172e-06
+    },
+    {
+      "split": "train",
+      "group": "rich",
+      "sequence": "BBQ_001_guitar",
+      "fk_max_m": 2.175569534301758e-06
+    },
+    {
+      "split": "train",
+      "group": "camera_wearer",
+      "sequence": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+      "fk_max_m": 4.917383193969727e-07
+    },
+    {
+      "split": "train",
+      "group": "interactee",
+      "sequence": "recording_20210907_S02_S01_01_interactee_1551-2811",
+      "fk_max_m": 8.344650268554688e-07
+    },
+    {
+      "split": "validation",
+      "group": "trumans",
+      "sequence": "2023-02-13@22-31-47",
+      "fk_max_m": 4.172325134277344e-07
+    },
+    {
+      "split": "validation",
+      "group": "rich",
+      "sequence": "LectureHall_003_wipingchairs1",
+      "fk_max_m": 1.430511474609375e-06
+    },
+    {
+      "split": "validation",
+      "group": "camera_wearer",
+      "sequence": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "fk_max_m": 4.76837158203125e-07
+    },
+    {
+      "split": "validation",
+      "group": "interactee",
+      "sequence": "recording_20210921_S11_S10_01_interactee_1111-1921",
+      "fk_max_m": 5.960464477539062e-07
+    }
+  ],
+  "sampling": {
+    "train": {
+      "plan": [
+        {
+          "group": "trumans",
+          "mode": "ego",
+          "probability": 0.441320916462735
+        },
+        {
+          "group": "camera_wearer",
+          "mode": "ego",
+          "probability": 0.09703138668247731
+        },
+        {
+          "group": "interactee",
+          "mode": "ego",
+          "probability": 0.09026260260579964
+        },
+        {
+          "group": "rich",
+          "mode": "ego",
+          "probability": 0.07138509424898797
+        },
+        {
+          "group": "trumans",
+          "mode": "exo",
+          "probability": 0.18214380242796188
+        },
+        {
+          "group": "camera_wearer",
+          "mode": "exo",
+          "probability": 0.043954807573635464
+        },
+        {
+          "group": "interactee",
+          "mode": "exo",
+          "probability": 0.043954807573635464
+        },
+        {
+          "group": "rich",
+          "mode": "exo",
+          "probability": 0.029946582424767228
+        }
+      ],
+      "valid_window_counts": {
+        "ego": {
+          "trumans": 941595,
+          "camera_wearer": 87860,
+          "interactee": 81731,
+          "rich": 24636
+        },
+        "exo": {
+          "trumans": 894780,
+          "camera_wearer": 104215,
+          "interactee": 104215,
+          "rich": 24187
+        }
+      },
+      "exo_window_policy": "at least one available joint somewhere in the window; partial gaps retained",
+      "exo_window_observation_coverage": {
+        "trumans": {
+          "windows": 894780,
+          "observed_all_frames": 703573,
+          "observed_less_than_half": 71276,
+          "observed_at_most_16_frames": 8525,
+          "containing_empty_run_over_06s": 164698
+        },
+        "camera_wearer": {
+          "windows": 104215,
+          "observed_all_frames": 104215,
+          "observed_less_than_half": 0,
+          "observed_at_most_16_frames": 0,
+          "containing_empty_run_over_06s": 0
+        },
+        "interactee": {
+          "windows": 104215,
+          "observed_all_frames": 103925,
+          "observed_less_than_half": 0,
+          "observed_at_most_16_frames": 0,
+          "containing_empty_run_over_06s": 0
+        },
+        "rich": {
+          "windows": 24187,
+          "observed_all_frames": 23574,
+          "observed_less_than_half": 357,
+          "observed_at_most_16_frames": 55,
+          "containing_empty_run_over_06s": 534
+        }
+      },
+      "observation_coverage_scope": "counts of overlapping eligible starts, not unique motion clips; diagnostic thresholds only"
+    },
+    "validation": {
+      "plan": [
+        {
+          "group": "trumans",
+          "mode": "ego",
+          "probability": 0.3098273293217455
+        },
+        {
+          "group": "camera_wearer",
+          "mode": "ego",
+          "probability": 0.1279419703789729
+        },
+        {
+          "group": "interactee",
+          "mode": "ego",
+          "probability": 0.12214897162075995
+        },
+        {
+          "group": "rich",
+          "mode": "ego",
+          "probability": 0.14008172867852164
+        },
+        {
+          "group": "trumans",
+          "mode": "exo",
+          "probability": 0.1226006471297633
+        },
+        {
+          "group": "camera_wearer",
+          "mode": "exo",
+          "probability": 0.059604866781103466
+        },
+        {
+          "group": "interactee",
+          "mode": "exo",
+          "probability": 0.059604866781103466
+        },
+        {
+          "group": "rich",
+          "mode": "exo",
+          "probability": 0.058189619308029815
+        }
+      ],
+      "valid_window_counts": {
+        "ego": {
+          "trumans": 60361,
+          "camera_wearer": 20120,
+          "interactee": 19209,
+          "rich": 12339
+        },
+        "exo": {
+          "trumans": 54774,
+          "camera_wearer": 25893,
+          "interactee": 25893,
+          "rich": 12339
+        }
+      },
+      "exo_window_policy": "at least one available joint somewhere in the window; partial gaps retained",
+      "exo_window_observation_coverage": {
+        "trumans": {
+          "windows": 54774,
+          "observed_all_frames": 43711,
+          "observed_less_than_half": 4964,
+          "observed_at_most_16_frames": 690,
+          "containing_empty_run_over_06s": 10019
+        },
+        "camera_wearer": {
+          "windows": 25893,
+          "observed_all_frames": 25893,
+          "observed_less_than_half": 0,
+          "observed_at_most_16_frames": 0,
+          "containing_empty_run_over_06s": 0
+        },
+        "interactee": {
+          "windows": 25893,
+          "observed_all_frames": 25893,
+          "observed_less_than_half": 0,
+          "observed_at_most_16_frames": 0,
+          "containing_empty_run_over_06s": 0
+        },
+        "rich": {
+          "windows": 12339,
+          "observed_all_frames": 12339,
+          "observed_less_than_half": 0,
+          "observed_at_most_16_frames": 0,
+          "containing_empty_run_over_06s": 0
+        }
+      },
+      "observation_coverage_scope": "counts of overlapping eligible starts, not unique motion clips; diagnostic thresholds only"
+    },
+    "test": {
+      "plan": [
+        {
+          "group": "trumans",
+          "mode": "ego",
+          "probability": 0.34455944358542634
+        },
+        {
+          "group": "camera_wearer",
+          "mode": "ego",
+          "probability": 0.17888891030964246
+        },
+        {
+          "group": "interactee",
+          "mode": "ego",
+          "probability": 0.17655164610493124
+        },
+        {
+          "group": "trumans",
+          "mode": "exo",
+          "probability": 0.13944889082364645
+        },
+        {
+          "group": "camera_wearer",
+          "mode": "exo",
+          "probability": 0.08027555458817681
+        },
+        {
+          "group": "interactee",
+          "mode": "exo",
+          "probability": 0.08027555458817681
+        }
+      ],
+      "valid_window_counts": {
+        "ego": {
+          "trumans": 106037,
+          "camera_wearer": 56791,
+          "interactee": 56049,
+          "rich": 0
+        },
+        "exo": {
+          "trumans": 99201,
+          "camera_wearer": 65748,
+          "interactee": 65748,
+          "rich": 0
+        }
+      },
+      "exo_window_policy": "at least one available joint somewhere in the window; partial gaps retained",
+      "exo_window_observation_coverage": {
+        "trumans": {
+          "windows": 99201,
+          "observed_all_frames": 69713,
+          "observed_less_than_half": 13603,
+          "observed_at_most_16_frames": 1850,
+          "containing_empty_run_over_06s": 26829
+        },
+        "camera_wearer": {
+          "windows": 65748,
+          "observed_all_frames": 65748,
+          "observed_less_than_half": 0,
+          "observed_at_most_16_frames": 0,
+          "containing_empty_run_over_06s": 0
+        },
+        "interactee": {
+          "windows": 65748,
+          "observed_all_frames": 65748,
+          "observed_less_than_half": 0,
+          "observed_at_most_16_frames": 0,
+          "containing_empty_run_over_06s": 0
+        },
+        "rich": {}
+      },
+      "observation_coverage_scope": "counts of overlapping eligible starts, not unique motion clips; diagnostic thresholds only"
+    }
+  },
+  "rich_test_available": false,
+  "trumans_exo": "explicit synthetic observer; excluded from real-camera benchmark",
+  "elapsed_s": 560.1590423680009,
+  "free_disk_bytes": 291456942080
+}

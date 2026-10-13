@@ -180,6 +180,12 @@ class CacheViewer:
             self.positions=np.asarray(self.load(folder,'exo_trajectory_world')[sl])
             self.available=np.asarray(self.load(folder,'exo_position_available')[sl])
             self.confidence=np.asarray(self.load(folder,'exo_position_confidence')[sl])
+            counts=self.available.sum(1)
+            edges=np.diff(np.r_[False,counts==0,False].astype(np.int8))
+            gaps=np.flatnonzero(edges==-1)-np.flatnonzero(edges==1)
+            self.window_observed_frames=int((counts>0).sum())
+            self.window_mean_joints=float(counts.mean())
+            self.window_max_empty_frames=int(gaps.max()) if len(gaps) else 0
             self.parts={k:np.asarray(self.load(folder,'exo_'+k+'_counts')[sl]) for k in ('reference','visible','person','static','rigid')}
             self.blocked=sum(self.parts[k] for k in ('person','static','rigid'))
             self.frame_points=self.load(folder,'exo_frame_points_world')[sl];self.owners=self.load(folder,'exo_frame_owner')[sl]
@@ -267,6 +273,10 @@ class CacheViewer:
             kind='发布真实标定' if self.case['camera_kind']=='released_calibrated' else '**合成观察相机；非真实相机benchmark**'
             self.info.content=f"`{self.case['sequence_id']}`\n\n{kind} / {self.case['view_id']}。\n\n"
             self.info.content+=f"源帧 {self.case['source_first']+t}；窗口帧 {t}/191；30Hz。有效关节 {self.available[t].sum()}/22，显示 {mask.sum()}/22。\n\n"
+            self.info.content+=f"整窗有输入 {self.window_observed_frames}/192 帧；平均 {self.window_mean_joints:.2f} 个关节；最长完全无输入 {self.window_max_empty_frames} 帧（{self.window_max_empty_frames/30:.2f} 秒）。\n\n"
+            self.info.content+=f"相机位置（米）{np.asarray(self.meta['exo_camera']['position']).round(3).tolist()}；本窗口视点固定。切换序列会切换观察相机。\n\n"
+            if self.window_max_empty_frames>18:
+                self.info.content+='**存在超过0.6秒的完全无关节观测区间，包含长缺失补全；不能据此要求唯一GT恢复。** 0.6秒仅与当前噪声增广长度对照，不是新采样阈值。\n\n'
             self.info.content+=f"遮挡皮肤像素：人 {self.parts['person'][t].sum()}；静态 {self.parts['static'][t].sum()}；刚体 {self.parts['rigid'][t].sum()}。\n\n"
             self.info.content+='位置来自GT可见部位模拟；无exo关节旋转输入。灰色点只含同视点已见表面；空白为未知。完整人/场景mesh仅供参考，不进入场景条件。显示阈值不修改训练配置。'
             self.info.content+=f"\n\n原生mesh与缓存关节最大误差 {self.geometry['maximum_mesh_joint_error_m']*1000:.4f} mm。"

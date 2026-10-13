@@ -15,13 +15,46 @@ import threading
 import time
 import traceback
 from concurrent.futures import ThreadPoolExecutor,wait,FIRST_COMPLETED
-from experiments.offline_camera_retrain_v1.native30_cache_io import atomic_text,mapped_sha256,read_json_retry,read_text_retry
+from experiments.offline_camera_retrain_v1.native30_cache_io import atomic_text,mapped_sha256,verified_sha256,read_json_retry,read_text_retry
 
 VERIFY_LOCK=threading.Lock()
 
 
 def write_json(path,value):
     atomic_text(path,json.dumps(value,indent=2))
+
+
+def copy_verified(source,destination):
+    """Explicit writes, fsync and mapped verification before E-drive commit."""
+    for attempt in range(3):
+        with Path(source).open('rb') as reader,Path(destination).open('wb') as writer:
+            shutil.copyfileobj(reader,writer,length=1024*1024)
+            writer.flush();os.fsync(writer.fileno())
+        shutil.copystat(source,destination)
+        if mapped_sha256(source)==mapped_sha256(destination):return destination
+        if attempt==2:raise ValueError(f'Copied cache bytes differ after fsync: {destination}')
+
+
+def recover_preserved_read(row,output):
+    """Reuse isolated bytes only when every original hash verifies again."""
+    candidates=sorted((Path(output)/'_interrupted_bundles'/row['split']).glob(row['sequence_id']+'_*'))
+    candidates=[p for p in candidates if '_numerical_' not in p.name]
+    if not candidates:return None
+    preserved=candidates[-1]
+    try:
+        meta=read_json_retry(preserved/'metadata.json')
+        from experiments.offline_camera_retrain_v1.native30_export import PROTOCOL,export_fingerprint
+        if meta['protocol']!=PROTOCOL or meta['export_fingerprint']!=export_fingerprint():return None
+        for name,digest in meta['output_sha256'].items():verified_sha256(preserved/name,digest)
+    except (ValueError,FileNotFoundError):return None
+    final=Path(output)/row['split']/row['sequence_id']
+    if final.exists():raise ValueError('Cannot restore over an existing cache bundle')
+    temporary=final.with_name(final.name+'.copying')
+    if temporary.exists():shutil.rmtree(temporary)
+    shutil.copytree(preserved,temporary,copy_function=copy_verified)
+    temporary.replace(final)
+    print('Restored isolated cache through verified fsync copy; original bytes retained',str(preserved),flush=True)
+    return dict(path=str(final),**meta)
 
 
 def worker(row,output):
@@ -32,6 +65,9 @@ def worker(row,output):
         scratch=Path('/tmp/scenemi_native30_export_staging')/str(os.getpid())
         final=Path(output)/row['split']/row['sequence_id']
         try:
+            if not final.exists():
+                recovered=recover_preserved_read(row,output)
+                if recovered is not None:return recovered
             if (final/'metadata.json').exists():
                 try:return export(row,Path(output))
                 except (ValueError,FileNotFoundError) as exc:
@@ -53,7 +89,7 @@ def worker(row,output):
                     time.sleep(1)
             generated=Path(result['path']);temporary=final.with_name(final.name+'.copying')
             if temporary.exists():shutil.rmtree(temporary)
-            shutil.copytree(generated,temporary)
+            shutil.copytree(generated,temporary,copy_function=copy_verified)
             if final.exists():shutil.rmtree(final)  # this run's incomplete bundle only
             temporary.replace(final)
             result['path']=str(final);return result
@@ -80,7 +116,8 @@ def _verify_existing(row,output):
         if meta['protocol']!=PROTOCOL or meta.get('export_fingerprint')!=export_fingerprint():
             raise ValueError('Stale native30 export; use a new directory')
         for key,digest in meta['output_sha256'].items():
-            if mapped_sha256(final/key)!=digest:raise ValueError(f'Corrupt native30 export: {key}')
+            try:verified_sha256(final/key,digest)
+            except ValueError as exc:raise ValueError(f'Corrupt native30 export: {key}') from exc
         return dict(path=str(final),**meta)
     except (ValueError,FileNotFoundError) as exc:
         if isinstance(exc,ValueError) and not isinstance(exc,json.JSONDecodeError) and not str(exc).startswith('Corrupt native30 export:'):

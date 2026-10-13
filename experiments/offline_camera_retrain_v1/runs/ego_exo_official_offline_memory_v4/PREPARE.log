@@ -1,0 +1,29 @@
+MDM latent dim:  256
+Using UNET with lantent dim:  256  and mults:  (1, 2, 4)
+dims:  [201, 256, 512, 1024] mults:  (1, 2, 4)
+[ models/temporal ] Channel dimensions: [(201, 256), (256, 512), (512, 1024)]
+[ models/temporal ] added_input_channels: 97
+audited TRAIN gradient bucket train/trumans/ego
+audited TRAIN gradient bucket train/trumans/exo
+audited TRAIN gradient bucket train/camera_wearer/ego
+audited TRAIN gradient bucket train/camera_wearer/exo
+audited TRAIN gradient bucket train/interactee/ego
+audited TRAIN gradient bucket train/interactee/exo
+audited TRAIN gradient bucket train/rich/ego
+audited TRAIN gradient bucket train/rich/exo
+Traceback (most recent call last):
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/prepare_native30.py", line 370, in <module>
+    args=parser.parse_args();run(args.config,full_data=args.full_data,export_inputs=args.export_review)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/prepare_native30.py", line 356, in run
+    fingerprints=dataset_digest(data)|dataset_digest(validation)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/prepare_native30.py", line 102, in dataset_digest
+    verified_sha256(folder/filename,digest)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_cache_io.py", line 27, in verified_sha256
+    actual=mapped_sha256(path,refresh=attempt>0)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_cache_io.py", line 19, in mapped_sha256
+    if os.fstat(stream.fileno()).st_size==0:return hashlib.sha256(b'').hexdigest()
+OSError: [Errno 14] Bad address

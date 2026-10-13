@@ -1,6 +1,5 @@
 """Audit actual native30 inputs and full model gradients; zero optimizer steps."""
 import argparse
-import hashlib
 import json
 import shutil
 import sys
@@ -20,20 +19,17 @@ from experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAn
 from experiments.offline_camera_retrain_v1.unified_observations import collate_observations
 from experiments.offline_camera_retrain_v1.supervision import forward_kinematics,PARENTS
 from experiments.offline_camera_retrain_v1.scene_model import cosine_alphas
+from experiments.offline_camera_retrain_v1.native30_cache_io import atomic_text,mapped_sha256,verified_sha256
 
 CONFIG_PATH=HERE/'native30_config.json'
 
 
 def sha256(path):
-    h=hashlib.sha256()
-    with Path(path).open('rb') as stream:
-        for block in iter(lambda:stream.read(8*1024*1024),b''):
-            h.update(block)
-    return h.hexdigest()
+    return mapped_sha256(path)
 
 
 def write_json(path,value):
-    Path(path).write_text(json.dumps(value,indent=2,ensure_ascii=False,allow_nan=False)+'\n')
+    atomic_text(path,json.dumps(value,indent=2,ensure_ascii=False,allow_nan=False)+'\n')
 
 
 def code_hashes():
@@ -103,8 +99,7 @@ def dataset_digest(data):
     for meta in data.scene_memory.entries:
         folder=Path(meta['path']); report[str((folder/'metadata.json').resolve())]=sha256(folder/'metadata.json')
         for filename,digest in meta['output_sha256'].items():
-            actual=sha256(folder/filename)
-            if actual!=digest:raise ValueError(f'Corrupt raw30 bundle: {folder/filename}')
+            verified_sha256(folder/filename,digest)
     return report
 
 
@@ -358,7 +353,17 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
         data_scope='full corpus' if full_data else '8 raw30 review clips; 12 ego/exo input cases; full-corpus export pending',
         free_disk_after=shutil.disk_usage(HERE).free,model_parameters=sum(p.numel() for p in model.parameters()),
         alignment=alignment)
-    fingerprints=dataset_digest(data)|dataset_digest(validation)
+    # Keep the actual model checks if an external drive disappears while the
+    # final data fingerprints are being sealed. This does not authorize training.
+    write_json(folder/'model_checks.json',dict(report,status='numeric_checks_passed',
+        training_ready=False,fingerprints_complete=False))
+    try:
+        fingerprints=dataset_digest(data)|dataset_digest(validation)
+    except (OSError,ValueError) as exc:
+        report.update(status='numeric_checks_passed_fingerprint_failed',training_ready=False,
+            fingerprints_complete=False,fingerprint_error=repr(exc))
+        write_json(folder/'input_checks.json',report)
+        raise
     effective=dict(config=config,data_mode=report['data_mode'],sampling_plan=data.sampling_plan(config['ego_probability']),
         observation_coefficients=weights,mount_defaults_sha256=sha256(mount_path),
         data_sha256=fingerprints,code_sha256=code_hashes(),torch_version=torch.__version__,

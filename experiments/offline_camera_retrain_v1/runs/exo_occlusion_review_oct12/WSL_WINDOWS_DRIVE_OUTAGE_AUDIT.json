@@ -1,0 +1,58 @@
+{
+  "optimizer_steps": 0,
+  "full_cache_audit_passed": true,
+  "full_cache_audit_sha256": "6396ac147858afa798d88e150db06379f6dc1946f69c72453b6ed75ae76632b8",
+  "audited_bundles": 1280,
+  "cached_frames": 2097866,
+  "formal_preparation_sealed": false,
+  "viser_status": "stopped to avoid SIGBUS from lost E-drive maps",
+  "windows_drives": {
+    "/mnt/c/Windows": {
+      "errno": 5,
+      "error": "[Errno 5] Input/output error: '/mnt/c/Windows'"
+    },
+    "/mnt/d": {
+      "errno": 5,
+      "error": "[Errno 5] Input/output error: '/mnt/d'"
+    },
+    "/mnt/e": {
+      "errno": 5,
+      "error": "[Errno 5] Input/output error: '/mnt/e'"
+    }
+  },
+  "root_free_bytes": 70937870336,
+  "recovery": "From Windows PowerShell run wsl --shutdown, reopen Ubuntu/IDE; verify C/D/E access; rerun full integrity audit and prepare_native30 --full-data, restart mesh viewer 8784; optimizer stays paused",
+  "kernel": "6.18.33.2-microsoft-standard-WSL2",
+  "linux_available_memory_kb": 29530992,
+  "swap_used_kb": 0,
+  "memory_pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+  "kernel_oom_record_found": false,
+  "kernel_gpu_warning_monotonic_s": 15831.782058,
+  "kernel_hash_sigbus_monotonic_s": 15979.956253,
+  "classification": "Windows can access E cache; WSL C/D/E DrvFS sessions fail with EIO; precise host-side race unproven",
+  "possible_mechanism": "Strongly suspected DrvFS/9p connection failure; matching Windows/DLL versions and all-mount failure reported in WSL issue #41702; no incident ETW captured on this machine",
+  "gpu_warning": "matches known WSL FORTIFY issue #40580; temporal correlation alone does not establish the filesystem cause",
+  "official_issue_urls": [
+    "https://github.com/microsoft/WSL/issues/41702",
+    "https://github.com/microsoft/WSL/issues/40580"
+  ],
+  "kernel_log_sha256": "27b5e0a000d393c19564ad8aabf25d91538fd99444e254d4a747ae345ea6e932",
+  "timestamp_caveat": "journal reports repeated clock changes; use monotonic dmesg ordering, not reconstructed wall times",
+  "windows_explorer_cache_access": true,
+  "host_versions_from_user": {
+    "wsl": "2.7.10.0",
+    "kernel": "6.18.33.2-2",
+    "windows": "10.0.26200.9457",
+    "vp9fs_dll": "10.0.26100.9457 (WinBuild.160101.0800)"
+  },
+  "host_windows_and_vp9fs_match_issue_41702": true,
+  "early_p9io_accept_cancel_monotonic_s": [
+    19.858915,
+    76.476362,
+    136.448514
+  ],
+  "early_p9io_caveat": "Cancellation messages are early in boot, not proof of a matching event at current mount failure",
+  "saved_input_replay_bytes": 10103117,
+  "formal_effective_config_saved": false,
+  "numeric_metrics_persistence": "patch now fsyncs model_checks.json before dataset fingerprinting; previous run reached fingerprinting but did not persist final numeric metrics"
+}
