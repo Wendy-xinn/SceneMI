@@ -271,6 +271,6 @@ EgoBody master不依赖PV有效帧范围，整段覆盖源同步索引的`first:
 |已保存|[全量审计](FULL_NATIVE30_CACHE_AUDIT.json)、[故障证据](WSL_WINDOWS_DRIVE_OUTAGE_AUDIT.json)、[内核日志](WSL_KERNEL_OUTAGE.log)、六例身份及遮挡统计、正式TRAIN梯度、val固定计划、对齐检查、[独立HTML回放](../ego_exo_official_offline_memory_v4/INPUT_REPLAY.html)和[输入图](../ego_exo_official_offline_memory_v4/INPUT_ALIGNMENT.png)均在Linux工作盘。原55k/选中3k权重未改。|
 |未完成|正式准备的最终数据/代码指纹与`effective_config.json`；此前运行没有保存单项模型最终数值，不冒充准备完成。没有训练新模型。|
 |代码补救|模型数值检查先独立写`model_checks.json`（`training_ready=false`），再计算最终指纹；报告原子写入并fsync，常规I/O异常另写失败状态。SIGBUS仍可能直接结束进程，底层映射须先恢复。|
-|恢复入口|本会话无可用Windows互操作、sudo需要本机密码，不能从这里修复宿主映射。[恢复脚本](../../resume_native30_checks.sh)仅复核全量缓存、正式零步准备和重启8784，不创建优化器。用户可在Windows执行`wsl --shutdown`后重新打开Ubuntu/IDE；它会终止全部WSL进程，[命令说明](https://learn.microsoft.com/en-us/windows/wsl/basic-commands#shutdown)。|
+|恢复入口|本会话无可用Windows互操作、sudo需要本机密码。优先在当前Ubuntu终端执行`sudo umount -l /mnt/e && sudo mount -t drvfs E: /mnt/e -o uid=1000,gid=1000`重建E盘连接（沿用[WSL #41702](https://github.com/microsoft/WSL/issues/41702)报告的办法）；若仍失败，Windows执行`wsl --shutdown`再打开Ubuntu/IDE，它会终止全部WSL进程，[命令说明](https://learn.microsoft.com/en-us/windows/wsl/basic-commands#shutdown)。[恢复脚本](../../resume_native30_checks.sh)只复核缓存、正式零步准备和重启8784，不创建优化器。|
 
 原始内核日志使用单调时间排序：GPU警告15831.782秒，后续映射哈希探针SIGBUS为15979.956秒。journal多次记录系统时钟跳变，不用重建墙钟时间推断因果关系。挂载恢复后先复核缓存，不直接训练；长期可评估E盘上的ext4虚拟盘，让热缓存通过Linux文件系统访问，这尚未实施。
