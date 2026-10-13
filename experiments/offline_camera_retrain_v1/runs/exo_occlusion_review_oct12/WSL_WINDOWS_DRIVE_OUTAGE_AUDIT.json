@@ -1,11 +1,11 @@
 {
   "optimizer_steps": 0,
   "full_cache_audit_passed": true,
-  "full_cache_audit_sha256": "6396ac147858afa798d88e150db06379f6dc1946f69c72453b6ed75ae76632b8",
+  "full_cache_audit_sha256": "56d554cc02e7c70f1259ab05b344718e23f8080b394805e5aa55d0b34bed18c6",
   "audited_bundles": 1280,
   "cached_frames": 2097866,
-  "formal_preparation_sealed": false,
-  "viser_status": "stopped to avoid SIGBUS from lost E-drive maps",
+  "formal_preparation_sealed": true,
+  "viser_status": "running on 8784, native mesh cases frozen",
   "windows_drives": {
     "/mnt/c/Windows": {
       "errno": 5,
@@ -29,7 +29,7 @@
   "kernel_oom_record_found": false,
   "kernel_gpu_warning_monotonic_s": 15831.782058,
   "kernel_hash_sigbus_monotonic_s": 15979.956253,
-  "classification": "Windows can access E cache; WSL C/D/E DrvFS sessions fail with EIO; precise host-side race unproven",
+  "classification": "Windows drive accessible from host; replacing E DrvFS mount restored reads while Linux RAM remained ample; mapped connection failure established, exact triggering race unproven",
   "possible_mechanism": "Strongly suspected DrvFS/9p connection failure; matching Windows/DLL versions and all-mount failure reported in WSL issue #41702; no incident ETW captured on this machine",
   "gpu_warning": "matches known WSL FORTIFY issue #40580; temporal correlation alone does not establish the filesystem cause",
   "official_issue_urls": [
@@ -56,7 +56,38 @@
   "formal_effective_config_saved": false,
   "numeric_metrics_persistence": "patch now fsyncs model_checks.json before dataset fingerprinting; previous run reached fingerprinting but did not persist final numeric metrics",
   "recovery_preferred": "In current Ubuntu terminal: sudo umount -l /mnt/e && sudo mount -t drvfs E: /mnt/e -o uid=1000,gid=1000; wait for verified accessible mount, then rerun cache audit and zero-step preparation",
-  "user_remount_status": "requested; waiting for host state change",
+  "user_remount_status": "command returned without output; E manifest and progress successfully read by agent",
   "github_backup_commit": "bdf1fd8",
-  "saved_input_replay_sha256": "c18c850b8732fb809f1ba189d97b8f41911765f7b947883cf79d21238ca37842"
+  "saved_input_replay_sha256": "c18c850b8732fb809f1ba189d97b8f41911765f7b947883cf79d21238ca37842",
+  "drive_status_after_E_remount": {
+    "/mnt/c/Windows": {
+      "accessible": false,
+      "error": "OSError(5, 'Input/output error')"
+    },
+    "/mnt/d": {
+      "accessible": false,
+      "error": "OSError(5, 'Input/output error')"
+    },
+    "/mnt/e": {
+      "accessible": true,
+      "mode": 16895
+    }
+  },
+  "E_manifest_size_after_remount": 6616070,
+  "post_remount_reverification": "passed: all 1280 bundles and every cached frame verified, no new repairs",
+  "recovery_process_pid": 62413,
+  "post_remount_full_cache_audit_sha256": "56d554cc02e7c70f1259ab05b344718e23f8080b394805e5aa55d0b34bed18c6",
+  "post_remount_audit_elapsed_s": 467.4134498400017,
+  "post_remount_repaired_sources": 0,
+  "formal_preparation_status": "passed after E remount; optimizer steps 0; training remains paused",
+  "previous_formal_preparation_attempt": "failed at dataset fingerprints before E remount",
+  "viser_pid": 62413,
+  "viser_http": {
+    "status": 200,
+    "bytes": 818656,
+    "proxy_bypassed_for_loopback": true
+  },
+  "prepared_input_checks_sha256": "d79aed7109afc8c23297e17c8725d4c3496b9b165b4bf522b48fee638e698262",
+  "prepared_effective_config_sha256": "60cba28bfece8864542472bb35e8d05c4be184b09a5b0e34f45b900615064096",
+  "initial_pre_remount_full_cache_audit_sha256": "6396ac147858afa798d88e150db06379f6dc1946f69c72453b6ed75ae76632b8"
 }

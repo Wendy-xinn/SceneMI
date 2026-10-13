@@ -2,7 +2,7 @@
 
 更新：2026-10-13。**训练暂停；本轮优化器 0 步。以后只维护这一份总清单，不再新增按讨论命名的方案文档。** 历史报告仅作证据存档，不代表当前配置。已完成指代码接通并有检查，不能等同于生成质量达标。
 
-本次落实：**全量原生30Hz的1280个来源、2,097,866缓存帧已在E盘导出并通过一次全量审计。随后WSL的C/D/E映射同时失效，正式零步准备在最终文件指纹阶段失败；新30Hz仍为0训练步。** 输入回放、正式TRAIN梯度标定和审计记录已保存到Linux工作盘；六例mesh服务已停止，待挂载恢复后重新核验并启动。RICH/TRUMANS exo已接正式入口。手腕部分扰动、GT候选局部软降权和官方TRAIN-only头部偏置保持启用；离线主协议仍为整段已观测静态并集。当前剩余项见1.3与Q31/Q32。
+本次落实：**全量原生30Hz的1280个来源、2,097,866缓存帧已在E盘保存，并通过重新挂载后的第二次完整审计，新增修复0条；正式192帧/batch2零步准备及最终文件指纹已完成。** mesh六例服务已恢复至http://127.0.0.1:8784，训练仍暂停、优化器0步。WSL原C/D/E映射失效；重建E盘映射恢复访问，C/D仍失效。输入回放、TRAIN梯度标定、配置/代码/数据指纹及故障证据保存到Linux工作盘。当前只剩用户输入可视化验收、Q31采样范围与效果实验；不自动启动训练。
 
 当前目标固定为：共享动作生成器，在相同世界坐标下使用可信人体轨迹与观察到的场景；exo 重点改善遮挡部位，同时保持整体运动精度；ego 保留头部相机约束。先关闭以下清单，再开展模型效果实验。
 
@@ -16,12 +16,12 @@
 |D4|三套数据的 exo 入口|**三套正式入口已接，全量导出完成**|EgoBody master真实标定、RICH发布标定固定单视角、TRUMANS显式合成观察者。三套均接导出／采样／frozen入口；TRUMANS发布的world/camera配对外参保留作参考，真实K/光轴未确认，不能称真实相机benchmark。|
 |M1|共享生成器与场景条件|**代码及零步检查完成**|共享输出；静态 patch、动态 owner、预测身体局部查询、位置/旋转接触反馈已接入。训练后的场景利用效果归 E2。|
 |D5|GT 质量与观测扰动|**受控profile与局部候选软权重已接入**|50%观测干净；其余head相机位姿扰动后反算head，已选两腕加小平滑位置/旋转误差；exo仅位置误差。原GT不改；仅孤立反跳候选相应部位监督×0.25，穿过候选的差分跳过，普通快速动作不处理。可关闭对照；36项检查及真实缓存完整反传通过。参数是首轮起点，效果归E2。|
-|S1|监督尺度与配置入口|**正式TRAIN的8窗×3噪声桶标定已保存，最终指纹未完成**|JSON实际控制单位、22关节权重、噪声和GT软权重；[TRAIN_gradient_scales.json](../ego_exo_official_offline_memory_v4/TRAIN_gradient_scales.json)含24桶梯度及系数。它是有限TRAIN面板的初始标定，不是总体最优系数；挂载恢复后重跑正式准备。|
-|D6|全量 native30 与输入验收|**全量审计已通过；WSL映射故障阻塞最终准备**|[全量审计](FULL_NATIVE30_CACHE_AUDIT.json)：1280来源、2,097,866缓存帧，全文件哈希／整数时钟／所有帧FK／遮挡分区检查通过。新六例原生mesh与缓存关节一致；当前E盘不可从WSL读取，恢复后须复核；正式准备和用户输入验收未完成。|
+|S1|监督尺度与配置入口|**正式TRAIN面板标定和最终指纹已保存**|[TRAIN_gradient_scales.json](../ego_exo_official_offline_memory_v4/TRAIN_gradient_scales.json)含8窗×3噪声桶梯度及系数；物理单位和22关节权重已接通。这是有限TRAIN面板的初始标定，不是总体最优系数。正式反传和条件/位置/旋转反馈梯度均有限且非零。|
+|D6|全量 native30 与输入验收|**完整缓存、正式零步准备完成；用户可视化待验收**|[恢复后全量审计](FULL_NATIVE30_CACHE_AUDIT.json)：1280来源、2,097,866缓存帧，全哈希/整数时钟/所有帧FK/遮挡分区检查通过，新增修复0条；[正式准备](../ego_exo_official_offline_memory_v4/input_checks.json)通过，数据/代码/配置指纹已保存。mesh8784恢复，用户验收及Q31仍未关闭。|
 |E1|正式 validation 和训练运行闭环|**正式val固定计划已保存，模型效果评估未跑**|[validation_plan.json](../ego_exo_official_offline_memory_v4/validation_plan.json)固定身份/种子及clean/noisy输入；训练第1步、每250步及末步DDIM20评估，保留一份latest输出。原GT指标不加质量mask，另报候选/普通区。完整recording与跨窗拼接仍为正式benchmark前工作。|
 |E2|效果实验与验收|**未开始**|先短程训练及可视化，再按已定 val 规则扩展；比较整体/可见/遮挡误差、朝向、滑动和场景接触，做无场景／错场景／反馈消融以及分开训练对照。训练仍保持暂停。|
 
-**下一步固定为：恢复WSL盘映射 → 复核完整缓存并完成正式零步准备 → 输入可视化与Q31采样范围验收 → E2短程试训。** 首轮范围已按最新要求扩为三语料ego＋三语料exo，其中TRUMANS exo明确是合成观察增广。首轮exo窗口至少有一个可信位置观测；保留窗内遮挡／出画片段，整窗无观测的长缺失补全后置，不删其原始缓存或静态记忆。D1/D2/M1不重复开设计分支。任意网络视频、多假设补全、未知体型推断、真实动态轨迹估计、独立输出头、渐进查询继续后置。
+**下一步固定为：输入可视化与Q31采样范围验收 → E2短程试训。** 缓存复核和正式零步准备已完成；训练暂停，不自动开始优化。 首轮范围已按最新要求扩为三语料ego＋三语料exo，其中TRUMANS exo明确是合成观察增广。首轮exo窗口至少有一个可信位置观测；保留窗内遮挡／出画片段，整窗无观测的长缺失补全后置，不删其原始缓存或静态记忆。D1/D2/M1不重复开设计分支。任意网络视频、多假设补全、未知体型推断、真实动态轨迹估计、独立输出头、渐进查询继续后置。
 
 ## 1.1 已讨论问题与处理记录
 
@@ -55,12 +55,12 @@
 |Q24|首例手臂甩动是渲染/插值错误吗？其他GT也有问题吗？|全索引及8处原生复算见1.4；不判所有候选为错误，不改GT/删窗。仅对孤立反跳做可关闭的局部软权重，导数stencil避开，原GT评估保留。|D5实现有检查；可靠性收益待E2|
 |Q25|SMPL和SMPL-X是否真的兼容？|共享22关节父子树，native模板/形状/vertex ID分开；未生成SMPL-X细手指、脸，不等于全SMPL-X能力。|接口已查；D3/M1|
 |Q26|之前有没有做扰动？会不会扰动GT？|按版本记录；本轮按最新要求恢复部分两腕扰动：带腕ego中50%小平滑位置/旋转误差、50%干净，无额外腕gap。只有可信输入及对应confidence/uncertainty改变。|D5已接入；GT原值不变|
-|Q27|各监督的尺度、不同轨迹的重要程度对吗？|物理单位与有限梯度已查，JSON已生效；正式TRAIN的8窗×3扩散噪声桶标定已保存，不能宣称系数最佳。最终文件指纹受WSL映射故障阻塞。|S1面板标定完成；正式准备待恢复|
+|Q27|各监督的尺度、不同轨迹的重要程度对吗？|物理单位与有限梯度已查，JSON已生效；正式TRAIN的8窗×3扩散噪声桶标定和最终指纹已保存，不能宣称系数最佳。|S1准备完成；监督效果归E2|
 |Q28|Human3R等前端已能重建全身，如何证明价值？|同输入范围、同前端、同尺度坐标比较整体与可见/遮挡部位；前端全身可作为低confidence先验，但当前未接。场景移除/错配及模式对照证明增益。|E1/E2；真实前端先验接入后置|
 |Q29|长时间出画再出现能补自然动作吗？|可能多解，不能保证唯一GT；第一版先验证短缺失，长缺失/多假设/身份重关联留后续。|明确后置|
 |Q30|场景条件是否真正发挥作用？为什么只去噪两步？|2步仅smoke，正式配置20步；有梯度/输出变化不足以证明有用，必须训练后消融和可视化验证。|实现有检查；E2未开始|
 |Q31|第5例相机拍不到人，第6例相机为何改变？|不同TRUMANS序列分别固定合成观察者，位置相差2.27m、朝向约56°；第5例连续176帧无关节输入，第6例每帧有输入。第5例是极端遮挡诊断，不是唯一GT可恢复的常规样例；当前采样只排除整窗无观测，仍会采到长缺失，需区分常规遮挡与长缺失压力测试。|相机/遮挡已量化；短程采样范围待输入验收，D4/D6/E2|
-|Q32|I/O为什么反复出错，是内存不足吗，之前保存了吗？|Windows资源管理器可读E盘，WSL的C/D/E均EIO；可用内存约28GiB、swap为0、无OOM。Windows与vp9fs.dll版本和WSL #41702报告一致，强烈怀疑DrvFS/9p连接故障，具体竞态尚未用本机ETW证明。完整缓存审计与回放/标定已保存，正式准备未封存，训练0步。|故障层已定位；恢复挂载并复核，D6/E1|
+|Q32|I/O为什么反复出错，是内存不足吗，之前保存了吗？|Windows能读E盘、WSL旧C/D/E映射全部EIO；可用内存约28GiB、swap为0、无OOM。仅重新挂载E盘即恢复，完整复核新增修复0，定位到DrvFS/9p连接层；Windows/DLL版本与WSL #41702报告吻合，具体竞态未用本机ETW证明。正式准备、mesh服务和保存记录均已恢复，训练0步。|连接恢复及数据复核完成；C/D仍失效，长期规避未实施|
 
 ## 1.2 观测扰动按版本记录
 
@@ -89,7 +89,7 @@
 
 ## 1.3 首次训练启动门槛（2026-10-13实查）
 
-**当前结论：缓存全量审计已通过，正式TRAIN标定及输入回放已落盘，训练保持暂停。** 完整192帧/batch2零步流程运行到最后的文件指纹阶段，因WSL Windows盘映射故障失败；单项模型最终指标当时未保存，不补写猜测数值。当前`input_checks.json`明确`training_ready=false`，`effective_config.json`不存在。恢复后重新检查、封存指纹和验收输入，才能进入短程训练。
+**当前结论：完整缓存复核、正式零步模型准备、TRAIN梯度标定和val固定计划均已完成，训练保持暂停。** [input_checks.json](../ego_exo_official_offline_memory_v4/input_checks.json)为`passed`，技术检查`training_ready=true`，`optimizer_steps=0`、`training_started=false`；[effective_config.json](../ego_exo_official_offline_memory_v4/effective_config.json)记录1027条数据与323条代码指纹。这个技术标记不代替用户可视化验收、Q31采样范围检查或训练授权。
 
 “官方TRAIN相机标定文件”的准确含义是**本项目仅用官方TRAIN估计并保存的EgoBody真实PV相机→解剖head关节的近似刚体安装偏置**。文件名是`TRAIN_camera_mounts.json`，并非官方发布给我们的标定文件。EgoBody PV/Holo/Kinect/世界系的官方外参已经在本地；master exo直接用其观察相机外参，不需要目标人的头部mount。TRUMANS的world/camera配对外参及尚未确认的K是D4另一项。虚拟ego使用生成时的实际mount，不需要重新估计TRUMANS/RICH的头部偏置。旧文件来自内部TRAIN，真实PV的8个拟合样本官方归属为3 train/2 val/3 test，不能原样用于官方划分实验。
 
@@ -97,9 +97,9 @@
 
 |启动门槛|本轮查到的实际状态|最小完成标准／对应任务|
 |---|---|---|
-|1. 全量正式缓存|1280来源、2,097,866缓存帧导出完成并通过完整审计；随后WSL映射故障|恢复C/D/E访问，再全量复核，不能凭故障前通过记录忽略后续读取异常。D6/Q32|
-|2. 正式零步准备和val固定计划|8个TRAIN窗口×3噪声桶梯度、16项TRAIN/val输入对齐、正式val计划和回放已保存；192帧模型检查后在指纹阶段报EFAULT；`effective_config.json`尚未生成|重跑正式192帧/batch2准备并保存单项数值、数据/代码/配置哈希。S1/D6/E1|
-|3. 正式输入可视化验收|三语料六例native mesh及第5/6例相机/遮挡统计已核对；8784因映射失效主动停止；独立HTML输入回放在Linux工作盘|恢复mesh服务，检查真实/虚拟ego、master exo及clean/noisy输入；确认常规遮挡与长缺失采样范围后再短程优化。D6/E2/Q31|
+|1. 全量正式缓存|1280来源、2,097,866缓存帧保存完成；E盘重新挂载后完整复核通过，新增修复0|D6缓存完成；C/D仍失效但不阻塞本轮E盘缓存与Linux源资产。|
+|2. 正式零步准备和val固定计划|正式192帧/batch2完整目标反传有限；全部条件、root位置与SO3反馈梯度非零；16项对齐和frozen/train入口检查通过；模型检查及最终指纹均已保存|S1/D6技术准备完成；2步DDIM仅smoke，正式评估20步。优化器0，未训练。|
+|3. 正式输入可视化验收|三语料六例native mesh与第5/6例相机/遮挡统计已核对；8784重新启动且HTTP200；独立HTML回放保留在Linux工作盘|用户检查真实/虚拟ego、master exo及clean/noisy输入；确认Q31常规遮挡与长缺失范围后再试训。D6/E2|
 
 共享输出头、192帧@30Hz、整段已见静态记忆、现有patch/局部查询/反馈结构固定；没有新架构研究项挡在第一轮前面。**当前代码采样范围是三语料ego/exo**，优先检查遮挡收益和ego是否退化。TRUMANS真实K与全录制benchmark拼接不阻塞受控合成视点试验；不把它当真实相机实验。
 
@@ -235,7 +235,7 @@ EgoBody master不依赖PV有效帧范围，整段覆盖源同步索引的`first:
 
 历史8783六例是输入/GT诊断面板（当前入口为下述8784），不是生成效果；TRUMANS仍为合成exo。首例右臂开头跳变已回溯到源拟合，当前显示保留以便追查；10月13日全索引筛查及8处原生复算见1.4。原RGB不在本地，不能断言真实动作绝不可能跳动，也不能把所有候选直接mask。此前零步反传和2步DDIM smoke只证明接口/梯度，不代表场景或朝向效果。
 
-本轮正式缓存预定入口为[原生mesh六例viser](http://127.0.0.1:8784)：每语料两例，来自官方validation的已提交缓存；例子按遮挡筛选仅用于显示，不作为benchmark采样策略。原生SMPL/SMPL-X使用同一整段source/body profile复算，未用简化22关节skin冒充原生GT；目标、人/物体遮挡mesh与完整扫描mesh均标为参考。模型可见环境点云及整段已见静态记忆单独显示，完整扫描不进入条件。来源和检查见[FORMAL_EXO_VISER_CASES.json](FORMAL_EXO_VISER_CASES.json)、[FORMAL_EXO_MESH_AUDIT.json](FORMAL_EXO_MESH_AUDIT.json)。显示confidence阈值不修改训练输入。当前代码70项回归通过；完整缓存审计已通过一次。**8784现因WSL映射失效已停止，链接暂不可用；恢复后重启。**
+本轮正式缓存入口为[原生mesh六例viser](http://127.0.0.1:8784)：每语料两例，来自官方validation的已提交缓存；例子按遮挡筛选仅用于显示，不作为benchmark采样策略。原生SMPL/SMPL-X使用同一整段source/body profile复算，未用简化22关节skin冒充原生GT；目标、人/物体遮挡mesh与完整扫描mesh均标为参考。模型可见环境点云及整段已见静态记忆单独显示，完整扫描不进入条件。来源和检查见[FORMAL_EXO_VISER_CASES.json](FORMAL_EXO_VISER_CASES.json)、[FORMAL_EXO_MESH_AUDIT.json](FORMAL_EXO_MESH_AUDIT.json)。显示confidence阈值不修改训练输入。当前代码70项回归通过；完整缓存审计已通过一次。**8784已在E盘重挂与完整复核后恢复，HTTP200；所有例子继续使用原冻结身份/视点。**
 
 后续每次只更新上面表格的状态、证据与剩余项。可复现脚本和机器JSON保留；历史文档入口指向这里，其内容按历史日期理解。只保留一个原子可恢复last.pt；原55k与选中的3k权重保留。第一次正式训练仍须完成本清单前置项及输入可视化验收，当前暂停状态不变。
 
@@ -262,14 +262,14 @@ EgoBody master不依赖PV有效帧范围，整段覆盖源同步索引的`first:
 
 |核对项|本机证据／结论|
 |---|---|
-|故障所在层|Linux ext4读写正常；`/mnt/c/Windows`、`/mnt/d`、`/mnt/e`全部EIO。用户确认Windows资源管理器可打开E盘缓存，支持WSL Windows盘映射层故障。|
+|故障所在层|故障时Linux ext4正常、WSL旧C/D/E均EIO，而用户Windows资源管理器可读E盘。仅重新挂载E盘即恢复；C/D仍EIO，说明旧DrvFS连接失效，不是E盘容量或全机内存耗尽。|
 |内存|约28GiB可用、swap为0、内存PSI为0，内核无OOM；现有证据不支持内存耗尽。|
 |宿主版本|用户实测WSL 2.7.10.0、内核6.18.33.2-2、Windows 10.0.26200.9457、vp9fs.dll 10.0.26100.9457。|
 |可能机制|微软仓库[WSL #41702](https://github.com/microsoft/WSL/issues/41702)报告9p取消请求后的迟到回复会令连接持续EIO；原报告Windows/DLL版本与本机一致，另有所有挂载同时失效的复现。它仍是故障报告；本机没有跨故障ETW，具体竞态不能确认，不能保证仅升级WSL即可修复。|
 |GPU内核警告|同一段日志有dxgvmbus/current_pos FORTIFY警告，与[WSL #40580](https://github.com/microsoft/WSL/issues/40580)一致；时间相近不足以认定它导致盘映射故障。|
-|已保存|[全量审计](FULL_NATIVE30_CACHE_AUDIT.json)、[故障证据](WSL_WINDOWS_DRIVE_OUTAGE_AUDIT.json)、[内核日志](WSL_KERNEL_OUTAGE.log)、六例身份及遮挡统计、正式TRAIN梯度、val固定计划、对齐检查、[独立HTML回放](../ego_exo_official_offline_memory_v4/INPUT_REPLAY.html)和[输入图](../ego_exo_official_offline_memory_v4/INPUT_ALIGNMENT.png)均在Linux工作盘。原55k/选中3k权重未改。|
-|未完成|正式准备的最终数据/代码指纹与`effective_config.json`；此前运行没有保存单项模型最终数值，不冒充准备完成。没有训练新模型。|
+|已保存|[全量审计](FULL_NATIVE30_CACHE_AUDIT.json)、[故障证据](WSL_WINDOWS_DRIVE_OUTAGE_AUDIT.json)、[内核日志](WSL_KERNEL_OUTAGE.log)、六例身份及遮挡统计、正式TRAIN梯度、val固定计划、对齐检查、[独立HTML回放](../ego_exo_official_offline_memory_v4/INPUT_REPLAY.html)和[输入图](../ego_exo_official_offline_memory_v4/INPUT_ALIGNMENT.png)以及正式模型检查、最终有效配置和指纹均在Linux工作盘。原55k/选中3k权重未改。|
+|未完成|用户输入可视化验收、Q31短程采样范围和E2效果实验；C/D映射仍未修复，底层竞态原因未用本机ETW证实，长期规避尚未实施。正式准备现已封存，训练保持暂停。|
 |代码补救|模型数值检查先独立写`model_checks.json`（`training_ready=false`），再计算最终指纹；报告原子写入并fsync，常规I/O异常另写失败状态。SIGBUS仍可能直接结束进程，底层映射须先恢复。|
-|恢复入口|本会话无可用Windows互操作、sudo需要本机密码。优先在当前Ubuntu终端执行`sudo umount -l /mnt/e && sudo mount -t drvfs E: /mnt/e -o uid=1000,gid=1000`重建E盘连接（沿用[WSL #41702](https://github.com/microsoft/WSL/issues/41702)报告的办法）；若仍失败，Windows执行`wsl --shutdown`再打开Ubuntu/IDE，它会终止全部WSL进程，[命令说明](https://learn.microsoft.com/en-us/windows/wsl/basic-commands#shutdown)。[恢复脚本](../../resume_native30_checks.sh)只复核缓存、正式零步准备和重启8784，不创建优化器。|
+|恢复入口|用户已在Ubuntu终端执行`sudo umount -l /mnt/e && sudo mount -t drvfs E: /mnt/e -o uid=1000,gid=1000`，E盘恢复；[恢复脚本](../../resume_native30_checks.sh)随后完成完整审计、正式零步准备并启动mesh8784。若其他映射需恢复，可对应重新挂载；Windows的`wsl --shutdown`会终止所有WSL进程，[命令说明](https://learn.microsoft.com/en-us/windows/wsl/basic-commands#shutdown)。不从本会话请求/保存sudo密码，不自动训练。|
 
-原始内核日志使用单调时间排序：GPU警告15831.782秒，后续映射哈希探针SIGBUS为15979.956秒。journal多次记录系统时钟跳变，不用重建墙钟时间推断因果关系。挂载恢复后先复核缓存，不直接训练；长期可评估E盘上的ext4虚拟盘，让热缓存通过Linux文件系统访问，这尚未实施。
+原始内核日志使用单调时间排序：GPU警告15831.782秒，后续映射哈希探针SIGBUS为15979.956秒。journal多次记录系统时钟跳变，不用重建墙钟时间推断因果关系。挂载恢复后已完成完整缓存复核及正式零步准备，没有训练；长期可评估E盘上的ext4虚拟盘，让热缓存通过Linux文件系统访问，这尚未实施。
