@@ -1,0 +1,2270 @@
+{
+  "captured_at_utc": "2026-10-13T10:28:04.087296+00:00",
+  "status": "completed",
+  "planned_steps": 500,
+  "trace_completed_step": 500,
+  "checkpoint_completed_step": 500,
+  "trace_updated_seconds_ago": 865.5232419967651,
+  "all_recorded_losses_finite": true,
+  "all_recorded_gradient_norms_finite": true,
+  "sample_counts": {
+    "trumans/ego": 468,
+    "interactee/ego": 80,
+    "camera_wearer/ego": 98,
+    "trumans/exo": 179,
+    "interactee/exo": 36,
+    "rich/exo": 30,
+    "rich/ego": 69,
+    "camera_wearer/exo": 40
+  },
+  "checkpoint": {
+    "path": "training/last.pt",
+    "bytes": 1476085308,
+    "policy": "one atomic resumable last.pt"
+  },
+  "disk": {
+    "linux_free_bytes": 69414739968,
+    "e_drive_free_bytes": 291456942080
+  },
+  "validation_steps": [
+    1,
+    250,
+    500
+  ],
+  "validation_scope": "Fixed 12 windows, clean/noisy (24 cases); original unweighted GT; count-weighted summary, no Procrustes alignment; not a full-recording benchmark",
+  "validation_aggregates": [
+    {
+      "step": 1,
+      "regime": "clean",
+      "stream": "camera_wearer/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 518.9951477050781,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 717.6778335571289,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 499.12683486938477,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 480.1006774902344,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 49.287757873535156,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 23.969908714294434,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.434680461883545,
+          "count": 764
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "clean",
+      "stream": "camera_wearer/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3613.327880859375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3609.5615234375,
+          "count": 4101
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3738.894287109375,
+          "count": 123
+        },
+        "root_position_error_mm": {
+          "value": 3691.932373046875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 176.3876190185547,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 160.66453552246094,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.468222141265869,
+          "count": 382
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "clean",
+      "stream": "ego",
+      "cases": 8,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 748.8891448974609,
+          "count": 33792
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 909.306303024292,
+          "count": 3072
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 732.8474596023559,
+          "count": 30720
+        },
+        "root_position_error_mm": {
+          "value": 703.5614891052246,
+          "count": 1536
+        },
+        "root_orientation_deg": {
+          "value": 45.315120697021484,
+          "count": 1536
+        },
+        "head_orientation_deg": {
+          "value": 53.179693937301636,
+          "count": 1536
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.508847433587779,
+          "count": 2484
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "clean",
+      "stream": "exo",
+      "cases": 4,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3379.1500854492188,
+          "count": 16896
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3392.9387859447743,
+          "count": 15627
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3209.347019060284,
+          "count": 1269
+        },
+        "root_position_error_mm": {
+          "value": 3370.6773681640625,
+          "count": 768
+        },
+        "root_orientation_deg": {
+          "value": 84.06963205337524,
+          "count": 768
+        },
+        "head_orientation_deg": {
+          "value": 86.67660713195801,
+          "count": 768
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.534022854914028,
+          "count": 1242
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "clean",
+      "stream": "interactee/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 474.9565124511719,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 621.3061065673828,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 460.3215866088867,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 436.0472106933594,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 61.44599533081055,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 87.34239959716797,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.560075998306274,
+          "count": 680
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "clean",
+      "stream": "interactee/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 2404.8896484375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2400.001220703125,
+          "count": 3747
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 2443.289794921875,
+          "count": 477
+        },
+        "root_position_error_mm": {
+          "value": 2389.36083984375,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 85.75953674316406,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 62.024169921875,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.574357986450195,
+          "count": 340
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "clean",
+      "stream": "rich/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 1527.1559448242188,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1573.6558227539062,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 1522.506085205078,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 1513.6016235351562,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 35.312828063964844,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 63.56131553649902,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.524494409561157,
+          "count": 396
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "clean",
+      "stream": "rich/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 4509.0712890625,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4508.888671875,
+          "count": 3975
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 4511.974609375,
+          "count": 249
+        },
+        "root_position_error_mm": {
+          "value": 4427.12841796875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 30.745115280151367,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 64.439453125,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.504497051239014,
+          "count": 198
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "clean",
+      "stream": "trumans/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 474.448974609375,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 724.58544921875,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 449.4353317260742,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 384.49644470214844,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 35.21390151977539,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 37.84515190124512,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.533120632171631,
+          "count": 644
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "clean",
+      "stream": "trumans/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 2989.3115234375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2971.347412109375,
+          "count": 3804
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3152.015380859375,
+          "count": 420
+        },
+        "root_position_error_mm": {
+          "value": 2974.287841796875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 43.38625717163086,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 59.578269958496094,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.587650299072266,
+          "count": 322
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "noisy",
+      "stream": "camera_wearer/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 519.0858154296875,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 717.7781219482422,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 499.216618347168,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 480.25767517089844,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 49.29195022583008,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 23.969968795776367,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.4364845752716064,
+          "count": 764
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "noisy",
+      "stream": "camera_wearer/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3613.530029296875,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3609.763427734375,
+          "count": 4101
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3739.115478515625,
+          "count": 123
+        },
+        "root_position_error_mm": {
+          "value": 3692.138671875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 176.39340209960938,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 160.6553497314453,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.467728137969971,
+          "count": 382
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "noisy",
+      "stream": "ego",
+      "cases": 8,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 748.9505615234375,
+          "count": 33792
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 904.3523690619952,
+          "count": 3018
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 733.7103416010008,
+          "count": 30774
+        },
+        "root_position_error_mm": {
+          "value": 703.6372489929199,
+          "count": 1536
+        },
+        "root_orientation_deg": {
+          "value": 45.3173942565918,
+          "count": 1536
+        },
+        "head_orientation_deg": {
+          "value": 53.18118667602539,
+          "count": 1536
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.512493885657638,
+          "count": 2484
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "noisy",
+      "stream": "exo",
+      "cases": 4,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3379.3343505859375,
+          "count": 16896
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3393.12107875192,
+          "count": 15627
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3209.5559942006503,
+          "count": 1269
+        },
+        "root_position_error_mm": {
+          "value": 3370.857177734375,
+          "count": 768
+        },
+        "root_orientation_deg": {
+          "value": 84.072181224823,
+          "count": 768
+        },
+        "head_orientation_deg": {
+          "value": 86.6747694015503,
+          "count": 768
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.536096463072895,
+          "count": 1242
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "noisy",
+      "stream": "interactee/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 475.05760192871094,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 628.2320014648437,
+          "count": 750
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 460.13416105346204,
+          "count": 7698
+        },
+        "root_position_error_mm": {
+          "value": 436.1308288574219,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 61.451534271240234,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 87.34106826782227,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.563933372497559,
+          "count": 680
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "noisy",
+      "stream": "interactee/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 2404.95751953125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2400.067626953125,
+          "count": 3747
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 2443.368408203125,
+          "count": 477
+        },
+        "root_position_error_mm": {
+          "value": 2389.4345703125,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 85.76528930664062,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 62.02497100830078,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.57266092300415,
+          "count": 340
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "noisy",
+      "stream": "rich/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 1527.2365112304688,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1545.29525390625,
+          "count": 750
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 1525.4770667655155,
+          "count": 7698
+        },
+        "root_position_error_mm": {
+          "value": 1513.6912841796875,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 35.3092098236084,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 63.56793022155762,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.533364534378052,
+          "count": 396
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "noisy",
+      "stream": "rich/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 4509.4111328125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4509.21923828125,
+          "count": 3975
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 4512.466796875,
+          "count": 249
+        },
+        "root_position_error_mm": {
+          "value": 4427.4384765625,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 30.74062156677246,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 64.44063568115234,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.521944522857666,
+          "count": 198
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "noisy",
+      "stream": "trumans/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 474.4223175048828,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 730.581880859375,
+          "count": 750
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 449.4652106745208,
+          "count": 7698
+        },
+        "root_position_error_mm": {
+          "value": 384.4692077636719,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 35.21688270568848,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 37.84577941894531,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.535517930984497,
+          "count": 644
+        }
+      }
+    },
+    {
+      "step": 1,
+      "regime": "noisy",
+      "stream": "trumans/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 2989.438720703125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2971.4677734375,
+          "count": 3804
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3152.200927734375,
+          "count": 420
+        },
+        "root_position_error_mm": {
+          "value": 2974.4169921875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 43.38941192626953,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 59.578121185302734,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 6.5872979164123535,
+          "count": 322
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "clean",
+      "stream": "camera_wearer/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 320.61048889160156,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 376.05491638183594,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 315.06603317260743,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 307.4207000732422,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 19.31886100769043,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 87.4959487915039,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.12461921572685242,
+          "count": 764
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "clean",
+      "stream": "camera_wearer/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3879.261962890625,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3875.61767578125,
+          "count": 4101
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 4000.770751953125,
+          "count": 123
+        },
+        "root_position_error_mm": {
+          "value": 4020.41845703125,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 149.64163208007812,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 60.45558166503906,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.2089177370071411,
+          "count": 382
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "clean",
+      "stream": "ego",
+      "cases": 8,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 782.3327941894531,
+          "count": 33792
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 824.4018077850342,
+          "count": 3072
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 778.1258947372437,
+          "count": 30720
+        },
+        "root_position_error_mm": {
+          "value": 782.8143081665039,
+          "count": 1536
+        },
+        "root_orientation_deg": {
+          "value": 35.80622363090515,
+          "count": 1536
+        },
+        "head_orientation_deg": {
+          "value": 84.28016257286072,
+          "count": 1536
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.16501573178671217,
+          "count": 2484
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "clean",
+      "stream": "exo",
+      "cases": 4,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3620.6521606445312,
+          "count": 16896
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3633.063148760709,
+          "count": 15627
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3467.8153408041517,
+          "count": 1269
+        },
+        "root_position_error_mm": {
+          "value": 3666.2727661132812,
+          "count": 768
+        },
+        "root_orientation_deg": {
+          "value": 91.69427490234375,
+          "count": 768
+        },
+        "head_orientation_deg": {
+          "value": 107.08334732055664,
+          "count": 768
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.23259936589837651,
+          "count": 1242
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "clean",
+      "stream": "interactee/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 398.5428009033203,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 386.17012786865234,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 399.78006744384766,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 405.5712127685547,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 27.372910499572754,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 31.532588005065918,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.1910129189491272,
+          "count": 680
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "clean",
+      "stream": "interactee/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 2570.691162109375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2547.880859375,
+          "count": 3747
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 2749.874267578125,
+          "count": 477
+        },
+        "root_position_error_mm": {
+          "value": 2601.275146484375,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 110.1916732788086,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 131.44061279296875,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.24046635627746582,
+          "count": 340
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "clean",
+      "stream": "rich/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 1763.8026123046875,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1787.2242431640625,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 1761.460464477539,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 1770.6270751953125,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 64.66232872009277,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 115.55426025390625,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.28369157761335373,
+          "count": 396
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "clean",
+      "stream": "rich/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 4787.30078125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4791.58203125,
+          "count": 3975
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 4718.94287109375,
+          "count": 249
+        },
+        "root_position_error_mm": {
+          "value": 4761.6123046875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 38.746726989746094,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 99.02299499511719,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.1556737869977951,
+          "count": 198
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "clean",
+      "stream": "trumans/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 646.3752746582031,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 748.1579437255859,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 636.1970138549805,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 647.6382446289062,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 31.87079429626465,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 102.5378532409668,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.11251451447606087,
+          "count": 644
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "clean",
+      "stream": "trumans/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3245.354736328125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3229.895263671875,
+          "count": 3804
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3385.37158203125,
+          "count": 420
+        },
+        "root_position_error_mm": {
+          "value": 3281.78515625,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 68.19706726074219,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 137.41419982910156,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.29968902468681335,
+          "count": 322
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "noisy",
+      "stream": "camera_wearer/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 320.6524963378906,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 376.09020233154297,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 315.1087310791016,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 307.46690368652344,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 19.331863403320312,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 87.47970962524414,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.12459269911050797,
+          "count": 764
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "noisy",
+      "stream": "camera_wearer/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3879.7470703125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3876.090087890625,
+          "count": 4101
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 4001.673095703125,
+          "count": 123
+        },
+        "root_position_error_mm": {
+          "value": 4020.91796875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 149.58316040039062,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 60.264739990234375,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.2054920494556427,
+          "count": 382
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "noisy",
+      "stream": "ego",
+      "cases": 8,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 782.6003837585449,
+          "count": 33792
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 814.7384258899726,
+          "count": 3018
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 779.4485965341265,
+          "count": 30774
+        },
+        "root_position_error_mm": {
+          "value": 783.3859825134277,
+          "count": 1536
+        },
+        "root_orientation_deg": {
+          "value": 35.751086950302124,
+          "count": 1536
+        },
+        "head_orientation_deg": {
+          "value": 84.47129273414612,
+          "count": 1536
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.16327342986700616,
+          "count": 2484
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "noisy",
+      "stream": "exo",
+      "cases": 4,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3620.9642333984375,
+          "count": 16896
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3633.3637292707785,
+          "count": 15627
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3468.2701407358154,
+          "count": 1269
+        },
+        "root_position_error_mm": {
+          "value": 3666.6004028320312,
+          "count": 768
+        },
+        "root_orientation_deg": {
+          "value": 91.6999282836914,
+          "count": 768
+        },
+        "head_orientation_deg": {
+          "value": 107.0522289276123,
+          "count": 768
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.23127978581833186,
+          "count": 1242
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "noisy",
+      "stream": "interactee/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 399.32701110839844,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 388.3018696289063,
+          "count": 750
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 400.40115106691167,
+          "count": 7698
+        },
+        "root_position_error_mm": {
+          "value": 406.3427429199219,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 27.578832626342773,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 32.16206073760986,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.19642166048288345,
+          "count": 680
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "noisy",
+      "stream": "interactee/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 2570.589599609375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2547.78173828125,
+          "count": 3747
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 2749.754150390625,
+          "count": 477
+        },
+        "root_position_error_mm": {
+          "value": 2601.1708984375,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 110.1845932006836,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 131.55868530273438,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.24070462584495544,
+          "count": 340
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "noisy",
+      "stream": "rich/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 1764.0855712890625,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1755.93314453125,
+          "count": 750
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 1764.8798168774053,
+          "count": 7698
+        },
+        "root_position_error_mm": {
+          "value": 1772.158203125,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 64.16766548156738,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 115.72257232666016,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.26307011395692825,
+          "count": 396
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "noisy",
+      "stream": "rich/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 4787.30517578125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4791.56884765625,
+          "count": 3975
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 4719.234375,
+          "count": 249
+        },
+        "root_position_error_mm": {
+          "value": 4761.62060546875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 38.742027282714844,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 98.89608001708984,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.1558195799589157,
+          "count": 198
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "noisy",
+      "stream": "trumans/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 646.3364562988281,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 749.1560444335937,
+          "count": 750
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 636.3189352842763,
+          "count": 7698
+        },
+        "root_position_error_mm": {
+          "value": 647.5760803222656,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 31.925986289978027,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 102.52082824707031,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.11279485002160072,
+          "count": 644
+        }
+      }
+    },
+    {
+      "step": 250,
+      "regime": "noisy",
+      "stream": "trumans/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3246.215087890625,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3230.732177734375,
+          "count": 3804
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3386.445068359375,
+          "count": 420
+        },
+        "root_position_error_mm": {
+          "value": 3282.692138671875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 68.28993225097656,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 137.48941040039062,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.29832199215888977,
+          "count": 322
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "clean",
+      "stream": "camera_wearer/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 291.31475830078125,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 296.4710159301758,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 290.7991539001465,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 292.4058074951172,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 19.31611728668213,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 80.14898681640625,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.1830504909157753,
+          "count": 764
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "clean",
+      "stream": "camera_wearer/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3466.8935546875,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3466.71826171875,
+          "count": 4101
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3472.736328125,
+          "count": 123
+        },
+        "root_position_error_mm": {
+          "value": 3577.6640625,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 124.54304504394531,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 107.10581970214844,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.47577863931655884,
+          "count": 382
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "clean",
+      "stream": "ego",
+      "cases": 8,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 658.9976081848145,
+          "count": 33792
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 652.5648727416992,
+          "count": 3072
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 659.6408910751343,
+          "count": 30720
+        },
+        "root_position_error_mm": {
+          "value": 647.853630065918,
+          "count": 1536
+        },
+        "root_orientation_deg": {
+          "value": 43.0551221370697,
+          "count": 1536
+        },
+        "head_orientation_deg": {
+          "value": 78.41063475608826,
+          "count": 1536
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.3430865328165068,
+          "count": 2484
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "clean",
+      "stream": "exo",
+      "cases": 4,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3283.8960571289062,
+          "count": 16896
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3293.527170569042,
+          "count": 15627
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3165.2924221751255,
+          "count": 1269
+        },
+        "root_position_error_mm": {
+          "value": 3313.9842529296875,
+          "count": 768
+        },
+        "root_orientation_deg": {
+          "value": 82.45205879211426,
+          "count": 768
+        },
+        "head_orientation_deg": {
+          "value": 91.9054069519043,
+          "count": 768
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.4305817959965139,
+          "count": 1242
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "clean",
+      "stream": "interactee/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 455.3815155029297,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 503.77433013916016,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 450.54223861694334,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 415.15638732910156,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 43.4311408996582,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 66.53520488739014,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.4377108961343765,
+          "count": 680
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "clean",
+      "stream": "interactee/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 2395.07080078125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2377.125732421875,
+          "count": 3747
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 2536.036865234375,
+          "count": 477
+        },
+        "root_position_error_mm": {
+          "value": 2430.81298828125,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 103.27931213378906,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 111.51445007324219,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.329551100730896,
+          "count": 340
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "clean",
+      "stream": "rich/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 1519.5911865234375,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1420.8370971679688,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 1529.466604614258,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 1549.7125244140625,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 44.40789604187012,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 82.60931015014648,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.2801957130432129,
+          "count": 396
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "clean",
+      "stream": "rich/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 4234.24658203125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4227.4599609375,
+          "count": 3975
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 4342.583984375,
+          "count": 249
+        },
+        "root_position_error_mm": {
+          "value": 4197.326171875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 66.43636322021484,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 106.28417205810547,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.26765382289886475,
+          "count": 198
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "clean",
+      "stream": "trumans/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 369.7029724121094,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 389.1770477294922,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 367.7555671691895,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 334.1398010253906,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 65.06533432006836,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 84.34903717041016,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.4717010259628296,
+          "count": 644
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "clean",
+      "stream": "trumans/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3039.373291015625,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3033.568359375,
+          "count": 3804
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3091.944091796875,
+          "count": 420
+        },
+        "root_position_error_mm": {
+          "value": 3050.1337890625,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 35.54951477050781,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 42.717185974121094,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.5838270783424377,
+          "count": 322
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "noisy",
+      "stream": "camera_wearer/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 292.0715637207031,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 297.52628326416016,
+          "count": 768
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 291.52611846923827,
+          "count": 7680
+        },
+        "root_position_error_mm": {
+          "value": 294.19725036621094,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 19.379314422607422,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 80.33660888671875,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.18227914720773697,
+          "count": 764
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "noisy",
+      "stream": "camera_wearer/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3459.435791015625,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3459.20849609375,
+          "count": 4101
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3467.009033203125,
+          "count": 123
+        },
+        "root_position_error_mm": {
+          "value": 3570.99609375,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 124.261474609375,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 106.8756103515625,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.4658454358577728,
+          "count": 382
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "noisy",
+      "stream": "ego",
+      "cases": 8,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 679.272518157959,
+          "count": 33792
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 660.3532783402127,
+          "count": 3018
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 681.1279066728788,
+          "count": 30774
+        },
+        "root_position_error_mm": {
+          "value": 662.5695381164551,
+          "count": 1536
+        },
+        "root_orientation_deg": {
+          "value": 45.70117461681366,
+          "count": 1536
+        },
+        "head_orientation_deg": {
+          "value": 84.54306173324585,
+          "count": 1536
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.35079510285610543,
+          "count": 2484
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "noisy",
+      "stream": "exo",
+      "cases": 4,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 3271.7169799804688,
+          "count": 16896
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3280.495680131068,
+          "count": 15627
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3163.6121834829346,
+          "count": 1269
+        },
+        "root_position_error_mm": {
+          "value": 3304.9905395507812,
+          "count": 768
+        },
+        "root_orientation_deg": {
+          "value": 83.10222816467285,
+          "count": 768
+        },
+        "head_orientation_deg": {
+          "value": 95.48229885101318,
+          "count": 768
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.4170052935151854,
+          "count": 1242
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "noisy",
+      "stream": "interactee/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 535.8906860351562,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 559.9886918945313,
+          "count": 750
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 533.542840923449,
+          "count": 7698
+        },
+        "root_position_error_mm": {
+          "value": 472.3645935058594,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 52.62566328048706,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 89.46806144714355,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.4809422045946121,
+          "count": 680
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "noisy",
+      "stream": "interactee/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 2393.3076171875,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2375.556396484375,
+          "count": 3747
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 2532.748779296875,
+          "count": 477
+        },
+        "root_position_error_mm": {
+          "value": 2428.599365234375,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 102.3309326171875,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 110.69659423828125,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.33768799901008606,
+          "count": 340
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "noisy",
+      "stream": "rich/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 1519.4542846679688,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1394.2397412109376,
+          "count": 750
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 1531.6535902372673,
+          "count": 7698
+        },
+        "root_position_error_mm": {
+          "value": 1550.1461791992188,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 44.22653579711914,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 82.12589263916016,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.2784263491630554,
+          "count": 396
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "noisy",
+      "stream": "rich/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 4237.79736328125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4231.12744140625,
+          "count": 3975
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 4344.2763671875,
+          "count": 249
+        },
+        "root_position_error_mm": {
+          "value": 4200.31982421875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 66.60315704345703,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 106.81202697753906,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.27056506276130676,
+          "count": 198
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "noisy",
+      "stream": "trumans/ego",
+      "cases": 2,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 369.6735382080078,
+          "count": 8448
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 398.36624487304687,
+          "count": 750
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 366.87808301276,
+          "count": 7698
+        },
+        "root_position_error_mm": {
+          "value": 333.57012939453125,
+          "count": 384
+        },
+        "root_orientation_deg": {
+          "value": 66.57318496704102,
+          "count": 384
+        },
+        "head_orientation_deg": {
+          "value": 86.24168395996094,
+          "count": 384
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.45778918266296387,
+          "count": 644
+        }
+      }
+    },
+    {
+      "step": 500,
+      "regime": "noisy",
+      "stream": "trumans/exo",
+      "cases": 1,
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 2996.3271484375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2985.843994140625,
+          "count": 3804
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 3091.275634765625,
+          "count": 420
+        },
+        "root_position_error_mm": {
+          "value": 3020.046875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 39.213348388671875,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 57.54496383666992,
+          "count": 192
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.5328627824783325,
+          "count": 322
+        }
+      }
+    }
+  ],
+  "backup": {
+    "local_code_commit": "9005919",
+    "push_completed": false,
+    "previous_network_error": "GnuTLS recv error (-110): The TLS connection was non-properly terminated",
+    "retry_status": "Explicit user authorization received; preparing code and compact result backup",
+    "remote": "https://github.com/Wendy-xinn/SceneMI.git",
+    "user_explicitly_authorized": true
+  },
+  "timeout_diagnosis": {
+    "training_progressing": false,
+    "local_train_requires_internet": false,
+    "network_error_confirmed_scope": "GitHub backup push",
+    "additional_process_sampling": "rejected by approval policy; no current detailed profile obtained",
+    "previous_host_snapshot": "CPU about 97%, GPU utilization snapshot 0%, RAM about 25 GiB available, low IO pressure; suggests CPU-side work but not a conclusive profile",
+    "ui_timeout_cause": "Not established; tool waiting timeout does not imply local training failure",
+    "training_completed_normally": true,
+    "cpu_repetition_evidence": "Per-frame KD-tree rebuilding and 2-stream map cache found in code; static-tree microbenchmark speedup 6.66x, not total training speedup"
+  },
+  "training_elapsed_s_at_checkpoint": 4667.470300411998,
+  "scene_condition_on_steps": 442,
+  "geometry_diagnostics": {
+    "contact": {
+      "nonzero_steps": 95,
+      "max_abs": 0.776991069316864
+    },
+    "contact_distance_m2": {
+      "nonzero_steps": 49,
+      "max_abs": 0.02297808974981308
+    },
+    "contact_relative_slip_m2_s2": {
+      "nonzero_steps": 48,
+      "max_abs": 5.461979389190674
+    },
+    "observed_plane_proxy_m2": {
+      "nonzero_steps": 340,
+      "max_abs": 0.013411402702331543
+    },
+    "correspondence": {
+      "nonzero_steps": 432,
+      "max_abs": 0.6993288993835449
+    },
+    "feedback_smoothness": {
+      "nonzero_steps": 394,
+      "max_abs": 7.123180125745421e-07
+    }
+  },
+  "checkpoint_audit": {
+    "status": "passed",
+    "step": 500,
+    "planned_steps": 500,
+    "checkpoint_sha256": "1c6eee06c1399bd1f7ee3c3603203ffcfa52df5b7d9ad73209a845045bd93565",
+    "checkpoint_bytes": 1476085308,
+    "all_model_tensors_finite": true,
+    "all_optimizer_tensors_finite": true,
+    "model_tensor_count": 296,
+    "model_state_numel": 125086416,
+    "optimizer_tensor_count": 882,
+    "effective_config_matches_prepared": true,
+    "live_source_hashes_match_prepared": true,
+    "sample_counts": {
+      "trumans/ego": 468,
+      "interactee/ego": 80,
+      "camera_wearer/ego": 98,
+      "trumans/exo": 179,
+      "interactee/exo": 36,
+      "rich/exo": 30,
+      "rich/ego": 69,
+      "camera_wearer/exo": 40
+    },
+    "sample_total": 1000,
+    "rng_and_sampler_keys_present": true,
+    "resumable_under_sealed_config": true
+  }
+}

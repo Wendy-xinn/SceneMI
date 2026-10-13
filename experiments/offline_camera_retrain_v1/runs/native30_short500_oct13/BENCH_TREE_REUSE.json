@@ -1,0 +1,17 @@
+{
+  "scope": "isolated static KD-tree build plus radius-query microbenchmark; synthetic geometry, not live training throughput",
+  "seed": 20261013,
+  "static_points": 40000,
+  "frames": 192,
+  "anchors": 67,
+  "radii_m": [
+    0.08,
+    0.25,
+    0.6
+  ],
+  "rebuild_tree_each_frame_s": 1.4436133249982959,
+  "reuse_one_static_tree_s": 0.21667860399975325,
+  "speedup": 6.662463659771132,
+  "ordered_neighborhood_lists_identical": true,
+  "limitations": "Does not include dynamic merging, FPS selection, normals, scene-map rebuilding, GPU work or transfers. Production query remains unchanged during short500."
+}
