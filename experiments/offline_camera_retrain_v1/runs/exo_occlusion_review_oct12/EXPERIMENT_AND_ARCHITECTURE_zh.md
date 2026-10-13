@@ -549,7 +549,7 @@ v2原子last.pt保存1000步及Adam／RNG，source_snapshot_072fdea.zip保存原
 
 ## 4.3 10月14日晚间训练：独立VAL场景验收
 
-自动更新：2026-10-14 03:11:05 CST。阶段：`pilot_training`；候选已保存步数：**1200**。
+自动更新：2026-10-14 06:51:19 CST。阶段：`completed_gate_failed`；候选已保存步数：**4000**。
 
 本轮置信度约束放在扩散内部的预测proposal与最终x0：exo用可观测骨盆／双髋／脊柱约束根位姿，ego只用头部位置约束平移，不从相机朝向强制身体朝向。root gain=0.9；新增关节位置IK gain=0.9，6次阻尼迭代，lambda=0.0025m²，每次角度≤0.35rad，不修改root；都随alpha和置信度／不确定性减弱。raw x0仍受GT监督；场景可以通过主干、67vertex查询及位置／旋转反馈改变动作。
 
@@ -567,5 +567,22 @@ v2原子last.pt保存1000步及Adam／RNG，source_snapshot_072fdea.zip保存原
 |物理诊断|报告GT静止期足速、可观察接触表面距离／查询覆盖率、局部朝相机平面背侧proxy；不把partial point cloud当完整SDF，缺失表面无碰撞测量。|
 |train实际小集|58个条件窗；11136累计窗帧；7744个目标30Hz去重时间点；16个独立目标流。ego/exo可能覆盖同一时间，不重复宣称为独立动作。|
 |validation实际小集|16个条件窗；3072累计窗帧；1984个目标30Hz去重时间点；8个独立目标流。ego/exo可能覆盖同一时间，不重复宣称为独立动作。|
+
+以下为候选第4000步的独立VAL固定窗监控，DDIM20，原始世界系、无GT对齐；不是整个VAL的正式benchmark。单位mm。
+
+|条件|初始整体|场景扩散整体|同权重无场景整体|匹配无场景训练整体|初始缺失部位|场景缺失部位|场景可信部位|场景root|
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+|ego clean|321.65|203.75|202.15|190.69|336.61|212.95|10.57|168.15|
+|ego noisy|328.11|215.94|217.18|211.92|341.86|223.65|48.01|179.40|
+|exo clean|25.07|10.68|11.81|13.72|141.03|73.28|4.45|3.84|
+|exo noisy|56.48|36.05|38.04|37.52|153.29|90.41|30.53|23.97|
+
+[clean原坐标native mesh对比](../native30_overnight_ik_oct14/experiment/candidate/VALIDATION_MESH_CLEAN_STEP4000.png)：蓝GT、灰初始参考、紫场景扩散，手／脸中性；每例第96帧，不能代替整窗指标。
+
+[noisy原坐标native mesh对比](../native30_overnight_ik_oct14/experiment/candidate/VALIDATION_MESH_NOISY_STEP4000.png)：蓝GT、灰初始参考、紫场景扩散，手／脸中性；每例第96帧，不能代替整窗指标。
+
+场景验收：**未通过**。全训练池实际启动：**False**。
+
+未通过项：`ego/clean/scene_gain`, `ego/clean/matched_control_gain`, `ego/clean/seed/2026101401`, `ego/clean/seed/2026101403`, `ego/noisy/scene_gain`, `ego/noisy/matched_control_gain`, `exo/noisy/scene_gain`, `exo/noisy/seed/2026101403`.
 
 <!-- NATIVE30_OVERNIGHT_END -->

@@ -1,0 +1,185 @@
+{
+  "passed": false,
+  "checks": {
+    "ego/clean/better_than_initial": {
+      "passed": true,
+      "value": 203.7501449584961,
+      "reference": 321.6524257659912,
+      "required_fraction": 0.95
+    },
+    "ego/clean/scene_gain": {
+      "passed": false,
+      "value": 203.7501449584961,
+      "reference": 202.14572525024414,
+      "required_fraction": 0.98
+    },
+    "ego/clean/matched_control_gain": {
+      "passed": false,
+      "value": 203.7501449584961,
+      "reference": 190.69380474090576,
+      "required_fraction": 0.98
+    },
+    "ego/clean/seed/2026101401": {
+      "passed": false,
+      "value": 204.01002502441406,
+      "reference": 201.67504501342773
+    },
+    "ego/clean/seed/2026101403": {
+      "passed": false,
+      "value": 203.49026489257812,
+      "reference": 202.61640548706055
+    },
+    "ego/clean/two_corpora": {
+      "passed": true,
+      "positive": [
+        "egobody",
+        "trumans"
+      ]
+    },
+    "ego/noisy/better_than_initial": {
+      "passed": true,
+      "value": 215.94232368469238,
+      "reference": 328.1122016906738,
+      "required_fraction": 0.95
+    },
+    "ego/noisy/scene_gain": {
+      "passed": false,
+      "value": 215.94232368469238,
+      "reference": 217.1812105178833,
+      "required_fraction": 0.98
+    },
+    "ego/noisy/matched_control_gain": {
+      "passed": false,
+      "value": 215.94232368469238,
+      "reference": 211.91581344604492,
+      "required_fraction": 0.98
+    },
+    "ego/noisy/seed/2026101401": {
+      "passed": true,
+      "value": 216.1547908782959,
+      "reference": 216.50588035583496
+    },
+    "ego/noisy/seed/2026101403": {
+      "passed": true,
+      "value": 215.72985649108887,
+      "reference": 217.85654067993164
+    },
+    "ego/noisy/two_corpora": {
+      "passed": true,
+      "positive": [
+        "egobody",
+        "trumans"
+      ]
+    },
+    "exo/clean/better_than_initial": {
+      "passed": true,
+      "value": 73.28013075336911,
+      "reference": 141.03325952237768,
+      "required_fraction": 0.95
+    },
+    "exo/clean/scene_gain": {
+      "passed": true,
+      "value": 73.28013075336911,
+      "reference": 80.20967596165495,
+      "required_fraction": 0.98
+    },
+    "exo/clean/matched_control_gain": {
+      "passed": true,
+      "value": 73.28013075336911,
+      "reference": 108.45062619116571,
+      "required_fraction": 0.98
+    },
+    "exo/clean/guard/mpjpe_mm": {
+      "passed": true,
+      "value": 10.679467722773552,
+      "reference": 25.06735722720623,
+      "tolerance": 5.0
+    },
+    "exo/clean/guard/conditioned_mpjpe_mm": {
+      "passed": true,
+      "value": 4.44628935211744,
+      "reference": 13.520576179140049,
+      "tolerance": 5.0
+    },
+    "exo/clean/guard/root_position_error_mm": {
+      "passed": true,
+      "value": 3.844898283481598,
+      "reference": 0.00021950990230834577,
+      "tolerance": 10.0
+    },
+    "exo/clean/seed/2026101401": {
+      "passed": true,
+      "value": 73.3248229414809,
+      "reference": 81.36380780717127
+    },
+    "exo/clean/seed/2026101403": {
+      "passed": true,
+      "value": 73.23543856525733,
+      "reference": 79.05554411613863
+    },
+    "exo/clean/two_corpora": {
+      "passed": true,
+      "positive": [
+        "egobody",
+        "trumans"
+      ]
+    },
+    "exo/noisy/better_than_initial": {
+      "passed": true,
+      "value": 90.40721689085204,
+      "reference": 153.29000597239,
+      "required_fraction": 0.95
+    },
+    "exo/noisy/scene_gain": {
+      "passed": false,
+      "value": 90.40721689085204,
+      "reference": 90.04281890736839,
+      "required_fraction": 0.98
+    },
+    "exo/noisy/matched_control_gain": {
+      "passed": true,
+      "value": 90.40721689085204,
+      "reference": 105.67128490038843,
+      "required_fraction": 0.98
+    },
+    "exo/noisy/guard/mpjpe_mm": {
+      "passed": true,
+      "value": 36.04656636714935,
+      "reference": 56.4821195602417,
+      "tolerance": 5.0
+    },
+    "exo/noisy/guard/conditioned_mpjpe_mm": {
+      "passed": true,
+      "value": 30.528634497982416,
+      "reference": 46.655537423553454,
+      "tolerance": 5.0
+    },
+    "exo/noisy/guard/root_position_error_mm": {
+      "passed": true,
+      "value": 23.969140827655792,
+      "reference": 15.459250539541245,
+      "tolerance": 10.0
+    },
+    "exo/noisy/seed/2026101401": {
+      "passed": true,
+      "value": 90.70126066410013,
+      "reference": 90.9723873401806
+    },
+    "exo/noisy/seed/2026101403": {
+      "passed": false,
+      "value": 90.11317311760395,
+      "reference": 89.11325047455618
+    },
+    "exo/noisy/two_corpora": {
+      "passed": true,
+      "positive": [
+        "egobody",
+        "trumans"
+      ]
+    }
+  },
+  "policy": "held-out official VAL; two DDIM seeds; both regimes; scene-off and matched-training controls; trusted/root guards",
+  "candidate_step": 4000,
+  "control_step": 4000,
+  "paired_training_inputs": true
+}
