@@ -1,0 +1,286 @@
+{
+  "trumans": {
+    "root": "/home/wenxin/projects/TRUMANS",
+    "original_segments": 688,
+    "original_frames": 1335540,
+    "augmented_segments": 1136,
+    "augmented_frames": 2456528,
+    "arrays": [
+      {
+        "file": "seg_name.npy",
+        "shape": [
+          3792068
+        ],
+        "dtype": "<U28",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "frame_id.npy",
+        "shape": [
+          3792068
+        ],
+        "dtype": "int64",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "human_joints.npy",
+        "shape": [
+          3792068,
+          24,
+          3
+        ],
+        "dtype": "float32",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "human_pose.npy",
+        "shape": [
+          3792068,
+          63
+        ],
+        "dtype": "float32",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "human_orient.npy",
+        "shape": [
+          3792068,
+          3
+        ],
+        "dtype": "float32",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "human_transl.npy",
+        "shape": [
+          3792068,
+          3
+        ],
+        "dtype": "float32",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "betas.npy",
+        "shape": [
+          3792068,
+          10
+        ],
+        "dtype": "float32",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "left_hand_pose.npy",
+        "shape": [
+          3792068,
+          45
+        ],
+        "dtype": "float32",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "right_hand_pose.npy",
+        "shape": [
+          3792068,
+          45
+        ],
+        "dtype": "float32",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "scene_flag.npy",
+        "shape": [
+          3792068
+        ],
+        "dtype": "int64",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "object_flag.npy",
+        "shape": [
+          3792068,
+          35
+        ],
+        "dtype": "int8",
+        "file_length_matches_header": true
+      },
+      {
+        "file": "object_mat.npy",
+        "shape": [
+          3792068,
+          5,
+          4,
+          4
+        ],
+        "dtype": "float64",
+        "file_length_matches_header": true
+      }
+    ],
+    "examples": [
+      {
+        "name": "2023-01-15@00-11-55_augment1",
+        "frames": 1792
+      },
+      {
+        "name": "2023-02-09@14-28-09_augment1",
+        "frames": 2830
+      },
+      {
+        "name": "2023-01-15@21-18-12_augment1",
+        "frames": 2050
+      },
+      {
+        "name": "2023-02-14@12-12-01_augment1",
+        "frames": 1910
+      },
+      {
+        "name": "2023-02-16@14-17-08_augment1",
+        "frames": 1619
+      }
+    ],
+    "pkl_inventories": [
+      {
+        "directory": "/home/wenxin/projects/TRUMANS/smplx_result",
+        "pkl_files": 569,
+        "augmented_segment_files": 0
+      },
+      {
+        "directory": "/home/wenxin/projects/TRUMANS/smplx_result_in_cam",
+        "pkl_files": 561,
+        "augmented_segment_files": 0
+      }
+    ],
+    "augmented_motion_arrays_downloaded": true,
+    "augmentation_scene_object_alignment_implemented": false,
+    "header_and_segment_inventory_only_not_full_numerical_audit": true
+  },
+  "source_rows": [
+    {
+      "split": "train",
+      "group": "trumans",
+      "ego_source_frames": 1031393,
+      "exo_source_frames": 1031393,
+      "shared_source_frames": 1031393,
+      "unique_source_frames": 1031393,
+      "exo_only_source_frames": 0
+    },
+    {
+      "split": "train",
+      "group": "camera_wearer",
+      "ego_source_frames": 104580,
+      "exo_source_frames": 116630,
+      "shared_source_frames": 104580,
+      "unique_source_frames": 116630,
+      "exo_only_source_frames": 12050
+    },
+    {
+      "split": "train",
+      "group": "interactee",
+      "ego_source_frames": 100620,
+      "exo_source_frames": 116630,
+      "shared_source_frames": 100620,
+      "unique_source_frames": 116630,
+      "exo_only_source_frames": 16010
+    },
+    {
+      "split": "train",
+      "group": "rich",
+      "ego_source_frames": 36478,
+      "exo_source_frames": 36478,
+      "shared_source_frames": 36478,
+      "unique_source_frames": 36478,
+      "exo_only_source_frames": 0
+    },
+    {
+      "split": "validation",
+      "group": "trumans",
+      "ego_source_frames": 66664,
+      "exo_source_frames": 66664,
+      "shared_source_frames": 66664,
+      "unique_source_frames": 66664,
+      "exo_only_source_frames": 0
+    },
+    {
+      "split": "validation",
+      "group": "camera_wearer",
+      "ego_source_frames": 24480,
+      "exo_source_frames": 29140,
+      "shared_source_frames": 24480,
+      "unique_source_frames": 29140,
+      "exo_only_source_frames": 4660
+    },
+    {
+      "split": "validation",
+      "group": "interactee",
+      "ego_source_frames": 24120,
+      "exo_source_frames": 29140,
+      "shared_source_frames": 24120,
+      "unique_source_frames": 29140,
+      "exo_only_source_frames": 5020
+    },
+    {
+      "split": "validation",
+      "group": "rich",
+      "ego_source_frames": 17661,
+      "exo_source_frames": 17661,
+      "shared_source_frames": 17661,
+      "unique_source_frames": 17661,
+      "exo_only_source_frames": 0
+    },
+    {
+      "split": "test",
+      "group": "trumans",
+      "ego_source_frames": 117138,
+      "exo_source_frames": 117138,
+      "shared_source_frames": 117138,
+      "unique_source_frames": 117138,
+      "exo_only_source_frames": 0
+    },
+    {
+      "split": "test",
+      "group": "camera_wearer",
+      "ego_source_frames": 67770,
+      "exo_source_frames": 73961,
+      "shared_source_frames": 67770,
+      "unique_source_frames": 73961,
+      "exo_only_source_frames": 6191
+    },
+    {
+      "split": "test",
+      "group": "interactee",
+      "ego_source_frames": 67500,
+      "exo_source_frames": 73961,
+      "shared_source_frames": 67500,
+      "unique_source_frames": 73961,
+      "exo_only_source_frames": 6461
+    },
+    {
+      "split": "test",
+      "group": "rich",
+      "ego_source_frames": 0,
+      "exo_source_frames": 0,
+      "shared_source_frames": 0,
+      "unique_source_frames": 0,
+      "exo_only_source_frames": 0
+    }
+  ],
+  "totals": {
+    "ego_source_frames": 1658404,
+    "exo_source_frames": 1708796,
+    "shared_source_frames": 1658404,
+    "unique_source_frames": 1708796,
+    "exo_only_source_frames": 50392,
+    "percent_ego_source_shared_with_exo": 100.0,
+    "percent_exo_source_shared_with_ego": 97.05102305951091
+  },
+  "count_unit": "unique target/body raw30 clock points; before window validity and exo visibility filters",
+  "source_target_identity_disjoint_between_splits": true,
+  "manifest_sha256": "0ad36607e705a6480368486e98d3b5dd4de69f2ec916a45b73f2f0d9f2c9c9cc",
+  "current_window_frames": 192,
+  "fps": 30,
+  "current_production_stride": 1,
+  "previously_proposed_next_stride": 32,
+  "currently_recommended_next_stride": 64,
+  "same_motion_does_not_imply_same_observation": true,
+  "no_new_training": true,
+  "training_sampler_unchanged": true
+}
