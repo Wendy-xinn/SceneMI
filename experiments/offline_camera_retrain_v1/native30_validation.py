@@ -68,7 +68,6 @@ def validate(model,data,builder,config,folder,step):
             for i,entry in enumerate(plan):
                 sample,identity=data.sample(entry['group'],entry['mode'],member=entry['member'],start=entry['start'],yaw=0)
                 clean,scene,asset=builder.build(data,sample,identity,entry['mode'],entry['joints'])
-                conditioned=torch.from_numpy(clean['observation_meta'][...,0]>0)[None].to(device)
                 for regime in ('clean','noisy'):
                     observed=clean
                     if regime=='noisy':
@@ -79,6 +78,7 @@ def validate(model,data,builder,config,folder,step):
                         other=Native30ObservationBuilder(builder.skin_cache,builder.mounts,noise)
                         observed,scene,asset=other.build(data,sample,identity,entry['mode'],entry['joints'],noise_rng=np.random.default_rng(options['seed']+i))
                     batch=collate_observations([(observed,scene,asset,entry['mode'])],device=device)
+                    conditioned=torch.from_numpy(observed['observation_meta'][...,0]>0)[None].to(device)
                     prediction=sample_native30(model,inference_payload(batch),steps=config['sampling']['ddim_steps'],seed=options['seed']+i)
                     if not torch.isfinite(prediction).all():raise FloatingPointError('Nonfinite DDIM validation output')
                     rows.append(dict(case=i,step=step,regime=regime,**entry,metrics=raw_metrics(prediction,batch,conditioned)))

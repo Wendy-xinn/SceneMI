@@ -39,8 +39,8 @@ def train(config_path,steps,output=None,resume=False):
     if (folder/'last.pt').exists()!=bool(resume):
         raise ValueError('Existing checkpoints require explicit resume; missing checkpoint cannot resume')
     torch.set_num_threads(4);torch.manual_seed(config['seed']);np.random.seed(config['seed'])
-    data=Native30Data(HERE/config['train_manifest'],'train',config['seed'],memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'])
-    val=Native30Data(HERE/config['train_manifest'],'validation',config['seed']+1,memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'])
+    data=Native30Data(HERE/config['train_manifest'],'train',config['seed'],memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'))
+    val=Native30Data(HERE/config['train_manifest'],'validation',config['seed']+1,memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'))
     if dataset_digest(data)|dataset_digest(val)!=effective['data_sha256']:
         raise ValueError('Native30 data changed after preparation')
     plan=data.sampling_plan(config['ego_probability'])
@@ -91,6 +91,12 @@ def train(config_path,steps,output=None,resume=False):
                      identities=identities,terms={k:numbers(v) for k,v in terms.items()},lr=optimizer.param_groups[0]['lr'])
             trace.write(json.dumps(row)+'\n');trace.flush()
             if step==1 or step%25==0:print(step,row['loss'],counts,flush=True)
+            # Preserve the first real update before validation can fail or be
+            # interrupted. Subsequent checkpoints overwrite this same last.pt.
+            if step==1:
+                checkpoint(step);protocol.update(completed_steps=step,counts=dict(counts),
+                    elapsed_s=time.monotonic()-started,free_disk_after=shutil.disk_usage(HERE).free)
+                write_json(folder/'protocol.json',protocol)
             if step==1 or step%config['validation']['interval_steps']==0 or step==steps:
                 validate(model,val,builder,config,folder,step)
             if step%100==0 or step==steps:

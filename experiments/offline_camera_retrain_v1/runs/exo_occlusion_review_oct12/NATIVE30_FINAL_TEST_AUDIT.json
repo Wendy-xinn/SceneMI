@@ -1,5 +1,5 @@
 {
-  "tests_run": 70,
+  "tests_run": 71,
   "failures": 0,
   "errors": 0,
   "passed": true,
@@ -12,7 +12,7 @@
     "test_scene_visibility_v2",
     "test_native30_export_controller"
   ],
-  "elapsed_s": 3.31,
+  "elapsed_s": 0.659,
   "optimizer_steps": 0,
   "observation_window_counter_check": {
     "synthetic_sequences": 100,
@@ -20,5 +20,7 @@
     "passed": true
   },
   "verified_after_numeric_report_persistence_patch": true,
-  "verified_after_atomic_report_fsync_patch": true
+  "verified_after_atomic_report_fsync_patch": true,
+  "additional_check": "raw exo all-joint missing-run limit versus brute force, exact boundaries and partial joint visibility",
+  "scope": "pre-launch short500 code regression; live training steps tracked in trial protocol"
 }

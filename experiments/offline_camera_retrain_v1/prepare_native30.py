@@ -72,6 +72,9 @@ def read_config(path=CONFIG_PATH):
         raise ValueError('Invalid sampling probabilities')
     if config['batch_size']<1 or config['optimizer']['lr']<=0:
         raise ValueError('Invalid batch size/learning rate')
+    limit=config.get('exo_max_empty_frames')
+    if limit is not None and (isinstance(limit,bool) or not isinstance(limit,int) or limit<0):
+        raise ValueError('exo_max_empty_frames must be a nonnegative integer or null')
     if not 2<=config['sampling']['ddim_steps']<=1000:
         raise ValueError('DDIM inference steps outside supported schedule')
     return config
@@ -134,8 +137,8 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     torch.set_num_threads(4);torch.manual_seed(config['seed']);np.random.seed(config['seed'])
     manifest=HERE/config['train_manifest' if full_data else 'review_manifest']
     memory_protocol=config['scene']['memory_protocol']
-    data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'])
-    validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'])
+    data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'))
+    validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'))
     from experiments.offline_camera_retrain_v1.native30_validation import fixed_plan
     validation_plan=fixed_plan(validation,config['validation'])
     write_json(folder/'validation_plan.json',dict(seed=config['validation']['seed'],plan=validation_plan,

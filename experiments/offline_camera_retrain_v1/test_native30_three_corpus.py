@@ -7,12 +7,32 @@ import numpy as np
 from experiments.offline_camera_retrain_v1.native30_splits import official_sources
 from experiments.offline_camera_retrain_v1.native30_export import inventory,rows,PROTOCOL
 from experiments.offline_camera_retrain_v1.data import SOURCE
-from experiments.offline_camera_retrain_v1.native30_data import Native30Data
+from experiments.offline_camera_retrain_v1.native30_data import Native30Data,exo_window_starts
 from experiments.offline_camera_retrain_v1.native30_exo import external_transforms,external_intrinsics
 from experiments.offline_camera_retrain_v1.native30_memory import observer_stream_key
 
 
 class ThreeCorpusTests(unittest.TestCase):
+    def test_long_all_joint_gaps_are_deferred_with_exact_window_boundaries(self):
+        rng=np.random.default_rng(19)
+        for frames in (4,192):
+            for limit in (0,2,18,frames):
+                for _ in range(12):
+                    observed=rng.random(frames+35)>.3
+                    observed[:19]=False;observed[-19:]=False
+                    starts=np.arange(len(observed)-frames+1)
+                    expected=[]
+                    for start in starts:
+                        run=longest=0
+                        for value in observed[start:start+frames]:
+                            run=0 if value else run+1;longest=max(longest,run)
+                        if observed[start:start+frames].any() and longest<=limit:expected.append(start)
+                    np.testing.assert_array_equal(exo_window_starts(observed,starts,frames,limit),expected)
+        # Missing body parts remain eligible when another joint is observed.
+        np.testing.assert_array_equal(exo_window_starts(np.ones(200,bool),np.arange(9),192,18),np.arange(9))
+        for invalid in (-1,True,1.5):
+            with self.assertRaises(ValueError):exo_window_starts(np.ones(4,bool),[0],4,invalid)
+
     def test_entirely_unobserved_windows_are_excluded_but_raw_memory_is_kept(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);folder=root/'bundle';folder.mkdir()

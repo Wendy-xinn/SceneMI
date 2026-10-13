@@ -14,13 +14,30 @@ from experiments.offline_camera_retrain_v1.supervision import IDENTITY_6D
 from experiments.offline_camera_retrain_v1.native30_gt_reliability import quality_weights,DEFAULT_GT_RELIABILITY,validate_gt_reliability
 
 
+def exo_window_starts(observed,starts,frames,max_empty_frames=None):
+    """Keep partial joint occlusion; optionally defer long all-joint gaps."""
+    if max_empty_frames is not None and (isinstance(max_empty_frames,bool) or
+            not isinstance(max_empty_frames,(int,np.integer)) or max_empty_frames<0):
+        raise ValueError('exo_max_empty_frames must be a nonnegative integer or null')
+    observed=np.asarray(observed,dtype=bool);starts=np.asarray(starts,dtype=np.int64)
+    prefix=np.r_[0,np.cumsum(observed)]
+    current=starts[prefix[starts+frames]-prefix[starts]>0]
+    if max_empty_frames is None or max_empty_frames>=frames:return current
+    limit=int(max_empty_frames)
+    ends=np.zeros(len(observed),dtype=np.int64)
+    ends[limit:]=(prefix[limit+1:]-prefix[:-(limit+1)])==0
+    gaps=np.r_[0,np.cumsum(ends)]
+    return current[gaps[current+frames]-gaps[current+limit]==0]
+
+
 class Native30Data:
     def __init__(self, manifest, split, seed=20261012, *, diagnostic=False, frames=192,
-                 memory_protocol=OFFLINE_MEMORY_PROTOCOL,quality_config=None):
+                 memory_protocol=OFFLINE_MEMORY_PROTOCOL,quality_config=None,exo_max_empty_frames=None):
         split=normalize_split(split)
         self.manifest=Path(manifest); self.split=split; self.rng=np.random.default_rng(seed)
         self.frames=frames; self.members={g:[] for g in ('trumans','camera_wearer','interactee','rich')}
         self.quality_config=validate_gt_reliability(dict(DEFAULT_GT_RELIABILITY) if quality_config is None else quality_config)
+        self.exo_max_empty_frames=exo_max_empty_frames
         self.arrays={};self.mode_starts={}
         expected_sources={(r['group'],r['sequence_id']):r for r in inventory(split)} if not diagnostic else {}
         memory_entries=[]
@@ -56,8 +73,7 @@ class Native30Data:
                 current=starts
                 if mode=='exo':
                     observed=np.asarray(self.load(folder,'exo_position_available')).any(1)
-                    count=np.r_[0,np.cumsum(observed)]
-                    current=starts[(count[starts+frames]-count[starts])>0]
+                    current=exo_window_starts(observed,starts,frames,exo_max_empty_frames)
                 self.mode_starts[(str(folder),mode)]=current
             memory_entries.append(dict(meta,path=str(folder)))
             if len(starts):
