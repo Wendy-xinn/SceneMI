@@ -337,7 +337,9 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--config',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True);p.add_argument('--deadline-utc',required=True)
     p.add_argument('--pilot-steps',type=int,default=3000);p.add_argument('--extension-steps',type=int,default=6000)
-    p.add_argument('--full-steps',type=int,default=15000);args=p.parse_args()
+    p.add_argument('--full-steps',type=int,default=15000)
+    p.add_argument('--continue-pilot',type=Path,help='Continue this official TRAIN-only pilot equally in candidate/control')
+    args=p.parse_args()
     out=args.output;out.mkdir(parents=True,exist_ok=True)
     if (out/'protocol.json').exists():raise ValueError('Use a new trial directory; automatic restart cannot overwrite an existing run')
     config=read_config(args.config);deadline=dt.datetime.fromisoformat(args.deadline_utc).timestamp()
@@ -367,6 +369,21 @@ def main():
     opt=torch.optim.AdamW(model.parameters(),lr=config['optimizer']['lr'],weight_decay=.01)
     rng=np.random.default_rng(config['seed']+991);counts={};start=0
     meta=dict(effective_config=effective,train_plan=plan,validation_plan=vplan,scene=True)
+    warm=None
+    if args.continue_pilot:
+        from experiments.offline_camera_retrain_v1.prepare_native30 import sha256
+        warm=torch.load(args.continue_pilot,map_location='cpu',weights_only=False)
+        if warm['config'].get('version')!='native30-official-overnight-observation-anchor-v2' or any(
+                entry['split']!='train' for entry in warm['meta']['train_plan']):
+            raise ValueError('Only this official TRAIN-only overnight pilot is an admitted continuation')
+        if warm['meta']['train_plan']!=plan or warm['meta']['validation_plan']!=vplan:
+            raise ValueError('Continuation must keep the fixed pilot and validation plans')
+        model.load_state_dict(warm['model'],strict=True);opt.load_state_dict(warm['optimizer'])
+        start=warm['step'];counts=dict(warm['counts']);rng.bit_generator.state=warm['condition_rng']
+        torch.set_rng_state(warm['torch_rng']);torch.cuda.set_rng_state(warm['cuda_rng'])
+        protocol['initialization']=f"continued own TRAIN-only pilot at step {start}; both models share weights, Adam and RNG"
+        protocol['continuation_source']=dict(path=str(args.continue_pilot),sha256=sha256(args.continue_pilot),step=start)
+        meta['continuation_source']=protocol['continuation_source'];write_json(out/'protocol.json',protocol)
     monitor_ids=[next(i for i,m in enumerate(valids) if m['group']==group and m['mode']==mode)
         for group in data.members for mode in ('ego','exo')]
     def monitor(current,step):
@@ -390,6 +407,10 @@ def main():
         torch.manual_seed(config['seed']);model=make_model(config).cuda()
         opt=torch.optim.AdamW(model.parameters(),lr=config['optimizer']['lr'],weight_decay=.01)
         crng=np.random.default_rng(config['seed']+991);ccounts={};cstart=0
+        if warm is not None:
+            model.load_state_dict(warm['model'],strict=True);opt.load_state_dict(warm['optimizer'])
+            cstart=warm['step'];ccounts=dict(warm['counts']);crng.bit_generator.state=warm['condition_rng']
+            torch.set_rng_state(warm['torch_rng']);torch.cuda.set_rng_state(warm['cuda_rng'])
         if (out/'control'/'last.pt').exists():
             state=torch.load(out/'control'/'last.pt',map_location='cpu',weights_only=False)
             model.load_state_dict(state['model']);opt.load_state_dict(state['optimizer']);cstart=state['step'];ccounts=state['counts']

@@ -97,7 +97,7 @@ def window_options(config,full_data=True):
 
 def make_model(config):
     model_type=Native30Refinement if config.get('diffusion_target','absolute_x0')=='reference_residual' else Native30SceneMI
-    extra=dict(observation_anchor_gain=config.get('refinement',{}).get('observation_anchor_gain',0.)) if model_type is Native30Refinement else {}
+    extra={k:config.get('refinement',{}).get(k,0.) for k in ('observation_anchor_gain','joint_anchor_gain')} if model_type is Native30Refinement else {}
     return model_type(config['latent_dim'],tuple(config['dim_mults']),**extra,**{k:config['feedback'][k]
         for k in ('root_limit_m','rotation_limit_rad','feedback_gain')})
 

@@ -183,16 +183,22 @@ def sample_motion(model,batch,config,**kwargs):
 
 
 class Native30Refinement(Native30SceneMI):
-    def __init__(self,*args,observation_anchor_gain=0.,**kwargs):
+    def __init__(self,*args,observation_anchor_gain=0.,joint_anchor_gain=0.,**kwargs):
         super().__init__(*args,**kwargs)
         if not 0<=observation_anchor_gain<=1:raise ValueError('Observation anchor gain must be in [0,1]')
         self.observation_anchor_gain=observation_anchor_gain
+        if not 0<=joint_anchor_gain<=1:raise ValueError('Joint anchor gain must be in [0,1]')
+        self.joint_anchor_gain=joint_anchor_gain
         self.reference_encoder=nn.Sequential(nn.Linear(27,64),nn.SiLU(),nn.Linear(64,64))
         self.reference_attention=nn.MultiheadAttention(64,4,batch_first=True)
         self.reference_projection=nn.Linear(22*64,64,bias=False)
 
     def constrain_motion(self,motion,timestep,batch):
-        return confidence_anchor(motion,batch,self.alphas[timestep],self.observation_anchor_gain)
+        result=confidence_anchor(motion,batch,self.alphas[timestep],self.observation_anchor_gain)
+        if self.joint_anchor_gain:
+            from experiments.offline_camera_retrain_v1.native30_observation_ik import position_proximal
+            result=position_proximal(result,batch,self.alphas[timestep],self.joint_anchor_gain)
+        return result
 
     def observation_condition(self,batch,control_mask=None):
         condition,trajectory,meta=super().observation_condition(batch,control_mask)

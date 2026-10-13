@@ -10,6 +10,7 @@ from experiments.offline_camera_retrain_v1.native30_observations import INPUT_KE
 from experiments.offline_camera_retrain_v1.native30_model import reconcile_motion
 from experiments.offline_camera_retrain_v1.supervision import IDENTITY_6D, PARENTS, forward_kinematics
 from experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations
+from experiments.offline_camera_retrain_v1.native30_observation_ik import position_proximal
 
 
 def example():
@@ -34,6 +35,42 @@ def example():
 
 
 class ReferenceContractTests(unittest.TestCase):
+    def test_position_proximal_preserves_root_and_reduces_measured_error(self):
+        batch=example();delta=torch.randn(1,8,22,3)*.09;delta[:,:,0]=0
+        wrong=reconcile_motion(batch['motion'],batch['rest'],rotation_axis_angle=delta)
+        fixed=position_proximal(wrong,batch,torch.ones(1),.9)
+        target=forward_kinematics(batch['motion'],batch['rest'])
+        before=(forward_kinematics(wrong,batch['rest'])-target).norm(dim=-1).mean()
+        after=(forward_kinematics(fixed,batch['rest'])-target).norm(dim=-1).mean()
+        self.assertLess(float(after),float(before)*.5)
+        self.assertTrue(torch.allclose(fixed[...,:9],wrong[...,:9],atol=1e-6))
+        joints=forward_kinematics(fixed,batch['rest'])
+        for j in range(1,22):
+            self.assertTrue(torch.allclose((joints[:,:,j]-joints[:,:,PARENTS[j]]).norm(dim=-1),
+                (batch['rest'][:,j]-batch['rest'][:,PARENTS[j]]).norm(dim=-1)[:,None],atol=1e-5))
+        leaf=wrong.detach().requires_grad_(True)
+        position_proximal(leaf,batch,torch.ones(1),.9).square().mean().backward()
+        self.assertTrue(torch.isfinite(leaf.grad).all())
+
+    def test_position_proximal_handles_gaps_without_new_evidence(self):
+        batch=example();batch['observation_meta'].zero_();batch['trajectory'].fill_(float('nan'))
+        result=position_proximal(batch['motion'],batch,torch.ones(1),.9)
+        self.assertTrue(torch.allclose(result,batch['motion'],atol=1e-6))
+
+    def test_position_proximal_world_yaw_equivariance(self):
+        batch=example();perturb=torch.randn(1,8,22,3)*.09;perturb[:,:,0]=0
+        wrong=reconcile_motion(batch['motion'],batch['rest'],rotation_axis_angle=perturb)
+        first=position_proximal(wrong,batch,torch.ones(1),.9)
+        yaw=axis_angle_to_matrix(torch.tensor([0.,.7,0.]));shift=torch.tensor([.3,0.,-.2])
+        transformed=wrong.clone();r=yaw@global_rotations(wrong)[:,:,0]
+        transformed[...,:3]=((wrong[...,:3]*2+batch['rest'][:,None,0])@yaw.T+shift-batch['rest'][:,None,0])/2
+        transformed[...,3:9]=torch.cat((r[..., :,0],r[..., :,1]),-1)-wrong.new_tensor(IDENTITY_6D)
+        transformed=reconcile_motion(transformed,batch['rest'])
+        batch['trajectory'][...,:3]=(batch['trajectory'][...,:3]*2@yaw.T+shift)/2
+        second=position_proximal(transformed,batch,torch.ones(1),.9)
+        self.assertTrue(torch.allclose(forward_kinematics(second,batch['rest']),
+            forward_kinematics(first,batch['rest'])@yaw.T+shift,atol=2e-5))
+
     def test_confidence_constraint_corrects_exo_root_without_changing_bones(self):
         batch=example();known=refinement_payload(batch)
         shift=torch.tensor([.25,0.,-.1]).expand(1,8,3)

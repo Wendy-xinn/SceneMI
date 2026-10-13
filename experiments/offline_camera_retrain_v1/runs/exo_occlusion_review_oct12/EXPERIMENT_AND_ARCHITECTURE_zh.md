@@ -22,7 +22,7 @@
 |D6|选定源全量 native30 与输入验收|**原始缓存、S64索引及残差配置准备完成**|1280来源、2,097,866缓存帧沿用已验收raw30文件；E盘S64索引6个数组，本地软链接。新配置三语料／两模式数值检查、完整反传及数据／代码指纹已封存；未进行全语料优化器训练。|
 |E1|正式 validation 和训练运行闭环|**第1/250/500步DDIM20固定验证已保存**|[当前validation_plan.json](../native30_short500_oct13/training/validation_plan.json)固定12窗、clean/noisy共24例；保留一份latest输出。原GT指标不加质量mask，另报候选/普通区。当前四个exo监控窗关节时间覆盖88.71–97.09%，不能替代强遮挡分层；完整recording与跨窗拼接仍为正式benchmark前工作。|
 |E2|效果实验与验收|**今晚三语料较大小集／独立VAL实验启动；收益待验收**|旧500步exo3283.90mm失败保留。新固定TRAIN两条件窗，7:3残差混训1000步：ego32.52／exo26.97mm，exo未观测部位35.48mm；初始动作分别167.43／41.15mm，exo未观测部位154.29mm。原坐标native mesh已保存。单模式及场景消融见4.2，不能用TRAIN记忆代替全VAL／TEST评估。|
-|E3|今晚训练与场景验收|**独立后台流程已启动**|全新初始化，实际计划58个TRAIN条件窗／16个独立目标流，7:3样本槽，50%输入扰动、世界yaw增广；独立VAL16窗×clean/noisy×2个DDIM种子。匹配无场景训练对照，先3000步，不通过可延至6000；仅全部收益／可信区保护检查通过后扩到完整TRAIN窗口池。上午07:15停止新增更新，预留至08:00验证／mesh；实际耗时以日志为准，见4.3。|
+|E3|今晚训练与场景验收|**v3内部可信关节IK配置已继续训练**|v2从零训练到1000，500步VAL发现exo可信关节退化；root约2.8mm／0.8°但整体68mm。v3从同一TRAIN pilot1000权重／Adam／RNG继续，新增内部软位置IK，候选和无场景对照同起点。58个TRAIN条件窗／16个独立目标流，7:3、50%扰动、世界yaw；先2200总步，必要时4000；全部独立VAL收益／可信区保护检查通过才扩全池。07:15停止新增更新，预留最终验证／mesh；最新自动结果见4.3。|
 
 **下一步固定为：使用已准备的残差配置进行三语料7:3混训，保留50%输入扰动；在独立VAL的遮挡分层检查初始动作→优化动作的收益，以及同预算场景消融。** 旧500步不续训；新1000步只是小集诊断，不是全量模型。TRUMANS exo仍是合成观察增广，连续完全缺失限制18帧，长缺失／多假设补全后置。真实视频前端误差校准、未知体型、真实动态估计、独立输出头、渐进查询继续后置。
 
@@ -539,25 +539,33 @@ ego相机通常跟随头的方向，exo相机可能面对目标：**同一个相
 此前GitHub推送报`GnuTLS recv error (-110)`，证明远端备份连接曾中断；不证明本地训练或全部界面超时由网络导致。一次重试被自动审批拒绝（远端外传授权证据不足），额外只读进程采样也被审批策略拒绝。用户随后明确授权推送到Wendy-xinn/SceneMI；提交时又出现一次自动权限审批等待超时，动作未执行，按工具允许重试一次后成功。**代码、配置、500步指标、checkpoint审计及mesh对比图已成功推送：[7ccb439](https://github.com/Wendy-xinn/SceneMI/commit/7ccb439)，分支backup/native-scene-contact-head-oct09。** 权重与大数组保留本地；远端推进4594666→7ccb439同时包含本轮启动配置提交9005919。
 
 
+### 夜间迭代依据（v2 → v3）
+
+第500步独立VAL中途DDIM8：ego clean初始336.01→228.20mm，scene-off232.73；exo clean初始20.58→67.88mm，可信部位12.87→63.82mm，缺失部位100.69→110.03mm；root2.81mm／0.79°。noisy exo缺失部位127.78→115.78mm，但整体51.22→78.01mm。原数据／朝向已改善，可信部位退化仍未通过，所以没有扩全池。证据：[中途验证](../native30_overnight_oct14/experiment/early_validation/evaluation_latest.json)、[checkpoint核验](../native30_overnight_oct14/experiment/CHECKPOINT_AUDIT.json)。
+
+v2原子last.pt保存1000步及Adam／RNG，source_snapshot_072fdea.zip保存原源码；v3从这个本轮TRAIN-only checkpoint继续，候选与对照共享起点。新增位置IK位于每次扩散的proposal及最终x0内：6次阻尼Gauss-Newton（lambda0.0025m²、局部更新每次≤0.35rad），root固定，低alpha／低confidence／高uncertainty衰减；关节位置约束不直接查询场景，场景收益必须用同IK无场景对照另验收。原GT全身姿态不作为IK输入。46项回归及CUDA IK反传通过。单独对旧500步输出施加IK的代数试验只说明测量约束可工作，**不计为经过扩散的新模型结果，不计为场景收益**。
+
 <!-- NATIVE30_OVERNIGHT_BEGIN -->
 
 ## 4.3 10月14日晚间训练：独立VAL场景验收
 
-自动更新：2026-10-14 02:04:39 CST。阶段：`building_banks`；候选已保存步数：**0**。
+自动更新：2026-10-14 03:11:05 CST。阶段：`pilot_training`；候选已保存步数：**1200**。
 
-本轮置信度约束放在扩散内部的预测proposal与最终x0：exo用可观测骨盆／双髋／脊柱约束根位姿，ego只用头部位置约束平移，不从相机朝向强制身体朝向。gain=0.9，再乘cosine alpha、位置置信度和不确定性衰减。raw x0仍受GT监督；场景可以通过主干、67vertex查询及位置／旋转反馈改变动作。
+本轮置信度约束放在扩散内部的预测proposal与最终x0：exo用可观测骨盆／双髋／脊柱约束根位姿，ego只用头部位置约束平移，不从相机朝向强制身体朝向。root gain=0.9；新增关节位置IK gain=0.9，6次阻尼迭代，lambda=0.0025m²，每次角度≤0.35rad，不修改root；都随alpha和置信度／不确定性减弱。raw x0仍受GT监督；场景可以通过主干、67vertex查询及位置／旋转反馈改变动作。
 
-控制流程：[代码](../../native30_overnight.py)、[配置](../../native30_overnight_config.json)、[完整日志](../native30_overnight_oct14/experiment/console.log)、[运行状态](../native30_overnight_oct14/experiment/protocol.json)。每个模型只保留一份原子可续训last.pt；断开界面后独立进程继续，进程异常另记failure.json。
+控制流程：[代码](../../native30_overnight.py)、[配置](../../native30_overnight_ik_config.json)、[完整日志](../native30_overnight_ik_oct14/experiment/console.log)、[运行状态](../native30_overnight_ik_oct14/experiment/protocol.json)。每个模型只保留一份原子可续训last.pt；断开界面后独立进程继续，进程异常另记failure.json。
 
 |项目|本轮设置／实际状态|
 |---|---|
-|初始化与数据范围|场景模型和无场景对照均全新初始化；只有官方TRAIN优化，官方VAL监控，不打开TEST。真实视频前端未接入，参考动作仍由可信输入和rest骨架估计；不是Human3R视频结果。|
+|初始化与数据范围|continued own TRAIN-only pilot at step 1000; both models share weights, Adam and RNG。候选／对照共有同一TRAIN预训练、Adam与RNG；没有使用旧55k。只有TRAIN优化，VAL监控；真实视频前端未接入。|
 |采样|batch2；每10个样本槽准确7 ego／3 exo；ego预期65%仅头、35%头＋双腕；50%clean，余下平滑轨迹误差／短gap；每次共同世界yaw增广。|
 |场景|同观察者整段实际观测静态并集，当前帧动态；不读取完整未观测扫描或目标人体皮肤。TRUMANS exo仍是合成观察者。|
-|候选预算|先3000步，场景验收失败可在同一权重／Adam／RNG上延长至6000步；全池训练最多15000总步，实际受早晨时间限制。|
+|候选预算|同一TRAIN pilot1000步后先到2200总步，失败可延到4000总步；全池训练最多15000总步，实际受早晨时间限制。|
 |中途监控|第500／1000／2000步在8个独立VAL条件窗用DDIM8观察趋势；最终验收固定16个VAL条件窗，clean/noisy分开，两个DDIM20种子。中途DDIM8与最终DDIM20分别记录。|
 |匹配对照|同初始化、窗口、扰动、timesteps、Gaussian扩散噪声、学习率和优化步数，关闭场景训练；逐步核对样本身份、t和输入轨迹校验和；并作同权重scene-off消融。|
 |扩大数据条件|ego整体、exo未观测关节误差均比初始参考低≥5%，且比同权重scene-off及匹配训练对照低≥2%；clean/noisy都通过、两个种子方向一致、每种条件至少两个语料有场景正收益。exo整体／可信部位允许初始参考＋5mm、root＋10mm以内。任何项失败均不扩全池。阈值是本轮预先指定的实验门槛，不是统计显著性或正式benchmark结论。|
 |物理诊断|报告GT静止期足速、可观察接触表面距离／查询覆盖率、局部朝相机平面背侧proxy；不把partial point cloud当完整SDF，缺失表面无碰撞测量。|
+|train实际小集|58个条件窗；11136累计窗帧；7744个目标30Hz去重时间点；16个独立目标流。ego/exo可能覆盖同一时间，不重复宣称为独立动作。|
+|validation实际小集|16个条件窗；3072累计窗帧；1984个目标30Hz去重时间点；8个独立目标流。ego/exo可能覆盖同一时间，不重复宣称为独立动作。|
 
 <!-- NATIVE30_OVERNIGHT_END -->
