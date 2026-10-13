@@ -1,0 +1,278 @@
+{
+  "protocol": "native30-trial-prerequisite-interface-v1",
+  "optimizer_steps": 0,
+  "training_ready": false,
+  "diagnostic_only": true,
+  "source_scope": "old review caches; not formal whole corpus or official metrics",
+  "tests": {
+    "passed": 36
+  },
+  "real_input_checks": [
+    {
+      "mode": "ego",
+      "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+      "clean_exact": true,
+      "GT_unchanged": true,
+      "selected_wrists_noisy": true,
+      "exo_rotations_absent": false
+    },
+    {
+      "mode": "exo",
+      "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+      "clean_exact": true,
+      "GT_unchanged": true,
+      "selected_wrists_noisy": false,
+      "exo_rotations_absent": true
+    }
+  ],
+  "GT_weights_excluded_from_input": true,
+  "full_backward": {
+    "batch": 2,
+    "frames": 64,
+    "model_parameters": 122526416,
+    "finite": true,
+    "loss": 4.57618522644043,
+    "peak_cuda_gib": 1.3681392669677734,
+    "key_gradient_norms": {
+      "root_feedback.weight": 0.0031187001150101423,
+      "rotation_feedback.weight": 0.0018931800732389092,
+      "observation_encoder.0.weight": 0.028435245156288147
+    }
+  },
+  "terms": {
+    "base": {
+      "total": 3.12959885597229,
+      "x0": 0.11310723423957825,
+      "raw_x0": 0.12328069657087326,
+      "fk_position_m2": 0.891156792640686,
+      "fk_velocity_m2_s2": 0.17336483299732208,
+      "fk_acceleration_m2_s4": 546.8009643554688,
+      "root_absolute_chordal": 0.17620185017585754,
+      "head_absolute_chordal": 0.15352052450180054,
+      "neck_absolute_chordal": 0.14612217247486115,
+      "head_root_coordination": 0.016425684094429016,
+      "relative_turning_s2": 0.06674595177173615,
+      "planting_m2_s2": 0.4882567524909973,
+      "raw_fk_consistency_m2": 0.10481297224760056
+    },
+    "observation": {
+      "position": 13.322776794433594,
+      "rotation": 1.572159767150879,
+      "velocity": 2.6065094470977783,
+      "acceleration": 22.064403533935547,
+      "angular_velocity": 1.8619145154953003,
+      "body_turn_rate": 0.8931471705436707
+    },
+    "geometry": {
+      "contact": 0.0,
+      "contact_distance_m2": 0.0,
+      "contact_relative_slip_m2_s2": 0.0,
+      "observed_plane_proxy_m2": 0.0,
+      "correspondence": 0.23000885546207428,
+      "feedback_smoothness": 0.0
+    }
+  },
+  "validation_smoke": {
+    "cases": 6,
+    "ddim_steps": 20,
+    "frames": 64,
+    "training_rng_preserved": true,
+    "sampler_preserved": true,
+    "GT_metrics_unweighted": true,
+    "scope": "Untrained historical review windows; not official validation results"
+  },
+  "config": {
+    "version": "native30-official-offline-observer-memory-v3",
+    "fps": 30,
+    "frames": 192,
+    "seed": 2026101267,
+    "initialization": "from_scratch",
+    "shared_output_initialization": "normal_std_0.001_bias_zero",
+    "train_manifest": "data/native30_official_memory_v2/manifest.jsonl",
+    "review_manifest": "data/native30_observer_target_review_oct12/manifest.jsonl",
+    "prepared_output": "runs/ego_exo_official_offline_memory_v3",
+    "mount_defaults": "data/native30_official_memory_v2/TRAIN_camera_mounts.json",
+    "batch_size": 2,
+    "latent_dim": 256,
+    "dim_mults": [
+      1,
+      2,
+      4
+    ],
+    "ego_probability": 0.7,
+    "ego_head_only_probability": 0.65,
+    "noise": {
+      "steps": 1000,
+      "extra_low_noise_probability": 0.25,
+      "low_noise_steps": 100
+    },
+    "sampling": {
+      "ddim_steps": 20,
+      "global_tokens_reuse": "one sampling call only"
+    },
+    "scene": {
+      "dropout_probability": 0.1,
+      "patch_tokens": 16,
+      "neighbors_per_scale": 8,
+      "scales_m": [
+        0.08,
+        0.25,
+        0.6
+      ],
+      "observation_budget": "entire supplied recording observed-static union; same observer/world/split only; dynamics current frame",
+      "unknown_policy": "surface-only; no free-space inference",
+      "memory_protocol": "observed-static-recording-union-v3",
+      "coordinate_protocol": "persistent world map; transform to current window anchor at query",
+      "memory_control_protocol": "observed-static-prefix-through-window-end-v2",
+      "evaluation_input_scope": "supplied recording only; restricted benchmark clips must use a restricted observation manifest"
+    },
+    "anchor_protocol": "native_body_dominant_only_67_low_foot_v1",
+    "dynamic_condition": "current_visible_owner_patch_tokens_plus_local_queries; source_known_simulation_velocities_only",
+    "feedback": {
+      "root_limit_m": 0.08,
+      "rotation_limit_rad": 0.12,
+      "feedback_gain": 1.0,
+      "gate": "cosine_alpha_squared",
+      "placement": "inside x0 before DDIM update",
+      "position_protocol": "root translation and SO3 FK, fixed bone lengths"
+    },
+    "optimizer": {
+      "lr": 0.0001,
+      "weight_decay": 0.01,
+      "clip_norm": 1.0,
+      "warmup_steps": 200,
+      "floor_fraction": 0.2
+    },
+    "observation": {
+      "scales": {
+        "position": 0.05,
+        "rotation": 0.17453292519943295,
+        "velocity": 0.15,
+        "acceleration": 1.0,
+        "angular_velocity": 0.3490658503988659,
+        "body_turn_rate": 0.3490658503988659
+      },
+      "target_gradient_ratios": {
+        "position": 0.1,
+        "rotation": 0.04,
+        "velocity": 0.03,
+        "acceleration": 0.005,
+        "angular_velocity": 0.015,
+        "body_turn_rate": 0.015
+      },
+      "maximum_coefficients": {
+        "position": 0.1,
+        "rotation": 0.025,
+        "velocity": 0.015,
+        "acceleration": 0.001,
+        "angular_velocity": 0.005,
+        "body_turn_rate": 0.0025
+      },
+      "input_noise": {
+        "protocol": "native30-smooth-observation-error-v1",
+        "clean_probability": 0.5,
+        "ego_head": {
+          "offset_sigma_m": 0.01,
+          "endpoint_sigma_m": 0.02,
+          "rotation_offset_deg": 2.0,
+          "rotation_endpoint_deg": 3.0
+        },
+        "ego_wrists": {
+          "enabled": true,
+          "offset_sigma_m": 0.005,
+          "endpoint_sigma_m": 0.01,
+          "rotation_offset_deg": 2.0,
+          "rotation_endpoint_deg": 3.0
+        },
+        "exo": {
+          "offset_sigma_m": 0.01,
+          "endpoint_sigma_m": 0.02,
+          "shared_offset_sigma_m": 0.005,
+          "shared_endpoint_sigma_m": 0.01
+        },
+        "gap_probability": 0.3,
+        "gap_seconds": 0.6,
+        "ego_gap_joints": [
+          15
+        ],
+        "wrist_extra_gap": false
+      },
+      "joint_weights": [
+        2.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.5,
+        1.0,
+        1.5,
+        1.5,
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.5
+      ]
+    },
+    "geometry": {
+      "tolerance_m": 0.02,
+      "slip_tolerance_m_s": 0.2,
+      "coefficients": {
+        "contact": 0.1,
+        "contact_distance_m2": 0.2,
+        "contact_relative_slip_m2_s2": 0.01,
+        "observed_plane_proxy_m2": 0.02,
+        "correspondence": 0.01,
+        "feedback_smoothness": 0.0001
+      }
+    },
+    "training_status": "paused; input noise, candidate soft supervision and official TRAIN PV mount ready; full export, official zero-step preparation and input visualization pending",
+    "split_protocol": "egobody-official-recording-v2",
+    "diagnostic_mount_defaults": "runs/ego_exo_surface_continue_oct11/TRAIN_camera_mounts.json",
+    "gt_reliability": {
+      "protocol": "native30-isolated-candidate-soft-v1",
+      "enabled": true,
+      "candidate_weight": 0.25,
+      "rotation_step_deg": 60.0,
+      "isolated_return_deg": 20.0,
+      "isolated_joint_excursion_m": 0.08,
+      "isolated_neighbor_displacement_m": 0.04,
+      "derivative_policy": "skip_stencils_touching_candidates",
+      "target_editing": false
+    },
+    "validation": {
+      "interval_steps": 250,
+      "members_per_group_mode": 1,
+      "seed": 2026101351,
+      "regimes": [
+        "clean",
+        "noisy"
+      ],
+      "scope": "fixed windows; original unweighted GT; no test tuning"
+    }
+  },
+  "code_sha256": {
+    "native30_input_noise.py": "d488fbfeb9d12463fa4632226352a976474f92e69185af6f05bba55897d707bd",
+    "native30_gt_reliability.py": "11d82979f672d81591c1082623530fdb859955337b20b139d5697053a9204c9a",
+    "native30_observations.py": "82d1e1b9220e64249dc4231cbf404c56e1a0faa5c261884d535ae0eb9960a723",
+    "native30_losses.py": "7a0610d59543d583e6bcb9b9a4929cfbf35c03a7d875eb3673cc1b8ad8c5c969",
+    "native30_data.py": "270fbf8fb6efb340b5fc5225f65babb19c7436144d8626fa156876439d34b19f",
+    "native30_config.json": "d73524a105a70545923c1a4d756d60c6285e08007bb88ab95743fe42c7067602",
+    "prepare_native30.py": "1db27c7882a19b1ab7f1fb71d9bae6d25973f7bbc3d6badfb8ad68ff8e23e64a",
+    "train_native30.py": "91ae66fe18ae719823e3c9ebfa35a36bfc273ac16d2dfddc13519441d2f3d3b0",
+    "test_native_gt_quality.py": "89df4a6356e6958cc27c76b937610af71f2c60861d05b6a2d607eddd41c4bb66",
+    "native30_validation.py": "a5e1b68c78bd50fc7e0a48492cf06caef145772c7e5da8512857a858423bb69b",
+    "audit_native30_trial_prerequisites.py": "07d8495dfe881663bcfa9d661db37b64576d9a808e18a43635bead789e54e954"
+  },
+  "free_disk_before": 70772805632,
+  "free_disk_after": 70772789248,
+  "elapsed_s": 22.4045929320273
+}

@@ -84,7 +84,60 @@
       "acceleration": 0.001,
       "angular_velocity": 0.005,
       "body_turn_rate": 0.0025
-    }
+    },
+    "input_noise": {
+      "protocol": "native30-smooth-observation-error-v1",
+      "clean_probability": 0.5,
+      "ego_head": {
+        "offset_sigma_m": 0.01,
+        "endpoint_sigma_m": 0.02,
+        "rotation_offset_deg": 2.0,
+        "rotation_endpoint_deg": 3.0
+      },
+      "ego_wrists": {
+        "enabled": true,
+        "offset_sigma_m": 0.005,
+        "endpoint_sigma_m": 0.01,
+        "rotation_offset_deg": 2.0,
+        "rotation_endpoint_deg": 3.0
+      },
+      "exo": {
+        "offset_sigma_m": 0.01,
+        "endpoint_sigma_m": 0.02,
+        "shared_offset_sigma_m": 0.005,
+        "shared_endpoint_sigma_m": 0.01
+      },
+      "gap_probability": 0.3,
+      "gap_seconds": 0.6,
+      "ego_gap_joints": [
+        15
+      ],
+      "wrist_extra_gap": false
+    },
+    "joint_weights": [
+      2.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.5,
+      1.5,
+      1.0,
+      1.5,
+      1.5,
+      1.0,
+      1.0,
+      1.0,
+      2.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.5,
+      1.5
+    ]
   },
   "geometry": {
     "tolerance_m": 0.02,
@@ -98,7 +151,28 @@
       "feedback_smoothness": 0.0001
     }
   },
-  "training_status": "paused; official source index ready; full export, official-TRAIN mount refit and validation pending",
+  "training_status": "paused; input noise, candidate soft supervision and official TRAIN PV mount ready; full export, official zero-step preparation and input visualization pending",
   "split_protocol": "egobody-official-recording-v2",
-  "diagnostic_mount_defaults": "runs/ego_exo_surface_continue_oct11/TRAIN_camera_mounts.json"
+  "diagnostic_mount_defaults": "runs/ego_exo_surface_continue_oct11/TRAIN_camera_mounts.json",
+  "gt_reliability": {
+    "protocol": "native30-isolated-candidate-soft-v1",
+    "enabled": true,
+    "candidate_weight": 0.25,
+    "rotation_step_deg": 60.0,
+    "isolated_return_deg": 20.0,
+    "isolated_joint_excursion_m": 0.08,
+    "isolated_neighbor_displacement_m": 0.04,
+    "derivative_policy": "skip_stencils_touching_candidates",
+    "target_editing": false
+  },
+  "validation": {
+    "interval_steps": 250,
+    "members_per_group_mode": 1,
+    "seed": 2026101351,
+    "regimes": [
+      "clean",
+      "noisy"
+    ],
+    "scope": "fixed windows; original unweighted GT; no test tuning"
+  }
 }

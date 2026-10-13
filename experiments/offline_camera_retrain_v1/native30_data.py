@@ -10,14 +10,16 @@ from experiments.offline_camera_retrain_v1.native30_splits import normalize_spli
 from experiments.offline_camera_retrain_v1.native30_memory import ObservedStaticMemory, OFFLINE_MEMORY_PROTOCOL
 from experiments.offline_camera_retrain_v1.data import anchor_rotation, rotation6d
 from experiments.offline_camera_retrain_v1.supervision import IDENTITY_6D
+from experiments.offline_camera_retrain_v1.native30_gt_reliability import quality_weights,DEFAULT_GT_RELIABILITY,validate_gt_reliability
 
 
 class Native30Data:
     def __init__(self, manifest, split, seed=20261012, *, diagnostic=False, frames=192,
-                 memory_protocol=OFFLINE_MEMORY_PROTOCOL):
+                 memory_protocol=OFFLINE_MEMORY_PROTOCOL,quality_config=None):
         split=normalize_split(split)
         self.manifest=Path(manifest); self.split=split; self.rng=np.random.default_rng(seed)
         self.frames=frames; self.members={g:[] for g in ('trumans','camera_wearer','interactee','rich')}
+        self.quality_config=validate_gt_reliability(dict(DEFAULT_GT_RELIABILITY) if quality_config is None else quality_config)
         self.arrays={}
         expected_sources={(r['group'],r['sequence_id']):r for r in inventory(split)} if not diagnostic else {}
         memory_entries=[]
@@ -126,6 +128,11 @@ class Native30Data:
                     body_type=np.eye(2,dtype=np.float32)[int(meta['native_body']['model']=='smplx')],
                     body_scale=np.array([meta['native_body']['scale']],np.float32),
                     contact_target=np.zeros((self.frames,22),np.float32),contact_valid=np.zeros((self.frames,22),bool))
+        # Reliability is a loss-only label. Screen original world targets with
+        # neighboring source frames, then slice; never expose it to inference.
+        lo=max(0,first-1);hi=min(meta['frames'],first+self.frames+1)
+        quality=quality_weights(np.asarray(self.load(folder,'motion_world')[lo:hi]),rest,self.quality_config)
+        sample.update({key:value[first-lo:first-lo+self.frames].copy() for key,value in quality.items()})
         # Contact labels have their own raw30 clock and remain training-only.
         if (folder/'contact_target.npy').exists():
             sample['contact_target']=np.asarray(self.load(folder,'contact_target')[sl]).copy()

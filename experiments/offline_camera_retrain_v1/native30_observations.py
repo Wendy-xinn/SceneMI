@@ -13,6 +13,7 @@ from experiments.offline_camera_retrain_v1.native30_geometry import Native30Surf
 from experiments.offline_camera_retrain_v1.native30_memory import ObservedStaticMemory, OFFLINE_MEMORY_PROTOCOL, frozen_memory_entries
 from experiments.offline_camera_retrain_v1.unified_geometry import occupancy_from_points
 from experiments.offline_camera_retrain_v1.camera_v2_observations import validate_mount, CAMERA_KEYS
+from experiments.offline_camera_retrain_v1.native30_input_noise import apply_input_noise,default_input_noise,validate_input_noise
 
 FPS = 30.
 INPUT_KEYS = ('camera','trajectory','observation_meta','observation_uncertainty','occupancy',
@@ -76,34 +77,10 @@ def inverse_head(camera, available, confidence, mount):
     return result,available.astype(np.float32),(confidence*available).astype(np.float32)
 
 
-def perturb_input_tracks(trajectory, meta, cam, ca, cc, mode, joints, noise_rng):
-    """Historical position/gap profile; ego wrists stay unchanged by request.
-
-    Mutates observation arrays only. Head inversion follows the same perturbed
-    camera stream in the builder. Native visibility/confidence is preserved for
-    ego wrists; a natural absence is never filled by this augmentation.
-    """
-    frames=len(cam)
-    drift=noise_rng.normal(0,.01,(1,22,3))+np.linspace(0,1,frames)[:,None,None]*noise_rng.normal(0,.02,(1,22,3))
-    noise_joints=tuple(joints)
-    if mode=='ego':
-        drift[:,np.arange(22)!=15]=0
-        noise_joints=(15,) if 15 in joints else ()
-    trajectory[...,:3]+=drift/2
-    meta[...,2]*=np.exp(-np.linalg.norm(drift,axis=-1)/.05)
-    if mode=='ego':
-        cam[:,:3]+=drift[:,15]/2
-        cc[:,0]*=np.exp(-np.linalg.norm(drift[:,15],axis=-1)/.05)
-    if noise_rng.random()<.3 and noise_joints:
-        joint=int(noise_rng.choice(noise_joints));first=int(noise_rng.integers(max(1,frames-18)))
-        meta[first:first+18,joint,:4]=0
-        if mode=='ego' and joint==15:
-            ca[first:first+18]=0;cc[first:first+18]=0
-
-
 class Native30ObservationBuilder:
-    def __init__(self, skin_cache, mounts):
+    def __init__(self, skin_cache, mounts, noise_config=None):
         self.skin_cache=skin_cache;self.mounts=mounts
+        self.noise_config=validate_input_noise(default_input_noise() if noise_config is None else noise_config)
         for calibration in mounts.values():
             validate_mount(calibration)
             if calibration.get('fitting_split')!='train':
@@ -151,11 +128,12 @@ class Native30ObservationBuilder:
         selected=np.zeros(22,bool);selected[list(joints)]=True;meta[...,:4]*=selected[None,:,None]
         if noise_rng is not None:
             # One perturbed sensor stream: head conversion follows sensor noise/dropout.
-            perturb_input_tracks(trajectory,meta,cam,ca,cc,mode,joints,noise_rng)
+            apply_input_noise(trajectory,meta,cam,ca,cc,uncertainty,mode,joints,noise_rng,self.noise_config)
         if mode=='ego':
             head,ha,hc=inverse_head(cam,ca,cc,mount)
             trajectory[:,15]=head;meta[:,15,:2]=ha;meta[:,15,2:4]=hc
-            uncertainty[:,15]=[mount['position_p90_m'],mount['rotation_p90_rad']]
+            uncertainty[:,15,0]+=np.linalg.norm(mount['translation_m'])*uncertainty[:,15,1]
+            uncertainty[:,15]=np.maximum(uncertainty[:,15],[mount['position_p90_m'],mount['rotation_p90_rad']])
         trajectory,meta=(v.numpy() for v in sanitize_observations(torch.from_numpy(trajectory),torch.from_numpy(meta)))
         # No clean optical motion bypass: self-camera encoder consumes mount/K
         # only; stored optical pose is the same noisy/masked sensor for geometry.

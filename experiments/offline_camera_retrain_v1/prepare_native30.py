@@ -53,8 +53,17 @@ def read_config(path=CONFIG_PATH):
         raise ValueError('Expected fresh native30 /192 frame configuration')
     if config['shared_output_initialization']!='normal_std_0.001_bias_zero' or config['anchor_protocol']!='native_body_dominant_only_67_low_foot_v1':
         raise ValueError('Shared output/anchor initialization differs from implementation')
-    if config['observation']['scales']!=SCALES:
-        raise ValueError('Observation scale definitions changed')
+    if set(config['observation']['scales'])!=set(SCALES) or any(not np.isfinite(v) or v<=0 for v in config['observation']['scales'].values()):
+        raise ValueError('Observation scales must be positive finite physical values')
+    importance=config['observation']['joint_weights']
+    if len(importance)!=22 or any(not np.isfinite(v) or v<=0 for v in importance):raise ValueError('Invalid observation joint weights')
+    from experiments.offline_camera_retrain_v1.native30_input_noise import validate_input_noise
+    from experiments.offline_camera_retrain_v1.native30_gt_reliability import validate_gt_reliability
+    validate_input_noise(config['observation']['input_noise']);validate_gt_reliability(config['gt_reliability'])
+    if config['validation']['interval_steps']<1 or config['validation']['members_per_group_mode']<1:
+        raise ValueError('Validation cadence and scope must be positive')
+    if config['validation']['regimes']!=['clean','noisy']:
+        raise ValueError('Registered validation reports clean and noisy inputs separately')
     if config['scene']['scales_m']!=[.08,.25,.6] or config['scene']['patch_tokens']!=16 or config['scene']['neighbors_per_scale']!=8:
         raise ValueError('Scene representation differs from current implementation')
     from experiments.offline_camera_retrain_v1.native30_splits import SPLIT_PROTOCOL
@@ -129,8 +138,8 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     torch.set_num_threads(4);torch.manual_seed(config['seed']);np.random.seed(config['seed'])
     manifest=HERE/config['train_manifest' if full_data else 'review_manifest']
     memory_protocol=config['scene']['memory_protocol']
-    data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol)
-    validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol)
+    data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'])
+    validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'])
     mount_path=HERE/config['mount_defaults' if full_data else 'diagnostic_mount_defaults']
     mounts=json.loads(mount_path.read_text());skins=Native30SkinAnchorCache()
     if full_data:
@@ -141,7 +150,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
                 raise ValueError('Refit camera mounts on official TRAIN and record calibration provenance')
             if any(official_recordings().get(r)!='train' for r in records):
                 raise ValueError('Camera mount calibration contains official val/test recordings')
-    builder=Native30ObservationBuilder(skins,mounts);cases=[];train_cases=[];alignment=[]
+    builder=Native30ObservationBuilder(skins,mounts,config['observation']['input_noise']);cases=[];train_cases=[];alignment=[]
     for source in (data,validation):
         for group in source.members:
             for mode in ('ego','exo') if group in ('camera_wearer','interactee') else ('ego',):
@@ -189,7 +198,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
             signal=alphas[torch.tensor([timestep],device='cuda')]
             leaf=prediction.detach().requires_grad_(True)
             base=base_losses(leaf,batch['motion'],batch,signal,details['raw_motion'].detach())['total']
-            terms=observation_losses(leaf,batch['motion'],batch,signal)
+            terms=observation_losses(leaf,batch['motion'],batch,signal,config['observation'])
             reference=float(torch.autograd.grad(base,leaf,retain_graph=True)[0].norm())
             row=dict(label=label,timestep=timestep,reference_gradient_norm=reference,terms={})
             for key,value in terms.items():

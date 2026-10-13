@@ -19,6 +19,7 @@ from experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAn
 from experiments.offline_camera_retrain_v1.unified_observations import collate_observations
 from experiments.offline_camera_retrain_v1.scene_model import cosine_alphas
 from experiments.offline_camera_retrain_v1.checkpoint_io import save_checkpoint
+from experiments.offline_camera_retrain_v1.native30_validation import validate
 
 
 def train(config_path,steps,output=None,resume=False):
@@ -38,13 +39,13 @@ def train(config_path,steps,output=None,resume=False):
     if (folder/'last.pt').exists()!=bool(resume):
         raise ValueError('Existing checkpoints require explicit resume; missing checkpoint cannot resume')
     torch.set_num_threads(4);torch.manual_seed(config['seed']);np.random.seed(config['seed'])
-    data=Native30Data(HERE/config['train_manifest'],'train',config['seed'],memory_protocol=config['scene']['memory_protocol'])
-    val=Native30Data(HERE/config['train_manifest'],'validation',config['seed']+1,memory_protocol=config['scene']['memory_protocol'])
+    data=Native30Data(HERE/config['train_manifest'],'train',config['seed'],memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'])
+    val=Native30Data(HERE/config['train_manifest'],'validation',config['seed']+1,memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'])
     if dataset_digest(data)|dataset_digest(val)!=effective['data_sha256']:
         raise ValueError('Native30 data changed after preparation')
     plan=data.sampling_plan(config['ego_probability'])
     if plan!=effective['sampling_plan']:raise ValueError('Sampling duration/configuration changed')
-    builder=Native30ObservationBuilder(Native30SkinAnchorCache(),json.loads((HERE/config['mount_defaults']).read_text()))
+    builder=Native30ObservationBuilder(Native30SkinAnchorCache(),json.loads((HERE/config['mount_defaults']).read_text()),config['observation']['input_noise'])
     model=make_model(config).cuda();optimizer=torch.optim.AdamW(model.parameters(),lr=config['optimizer']['lr'],weight_decay=config['optimizer']['weight_decay'])
     rng=np.random.default_rng(config['seed']+991);start=0;counts={}
     if resume:
@@ -90,6 +91,8 @@ def train(config_path,steps,output=None,resume=False):
                      identities=identities,terms={k:numbers(v) for k,v in terms.items()},lr=optimizer.param_groups[0]['lr'])
             trace.write(json.dumps(row)+'\n');trace.flush()
             if step==1 or step%25==0:print(step,row['loss'],counts,flush=True)
+            if step==1 or step%config['validation']['interval_steps']==0 or step==steps:
+                validate(model,val,builder,config,folder,step)
             if step%100==0 or step==steps:
                 checkpoint(step);protocol.update(status='completed' if step==steps else 'training',completed_steps=step,
                     elapsed_s=time.monotonic()-started,counts=counts,free_disk_after=shutil.disk_usage(HERE).free)
