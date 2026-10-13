@@ -6,6 +6,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 from experiments.offline_camera_retrain_v1.native30_export import PROTOCOL, inventory
+from experiments.offline_camera_retrain_v1.native30_exo import external_transforms
 from experiments.offline_camera_retrain_v1.native30_splits import normalize_split, validate_official_bundle
 from experiments.offline_camera_retrain_v1.native30_memory import ObservedStaticMemory, OFFLINE_MEMORY_PROTOCOL
 from experiments.offline_camera_retrain_v1.data import anchor_rotation, rotation6d
@@ -20,7 +21,7 @@ class Native30Data:
         self.manifest=Path(manifest); self.split=split; self.rng=np.random.default_rng(seed)
         self.frames=frames; self.members={g:[] for g in ('trumans','camera_wearer','interactee','rich')}
         self.quality_config=validate_gt_reliability(dict(DEFAULT_GT_RELIABILITY) if quality_config is None else quality_config)
-        self.arrays={}
+        self.arrays={};self.mode_starts={}
         expected_sources={(r['group'],r['sequence_id']):r for r in inventory(split)} if not diagnostic else {}
         memory_entries=[]
         for row in map(json.loads,self.manifest.read_text().splitlines()):
@@ -35,7 +36,7 @@ class Native30Data:
                 raise ValueError('Restricted review bundle cannot be used for training')
             if not diagnostic:
                 validate_official_bundle(meta, split)
-            ids=np.load(folder/'source_frame_ids.npy');valid=np.load(folder/'observation_valid.npy')
+            ids=np.load(folder/'source_frame_ids.npy',mmap_mode='r');valid=np.load(folder/'observation_valid.npy',mmap_mode='r')
             if len(ids) != meta['frames'] or not np.all(np.diff(ids)==1) or valid.shape != ids.shape:
                 raise ValueError('Incomplete raw30 clock')
             if valid.dtype!=np.bool_ or ids[0]!=meta['source_first'] or ids[-1]!=meta['source_last']:
@@ -51,6 +52,13 @@ class Native30Data:
                     ('recording','scene_id','pose_profile_split')):
                     raise ValueError('Official recording/scene/body profile provenance changed')
             sums=np.r_[0,np.cumsum(~valid)]; starts=np.flatnonzero(sums[frames:]-sums[:-frames]==0)
+            for mode in meta.get('allowed_modes',['ego','exo']):
+                current=starts
+                if mode=='exo':
+                    observed=np.asarray(self.load(folder,'exo_position_available')).any(1)
+                    count=np.r_[0,np.cumsum(observed)]
+                    current=starts[(count[starts+frames]-count[starts])>0]
+                self.mode_starts[(str(folder),mode)]=current
             memory_entries.append(dict(meta,path=str(folder)))
             if len(starts):
                 self.members[meta['group']].append((dict(meta,path=str(folder)),starts))
@@ -69,8 +77,13 @@ class Native30Data:
             cache[key]=np.load(Path(folder)/f'{key}.npy',mmap_mode='r')
         return cache[key]
 
+    def starts_for(self,group,index,mode):
+        meta,starts=self.members[group][index]
+        if hasattr(self,'mode_starts'):return self.mode_starts.get((meta['path'],mode),np.empty(0,dtype=int))
+        return starts
+
     def sampling_plan(self, ego_probability=.7):
-        durations={mode:{g:sum(len(starts)/30 for meta,starts in members if
+        durations={mode:{g:sum(len(self.starts_for(g,i,mode))/30 for i,(meta,starts) in enumerate(members) if
             mode in meta.get('allowed_modes',['ego','exo'] if g in ('camera_wearer','interactee') else ['ego']))
             for g,members in self.members.items()} for mode in ('ego','exo')}
         duration=durations['ego']
@@ -82,12 +95,15 @@ class Native30Data:
             domain='egobody' if g in ('camera_wearer','interactee') else g
             role=duration[g]/corpus[domain]
             plan.append(dict(group=g,mode='ego',probability=ego_probability*np.sqrt(corpus[domain])/normal*role))
-        egobody=durations['exo']['camera_wearer']+durations['exo']['interactee']
-        if egobody <= 0:
-            raise ValueError('Unified sampler needs EgoBody exo sources')
-        for g in ('camera_wearer','interactee'):
-            if durations['exo'][g]:
-                plan.append(dict(group=g,mode='exo',probability=(1-ego_probability)*durations['exo'][g]/egobody))
+        duration=durations['exo']
+        corpus={'trumans':duration['trumans'],'egobody':duration['camera_wearer']+duration['interactee'],'rich':duration['rich']}
+        normal=sum(np.sqrt(v) for v in corpus.values())
+        if normal<=0:raise ValueError('Unified sampler needs external observer sources')
+        for g in duration:
+            if not duration[g]:continue
+            domain='egobody' if g in ('camera_wearer','interactee') else g
+            role=duration[g]/corpus[domain]
+            plan.append(dict(group=g,mode='exo',probability=(1-ego_probability)*np.sqrt(corpus[domain])/normal*role))
         return plan
 
     def sample(self, group, mode='ego', *, member=None, start=None, yaw=None):
@@ -96,11 +112,11 @@ class Native30Data:
             raise ValueError(f'No valid native30 windows for {group}')
         # Duration/valid-window weighting rather than equal recording weighting.
         eligible=[i for i,(m,_) in enumerate(members) if mode in m.get('allowed_modes',
-            ['ego','exo'] if group in ('camera_wearer','interactee') else ['ego'])]
+            ['ego','exo'] if group in ('camera_wearer','interactee') else ['ego']) and len(self.starts_for(group,i,mode))]
         if not eligible:raise ValueError(f'No {mode} observation coverage for {group}')
-        mi=int(self.rng.choice(eligible,p=np.array([len(members[i][1]) for i in eligible])/sum(len(members[i][1]) for i in eligible))) if member is None else member
+        mi=int(self.rng.choice(eligible,p=np.array([len(self.starts_for(group,i,mode)) for i in eligible])/sum(len(self.starts_for(group,i,mode)) for i in eligible))) if member is None else member
         if mi not in eligible:raise ValueError('Requested observer mode unavailable; do not substitute a virtual PV')
-        meta,starts=members[mi]; first=int(self.rng.choice(starts)) if start is None else int(start)
+        meta,_=members[mi];starts=self.starts_for(group,mi,mode); first=int(self.rng.choice(starts)) if start is None else int(start)
         if first not in starts:
             raise ValueError('Window crosses an invalid native30 frame')
         folder=Path(meta['path']); sl=slice(first,first+self.frames)
@@ -108,10 +124,8 @@ class Native30Data:
         cam=np.asarray(self.load(folder,'camera_position_scenemi_yup')[sl]).copy()
         cr=np.asarray(self.load(folder,'camera_rotation_scenemi_yup')[sl]).copy()
         if mode=='exo':
-            if group not in ('camera_wearer','interactee'):
-                raise ValueError('Current real exo export is EgoBody master only')
-            transform=np.asarray(self.load(folder,'exo_sensor_to_world'))
-            cam=np.broadcast_to(transform[:3,3],cam.shape).copy(); cr=np.broadcast_to(transform[:3,:3],cr.shape).copy()
+            transform=external_transforms(self.load,folder,first,self.frames)
+            cam=transform[:,:3,3].copy();cr=transform[:,:3,:3].copy()
         origin=cam[0].copy(); anchor=anchor_rotation(cr)
         # Apply after camera-first anchoring, so augmentation cannot cancel out.
         world_yaw=float(self.rng.uniform(-np.pi,np.pi)) if yaw is None else float(yaw)

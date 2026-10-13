@@ -4,6 +4,7 @@ Only owner=0 first-hit observations enter memory. Offline reconstruction uses
 the supplied recording's observed union; a timestamp-filtered prefix remains
 available as a separate control. Dynamic surfaces remain per-frame.
 """
+from experiments.offline_camera_retrain_v1.native30_exo import external_transforms
 from collections import OrderedDict
 from pathlib import Path
 import json
@@ -26,7 +27,8 @@ def observer_stream_key(meta, mode):
     # Different observers, virtual target cameras, splits and world frames
     # must never exchange maps, even when the physical room is the same.
     return (meta['split'], meta['group'], mode, recording or sequence,
-            meta.get('scene_id', meta.get('scene')), meta.get('world_frame_id'))
+            meta.get('scene_id', meta.get('scene')), meta.get('world_frame_id'),
+            meta.get('exo_camera',{}).get('view_id') if mode=='exo' else None)
 
 
 class ObservedStaticMemory:
@@ -61,7 +63,7 @@ class ObservedStaticMemory:
             if points.shape[:2] != owners.shape or len(points) != len(ids) or valid.shape != ids.shape:
                 raise ValueError('Scene memory observation clocks disagree')
             if mode == 'exo':
-                camera = np.broadcast_to(self.load(folder, 'exo_sensor_to_world')[:3, 3], (len(ids), 3))
+                camera = external_transforms(self.load,folder,0,len(ids))[:,:3,3]
             else:
                 camera = self.load(folder, 'camera_position_scenemi_yup')
             for start in range(0, len(ids), 128):

@@ -36,7 +36,7 @@ from experiments.offline_camera_retrain_v1.export_egobody_exo import (
     camera_rays, cast_body, regional_faces)
 
 PROTOCOL = 'native30-observer-target-v1-raw-firsthit'
-DEFAULT_OUTPUT = HERE / 'data/native30_official_memory_v2'
+DEFAULT_OUTPUT = HERE / 'data/native30_official_memory_v3'
 
 
 def rows(path):
@@ -48,6 +48,7 @@ def inventory(split, *, split_protocol=SPLIT_PROTOCOL):
     if split_protocol not in (SPLIT_PROTOCOL, LEGACY_SPLIT_PROTOCOL):
         raise ValueError('Unknown split protocol')
     result = []
+    clips={r['clip_name']:r for r in rows(PROJECTS/'TRUMANS/processed/scene_expert_v1/clips.jsonl')}
     exclusions = {r['sequence_id'] for r in json.loads((HERE / 'data/trumans_temporal_training_v3/exclusions.json').read_text())}
     # The old manifest provides identities/split boundaries, never 20Hz values.
     for group in ('trumans', 'egobody'):
@@ -62,6 +63,9 @@ def inventory(split, *, split_protocol=SPLIT_PROTOCOL):
             row['raw_first'] = int(first)
             row['raw_last_exclusive'] = int(row['source_last_frame_exclusive'] if 'source_last_frame_exclusive' in row
                 else np.floor(first + (row['frames_20fps'] - 1) * 1.5) + 1)
+            if group=='trumans':
+                row['raw_last_exclusive']=clips[row['sequence_id']]['num_frames']
+                row['allowed_modes']=['ego','exo']
             result.append(row)
     # RICH test was not downloaded; never silently substitute val for test.
     if split == 'test':
@@ -74,9 +78,23 @@ def inventory(split, *, split_protocol=SPLIT_PROTOCOL):
         source = PROJECTS / 'RICH/extracted' / ('train_body' if split == 'train' else 'val_body') / folder.name
         ids = sorted(int(p.name) for p in source.iterdir() if p.is_dir())
         result.append(dict(meta, group='rich', dataset='rich', split=split, split_protocol=split_protocol,
-                           sequence_id=folder.name, raw_first=ids[0], raw_last_exclusive=ids[-1]+1))
+                           sequence_id=folder.name, raw_first=ids[0], raw_last_exclusive=ids[-1]+1,allowed_modes=['ego','exo']))
     return result
 
+
+
+def native_fits(fits,kind):
+    keys=['global_orient','body_pose','transl','betas']
+    if kind=='smplx':keys+=['left_hand_pose','right_hand_pose','jaw_pose','leye_pose','reye_pose','expression']
+    values={key:np.asarray([np.asarray(f[key]).reshape(-1) for f in fits],np.float32) for key in keys}
+    if not all(np.isfinite(v).all() for v in values.values()):raise ValueError('Nonfinite raw30 fit')
+    return values
+
+
+def export_fingerprint():
+    names=['native30_export.py','native30_exo.py','native30_splits.py','scene_visibility_v2.py',
+           'export_egobody_exo.py','export_native20_training_scenes.py','prepare_trumans_dynamic_v2.py']
+    return {name:hashlib.sha256((HERE/name).read_bytes()).hexdigest() for name in names}
 
 def global_head(params, model, world_rotation):
     count = len(params['global_orient'])
@@ -133,7 +151,7 @@ def raw_scene(row, q, digest):
             idx = int(fit_dir.name.rsplit('_', 1)[1]); gender_role = info[f'body_idx_{idx}'].split()[-1].lower()
             model = load_model('smpl', gender_role)
             fits = read_fits([fit_dir / f'results/frame_{int(f):05d}/000.pkl' for f in q], digest)
-            params = resample_fits(fits, np.arange(len(q), dtype=float), 'smpl')
+            params = native_fits(fits,'smpl')
             # Per-person GT shape uses its original profile path; this is not
             # a TRAIN-fitted camera mount or population normalization statistic.
             profile_split=row.get('pose_profile_split',split)
@@ -169,7 +187,7 @@ def raw_scene(row, q, digest):
         for person in subjects:
             fits = read_fits([folders[int(f)] / f'{person}.pkl' for f in q], digest)
             model = _load_smplx_model(RICH_GENDER[int(person)])
-            params = resample_fits(fits, np.arange(len(q), dtype=float), 'smplx')
+            params = native_fits(fits,'smplx')
             if not np.allclose(params['betas'], params['betas'][:1], atol=1e-4):
                 raise ValueError('RICH shape changes')
             people.append((model, params))
@@ -236,7 +254,7 @@ def export(row, output=DEFAULT_OUTPUT, start=None, frames=None):
     folder = Path(output) / row['split'] / name; folder.mkdir(parents=True, exist_ok=True)
     if (folder / 'metadata.json').exists():
         meta = json.loads((folder / 'metadata.json').read_text())
-        if meta['protocol'] != PROTOCOL or meta.get('export_code_sha256') != hashlib.sha256(Path(__file__).read_bytes()).hexdigest():
+        if meta['protocol'] != PROTOCOL or meta.get('export_fingerprint') != export_fingerprint():
             raise ValueError('Stale native30 export; use a new directory')
         for key, digest in meta['output_sha256'].items():
             if hashlib.sha256((folder/key).read_bytes()).hexdigest() != digest:
@@ -250,24 +268,26 @@ def export(row, output=DEFAULT_OUTPUT, start=None, frames=None):
             ('visible_frame_points_scenemi_yup', (n, 512, 3), 'float32'), ('visible_frame_owner', (n, 512), 'int32')]:
         arrays[key] = np.lib.format.open_memmap(folder / f'{key}.npy', mode='w+', dtype=dtype, shape=shape)
     arrays['camera_intrinsics_128x96'] = np.asarray(intr, np.float32)
-    exo = row['group'] in ('camera_wearer', 'interactee')
+    from experiments.offline_camera_retrain_v1.native30_exo import (
+        external_camera,camera_rays,first_hit,serial_camera,EXO_PROTOCOL)
+    import open3d as o3d
+    exo='exo' in row.get('allowed_modes',['ego','exo'])
     if exo:
-        root = PROJECTS / 'egobody'; matrix = np.r_[np.c_[transform[1], transform[2]], [[0,0,0,1]]]
-        calibration = json.loads((root / 'kinect_cam_params/kinect_master/Color.json').read_text())
-        rays, _ = camera_rays(calibration, matrix, width=192, height=108)
-        # static_ray_scene supports cast_rays; apply the same near clipping.
-        import open3d as o3d
-        clipped = rays.copy(); clipped[:, :3] += .1*clipped[:, 3:]
-        static_depth = static.cast_rays(o3d.core.Tensor(clipped))['t_hit'].numpy()+.1
-        arrays.update(exo_sensor_to_world=matrix.astype(np.float32),
-                      exo_intrinsics=np.array([calibration['camera_mtx'][0][0]/1920,
-                          calibration['camera_mtx'][1][1]/1080, calibration['camera_mtx'][0][2]/1920,
-                          calibration['camera_mtx'][1][2]/1080], np.float32))
-        digest.update(json.dumps(calibration, sort_keys=True).encode())
-        for key, shape, dtype in [('exo_trajectory_world', (n, 22, 3), 'float32'),
-            ('exo_position_available', (n, 22), 'bool'), ('exo_position_confidence', (n, 22), 'float32'),
-            ('exo_frame_points_world', (n, 512, 3), 'float32'), ('exo_frame_owner', (n, 512), 'int32')]:
-            arrays[key] = np.lib.format.open_memmap(folder / f'{key}.npy', mode='w+', dtype=dtype, shape=shape)
+        observer=external_camera(row,transform,people[0][1],digest,rest,q)
+        if '_released_camera_reference' in observer:
+            arrays['trumans_released_camera_to_world_reference']=observer.pop('_released_camera_reference')
+        rays=camera_rays(observer);clipped=rays.copy();clipped[:,:3]+=observer['near']*clipped[:,3:]
+        static_depth=static.cast_rays(o3d.core.Tensor(clipped))['t_hit'].numpy()+observer['near']
+        matrix=np.eye(4,dtype=np.float32);matrix[:3,:3]=observer['rotation'];matrix[:3,3]=observer['position']
+        sw,sh=observer['source_size'];k=observer['K']
+        arrays.update(exo_sensor_to_world=matrix,
+                      exo_intrinsics=np.array([k[0,0]/sw,k[1,1]/sh,k[0,2]/sw,k[1,2]/sh],np.float32))
+        for key,shape,dtype in [('exo_trajectory_world',(n,22,3),'float32'),
+                ('exo_position_available',(n,22),'bool'),('exo_position_confidence',(n,22),'float32'),
+                ('exo_frame_points_world',(n,512,3),'float32'),('exo_frame_owner',(n,512),'int32')]+[
+                (f'exo_{key}_counts',(n,22),'int32') for key in ('reference','visible','person','static','rigid')]:
+            arrays[key]=np.lib.format.open_memmap(folder/f'{key}.npy',mode='w+',dtype=dtype,shape=shape)
+        face_labels=regional_faces(people[0][0])
     selected = {}
     self_faces, _ = wearer_faces(people[0][0].faces, people[0][0].lbs_weights.numpy(), model_type=profile['model'])
     params = people[0][1]
@@ -290,38 +310,31 @@ def export(row, output=DEFAULT_OUTPUT, start=None, frames=None):
             rot6[lo:hi].reshape(hi-lo,132), j.reshape(hi-lo,66)/2), -1)
         for k, t in enumerate(range(lo,hi)):
             meshes = [(bodies[0][0][k], self_faces, 100)] + [(bodies[a][0][k], people[a][0].faces, 100+a) for a in range(1,len(people))]
-            if valid[t]:
+            if valid[t] and 'ego' in row.get('allowed_modes',['ego','exo']):
                 hit = render_scene(meshes, cam[k], r[k], static_scene=static, intrinsics=intr[t],
                     rigid_objects=[(sc, rr[t], pp[t], owner) for sc,rr,pp,owner,ov in objects if ov[t]])
                 p, ids = sampled_environment(hit['points'], hit['owner'])
             else:
                 p, ids = np.zeros((512,3),np.float32), np.full(512,-1,np.int32)
             arrays['visible_frame_points_scenemi_yup'][t] = p; arrays['visible_frame_owner'][t] = ids
-            if t in (0, n//2, n-1) and valid[t]:
+            if t in (0, n//2, n-1) and valid[t] and 'ego' in row.get('allowed_modes',['ego','exo']):
                 selected[f'ego_owner_{t}'] = hit['owner']; selected[f'ego_depth_{t}'] = hit['depth']
             if exo:
-                depth = static_depth.copy(); owner = np.where(np.isfinite(depth)&(depth>=.1)&(depth<=12),0,-1)
-                depth[owner<0] = np.inf; target_parts = None
-                for a, (vertices, joints) in enumerate(bodies):
-                    bd, primitive = cast_body(vertices[k], people[a][0].faces, rays)
-                    bh = np.isfinite(bd)&(bd>=.1)&(bd<=12)
-                    if a == 0:
-                        target_parts = np.full(len(rays),-1,np.int32)
-                        target_parts[bh] = regional_faces(people[0][0])[primitive[bh]]
-                    take = bh & (bd<depth); depth[take]=bd[take]; owner[take]=100+a
-                visible = np.bincount(target_parts[owner==100], minlength=22)
-                reference = np.bincount(target_parts[target_parts>=0], minlength=22)
-                fraction = visible/np.maximum(reference,1); available = (visible>=2)&(fraction>=.15)
-                arrays['exo_position_available'][t] = available
-                arrays['exo_position_confidence'][t] = np.where(available, fraction*np.minimum(visible/12,1),0)
-                arrays['exo_trajectory_world'][t] = j[k]
-                hp = np.zeros((len(rays),3),np.float32); mask = owner>=0
-                hp[mask] = rays[mask,:3]+depth[mask,None]*rays[mask,3:]
-                p, ids = sampled_environment(hp, owner)
-                arrays['exo_frame_points_world'][t] = p; arrays['exo_frame_owner'][t] = ids
+                hp,owner,parts,depth,available,confidence,reference,visible,blocked=first_hit(
+                    observer,rays,static_depth,[(b[0][k],p[0].faces) for b,p in zip(bodies,people)],
+                    face_labels,objects,t,valid[t])
+                arrays['exo_position_available'][t]=available
+                arrays['exo_position_confidence'][t]=confidence
+                arrays['exo_trajectory_world'][t]=np.where(available[:,None],j[k],0)
+                arrays['exo_reference_counts'][t]=reference;arrays['exo_visible_counts'][t]=visible
+                for key,value in blocked.items():arrays[f'exo_{key}_counts'][t]=value
+                if valid[t]:p,ids=sampled_environment(hp,owner)
+                else:p,ids=np.zeros((512,3),np.float32),np.full(512,-1,np.int32)
+                arrays['exo_frame_points_world'][t]=p;arrays['exo_frame_owner'][t]=ids
                 if t in (0,n//2,n-1):
-                    selected[f'exo_owner_{t}'] = owner.reshape(108,192)
-                    selected[f'exo_parts_{t}'] = np.where(owner==100,target_parts,-1).reshape(108,192)
+                    w,h=observer['size'];selected[f'exo_owner_{t}']=owner.reshape(h,w)
+                    selected[f'exo_parts_{t}']=np.where(owner==100,parts,-1).reshape(h,w)
+                    selected[f'exo_depth_{t}']=depth.reshape(h,w)
         print(f"raw30 {row['group']} {name}: {hi}/{n}", flush=True)
     # Rigid kinematics are source-known simulator conditions, not estimated
     # by matching unrelated points. Missing partner skin velocity stays invalid.
@@ -348,7 +361,7 @@ def export(row, output=DEFAULT_OUTPUT, start=None, frames=None):
         else:
             np.save(folder / f'{key}.npy', value)
     np.savez_compressed(folder / 'selected_raycast_audit.npz', **selected)
-    meta = dict(protocol=PROTOCOL, export_code_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+    meta = dict(protocol=PROTOCOL, export_fingerprint=export_fingerprint(),export_code_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         sequence_id=row['sequence_id'], bundle_id=name, split=row['split'], group=row['group'],
         dataset=row['dataset'], fps=30, frames=n, source_first=int(q[0]), source_last=int(q[-1]),
         native_body=profile, actual_virtual_mount=mount, diagnostic_only=diagnostic,
@@ -359,7 +372,13 @@ def export(row, output=DEFAULT_OUTPUT, start=None, frames=None):
     meta.update(split_protocol=row.get('split_protocol', LEGACY_SPLIT_PROTOCOL),
         recording=row.get('recording'), scene_id=row.get('scene_id',row.get('scene')),
         pose_profile_split=row.get('pose_profile_split', row['split']),
-        allowed_modes=row.get('allowed_modes',['ego','exo'] if row['group'] in ('camera_wearer','interactee') else ['ego']))
+        allowed_modes=row.get('allowed_modes',['ego','exo']))
+    if exo:
+        meta.update(exo_protocol=EXO_PROTOCOL,exo_camera=serial_camera(observer),
+            exo_input_kind='ideal_GT_position_tracker_simulation_with_firsthit_confidence',
+            exo_visibility_statistics={key:int(arrays[f'exo_{key}_counts'].sum()) for key in
+                ('reference','visible','person','static','rigid')},
+            exo_mean_available_joints=float(arrays['exo_position_available'].sum(1).mean()))
     if row.get('official_split_csv_sha256'):
         meta['official_split_csv_sha256'] = row['official_split_csv_sha256']
     meta['world_frame_id'] = hashlib.sha256(np.r_[transform[0],

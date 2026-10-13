@@ -1,4 +1,5 @@
 """Anatomical observed joints, optical-camera geometry, strict confidence masks."""
+from experiments.offline_camera_retrain_v1.native30_exo import external_transforms,external_intrinsics
 from pathlib import Path
 import json
 import numpy as np
@@ -101,8 +102,9 @@ class Native30ObservationBuilder:
             trajectory[...,:3]=((np.asarray(data.load(folder,'exo_trajectory_world')[sl])-origin)@anchor.T)/2
             meta[...,0]=data.load(folder,'exo_position_available')[sl]
             meta[...,2]=data.load(folder,'exo_position_confidence')[sl]
-            intr=np.broadcast_to(data.load(folder,'exo_intrinsics'),(frames,4)).copy()
-            context=np.array([0,1,1,0,0,1],np.float32);mount=None
+            intr=external_intrinsics(data.load,folder,identity['start'],frames)
+            real=identity.get('exo_camera',{}).get('kind','released_calibrated')=='released_calibrated'
+            context=np.array([0,1,int(real),int(not real),0,1],np.float32);mount=None
             points=(np.asarray(data.load(folder,'exo_frame_points_world')[sl])-origin)@anchor.T
             owners=np.asarray(data.load(folder,'exo_frame_owner')[sl]).copy()
             observing_cameras=cam[:,:3]*2
@@ -165,8 +167,8 @@ def load_frozen_exo(folder,*,start=0,frames=192,skin_cache,device='cuda',memory_
     """Deployment-style master input: never open body-motion/contact labels."""
     from experiments.offline_camera_retrain_v1.data import anchor_rotation,collate
     folder=Path(folder);meta=json.loads((folder/'metadata.json').read_text())
-    if meta['fps']!=30 or meta['group'] not in ('camera_wearer','interactee'):
-        raise ValueError('Expected a raw30 EgoBody external observer bundle')
+    if meta['fps']!=30 or 'exo' not in meta.get('allowed_modes',['ego','exo'] if meta['group'] in ('camera_wearer','interactee') else ['ego']):
+        raise ValueError('Expected a raw30 external observer bundle')
     if start<0 or start+frames>meta['frames']:
         raise ValueError('Frozen observation window uncovered')
     allowed={'exo_sensor_to_world','exo_intrinsics','exo_trajectory_world','exo_position_available',
@@ -177,14 +179,14 @@ def load_frozen_exo(folder,*,start=0,frames=192,skin_cache,device='cuda',memory_
             if key not in allowed:
                 raise ValueError(f'Body truth is forbidden in frozen input loader: {key}')
             return np.load(Path(path)/f'{key}.npy',mmap_mode='r')
-    source=ObservationsOnly();transform=source.load(folder,'exo_sensor_to_world')
+    source=ObservationsOnly();transform=external_transforms(source.load,folder,start,frames)
     source.scene_memory=ObservedStaticMemory(source.load,frozen_memory_entries(folder,meta,memory_manifest),protocol=memory_protocol)
-    camera_r=np.broadcast_to(transform[:3,:3],(frames,3,3));anchor=np.asarray(anchor_rotation(camera_r),np.float64)
-    camera=np.concatenate((np.zeros((frames,3)),rotation6d(anchor[None]@camera_r)), -1).astype(np.float32)
+    camera_r=transform[:,:3,:3];anchor=np.asarray(anchor_rotation(camera_r),np.float64)
+    camera=np.concatenate(((transform[:,:3,3]-transform[0,:3,3])@anchor.T/2,rotation6d(anchor[None]@camera_r)), -1).astype(np.float32)
     sample=dict(camera=camera,rest=np.asarray(source.load(folder,'rest')).copy(),
                 body_type=np.eye(2,dtype=np.float32)[int(meta['native_body']['model']=='smplx')],
                 body_scale=np.array([meta['native_body']['scale']],np.float32))
-    identity=dict(meta,path=str(folder),start=start,origin=transform[:3,3].tolist(),anchor=anchor.tolist())
+    identity=dict(meta,path=str(folder),start=start,origin=transform[0,:3,3].tolist(),anchor=anchor.tolist())
     builder=Native30ObservationBuilder(skin_cache,{})
     prepared,scene,asset=builder.build(source,sample,identity,'exo')
     batch={k:v.to(device) for k,v in collate([prepared]).items()}

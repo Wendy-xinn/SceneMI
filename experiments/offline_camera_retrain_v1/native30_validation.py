@@ -21,11 +21,11 @@ def fixed_plan(data,config):
     if data.split!='validation':raise ValueError('Monitoring must use validation, never TRAIN/test')
     result=[]
     for group,members in data.members.items():
-        for mode in ('ego','exo') if group in ('camera_wearer','interactee') else ('ego',):
-            eligible=sorted([i for i,(m,_) in enumerate(members) if mode in m.get('allowed_modes',['ego','exo'])],
+        for mode in ('ego','exo'):
+            eligible=sorted([i for i,(m,_) in enumerate(members) if mode in m.get('allowed_modes',['ego','exo']) and len(data.starts_for(group,i,mode))],
                             key=lambda i:members[i][0]['sequence_id'])
             for i in eligible[:config['members_per_group_mode']]:
-                meta,starts=members[i];start=int(starts[len(starts)//2])
+                meta,_=members[i];starts=data.starts_for(group,i,mode);start=int(starts[len(starts)//2])
                 for joints in ((15,),(15,20,21)) if mode=='ego' else (None,):
                     result.append(dict(group=group,mode=mode,member=i,start=start,joints=joints,
                         sequence_id=meta['sequence_id'],source_first=meta['source_first']+start))

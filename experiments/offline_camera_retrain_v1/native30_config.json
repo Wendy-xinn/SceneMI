@@ -1,14 +1,14 @@
 {
-  "version": "native30-official-offline-observer-memory-v3",
+  "version": "native30-official-offline-three-corpus-ego-exo-v4",
   "fps": 30,
   "frames": 192,
   "seed": 2026101267,
   "initialization": "from_scratch",
   "shared_output_initialization": "normal_std_0.001_bias_zero",
-  "train_manifest": "data/native30_official_memory_v2/manifest.jsonl",
+  "train_manifest": "data/native30_official_memory_v3/manifest.jsonl",
   "review_manifest": "data/native30_observer_target_review_oct12/manifest.jsonl",
-  "prepared_output": "runs/ego_exo_official_offline_memory_v3",
-  "mount_defaults": "data/native30_official_memory_v2/TRAIN_camera_mounts.json",
+  "prepared_output": "runs/ego_exo_official_offline_memory_v4",
+  "mount_defaults": "data/native30_official_memory_v3/TRAIN_camera_mounts.json",
   "batch_size": 2,
   "latent_dim": 256,
   "dim_mults": [
@@ -151,7 +151,7 @@
       "feedback_smoothness": 0.0001
     }
   },
-  "training_status": "paused; input noise, candidate soft supervision and official TRAIN PV mount ready; full export, official zero-step preparation and input visualization pending",
+  "training_status": "paused; full native30 three-corpus ego/exo export in progress on E drive; formal preparation and visualization pending",
   "split_protocol": "egobody-official-recording-v2",
   "diagnostic_mount_defaults": "runs/ego_exo_surface_continue_oct11/TRAIN_camera_mounts.json",
   "gt_reliability": {
@@ -174,5 +174,6 @@
       "noisy"
     ],
     "scope": "fixed windows; original unweighted GT; no test tuning"
-  }
+  },
+  "exo_window_policy": "at least one geometrically available joint in the window; keep all raw frames/static observations; full-window missing completion deferred"
 }

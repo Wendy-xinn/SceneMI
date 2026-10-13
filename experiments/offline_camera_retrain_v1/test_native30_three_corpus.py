@@ -1,0 +1,77 @@
+"""Full recording coverage and external observer integration contracts."""
+import unittest
+import json
+import tempfile
+from pathlib import Path
+import numpy as np
+from experiments.offline_camera_retrain_v1.native30_splits import official_sources
+from experiments.offline_camera_retrain_v1.native30_export import inventory,rows,PROTOCOL
+from experiments.offline_camera_retrain_v1.data import SOURCE
+from experiments.offline_camera_retrain_v1.native30_data import Native30Data
+from experiments.offline_camera_retrain_v1.native30_exo import external_transforms,external_intrinsics
+from experiments.offline_camera_retrain_v1.native30_memory import observer_stream_key
+
+
+class ThreeCorpusTests(unittest.TestCase):
+    def test_entirely_unobserved_windows_are_excluded_but_raw_memory_is_kept(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);folder=root/'bundle';folder.mkdir()
+            meta=dict(protocol=PROTOCOL,fps=30,split='validation',group='trumans',
+                sequence_id='source',bundle_id='source',frames=12,input_sha256='fixture',
+                diagnostic_only=True,source_first=0,source_last=11,allowed_modes=['exo'])
+            (folder/'metadata.json').write_text(json.dumps(meta))
+            manifest=root/'manifest.jsonl';manifest.write_text(json.dumps(dict(meta,path=str(folder)))+'\n')
+            np.save(folder/'source_frame_ids.npy',np.arange(12));np.save(folder/'observation_valid.npy',np.ones(12,bool))
+            available=np.zeros((12,22),bool);available[0,15]=True;available[-1,20]=True
+            np.save(folder/'exo_position_available.npy',available)
+            data=Native30Data(manifest,'validation',diagnostic=True,frames=4)
+            np.testing.assert_array_equal(data.starts_for('trumans',0,'exo'),[0,8])
+            self.assertEqual(data.scene_memory.entries[0]['frames'],12)
+            # Construction needs no motion/contact labels to derive availability.
+            self.assertFalse((folder/'motion_world.npy').exists())
+
+    def test_every_raw_egobody_frame_has_exactly_one_scoped_observer_bundle(self):
+        scoped=official_sources()
+        for raw in rows(SOURCE/'sequences.jsonl'):
+            if raw['dataset']!='egobody':continue
+            parts=sorted((r['source_first_frame'],r['source_last_frame_exclusive']) for r in scoped
+                if r['recording']==raw['recording_id'] and r['role']==raw['role'] and 'exo' in r['allowed_modes'])
+            self.assertEqual(parts[0][0],raw['source_first_frame'])
+            self.assertEqual(parts[-1][1],raw['source_last_frame_inclusive']+1)
+            self.assertTrue(all(a[1]==b[0] for a,b in zip(parts,parts[1:])))
+
+    def test_all_corpora_have_external_modes(self):
+        for split in ('train','validation'):
+            r=inventory(split)
+            self.assertEqual({x['group'] for x in r if 'exo' in x['allowed_modes']},
+                             {'trumans','rich','camera_wearer','interactee'})
+
+    def test_both_modes_cover_all_available_corpora_and_preserve_total_mix(self):
+        data=Native30Data.__new__(Native30Data)
+        data.members={g:[(dict(allowed_modes=['ego','exo']),np.arange(n))]
+                      for g,n in [('trumans',10000),('camera_wearer',100),('interactee',100),('rich',200)]}
+        plan=data.sampling_plan()
+        for mode,p in [('ego',.7),('exo',.3)]:
+            self.assertAlmostEqual(sum(r['probability'] for r in plan if r['mode']==mode),p)
+            self.assertEqual({r['group'] for r in plan if r['mode']==mode},set(data.members))
+        # Square-root corpus weighting avoids raw-duration monopoly.
+        self.assertLess(next(r['probability'] for r in plan if r['mode']=='exo' and r['group']=='trumans'),.27)
+
+    def test_moving_and_static_cameras_use_the_observation_clock(self):
+        matrices=np.broadcast_to(np.eye(4),(10,4,4)).copy();matrices[:,0,3]=np.arange(10)
+        k=np.c_[np.arange(10),np.ones((10,3))]
+        load=lambda folder,key:matrices if key=='exo_sensor_to_world' else k
+        np.testing.assert_array_equal(external_transforms(load,'x',3,4)[:,0,3],np.arange(3,7))
+        np.testing.assert_array_equal(external_intrinsics(load,'x',3,4)[:,0],np.arange(3,7))
+        static=lambda folder,key:np.eye(4) if key=='exo_sensor_to_world' else np.ones(4)
+        self.assertEqual(external_transforms(static,'x',3,4).shape,(4,4,4))
+
+    def test_external_views_never_exchange_static_maps(self):
+        meta=dict(split='train',group='rich',sequence_id='sequence',world_frame_id='world')
+        a=dict(meta,exo_camera=dict(view_id='rich_000'))
+        b=dict(meta,exo_camera=dict(view_id='rich_001'))
+        self.assertNotEqual(observer_stream_key(a,'exo'),observer_stream_key(b,'exo'))
+        self.assertEqual(observer_stream_key(a,'ego'),observer_stream_key(b,'ego'))
+
+
+if __name__=='__main__':unittest.main()

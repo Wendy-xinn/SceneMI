@@ -54,24 +54,22 @@ def egobody_sources(csv_sha256):
                 raise ValueError(f'Unlisted EgoBody recording: {recording}')
             result.append(dict(row, split=official[recording],
                 legacy_split=legacy_split, pose_profile_split=legacy_split,
-                allowed_modes=['ego','exo'],
+                allowed_modes=['ego'],
                 split_protocol=SPLIT_PROTOCOL, official_split_csv_sha256=csv_sha256))
-    # Long PV gaps removed whole recordings from old ego-scoped manifests.
-    # Their synchronized master/body/scene assets still support real exo.
-    covered={(r['recording'],r['role']) for r in result}
+    # External input has its own full recording clock: never split it by PV
+    # visibility/gaps. Ego PV segments and full master streams are disjoint modes.
     for line in (SOURCE/'sequences.jsonl').read_text().splitlines():
         source=json.loads(line)
         if source['dataset']!='egobody':continue
         recording,role=source['recording_id'],source['role']
-        if (recording,role) in covered:continue
         if recording not in official:raise ValueError('Raw EgoBody recording missing from official split')
         first,last=source['source_first_frame'],source['source_last_frame_inclusive']+1
         result.append(dict(source,recording=recording,role=role,
-            sequence_id=f'{recording}_{role}_{first}-{last}',split=official[recording],
+            sequence_id=f'{recording}_{role}_{first}-{last}_master_full',split=official[recording],
             source_first_frame=first,source_last_frame_exclusive=last,
             allowed_modes=['exo'],pose_profile_split=None,legacy_split=None,
             split_protocol=SPLIT_PROTOCOL,official_split_csv_sha256=csv_sha256,
-            availability_reason='no >=192-frame continuous PV segment; master exo independent of PV'))
+            availability_reason='full synchronized master/body stream, independent of PV scopes'))
     return result
 
 

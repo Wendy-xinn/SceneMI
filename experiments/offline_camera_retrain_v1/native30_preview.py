@@ -31,7 +31,7 @@ def preview(cases,folder):
     html='''<!doctype html><meta charset="utf-8"><title>30Hz ego/exo 输入对齐</title>
 <style>body{margin:0;background:#f5f6f8;color:#263442;font:16px system-ui}main{max-width:1250px;margin:20px auto}h1{font-size:23px}canvas{width:100%;height:650px;background:white;border:1px solid #ccd3dd;touch-action:none}select,button,input{font:inherit;margin:8px}#info{white-space:pre-line}small{line-height:1.7}</style>
 <main><h1>30Hz / 192 帧：相机、可信关节与可见场景</h1>
-<small>此处回放输入与参考标注，未展示未训练模型的生成质量。灰色＝该 6.4 秒视角看过的静态点云，青色＝当前可见动态表面；蓝色骨架＝GT 参考，橙色＝可信输入。紫色箭头＝参考 pelvis 朝向，绿色＝参考头部朝向，红色＝观察相机光轴。拖动旋转视角，滚轮缩放。</small><br>
+<small>此处回放输入与参考标注，未展示未训练模型的生成质量。灰色＝按配置记忆协议保留的同视角已见静态点云，青色＝当前可见动态表面；蓝色骨架＝GT 参考，橙色＝可信输入。紫色箭头＝参考 pelvis 朝向，绿色＝参考头部朝向，红色＝观察相机光轴。拖动旋转视角，滚轮缩放。</small><br>
 <select id="case"></select><button id="play">播放</button><input id="frame" type="range" min="0" max="191" value="0"><span id="time"></span><canvas id="view"></canvas><p id="info"></p></main>
 <script>const cases=__DATA__, parents=__PARENTS__;
 const canvas=document.getElementById('view'),ctx=canvas.getContext('2d'),select=document.getElementById('case'),slider=document.getElementById('frame');
@@ -48,7 +48,7 @@ let n=0;for(let j=0;j<22;j++)if(c.valid[t][j]){dot(c.tracks[t][j],'#ed960c',6);n
 let camera=c.camera[t],p=camera.slice(0,3).map(x=>x*2),a=camera.slice(3,6),b=camera.slice(6,9),f=[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
 dot(p,'#d64242',7);arrow(p,f,'#d64242');arrow(c.body[t][15],c.head_forward[t],'#39a159');arrow(c.body[t][0],c.root_forward[t],'#8a4dba');
 document.getElementById('time').textContent=`第 ${t} 帧 · ${(t/30).toFixed(2)} 秒`;
-document.getElementById('info').textContent=`${c.sequence}\n原始 30Hz 起点 ${c.source_start}，当前可信位置关节 ${n}/22。${c.mode==='exo'?'exo 未提供关节旋转，目标皮肤仅用于参考显示和可见性模拟，不进入场景。':'ego 光学相机已经转换为解剖学 head；相机与 head 安装误差会保留在监督尺度中。'}\n静态点云只使用本窗口的可见表面；空白区域视为未知。`;
+document.getElementById('info').textContent=`${c.sequence}\n原始 30Hz 起点 ${c.source_start}，当前可信位置关节 ${n}/22。${c.mode==='exo'?'exo 未提供关节旋转，目标皮肤仅用于参考显示和可见性模拟，不进入场景。':'ego 光学相机已经转换为解剖学 head；相机与 head 安装误差会保留在监督尺度中。'}\n静态点云来自配置指定的同观察者已见场景记忆；空白区域视为未知。`;
 }
 select.onchange=draw;slider.oninput=draw;document.getElementById('play').onclick=()=>{playing=!playing;document.getElementById('play').textContent=playing?'暂停':'播放'};
 setInterval(()=>{if(playing){slider.value=(+slider.value+1)%192;draw()}},1000/30);
@@ -59,9 +59,10 @@ canvas.onwheel=e=>{e.preventDefault();zoom=Math.max(15,Math.min(600,zoom*Math.ex
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     chosen=[r for r in records if r['label'].startswith('validation/')]
-    fig=plt.figure(figsize=(16,10))
+    columns=min(3,max(1,len(chosen)));rows=max(1,(len(chosen)+columns-1)//columns)
+    fig=plt.figure(figsize=(16,5*rows))
     for i,c in enumerate(chosen):
-        ax=fig.add_subplot(2,3,i+1,projection='3d');pts=np.asarray(c['static'])
+        ax=fig.add_subplot(rows,columns,i+1,projection='3d');pts=np.asarray(c['static'])
         if len(pts):ax.scatter(pts[:,0],pts[:,2],pts[:,1],s=.3,c='gray',alpha=.25)
         body=np.asarray(c['body'][96]);track=np.asarray(c['tracks'][96]);valid=np.asarray(c['valid'][96])
         for j in range(1,22):

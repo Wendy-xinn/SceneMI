@@ -2,7 +2,7 @@
 
 更新：2026-10-13。**训练暂停；本轮优化器 0 步。以后只维护这一份总清单，不再新增按讨论命名的方案文档。** 历史报告仅作证据存档，不代表当前配置。已完成指代码接通并有检查，不能等同于生成质量达标。
 
-本次落实：**手腕部分扰动、GT候选局部软降权、真实PV官方TRAIN-only偏置、配置控制监督尺度和固定validation已接入；新30Hz仍为0训练步。** 短程试训还差全量缓存、正式零步检查和输入可视化验收，见1.3。离线主协议为整段输入recording的已观测静态并集，前缀保留作对照。下面同时记录任务和历次问题，避免结论分散。
+本次落实：**全量原生30Hz正在E盘导出；RICH/TRUMANS的exo已接正式导出、采样和不读人体GT的推理入口；新30Hz仍为0训练步。** 手腕部分扰动、GT候选局部软降权和官方TRAIN-only头部偏置保持启用。短程试训还差完整缓存核验、正式零步检查和输入可视化验收，见1.3。离线主协议为整段输入recording的已观测静态并集，前缀保留作对照。
 
 当前目标固定为：共享动作生成器，在相同世界坐标下使用可信人体轨迹与观察到的场景；exo 重点改善遮挡部位，同时保持整体运动精度；ego 保留头部相机约束。先关闭以下清单，再开展模型效果实验。
 
@@ -13,15 +13,15 @@
 |D1|EgoBody 官方划分|**已完成源索引与入口约束**|直接使用官方 CSV；65/17/43 recording，无跨 split recording；旧 test 来源也重新归位。全量新缓存导出归 D6。|
 |D2|窗口与跨窗场景记忆|**离线整段／前缀两协议已接入**|动作固定192帧、随机有重叠；主配置用同观察者整个输入recording的已见静态并集，前缀作对照；动态不累计。完整recording观察覆盖仍归D6。|
 |D3|相机、头部和体型|**官方TRAIN偏置已生成，正式输入待验收**|EgoBody真实PV→head用64个官方train recording、1024帧拟合；val/test=0，另1个train为exo-only。虚拟ego仍用实际mount，exo不使用目标head偏置。新偏置位置p90=6.95cm、旋转p90=19.57°，作为不确定性而非完美标定；记录见[OFFICIAL_TRAIN_MOUNT_AUDIT.json](OFFICIAL_TRAIN_MOUNT_AUDIT.json)。|
-|D4|三套数据的 exo 入口|**诊断完成，正式覆盖未完成**|EgoBody master 已接正式采样；RICH 真标定、TRUMANS 合成视点各两例已查。两者尚须接正式导出／采样；TRUMANS K/轴约定未确认，不能称真实相机 benchmark。|
+|D4|三套数据的 exo 入口|**三套正式入口已接，全量导出中**|EgoBody master真实标定、RICH发布标定固定单视角、TRUMANS显式合成观察者。三套均接导出／采样／frozen入口；TRUMANS发布的world/camera配对外参保留作参考，真实K/光轴未确认，不能称真实相机benchmark。|
 |M1|共享生成器与场景条件|**代码及零步检查完成**|共享输出；静态 patch、动态 owner、预测身体局部查询、位置/旋转接触反馈已接入。训练后的场景利用效果归 E2。|
 |D5|GT 质量与观测扰动|**受控profile与局部候选软权重已接入**|50%观测干净；其余head相机位姿扰动后反算head，已选两腕加小平滑位置/旋转误差；exo仅位置误差。原GT不改；仅孤立反跳候选相应部位监督×0.25，穿过候选的差分跳过，普通快速动作不处理。可关闭对照；36项检查及真实缓存完整反传通过。参数是首轮起点，效果归E2。|
 |S1|监督尺度与配置入口|**JSON参数化与有限梯度检查完成，正式TRAIN标定待跑**|JSON已实际控制观测尺度、22关节权重、输入噪声和GT软权重；旧20Hz路径不改。正式TRAIN上的梯度比例重标定仍随D6零步准备完成，当前诊断通过不代替全量标定。|
-|D6|全量 native30 与输入验收|**待完成**|按 D1 重导出完整来源；记录官方标定和输入哈希；真实／虚拟相机、身体与场景可视化验收；禁止用8个旧诊断窗口代替全量数据。|
+|D6|全量 native30 与输入验收|**E盘全量导出中，原生mesh六例已接**|1280个来源、2,097,866缓存帧；项目目录软链至E盘。EgoBody master使用整段同步可用身体范围，不再按PV缺口裁断。新六例原生mesh与缓存关节一致；最终全量哈希／时钟／遮挡核验及用户输入验收仍待完成。|
 |E1|正式 validation 和训练运行闭环|**短程固定窗口评估已接入，正式val待跑**|训练第1步、每250步及末步执行固定身份/种子clean/noisy的DDIM20评估，保留一份latest输出；原GT指标不加质量mask，另报候选/普通区。旧诊断缓存6个case检查通过，RNG/模式/场景cache不污染训练。完整recording与跨窗拼接是正式benchmark前工作，不阻塞首轮短程。|
 |E2|效果实验与验收|**未开始**|先短程训练及可视化，再按已定 val 规则扩展；比较整体/可见/遮挡误差、朝向、滑动和场景接触，做无场景／错场景／反馈消融以及分开训练对照。训练仍保持暂停。|
 
-**下一步固定为：D6全量缓存 → 正式TRAIN零步检查/梯度标定＋正式val固定计划 → 输入可视化验收 → E2短程试训。** 首轮范围是当前代码实际支持的三语料ego＋EgoBody master exo；RICH/TRUMANS正式exo接入归D4后续扩展。D1/D2/M1不重复开设计分支。任意网络视频、长出画多假设补全、未知体型推断、真实动态轨迹估计、独立输出头、渐进查询继续后置。
+**下一步固定为：D6全量缓存 → 正式TRAIN零步检查/梯度标定＋正式val固定计划 → 输入可视化验收 → E2短程试训。** 首轮范围已按最新要求扩为三语料ego＋三语料exo，其中TRUMANS exo明确是合成观察增广。首轮exo窗口至少有一个可信位置观测；保留窗内遮挡／出画片段，整窗无观测的长缺失补全后置，不删其原始缓存或静态记忆。D1/D2/M1不重复开设计分支。任意网络视频、多假设补全、未知体型推断、真实动态轨迹估计、独立输出头、渐进查询继续后置。
 
 ## 1.1 已讨论问题与处理记录
 
@@ -51,7 +51,7 @@
 |Q20|“看到椅子”和“坐下”分在两个窗口怎么办？|场景地图与动作裁窗解耦，窗口共享同观察者世界地图；重叠动作窗口不是场景记忆方案。|D2已检查|
 |Q21|离线为何不使用整个recording已见场景？会被质疑吗？|主配置已改整段已见静态并集；明确输入时间范围与同视角限制；保留前缀对照，不能当在线能力或未见区域恢复。|协议已接；公平比较归E1/E2|
 |Q22|EgoBody使用哪个split？|官方train/val/test为65/17/43 recording；旧内部训练含官方test，旧模型不用于官方benchmark结论。|源索引已完成；全缓存归D6|
-|Q23|TRUMANS没有K但有world/camera SMPL-X？|可从两套root pose恢复外参，需保留SMPL root pivot；已验证配对。K与相机轴约定未确认，当前例子仍合成视点。|D4待接正式协议|
+|Q23|TRUMANS没有K但有world/camera SMPL-X？|可从两套root pose恢复外参，需保留SMPL root pivot；已验证配对。正式缓存采用首个发布相机位置＋显式合成K/朝向，发布外参仅留参考；不冒充真实视频视点。|D4正式合成协议已接；真实相机benchmark后置|
 |Q24|首例手臂甩动是渲染/插值错误吗？其他GT也有问题吗？|全索引及8处原生复算见1.4；不判所有候选为错误，不改GT/删窗。仅对孤立反跳做可关闭的局部软权重，导数stencil避开，原GT评估保留。|D5实现有检查；可靠性收益待E2|
 |Q25|SMPL和SMPL-X是否真的兼容？|共享22关节父子树，native模板/形状/vertex ID分开；未生成SMPL-X细手指、脸，不等于全SMPL-X能力。|接口已查；D3/M1|
 |Q26|之前有没有做扰动？会不会扰动GT？|按版本记录；本轮按最新要求恢复部分两腕扰动：带腕ego中50%小平滑位置/旋转误差、50%干净，无额外腕gap。只有可信输入及对应confidence/uncertainty改变。|D5已接入；GT原值不变|
@@ -68,7 +68,7 @@
 |---|---|---|---|---|
 |原55k，20Hz|保留训练入口/数据适配器未发现额外坐标漂移|有随机控制关节/历史mask，不等同于后续单关节连续gap设计|未发现此类额外旋转噪声|已训练；[train.py](../../train.py)、[data.py](../../data.py)、原55k config|
 |55k后续3k，20Hz|50%概率：每关节固定offset σ=1cm＋线性漂移终点σ=2cm；confidence随漂移衰减|30%概率：随机一个已选关节连续缺12帧（0.6s）|未加旋转噪声|确实已执行；[train_unified_continue.py](../../train_unified_continue.py:167)传noise_rng；[unified_observations.py](../../unified_observations.py:120)。两文件哈希与3k protocol一致。|
-|新30Hz，当前v3|50%观测完全干净；其余head/exo位置offset σ1cm＋终点σ2cm；已选两腕σ0.5cm＋1cm；exo另有共同漂移σ0.5cm＋1cm|在有扰动的50%样本内，30%概率缺0.6s；ego仅head，exo随机观测关节；腕无额外gap|有扰动样本的ego相机/已选腕SO(3) offset σ2°＋终点σ3°；exo不提供旋转|当前profile已接、0训练步；[native30_input_noise.py](../../native30_input_noise.py)、[native30_config.json](../../native30_config.json)|
+|新30Hz，当前v4|50%观测完全干净；其余head/exo位置offset σ1cm＋终点σ2cm；已选两腕σ0.5cm＋1cm；exo另有共同漂移σ0.5cm＋1cm|在有扰动的50%样本内，30%概率缺0.6s；ego仅head，exo随机观测关节；腕无额外gap|有扰动样本的ego相机/已选腕SO(3) offset σ2°＋终点σ3°；exo不提供旋转|当前profile已接、0训练步；[native30_input_noise.py](../../native30_input_noise.py)、[native30_config.json](../../native30_config.json)|
 |干净输入可视化/普通frozen推理|不传noise_rng，因此不自动加随机扰动|保留本身的真实/模拟可见性mask|不自动加随机扰动|回放不等于训练增广效果|
 
 旧3k主要选head/双wrist；新exo可用22个关节。当前首轮profile可关闭，按误差衰减confidence并增大uncertainty；50%干净输入用于对照。**人工profile不能视为真实前端误差标定。** GT候选软权重是监督可靠性，观测噪声是输入鲁棒性，两者分开，不用加噪“修好”GT。
@@ -87,7 +87,7 @@
 
 ## 1.3 首次训练启动门槛（2026-10-13实查）
 
-**当前结论：短程训练所需代码和相机偏置已补齐，正式输入还未就绪。** 本轮完成部分腕扰动、局部候选软权重、官方TRAIN偏置、可配置观测监督和固定val；旧诊断输入上完整反传及20步采样检查通过。没有启动全量导出或优化器；诊断报告仍`training_ready=false`，不能冒充正式准备。
+**当前结论：短程训练所需代码和相机偏置已补齐，正在制作全量正式输入，训练保持暂停。** 全量导出在E盘运行，包含新增RICH/TRUMANS exo；旧诊断输入上完整反传及20步采样检查通过。优化器尚未启动；旧诊断报告仍`training_ready=false`，不能冒充正式准备。
 
 “官方TRAIN相机标定文件”的准确含义是**本项目仅用官方TRAIN估计并保存的EgoBody真实PV相机→解剖head关节的近似刚体安装偏置**。文件名是`TRAIN_camera_mounts.json`，并非官方发布给我们的标定文件。EgoBody PV/Holo/Kinect/世界系的官方外参已经在本地；master exo直接用其观察相机外参，不需要目标人的头部mount。TRUMANS的world/camera配对外参及尚未确认的K是D4另一项。虚拟ego使用生成时的实际mount，不需要重新估计TRUMANS/RICH的头部偏置。旧文件来自内部TRAIN，真实PV的8个拟合样本官方归属为3 train/2 val/3 test，不能原样用于官方划分实验。
 
@@ -95,11 +95,11 @@
 
 |启动门槛|本轮查到的实际状态|最小完成标准／对应任务|
 |---|---|---|
-|1. 全量正式缓存|官方源索引和新PV头部偏置已有；`manifest.jsonl`及全量raw30身体/场景观察缓存尚不存在|完成三语料ego＋EgoBody master exo导出，核对split、有效模式/窗口及实际观察时域覆盖；不能把已导出局部范围冒充完整recording。D6|
+|1. 全量正式缓存|E盘正式导出中，原子manifest随已完成来源更新；源索引1280条、新PV头部偏置已复制到E盘|完成三语料ego/exo，核对全量哈希、split、有效模式/窗口及观察时域；不能把部分导出当完整缓存。D6|
 |2. 正式零步准备和val固定计划|36项测试、旧诊断64帧batch2完整模型反传、6个clean/noisy case的DDIM20检查通过；正式`input_checks.json`/`effective_config.json`仍缺|在正式TRAIN数据和新偏置上重标定监督梯度比例，运行192帧/batch2检查，记录数据/代码/配置哈希；为官方val固定case/种子。S1/D6/E1|
 |3. 正式输入可视化验收|历史六例及本轮旧诊断检查不能代替新正式输入验收|检查新真实/虚拟ego、master exo的身体/场景/坐标及clean/noisy输入；通过后再短程优化，不直接长训。D6/E2|
 
-共享输出头、192帧@30Hz、整段已见静态记忆、现有patch/局部查询/反馈结构固定；没有新架构研究项挡在第一轮前面。**当前实际采样范围是三语料ego＋EgoBody真实master exo**，优先检查遮挡收益和ego是否退化。RICH/TRUMANS正式exo接入归D4后续扩展，TRUMANS真实K与全录制benchmark拼接不阻塞这一范围的短程试验；不把合成视点当真实相机实验。
+共享输出头、192帧@30Hz、整段已见静态记忆、现有patch/局部查询/反馈结构固定；没有新架构研究项挡在第一轮前面。**当前代码采样范围是三语料ego/exo**，优先检查遮挡收益和ego是否退化。TRUMANS真实K与全录制benchmark拼接不阻塞受控合成视点试验；不把它当真实相机实验。
 
 准备检查通过只说明可以进入短程训练，不保证模型有效。短程输出经既定val指标与可视化检查后再决定长程训练；无场景／错场景及分模式对照归E2。长出画补全、渐进扩大查询、独立输出头、Human3R低confidence全身先验与任意视频扩展继续后置。
 
@@ -165,19 +165,36 @@
 
 ## 3. 官方划分与新数据版本
 
-新配置：[native30_config.json](../../native30_config.json)。版本 `native30-official-offline-observer-memory-v3`，新数据目录 `data/native30_official_memory_v2`，与旧20Hz/旧诊断缓存分开。
+新配置：[native30_config.json](../../native30_config.json)，版本 `native30-official-offline-three-corpus-ego-exo-v4`。实体缓存位于 **`E:\Projects\SceneMI\cache\native30_official_ego_exo_v3`**（Linux：`/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3`）；项目的 `data/native30_official_memory_v3` 软链接至此。旧v2源索引、旧20Hz和诊断缓存保留。实体缓存中已有新官方TRAIN头部偏置副本。
 
-|官方集合|官方 recording|新源索引 recording|EgoBody源片段|其中exo-only|
-|---|---:|---:|---:|---:|
-|train|65|65|202|2|
-|val|17|17|53|0|
-|test|43|43|129|2|
+|集合|EgoBody recording|wearer来源|interactee来源|TRUMANS来源|RICH来源|合计来源|缓存帧|
+|---|---:|---:|---:|---:|---:|---:|---:|
+|train|65|158|172|469|62|861|1,506,331|
+|val|17|42|45|33|28|148|191,205|
+|test|43|105|108|58|0|271|400,330|
+|合计|125|305|325|560|90|1280|2,097,866|
+
+“来源”是身体目标与观察时域的缓存条目，不是独立recording或独立动作。EgoBody的380个有效PV片段只供ego；125个recording×两角色的250条master完整同步身体流只供exo。两种缓存有重复人体帧，**不能把209.8万缓存帧称为209.8万独立动作帧**。TRUMANS直接覆盖原始clip的整数帧，补齐旧20Hz换算可能漏掉的尾帧；沿用已确认的10条源数据排除记录，不新增GT候选删片。
 
 读取 `/home/wenxin/projects/egobody/data_splits.csv`，代码内部 `validation` 等同官方 `val`；CLI也接受 `val`。使用原 train/validation/test 全部源片段重新归位，按 recording 检查官方归属、CSV指纹和输入模式。旧内部训练曾包含12个官方test recording，**旧55k/3k结果不能作为官方 benchmark 结果**；其权重和数据仍保留。
 
 两个 recording 的 PV 因长缺口没有 ≥192帧连续区间：官方train `recording_20210923_S05_S13_02`、官方test `recording_20210921_S05_S12_03`。原始身体、场景与master标定在本地，所以补为真实master **exo-only** 来源，不外推PV、不伪装真实ego。故官方recording索引完整，ego可用覆盖仍依赖PV有效区间；评估须报告各模式实际有效帧范围。
 
-已生成 `source_index.jsonl`，不等于全部native30表面缓存已导出。全三语料当前源数为train733、val114、test187；RICH本地只有train/val，test明确缺失，不再把val冒充test。其他两套沿用原语料协议，后续指标分别报告。个体GT betas使用来源profile，或exo-only原始拟合的固定median；它是已知体型条件，与必须仅在官方TRAIN拟合的相机mount/损失标定分开。
+EgoBody master不依赖PV有效帧范围，整段覆盖源同步索引的`first:last`；这指本地身体/同步输入可用的整段，不声称包含原RGB之外或GT未提供的时间。真实ego只使用有效PV范围。RICH本地只有train/val，test明确缺失，不把val冒充test。其他两套沿用原语料协议，后续指标分别报告。个体GT betas使用来源profile，完整master流使用原始拟合固定median；它是已知体型条件，与必须仅在官方TRAIN拟合的相机mount/损失标定分开。
+
+|exo数据|正式视点|输入及限制|
+|---|---|---|
+|EgoBody|发布master的K、畸变、世界外参|192×108射线；两角色独立作为目标，另一人皮肤参与遮挡，场景条件排除目标皮肤。|
+|RICH|发布XML标定中的一个相机|256×192射线；按sequence ID哈希固定选一个视点，选择不看姿态或遮挡；不把多相机并集当单目输入。|
+|TRUMANS|首个发布相机中心＋显式合成固定朝向/K|192×108射线、水平FOV66.56°；朝向整段轨迹中心，合成标记进入相机context。发布world/camera外参另存参考，不进入输入；真实内参/轴未确认。|
+
+三套均用场景／动态刚体／所有人体的first-hit模拟部位可见性。关节部位至少2像素且可见比例≥0.15才可用，confidence结合可见比例和像素数；不可用位置与confidence均存零。目标skin只参与遮挡判定，不作为场景条件。可信关节坐标来自GT可见部位，是受控前端模拟，不能称为实际单目估计结果。静态记忆仍仅累计本视点已见owner=0表面；动态取当帧。
+
+导出控制器支持断点续作，输出文件逐一SHA256并以metadata作完成标记，manifest原子更新。WSL的E盘映射直接memmap flush曾报ENOMEM，当前改为Linux临时区只保留正在处理的单条来源，复制到E盘后原子提交并清理临时文件；最终缓存全部在E盘。本轮不清除源数据、不写模型权重。
+
+10:23前后WSL重启中断过导出和viser；恢复时校验已提交来源，缺失来源继续计算。此前4条来源曾遇到SMPL protocol-0读取异常；重启后三种SMPL文件均可正常加载，4条已重算成功，不将该读取异常判成GT动作问题。对重启造成的输出损坏，控制器会保留损坏的生成缓存供诊断，再重建；协议指纹不匹配则拒绝静默替换。
+
+内存与盘容量分开记录：导出时Linux文件缓存一度约24GB，但可用内存仍约23–24GB，进程实际占用约5–6GB；文件缓存可回收。用户已澄清关注的是运行内存。恢复后保持6个并行任务；显卡约24GB，缓存导出不启动模型训练。实查E盘剩约298GB、Linux工作盘约67GB，正式缓存当时约15.2GiB；全量完成后再记最终值。
 
 ## 4. 当前模型和训练设置
 
@@ -193,7 +210,7 @@
 |接触反馈|内部x0的root位移≤8cm、22关节SO3残差≤0.12rad，再FK保持骨长；时序感受野9帧，alpha_bar²和接触/对应/几何有效性门控；无独立生成后优化。|
 |扩散/采样|cosine1000；25%额外抽低噪声t<100；默认DDIM20步，每步两次共享core，约40次forward。|
 |初始化/优化器|从头初始化；latent256，dim_mults=(1,2,4)，约122.4M参数；AdamW batch2，lr1e-4，weight_decay0.01，clip1，warmup200。|
-|模式和数据平衡|ego70%/exo30%；按有效窗口时长采样，ego语料平方根平衡；exo-only来源不会进入ego。|
+|模式和数据平衡|ego70%/exo30%；两模式均按有效窗口时长做三语料平方根平衡，EgoBody内按角色时长分配；exo-only来源不会进入ego。|
 |ego关节组合|65%仅head，35%head+双wrist；当前仍是受控数据集输入模拟，非真实前端误差分布。|
 
 生成链：可信关节与相机上下文＋静态patch/动态owner → 共享生成器初估 → 预测皮肤局部查询 → 共享生成器更新 → 位置/旋转接触反馈 → DDIM下一步。共享头是否损害两种模式的性能归E2对照，不能仅靠架构图证明统一有效。
@@ -207,5 +224,7 @@
 本次检查包含跨窗椅子查询、跨源片段记忆、前缀对照不读较晚窗口，动态无旧帧残影、不同观察者隔离、世界系换锚点、失效历史/目标皮肤排除、官方test误归TRAIN拒绝、exo-only采样边界，并回归原30Hz与first-hit遮挡检查。25项单元/回归检查通过；真实缓存的ego/exo、start=64、64帧输入与不读人体GT的frozen入口场景/occupancy一致；两套新增exo-only源读取未调用PV。上述25项与真实缓存数值是10月12日v2前缀记录：[PROTOCOL_V2_AUDIT.json](PROTOCOL_V2_AUDIT.json)、[PROTOCOL_V2_INTEGRATION.json](PROTOCOL_V2_INTEGRATION.json)。10月13日v3的28项回归通过；整段/前缀各自的ego/exo在真实缓存中均与frozen/train入口一致，评估来源限制和动态不累积也有检查：[OFFLINE_MEMORY_AUDIT.json](OFFLINE_MEMORY_AUDIT.json)。不启动优化器。
 
 [viser六例](http://127.0.0.1:8783)是输入/GT诊断面板，不是生成效果；TRUMANS仍为合成exo。首例右臂开头跳变已回溯到源拟合，当前显示保留以便追查；10月13日全索引筛查及8处原生复算见1.4。原RGB不在本地，不能断言真实动作绝不可能跳动，也不能把所有候选直接mask。此前零步反传和2步DDIM smoke只证明接口/梯度，不代表场景或朝向效果。
+
+本轮正式缓存入口为[原生mesh六例viser](http://127.0.0.1:8784)：每语料两例，来自官方validation的已提交缓存；例子按遮挡筛选仅用于显示，不作为benchmark采样策略。原生SMPL/SMPL-X使用同一整段source/body profile复算，未用简化22关节skin冒充原生GT；目标、人/物体遮挡mesh与完整扫描mesh均标为参考。模型可见环境点云及整段已见静态记忆单独显示，完整扫描不进入条件。来源和检查见[FORMAL_EXO_VISER_CASES.json](FORMAL_EXO_VISER_CASES.json)、[FORMAL_EXO_MESH_AUDIT.json](FORMAL_EXO_MESH_AUDIT.json)。显示confidence阈值不修改训练输入。当前代码59项回归通过；全量缓存完成状态仍以D6及最终audit为准。
 
 后续每次只更新上面表格的状态、证据与剩余项。可复现脚本和机器JSON保留；历史文档入口指向这里，其内容按历史日期理解。只保留一个原子可恢复last.pt；原55k与选中的3k权重保留。第一次正式训练仍须完成本清单前置项及输入可视化验收，当前暂停状态不变。

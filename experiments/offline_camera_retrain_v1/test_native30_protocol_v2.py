@@ -19,7 +19,7 @@ class OfficialSplitTests(unittest.TestCase):
         self.assertEqual([summary[s]['official_recordings'] for s in ('train','validation','test')],[65,17,43])
         self.assertEqual([summary[s]['available_recordings'] for s in ('train','validation','test')],[65,17,43])
         rows=official_sources(); official=official_recordings()
-        self.assertEqual(len(rows),384)
+        self.assertEqual(sum('ego' in r['allowed_modes'] for r in rows),380)
         self.assertTrue(any(r['legacy_split']=='test' and r['split']=='train' for r in rows))
         for r in rows:
             self.assertEqual(r['split'],official[r['recording']])
@@ -42,8 +42,8 @@ class OfficialSplitTests(unittest.TestCase):
 
     def test_exo_only_recordings_do_not_enter_ego_sampling(self):
         rows=[r for r in official_sources() if r['allowed_modes']==['exo']]
-        self.assertEqual(len(rows),4)
-        self.assertEqual({r['split'] for r in rows},{'train','test'})
+        self.assertGreater(len(rows),4)
+        self.assertEqual({r['split'] for r in rows},{'train','validation','test'})
         data=Native30Data.__new__(Native30Data)
         data.members={g:[] for g in ('trumans','camera_wearer','interactee','rich')}
         data.members['camera_wearer']=[(dict(allowed_modes=['ego','exo']),np.arange(4)),

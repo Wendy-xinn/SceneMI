@@ -98,12 +98,13 @@ def dataset_digest(data):
     body_paths+=list((HERE.parents[2]/'ProtoMotions/data/smpl').glob('SMPL_*.pkl'))
     for path in body_paths:
         if path.suffix in ('.npz','.pkl'):report[str(path.resolve())]=sha256(path)
-    for members in data.members.values():
-        for meta,_ in members:
-            folder=Path(meta['path']); report[str((folder/'metadata.json').resolve())]=sha256(folder/'metadata.json')
-            for filename,digest in meta['output_sha256'].items():
-                actual=sha256(folder/filename)
-                if actual!=digest:raise ValueError(f'Corrupt raw30 bundle: {folder/filename}')
+    # Even a short source with no motion-training window can contribute static
+    # observations to a longer recording. Include all memory dependencies.
+    for meta in data.scene_memory.entries:
+        folder=Path(meta['path']); report[str((folder/'metadata.json').resolve())]=sha256(folder/'metadata.json')
+        for filename,digest in meta['output_sha256'].items():
+            actual=sha256(folder/filename)
+            if actual!=digest:raise ValueError(f'Corrupt raw30 bundle: {folder/filename}')
     return report
 
 
@@ -140,6 +141,13 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     memory_protocol=config['scene']['memory_protocol']
     data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'])
     validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'])
+    from experiments.offline_camera_retrain_v1.native30_validation import fixed_plan
+    validation_plan=fixed_plan(validation,config['validation'])
+    write_json(folder/'validation_plan.json',dict(seed=config['validation']['seed'],plan=validation_plan,
+        GT_metrics_unweighted=True,regimes=config['validation']['regimes'],
+        ddim_steps=config['sampling']['ddim_steps'],optimizer_steps=0,evaluation_run=False))
+    report['checks']['fixed_validation_plan']=dict(cases=len(validation_plan),
+        clean_noisy_evaluations=2*len(validation_plan),split='validation',test_tuning=False)
     mount_path=HERE/config['mount_defaults' if full_data else 'diagnostic_mount_defaults']
     mounts=json.loads(mount_path.read_text());skins=Native30SkinAnchorCache()
     if full_data:
@@ -153,9 +161,10 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     builder=Native30ObservationBuilder(skins,mounts,config['observation']['input_noise']);cases=[];train_cases=[];alignment=[]
     for source in (data,validation):
         for group in source.members:
-            for mode in ('ego','exo') if group in ('camera_wearer','interactee') else ('ego',):
-                mi=next(i for i,(meta,_) in enumerate(source.members[group]) if mode in meta.get('allowed_modes',['ego','exo']))
-                sample,identity=source.sample(group,mode,member=mi,start=int(source.members[group][mi][1][0]),yaw=0)
+            for mode in ('ego','exo'):
+                mi=next((i for i,(meta,_) in enumerate(source.members[group]) if mode in meta.get('allowed_modes',['ego','exo']) and len(source.starts_for(group,i,mode))),None)
+                if mi is None:continue
+                sample,identity=source.sample(group,mode,member=mi,start=int(source.starts_for(group,mi,mode)[0]),yaw=0)
                 sample,scene,asset=builder.build(source,sample,identity,mode,joints=None)
                 item=(sample,scene,asset,mode);label=f'{source.split}/{group}/{mode}'
                 cases.append((label,item,identity))
@@ -181,7 +190,8 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     yaw_rotation=Rotation.from_rotvec([0,.6,0]).as_matrix();yaw_error=0.
     for label,item,identity in cases:
         source=data if identity['split']=='train' else validation
-        altered,_=source.sample(identity['group'],identity['mode'],member=0,start=identity['start'],yaw=.6)
+        mi=next(i for i,(meta,_) in enumerate(source.members[identity['group']]) if meta['path']==identity['path'])
+        altered,_=source.sample(identity['group'],identity['mode'],member=mi,start=identity['start'],yaw=.6)
         expected=(item[0]['joints']*2)@yaw_rotation.T
         yaw_error=max(yaw_error,float(np.abs(altered['joints']*2-expected).max()))
     if yaw_error>1e-5:raise AssertionError('Post-anchor world yaw is inconsistent or cancelled')
@@ -219,7 +229,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
         for key,term in row['terms'].items():
             term['coefficient']=weights[key]
             term['weighted_gradient_ratio']=weights[key]*term['gradient_norm']/max(row['reference_gradient_norm'],1e-12)
-    write_json(folder/'TRAIN_gradient_scales.json',dict(fitting_split='train',panel_windows=6,
+    write_json(folder/'TRAIN_gradient_scales.json',dict(fitting_split='train',panel_windows=len(train_cases),
         noise_buckets=[25,300,800],method='cap maximum weighted shared-output gradient ratio across available buckets',
         not_population_calibration=True,coefficients=weights,buckets=calibration,
         geometry_coefficients_status='conservative initial values; finite-gradient check, not efficacy calibration'))
@@ -252,10 +262,15 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     # Independent frozen loader cannot read GT motion/contact even accidentally.
     item=exo;label,_,identity=next(x for x in train_cases if x[0]=='train/camera_wearer/exo')
     baseline=collate_observations([item]);known=inference_payload(baseline)
-    frozen=load_frozen_exo(identity['path'],start=identity['start'],skin_cache=skins,memory_manifest=manifest,memory_protocol=memory_protocol)
-    for key in ('trajectory','observation_meta','camera','occupancy'):
-        if not torch.equal(known[key],frozen[key]):raise AssertionError(f'Frozen observations differ: {key}')
-    checks['frozen_no_body_truth_loader']=True
+    checked_exo=[]
+    for case_label,case_item,case_identity in cases:
+        if case_item[3]!='exo':continue
+        expected=inference_payload(collate_observations([case_item]))
+        frozen=load_frozen_exo(case_identity['path'],start=case_identity['start'],skin_cache=skins,memory_manifest=manifest,memory_protocol=memory_protocol)
+        for key in ('trajectory','observation_meta','camera','occupancy'):
+            if not torch.equal(expected[key],frozen[key]):raise AssertionError(f'Frozen observations differ: {case_label}/{key}')
+        checked_exo.append(case_label)
+    checks['frozen_no_body_truth_loader']=dict(passed=True,cases=checked_exo)
     for label,item,identity in cases:
         if item[3]!='ego':continue
         expected=inference_payload(collate_observations([item]))
