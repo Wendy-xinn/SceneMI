@@ -1,0 +1,61 @@
+{
+  "status": "completed_readonly",
+  "optimizer_steps": 0,
+  "source_npz": "experiments/offline_camera_retrain_v1/runs/native30_scene_relations_oct14/experiment/candidate/validation_latest.npz",
+  "source_npz_sha256": "e6d088a51f0e3a7fc9bde1e325f0d85cca202f91afa9bee27f3ed9a9431d8eba",
+  "seed": 2026101401,
+  "rows": [
+    {
+      "regime": "clean",
+      "two_seed_original_world_metrics": {
+        "full": {
+          "unconditioned_mpjpe_mm": 74.98234317411784,
+          "root_position_error_mm": 1.5543031450361013,
+          "root_orientation_deg": 0.3315909657831071
+        },
+        "off": {
+          "unconditioned_mpjpe_mm": 79.3050099678289,
+          "root_position_error_mm": 1.8420303761959076,
+          "root_orientation_deg": 0.842938793823123
+        }
+      },
+      "first_seed_diagnostic_mm": {
+        "full_world": 75.22930838890325,
+        "off_world": 80.35557257957707,
+        "full_root_relative": 74.9341105891209,
+        "off_root_relative": 79.95026218189912,
+        "root_displacement": 2.2126835137605667
+      },
+      "first_seed_hidden_joint_count": 3060,
+      "first_seed_windows": 8
+    },
+    {
+      "regime": "noisy",
+      "two_seed_original_world_metrics": {
+        "full": {
+          "unconditioned_mpjpe_mm": 93.71394045688284,
+          "root_position_error_mm": 22.376254558563232,
+          "root_orientation_deg": 11.132179290056229
+        },
+        "off": {
+          "unconditioned_mpjpe_mm": 89.75351294723932,
+          "root_position_error_mm": 19.027189671993256,
+          "root_orientation_deg": 10.978880375623703
+        }
+      },
+      "first_seed_diagnostic_mm": {
+        "full_world": 93.8344210684108,
+        "off_world": 90.91404070452994,
+        "full_root_relative": 93.26604848284713,
+        "off_root_relative": 89.74285343785124,
+        "root_displacement": 13.109474658966064
+      },
+      "first_seed_hidden_joint_count": 3114,
+      "first_seed_windows": 8
+    }
+  ],
+  "scope": "Same eight official VAL exo windows, saved predictions only. No new inference or training.",
+  "root_relative_definition": "Subtract each motion own FK pelvis position at each frame from all joints; no yaw/scale/GT registration. Diagnostic only, official world metric unchanged.",
+  "root_displacement_definition": "Mean norm(sceneON FK pelvis minus sceneOFF FK pelvis), not ground-truth error.",
+  "limitation": "Root-relative degradation rules out explaining the scene gap by translation alone; it does not isolate which learned scene component caused it."
+}
