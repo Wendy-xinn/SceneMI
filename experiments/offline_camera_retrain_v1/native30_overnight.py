@@ -143,6 +143,25 @@ class YawSurface:
         for key in ('points','normals','velocities'):result[key]=result[key]@self.rotation.T
         return result
 
+    def query_wide(self,vertices,rotations,neighbors=8):
+        query=getattr(self.base,'query_wide',self.base.query)
+        result=query(vertices@self.rotation,self.rotation.T@rotations,neighbors)
+        for key in ('points','normals','velocities'):result[key]=result[key]@self.rotation.T
+        return result
+
+    def query_nearest(self,vertices,rotations):
+        return self.query_wide(vertices,rotations,neighbors=1)
+
+    def query_motion(self,vertices,rotations,device,neighbors=8):
+        result=self.base.query_motion(vertices@self.rotation,self.rotation.T@rotations,device,neighbors)
+        for key in ('points','normals','velocities'):result[key]=result[key]@self.rotation.T
+        return result
+
+    def query_wide_motion(self,vertices,rotations,device,neighbors=8):
+        result=self.base.query_wide_motion(vertices@self.rotation,self.rotation.T@rotations,device,neighbors)
+        for key in ('points','normals','velocities'):result[key]=result[key]@self.rotation.T
+        return result
+
 
 def augment(item,identity,builder,config,rng,*,noisy=True,yaw=True,head_only=None):
     base,scene,asset,mode=item;sample={k:v.copy() for k,v in base.items()}
@@ -189,7 +208,7 @@ def surface_metrics(motion,batch):
     asset=batch['skin_assets'][0];scene=batch['surface_windows'][0]
     vertices=skin_points(motion[0],asset);labels=asset['labels']
     rotation=global_rotations(motion)[0,:,labels]
-    query=scene.query(vertices.cpu().numpy(),rotation.cpu().numpy())
+    query=getattr(scene,'query_nearest',scene.query)(vertices.cpu().numpy(),rotation.cpu().numpy())
     point=torch.as_tensor(query['points'][:,:,2,0],device=motion.device)
     normal=torch.as_tensor(query['normals'][:,:,2,0],device=motion.device)
     valid=torch.as_tensor(query['valid'][:,:,2,0],device=motion.device)

@@ -29,7 +29,8 @@ def prepare_evidence(motion, batch, contact_probability, config):
     asset = batch['skin_assets'][0]; scene = batch['surface_windows'][0]
     vertices = skin_points(motion[0], asset)
     labels = asset['labels']; rotations = global_rotations(motion)[0, :, labels]
-    raw = scene.query(vertices.detach().cpu().numpy(), rotations.detach().cpu().numpy())
+    v_numpy,r_numpy=vertices.detach().cpu().numpy(),rotations.detach().cpu().numpy()
+    raw = scene.query_wide_motion(v_numpy,r_numpy,motion.device) if hasattr(scene,'query_wide_motion') else getattr(scene,'query_wide',scene.query)(v_numpy,r_numpy)
     q = {k: torch.as_tensor(v, device=motion.device) for k,v in raw.items()}
     feet = torch.isin(labels,labels.new_tensor([7,8,10,11]))[None]
     distances=(vertices.detach()[:,:,None]-q['points'][:,:,2]).norm(dim=-1)

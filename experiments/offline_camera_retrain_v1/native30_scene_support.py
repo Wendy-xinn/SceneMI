@@ -73,7 +73,7 @@ def training_support_targets(sample, scene, asset):
     motion = torch.as_tensor(sample['motion'])
     vertices = skin_points(motion, cpu_asset)
     rotations = global_rotations(motion[None])[0, :, cpu_asset['labels']]
-    query = scene.query(vertices.numpy(), rotations.numpy())
+    query = getattr(scene, 'query_nearest', scene.query)(vertices.numpy(), rotations.numpy())
     result = support_targets(vertices.numpy(), cpu_asset['labels'], query,
                              official_target=sample['contact_target'], official_valid=sample['contact_valid'])
     if 'gt_position_weight' in sample:

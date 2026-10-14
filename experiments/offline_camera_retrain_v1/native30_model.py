@@ -200,7 +200,8 @@ class Native30SceneMI(OfflineSceneMI):
             # Wide reliable-joint context early; exact predicted skin anchors late.
             observed_weight=(1-fine[b])*meta[0,:,labels,2:3]*pm[...,None]
             centres=(1-observed_weight)*vertices+observed_weight*observed
-            query=scene.query(centres.detach().cpu().numpy(),r.detach().cpu().numpy())
+            c_numpy,r_numpy=centres.detach().cpu().numpy(),r.detach().cpu().numpy()
+            query=scene.query_motion(c_numpy,r_numpy,proposal.device) if hasattr(scene,'query_motion') else scene.query(c_numpy,r_numpy)
             details={k:torch.as_tensor(v,device=proposal.device) for k,v in query.items()}
             delta=details['points']-vertices[:,:,None,None]
             local=torch.einsum('taik,tasni->tasnk',r,delta)

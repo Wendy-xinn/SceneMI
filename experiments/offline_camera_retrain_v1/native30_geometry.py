@@ -89,6 +89,29 @@ class Native30SurfaceWindow:
                     velocities=velocities, velocity_valid=velocity_valid)
 
     def query(self, vertices, rotations, neighbors=8):
+        """Exact radius/FPS samples, selected for all frame anchors together."""
+        from experiments.offline_camera_retrain_v1.native30_query_runtime import query_surfaces
+        return query_surfaces(self, vertices, rotations, neighbors)
+
+    def query_wide(self, vertices, rotations, neighbors=8):
+        """Same wide samples; unused small-radius slots remain masked."""
+        from experiments.offline_camera_retrain_v1.native30_query_runtime import query_surfaces
+        return query_surfaces(self, vertices, rotations, neighbors, (2,))
+
+    def query_nearest(self, vertices, rotations):
+        """Exact first wide sample for metrics/targets which read only that."""
+        return self.query_wide(vertices, rotations, neighbors=1)
+
+    def query_motion(self, vertices, rotations, device, neighbors=8):
+        """Batch CUDA selection, keeping exact sorted radius memberships."""
+        from experiments.offline_camera_retrain_v1.native30_query_runtime import query_surfaces_cuda
+        return query_surfaces_cuda(self, vertices, rotations, device, neighbors)
+
+    def query_wide_motion(self, vertices, rotations, device, neighbors=8):
+        from experiments.offline_camera_retrain_v1.native30_query_runtime import query_surfaces_cuda
+        return query_surfaces_cuda(self, vertices, rotations, device, neighbors, (2,))
+
+    def query_reference(self, vertices, rotations, neighbors=8):
         """Discrete neighbour choice; returned world samples permit differentiable deltas."""
         frames, anchors = vertices.shape[:2]
         if len(self.dynamic) != frames or rotations.shape != (frames,anchors,3,3):
