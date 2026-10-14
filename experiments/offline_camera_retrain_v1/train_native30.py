@@ -1,8 +1,10 @@
 """Future explicit native30 training. Preparation never starts this entry point."""
 import argparse
+import hashlib
 import json
 import math
 import shutil
+import signal as signals
 import time
 from pathlib import Path
 
@@ -21,6 +23,28 @@ from experiments.offline_camera_retrain_v1.scene_model import cosine_alphas
 from experiments.offline_camera_retrain_v1.checkpoint_io import save_checkpoint
 from experiments.offline_camera_retrain_v1.native30_validation import validate
 from experiments.offline_camera_retrain_v1.native30_refinement import model_inputs,training_motion
+
+
+def model_digest(model):
+    digest=hashlib.sha256()
+    for name,value in model.state_dict().items():
+        array=value.detach().cpu().contiguous().numpy()
+        digest.update(name.encode());digest.update(str(array.dtype).encode())
+        digest.update(str(array.shape).encode());digest.update(array.tobytes())
+    return digest.hexdigest()
+
+
+class StopAtUpdateBoundary:
+    """Finish the current update, then atomically preserve optimizer and RNG."""
+    def __enter__(self):
+        self.requested=False;self.previous={}
+        def request(signum,frame):self.requested=True
+        for sig in (signals.SIGTERM,signals.SIGINT):
+            self.previous[sig]=signals.signal(sig,request)
+        return self
+
+    def __exit__(self,*exc):
+        for sig,handler in self.previous.items():signals.signal(sig,handler)
 
 
 def train(config_path,steps,output=None,resume=False):
@@ -48,7 +72,8 @@ def train(config_path,steps,output=None,resume=False):
     if plan!=effective['sampling_plan']:raise ValueError('Sampling duration/configuration changed')
     builder=Native30ObservationBuilder(Native30SkinAnchorCache(),json.loads((HERE/config['mount_defaults']).read_text()),config['observation']['input_noise'])
     model=make_model(config).cuda();optimizer=torch.optim.AdamW(model.parameters(),lr=config['optimizer']['lr'],weight_decay=config['optimizer']['weight_decay'])
-    initialization=None
+    initialization=dict(type=config['initialization'],seed=config['seed'],source_checkpoint=None,
+        optimizer_reset=True,all_model_parameters_trainable=all(p.requires_grad for p in model.parameters()))
     if not resume and config['initialization']=='official30_warm_start':
         warm_path=HERE/config['warm_start']['checkpoint']
         if sha256(warm_path)!=config['warm_start']['sha256']:raise ValueError('Warm-start checkpoint changed')
@@ -56,8 +81,10 @@ def train(config_path,steps,output=None,resume=False):
         if warm['config']['fps']!=30 or warm['config']['split_protocol']!=config['split_protocol'] or warm['step']!=config['warm_start']['step']:
             raise ValueError('Only the declared official30 checkpoint may initialize this stage')
         model.load_state_dict(warm['model'],strict=True)
-        initialization=dict(config['warm_start'],optimizer_reset=True,all_model_parameters_trainable=True)
+        initialization.update(config['warm_start'],source_checkpoint=str(warm_path.resolve()))
         del warm
+    if not resume:
+        initialization.update(initial_model_sha256=model_digest(model),optimizer_state_entries=len(optimizer.state))
     rng=np.random.default_rng(config['seed']+991);start=0;counts={}
     if resume:
         state=torch.load(folder/'last.pt',map_location='cpu',weights_only=False)
@@ -70,15 +97,17 @@ def train(config_path,steps,output=None,resume=False):
         data.load_sampler_state(state['data_rng']);rng.bit_generator.state=state['condition_rng']
         torch.set_rng_state(state['torch_rng']);torch.cuda.set_rng_state(state['cuda_rng']);np.random.set_state(state['numpy_rng'])
         start,counts=state['step'],state['counts'];del state
+        initialization=json.loads((folder/'protocol.json').read_text()).get('initialization')
     folder.mkdir(parents=True,exist_ok=True);started=time.monotonic();alphas=cosine_alphas().cuda()
     protocol=dict(status='training',planned_steps=steps,completed_steps=start,effective_config=effective,
         free_disk_before=shutil.disk_usage(HERE).free,checkpoint_policy='one atomic resumable last.pt',initialization=initialization)
     write_json(folder/'protocol.json',protocol)
     def checkpoint(step):
         save_checkpoint(dict(step=step,planned_steps=steps,model=model.state_dict(),optimizer=optimizer.state_dict(),
+            initialization=initialization,
             effective_config=effective,counts=counts,data_rng=data.sampler_state(),condition_rng=rng.bit_generator.state,
             torch_rng=torch.get_rng_state(),cuda_rng=torch.cuda.get_rng_state(),numpy_rng=np.random.get_state()),folder/'last.pt')
-    with (folder/'trace.jsonl').open('a' if resume else 'w') as trace:
+    with StopAtUpdateBoundary() as stopping, (folder/'trace.jsonl').open('a' if resume else 'w') as trace:
         for step in range(start+1,steps+1):
             step_started=time.monotonic();torch.cuda.synchronize()
             prepare_started=time.monotonic()
@@ -110,6 +139,10 @@ def train(config_path,steps,output=None,resume=False):
                      support_cache_hits=getattr(getattr(data,'support_cache',None),'hits',0),
                      support_cache_misses=getattr(getattr(data,'support_cache',None),'misses',0))
             trace.write(json.dumps(row)+'\n');trace.flush()
+            if stopping.requested:
+                checkpoint(step);protocol.update(status='stopped',completed_steps=step,counts=dict(counts),
+                    elapsed_s=time.monotonic()-started,free_disk_after=shutil.disk_usage(HERE).free)
+                write_json(folder/'protocol.json',protocol);break
             if step==1 or step%25==0:print(step,row['loss'],counts,flush=True)
             # Preserve the first real update before validation can fail or be
             # interrupted. Subsequent checkpoints overwrite this same last.pt.
@@ -119,10 +152,11 @@ def train(config_path,steps,output=None,resume=False):
                 write_json(folder/'protocol.json',protocol)
             if step==1 or step%config['validation']['interval_steps']==0 or step==steps:
                 validate(model,val,builder,config,folder,step)
-            if step%100==0 or step==steps:
-                checkpoint(step);protocol.update(status='completed' if step==steps else 'training',completed_steps=step,
+            if step%100==0 or step==steps or stopping.requested:
+                checkpoint(step);protocol.update(status='stopped' if stopping.requested else 'completed' if step==steps else 'training',completed_steps=step,
                     elapsed_s=time.monotonic()-started,counts=counts,free_disk_after=shutil.disk_usage(HERE).free)
                 write_json(folder/'protocol.json',protocol)
+            if stopping.requested:break
 
 
 if __name__=='__main__':

@@ -1,0 +1,1054 @@
+{
+  "fitting_split": "train",
+  "panel_windows": 8,
+  "noise_buckets": [
+    25,
+    300,
+    800
+  ],
+  "method": "cap maximum weighted shared-output gradient ratio across available buckets",
+  "not_population_calibration": true,
+  "coefficients": {
+    "position": 0.09571219338693163,
+    "rotation": 0.025,
+    "velocity": 0.00028936492596688077,
+    "acceleration": 3.1529686152796965e-06,
+    "angular_velocity": 0.001390558669100444,
+    "body_turn_rate": 0.0007795612810993206
+  },
+  "buckets": [
+    {
+      "label": "train/trumans/ego",
+      "timestep": 25,
+      "reference_gradient_norm": 2.5964674949645996,
+      "terms": {
+        "position": {
+          "loss": 6.697396770505293e-08,
+          "gradient_norm": 0.001053718733601272,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 3.8842670436454934e-05
+        },
+        "rotation": {
+          "loss": 0.07681310921907425,
+          "gradient_norm": 0.39578673243522644,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0038108192496419317
+        },
+        "velocity": {
+          "loss": 2.3316754322877387e-06,
+          "gradient_norm": 0.10424551367759705,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 1.1617705750677458e-05
+        },
+        "acceleration": {
+          "loss": 0.0001322709140367806,
+          "gradient_norm": 7.056331157684326,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 8.568715272710264e-06
+        },
+        "angular_velocity": {
+          "loss": 3.189243793487549,
+          "gradient_norm": 24.988605499267578,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.013382844989635163
+        },
+        "body_turn_rate": {
+          "loss": 1.2918076515197754,
+          "gradient_norm": 8.125632286071777,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0024396332043272817
+        }
+      }
+    },
+    {
+      "label": "train/trumans/ego",
+      "timestep": 300,
+      "reference_gradient_norm": 1.6138995885849,
+      "terms": {
+        "position": {
+          "loss": 4.155748456469155e-08,
+          "gradient_norm": 0.0006538346060551703,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 3.877561200241217e-05
+        },
+        "rotation": {
+          "loss": 0.04766269773244858,
+          "gradient_norm": 0.24558648467063904,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0038042404621649087
+        },
+        "velocity": {
+          "loss": 1.4468093922914704e-06,
+          "gradient_norm": 0.06468455493450165,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 1.159764930991434e-05
+        },
+        "acceleration": {
+          "loss": 8.207438077079132e-05,
+          "gradient_norm": 4.378468036651611,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 8.55392268528459e-06
+        },
+        "angular_velocity": {
+          "loss": 1.9789323806762695,
+          "gradient_norm": 15.505480766296387,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.013359741120604044
+        },
+        "body_turn_rate": {
+          "loss": 0.8015692830085754,
+          "gradient_norm": 5.0419721603393555,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.002435421822015348
+        }
+      }
+    },
+    {
+      "label": "train/trumans/ego",
+      "timestep": 800,
+      "reference_gradient_norm": 0.10311716794967651,
+      "terms": {
+        "position": {
+          "loss": 5.840663508394073e-10,
+          "gradient_norm": 9.189267075271346e-06,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 8.529374156413628e-06
+        },
+        "rotation": {
+          "loss": 0.0006698715733364224,
+          "gradient_norm": 0.003451575990766287,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0008368092480125942
+        },
+        "velocity": {
+          "loss": 2.033406865109555e-08,
+          "gradient_norm": 0.0009091039537452161,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 2.55110573246216e-06
+        },
+        "acceleration": {
+          "loss": 1.1535078101587715e-06,
+          "gradient_norm": 0.06153683364391327,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 1.8815848904775406e-06
+        },
+        "angular_velocity": {
+          "loss": 0.02781274914741516,
+          "gradient_norm": 0.21792055666446686,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.002938708706515825
+        },
+        "body_turn_rate": {
+          "loss": 0.011265591718256474,
+          "gradient_norm": 0.07086199522018433,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.000535713585559873
+        }
+      }
+    },
+    {
+      "label": "train/trumans/exo",
+      "timestep": 25,
+      "reference_gradient_norm": 2.966856002807617,
+      "terms": {
+        "position": {
+          "loss": 0.00043972619459964335,
+          "gradient_norm": 0.027542850002646446,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.0008885455119445807
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.019556239247322083,
+          "gradient_norm": 4.372980117797852,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.0004265077465315966
+        },
+        "acceleration": {
+          "loss": 0.4712235927581787,
+          "gradient_norm": 126.34603118896484,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.00013427179162958097
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.04821349307894707,
+          "gradient_norm": 3.190549373626709,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0008383382121550016
+        }
+      }
+    },
+    {
+      "label": "train/trumans/exo",
+      "timestep": 300,
+      "reference_gradient_norm": 1.8435007333755493,
+      "terms": {
+        "position": {
+          "loss": 0.0002728510007727891,
+          "gradient_norm": 0.017090395092964172,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.0008873113910845541
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.012134687043726444,
+          "gradient_norm": 2.7134432792663574,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.0004259153790422103
+        },
+        "acceleration": {
+          "loss": 0.2923952043056488,
+          "gradient_norm": 78.3979721069336,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.00013408529819357496
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.02991657331585884,
+          "gradient_norm": 1.9797425270080566,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0008371738576828691
+        }
+      }
+    },
+    {
+      "label": "train/trumans/exo",
+      "timestep": 800,
+      "reference_gradient_norm": 0.11550571024417877,
+      "terms": {
+        "position": {
+          "loss": 3.834762992482865e-06,
+          "gradient_norm": 0.00024019561533350497,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.00019903474154562065
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.00017054600175470114,
+          "gradient_norm": 0.038135871291160583,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 9.553799158085627e-05
+        },
+        "acceleration": {
+          "loss": 0.004109445493668318,
+          "gradient_norm": 1.1018381118774414,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 3.0076963108788784e-05
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.0004204600991215557,
+          "gradient_norm": 0.02782413363456726,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.00018778826792015772
+        }
+      }
+    },
+    {
+      "label": "train/camera_wearer/ego",
+      "timestep": 25,
+      "reference_gradient_norm": 2.3689379692077637,
+      "terms": {
+        "position": {
+          "loss": 0.004376125521957874,
+          "gradient_norm": 0.1976432055234909,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.007985377816795997
+        },
+        "rotation": {
+          "loss": 0.017241552472114563,
+          "gradient_norm": 0.0958227589726448,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0010112417486040223
+        },
+        "velocity": {
+          "loss": 0.831183910369873,
+          "gradient_norm": 43.039581298828125,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.005257269467611237
+        },
+        "acceleration": {
+          "loss": 9.621878623962402,
+          "gradient_norm": 439.21759033203125,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.0005845823299707578
+        },
+        "angular_velocity": {
+          "loss": 5.952072620391846,
+          "gradient_norm": 25.553808212280273,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.014999999999999998
+        },
+        "body_turn_rate": {
+          "loss": 2.2495667934417725,
+          "gradient_norm": 7.842641830444336,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0025808273547107408
+        }
+      }
+    },
+    {
+      "label": "train/camera_wearer/ego",
+      "timestep": 300,
+      "reference_gradient_norm": 1.4720910787582397,
+      "terms": {
+        "position": {
+          "loss": 0.0027153948321938515,
+          "gradient_norm": 0.1226380243897438,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.00797366037764713
+        },
+        "rotation": {
+          "loss": 0.010698419064283371,
+          "gradient_norm": 0.05945822224020958,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0010097578726304874
+        },
+        "velocity": {
+          "loss": 0.5157513618469238,
+          "gradient_norm": 26.70615005493164,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.0052495550343422985
+        },
+        "acceleration": {
+          "loss": 5.970395565032959,
+          "gradient_norm": 272.5354309082031,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.0005837245212640909
+        },
+        "angular_velocity": {
+          "loss": 3.6932735443115234,
+          "gradient_norm": 15.856189727783203,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.01497798770947611
+        },
+        "body_turn_rate": {
+          "loss": 1.3958609104156494,
+          "gradient_norm": 4.866375923156738,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0025770404451924416
+        }
+      }
+    },
+    {
+      "label": "train/camera_wearer/ego",
+      "timestep": 800,
+      "reference_gradient_norm": 0.05572841688990593,
+      "terms": {
+        "position": {
+          "loss": 3.8163303543115035e-05,
+          "gradient_norm": 0.0017236064886674285,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.0029602520001997057
+        },
+        "rotation": {
+          "loss": 0.0001503600797150284,
+          "gradient_norm": 0.0008356508915312588,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.00037487647154149645
+        },
+        "velocity": {
+          "loss": 0.007248586509376764,
+          "gradient_norm": 0.37533947825431824,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.0019489173818103016
+        },
+        "acceleration": {
+          "loss": 0.08391045033931732,
+          "gradient_norm": 3.8303275108337402,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.00021670994982254146
+        },
+        "angular_velocity": {
+          "loss": 0.05190682038664818,
+          "gradient_norm": 0.22284957766532898,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.005560635478665917
+        },
+        "body_turn_rate": {
+          "loss": 0.019618015736341476,
+          "gradient_norm": 0.06839408725500107,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0009567359931551313
+        }
+      }
+    },
+    {
+      "label": "train/camera_wearer/exo",
+      "timestep": 25,
+      "reference_gradient_norm": 0.4265211224555969,
+      "terms": {
+        "position": {
+          "loss": 0.007406082469969988,
+          "gradient_norm": 0.06483229249715805,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.014548496171727359
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.08359798043966293,
+          "gradient_norm": 9.74049186706543,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.0066082464844113755
+        },
+        "acceleration": {
+          "loss": 1.568530797958374,
+          "gradient_norm": 184.5612335205078,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.0013643305014701792
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.008521816693246365,
+          "gradient_norm": 1.3909239768981934,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0025422198813973155
+        }
+      }
+    },
+    {
+      "label": "train/camera_wearer/exo",
+      "timestep": 300,
+      "reference_gradient_norm": 0.27060526609420776,
+      "terms": {
+        "position": {
+          "loss": 0.004595489706844091,
+          "gradient_norm": 0.040228575468063354,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.014228714948731255
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.051872722804546356,
+          "gradient_norm": 6.0439958572387695,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.006462994748835251
+        },
+        "acceleration": {
+          "loss": 0.9732766151428223,
+          "gradient_norm": 114.52063751220703,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.0013343420144385
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.005287804640829563,
+          "gradient_norm": 0.8630712032318115,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0024863407227156123
+        }
+      }
+    },
+    {
+      "label": "train/camera_wearer/exo",
+      "timestep": 800,
+      "reference_gradient_norm": 0.06883947551250458,
+      "terms": {
+        "position": {
+          "loss": 6.45869440631941e-05,
+          "gradient_norm": 0.0005653893458656967,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.0007860991677744334
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.000729041057638824,
+          "gradient_norm": 0.08494485914707184,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.0003570634827671607
+        },
+        "acceleration": {
+          "loss": 0.0136788384988904,
+          "gradient_norm": 1.6095212697982788,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 7.371889474052245e-05
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 7.431703124893829e-05,
+          "gradient_norm": 0.01212996430695057,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.00013736377920395024
+        }
+      }
+    },
+    {
+      "label": "train/interactee/ego",
+      "timestep": 25,
+      "reference_gradient_norm": 3.0776124000549316,
+      "terms": {
+        "position": {
+          "loss": 6.625987258868093e-11,
+          "gradient_norm": 3.3151329262182117e-05,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 1.0309896195242735e-06
+        },
+        "rotation": {
+          "loss": 0.0392635315656662,
+          "gradient_norm": 0.28296858072280884,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.002298604761906975
+        },
+        "velocity": {
+          "loss": 6.730942470056789e-09,
+          "gradient_norm": 0.004798022098839283,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 4.511222106439739e-07
+        },
+        "acceleration": {
+          "loss": 2.807699672757735e-07,
+          "gradient_norm": 0.26530176401138306,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 2.71797753184027e-07
+        },
+        "angular_velocity": {
+          "loss": 3.500375509262085,
+          "gradient_norm": 26.000930786132812,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.011748009498756979
+        },
+        "body_turn_rate": {
+          "loss": 2.2547717094421387,
+          "gradient_norm": 8.292082786560059,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0021003901205873116
+        }
+      }
+    },
+    {
+      "label": "train/interactee/ego",
+      "timestep": 300,
+      "reference_gradient_norm": 1.9114952087402344,
+      "terms": {
+        "position": {
+          "loss": 4.111438967058234e-11,
+          "gradient_norm": 2.057046913250815e-05,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 1.0300024350927301e-06
+        },
+        "rotation": {
+          "loss": 0.02436310239136219,
+          "gradient_norm": 0.17558258771896362,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0022964037120799382
+        },
+        "velocity": {
+          "loss": 4.176563983548931e-09,
+          "gradient_norm": 0.002977182622998953,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 4.5069023733611134e-07
+        },
+        "acceleration": {
+          "loss": 1.7421834286324156e-07,
+          "gradient_norm": 0.1646202951669693,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 2.71537496785884e-07
+        },
+        "angular_velocity": {
+          "loss": 2.171990394592285,
+          "gradient_norm": 16.133630752563477,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.01173675979121508
+        },
+        "body_turn_rate": {
+          "loss": 1.3990905284881592,
+          "gradient_norm": 5.145255088806152,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0020983791276442637
+        }
+      }
+    },
+    {
+      "label": "train/interactee/ego",
+      "timestep": 800,
+      "reference_gradient_norm": 0.05862422659993172,
+      "terms": {
+        "position": {
+          "loss": 5.778389377229798e-13,
+          "gradient_norm": 2.891060262300016e-07,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 4.720057473966824e-07
+        },
+        "rotation": {
+          "loss": 0.00034240930108353496,
+          "gradient_norm": 0.0024677119217813015,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.001052343060583837
+        },
+        "velocity": {
+          "loss": 5.869918440204458e-11,
+          "gradient_norm": 4.1842577047646046e-05,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 2.065319222423602e-07
+        },
+        "acceleration": {
+          "loss": 2.4485378169458727e-09,
+          "gradient_norm": 0.0023136427626013756,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 1.244339318492544e-07
+        },
+        "angular_velocity": {
+          "loss": 0.030526066198945045,
+          "gradient_norm": 0.22674883902072906,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.005378451573621324
+        },
+        "body_turn_rate": {
+          "loss": 0.019663406535983086,
+          "gradient_norm": 0.0723135694861412,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0009615966322964957
+        }
+      }
+    },
+    {
+      "label": "train/interactee/exo",
+      "timestep": 25,
+      "reference_gradient_norm": 0.14331741631031036,
+      "terms": {
+        "position": {
+          "loss": 0.0027975142002105713,
+          "gradient_norm": 0.0583048053085804,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.03893791100028909
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.0854373499751091,
+          "gradient_norm": 8.69633674621582,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.01755833243116296
+        },
+        "acceleration": {
+          "loss": 1.4873452186584473,
+          "gradient_norm": 141.47891235351562,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.0031125217147976903
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.009565859101712704,
+          "gradient_norm": 1.4802136421203613,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.008051479526072271
+        }
+      }
+    },
+    {
+      "label": "train/interactee/exo",
+      "timestep": 300,
+      "reference_gradient_norm": 0.10389047116041183,
+      "terms": {
+        "position": {
+          "loss": 0.0017358633922412992,
+          "gradient_norm": 0.03617824986577034,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.033330291112134536
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.05301405489444733,
+          "gradient_norm": 5.396095275878906,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.015029681669303395
+        },
+        "acceleration": {
+          "loss": 0.9229008555412292,
+          "gradient_norm": 87.78795623779297,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.002664273900442011
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.005935635417699814,
+          "gradient_norm": 0.9184756875038147,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.006891951452443626
+        }
+      }
+    },
+    {
+      "label": "train/interactee/exo",
+      "timestep": 800,
+      "reference_gradient_norm": 0.0665784552693367,
+      "terms": {
+        "position": {
+          "loss": 2.4396553271799348e-05,
+          "gradient_norm": 0.0005084643489681184,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.000730960757529178
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.0007450818084180355,
+          "gradient_norm": 0.07583899050951004,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.0003296132928499225
+        },
+        "acceleration": {
+          "loss": 0.012970836833119392,
+          "gradient_norm": 1.233808994293213,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 5.842972806321559e-05
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 8.342191722476855e-05,
+          "gradient_norm": 0.012908642180263996,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.00015114615673478935
+        }
+      }
+    },
+    {
+      "label": "train/rich/ego",
+      "timestep": 25,
+      "reference_gradient_norm": 4.378129959106445,
+      "terms": {
+        "position": {
+          "loss": 1.440379726602714e-08,
+          "gradient_norm": 0.0004886622191406786,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 1.068285620941812e-05
+        },
+        "rotation": {
+          "loss": 0.052285607904195786,
+          "gradient_norm": 0.32653868198394775,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0018646013539682174
+        },
+        "velocity": {
+          "loss": 9.378412642035983e-07,
+          "gradient_norm": 0.0698024109005928,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 4.613469598029524e-06
+        },
+        "acceleration": {
+          "loss": 5.947799581917934e-05,
+          "gradient_norm": 4.885469436645508,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 3.5183358987806957e-06
+        },
+        "angular_velocity": {
+          "loss": 3.3522913455963135,
+          "gradient_norm": 25.988269805908203,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.008254257916295978
+        },
+        "body_turn_rate": {
+          "loss": 4.114596843719482,
+          "gradient_norm": 7.348845481872559,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.001308521092786099
+        }
+      }
+    },
+    {
+      "label": "train/rich/ego",
+      "timestep": 300,
+      "reference_gradient_norm": 2.7208027839660645,
+      "terms": {
+        "position": {
+          "loss": 8.937585782575752e-09,
+          "gradient_norm": 0.00030321592930704355,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 1.0666506898206671e-05
+        },
+        "rotation": {
+          "loss": 0.0324433296918869,
+          "gradient_norm": 0.20261792838573456,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0018617476575275894
+        },
+        "velocity": {
+          "loss": 5.819324542244431e-07,
+          "gradient_norm": 0.04331253841519356,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 4.606408647406943e-06
+        },
+        "acceleration": {
+          "loss": 3.6906221794197336e-05,
+          "gradient_norm": 3.0314438343048096,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 3.5129511498858506e-06
+        },
+        "angular_velocity": {
+          "loss": 2.080103635787964,
+          "gradient_norm": 16.125774383544922,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.008241624676783608
+        },
+        "body_turn_rate": {
+          "loss": 2.5531158447265625,
+          "gradient_norm": 4.55997371673584,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.001306518419249809
+        }
+      }
+    },
+    {
+      "label": "train/rich/ego",
+      "timestep": 800,
+      "reference_gradient_norm": 0.12016420811414719,
+      "terms": {
+        "position": {
+          "loss": 1.2561260365195892e-10,
+          "gradient_norm": 4.2615242819010746e-06,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 3.3943537979708955e-06
+        },
+        "rotation": {
+          "loss": 0.0004559722146950662,
+          "gradient_norm": 0.0028476775623857975,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0005924554422396544
+        },
+        "velocity": {
+          "loss": 8.178723476248706e-09,
+          "gradient_norm": 0.0006087326910346746,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 1.4658765104792522e-06
+        },
+        "acceleration": {
+          "loss": 5.186955718272657e-07,
+          "gradient_norm": 0.042605187743902206,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 1.1179104153627553e-06
+        },
+        "angular_velocity": {
+          "loss": 0.02923465333878994,
+          "gradient_norm": 0.22663843631744385,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0026226947883950373
+        },
+        "body_turn_rate": {
+          "loss": 0.03588256612420082,
+          "gradient_norm": 0.06408779323101044,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.0004157674150903253
+        }
+      }
+    },
+    {
+      "label": "train/rich/exo",
+      "timestep": 25,
+      "reference_gradient_norm": 0.1225012019276619,
+      "terms": {
+        "position": {
+          "loss": 0.08848497271537781,
+          "gradient_norm": 0.12798912823200226,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.1
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.4830086827278137,
+          "gradient_norm": 12.700350761413574,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.03
+        },
+        "acceleration": {
+          "loss": 5.1434221267700195,
+          "gradient_norm": 194.26327514648438,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.005
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.024853641167283058,
+          "gradient_norm": 2.3571181297302246,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.015
+        }
+      }
+    },
+    {
+      "label": "train/rich/exo",
+      "timestep": 300,
+      "reference_gradient_norm": 0.10993777960538864,
+      "terms": {
+        "position": {
+          "loss": 0.054905109107494354,
+          "gradient_norm": 0.07941751927137375,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.0691411541155004
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.29970788955688477,
+          "gradient_norm": 7.880594253540039,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.020742346997872845
+        },
+        "acceleration": {
+          "loss": 3.1915040016174316,
+          "gradient_norm": 120.540771484375,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 0.0034570578987135315
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.015421736054122448,
+          "gradient_norm": 1.4625968933105469,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.010371174604159185
+        }
+      }
+    },
+    {
+      "label": "train/rich/exo",
+      "timestep": 800,
+      "reference_gradient_norm": 0.09988100081682205,
+      "terms": {
+        "position": {
+          "loss": 0.0007716594845987856,
+          "gradient_norm": 0.001116167171858251,
+          "coefficient": 0.09571219338693163,
+          "weighted_gradient_ratio": 0.0010695808745545621
+        },
+        "rotation": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.025,
+          "weighted_gradient_ratio": 0.0
+        },
+        "velocity": {
+          "loss": 0.004212220665067434,
+          "gradient_norm": 0.11075718700885773,
+          "coefficient": 0.00028936492596688077,
+          "weighted_gradient_ratio": 0.0003208742899752795
+        },
+        "acceleration": {
+          "loss": 0.04485474154353142,
+          "gradient_norm": 1.6941306591033936,
+          "coefficient": 3.1529686152796965e-06,
+          "weighted_gradient_ratio": 5.347904761319211e-05
+        },
+        "angular_velocity": {
+          "loss": 0.0,
+          "gradient_norm": 0.0,
+          "coefficient": 0.001390558669100444,
+          "weighted_gradient_ratio": 0.0
+        },
+        "body_turn_rate": {
+          "loss": 0.000216743559576571,
+          "gradient_norm": 0.020555950701236725,
+          "coefficient": 0.0007795612810993206,
+          "weighted_gradient_ratio": 0.00016043715152853872
+        }
+      }
+    }
+  ],
+  "geometry_coefficients_status": "conservative initial values; finite-gradient check, not efficacy calibration"
+}

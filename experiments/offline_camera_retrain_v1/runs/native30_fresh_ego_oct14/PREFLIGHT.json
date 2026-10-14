@@ -1,0 +1,173 @@
+{
+  "status": "passed_for_bounded_ego_training",
+  "checked_at": "2026-10-14T21:12:48.560365+08:00",
+  "config": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_fresh_ego_config.json",
+  "config_sha256": "849bb175113169ddd0566f7d1efb9676d87d8513cfd46de8970197229fd3cb4e",
+  "optimizer_steps_before_launch": 0,
+  "initial_model_sha256": "9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69",
+  "source_files_verified": 20341,
+  "recording_split_overlap": {
+    "train/validation": [],
+    "train/test": [],
+    "validation/test": []
+  },
+  "native30_regression_tests": 105,
+  "model_input_checks": {
+    "fixed_validation_plan": {
+      "cases": 12,
+      "clean_noisy_evaluations": 24,
+      "split": "validation",
+      "test_tuning": false
+    },
+    "post_anchor_common_world_yaw": {
+      "angle_rad": 0.6,
+      "maximum_joint_error_m": 3.888548132380265e-07
+    },
+    "predicted_proposal_query_coverage": [
+      {
+        "label": "train/trumans/ego",
+        "known_anchor_fraction": 0.9894278645515442,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/trumans/exo",
+        "known_anchor_fraction": 0.9932368993759155,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/camera_wearer/ego",
+        "known_anchor_fraction": 0.0,
+        "known_region_fraction": 0.9997633099555969,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/camera_wearer/exo",
+        "known_anchor_fraction": 0.4253731369972229,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/interactee/ego",
+        "known_anchor_fraction": 0.17296330630779266,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/interactee/exo",
+        "known_anchor_fraction": 0.6677549481391907,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/rich/ego",
+        "known_anchor_fraction": 0.3404073417186737,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/rich/exo",
+        "known_anchor_fraction": 0.7871579527854919,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      }
+    ],
+    "full_objective_backward": {
+      "batch_size": 2,
+      "frames": 192,
+      "finite": true,
+      "optimizer_steps": 0,
+      "loss": 3.2501494884490967,
+      "root_feedback_gradient_norm": 0.0005526368040591478,
+      "rotation_feedback_gradient_norm": 0.01114838756620884,
+      "peak_cuda_gib": 2.597228527069092,
+      "condition_gradient_norms": {
+        "observation_encoder.0.weight": 0.007134618703275919,
+        "camera_encoder.0.weight": 0.013509584590792656,
+        "patch_projection.weight": 0.03413572534918785,
+        "dynamic_condition.weight": 0.0009250889997929335,
+        "patch_condition.weight": 0.12472318112850189,
+        "surface_embedding.0.weight": 0.001792281400412321,
+        "region_condition.weight": 0.006533946841955185,
+        "contact_pose.0.weight": 0.0100224819034338
+      },
+      "zero_initialized_feedback_upstream_gradients": "temporal/contact path initially waits for zero residual heads to learn"
+    },
+    "frozen_no_body_truth_loader": {
+      "passed": true,
+      "cases": [
+        "train/trumans/exo",
+        "train/camera_wearer/exo",
+        "train/interactee/exo",
+        "train/rich/exo",
+        "validation/trumans/exo",
+        "validation/camera_wearer/exo",
+        "validation/interactee/exo",
+        "validation/rich/exo"
+      ]
+    },
+    "frozen_self_camera_head_without_body_truth": true,
+    "hidden_truth_poison": true,
+    "zero_confidence_poison_all_paths": true,
+    "position_rotation_feedback": {
+      "test_parameters_only": true,
+      "root_delta_max_m": 0.019395897164940834,
+      "joint_position_change_max_m": 0.14106178283691406,
+      "bone_length_error_max_m": 1.9371509552001953e-07,
+      "fk_branch_error_max_m": 0.0,
+      "geometry": "controlled observed plane at untrained predicted feet; no GT body query",
+      "real_motion_quality_claim": false
+    },
+    "contact_gate_controls_position_feedback": true,
+    "scene_condition_reaches_output": {
+      "maximum_difference": 0.011137226596474648,
+      "quality_claim": false
+    },
+    "patch_condition_reaches_output": {
+      "maximum_difference": 0.01157761737704277,
+      "quality_claim": false
+    },
+    "local_condition_reaches_output": {
+      "maximum_difference": 0.0009926706552505493,
+      "geometry": "controlled observed plane",
+      "quality_claim": false
+    },
+    "full_window_ddim_smoke": {
+      "frames": 192,
+      "steps": 2,
+      "core_forwards": 4,
+      "finite": true,
+      "quality_claim": false,
+      "normal_evaluation_steps": 20,
+      "static_tokens_reused": true
+    }
+  },
+  "trainable_parameters": 122667536,
+  "sampling_audit": {
+    "draws": 20000,
+    "counts": {
+      "trumans/ego": 12546,
+      "camera_wearer/ego": 2777,
+      "interactee/ego": 2599,
+      "rich/ego": 2078
+    },
+    "unique_windows": 15010,
+    "unique_group_recordings": 653,
+    "eligible_ego_windows": 18096,
+    "training_pool": "all eligible official TRAIN ego windows; recording cycles, not a complete-window epoch"
+  },
+  "runtime_decision": "B2/4 threads retained: fixed-panel B4 per-sample gain about 9%, only two repeats and changes effective batch; CPU predicted-geometry query remains main bottleneck; no global fastest claim",
+  "paper_quality_status": "not yet established; exo-noisy scene benefit, matched mixed-training control, frontend/final full evaluation remain open",
+  "disk_free_before": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1": 43730743296,
+    "/mnt/e": 233527312384
+  },
+  "evidence": [
+    "SOURCE_AUDIT.json",
+    "FRESH_BACKBONE_BENCHMARK.json",
+    "regression.log",
+    "prepared/input_checks.json",
+    "prepared/effective_config.json"
+  ]
+}

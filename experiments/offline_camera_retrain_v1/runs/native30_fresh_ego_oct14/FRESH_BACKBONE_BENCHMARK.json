@@ -1,0 +1,495 @@
+{
+  "status": "passed",
+  "optimizer_steps": 0,
+  "initialization": "from_scratch",
+  "initial_model_sha256": "9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69",
+  "config_sha256": "849bb175113169ddd0566f7d1efb9676d87d8513cfd46de8970197229fd3cb4e",
+  "model_parameters": 122667536,
+  "all_parameters_trainable": true,
+  "scope": "One predefined TRAIN head-only B2 (TRUMANS + EgoBody); B4 duplicates this pair only to measure memory/throughput. Fixed t300; FP32, all scene/IK/physics settings unchanged. Timings exclude optimizer, checkpoint and validation; not a full-pool mean.",
+  "rows": [
+    {
+      "batch_size": 2,
+      "threads": 4,
+      "repeat": 0,
+      "forward_s": 2.1128519260000758,
+      "loss_backward_s": 0.2859098660001109,
+      "total_s": 2.3987617920001867,
+      "seconds_per_sample": 1.1993808960000933,
+      "loss": 0.7896125316619873,
+      "finite": true,
+      "peak_cuda_GiB": 3.512968063354492,
+      "physical_accepted": 2.0
+    },
+    {
+      "batch_size": 2,
+      "threads": 4,
+      "repeat": 1,
+      "forward_s": 2.210260240000025,
+      "loss_backward_s": 0.2954822499996226,
+      "total_s": 2.5057424899996477,
+      "seconds_per_sample": 1.2528712449998238,
+      "loss": 0.7896125316619873,
+      "finite": true,
+      "peak_cuda_GiB": 3.512968063354492,
+      "physical_accepted": 2.0
+    },
+    {
+      "batch_size": 2,
+      "threads": 2,
+      "repeat": 0,
+      "forward_s": 2.1144179960001566,
+      "loss_backward_s": 0.2781343710003057,
+      "total_s": 2.3925523670004623,
+      "seconds_per_sample": 1.1962761835002311,
+      "loss": 0.7896125316619873,
+      "finite": true,
+      "peak_cuda_GiB": 3.512968063354492,
+      "physical_accepted": 2.0
+    },
+    {
+      "batch_size": 2,
+      "threads": 2,
+      "repeat": 1,
+      "forward_s": 2.0595824080000966,
+      "loss_backward_s": 0.33586126299996977,
+      "total_s": 2.3954436710000664,
+      "seconds_per_sample": 1.1977218355000332,
+      "loss": 0.7896125316619873,
+      "finite": true,
+      "peak_cuda_GiB": 3.512968063354492,
+      "physical_accepted": 2.0
+    },
+    {
+      "batch_size": 2,
+      "threads": 1,
+      "repeat": 0,
+      "forward_s": 2.1638038680002865,
+      "loss_backward_s": 0.32966936600041663,
+      "total_s": 2.493473234000703,
+      "seconds_per_sample": 1.2467366170003515,
+      "loss": 0.7896125316619873,
+      "finite": true,
+      "peak_cuda_GiB": 3.512968063354492,
+      "physical_accepted": 2.0
+    },
+    {
+      "batch_size": 2,
+      "threads": 1,
+      "repeat": 1,
+      "forward_s": 2.0763988789994983,
+      "loss_backward_s": 0.43116747500062047,
+      "total_s": 2.5075663540001187,
+      "seconds_per_sample": 1.2537831770000594,
+      "loss": 0.7896125316619873,
+      "finite": true,
+      "peak_cuda_GiB": 3.512968063354492,
+      "physical_accepted": 2.0
+    },
+    {
+      "batch_size": 4,
+      "threads": 4,
+      "repeat": 0,
+      "forward_s": 4.153483994999988,
+      "loss_backward_s": 0.5231486860002406,
+      "total_s": 4.676632681000228,
+      "seconds_per_sample": 1.169158170250057,
+      "loss": 0.765971302986145,
+      "finite": true,
+      "peak_cuda_GiB": 4.423903465270996,
+      "physical_accepted": 4.0
+    },
+    {
+      "batch_size": 4,
+      "threads": 4,
+      "repeat": 1,
+      "forward_s": 3.9294049350000932,
+      "loss_backward_s": 0.3632300810004381,
+      "total_s": 4.292635016000531,
+      "seconds_per_sample": 1.0731587540001328,
+      "loss": 0.765971302986145,
+      "finite": true,
+      "peak_cuda_GiB": 4.423903465270996,
+      "physical_accepted": 4.0
+    }
+  ],
+  "phase_sampling_audit": {
+    "draws": 20000,
+    "counts": {
+      "trumans/ego": 12546,
+      "camera_wearer/ego": 2777,
+      "interactee/ego": 2599,
+      "rich/ego": 2078
+    },
+    "unique_windows": 15010,
+    "unique_group_recordings": 653,
+    "eligible_ego_windows": 18096,
+    "training_pool": "all eligible official TRAIN ego windows; recording cycles, not a complete-window epoch"
+  },
+  "identities": [
+    {
+      "group": "trumans",
+      "sequence_id": "2023-01-14@22-06-10",
+      "start": 0,
+      "mode": "ego"
+    },
+    {
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+      "start": 0,
+      "mode": "ego"
+    }
+  ],
+  "parameters_without_gradient_in_probe": {},
+  "warmup": {
+    "batch_size": 2,
+    "threads": 4,
+    "repeat": -1,
+    "forward_s": 2.6028265249997276,
+    "loss_backward_s": 0.5569399739997607,
+    "total_s": 3.1597664989994882,
+    "seconds_per_sample": 1.5798832494997441,
+    "loss": 0.7896125316619873,
+    "finite": true,
+    "peak_cuda_GiB": 3.513185501098633,
+    "physical_accepted": 2.0
+  },
+  "profile_top_cumulative": [
+    {
+      "file": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/torch/nn/modules/module.py",
+      "line": 1769,
+      "function": "_wrapped_call_impl",
+      "calls": 771,
+      "own_s": 0.000499318,
+      "cumulative_s": 2.0978524050000003
+    },
+    {
+      "file": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/torch/nn/modules/module.py",
+      "line": 1777,
+      "function": "_call_impl",
+      "calls": 771,
+      "own_s": 0.001005519,
+      "cumulative_s": 2.097848779
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_scene_relations.py",
+      "line": 135,
+      "function": "forward",
+      "calls": 1,
+      "own_s": 0.00042860800000000003,
+      "cumulative_s": 2.097839225
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "line": 175,
+      "function": "query_surfaces_cuda",
+      "calls": 4,
+      "own_s": 0.36001239,
+      "cumulative_s": 1.198858025
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_physical_guidance.py",
+      "line": 96,
+      "function": "guide_motion",
+      "calls": 1,
+      "own_s": 0.0038922350000000004,
+      "cumulative_s": 1.0717609190000001
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py",
+      "line": 238,
+      "function": "forward",
+      "calls": 1,
+      "own_s": 0.000519772,
+      "cumulative_s": 1.025648372
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_scene_relations.py",
+      "line": 91,
+      "function": "local_geometry",
+      "calls": 1,
+      "own_s": 0.00135571,
+      "cumulative_s": 0.817917455
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py",
+      "line": 193,
+      "function": "local_geometry",
+      "calls": 1,
+      "own_s": 0.0016037520000000002,
+      "cumulative_s": 0.7248142350000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'query_ball_point' of 'scipy.spatial._ckdtree.cKDTree' objects>",
+      "calls": 1640,
+      "own_s": 0.676156708,
+      "cumulative_s": 0.6774722710000001
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_overnight.py",
+      "line": 159,
+      "function": "query_motion",
+      "calls": 2,
+      "own_s": 0.014811468000000001,
+      "cumulative_s": 0.6708419120000001
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_geometry.py",
+      "line": 106,
+      "function": "query_motion",
+      "calls": 2,
+      "own_s": 0.0022781140000000004,
+      "cumulative_s": 0.656030444
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_physical_guidance.py",
+      "line": 28,
+      "function": "prepare_evidence",
+      "calls": 2,
+      "own_s": 0.0026718180000000003,
+      "cumulative_s": 0.5897843100000001
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_overnight.py",
+      "line": 164,
+      "function": "query_wide_motion",
+      "calls": 2,
+      "own_s": 0.015233878000000001,
+      "cumulative_s": 0.5629088050000001
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_geometry.py",
+      "line": 111,
+      "function": "query_wide_motion",
+      "calls": 2,
+      "own_s": 0.0025692320000000003,
+      "cumulative_s": 0.5476749270000001
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py",
+      "line": 196,
+      "function": "constrain_motion",
+      "calls": 7,
+      "own_s": 0.000528776,
+      "cumulative_s": 0.48587250400000004
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observation_ik.py",
+      "line": 14,
+      "function": "position_proximal",
+      "calls": 7,
+      "own_s": 0.033561533000000005,
+      "cumulative_s": 0.40737087400000005
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py",
+      "line": 18,
+      "function": "reconcile_motion",
+      "calls": 67,
+      "own_s": 0.018825764000000002,
+      "cumulative_s": 0.264017467
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/supervision.py",
+      "line": 24,
+      "function": "forward_kinematics",
+      "calls": 137,
+      "own_s": 0.210398425,
+      "cumulative_s": 0.25770997100000004
+    },
+    {
+      "file": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/torch/autograd/graph.py",
+      "line": 820,
+      "function": "_engine_run_backward",
+      "calls": 3,
+      "own_s": 2.2278000000000003e-05,
+      "cumulative_s": 0.24944578
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'run_backward' of 'torch._C._EngineBase' objects>",
+      "calls": 3,
+      "own_s": 0.24941537900000002,
+      "cumulative_s": 0.24941537900000002
+    }
+  ],
+  "profile_top_own": [
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'query_ball_point' of 'scipy.spatial._ckdtree.cKDTree' objects>",
+      "calls": 1640,
+      "own_s": 0.676156708,
+      "cumulative_s": 0.6774722710000001
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "line": 175,
+      "function": "query_surfaces_cuda",
+      "calls": 4,
+      "own_s": 0.36001239,
+      "cumulative_s": 1.198858025
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'run_backward' of 'torch._C._EngineBase' objects>",
+      "calls": 3,
+      "own_s": 0.24941537900000002,
+      "cumulative_s": 0.24941537900000002
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/supervision.py",
+      "line": 24,
+      "function": "forward_kinematics",
+      "calls": 137,
+      "own_s": 0.210398425,
+      "cumulative_s": 0.25770997100000004
+    },
+    {
+      "file": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/pytorch3d/transforms/rotation_conversions.py",
+      "line": 498,
+      "function": "axis_angle_to_quaternion",
+      "calls": 58,
+      "own_s": 0.057701478,
+      "cumulative_s": 0.06381938300000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._C._linalg.linalg_solve>",
+      "calls": 42,
+      "own_s": 0.053649838000000005,
+      "cumulative_s": 0.053649838000000005
+    },
+    {
+      "file": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/smplx/lbs.py",
+      "line": 345,
+      "function": "batch_rigid_transform",
+      "calls": 14,
+      "own_s": 0.045662138000000005,
+      "cumulative_s": 0.060328347000000004
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.as_tensor>",
+      "calls": 274,
+      "own_s": 0.04398697,
+      "cumulative_s": 0.04398697
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'query' of 'scipy.spatial._ckdtree.cKDTree' objects>",
+      "calls": 388,
+      "own_s": 0.039645662000000005,
+      "cumulative_s": 0.043588922
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "line": 147,
+      "function": "select_radius_samples_cuda",
+      "calls": 51,
+      "own_s": 0.034299463,
+      "cumulative_s": 0.10763138500000001
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observation_ik.py",
+      "line": 14,
+      "function": "position_proximal",
+      "calls": 7,
+      "own_s": 0.033561533000000005,
+      "cumulative_s": 0.40737087400000005
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.stack>",
+      "calls": 785,
+      "own_s": 0.026388372,
+      "cumulative_s": 0.026388372
+    },
+    {
+      "file": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/pytorch3d/transforms/rotation_conversions.py",
+      "line": 43,
+      "function": "quaternion_to_matrix",
+      "calls": 58,
+      "own_s": 0.025658628000000003,
+      "cumulative_s": 0.033679431
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "line": 223,
+      "function": "<listcomp>",
+      "calls": 102912,
+      "own_s": 0.023802994,
+      "cumulative_s": 0.023802994
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/orientation_supervision.py",
+      "line": 5,
+      "function": "global_rotations",
+      "calls": 65,
+      "own_s": 0.023593725000000003,
+      "cumulative_s": 0.042648915
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py",
+      "line": 18,
+      "function": "reconcile_motion",
+      "calls": 67,
+      "own_s": 0.018825764000000002,
+      "cumulative_s": 0.264017467
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py",
+      "line": 227,
+      "function": "<listcomp>",
+      "calls": 2,
+      "own_s": 0.016812092,
+      "cumulative_s": 0.018191306
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'new_tensor' of 'torch._C.TensorBase' objects>",
+      "calls": 381,
+      "own_s": 0.016661758000000002,
+      "cumulative_s": 0.016661758000000002
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_scene_relations.py",
+      "line": 17,
+      "function": "relation_query",
+      "calls": 4,
+      "own_s": 0.015719672,
+      "cumulative_s": 0.0776573
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "line": 154,
+      "function": "squared",
+      "calls": 380,
+      "own_s": 0.015686394,
+      "cumulative_s": 0.015686394
+    }
+  ],
+  "profile_probe": {
+    "batch_size": 2,
+    "threads": 4,
+    "repeat": 99,
+    "forward_s": 2.0979329490000964,
+    "loss_backward_s": 0.308412264999788,
+    "total_s": 2.4063452139998844,
+    "seconds_per_sample": 1.2031726069999422,
+    "loss": 0.7896125316619873,
+    "finite": true,
+    "peak_cuda_GiB": 3.512968063354492,
+    "physical_accepted": 2.0
+  },
+  "parameters_unchanged": true
+}

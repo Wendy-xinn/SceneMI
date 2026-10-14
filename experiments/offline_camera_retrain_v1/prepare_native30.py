@@ -50,6 +50,8 @@ def read_config(path=CONFIG_PATH):
     from experiments.offline_camera_retrain_v1.unified_losses import SCALES
     if config['fps']!=30 or config['frames']!=192 or config['initialization'] not in ('from_scratch','official30_warm_start'):
         raise ValueError('Expected fresh native30 /192 frame configuration')
+    if config['initialization']=='from_scratch' and 'warm_start' in config:
+        raise ValueError('Fresh training must not declare a warm-start checkpoint')
     if config['shared_output_initialization']!='normal_std_0.001_bias_zero' or config['anchor_protocol']!='native_body_dominant_only_67_low_foot_v1':
         raise ValueError('Shared output/anchor initialization differs from implementation')
     if set(config['observation']['scales'])!=set(SCALES) or any(not np.isfinite(v) or v<=0 for v in config['observation']['scales'].values()):
@@ -215,7 +217,8 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
     data=Native30Data(manifest,'train',config['seed'],diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'),**window_options(config,full_data))
     validation=Native30Data(manifest,'validation',config['seed']+1,diagnostic=not full_data,frames=config['frames'],memory_protocol=memory_protocol,quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'),**window_options(config,full_data))
     from experiments.offline_camera_retrain_v1.native30_validation import fixed_plan
-    validation_plan=fixed_plan(validation,config['validation'])
+    from experiments.offline_camera_retrain_v1.native30_validation import monitoring_plan
+    validation_plan=monitoring_plan(validation,config,1)
     write_json(folder/'validation_plan.json',dict(seed=config['validation']['seed'],plan=validation_plan,
         GT_metrics_unweighted=True,regimes=config['validation']['regimes'],
         ddim_steps=config['sampling']['ddim_steps'],optimizer_steps=0,evaluation_run=False))

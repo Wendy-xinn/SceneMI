@@ -1,0 +1,45 @@
+{
+  "status": "verified_real_fresh_update",
+  "verified_at": "2026-10-14T21:22:19.562156+08:00",
+  "pid": 961455,
+  "checkpoint_step": 1,
+  "planned_steps": 10000,
+  "initialization": {
+    "type": "from_scratch",
+    "seed": 2026101267,
+    "source_checkpoint": null,
+    "optimizer_reset": true,
+    "all_model_parameters_trainable": true,
+    "initial_model_sha256": "9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69",
+    "optimizer_state_entries": 0
+  },
+  "trained_model_sha256": "81e8dbb54dd65c32b5ac4b2cff43d4bcc58656eef66d6e4064ffdd719c211516",
+  "checkpoint_bytes": 1477836264,
+  "optimizer_entries": 315,
+  "optimizer_steps": [
+    1
+  ],
+  "counts": {
+    "trumans/ego": 1,
+    "camera_wearer/ego": 1
+  },
+  "first_update": {
+    "step": 1,
+    "loss": 1.056879997253418,
+    "gradient_norm": 5326.6357421875,
+    "lr": 1.9999999506519785e-07,
+    "preparation_s": 3.3450058399994305,
+    "compute_s": 4.952970759000891,
+    "update_s": 8.299464648998764,
+    "support_cache_hits": 2,
+    "support_cache_misses": 0
+  },
+  "disk_free_after": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14": 41732481024,
+    "/mnt/e": 225477394432
+  },
+  "next_action": "First fixed/rotating DDIM20 validation; training continues afterward. Exo is not automatically launched.",
+  "all_saved_weights_finite": true,
+  "first_update_post_clip_gradient_norm": 0.9999999815110304,
+  "initial_gradient_note": "Pre-clip norm 5326.64; clipped to 1 and finite saved parameters. Prior from-scratch pilot first norms 7793.67/21559.88; early large gradients are not a new overflow, but continued optimization stability/validation must still be monitored."
+}

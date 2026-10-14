@@ -116,6 +116,8 @@ class ExportRecoveryTests(unittest.TestCase):
         self.assertEqual(read.call_args_list[1].kwargs,dict(refresh=True))
 
     def test_persistent_hash_mismatch_remains_a_failure(self):
+        # The independent buffered fallback also needs real, mismatching bytes.
+        (self.root/'array.npy').write_bytes(b'wrong source bytes')
         with patch('experiments.offline_camera_retrain_v1.native30_cache_io.mapped_sha256',
                    return_value='wrong') as read,self.assertRaisesRegex(ValueError,'Cache SHA256 mismatch'):
             verified_sha256(self.root/'array.npy','expected')

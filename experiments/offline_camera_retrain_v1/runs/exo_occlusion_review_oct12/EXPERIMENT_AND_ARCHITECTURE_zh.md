@@ -1,6 +1,6 @@
 # Ego/exo 模型与实验唯一总清单
 
-更新：2026-10-14。**三语料小集7:3混训累计4200步；本轮新增200步及全部独立VAL对照于15:50结束，场景门槛未通过，未启动完整训练集训练。当前指标见4.5，加速一致性见4.6，完整主干计时与一个月工作优先级见4.7。后续ego已按用户要求统一head-only；新录制轮换采样／固定＋轮换VAL入口已实现，实际6000次抽样与84项回归通过，尚无v5训练更新；分项瓶颈与训练模式决策见4.8。以后只维护这一份总清单。** 500步失败结果及旧报告保留为证据，不覆盖历史配置。
+更新：2026-10-14。**按用户最新要求，已停止从4200步初始化的v6 ego训练（trace完成394步，定期last.pt保存300步）；保留历史模型与记录。新v7随机初始化／空Adam／全官方TRAIN ego池／head-only的数据、模型与吞吐验收已通过；独立训练进程961455已完成首个真实optimizer更新及可恢复last.pt，随机初始参数与空Adam来源已核验；首次DDIM20固定＋轮换VAL进行中。当前状态与论文评估边界见4.10。** 原小集7:3累计4200步的场景收益门槛未通过，不作为新模型初始化。
 
 历史500步基线：E盘30Hz缓存及重新挂载后的完整审计已通过；原始发布量、选定范围和未接入部分见3.1。历史短训使用[500步短训配置](../../native30_short500_config.json)。首轮原始exo观测最多连续18帧完全无关节输入，保留关节局部遮挡；原始缓存、整段静态记忆和六例压力可视化保留。71项旧回归通过。**500/500步及第1/250/500步固定验证已完成，进程正常退出；最终可恢复last.pt已核验。这个基线的训练链路通过，生成效果未通过。** 原55k/3k模型保留。证据：[SHORT500_PROGRESS.json](../native30_short500_oct13/SHORT500_PROGRESS.json)、[CHECKPOINT_AUDIT.json](../native30_short500_oct13/training/CHECKPOINT_AUDIT.json)、[500步mesh对比](../native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)。
 
@@ -28,10 +28,10 @@
 |E6|一个月期限／论文主表与真实前端|**完整主干零更新吞吐已测；正式基线对比及真实前端未完成**|当前16窗VAL不是SOTA主表；exo模拟GT可见轨迹不能与直接视频输入方法作数值排名。优先ego全身／pelvis恢复、exo noisy场景负收益；开始真实前端缓存及统一评估协议。周期监控与末期完整benchmark分别安排，见4.7。|
 |E7|三数据集／录制／窗口均衡采样|**正式与pilot共用采样器；全TRAIN索引6000次抽样通过**|保留已有每模式三语料平方根窗口配额；每10槽精确7:3、随机打散；同组／模式recording无放回轮换，跨模式／角色最近8条录制避重复，窗口无放回且优先避近期同人体重叠；小池不足显式记录fallback。可精确恢复全部队列／RNG。见4.8。|
 |E8|head-only与轮换验证|**已在v6正式ego段实际运行**|ego全部head-only、腕扰动关闭；6固定／6轮换、分模式／clean-noisy／面板按关节数量加权汇总；首次监控已完成。轮换计划按step/seed重建，不改变TRAIN RNG。不同轮换子集不能直接当同一指标曲线。官方最终VAL/TEST范围不变。|
-|E9|ego/exo训练方式与负迁移对照|**ego首段已启动；exo-only及7:3匹配对照待跑**|相同官方30Hz初始化、记录、输入、场景／loss／DDIM，匹配每模式样本／更新预算，比较ego-only、exo-only、7:3混训；旧55k不作正式初始化。先恢复ego，再适配exo低置信度残差，最后低学习率联训；共享输出暂保留，不以旧55k或一个失败批次宣称混训负迁移。|
-|E10|弱标签预计算与正式ego段|**加速／完整源校验通过；正式ego段已更新并保存checkpoint，缓存继续生成**|弱标签、固定窗口几何和静态地图分别复用；原始数据保留E盘。DrvFS mmap／缓冲读取不一致已绕开，一处点云恢复原SHA。新ego段使用官方30Hz 4200步权重、全ego池、head-only、全部主干更新，预算2000步；第1步真实更新已完成、last.pt已保存，标签缓存2命中／0未命中；不自动扩为7:3混训。见4.9。|
+|E9|ego/exo训练方式与负迁移对照|**v6 warm-start已停；v7从零已完成首个真实更新**|新v7不加载4200或55k，先学ego全身恢复，再做含ego回放的exo适配，最后低学习率联训。最终与相同随机初始化、观测／场景／loss／DDIM及匹配每模式样本预算的混训对照；本项目未证明混训负迁移。见4.10。|
+|E10|弱标签预计算与正式ego段|**v6已停；v7从零首步与last.pt已核验**|缓存不含学习得到的模型权重，可用于从零模型；原始E盘来源保留。v6实际394更新、最近保存300，不再继续。v7数据／代码／随机初始参数分别封存，不复用v6优化器。见4.9历史及4.10当前。|
 
-**当前固定顺序：工程缓存与全源校验通过后，先执行Q50的2000步官方ego全训练池段，监控固定VAL趋势；E4的exo noisy负收益与接触意图定位继续保留，验收后再做三语料7:3匹配联训。** 旧500步不续训；新1000步只是小集诊断，不是全量模型。TRUMANS exo仍是合成观察增广，连续完全缺失限制18帧，长缺失／多假设补全后置。真实视频前端及强基线比较现归E6同步推进；未知体型、真实动态估计、独立输出头继续后置。
+**当前固定顺序（取代4.9旧启动方案）：先完成v7从零配置的工程／输入／完整反传验收，再执行10000步有界ego阶段，每1000步固定＋轮换VAL；exo适配须先检查带噪场景负收益，并在适配时保留ego回放，最后低学习率联合。** 不自动启动exo或无上限长训。历史4200和55k保留，但都不初始化新v7；TEST不用于选配置。
 
 ## 1.1 已讨论问题与处理记录
 
@@ -929,3 +929,41 @@ exo目前不是所有条件都无场景收益：clean未输入部位74.98mm优�
 源读取处理：一次DrvFS mmap错误而缓冲SHA正确；另一个持续错误点云以原始数据重渲染恢复到原发布SHA，随后全TRAIN／VAL 20,341文件校验0异常。正式源／预计算结果仍放E盘；被读取的原始数组先通过原SHA验证、写入Linux内容寻址读缓存，再mmap，绕开DrvFS映射不一致。Linux读副本为可重建工作缓存，并保留至少10GiB盘空间；E缓存生成保留至少20GiB空闲。未用于任何optimizer的新旧运行缓存约9.97GiB已作废删除，原始source／body model／旧55k及30Hz候选checkpoint都保留。
 
 证据：[缓存与yaw／局部求解检查](../native30_runtime_oct14/CACHE_ACCELERATION_AUDIT.json)、[完整主干检查／分项计时](../native30_runtime_oct14/CACHED_FULL_BACKBONE.json)、[全源校验](../native30_runtime_oct14/BUFFERED_FULL_SOURCE_AUDIT.json)、[E读路径核验](../native30_runtime_oct14/DRVFS_READ_AUDIT.json)、[原SHA重建恢复](../native30_runtime_oct14/repair_staging/2023-02-17@23-11-46_REPAIRED.json)、[缓存作废与清理](../native30_runtime_oct14/INVALIDATED_RUNTIME_CACHE.json)。
+
+
+## 4.10 10月14日晚：停止4200续训，切换随机初始化ego阶段
+
+用户明确要求模型从零训练，并在启动前检查数据、结构和速度。v6训练进程组1572531已停止，trace最后完整更新394、last.pt实际300，不能把二者混写。配置／模型／优化器／固定VAL保留在原运行目录，launcher及protocol已标记stopped_by_user。两个独立CPU预计算worker只生成可复用TRAIN几何／弱标签，不更新模型，继续生产缓存。
+
+新入口：[native30_fresh_ego_config.json](../../native30_fresh_ego_config.json)，独立目录[runs/native30_fresh_ego_oct14](../native30_fresh_ego_oct14)。`initialization=from_scratch`且删除warm_start字段，训练器对从零配置携带warm_start直接报错；启动时记录随机初始model SHA256、seed、空Adam状态与全部参数可训练标记。初始参数指纹、optimizer／sampler／Torch／CUDA／NumPy RNG随唯一原子last.pt保存；收到SIGTERM／SIGINT在当前更新完成后保存退出。恢复训练保留最初来源记录。
+
+|项目|v7方案／验收口径|
+|---|---|
+|训练阶段|全官方TRAIN ego池，head-only、无腕输入；192帧@30Hz，stride64，B2，FP32，共享主干全部更新。10000步＝20000个样本槽，不等于完整遍历每个窗。|
+|学习率|从零起点采用此前v2随机初始化使用的峰值1e-4，warmup500、AdamW weight_decay0.01、clip1、cosine下限0.2；不沿用v6续训峰值1e-5。系数为训练选择，未宣称总体最优。|
+|数值与隔离|新配置重新执行完整数据准备、三语料两模式输入、GT／FK、共同yaw、frozen无真值加载、NaN poison与完整主干反传；观测监督系数仅由TRAIN梯度面板重新标定。|
+|重复工作|复用同源静态map、canonical窗口几何及GT弱标签；预测人体位置相关局部查询、FK／IK／物理求解仍随预测变化执行。ViT在一次forward的proposal／final之间共享，DDIM只在同次采样内共享静态token。不能把必要的预测查询称作固定几何冗余。|
+|速度检验|新随机模型零更新比较CPU线程与B2/B4吞吐／显存，精度、FPS、窗口、三半径8邻居、IK6次、物理2次与DDIM20均不减；报告有限面板最快值，不能证明全局最优。|
+|回归|完整native30测试集105项通过；修正3处旧fixture遗漏文件hash／真实buffered读取文件，不削弱生产校验。准备阶段validation_plan改用实际fixed＋rotating/head-only计划，避免备份配置显示旧腕面板。|
+|数据与空间|重新核对所有split的recording身份，原始字节只查TRAIN／VAL的20341数组，不跑TEST指标。ego所需源内容去重约11.15GiB，Linux已校验读镜像基本齐全，预计新增不足0.02GiB；保持Linux≥10GiB／E≥20GiB下限。|
+|周期监控|每1000步6固定＋6轮换官方VAL，clean/noisy分别统计；首次／每5000步固定面板同seed scene-OFF，保留DDIM20。固定趋势用于判断ego阶段，轮换面板不能当同一批样本曲线。|
+
+训练门槛已通过，实际首步更新与独立核验见本节结尾。数据与数值正确不等于效果已达标；10000步是本次第一段有界预算，不是论文最终收敛步数。
+
+训练路线选择为**从零ego → 含ego回放的exo适配 → 低学习率联合**。这是根据现有exo noisy场景负收益和ego欠约束恢复需求作出的工程选择。不能据此宣称该路线优于从头7:3混训；任务梯度可能冲突有一般研究依据（[PCGrad原论文](https://arxiv.org/abs/2001.06782)），但本项目尚无梯度冲突测量或匹配预算结论。不启动未经诊断的纯exo长阶段，以免覆盖ego能力。
+
+论文最终验收必须补：同随机初始化与匹配每模式样本／总计算预算的分阶段和混训对照；全官方VAL／独立TEST的固定协议（测试不参与选择）；分数据集、模式、clean/noisy与遮挡分层的世界系全身／缺失部位／pelvis／朝向／足滑／接触；正确／关闭／错配场景和学习反馈／物理引导消融。16窗监控不替代主表，GT可见轨迹模拟、给定体型与理想可见场景应明确标注；真实视频前端尚未接入，不能与直接视频输入方法不对齐协议排名。现有exo noisy负收益、宽场景relation作为反馈许可的设计仍是待定位问题。
+
+
+v7启动前门槛已通过：[PREFLIGHT.json](../native30_fresh_ego_oct14/PREFLIGHT.json)。[SOURCE_AUDIT.json](../native30_fresh_ego_oct14/SOURCE_AUDIT.json)重新核对20341/20341个TRAIN／VAL数组，0异常，train／validation／test两两recording交集为空；完整新配置[input_checks.json](../native30_fresh_ego_oct14/prepared/input_checks.json)为passed／training_ready=true，优化器更新0。GT屏蔽、frozen无真值入口、坐标／骨长一致性和完整主干梯度均通过；观测系数重新由TRAIN面板标定。105项native30回归通过（[日志](../native30_fresh_ego_oct14/regression.log)）。
+
+[FRESH_BACKBONE_BENCHMARK.json](../native30_fresh_ego_oct14/FRESH_BACKBONE_BENCHMARK.json)用全新随机模型、驻留两个FP32 Adam等量moment、完整前向／loss／backward，所有参数均有梯度张量。B2／4线程两次2.399／2.506秒，B2／2线程2.393／2.395秒，B2／1线程2.493／2.508秒；B4／4线程4.677／4.293秒，对应1.169／1.073秒每样本，平均单位样本成本较B2／4线程低约8.6%。仅一个固定TRAIN batch、两次重复且B4重复该pair作吞吐／显存测量，不能作为全池泛化或总体最快的证据；B2仍保留，避免据小面板更改effective batch，线程数小差异也未据此改设置。这个选择不宣称最快。峰值分配显存B2约3.51GiB／B4约4.42GiB，不把CUDA allocator保留量或nvidia-smi占用混为模型峰值。profile主要耗时仍为预测相关CPU radius查询、FK和IK，不能通过缓存GT查询替代。
+
+实际20000次ego采样审计：TRUMANS12546、EgoBody wearer2777／interactee2599、RICH2078，15,010个独立候选窗口，653个group/recording身份，来自全部18,096个可选ego窗口；没有exo样本。固定recording轮换下不保证每个窗在这段预算内均出现。
+
+2026-10-14 21:12（北京时间），检查通过后启动进程961455，预算10000更新。独立[launcher.json](../native30_fresh_ego_oct14/launcher.json)区分启动依赖复查与首个真实更新；[training.log](../native30_fresh_ego_oct14/training.log)记录入口。新进程会再次核对准备指纹，复查期间不宣称完成第1步；首步checkpoint完成后另写STARTED_FROM_SCRATCH.json。原始source／旧55k／4200及v6停止时checkpoint保留，未生成best或编号权重。Linux约41GiB、E约220GiB空闲，后台TRAIN缓存继续生成。
+
+
+**21:22更新（北京时间）：v7已真正从0完成第1个optimizer更新，并非只启动了等待进程。** [STARTED_FROM_SCRATCH.json](../native30_fresh_ego_oct14/STARTED_FROM_SCRATCH.json)独立读取实际last.pt核对：初始model SHA与零更新benchmark同为`9d14dbbb56e6…`、source_checkpoint=null、初始Adam状态0条；更新后model SHA已改变，315个Adam状态step均为1，全部保存权重有限。首批为TRUMANS ego＋EgoBody wearer ego，head-only，标签缓存2命中／0未命中；loss1.056880，lr约2e-7（500步warmup首步），clip前梯度norm5326.64，按首步Adam一阶moment反算clip后norm约1.000000。历史从零pilot首两步clip前norm7793.67／21559.88，此次不是新出现的非有限溢出，但仍须观察warmup后梯度及固定VAL，不能将一次有限更新称为训练已稳定。
+
+首步准备3.345秒、前向／loss／backward／clip／Adam4.953秒，合计8.299秒；这是冷首步，不替代稳态吞吐。唯一last.pt约1.376GiB，包含model、Adam、初始来源、TRAIN sampler与各RNG，未额外复制best／编号模型。首步保存后正在执行首次固定＋轮换DDIM20监控，完成后继续到10000步；没有自动衔接exo。此时Linux约38.9GiB、E约210GiB空闲，后续缓存受原空间下限约束。

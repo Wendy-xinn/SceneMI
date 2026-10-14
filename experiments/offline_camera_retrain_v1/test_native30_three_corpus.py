@@ -40,6 +40,9 @@ class ThreeCorpusTests(unittest.TestCase):
             np.save(folder/'observation_valid.npy',np.ones(12,bool))
             available=np.zeros((12,22),bool);available[0,15]=True;available[-1,20]=True
             np.save(folder/'exo_position_available.npy',available)
+            meta['output_sha256']={p.name:mapped_sha256(p) for p in folder.glob('*.npy')}
+            (folder/'metadata.json').write_text(json.dumps(meta))
+            manifest.write_text(json.dumps(dict(meta,path=str(folder)))+'\n')
             spec=dict(protocol=WINDOW_PROTOCOL,status='complete',frames=4,window_stride=4,
                 exo_max_empty_frames=3,source_manifest_sha256=mapped_sha256(manifest),
                 bundle_paths=[str(folder)],files={})
@@ -98,6 +101,9 @@ class ThreeCorpusTests(unittest.TestCase):
             np.save(folder/'source_frame_ids.npy',np.arange(12));np.save(folder/'observation_valid.npy',np.ones(12,bool))
             available=np.zeros((12,22),bool);available[0,15]=True;available[-1,20]=True
             np.save(folder/'exo_position_available.npy',available)
+            meta['output_sha256']={p.name:mapped_sha256(p) for p in folder.glob('*.npy')}
+            (folder/'metadata.json').write_text(json.dumps(meta))
+            manifest.write_text(json.dumps(dict(meta,path=str(folder)))+'\n')
             data=Native30Data(manifest,'validation',diagnostic=True,frames=4)
             np.testing.assert_array_equal(data.starts_for('trumans',0,'exo'),[0,8])
             self.assertEqual(data.scene_memory.entries[0]['frames'],12)
