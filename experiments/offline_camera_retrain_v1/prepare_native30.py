@@ -85,6 +85,14 @@ def read_config(path=CONFIG_PATH):
         raise ValueError('Nonlegacy training needs its persisted window index')
     if not 2<=config['sampling']['ddim_steps']<=1000:
         raise ValueError('DDIM inference steps outside supported schedule')
+    if config.get('scene_relations',{}).get('enabled'):
+        relations=config['scene_relations'];guidance=config['physical_guidance']
+        if relations['neighbors']!=4 or relations['radius_m']<=0 or relations['support_radius_m']<=0 or relations['gain']<0:
+            raise ValueError('Invalid metric relation query configuration')
+        if not 0<guidance['contact_threshold']<1 or guidance['iterations']<1 or not 0<=guidance['minimum_alpha']<=1:
+            raise ValueError('Invalid physical guidance schedule')
+        for key in ('translation_step_m','rotation_step_rad','root_total_limit_m','trusted_tolerance_m','query_limit_m'):
+            if not np.isfinite(guidance[key]) or guidance[key]<=0:raise ValueError(f'Invalid physical limit: {key}')
     return config
 
 
@@ -96,6 +104,12 @@ def window_options(config,full_data=True):
 
 
 def make_model(config):
+    if config.get('scene_relations',{}).get('enabled'):
+        from experiments.offline_camera_retrain_v1.native30_scene_relations import Native30SceneRelations
+        return Native30SceneRelations(config['latent_dim'],tuple(config['dim_mults']),
+            **{k:config.get('refinement',{}).get(k,0.) for k in ('observation_anchor_gain','joint_anchor_gain')},
+            **{k:config['feedback'][k] for k in ('root_limit_m','rotation_limit_rad','feedback_gain')},
+            relations=config['scene_relations'],guidance=config['physical_guidance'])
     model_type=Native30Refinement if config.get('diffusion_target','absolute_x0')=='reference_residual' else Native30SceneMI
     extra={k:config.get('refinement',{}).get(k,0.) for k in ('observation_anchor_gain','joint_anchor_gain')} if model_type is Native30Refinement else {}
     return model_type(config['latent_dim'],tuple(config['dim_mults']),**extra,**{k:config['feedback'][k]
@@ -130,6 +144,9 @@ def sample_item(data,builder,config,plan,rng):
     sample,identity=data.sample(row['group'],row['mode'])
     joints=None if row['mode']=='exo' else ((15,) if rng.random()<config['ego_head_only_probability'] else (15,20,21))
     sample,scene,asset=builder.build(data,sample,identity,row['mode'],joints,noise_rng=rng)
+    if config.get('scene_relations',{}).get('enabled') and data.split=='train':
+        from experiments.offline_camera_retrain_v1.native30_scene_support import attach_support_supervision
+        sample=attach_support_supervision(sample,scene,asset)
     return (sample,scene,asset,row['mode']),identity
 
 
@@ -183,6 +200,9 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
                 if mi is None:continue
                 sample,identity=source.sample(group,mode,member=mi,start=int(source.starts_for(group,mi,mode)[0]),yaw=0)
                 sample,scene,asset=builder.build(source,sample,identity,mode,joints=None)
+                if config.get('scene_relations',{}).get('enabled') and source.split=='train':
+                    from experiments.offline_camera_retrain_v1.native30_scene_support import attach_support_supervision
+                    sample=attach_support_supervision(sample,scene,asset)
                 item=(sample,scene,asset,mode);label=f'{source.split}/{group}/{mode}'
                 cases.append((label,item,identity))
                 if source.split=='train':train_cases.append((label,item,identity))

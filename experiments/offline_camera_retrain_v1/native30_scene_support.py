@@ -81,6 +81,19 @@ def training_support_targets(sample, scene, asset):
         weak = result['weight'] < 1
         result['valid'][uncertain & weak] = False
         result['weight'][uncertain & weak] = 0
+    result.update(points=query['points'][:, :, 2, 0], normals=query['normals'][:, :, 2, 0],
+                  surface_valid=query['valid'][:, :, 2, 0] & query['normal_reliable'][:, :, 2, 0],
+                  owners=query['owners'][:, :, 2, 0], velocities=query['velocities'][:, :, 2, 0],
+                  velocity_valid=query['velocity_valid'][:, :, 2, 0], vertices=vertices.numpy())
+    return result
+
+
+def attach_support_supervision(sample, scene, asset):
+    """Add label-only fields; inference_payload's whitelist excludes every one."""
+    targets = training_support_targets(sample, scene, asset)
+    result = dict(sample, contact_target=targets['target'], contact_valid=targets['valid'], contact_weight=targets['weight'])
+    for key in ('points', 'normals', 'surface_valid', 'owners', 'velocities', 'velocity_valid', 'vertices'):
+        result['support_' + key] = targets[key]
     return result
 
 
@@ -111,5 +124,5 @@ def region_contact_loss(predicted_distance, target_distance, labels, observed_re
         active = reliable.any(-1) & (gt <= evidence_limit_m) & contact_valid[..., joint] & (contact_target[..., joint] > .5)
         weights = active.to(pred) * label_weight[..., joint]
         numerator = numerator + ((pred - gt - slack_m).clamp_min(0).square() * weights).sum()
-        denominator = denominator + weights.sum()
+        denominator = denominator + active.to(pred).sum()
     return numerator / denominator.clamp_min(1)

@@ -150,7 +150,11 @@ def geometry_losses(prediction,details,batch,signal,tolerance_m=.02,slip_toleran
 def objective(prediction,truth,batch,signal,details,config,observation_weights):
     base=base_losses(prediction,truth,batch,signal,details['raw_motion'])
     observation=observation_losses(prediction,truth,batch,signal,config['observation'])
-    geometry=geometry_losses(prediction,details,batch,signal,config['geometry']['tolerance_m'],config['geometry']['slip_tolerance_m_s'])
+    if config.get('scene_relations',{}).get('enabled'):
+        from experiments.offline_camera_retrain_v1.native30_relation_losses import relation_geometry_losses
+        geometry=relation_geometry_losses(prediction,details,batch,signal)
+    else:
+        geometry=geometry_losses(prediction,details,batch,signal,config['geometry']['tolerance_m'],config['geometry']['slip_tolerance_m_s'])
     total=base['total']+sum(observation_weights[k]*v for k,v in observation.items())
     total+=sum(config['geometry']['coefficients'][k]*v for k,v in geometry.items())
     return total,dict(base=base,observation=observation,geometry=geometry)

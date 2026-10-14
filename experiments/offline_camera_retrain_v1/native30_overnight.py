@@ -86,11 +86,14 @@ def window_plan(data,members_per_group,windows_per_member):
     return result
 
 
-def build_bank(data,builder,plan):
+def build_bank(data,builder,plan,config=None):
     bank=[];identities=[]
     for i,entry in enumerate(plan):
         sample,identity=data.sample(entry['group'],entry['mode'],member=entry['member'],start=entry['start'],yaw=0)
         item=builder.build(data,sample,identity,entry['mode'],(15,20,21) if entry['mode']=='ego' else None)
+        if config and config.get('scene_relations',{}).get('enabled'):
+            from experiments.offline_camera_retrain_v1.native30_scene_support import attach_support_supervision
+            item=(attach_support_supervision(item[0],item[1],item[2]),item[1],item[2])
         bank.append((*item,entry['mode']));identities.append(identity)
         print('BANK',data.split,i+1,len(plan),entry['group'],entry['mode'],entry['sequence_id'],entry['start'],flush=True)
     return bank,identities
@@ -164,6 +167,8 @@ def augment(item,identity,builder,config,rng,*,noisy=True,yaw=True,head_only=Non
         sample['motion'][...,3:9]=rotation6d(r@root)-np.asarray(IDENTITY_6D)
         sample['motion'][...,135:]=(sample['motion'][...,135:].reshape(-1,22,3)@r.T).reshape(-1,66)
         sample['joints']=sample['joints']@r.T
+        for key in ('support_points','support_normals','support_velocities','support_vertices'):
+            if key in sample:sample[key]=sample[key]@r.T
         for key in ('trajectory','camera'):
             values=sample[key];values[...,:3]=values[...,:3]@r.T
             six=values[...,3:];matrix=np.stack((six[...,:3],six[...,3:],np.cross(six[...,:3],six[...,3:])), -1)
@@ -201,7 +206,7 @@ def surface_metrics(motion,batch):
         limitation='partial camera-facing planes; unknown regions have no collision measurement')
 
 
-def evaluate(model,bank,identities,builder,config,folder,step,*,steps=20,seeds=(2026101401,),ablate=True):
+def evaluate(model,bank,identities,builder,config,folder,step,*,steps=20,seeds=(2026101401,),ablate=True,scene_modes=None):
     rows=[];saved={};folder.mkdir(parents=True,exist_ok=True)
     local_noise=copy.deepcopy(builder.noise_config);local_noise['clean_probability']=0.
     noisy_builder=Native30ObservationBuilder(builder.skin_cache,builder.mounts,local_noise)
@@ -217,7 +222,7 @@ def evaluate(model,bank,identities,builder,config,folder,step,*,steps=20,seeds=(
                 reference_scene=surface_metrics(known['reference_motion'],batch)
                 truth_scene=surface_metrics(batch['motion'],batch)
                 for seed in seeds:
-                    modes=('full','off') if ablate else ('off',)
+                    modes=scene_modes or (('full','off') if ablate else ('off',))
                     for scene_mode in modes:
                         start=time.monotonic()
                         prediction=sample_motion(model,known,config,steps=steps,seed=seed+i,use_scene=scene_mode=='full')
@@ -361,7 +366,7 @@ def main():
     write_json(out/'window_plan.json',dict(train=plan,validation=vplan,frames=192,stride=64,
         train_condition_windows=len(plan),train_window_frame_slots=len(plan)*192,
         note='ego/exo may share body time; frame slots are not unique source frames'))
-    trainbank,trainids=build_bank(data,builder,plan);valbank,valids=build_bank(val,builder,vplan)
+    trainbank,trainids=build_bank(data,builder,plan,config);valbank,valids=build_bank(val,builder,vplan)
     write_json(out/'identities.json',dict(train=trainids,validation=valids))
     write_json(out/'bank_audit.json',dict(train=audit_bank(trainbank,trainids,builder,config),
         validation=audit_bank(valbank,valids,builder,config)))

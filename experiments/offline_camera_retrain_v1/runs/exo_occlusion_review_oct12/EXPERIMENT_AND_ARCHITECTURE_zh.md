@@ -23,7 +23,7 @@
 |E1|正式 validation 和训练运行闭环|**第1/250/500步DDIM20固定验证已保存**|[当前validation_plan.json](../native30_short500_oct13/training/validation_plan.json)固定12窗、clean/noisy共24例；保留一份latest输出。原GT指标不加质量mask，另报候选/普通区。当前四个exo监控窗关节时间覆盖88.71–97.09%，不能替代强遮挡分层；完整recording与跨窗拼接仍为正式benchmark前工作。|
 |E2|效果实验与验收|**容量诊断完成；独立VAL场景验收未通过**|旧500步exo3283.90mm失败保留。固定TRAIN两条件窗7:3残差混训1000步的容量诊断见4.2，不能用TRAIN记忆代替VAL／TEST；58窗训练4000步后的独立VAL结果见4.3。|
 |E3|今晚训练与场景验收|**已完成4000步；场景验收未通过，未扩全池**|v2从零训练到1000后，v3候选和无场景对照从同一权重／Adam／RNG继续，新增扩散内部软位置IK。58个TRAIN条件窗／16个独立目标流，7:3、50%扰动、世界yaw。exo clean缺失部位场景73.28mm／同权重无场景80.21mm；ego与exo noisy场景收益不稳定。凌晨06:51完成；指标、mesh与实际耗时见4.3。|
-|E4|场景输入／接触监督审计与改进|**审计完成；新监督原型已测，尚未接入训练**|8个预先固定的TRAIN窗口审计、3个窗口×2噪声时刻的梯度审计发现局部观测覆盖不足、物理梯度弱及区域标签广播到全部vertex的冲突。弱接触标签／GT标定区域接触损失原型10项测试通过；优先修正监督，再接支撑关系token与扩散内部物理引导；具体证据／验收表见4.4。|
+|E4|场景输入／接触监督审计与改进|**三项已接入；33项测试及真实数据反传通过，200步匹配实验运行中**|修正区域接触监督、补TRAIN弱标签；新增每关节已见表面关系cross-attention；每次x0内联合修正root位置和关节旋转。由4000步共同权重开始，58个TRAIN窗／16个VAL窗，7:3；正确／关闭／错配场景及关闭物理引导分别验证。尚未宣称新模型有场景收益，未启动全量训练。见4.5。|
 
 **下一步固定为：先处理E4发现的场景监督与有效覆盖问题，验证接触／支撑关系及扩散内部物理约束，再做三语料7:3匹配消融；场景收益通过才扩全量。** 旧500步不续训；新1000步只是小集诊断，不是全量模型。TRUMANS exo仍是合成观察增广，连续完全缺失限制18帧，长缺失／多假设补全后置。真实视频前端误差校准、未知体型、真实动态估计、独立输出头继续后置。
 
@@ -622,3 +622,29 @@ exo clean缺失关节误差相对同权重关闭场景下降8.64%，但exo noisy
 |3|物理反馈融入扩散|待实现。每次x0预测中联合接触、静止期相对滑动、已观测面局部约束、可信关节误差和时间平滑，修正root位置／关节旋转并FK重算位置；保护高置信度观测。参考[SceneDiffuser](https://openaccess.thecvf.com/content/CVPR2023/html/Huang_Diffusion-Based_Generation_Optimization_and_Planning_in_3D_Scenes_CVPR_2023_paper.html)的去噪内物理优化方向，但不能把partial point cloud当完整SDF。|
 |4|受控训练与因果验收|待实验。固定动作主干起点，先训练场景适配／反馈，再联合微调；TRAIN按接触／遮挡标签增加互动覆盖而不挑VAL成功例。验证真场景、关闭场景、错配场景及同预算无场景训练；保持原VAL分母和窗口，不丢弃不利结果。|
 |5|全量训练门槛|未满足。clean/noisy、两个种子下ego与exo遮挡部位均有收益，可信区不退化，接触／足滑改善；另报预定义场景相关子集与全VAL，不能用前者替代后者。原输入尚未接Human3R，需明确与真实前端方法对比的范围。|
+
+
+## 4.5 10月14日：三项场景改进的实现与匹配试验
+
+本节更新E4，不另建方案文档。代码、真实数据链路检查已完成；下列试验正在运行，尚未获得新模型的独立VAL结论。原4000步结果仍以4.3为准。
+
+|改动|当前实现|输入与约束边界|
+|---|---|---|
+|1. 接触监督|训练器接入官方优先的22区域接触及TRAIN弱标签。弱正标签要求已见可靠表面≤5cm、相对速度≤0.2m/s且连续3帧；脚部要求朝上表面，弱标签权重0.25。每区域选择一个有证据的GT支持anchor，按GT残余距离标定接触／局部平面／相对滑动损失。|缺失标签保持UNKNOWN；不把区域内全部vertex拉向0距离。GT查询对应点、标签和GT vertex仅用于loss，推理白名单均不包含这些字段。|
+|2. 已见表面关系编码|保留全局16 patch、67 native vertex局部查询和动态owner token；每个关节增加4个1.5m内已见近邻＋4个水平1.25m内已见朝上patch。20维关系包含距离、高差、法向、相对速度、可靠性、动态标识及观测置信度，64维、4-head cross-attention后接原22区域条件／接触／位置旋转反馈。|早期查询中心按可信观测与预测FK混合，后期更依赖预测全身。宽范围patch明确标记，只是上下文；不延伸为脚下虚构地面。空场景保持无证据。|
+|3. 去噪内部物理引导|每次x0经现有位置IK后，进行最多2次root平移＋22关节SO(3)修正，FK重建全局位置。联合接触距离、浅层支撑面约束、相对滑动、观测残差、改动先验和改动的时间平滑。alpha≥0.25启用；每次重新查询当前预测身体。|只在≤25cm可靠局部patch且接触概率>0.5时启用；脚部仅采用朝上表面。每步平移≤1cm、旋转≤0.035rad，单次x0 root总改动≤2cm。线搜索要求联合能量下降，任一高置信度可信关节误差增量≤2mm。partial点云不作闭合SDF，墙背面不作穿模强制推出。|
+
+这是同一个ego/exo生成器；相机和关节输入的编码保持共享约定，额外场景关系先保留22个关节／区域槽，再注入时序网络。新增求解器使用当步预测接触概率和实际可见点云，不读取GT接触或GT动作；TRAIN支持对应点只在监督路径里使用。求解器在训练和DDIM采样中都参与，采取一阶近似反传，不通过迭代求二阶导数。
+
+|检查／试验|设置与状态|证据|
+|---|---|---|
+|回归|共63项通过：新场景／弱标签／骨长与可信观测保护33项，原30Hz时间尺度／官方split／跨窗口场景记忆／三语料协议30项。|[regression_checks.json](../native30_scene_relations_oct14/prepared/regression_checks.json)|
+|真实数据前向与反传|完整正式缓存准备通过；batch2×192，loss和所有必要梯度有限，GT／零置信度污染输入隔离通过。数值检查118.4秒，峰值CUDA 2.60GiB；未运行优化器。|[input_checks.json](../native30_scene_relations_oct14/prepared/input_checks.json)、[model_checks.json](../native30_scene_relations_oct14/prepared/model_checks.json)|
+|覆盖解释|抽查真实wearer ego：原≤0.6m局部查询为0，新宽范围关系区域覆盖约99.98%。|只说明已见patch可用于上下文，**不代表99.98%人体接触表面可见或动作已改善**。|
+|实际初始化|候选和匹配对照均从本轮TRAIN-only v3第4000步权重初始化，新增relation模块同种子初始化；新建Adam；没有用旧55k。|[protocol.json](../native30_scene_relations_oct14/experiment/protocol.json)的initialization才是本试验真实起点；config中的from_scratch供零步准备检查使用。|
+|数据与更新|相同58个TRAIN条件窗、16个独立目标流；每窗192帧、原正式S64索引；准确7:3 sample slots，batch2，观测扰动与共同世界yaw增广不变；先新增200步至4200。|[identities.json](../native30_scene_relations_oct14/experiment/identities.json)、[support_labels.json](../native30_scene_relations_oct14/experiment/support_labels.json)|
+|训练范围|先冻结时序U-Net中间层与全局ViT；共同微调观测／相机／身体／reference适配器和最终输出层，lr1e-5；场景／接触／反馈／新关系模块lr1e-4。候选与关闭场景对照使用相同共同参数、样本、扰动、t及扩散噪声。|[试验控制代码](../../native30_scene_relations_pilot.py)，每个模型只保留一个原子last.pt。|
+|独立验证|原固定16个VAL窗、clean/noisy、DDIM20两个种子、世界坐标原始GT不对齐；分别验证正确场景、同权重关闭场景、同预算关闭场景训练。再用第一个预先指定种子检查关闭物理引导和固定错配场景。|TEST不用作调参；匹配逐步轨迹核验，沿用4.3门槛，失败不扩全训练池。|
+|运行与保存|北京时间13:41:43启动独立进程，界面中断不终止训练；目前未启动全训练池。|[console.log](../native30_scene_relations_oct14/experiment/console.log)、[launcher.json](../native30_scene_relations_oct14/experiment/launcher.json)|
+
+新实现路径：[接触监督](../../native30_scene_support.py)、[监督损失](../../native30_relation_losses.py)、[关系编码](../../native30_scene_relations.py)、[物理引导](../../native30_physical_guidance.py)、[配置](../../native30_scene_relations_config.json)。训练前Linux余约58GiB、E盘余约272GiB；新缓存未重复导出，权重和大数组仅保留本地。
