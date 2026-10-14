@@ -1,0 +1,26 @@
+{
+  "checked_utc": "2026-10-14T06:39:25.192523+00:00",
+  "train_updates": 200,
+  "samples_per_update": 2,
+  "frames_per_sample": 192,
+  "fps": 30,
+  "train_elapsed_s": 1092.2401505330054,
+  "seconds_per_update": 5.461200752665027,
+  "seconds_per_sample_amortized": 2.7306003763325135,
+  "evaluation_elapsed_mean_s": {
+    "full": 52.58289473684211,
+    "off": 3.8876315789473685
+  },
+  "evaluation_calls_at_check": 76,
+  "evaluation_timing_includes": "DDIM20 sampling + raw/scene metrics for generated motion; excludes reference/GT metric precomputation outside call",
+  "planned_calls": {
+    "correct_scene": 64,
+    "same_weight_off": 64,
+    "matched_off_continuation": 64,
+    "no_guidance": 32,
+    "mismatched_scene": 32
+  },
+  "planned_total_calls": 256,
+  "planned_total_denoising_steps": 5120,
+  "trainable_scope": "current partially frozen adapter/output pilot; not full-backbone training benchmark"
+}
