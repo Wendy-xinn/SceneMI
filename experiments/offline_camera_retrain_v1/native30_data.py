@@ -34,10 +34,11 @@ def exo_window_starts(observed,starts,frames,max_empty_frames=None):
 class Native30Data:
     def __init__(self, manifest, split, seed=20261012, *, diagnostic=False, frames=192,
                  memory_protocol=OFFLINE_MEMORY_PROTOCOL,quality_config=None,exo_max_empty_frames=None,
-                 window_stride=1,window_index=None):
+                 window_stride=1,window_index=None,canonical_surface_cache=False):
         split=normalize_split(split)
         self.manifest=Path(manifest); self.split=split; self.rng=np.random.default_rng(seed)
         self.frames=frames; self.members={g:[] for g in ('trumans','camera_wearer','interactee','rich')}
+        self.canonical_surface_cache=canonical_surface_cache
         self.quality_config=validate_gt_reliability(dict(DEFAULT_GT_RELIABILITY) if quality_config is None else quality_config)
         self.exo_max_empty_frames=exo_max_empty_frames
         valid_window_grid(np.empty(0,bool),frames,window_stride)
@@ -47,12 +48,14 @@ class Native30Data:
             indexed,self.window_index_files=read_window_index(window_index,self.manifest,split,
                 frames,self.window_stride,exo_max_empty_frames)
         self.arrays={};self.mode_starts={}
+        self.source_hashes={}
         expected_sources={(r['group'],r['sequence_id']):r for r in inventory(split)} if not diagnostic else {}
         memory_entries=[]
         for row in map(json.loads,self.manifest.read_text().splitlines()):
             if row['split'] != split:
                 continue
             folder=Path(row['path']); meta=json.loads((folder/'metadata.json').read_text())
+            self.source_hashes[str(folder)]=meta['output_sha256']
             if meta['protocol'] != PROTOCOL or meta['fps'] != 30 or meta['split'] != split:
                 raise ValueError('Not a native30 scoped bundle')
             for field in ('sequence_id','bundle_id','split','group','frames','input_sha256','diagnostic_only'):
@@ -61,7 +64,7 @@ class Native30Data:
                 raise ValueError('Restricted review bundle cannot be used for training')
             if not diagnostic:
                 validate_official_bundle(meta, split)
-            ids=np.load(folder/'source_frame_ids.npy',mmap_mode='r');valid=np.load(folder/'observation_valid.npy',mmap_mode='r')
+            ids=self.load(folder,'source_frame_ids');valid=self.load(folder,'observation_valid')
             if len(ids) != meta['frames'] or not np.all(np.diff(ids)==1) or valid.shape != ids.shape:
                 raise ValueError('Incomplete raw30 clock')
             if valid.dtype!=np.bool_ or ids[0]!=meta['source_first'] or ids[-1]!=meta['source_last']:
@@ -98,12 +101,16 @@ class Native30Data:
             covered={(r['group'],r['sequence_id']) for r in all_rows if r['split']==split and not r['diagnostic_only']}
             if expected-covered:
                 raise ValueError(f'Full raw30 coverage missing {len(expected-covered)} sources; no native20 fallback')
-        self.scene_memory=ObservedStaticMemory(self.load,memory_entries,protocol=memory_protocol)
+        self.runtime_cache_root=self.manifest.resolve().parent.parent/'native30_runtime_cache_v2'
+        self.scene_memory=ObservedStaticMemory(self.load,memory_entries,protocol=memory_protocol,
+            cache_root=self.runtime_cache_root/'static_maps')
 
     def load(self, folder, key):
         cache=self.arrays.setdefault(str(folder),{})
         if key not in cache:
-            cache[key]=np.load(Path(folder)/f'{key}.npy',mmap_mode='r')
+            from experiments.offline_camera_retrain_v1.native30_cache_io import verified_array
+            cache[key]=verified_array(Path(folder)/f'{key}.npy',self.source_hashes[str(folder)][key+'.npy'],
+                Path(__file__).parent/'data/native30_verified_read_cache_v1')
         return cache[key]
 
     def starts_for(self,group,index,mode):

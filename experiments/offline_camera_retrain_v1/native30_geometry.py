@@ -100,7 +100,8 @@ class Native30SurfaceWindow:
 
     def query_nearest(self, vertices, rotations):
         """Exact first wide sample for metrics/targets which read only that."""
-        return self.query_wide(vertices, rotations, neighbors=1)
+        from experiments.offline_camera_retrain_v1.native30_query_runtime import query_nearest_surfaces
+        return query_nearest_surfaces(self, vertices, rotations)
 
     def query_motion(self, vertices, rotations, device, neighbors=8):
         """Batch CUDA selection, keeping exact sorted radius memberships."""

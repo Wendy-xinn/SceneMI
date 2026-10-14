@@ -152,7 +152,9 @@ class YawSurface:
         return result
 
     def query_nearest(self,vertices,rotations):
-        return self.query_wide(vertices,rotations,neighbors=1)
+        result=self.base.query_nearest(vertices@self.rotation,self.rotation.T@rotations)
+        for key in ('points','normals','velocities'):result[key]=result[key]@self.rotation.T
+        return result
 
     def query_motion(self,vertices,rotations,device,neighbors=8):
         result=self.base.query_motion(vertices@self.rotation,self.rotation.T@rotations,device,neighbors)

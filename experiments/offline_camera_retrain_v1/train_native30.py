@@ -11,7 +11,7 @@ import torch
 
 from experiments.offline_camera_retrain_v1.data import HERE
 from experiments.offline_camera_retrain_v1.prepare_native30 import (
-    CONFIG_PATH,read_config,make_model,code_hashes,sha256,write_json,sample_item,dataset_digest,window_options)
+    CONFIG_PATH,read_config,make_model,code_hashes,sha256,write_json,sample_item,dataset_digest,window_options,training_plan)
 from experiments.offline_camera_retrain_v1.native30_data import Native30Data
 from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder
 from experiments.offline_camera_retrain_v1.native30_losses import objective
@@ -44,10 +44,20 @@ def train(config_path,steps,output=None,resume=False):
     val=Native30Data(HERE/config['train_manifest'],'validation',config['seed']+1,frames=config['frames'],memory_protocol=config['scene']['memory_protocol'],quality_config=config['gt_reliability'],exo_max_empty_frames=config.get('exo_max_empty_frames'),**window_options(config))
     if dataset_digest(data)|dataset_digest(val)!=effective['data_sha256']:
         raise ValueError('Native30 data changed after preparation')
-    plan=data.sampling_plan(config['ego_probability'])
+    plan=training_plan(data,config)
     if plan!=effective['sampling_plan']:raise ValueError('Sampling duration/configuration changed')
     builder=Native30ObservationBuilder(Native30SkinAnchorCache(),json.loads((HERE/config['mount_defaults']).read_text()),config['observation']['input_noise'])
     model=make_model(config).cuda();optimizer=torch.optim.AdamW(model.parameters(),lr=config['optimizer']['lr'],weight_decay=config['optimizer']['weight_decay'])
+    initialization=None
+    if not resume and config['initialization']=='official30_warm_start':
+        warm_path=HERE/config['warm_start']['checkpoint']
+        if sha256(warm_path)!=config['warm_start']['sha256']:raise ValueError('Warm-start checkpoint changed')
+        warm=torch.load(warm_path,map_location='cpu',weights_only=False)
+        if warm['config']['fps']!=30 or warm['config']['split_protocol']!=config['split_protocol'] or warm['step']!=config['warm_start']['step']:
+            raise ValueError('Only the declared official30 checkpoint may initialize this stage')
+        model.load_state_dict(warm['model'],strict=True)
+        initialization=dict(config['warm_start'],optimizer_reset=True,all_model_parameters_trainable=True)
+        del warm
     rng=np.random.default_rng(config['seed']+991);start=0;counts={}
     if resume:
         state=torch.load(folder/'last.pt',map_location='cpu',weights_only=False)
@@ -62,7 +72,7 @@ def train(config_path,steps,output=None,resume=False):
         start,counts=state['step'],state['counts'];del state
     folder.mkdir(parents=True,exist_ok=True);started=time.monotonic();alphas=cosine_alphas().cuda()
     protocol=dict(status='training',planned_steps=steps,completed_steps=start,effective_config=effective,
-        free_disk_before=shutil.disk_usage(HERE).free,checkpoint_policy='one atomic resumable last.pt')
+        free_disk_before=shutil.disk_usage(HERE).free,checkpoint_policy='one atomic resumable last.pt',initialization=initialization)
     write_json(folder/'protocol.json',protocol)
     def checkpoint(step):
         save_checkpoint(dict(step=step,planned_steps=steps,model=model.state_dict(),optimizer=optimizer.state_dict(),
@@ -70,6 +80,8 @@ def train(config_path,steps,output=None,resume=False):
             torch_rng=torch.get_rng_state(),cuda_rng=torch.cuda.get_rng_state(),numpy_rng=np.random.get_state()),folder/'last.pt')
     with (folder/'trace.jsonl').open('a' if resume else 'w') as trace:
         for step in range(start+1,steps+1):
+            step_started=time.monotonic();torch.cuda.synchronize()
+            prepare_started=time.monotonic()
             pairs=[sample_item(data,builder,config,plan,rng) for _ in range(config['batch_size'])]
             items,identities=zip(*pairs);batch=collate_observations(items);known=model_inputs(config,batch)
             t=torch.randint(1000,(len(items),),device='cuda')
@@ -78,6 +90,7 @@ def train(config_path,steps,output=None,resume=False):
             target=training_motion(config,batch,known)
             signal=alphas[t];noisy=signal[:,None,None].sqrt()*target+(1-signal[:,None,None]).sqrt()*torch.randn_like(target)
             scene_on=rng.random()>=config['scene']['dropout_probability']
+            torch.cuda.synchronize();prepare_s=time.monotonic()-prepare_started;compute_started=time.monotonic()
             model.train();optimizer.zero_grad(set_to_none=True)
             prediction,details=model(noisy,t,known,use_scene=scene_on,return_details=True)
             loss,terms=objective(prediction,batch['motion'],batch,signal,details,config,effective['observation_coefficients'])
@@ -86,11 +99,16 @@ def train(config_path,steps,output=None,resume=False):
             schedule=min(1.,step/config['optimizer']['warmup_steps'])*max(config['optimizer']['floor_fraction'],.5*(1+math.cos(math.pi*step/steps)))
             for group in optimizer.param_groups:group['lr']=config['optimizer']['lr']*schedule
             optimizer.step()
+            torch.cuda.synchronize();compute_s=time.monotonic()-compute_started
             for identity in identities:
                 key=f"{identity['group']}/{identity['mode']}";counts[key]=counts.get(key,0)+1
             def numbers(values):return {k:float(v.detach()) for k,v in values.items()}
             row=dict(step=step,loss=float(loss.detach()),gradient_norm=float(norm),timesteps=t.tolist(),scene=bool(scene_on),
-                     identities=identities,terms={k:numbers(v) for k,v in terms.items()},lr=optimizer.param_groups[0]['lr'])
+                     identities=identities,terms={k:numbers(v) for k,v in terms.items()},lr=optimizer.param_groups[0]['lr'],
+                     preparation_s=prepare_s,compute_s=compute_s,update_s=time.monotonic()-step_started,
+                     elapsed_s=time.monotonic()-started,
+                     support_cache_hits=getattr(getattr(data,'support_cache',None),'hits',0),
+                     support_cache_misses=getattr(getattr(data,'support_cache',None),'misses',0))
             trace.write(json.dumps(row)+'\n');trace.flush()
             if step==1 or step%25==0:print(step,row['loss'],counts,flush=True)
             # Preserve the first real update before validation can fail or be

@@ -20,7 +20,9 @@ def validate_sampling_options(options, ego_probability):
     if isinstance(block, bool) or not isinstance(block, int) or block < 2:
         raise ValueError('Positive mode block size required')
     count = ego_probability * block
-    if not np.isclose(count, round(count)) or not 0 < round(count) < block:
+    single = options.get('training_mode')
+    endpoint = (single == 'ego' and np.isclose(ego_probability,1,atol=1e-12,rtol=0)) or (single == 'exo' and np.isclose(ego_probability,0,atol=1e-12,rtol=0))
+    if not np.isclose(count, round(count)) or (not endpoint and not 0 < round(count) < block):
         raise ValueError('Mode block must represent ego/exo ratio exactly')
     for key in ('recording_cooldown', 'recent_windows_per_target'):
         value = options[key]

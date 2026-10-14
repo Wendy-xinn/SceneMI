@@ -45,6 +45,17 @@ class SamplingTests(unittest.TestCase):
         for row in PLAN:
             self.assertLessEqual(abs(counts[row['group'],row['mode']]-1000*row['probability']),1)
 
+    def test_single_mode_stage_preserves_dataset_quotas_and_resume(self):
+        plan=[dict(row,probability=row['probability']/.7) for row in PLAN if row['mode']=='ego']
+        options=dict(OPTIONS,training_mode='ego')
+        sampler=StratifiedRecordingSampler(Fixture(),plan,options,71)
+        counts=Counter()
+        for _ in range(100):
+            row=sampler.draw();self.assertEqual(row['mode'],'ego');counts[row['group']]+=1
+        for row in plan:self.assertLessEqual(abs(counts[row['group']]-100*row['probability']),1)
+        restored=StratifiedRecordingSampler(Fixture(),plan,options,0);restored.load_state_dict(sampler.state_dict())
+        self.assertEqual([sampler.draw() for _ in range(10)],[restored.draw() for _ in range(10)])
+
     def test_recording_cycles_remove_length_bias_and_avoid_recent_records(self):
         s=StratifiedRecordingSampler(Fixture(),PLAN,OPTIONS,88);recent=[];records=Counter()
         for _ in range(1200):

@@ -11,6 +11,63 @@ from scipy.spatial import cKDTree
 from experiments.offline_camera_retrain_v1.metric_surface_tokens import SCALES
 
 
+def query_nearest_surfaces(scene, vertices, rotations):
+    """Exact first wide sample without enumerating the whole .6m ball.
+
+    The reference ranks squared distances in the probe's NumPy dtype, whereas
+    KD trees use doubles. Two-neighbour lookups detect possible rounded ties;
+    only those rows enumerate a small tie ball, with the original ID order.
+    Radius membership remains the KD tree's double-precision closed ball.
+    """
+    frames, anchors = vertices.shape[:2]
+    if len(scene.dynamic) != frames or rotations.shape != (frames, anchors, 3, 3):
+        raise ValueError('Predicted-body query does not match observed scene clock')
+    shape = (frames, anchors, 3, 1)
+    result = {k: np.zeros((*shape, 3), np.float32) for k in ('points', 'normals', 'velocities')}
+    result.update({k: np.zeros(shape, bool) for k in ('valid', 'normal_reliable', 'velocity_valid')})
+    result['owners'] = np.zeros(shape, np.int64)
+    if not anchors:
+        return result
+    radius = SCALES[2]
+    eps = np.finfo(np.result_type(vertices.dtype, np.float32)).eps * 32
+    def nearest(cloud, tree, probes):
+        if tree is None:
+            return np.zeros(len(probes), np.int64), np.zeros(len(probes), bool)
+        distances, ids = tree.query(probes, k=[1, 2], distance_upper_bound=np.nextafter(radius, np.inf))
+        valid = distances[:, 0] <= radius
+        chosen = np.where(valid, ids[:, 0], 0)
+        ambiguous = valid & (distances[:, 1] <= np.minimum(radius, distances[:, 0] * (1 + eps) + np.finfo(float).tiny))
+        rows = np.flatnonzero(ambiguous)
+        if len(rows):
+            hits = tree.query_ball_point(probes[rows], np.minimum(radius, distances[rows, 0] * (1 + eps) + np.finfo(float).tiny), return_sorted=True)
+            for row, pool in zip(rows, hits):
+                pool = np.asarray(pool, np.int64)
+                delta = cloud['points'][pool] - probes[row]
+                chosen[row] = pool[(delta ** 2).sum(-1).argmin()]
+        return chosen, valid
+    flat = vertices.reshape(-1, 3)
+    static_ids, static_valid = nearest(scene.static, scene._static_tree, flat)
+    static_ids, static_valid = static_ids.reshape(frames, anchors), static_valid.reshape(frames, anchors)
+    for t, dynamic in enumerate(scene.dynamic):
+        if len(dynamic['points']) and scene._dynamic_trees[t] is None:
+            scene._dynamic_trees[t] = cKDTree(dynamic['points'])
+        di, dv = nearest(dynamic, scene._dynamic_trees[t], vertices[t])
+        sv = static_valid[t]; si = static_ids[t]
+        sd = np.full(anchors, np.inf); dd = np.full(anchors, np.inf)
+        if sv.any(): sd[sv] = ((scene.static['points'][si[sv]] - vertices[t, sv]) ** 2).sum(-1)
+        if dv.any(): dd[dv] = ((dynamic['points'][di[dv]] - vertices[t, dv]) ** 2).sum(-1)
+        # Static IDs precede all dynamic IDs, including equal rounded distances.
+        use_static = sv & (~dv | (sd <= dd)); use_dynamic = dv & ~use_static
+        for mask, cloud, ids in ((use_static, scene.static, si), (use_dynamic, dynamic, di)):
+            if not mask.any(): continue
+            dest = (t, mask, 2, 0)
+            for key in ('points', 'normals', 'owners', 'velocities', 'velocity_valid'):
+                result[key][dest] = cloud[key][ids[mask]]
+            result['normal_reliable'][dest] = cloud['reliable'][ids[mask]]
+            result['valid'][dest] = True
+    return result
+
+
 def select_radius_samples(points, probes, static_hits, dynamic_hits,
                           static_count, neighbors):
     """Select all anchors of one frame together; invalid columns are masked."""

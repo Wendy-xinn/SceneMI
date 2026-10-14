@@ -8,6 +8,9 @@ from experiments.offline_camera_retrain_v1.native30_exo import external_transfor
 from collections import OrderedDict
 from pathlib import Path
 import json
+import hashlib
+import os
+import uuid
 import re
 import numpy as np
 
@@ -32,7 +35,7 @@ def observer_stream_key(meta, mode):
 
 
 class ObservedStaticMemory:
-    def __init__(self, load, entries, *, protocol=OFFLINE_MEMORY_PROTOCOL, voxel=.025, cached_streams=2):
+    def __init__(self, load, entries, *, protocol=OFFLINE_MEMORY_PROTOCOL, voxel=.025, cached_streams=8, cache_root=None):
         if protocol not in MEMORY_PROTOCOLS:
             raise ValueError('Unsupported observed scene-memory protocol')
         self.protocol = protocol
@@ -41,6 +44,18 @@ class ObservedStaticMemory:
         self.voxel = voxel
         self.cached_streams = cached_streams
         self.maps = OrderedDict()
+        self.cache_root = Path(cache_root) if cache_root is not None else None
+        self.cache_hits = self.cache_misses = 0
+
+    def _cache_path(self, key, mode, entries):
+        if self.cache_root is None: return None
+        signature = dict(protocol=self.protocol, voxel=self.voxel, stream=key,
+            implementation=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+            sources=[dict(path=str(Path(m['path']).resolve()), output_sha256=m.get('output_sha256'),
+                          input_sha256=m.get('input_sha256'), exo_camera=m.get('exo_camera')) for m in entries])
+        digest = hashlib.sha256(json.dumps(signature, sort_keys=True).encode()).hexdigest()
+        self.cache_root.mkdir(parents=True, exist_ok=True)
+        return self.cache_root / (digest + '.npz')
 
     def _map(self, identity, mode):
         key = observer_stream_key(identity, mode)
@@ -52,6 +67,13 @@ class ObservedStaticMemory:
                          key=lambda m: (m['source_first'], m['path']))
         if not any(Path(m['path']).resolve() == Path(identity['path']).resolve() for m in entries):
             raise ValueError('Current observation bundle absent from its memory stream')
+        cache = self._cache_path(key, mode, entries)
+        if cache is not None and cache.exists():
+            with np.load(cache, allow_pickle=False) as saved:
+                result = saved['points'], saved['cameras'], saved['first_seen']
+            self.cache_hits += 1
+            return self._remember(key, result)
+        self.cache_misses += 1
         point_key, owner_key = (('exo_frame_points_world', 'exo_frame_owner') if mode == 'exo'
             else ('visible_frame_points_scenemi_yup', 'visible_frame_owner'))
         parts = []
@@ -89,6 +111,18 @@ class ObservedStaticMemory:
             result = p[ix].astype(np.float32), c[ix].astype(np.float32), time[ix]
         else:
             result = np.empty((0, 3), np.float32), np.empty((0, 3), np.float32), np.empty(0)
+        if cache is not None:
+            temporary = cache.with_name(cache.name + '.' + uuid.uuid4().hex + '.tmp')
+            try:
+                with temporary.open('wb') as stream:
+                    np.savez(stream, points=result[0], cameras=result[1], first_seen=result[2])
+                    stream.flush(); os.fsync(stream.fileno())
+                temporary.replace(cache)
+            finally:
+                temporary.unlink(missing_ok=True)
+        return self._remember(key, result)
+
+    def _remember(self, key, result):
         self.maps[key] = result
         while len(self.maps) > self.cached_streams:
             self.maps.popitem(last=False)

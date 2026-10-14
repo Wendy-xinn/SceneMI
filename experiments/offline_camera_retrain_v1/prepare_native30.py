@@ -48,7 +48,7 @@ def read_config(path=CONFIG_PATH):
     if config.get('diffusion_target','absolute_x0') not in ('absolute_x0','reference_residual'):
         raise ValueError('Unknown native30 diffusion target')
     from experiments.offline_camera_retrain_v1.unified_losses import SCALES
-    if config['fps']!=30 or config['frames']!=192 or config['initialization']!='from_scratch':
+    if config['fps']!=30 or config['frames']!=192 or config['initialization'] not in ('from_scratch','official30_warm_start'):
         raise ValueError('Expected fresh native30 /192 frame configuration')
     if config['shared_output_initialization']!='normal_std_0.001_bias_zero' or config['anchor_protocol']!='native_body_dominant_only_67_low_foot_v1':
         raise ValueError('Shared output/anchor initialization differs from implementation')
@@ -86,7 +86,9 @@ def read_config(path=CONFIG_PATH):
         raise ValueError('Invalid sampling probabilities')
     if config.get('sampler'):
         from experiments.offline_camera_retrain_v1.native30_sampling import validate_sampling_options
-        validate_sampling_options(config['sampler'],config['ego_probability'])
+        mode=config.get('training_mode')
+        if mode not in (None,'ego','exo'):raise ValueError('Unknown training stage')
+        validate_sampling_options(config['sampler'],1. if mode=='ego' else 0. if mode=='exo' else config['ego_probability'])
     if config['batch_size']<1 or config['optimizer']['lr']<=0:
         raise ValueError('Invalid batch size/learning rate')
     limit=config.get('exo_max_empty_frames')
@@ -112,9 +114,20 @@ def read_config(path=CONFIG_PATH):
 
 def window_options(config,full_data=True):
     result=dict(window_stride=config.get('window_stride',1))
+    if config.get('runtime',{}).get('canonical_surface_cache'):
+        result['canonical_surface_cache']=True
     if full_data and config.get('window_index'):
         result['window_index']=HERE/config['window_index']
     return result
+
+
+def training_plan(data, config):
+    plan=data.sampling_plan(config['ego_probability'])
+    if config.get('training_mode'):
+        plan=[row.copy() for row in plan if row['mode']==config['training_mode']]
+        total=sum(row['probability'] for row in plan)
+        for row in plan:row['probability']/=total
+    return plan
 
 
 def make_model(config):
@@ -167,8 +180,12 @@ def sample_item(data,builder,config,plan,rng):
     joints=None if row['mode']=='exo' else ((15,) if rng.random()<config['ego_head_only_probability'] else (15,20,21))
     sample,scene,asset=builder.build(data,sample,identity,row['mode'],joints,noise_rng=rng)
     if config.get('scene_relations',{}).get('enabled') and data.split=='train':
-        from experiments.offline_camera_retrain_v1.native30_scene_support import attach_support_supervision
-        sample=attach_support_supervision(sample,scene,asset)
+        if config.get('runtime',{}).get('precomputed_support'):
+            from experiments.offline_camera_retrain_v1.native30_support_cache import cached_support
+            sample=cached_support(data,builder,sample,identity)
+        else:
+            from experiments.offline_camera_retrain_v1.native30_scene_support import attach_support_supervision
+            sample=attach_support_supervision(sample,scene,asset)
     return (sample,scene,asset,row['mode']),identity
 
 
@@ -427,7 +444,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
             fingerprints_complete=False,fingerprint_error=repr(exc))
         write_json(folder/'input_checks.json',report)
         raise
-    effective=dict(config=config,data_mode=report['data_mode'],sampling_plan=data.sampling_plan(config['ego_probability']),
+    effective=dict(config=config,data_mode=report['data_mode'],sampling_plan=training_plan(data,config),
         observation_coefficients=weights,mount_defaults_sha256=sha256(mount_path),
         data_sha256=fingerprints,code_sha256=code_hashes(),torch_version=torch.__version__,
         normalization='motion positions m/2; physical derivatives SI',optimizer_steps=0)

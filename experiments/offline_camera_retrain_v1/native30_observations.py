@@ -148,8 +148,12 @@ class Native30ObservationBuilder:
         if not hasattr(data,'scene_memory'):
             # Standalone offline loaders retain the supplied static observations.
             data.scene_memory=ObservedStaticMemory(data.load,[identity])
-        scene=Native30SurfaceWindow(points,owners,observing_cameras,
-            static_memory=data.scene_memory.window(identity,mode,frames),**kwargs)
+        if getattr(data,'canonical_surface_cache',False):
+            from experiments.offline_camera_retrain_v1.native30_surface_cache import cached_surface
+            scene=cached_surface(data,identity,mode,frames)
+        else:
+            scene=Native30SurfaceWindow(points,owners,observing_cameras,
+                static_memory=data.scene_memory.window(identity,mode,frames),**kwargs)
         prepared.update(trajectory=trajectory,observation_meta=meta,observation_uncertainty=uncertainty,
             camera=cam,camera_available=ca,camera_confidence=cc,camera_intrinsics=np.asarray(intr,np.float32),
             camera_intrinsics_valid=np.ones(frames,np.float32),camera_context=context,
@@ -178,7 +182,9 @@ def load_frozen_exo(folder,*,start=0,frames=192,skin_cache,device='cuda',memory_
         def load(self,path,key):
             if key not in allowed:
                 raise ValueError(f'Body truth is forbidden in frozen input loader: {key}')
-            return np.load(Path(path)/f'{key}.npy',mmap_mode='r')
+            from experiments.offline_camera_retrain_v1.native30_cache_io import verified_array
+            return verified_array(Path(path)/f'{key}.npy',meta['output_sha256'][key+'.npy'],
+                Path(__file__).parent/'data/native30_verified_read_cache_v1')
     source=ObservationsOnly();transform=external_transforms(source.load,folder,start,frames)
     source.scene_memory=ObservedStaticMemory(source.load,frozen_memory_entries(folder,meta,memory_manifest),protocol=memory_protocol)
     camera_r=transform[:,:3,:3];anchor=np.asarray(anchor_rotation(camera_r),np.float64)
@@ -207,7 +213,9 @@ def load_frozen_ego(folder,*,mounts,start=0,frames=192,skin_cache,device='cuda',
     class ObservationsOnly:
         def load(self,path,key):
             if key not in allowed:raise ValueError(f'Body truth forbidden: {key}')
-            return np.load(Path(path)/f'{key}.npy',mmap_mode='r')
+            from experiments.offline_camera_retrain_v1.native30_cache_io import verified_array
+            return verified_array(Path(path)/f'{key}.npy',meta['output_sha256'][key+'.npy'],
+                Path(__file__).parent/'data/native30_verified_read_cache_v1')
     source=ObservationsOnly();sl=slice(start,start+frames)
     source.scene_memory=ObservedStaticMemory(source.load,frozen_memory_entries(folder,meta,memory_manifest),protocol=memory_protocol)
     p=np.asarray(source.load(folder,'camera_position_scenemi_yup')[sl]);r=np.asarray(source.load(folder,'camera_rotation_scenemi_yup')[sl])
