@@ -1,0 +1,306 @@
+{
+  "status": "passed",
+  "optimizer_steps": 0,
+  "old55k_timing": {
+    "last_step": 55000,
+    "training_elapsed_s_including_periodic_evaluation": 12692.40989613533,
+    "training_average_s_per_update": 0.23077108902064236,
+    "steady_20_update_interval_s_per_update_median": 0.2279388427734375,
+    "steady_interval_p10_p90": [
+      0.13546105384826662,
+      0.27085968494415286
+    ],
+    "supervisor_total_s": 14107.561406135559,
+    "fps": 20,
+    "batch_size": 4,
+    "mean_window_frames": 124.4834909090909,
+    "precision": "float32",
+    "length_step_counts": {
+      "64": 16734,
+      "128": 24554,
+      "192": 13712
+    },
+    "sources": [
+      "experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/training_stdout.log",
+      "experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/config.json",
+      "experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/job_status.json"
+    ],
+    "limitations": "Elapsed trainer includes checkpoint/periodic validation/DDIM. Median from logged 20-step intervals excluding save/evaluation boundaries; no single-step GPU benchmark."
+  },
+  "exo_views": [
+    {
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2841_master_full",
+      "camera_kind": "released_calibrated",
+      "view_id": "kinect_master",
+      "source_size": [
+        1920,
+        1080
+      ],
+      "raycast_size": [
+        192,
+        108
+      ],
+      "input_camera": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/recording_20210907_S02_S01_01_camera_wearer_1551-2841_master_full/exo_sensor_to_world.npy",
+      "observer_point_file": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/recording_20210907_S02_S01_01_camera_wearer_1551-2841_master_full/exo_frame_points_world.npy",
+      "cases": [
+        {
+          "frame": 0,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 645,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 1289,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        }
+      ]
+    },
+    {
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210907_S04_S03_01_camera_wearer_2001-2941_master_full",
+      "camera_kind": "released_calibrated",
+      "view_id": "kinect_master",
+      "source_size": [
+        1920,
+        1080
+      ],
+      "raycast_size": [
+        192,
+        108
+      ],
+      "input_camera": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/recording_20210907_S04_S03_01_camera_wearer_2001-2941_master_full/exo_sensor_to_world.npy",
+      "observer_point_file": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/recording_20210907_S04_S03_01_camera_wearer_2001-2941_master_full/exo_frame_points_world.npy",
+      "cases": [
+        {
+          "frame": 0,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 470,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 939,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        }
+      ]
+    },
+    {
+      "group": "trumans",
+      "sequence_id": "2023-01-14@22-06-10",
+      "camera_kind": "synthetic_training_observer",
+      "view_id": "synthetic_at_first_release_camera",
+      "source_size": [
+        192,
+        108
+      ],
+      "raycast_size": [
+        192,
+        108
+      ],
+      "input_camera": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/2023-01-14@22-06-10/exo_sensor_to_world.npy",
+      "observer_point_file": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/2023-01-14@22-06-10/exo_frame_points_world.npy",
+      "cases": [
+        {
+          "frame": 0,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 1342,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 2683,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        }
+      ]
+    },
+    {
+      "group": "trumans",
+      "sequence_id": "2023-01-14@22-14-10",
+      "camera_kind": "synthetic_training_observer",
+      "view_id": "synthetic_at_first_release_camera",
+      "source_size": [
+        192,
+        108
+      ],
+      "raycast_size": [
+        192,
+        108
+      ],
+      "input_camera": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/2023-01-14@22-14-10/exo_sensor_to_world.npy",
+      "observer_point_file": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/2023-01-14@22-14-10/exo_frame_points_world.npy",
+      "cases": [
+        {
+          "frame": 0,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 991,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 1981,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        }
+      ]
+    },
+    {
+      "group": "rich",
+      "sequence_id": "BBQ_001_guitar",
+      "camera_kind": "released_calibrated",
+      "view_id": "rich_006",
+      "source_size": [
+        4112,
+        3008
+      ],
+      "raycast_size": [
+        256,
+        192
+      ],
+      "input_camera": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/BBQ_001_guitar/exo_sensor_to_world.npy",
+      "observer_point_file": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/BBQ_001_guitar/exo_frame_points_world.npy",
+      "cases": [
+        {
+          "frame": 0,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 186,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 372,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        }
+      ]
+    },
+    {
+      "group": "rich",
+      "sequence_id": "BBQ_001_juggle",
+      "camera_kind": "released_calibrated",
+      "view_id": "rich_001",
+      "source_size": [
+        4112,
+        3008
+      ],
+      "raycast_size": [
+        256,
+        192
+      ],
+      "input_camera": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/BBQ_001_juggle/exo_sensor_to_world.npy",
+      "observer_point_file": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/BBQ_001_juggle/exo_frame_points_world.npy",
+      "cases": [
+        {
+          "frame": 0,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 147,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        },
+        {
+          "frame": 293,
+          "valid": true,
+          "sampled_points": 512,
+          "target_surface_points": 0,
+          "exo_rays_depth_sampled_points_bitwise_identical": true,
+          "owners_bitwise_identical": true,
+          "max_coordinate_difference_m": 0.0
+        }
+      ]
+    }
+  ],
+  "exo_scene_scope": "Each frame first hit of configured external observer, target skin removed; static union of same recording/group/mode/view/split/world, current-frame dynamic samples.",
+  "exo_scene_source": "GT scene mesh and dynamic meshes rendered into external camera rays; not real-video reconstruction; TRUMANS optical orientation/K explicitly synthetic.",
+  "audit_scope": "Code path audited export->first_hit->exo cache->observation builder->mode-scoped recording memory; six complete TRAIN bundles, three saved frames each checked numerically. No full-1280-bundle numerical rerender.",
+  "current_train_timing_source": "experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/TRAIN_COMPONENTS.json"
+}
