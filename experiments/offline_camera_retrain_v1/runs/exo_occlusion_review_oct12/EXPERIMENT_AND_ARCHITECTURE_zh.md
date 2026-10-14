@@ -23,7 +23,7 @@
 |E1|正式 validation 和训练运行闭环|**第1/250/500步DDIM20固定验证已保存**|[当前validation_plan.json](../native30_short500_oct13/training/validation_plan.json)固定12窗、clean/noisy共24例；保留一份latest输出。原GT指标不加质量mask，另报候选/普通区。当前四个exo监控窗关节时间覆盖88.71–97.09%，不能替代强遮挡分层；完整recording与跨窗拼接仍为正式benchmark前工作。|
 |E2|效果实验与验收|**容量诊断完成；独立VAL场景验收未通过**|旧500步exo3283.90mm失败保留。固定TRAIN两条件窗7:3残差混训1000步的容量诊断见4.2，不能用TRAIN记忆代替VAL／TEST；58窗训练4000步后的独立VAL结果见4.3。|
 |E3|今晚训练与场景验收|**已完成4000步；场景验收未通过，未扩全池**|v2从零训练到1000后，v3候选和无场景对照从同一权重／Adam／RNG继续，新增扩散内部软位置IK。58个TRAIN条件窗／16个独立目标流，7:3、50%扰动、世界yaw。exo clean缺失部位场景73.28mm／同权重无场景80.21mm；ego与exo noisy场景收益不稳定。凌晨06:51完成；指标、mesh与实际耗时见4.3。|
-|E4|场景输入／接触监督审计与改进|**三项已接入；33项测试及真实数据反传通过，200步匹配实验运行中**|修正区域接触监督、补TRAIN弱标签；新增每关节已见表面关系cross-attention；每次x0内联合修正root位置和关节旋转。由4000步共同权重开始，58个TRAIN窗／16个VAL窗，7:3；正确／关闭／错配场景及关闭物理引导分别验证。尚未宣称新模型有场景收益，未启动全量训练。见4.5。|
+|E4|场景输入／接触监督审计与改进|**三项已接入；63项测试及真实数据反传通过，200步匹配实验运行中**|修正区域接触监督、补TRAIN弱标签；新增每关节已见表面关系cross-attention；每次x0内联合修正root位置和关节旋转。由4000步共同权重开始，58个TRAIN窗／16个VAL窗，7:3；正确／关闭／错配场景及关闭物理引导分别验证。尚未宣称新模型有场景收益，未启动全量训练。见4.5。|
 
 **下一步固定为：先处理E4发现的场景监督与有效覆盖问题，验证接触／支撑关系及扩散内部物理约束，再做三语料7:3匹配消融；场景收益通过才扩全量。** 旧500步不续训；新1000步只是小集诊断，不是全量模型。TRUMANS exo仍是合成观察增广，连续完全缺失限制18帧，长缺失／多假设补全后置。真实视频前端误差校准、未知体型、真实动态估计、独立输出头继续后置。
 
@@ -648,3 +648,8 @@ exo clean缺失关节误差相对同权重关闭场景下降8.64%，但exo noisy
 |运行与保存|北京时间13:41:43启动独立进程，界面中断不终止训练；目前未启动全训练池。|[console.log](../native30_scene_relations_oct14/experiment/console.log)、[launcher.json](../native30_scene_relations_oct14/experiment/launcher.json)|
 
 新实现路径：[接触监督](../../native30_scene_support.py)、[监督损失](../../native30_relation_losses.py)、[关系编码](../../native30_scene_relations.py)、[物理引导](../../native30_physical_guidance.py)、[配置](../../native30_scene_relations_config.json)。训练前Linux余约58GiB、E盘余约272GiB；新缓存未重复导出，权重和大数组仅保留本地。
+
+
+本轮TRAIN实际标签覆盖：58个条件窗中52个有可靠接触／非接触监督（旧版仅RICH的10窗）。其余保持UNKNOWN。真实PV wearer ego的8窗没有新弱正标签，不能因此判为没有接触；其中4窗有可靠弱负标签。新增弱正标签主要来自TRUMANS及EgoBody exo／虚拟ego可见表面，官方RICH标签保持优先。
+
+试验及结果整理均为独立进程：[finalize_results.py](../native30_scene_relations_oct14/experiment/finalize_results.py)在结束后自动生成RESULT_SUMMARY.json，并把实际VAL结果回填本节和E4总表；不自动启动全量训练。代码与初始检查已备份至[339e747](https://github.com/Wendy-xinn/SceneMI/commit/339e747)，权重和大数组保留本地。仅训练器的最后保存状态不代表整个验证结束，最终以protocol.json为准。
