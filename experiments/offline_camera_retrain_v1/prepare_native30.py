@@ -22,7 +22,7 @@ from experiments.offline_camera_retrain_v1.supervision import forward_kinematics
 from experiments.offline_camera_retrain_v1.scene_model import cosine_alphas
 from experiments.offline_camera_retrain_v1.native30_cache_io import atomic_text,mapped_sha256,verified_sha256
 
-CONFIG_PATH=HERE/'native30_stride64_config.json'
+CONFIG_PATH=HERE/'native30_recording_headonly_config.json'
 
 
 def sha256(path):
@@ -63,6 +63,17 @@ def read_config(path=CONFIG_PATH):
         raise ValueError('Validation cadence and scope must be positive')
     if config['validation']['regimes']!=['clean','noisy']:
         raise ValueError('Registered validation reports clean and noisy inputs separately')
+    if config['validation'].get('subset_protocol'):
+        from experiments.offline_camera_retrain_v1.native30_validation import SUBSET_PROTOCOL
+        options=config['validation']
+        if options['subset_protocol']!=SUBSET_PROTOCOL or config['ego_head_only_probability']!=1:
+            raise ValueError('Rotating monitoring requires the registered head-only protocol')
+        for key in ('fixed_recordings_per_dataset_mode','rotating_recordings_per_dataset_mode'):
+            if isinstance(options[key],bool) or not isinstance(options[key],int) or options[key]<1:
+                raise ValueError('Validation panel sizes must be positive integers')
+        cadence=options.get('scene_ablation_interval_steps',0)
+        if isinstance(cadence,bool) or not isinstance(cadence,int) or cadence<0 or cadence%options['interval_steps']:
+            raise ValueError('Scene checks must follow the monitoring interval')
     if config['scene']['scales_m']!=[.08,.25,.6] or config['scene']['patch_tokens']!=16 or config['scene']['neighbors_per_scale']!=8:
         raise ValueError('Scene representation differs from current implementation')
     from experiments.offline_camera_retrain_v1.native30_splits import SPLIT_PROTOCOL
@@ -73,6 +84,9 @@ def read_config(path=CONFIG_PATH):
         raise ValueError('Feedback schedule requires the registered cosine1000 clock')
     if not 0<config['ego_probability']<1 or not 0<=config['ego_head_only_probability']<=1:
         raise ValueError('Invalid sampling probabilities')
+    if config.get('sampler'):
+        from experiments.offline_camera_retrain_v1.native30_sampling import validate_sampling_options
+        validate_sampling_options(config['sampler'],config['ego_probability'])
     if config['batch_size']<1 or config['optimizer']['lr']<=0:
         raise ValueError('Invalid batch size/learning rate')
     limit=config.get('exo_max_empty_frames')
@@ -140,8 +154,16 @@ def dataset_digest(data):
 
 
 def sample_item(data,builder,config,plan,rng):
-    ix=int(rng.choice(len(plan),p=[r['probability'] for r in plan]));row=plan[ix]
-    sample,identity=data.sample(row['group'],row['mode'])
+    if config.get('sampler'):
+        from experiments.offline_camera_retrain_v1.native30_sampling import StratifiedRecordingSampler
+        if not hasattr(data,'training_sampler'):
+            data.training_sampler=StratifiedRecordingSampler(data,plan,config['sampler'],config['seed']+371)
+        row=data.training_sampler.draw()
+        sample,identity=data.sample(row['group'],row['mode'],member=row['member'],start=row['start'])
+        identity['sampling']=dict(protocol=config['sampler']['protocol'],**{k:row[k] for k in ('recording_key','cooldown_fallback','overlap_fallback')})
+    else:
+        ix=int(rng.choice(len(plan),p=[r['probability'] for r in plan]));row=plan[ix]
+        sample,identity=data.sample(row['group'],row['mode'])
     joints=None if row['mode']=='exo' else ((15,) if rng.random()<config['ego_head_only_probability'] else (15,20,21))
     sample,scene,asset=builder.build(data,sample,identity,row['mode'],joints,noise_rng=rng)
     if config.get('scene_relations',{}).get('enabled') and data.split=='train':

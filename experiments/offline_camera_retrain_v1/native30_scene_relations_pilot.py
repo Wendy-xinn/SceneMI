@@ -28,7 +28,7 @@ from experiments.offline_camera_retrain_v1.native30_losses import objective
 from experiments.offline_camera_retrain_v1.checkpoint_io import save_checkpoint
 
 
-def fit(model, config, bank, identities, builder, weights, out, warm_step, updates, *, scene):
+def fit(model, config, bank, identities, builder, weights, out, warm_step, updates, *, scene, sampling_plan=None):
     common=('reference_', 'observation_', 'camera_encoder.', 'body_encoder.', 'core.unet.final_conv.')
     adapters=('relation_', 'surface_', 'anchor_', 'region_condition.', 'contact_', 'correspondence_',
               'feedback_temporal.', 'root_feedback.', 'rotation_feedback.', 'patch_', 'dynamic_', 'owner_embedding.')
@@ -39,11 +39,17 @@ def fit(model, config, bank, identities, builder, weights, out, warm_step, updat
     opt=torch.optim.AdamW([dict(params=slow,lr=config['optimizer']['lr']),dict(params=fast,lr=.0001)],weight_decay=.01)
     rng=np.random.default_rng(config['seed']+871)
     by_mode={m:[i for i,v in enumerate(identities) if v['mode']==m] for m in ('ego','exo')}
+    sampler=None
+    if config.get('sampler'):
+        from experiments.offline_camera_retrain_v1.native30_sampling import StratifiedRecordingSampler
+        if sampling_plan is None:raise ValueError('Pilot must register the full-corpus dataset quotas')
+        sampler=StratifiedRecordingSampler.for_bank(identities,config['frames'],sampling_plan,config['sampler'],config['seed']+371)
     out.mkdir(parents=True,exist_ok=True);began=time.monotonic();counts={};trace=[]
     def checkpoint(step):
         save_checkpoint(dict(model=model.state_dict(),optimizer=opt.state_dict(),step=step,config=config,
              warm_step=warm_step,updates=step-warm_step,condition_rng=rng.bit_generator.state,
              torch_rng=torch.get_rng_state(),cuda_rng=torch.cuda.get_rng_state(),counts=counts,
+             recording_sampler=sampler.state_dict() if sampler is not None else None,
              meta=dict(train_plan=identities,trainable_common_prefixes=common,trainable_scene_prefixes=adapters,
                        scene=scene,full_corpus=False)),out/'last.pt')
         write_json(out/'progress.json',dict(step=step,updates=step-warm_step,elapsed_s=time.monotonic()-began,
@@ -52,8 +58,12 @@ def fit(model, config, bank, identities, builder, weights, out, warm_step, updat
         for update in range(1,updates+1):
             step=warm_step+update;items=[];ids=[]
             for b in range(config['batch_size']):
-                slot=(update-1)*config['batch_size']+b;mode='ego' if slot%10<7 else 'exo'
-                i=int(rng.choice(by_mode[mode]));items.append(augment(bank[i],identities[i],builder,config,rng));ids.append(i)
+                if sampler is not None:
+                    draw=sampler.draw();meta,_=sampler.data.members[draw['group']][draw['member']];i=meta['bank_index']
+                else:
+                    slot=(update-1)*config['batch_size']+b;mode='ego' if slot%10<7 else 'exo'
+                    i=int(rng.choice(by_mode[mode]))
+                items.append(augment(bank[i],identities[i],builder,config,rng));ids.append(i)
             batch=collate_observations(items);known=model_inputs(config,batch);target=training_motion(config,batch,known)
             generator=torch.Generator(device='cuda').manual_seed(config['seed']+step*31)
             t=torch.randint(1000,(len(items),),device='cuda',generator=generator)
@@ -85,8 +95,8 @@ def fit(model, config, bank, identities, builder, weights, out, warm_step, updat
 
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--config',type=Path,default=HERE/'native30_scene_relations_config.json')
-    parser.add_argument('--output',type=Path,default=HERE/'runs/native30_scene_relations_oct14/experiment')
+    parser=argparse.ArgumentParser();parser.add_argument('--config',type=Path,default=HERE/'native30_recording_headonly_config.json')
+    parser.add_argument('--output',type=Path,default=HERE/'runs/native30_recording_headonly_oct14/experiment')
     parser.add_argument('--warm',type=Path,default=HERE/'runs/native30_overnight_ik_oct14/experiment/candidate/last.pt')
     parser.add_argument('--steps',type=int,default=200);parser.add_argument('--ddim-steps',type=int,default=20)
     parser.add_argument('--seeds',type=int,nargs='+',default=[2026101401,2026101403])
@@ -108,8 +118,10 @@ def main():
          train_windows=len(plan['train']),validation_windows=len(plan['validation']),free_disk_before=shutil.disk_usage(HERE).free)
     write_json(out/'protocol.json',protocol)
     builder=Native30ObservationBuilder(Native30SkinAnchorCache(),json.loads((HERE/config['mount_defaults']).read_text()),config['observation']['input_noise'])
-    bank,ids=build_bank(scoped_data(config,'train'),builder,plan['train'],config)
-    val,vids=build_bank(scoped_data(config,'validation'),builder,plan['validation'])
+    train_data=scoped_data(config,'train');sampling_plan=train_data.sampling_plan(config['ego_probability'])
+    bank,ids=build_bank(train_data,builder,plan['train'],config)
+    protocol['sampling_plan']=sampling_plan;write_json(out/'protocol.json',protocol)
+    val,vids=build_bank(scoped_data(config,'validation'),builder,plan['validation'],head_only=config['ego_head_only_probability']==1)
     write_json(out/'identities.json',dict(train=ids,validation=vids))
     labels=[dict(group=i['group'],mode=i['mode'],valid=int(item[0]['contact_valid'].sum()),
                  positive=int(((item[0]['contact_target']>.5)&item[0]['contact_valid']).sum())) for item,i in zip(bank,ids)]
@@ -122,7 +134,7 @@ def main():
         return model
     for name,scene in [('candidate',True),('control',False)]:
         protocol['status']=name+'_training';write_json(out/'protocol.json',protocol)
-        model=initialize();tr=fit(model,config,bank,ids,builder,weights,out/name,warm['step'],args.steps,scene=scene);rows.append(tr)
+        model=initialize();tr=fit(model,config,bank,ids,builder,weights,out/name,warm['step'],args.steps,scene=scene,sampling_plan=sampling_plan);rows.append(tr)
         protocol['status']=name+'_validation';write_json(out/'protocol.json',protocol)
         report=evaluate(model,val,vids,builder,config,out/name,warm['step']+args.steps,steps=args.ddim_steps,
                         seeds=tuple(args.seeds),ablate=scene)
@@ -158,7 +170,7 @@ def main():
 if __name__=='__main__':
     try:main()
     except BaseException:
-        parser=argparse.ArgumentParser(add_help=False);parser.add_argument('--output',type=Path,default=HERE/'runs/native30_scene_relations_oct14/experiment')
+        parser=argparse.ArgumentParser(add_help=False);parser.add_argument('--output',type=Path,default=HERE/'runs/native30_recording_headonly_oct14/experiment')
         args,_=parser.parse_known_args();args.output.mkdir(parents=True,exist_ok=True)
         write_json(args.output/'failure.json',dict(traceback=traceback.format_exc(),utc=dt.datetime.now(dt.timezone.utc).isoformat()))
         raise

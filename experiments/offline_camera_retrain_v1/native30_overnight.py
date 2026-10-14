@@ -86,11 +86,13 @@ def window_plan(data,members_per_group,windows_per_member):
     return result
 
 
-def build_bank(data,builder,plan,config=None):
+def build_bank(data,builder,plan,config=None,*,head_only=False):
     bank=[];identities=[]
     for i,entry in enumerate(plan):
         sample,identity=data.sample(entry['group'],entry['mode'],member=entry['member'],start=entry['start'],yaw=0)
-        item=builder.build(data,sample,identity,entry['mode'],(15,20,21) if entry['mode']=='ego' else None)
+        only_head=head_only or (config is not None and config['ego_head_only_probability']==1)
+        joints=((15,) if only_head else (15,20,21)) if entry['mode']=='ego' else None
+        item=builder.build(data,sample,identity,entry['mode'],joints)
         if config and config.get('scene_relations',{}).get('enabled'):
             from experiments.offline_camera_retrain_v1.native30_scene_support import attach_support_supervision
             item=(attach_support_supervision(item[0],item[1],item[2]),item[1],item[2])

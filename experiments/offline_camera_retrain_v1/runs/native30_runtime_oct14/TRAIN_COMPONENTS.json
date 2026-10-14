@@ -1,0 +1,403 @@
+{
+  "status": "passed",
+  "optimizer_steps": 0,
+  "started_utc": "2026-10-14T08:58:41.741316+00:00",
+  "scope": "B2 L192 all model parameters trainable; head-only ego; t300; scene/physics/FP32 unchanged",
+  "limitations": "Three fixed and two random TRAIN batches, not a corpus mean. Nested component timings overlap. Profiling and CUDA synchronization add overhead. No optimizer/clip/checkpoint/validation.",
+  "rows": [
+    {
+      "repeat": 0,
+      "profiled": false,
+      "sampling": "fixed",
+      "identities": [
+        {
+          "group": "trumans",
+          "mode": "exo",
+          "sequence_id": "2023-01-14@22-06-10",
+          "start": 384
+        },
+        {
+          "group": "rich",
+          "mode": "ego",
+          "sequence_id": "BBQ_001_guitar",
+          "start": 0
+        }
+      ],
+      "phases_s": {
+        "raw_sample": 0.06037537701195106,
+        "observation_scene_build": 1.2898344970017206,
+        "support_labels": 1.1417231999948854,
+        "collate_reference_noise": 0.8296463880105875,
+        "forward": 3.3494496810017154,
+        "loss": 0.1029251319996547,
+        "backward": 0.4720183960016584
+      },
+      "nested_forward_components_s": {
+        "_core_pass": 0.2926270580064738,
+        "constrain_motion": 0.747448741007247,
+        "local_geometry": 1.0177232720016036,
+        "physical_guidance_inclusive": 1.5907293619966367
+      },
+      "total_s": 7.245987593007158,
+      "loss": 0.770169734954834,
+      "finite": true,
+      "peak_allocated_cuda_gib": 3.514716148376465
+    },
+    {
+      "repeat": 1,
+      "profiled": false,
+      "sampling": "fixed",
+      "identities": [
+        {
+          "group": "trumans",
+          "mode": "exo",
+          "sequence_id": "2023-01-14@22-06-10",
+          "start": 384
+        },
+        {
+          "group": "rich",
+          "mode": "ego",
+          "sequence_id": "BBQ_001_guitar",
+          "start": 0
+        }
+      ],
+      "phases_s": {
+        "raw_sample": 0.0034174070024164394,
+        "observation_scene_build": 0.3590855560032651,
+        "support_labels": 1.1678784870018717,
+        "collate_reference_noise": 0.027279714995529503,
+        "forward": 2.5633283049974125,
+        "loss": 0.0740420880028978,
+        "backward": 0.17879729099513497
+      },
+      "nested_forward_components_s": {
+        "_core_pass": 0.02784974200767465,
+        "constrain_motion": 0.6110587120201671,
+        "local_geometry": 0.9543593819980742,
+        "physical_guidance_inclusive": 1.4502015960024437
+      },
+      "total_s": 4.373843021996436,
+      "loss": 0.8009979724884033,
+      "finite": true,
+      "peak_allocated_cuda_gib": 3.5128087997436523
+    },
+    {
+      "repeat": 2,
+      "profiled": true,
+      "sampling": "fixed",
+      "identities": [
+        {
+          "group": "trumans",
+          "mode": "exo",
+          "sequence_id": "2023-01-14@22-06-10",
+          "start": 384
+        },
+        {
+          "group": "rich",
+          "mode": "ego",
+          "sequence_id": "BBQ_001_guitar",
+          "start": 0
+        }
+      ],
+      "phases_s": {
+        "raw_sample": 0.004017459010356106,
+        "observation_scene_build": 0.40441574300348293,
+        "support_labels": 1.17007237499638,
+        "collate_reference_noise": 0.027854793006554246,
+        "forward": 2.492775184000493,
+        "loss": 0.06682722900586668,
+        "backward": 0.16794817299523856
+      },
+      "nested_forward_components_s": {
+        "_core_pass": 0.028259749989956617,
+        "constrain_motion": 0.5267996200273046,
+        "local_geometry": 0.9925801089993911,
+        "physical_guidance_inclusive": 1.3301707210048335
+      },
+      "total_s": 4.333922977006296,
+      "loss": 0.9152445793151855,
+      "finite": true,
+      "peak_allocated_cuda_gib": 3.5128087997436523
+    },
+    {
+      "repeat": 3,
+      "profiled": false,
+      "sampling": "full_corpus_random",
+      "identities": [
+        {
+          "group": "interactee",
+          "mode": "ego",
+          "sequence_id": "recording_20210910_S05_S06_01_interactee_1451-3881",
+          "start": 1856
+        },
+        {
+          "group": "trumans",
+          "mode": "ego",
+          "sequence_id": "2023-02-13@21-29-59",
+          "start": 512
+        }
+      ],
+      "phases_s": {
+        "raw_sample": 0.04849408401059918,
+        "observation_scene_build": 2.3268276369926753,
+        "support_labels": 1.0640053950046422,
+        "collate_reference_noise": 0.03346521200728603,
+        "forward": 2.356614254997112,
+        "loss": 0.07173597699147649,
+        "backward": 0.16680972099129576
+      },
+      "nested_forward_components_s": {
+        "_core_pass": 0.028043704995070584,
+        "constrain_motion": 0.49560784704226535,
+        "local_geometry": 0.9500356869975803,
+        "physical_guidance_inclusive": 1.2452990059973672
+      },
+      "total_s": 6.067966118003824,
+      "loss": 0.4474557936191559,
+      "finite": true,
+      "peak_allocated_cuda_gib": 3.513428211212158
+    },
+    {
+      "repeat": 4,
+      "profiled": false,
+      "sampling": "full_corpus_random",
+      "identities": [
+        {
+          "group": "trumans",
+          "mode": "ego",
+          "sequence_id": "2023-01-15@23-33-09",
+          "start": 448
+        },
+        {
+          "group": "trumans",
+          "mode": "ego",
+          "sequence_id": "2023-02-16@14-40-11",
+          "start": 704
+        }
+      ],
+      "phases_s": {
+        "raw_sample": 0.048751082009403035,
+        "observation_scene_build": 1.6570851449796464,
+        "support_labels": 1.9925174079980934,
+        "collate_reference_noise": 0.03305373800685629,
+        "forward": 3.815684571993188,
+        "loss": 0.06674630900670309,
+        "backward": 0.19524347699189093
+      },
+      "nested_forward_components_s": {
+        "_core_pass": 0.029360566986724734,
+        "constrain_motion": 0.4814394939894555,
+        "local_geometry": 1.7563903729896992,
+        "physical_guidance_inclusive": 1.8966105099971173
+      },
+      "total_s": 7.809094403011841,
+      "loss": 0.7442009449005127,
+      "finite": true,
+      "peak_allocated_cuda_gib": 3.514787197113037
+    }
+  ],
+  "resident_adam_bytes": 981340288,
+  "profile_top_own_time": [
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'query_ball_point' of 'scipy.spatial._ckdtree.cKDTree' objects>",
+      "calls": 1448,
+      "own_s": 1.264397009,
+      "inclusive_s": 1.266256807
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "line": 118,
+      "function": "query_surfaces_cuda",
+      "calls": 4,
+      "own_s": 0.443365726,
+      "inclusive_s": 1.5810110880000001
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "line": 14,
+      "function": "select_radius_samples",
+      "calls": 384,
+      "own_s": 0.42258773800000005,
+      "inclusive_s": 0.734439001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'reduce' of 'numpy.ufunc' objects>",
+      "calls": 13655,
+      "own_s": 0.299678376,
+      "inclusive_s": 0.299678376
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/supervision.py",
+      "line": 24,
+      "function": "forward_kinematics",
+      "calls": 177,
+      "own_s": 0.21939915200000001,
+      "inclusive_s": 0.26949169300000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'run_backward' of 'torch._C._EngineBase' objects>",
+      "calls": 4,
+      "own_s": 0.21455041800000002,
+      "inclusive_s": 0.21455041800000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'acquire' of '_thread.lock' objects>",
+      "calls": 3860,
+      "own_s": 0.07742966100000001,
+      "inclusive_s": 0.07742966100000001
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch._C._linalg.linalg_solve>",
+      "calls": 54,
+      "own_s": 0.07300743300000001,
+      "inclusive_s": 0.07300743300000001
+    },
+    {
+      "file": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/pytorch3d/transforms/rotation_conversions.py",
+      "line": 498,
+      "function": "axis_angle_to_quaternion",
+      "calls": 77,
+      "own_s": 0.070331898,
+      "inclusive_s": 0.07634621100000001
+    },
+    {
+      "file": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/smplx/lbs.py",
+      "line": 345,
+      "function": "batch_rigid_transform",
+      "calls": 20,
+      "own_s": 0.06817160900000001,
+      "inclusive_s": 0.08778523
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "line": 90,
+      "function": "select_radius_samples_cuda",
+      "calls": 100,
+      "own_s": 0.066663365,
+      "inclusive_s": 0.196940799
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.as_tensor>",
+      "calls": 476,
+      "own_s": 0.061928167000000006,
+      "inclusive_s": 0.061928167000000006
+    },
+    {
+      "file": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/numpy/linalg/linalg.py",
+      "line": 1317,
+      "function": "eigh",
+      "calls": 386,
+      "own_s": 0.054123825,
+      "inclusive_s": 0.057100643000000006
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method numpy.core._multiarray_umath.implement_array_function>",
+      "calls": 28327,
+      "own_s": 0.050506604000000004,
+      "inclusive_s": 0.19133912900000002
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'query' of 'scipy.spatial._ckdtree.cKDTree' objects>",
+      "calls": 582,
+      "own_s": 0.044657492,
+      "inclusive_s": 0.192891491
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method _thread.start_new_thread>",
+      "calls": 772,
+      "own_s": 0.043799364,
+      "inclusive_s": 0.043799364
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "line": 46,
+      "function": "query_surfaces",
+      "calls": 2,
+      "own_s": 0.035498083,
+      "inclusive_s": 1.161750223
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "line": 97,
+      "function": "squared",
+      "calls": 785,
+      "own_s": 0.033639179000000005,
+      "inclusive_s": 0.033639179000000005
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observation_ik.py",
+      "line": 14,
+      "function": "position_proximal",
+      "calls": 9,
+      "own_s": 0.031361751,
+      "inclusive_s": 0.435618481
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/observed_body_surfaces.py",
+      "line": 13,
+      "function": "oriented_planes",
+      "calls": 386,
+      "own_s": 0.029693186000000003,
+      "inclusive_s": 0.29520244500000004
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/orientation_supervision.py",
+      "line": 5,
+      "function": "global_rotations",
+      "calls": 84,
+      "own_s": 0.026963914000000002,
+      "inclusive_s": 0.045989743
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<built-in method torch.stack>",
+      "calls": 1059,
+      "own_s": 0.026454479000000003,
+      "inclusive_s": 0.026454479000000003
+    },
+    {
+      "file": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/pytorch3d/transforms/rotation_conversions.py",
+      "line": 43,
+      "function": "quaternion_to_matrix",
+      "calls": 77,
+      "own_s": 0.025084307,
+      "inclusive_s": 0.032693698
+    },
+    {
+      "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_geometry.py",
+      "line": 20,
+      "function": "__init__",
+      "calls": 2,
+      "own_s": 0.023202652,
+      "inclusive_s": 0.39641745300000003
+    },
+    {
+      "file": "~",
+      "line": 0,
+      "function": "<method 'new_tensor' of 'torch._C.TensorBase' objects>",
+      "calls": 489,
+      "own_s": 0.022456159,
+      "inclusive_s": 0.022456159
+    }
+  ],
+  "finished_utc": "2026-10-14T08:59:28.729360+00:00"
+}

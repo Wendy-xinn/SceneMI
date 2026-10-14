@@ -1,0 +1,945 @@
+{
+  "status": "passed",
+  "optimizer_steps": 0,
+  "created_utc": "2026-10-14T08:57:39.563649+00:00",
+  "config": {
+    "version": "native30-recording-balanced-headonly-v5",
+    "fps": 30,
+    "frames": 192,
+    "seed": 2026101267,
+    "initialization": "from_scratch",
+    "shared_output_initialization": "normal_std_0.001_bias_zero",
+    "train_manifest": "data/native30_official_memory_v3/manifest.jsonl",
+    "review_manifest": "data/native30_observer_target_review_oct12/manifest.jsonl",
+    "prepared_output": "runs/native30_recording_headonly_oct14/prepared",
+    "mount_defaults": "data/native30_official_memory_v3/TRAIN_camera_mounts.json",
+    "batch_size": 2,
+    "latent_dim": 256,
+    "dim_mults": [
+      1,
+      2,
+      4
+    ],
+    "ego_probability": 0.7,
+    "ego_head_only_probability": 1.0,
+    "noise": {
+      "steps": 1000,
+      "extra_low_noise_probability": 0.25,
+      "low_noise_steps": 100
+    },
+    "sampling": {
+      "ddim_steps": 20,
+      "global_tokens_reuse": "one sampling call only"
+    },
+    "scene": {
+      "dropout_probability": 0.1,
+      "patch_tokens": 16,
+      "neighbors_per_scale": 8,
+      "scales_m": [
+        0.08,
+        0.25,
+        0.6
+      ],
+      "observation_budget": "entire supplied recording observed-static union; same observer/world/split only; dynamics current frame",
+      "unknown_policy": "surface-only; no free-space inference",
+      "memory_protocol": "observed-static-recording-union-v3",
+      "coordinate_protocol": "persistent world map; transform to current window anchor at query",
+      "memory_control_protocol": "observed-static-prefix-through-window-end-v2",
+      "evaluation_input_scope": "supplied recording only; restricted benchmark clips must use a restricted observation manifest"
+    },
+    "anchor_protocol": "native_body_dominant_only_67_low_foot_v1",
+    "dynamic_condition": "current_visible_owner_patch_tokens_plus_local_queries; source_known_simulation_velocities_only",
+    "feedback": {
+      "root_limit_m": 0.08,
+      "rotation_limit_rad": 0.12,
+      "feedback_gain": 1.0,
+      "gate": "cosine_alpha_squared",
+      "placement": "inside x0 before DDIM update",
+      "position_protocol": "root translation and SO3 FK, fixed bone lengths"
+    },
+    "optimizer": {
+      "lr": 1e-05,
+      "weight_decay": 0.01,
+      "clip_norm": 1.0,
+      "warmup_steps": 200,
+      "floor_fraction": 0.2
+    },
+    "observation": {
+      "scales": {
+        "position": 0.05,
+        "rotation": 0.17453292519943295,
+        "velocity": 0.15,
+        "acceleration": 1.0,
+        "angular_velocity": 0.3490658503988659,
+        "body_turn_rate": 0.3490658503988659
+      },
+      "target_gradient_ratios": {
+        "position": 0.1,
+        "rotation": 0.04,
+        "velocity": 0.03,
+        "acceleration": 0.005,
+        "angular_velocity": 0.015,
+        "body_turn_rate": 0.015
+      },
+      "maximum_coefficients": {
+        "position": 0.1,
+        "rotation": 0.025,
+        "velocity": 0.015,
+        "acceleration": 0.001,
+        "angular_velocity": 0.005,
+        "body_turn_rate": 0.0025
+      },
+      "input_noise": {
+        "protocol": "native30-smooth-observation-error-v1",
+        "clean_probability": 0.5,
+        "ego_head": {
+          "offset_sigma_m": 0.01,
+          "endpoint_sigma_m": 0.02,
+          "rotation_offset_deg": 2.0,
+          "rotation_endpoint_deg": 3.0
+        },
+        "ego_wrists": {
+          "enabled": false,
+          "offset_sigma_m": 0.005,
+          "endpoint_sigma_m": 0.01,
+          "rotation_offset_deg": 2.0,
+          "rotation_endpoint_deg": 3.0
+        },
+        "exo": {
+          "offset_sigma_m": 0.01,
+          "endpoint_sigma_m": 0.02,
+          "shared_offset_sigma_m": 0.005,
+          "shared_endpoint_sigma_m": 0.01
+        },
+        "gap_probability": 0.3,
+        "gap_seconds": 0.6,
+        "ego_gap_joints": [
+          15
+        ],
+        "wrist_extra_gap": false
+      },
+      "joint_weights": [
+        2.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.5,
+        1.0,
+        1.5,
+        1.5,
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.5
+      ]
+    },
+    "geometry": {
+      "tolerance_m": 0.02,
+      "slip_tolerance_m_s": 0.2,
+      "coefficients": {
+        "contact": 0.2,
+        "contact_distance_m2": 2.0,
+        "contact_relative_slip_m2_s2": 0.02,
+        "observed_plane_proxy_m2": 0.1,
+        "correspondence": 0.01,
+        "feedback_smoothness": 0.0001,
+        "support_relation_m2": 1.0
+      }
+    },
+    "training_status": "Sampling/head-only/monitoring wired; no v5 optimizer updates; complete preparation and matched ego-only/exo-only/mixed quality checks pending",
+    "split_protocol": "egobody-official-recording-v2",
+    "diagnostic_mount_defaults": "runs/ego_exo_surface_continue_oct11/TRAIN_camera_mounts.json",
+    "gt_reliability": {
+      "protocol": "native30-isolated-candidate-soft-v1",
+      "enabled": true,
+      "candidate_weight": 0.25,
+      "rotation_step_deg": 60.0,
+      "isolated_return_deg": 20.0,
+      "isolated_joint_excursion_m": 0.08,
+      "isolated_neighbor_displacement_m": 0.04,
+      "derivative_policy": "skip_stencils_touching_candidates",
+      "target_editing": false
+    },
+    "validation": {
+      "interval_steps": 1000,
+      "members_per_group_mode": 1,
+      "seed": 2026101351,
+      "regimes": [
+        "clean",
+        "noisy"
+      ],
+      "scope": "6 fixed plus 6 rotating official VAL windows; head-only ego; clean/noisy separate; fixed trends and rotating coverage reported separately; full official final evaluation unchanged",
+      "subset_protocol": "fixed-plus-rotating-recordings-v1",
+      "fixed_recordings_per_dataset_mode": 1,
+      "rotating_recordings_per_dataset_mode": 1,
+      "scene_ablation_interval_steps": 5000
+    },
+    "exo_window_policy": "at least one observed joint; maximum 18 consecutive all-joint-missing raw30 frames; partial joint occlusion retained; full static recording memory unchanged",
+    "exo_max_empty_frames": 18,
+    "window_stride": 64,
+    "window_index": "data/native30_official_windows64_v1/dataset.json",
+    "diffusion_target": "reference_residual",
+    "reference_input": {
+      "coordinate_frame": "same fixed window world coordinates as scene and observed tracks",
+      "full_frontend_optional": true,
+      "fields": [
+        "reference_motion",
+        "reference_confidence"
+      ],
+      "fallback": "observed-track kinematic initializer with supplied rest bones; no GT motion",
+      "occluded_prior": "retain full estimated motion; encode low position/rotation confidence",
+      "availability": "real video frontend predictions are not yet in current dataset cache"
+    },
+    "refinement": {
+      "observation_anchor_gain": 0.9,
+      "placement": "predicted proposal and final x0 within diffusion",
+      "exo": "confidence/uncertainty weighted observed torso rigid pose",
+      "ego": "head position translation only; no camera-to-body heading constraint",
+      "joint_anchor_gain": 0.9,
+      "joint_anchor_iterations": 6,
+      "joint_anchor_damping_m2": 0.0025,
+      "joint_anchor_angle_limit_rad": 0.35,
+      "joint_anchor_schedule": "cosine alpha; skip alpha<0.05; predicted proposal and final x0; root excluded"
+    },
+    "scene_relations": {
+      "enabled": true,
+      "radius_m": 1.5,
+      "support_radius_m": 1.25,
+      "gain": 1.0,
+      "neighbors": 4,
+      "supervision": "observed-GT-calibrated-region-and-weak-contact-v2",
+      "input_policy": "predicted body and trusted tracks only; broad upward samples are context, not completed surfaces"
+    },
+    "physical_guidance": {
+      "enabled": true,
+      "iterations": 2,
+      "minimum_alpha": 0.25,
+      "contact_threshold": 0.5,
+      "query_limit_m": 0.25,
+      "penetration_band_m": 0.06,
+      "contact_tolerance_m": 0.03,
+      "plane_tolerance_m": 0.02,
+      "plane_weight": 0.5,
+      "slip_weight": 0.02,
+      "observation_weight": 1.0,
+      "prior_weight": 0.5,
+      "temporal_weight": 0.1,
+      "translation_lr": 0.0003,
+      "rotation_lr": 0.003,
+      "translation_step_m": 0.01,
+      "rotation_step_rad": 0.035,
+      "root_total_limit_m": 0.02,
+      "trusted_tolerance_m": 0.002,
+      "acceptance": "joint physical/observation/prior energy decreases and trusted measurements protected",
+      "placement": "every clean x0 before next DDIM update; shallow observed support only"
+    },
+    "sampler": {
+      "protocol": "native30-recording-cycles-v1",
+      "mode_block_size": 10,
+      "recording_cooldown": 8,
+      "recent_windows_per_target": 4,
+      "dataset_weights": "preserve per-mode sqrt(valid-window-count) corpus weights and EgoBody role weights",
+      "recording_weights": "equal recording cycles per group/mode, no replacement until cycle ends",
+      "windows": "without replacement per recording/mode; prefer no overlap with recent same-target windows across modes; logged fallback if exhausted"
+    }
+  },
+  "train_source_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_official_memory_v3/manifest.jsonl",
+  "plan": [
+    {
+      "group": "trumans",
+      "mode": "ego",
+      "probability": 0.43912285557404046
+    },
+    {
+      "group": "camera_wearer",
+      "mode": "ego",
+      "probability": 0.09719056127418053
+    },
+    {
+      "group": "interactee",
+      "mode": "ego",
+      "probability": 0.09094896559602214
+    },
+    {
+      "group": "rich",
+      "mode": "ego",
+      "probability": 0.07273761755575679
+    },
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "probability": 0.17448469138065326
+    },
+    {
+      "group": "camera_wearer",
+      "mode": "exo",
+      "probability": 0.046681198956235126
+    },
+    {
+      "group": "interactee",
+      "mode": "exo",
+      "probability": 0.046681198956235126
+    },
+    {
+      "group": "rich",
+      "mode": "exo",
+      "probability": 0.03215291070687652
+    }
+  ],
+  "combined_corpus_probabilities": {
+    "trumans": 0.6136075469546938,
+    "egobody": 0.28150192478267294,
+    "rich": 0.10489052826263331
+  },
+  "draws": 6000,
+  "counts": {
+    "trumans/ego": 2635,
+    "camera_wearer/ego": 583,
+    "interactee/ego": 546,
+    "trumans/exo": 1047,
+    "rich/ego": 436,
+    "camera_wearer/exo": 280,
+    "interactee/exo": 280,
+    "rich/exo": 193
+  },
+  "recording_coverage": {
+    "trumans/ego": {
+      "eligible_recordings": 469,
+      "drawn_recordings": 469,
+      "minimum_draws": 5,
+      "maximum_draws": 6,
+      "old_largest_recording_probability_within_bucket": 0.003881416047647728,
+      "new_recording_probability_within_bucket": 0.0021321961620469083
+    },
+    "camera_wearer/ego": {
+      "eligible_recordings": 61,
+      "drawn_recordings": 61,
+      "minimum_draws": 9,
+      "maximum_draws": 10,
+      "old_largest_recording_probability_within_bucket": 0.040931545518701484,
+      "new_recording_probability_within_bucket": 0.01639344262295082
+    },
+    "interactee/ego": {
+      "eligible_recordings": 61,
+      "drawn_recordings": 61,
+      "minimum_draws": 8,
+      "maximum_draws": 9,
+      "old_largest_recording_probability_within_bucket": 0.043740573152337855,
+      "new_recording_probability_within_bucket": 0.01639344262295082
+    },
+    "rich/ego": {
+      "eligible_recordings": 62,
+      "drawn_recordings": 62,
+      "minimum_draws": 7,
+      "maximum_draws": 8,
+      "old_largest_recording_probability_within_bucket": 0.05609756097560976,
+      "new_recording_probability_within_bucket": 0.016129032258064516
+    },
+    "trumans/exo": {
+      "eligible_recordings": 464,
+      "drawn_recordings": 464,
+      "minimum_draws": 2,
+      "maximum_draws": 3,
+      "old_largest_recording_probability_within_bucket": 0.004481599586313885,
+      "new_recording_probability_within_bucket": 0.0021551724137931034
+    },
+    "camera_wearer/exo": {
+      "eligible_recordings": 65,
+      "drawn_recordings": 65,
+      "minimum_draws": 4,
+      "maximum_draws": 5,
+      "old_largest_recording_probability_within_bucket": 0.03552077062010837,
+      "new_recording_probability_within_bucket": 0.015384615384615385
+    },
+    "interactee/exo": {
+      "eligible_recordings": 65,
+      "drawn_recordings": 65,
+      "minimum_draws": 4,
+      "maximum_draws": 5,
+      "old_largest_recording_probability_within_bucket": 0.03552077062010837,
+      "new_recording_probability_within_bucket": 0.015384615384615385
+    },
+    "rich/exo": {
+      "eligible_recordings": 62,
+      "drawn_recordings": 62,
+      "minimum_draws": 3,
+      "maximum_draws": 4,
+      "old_largest_recording_probability_within_bucket": 0.0583756345177665,
+      "new_recording_probability_within_bucket": 0.016129032258064516
+    }
+  },
+  "exact_mode_blocks": true,
+  "cooldown_fallbacks": 1,
+  "overlap_fallbacks": 871,
+  "sampling_only_s": 0.33741188900603447,
+  "resume_next_100_draws_identical": true,
+  "previous_pilot_400_draws": {
+    "egobody/ego": 159,
+    "trumans/ego": 77,
+    "rich/ego": 44,
+    "rich/exo": 24,
+    "trumans/exo": 31,
+    "egobody/exo": 65
+  },
+  "validation_panels": [
+    [
+      {
+        "group": "trumans",
+        "mode": "ego",
+        "member": 26,
+        "start": 1024,
+        "joints": [
+          15
+        ],
+        "sequence_id": "2023-02-18@22-11-49",
+        "source_first": 1024,
+        "dataset": "trumans",
+        "recording": "2023-02-18@22-11-49",
+        "panel": "fixed",
+        "monitor_round": 0,
+        "case_seed": 3294300373
+      },
+      {
+        "group": "trumans",
+        "mode": "ego",
+        "member": 17,
+        "start": 1280,
+        "joints": [
+          15
+        ],
+        "sequence_id": "2023-02-18@16-48-17",
+        "source_first": 1280,
+        "dataset": "trumans",
+        "recording": "2023-02-18@16-48-17",
+        "panel": "rotating",
+        "monitor_round": 0,
+        "case_seed": 728312806
+      },
+      {
+        "group": "trumans",
+        "mode": "exo",
+        "member": 9,
+        "start": 256,
+        "joints": null,
+        "sequence_id": "2023-02-17@11-01-52",
+        "source_first": 256,
+        "dataset": "trumans",
+        "recording": "2023-02-17@11-01-52",
+        "panel": "fixed",
+        "monitor_round": 0,
+        "case_seed": 2773881778
+      },
+      {
+        "group": "trumans",
+        "mode": "exo",
+        "member": 2,
+        "start": 576,
+        "joints": null,
+        "sequence_id": "2023-02-13@22-33-50",
+        "source_first": 576,
+        "dataset": "trumans",
+        "recording": "2023-02-13@22-33-50",
+        "panel": "rotating",
+        "monitor_round": 0,
+        "case_seed": 4219464447
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "ego",
+        "member": 0,
+        "start": 320,
+        "joints": [
+          15
+        ],
+        "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+        "source_first": 1431,
+        "dataset": "egobody",
+        "recording": "recording_20210921_S11_S10_01",
+        "panel": "fixed",
+        "monitor_round": 0,
+        "case_seed": 416274632
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "ego",
+        "member": 4,
+        "start": 192,
+        "joints": [
+          15
+        ],
+        "sequence_id": "recording_20210923_S03_S14_01_camera_wearer_1211-1751",
+        "source_first": 1403,
+        "dataset": "egobody",
+        "recording": "recording_20210923_S03_S14_01",
+        "panel": "rotating",
+        "monitor_round": 0,
+        "case_seed": 3757530018
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "exo",
+        "member": 20,
+        "start": 1536,
+        "joints": null,
+        "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4751_master_full",
+        "source_first": 3047,
+        "dataset": "egobody",
+        "recording": "recording_20220215_S21_S22_02",
+        "panel": "fixed",
+        "monitor_round": 0,
+        "case_seed": 1835557011
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "exo",
+        "member": 27,
+        "start": 960,
+        "joints": null,
+        "sequence_id": "recording_20220315_S21_S30_01_camera_wearer_2571-4691_master_full",
+        "source_first": 3531,
+        "dataset": "egobody",
+        "recording": "recording_20220315_S21_S30_01",
+        "panel": "rotating",
+        "monitor_round": 0,
+        "case_seed": 1384540858
+      },
+      {
+        "group": "rich",
+        "mode": "ego",
+        "member": 2,
+        "start": 384,
+        "joints": [
+          15
+        ],
+        "sequence_id": "LectureHall_020_wipingchairs1",
+        "source_first": 389,
+        "dataset": "rich",
+        "recording": "LectureHall_020_wipingchairs1",
+        "panel": "fixed",
+        "monitor_round": 0,
+        "case_seed": 303671090
+      },
+      {
+        "group": "rich",
+        "mode": "ego",
+        "member": 6,
+        "start": 320,
+        "joints": [
+          15
+        ],
+        "sequence_id": "ParkingLot1_004_phonetalk2",
+        "source_first": 325,
+        "dataset": "rich",
+        "recording": "ParkingLot1_004_phonetalk2",
+        "panel": "rotating",
+        "monitor_round": 0,
+        "case_seed": 1904445410
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 6,
+        "start": 320,
+        "joints": null,
+        "sequence_id": "ParkingLot1_004_phonetalk2",
+        "source_first": 325,
+        "dataset": "rich",
+        "recording": "ParkingLot1_004_phonetalk2",
+        "panel": "fixed",
+        "monitor_round": 0,
+        "case_seed": 2524542219
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 5,
+        "start": 128,
+        "joints": null,
+        "sequence_id": "ParkingLot1_004_eating2",
+        "source_first": 133,
+        "dataset": "rich",
+        "recording": "ParkingLot1_004_eating2",
+        "panel": "rotating",
+        "monitor_round": 0,
+        "case_seed": 52119679
+      }
+    ],
+    [
+      {
+        "group": "trumans",
+        "mode": "ego",
+        "member": 26,
+        "start": 1024,
+        "joints": [
+          15
+        ],
+        "sequence_id": "2023-02-18@22-11-49",
+        "source_first": 1024,
+        "dataset": "trumans",
+        "recording": "2023-02-18@22-11-49",
+        "panel": "fixed",
+        "monitor_round": 1,
+        "case_seed": 3294300373
+      },
+      {
+        "group": "trumans",
+        "mode": "ego",
+        "member": 22,
+        "start": 960,
+        "joints": [
+          15
+        ],
+        "sequence_id": "2023-02-18@16-56-45",
+        "source_first": 960,
+        "dataset": "trumans",
+        "recording": "2023-02-18@16-56-45",
+        "panel": "rotating",
+        "monitor_round": 1,
+        "case_seed": 1707761959
+      },
+      {
+        "group": "trumans",
+        "mode": "exo",
+        "member": 9,
+        "start": 256,
+        "joints": null,
+        "sequence_id": "2023-02-17@11-01-52",
+        "source_first": 256,
+        "dataset": "trumans",
+        "recording": "2023-02-17@11-01-52",
+        "panel": "fixed",
+        "monitor_round": 1,
+        "case_seed": 2773881778
+      },
+      {
+        "group": "trumans",
+        "mode": "exo",
+        "member": 30,
+        "start": 768,
+        "joints": null,
+        "sequence_id": "2023-02-18@22-18-35",
+        "source_first": 768,
+        "dataset": "trumans",
+        "recording": "2023-02-18@22-18-35",
+        "panel": "rotating",
+        "monitor_round": 1,
+        "case_seed": 2418362277
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "ego",
+        "member": 0,
+        "start": 320,
+        "joints": [
+          15
+        ],
+        "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+        "source_first": 1431,
+        "dataset": "egobody",
+        "recording": "recording_20210921_S11_S10_01",
+        "panel": "fixed",
+        "monitor_round": 1,
+        "case_seed": 416274632
+      },
+      {
+        "group": "interactee",
+        "mode": "ego",
+        "member": 23,
+        "start": 64,
+        "joints": [
+          15
+        ],
+        "sequence_id": "recording_20220218_S23_S02_01_interactee_2361-2631",
+        "source_first": 2425,
+        "dataset": "egobody",
+        "recording": "recording_20220218_S23_S02_01",
+        "panel": "rotating",
+        "monitor_round": 1,
+        "case_seed": 2903946475
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "exo",
+        "member": 20,
+        "start": 1536,
+        "joints": null,
+        "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4751_master_full",
+        "source_first": 3047,
+        "dataset": "egobody",
+        "recording": "recording_20220215_S21_S22_02",
+        "panel": "fixed",
+        "monitor_round": 1,
+        "case_seed": 1835557011
+      },
+      {
+        "group": "interactee",
+        "mode": "exo",
+        "member": 18,
+        "start": 1408,
+        "joints": null,
+        "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-4901_master_full",
+        "source_first": 3309,
+        "dataset": "egobody",
+        "recording": "recording_20220215_S21_S22_01",
+        "panel": "rotating",
+        "monitor_round": 1,
+        "case_seed": 4158506437
+      },
+      {
+        "group": "rich",
+        "mode": "ego",
+        "member": 2,
+        "start": 384,
+        "joints": [
+          15
+        ],
+        "sequence_id": "LectureHall_020_wipingchairs1",
+        "source_first": 389,
+        "dataset": "rich",
+        "recording": "LectureHall_020_wipingchairs1",
+        "panel": "fixed",
+        "monitor_round": 1,
+        "case_seed": 303671090
+      },
+      {
+        "group": "rich",
+        "mode": "ego",
+        "member": 23,
+        "start": 384,
+        "joints": [
+          15
+        ],
+        "sequence_id": "Pavallion_006_yoga1",
+        "source_first": 389,
+        "dataset": "rich",
+        "recording": "Pavallion_006_yoga1",
+        "panel": "rotating",
+        "monitor_round": 1,
+        "case_seed": 4158827830
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 6,
+        "start": 320,
+        "joints": null,
+        "sequence_id": "ParkingLot1_004_phonetalk2",
+        "source_first": 325,
+        "dataset": "rich",
+        "recording": "ParkingLot1_004_phonetalk2",
+        "panel": "fixed",
+        "monitor_round": 1,
+        "case_seed": 2524542219
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 11,
+        "start": 0,
+        "joints": null,
+        "sequence_id": "ParkingLot1_005_overfence2",
+        "source_first": 5,
+        "dataset": "rich",
+        "recording": "ParkingLot1_005_overfence2",
+        "panel": "rotating",
+        "monitor_round": 1,
+        "case_seed": 2801222178
+      }
+    ],
+    [
+      {
+        "group": "trumans",
+        "mode": "ego",
+        "member": 26,
+        "start": 1024,
+        "joints": [
+          15
+        ],
+        "sequence_id": "2023-02-18@22-11-49",
+        "source_first": 1024,
+        "dataset": "trumans",
+        "recording": "2023-02-18@22-11-49",
+        "panel": "fixed",
+        "monitor_round": 2,
+        "case_seed": 3294300373
+      },
+      {
+        "group": "trumans",
+        "mode": "ego",
+        "member": 9,
+        "start": 1024,
+        "joints": [
+          15
+        ],
+        "sequence_id": "2023-02-17@11-01-52",
+        "source_first": 1024,
+        "dataset": "trumans",
+        "recording": "2023-02-17@11-01-52",
+        "panel": "rotating",
+        "monitor_round": 2,
+        "case_seed": 2596716679
+      },
+      {
+        "group": "trumans",
+        "mode": "exo",
+        "member": 9,
+        "start": 256,
+        "joints": null,
+        "sequence_id": "2023-02-17@11-01-52",
+        "source_first": 256,
+        "dataset": "trumans",
+        "recording": "2023-02-17@11-01-52",
+        "panel": "fixed",
+        "monitor_round": 2,
+        "case_seed": 2773881778
+      },
+      {
+        "group": "trumans",
+        "mode": "exo",
+        "member": 17,
+        "start": 1280,
+        "joints": null,
+        "sequence_id": "2023-02-18@16-48-17",
+        "source_first": 1280,
+        "dataset": "trumans",
+        "recording": "2023-02-18@16-48-17",
+        "panel": "rotating",
+        "monitor_round": 2,
+        "case_seed": 2238185764
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "ego",
+        "member": 0,
+        "start": 320,
+        "joints": [
+          15
+        ],
+        "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+        "source_first": 1431,
+        "dataset": "egobody",
+        "recording": "recording_20210921_S11_S10_01",
+        "panel": "fixed",
+        "monitor_round": 2,
+        "case_seed": 416274632
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "ego",
+        "member": 19,
+        "start": 1472,
+        "joints": [
+          15
+        ],
+        "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4661",
+        "source_first": 2983,
+        "dataset": "egobody",
+        "recording": "recording_20220215_S21_S22_02",
+        "panel": "rotating",
+        "monitor_round": 2,
+        "case_seed": 423167185
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "exo",
+        "member": 20,
+        "start": 1536,
+        "joints": null,
+        "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4751_master_full",
+        "source_first": 3047,
+        "dataset": "egobody",
+        "recording": "recording_20220215_S21_S22_02",
+        "panel": "fixed",
+        "monitor_round": 2,
+        "case_seed": 1835557011
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "exo",
+        "member": 34,
+        "start": 768,
+        "joints": null,
+        "sequence_id": "recording_20220315_S21_S30_05_camera_wearer_1301-3001_master_full",
+        "source_first": 2069,
+        "dataset": "egobody",
+        "recording": "recording_20220315_S21_S30_05",
+        "panel": "rotating",
+        "monitor_round": 2,
+        "case_seed": 2900913135
+      },
+      {
+        "group": "rich",
+        "mode": "ego",
+        "member": 2,
+        "start": 384,
+        "joints": [
+          15
+        ],
+        "sequence_id": "LectureHall_020_wipingchairs1",
+        "source_first": 389,
+        "dataset": "rich",
+        "recording": "LectureHall_020_wipingchairs1",
+        "panel": "fixed",
+        "monitor_round": 2,
+        "case_seed": 303671090
+      },
+      {
+        "group": "rich",
+        "mode": "ego",
+        "member": 7,
+        "start": 64,
+        "joints": [
+          15
+        ],
+        "sequence_id": "ParkingLot1_004_pushup1",
+        "source_first": 69,
+        "dataset": "rich",
+        "recording": "ParkingLot1_004_pushup1",
+        "panel": "rotating",
+        "monitor_round": 2,
+        "case_seed": 2887977217
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 6,
+        "start": 320,
+        "joints": null,
+        "sequence_id": "ParkingLot1_004_phonetalk2",
+        "source_first": 325,
+        "dataset": "rich",
+        "recording": "ParkingLot1_004_phonetalk2",
+        "panel": "fixed",
+        "monitor_round": 2,
+        "case_seed": 2524542219
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 24,
+        "start": 320,
+        "joints": null,
+        "sequence_id": "Pavallion_013_sidebalancerun",
+        "source_first": 325,
+        "dataset": "rich",
+        "recording": "Pavallion_013_sidebalancerun",
+        "panel": "rotating",
+        "monitor_round": 2,
+        "case_seed": 2017327542
+      }
+    ]
+  ],
+  "default_monitor_prediction_calls": 24,
+  "scene_check_prediction_calls": 36,
+  "scope": "Actual complete official TRAIN index and VAL plans. Sampling/head-only monitoring only; no new quality metrics or complete preparation claimed."
+}

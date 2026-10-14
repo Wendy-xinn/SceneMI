@@ -186,7 +186,17 @@ class Native30Data:
         return sample,identity
 
     def sampler_state(self):
+        if hasattr(self,'training_sampler'):
+            return dict(protocol='data-plus-recording-sampler-v1',data_rng=copy.deepcopy(self.rng.bit_generator.state),
+                        recording_sampler=self.training_sampler.state_dict())
         return copy.deepcopy(self.rng.bit_generator.state)
 
     def load_sampler_state(self,state):
+        if state.get('protocol')=='data-plus-recording-sampler-v1':
+            from experiments.offline_camera_retrain_v1.native30_sampling import StratifiedRecordingSampler
+            saved=state['recording_sampler']
+            self.training_sampler=StratifiedRecordingSampler(self,saved['plan'],saved['options'],0)
+            self.training_sampler.load_state_dict(saved)
+            self.rng.bit_generator.state=copy.deepcopy(state['data_rng'])
+            return
         self.rng.bit_generator.state=copy.deepcopy(state)
