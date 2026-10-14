@@ -1,6 +1,6 @@
 # Ego/exo 模型与实验唯一总清单
 
-更新：2026-10-14。**按用户最新要求，已停止从4200步初始化的v6 ego训练（trace完成394步，定期last.pt保存300步）；保留历史模型与记录。新v7随机初始化／空Adam／全官方TRAIN ego池／head-only的数据、模型与吞吐验收已通过；独立训练进程961455已完成首个真实optimizer更新及可恢复last.pt，随机初始参数与空Adam来源已核验；首次DDIM20固定＋轮换VAL进行中。当前状态与论文评估边界见4.10。** 原小集7:3累计4200步的场景收益门槛未通过，不作为新模型初始化。
+更新：2026-10-14。**按用户最新要求，已停止从4200步初始化的v6 ego训练（trace完成394步，定期last.pt保存300步）；保留历史模型与记录。新v7随机初始化／空Adam／全官方TRAIN ego池／head-only的数据、模型与吞吐验收已通过；独立训练进程961455的随机初始参数与空Adam来源已核验，首步可恢复last.pt已保存；首次36例DDIM20监控已完成，21:35快照trace为59步、loss／梯度均有限，持续训练中。当前状态与论文评估边界见4.10。** 原小集7:3累计4200步的场景收益门槛未通过，不作为新模型初始化。
 
 历史500步基线：E盘30Hz缓存及重新挂载后的完整审计已通过；原始发布量、选定范围和未接入部分见3.1。历史短训使用[500步短训配置](../../native30_short500_config.json)。首轮原始exo观测最多连续18帧完全无关节输入，保留关节局部遮挡；原始缓存、整段静态记忆和六例压力可视化保留。71项旧回归通过。**500/500步及第1/250/500步固定验证已完成，进程正常退出；最终可恢复last.pt已核验。这个基线的训练链路通过，生成效果未通过。** 原55k/3k模型保留。证据：[SHORT500_PROGRESS.json](../native30_short500_oct13/SHORT500_PROGRESS.json)、[CHECKPOINT_AUDIT.json](../native30_short500_oct13/training/CHECKPOINT_AUDIT.json)、[500步mesh对比](../native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)。
 
@@ -967,3 +967,12 @@ v7启动前门槛已通过：[PREFLIGHT.json](../native30_fresh_ego_oct14/PREFLI
 **21:22更新（北京时间）：v7已真正从0完成第1个optimizer更新，并非只启动了等待进程。** [STARTED_FROM_SCRATCH.json](../native30_fresh_ego_oct14/STARTED_FROM_SCRATCH.json)独立读取实际last.pt核对：初始model SHA与零更新benchmark同为`9d14dbbb56e6…`、source_checkpoint=null、初始Adam状态0条；更新后model SHA已改变，315个Adam状态step均为1，全部保存权重有限。首批为TRUMANS ego＋EgoBody wearer ego，head-only，标签缓存2命中／0未命中；loss1.056880，lr约2e-7（500步warmup首步），clip前梯度norm5326.64，按首步Adam一阶moment反算clip后norm约1.000000。历史从零pilot首两步clip前norm7793.67／21559.88，此次不是新出现的非有限溢出，但仍须观察warmup后梯度及固定VAL，不能将一次有限更新称为训练已稳定。
 
 首步准备3.345秒、前向／loss／backward／clip／Adam4.953秒，合计8.299秒；这是冷首步，不替代稳态吞吐。唯一last.pt约1.376GiB，包含model、Adam、初始来源、TRAIN sampler与各RNG，未额外复制best／编号模型。首步保存后正在执行首次固定＋轮换DDIM20监控，完成后继续到10000步；没有自动衔接exo。此时Linux约38.9GiB、E约210GiB空闲，后续缓存受原空间下限约束。
+
+
+**21:35运行／CPU查询复查（北京时间）**：[TRAINING_STATUS_AND_ETA.json](../native30_fresh_ego_oct14/TRAINING_STATUS_AND_ETA.json)记录trace完成59更新，当前最近已保存checkpoint仍为第1步，不能把trace误写为已保存步数。全部已记录loss／clip前梯度norm有限，118个标签样本全命中、0未命中；仍处500步warmup，不能判断收敛。除冷首步外58更新平均3.033秒、中位2.949秒，准备平均0.596秒、完整计算平均2.436秒。首次VAL的36次DDIM20输出全部有限，连同前后保存约546.724秒；首次固定ego clean／noisy全身MPJPE约415.85／416.75mm，只是1步后的初始化基线，不是论文效果或场景收益证据。下一固定面板趋势由1000步及后续监控判断。
+
+当前短段吞吐约对应剩余纯训练8.4小时；另有10轮常规24次采样监控、5000／10000步各追加12次scene-OFF，保存与数据来源耗时也计入。暂估本次ego阶段还需9–12小时，即10月15日约06:30–09:30完成；不含exo适配、联合微调及正式论文benchmark。此前启动约9分钟的全源指纹复查、首步冷初始化和首轮验证不应混入稳态每步均值。GPU快照低利用率与约4.7GiB占用不等于缺显存；系统可用内存约23GiB、swap未使用，无当前内存压力证据。
+
+[QUERY_BATCH_BENCHMARK.json](../native30_fresh_ego_oct14/QUERY_BATCH_BENCHMARK.json)及[可复现脚本](../native30_fresh_ego_oct14/benchmark_query_batches.py)在独立零更新进程测试查询行数1024／2048／4096与静态KD-tree 1／4线程（[SciPy workers文档](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.cKDTree.query_ball_point.html)）；不修改正在运行的训练器、权重、配置或依赖源码。三套预先定义的TRAIN ego窗口，192×67探针取GT skin加固定0.12m抖动，三尺度／8邻居／排序／FPS均保留，30次完整查询的所有字段均逐项完全一致。TRUMANS当前1024／1线程平均0.906秒，1024／4线程0.858秒，2048／4线程0.846秒，4096／4线程0.958秒；RICH分别0.428／0.366／0.340／0.312秒。EgoBody查询很短，原实现单次0.020–0.159秒，4线程也有额外开销。两次候选重复、四次原实现重复且与实际GPU训练并发，存在调度离群，不能据此宣称全模型加速比例或最优设置。
+
+本次保留当前B2／FP32和封存运行：简单加线程／扩大查询批次未证明有稳定、足够大的整体收益。查询源码同时进入TRAIN弱标签cache key，直接改动会使这些缓存失效；正常resume也会校验封存代码指纹。后续真正值得做的是压缩邻居索引／批量构建，减少Python逐帧组装和CPU↔GPU同步，或实现精确GPU空间索引；接入前须比较三尺度边界、排序／tie、owner／法线／速度、完整前向／loss／梯度及包含准备／Adam的真实吞吐。不能把缩小半径、邻居数、IK或DDIM步数当作等价优化。当前Linux约38.3GiB、E约200.3GiB空闲，保持既有缓存空间下限；本次没有新增权重副本。

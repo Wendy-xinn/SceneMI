@@ -1,0 +1,282 @@
+{
+  "status": "passed",
+  "optimizer_steps": 0,
+  "live_trainer_modified": false,
+  "query_source_sha256": "d07bd0ee8657a67cd3d66b0edcf97f44b6a61239d4423270811c0a76959d93a7",
+  "scope": "Three predefined official TRAIN ego windows, 192x67 probes from GT skin plus fixed 0.12m jitter; not model throughput. Concurrent live training makes timing indicative only.",
+  "variants": [
+    [
+      1024,
+      1
+    ],
+    [
+      1024,
+      4
+    ],
+    [
+      2048,
+      4
+    ],
+    [
+      4096,
+      4
+    ]
+  ],
+  "cases": [
+    {
+      "group": "trumans",
+      "sequence_id": "2023-01-14@22-06-10",
+      "start": 0,
+      "static_points": 32326,
+      "dynamic_points": 49152,
+      "rows": [
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 0,
+          "elapsed_s": 0.8940521759996045,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 1,
+          "elapsed_s": 0.9004872040004557,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 4,
+          "repeat": 0,
+          "elapsed_s": 0.8237067190002563,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 4,
+          "repeat": 1,
+          "elapsed_s": 0.893155993999244,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 2048,
+          "static_query_workers": 4,
+          "repeat": 0,
+          "elapsed_s": 0.8250490789996547,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 2048,
+          "static_query_workers": 4,
+          "repeat": 1,
+          "elapsed_s": 0.8659890929993708,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 4096,
+          "static_query_workers": 4,
+          "repeat": 0,
+          "elapsed_s": 1.1077633499990043,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 4096,
+          "static_query_workers": 4,
+          "repeat": 1,
+          "elapsed_s": 0.8089149410006939,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 0,
+          "elapsed_s": 0.9156726229994092,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 1,
+          "elapsed_s": 0.9148232799998368,
+          "all_fields_exact": true
+        }
+      ],
+      "mean_elapsed_by_variant": {
+        "1024/1": 0.9062588207498266,
+        "1024/4": 0.8584313564997501,
+        "2048/4": 0.8455190859995128,
+        "4096/4": 0.9583391454998491
+      }
+    },
+    {
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+      "start": 0,
+      "static_points": 16240,
+      "dynamic_points": 49143,
+      "rows": [
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 0,
+          "elapsed_s": 0.1585318109991931,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 1,
+          "elapsed_s": 0.020015582000269205,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 4,
+          "repeat": 0,
+          "elapsed_s": 0.0439746189986181,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 4,
+          "repeat": 1,
+          "elapsed_s": 0.043795583998871734,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 2048,
+          "static_query_workers": 4,
+          "repeat": 0,
+          "elapsed_s": 0.03596140099944023,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 2048,
+          "static_query_workers": 4,
+          "repeat": 1,
+          "elapsed_s": 0.05061474100148189,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 4096,
+          "static_query_workers": 4,
+          "repeat": 0,
+          "elapsed_s": 0.18140171599952737,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 4096,
+          "static_query_workers": 4,
+          "repeat": 1,
+          "elapsed_s": 0.02720030999989831,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 0,
+          "elapsed_s": 0.027734630999475485,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 1,
+          "elapsed_s": 0.15200437800012878,
+          "all_fields_exact": true
+        }
+      ],
+      "mean_elapsed_by_variant": {
+        "1024/1": 0.08957160049976665,
+        "1024/4": 0.043885101498744916,
+        "2048/4": 0.04328807100046106,
+        "4096/4": 0.10430101299971284
+      }
+    },
+    {
+      "group": "rich",
+      "sequence_id": "BBQ_001_guitar",
+      "start": 0,
+      "static_points": 18691,
+      "dynamic_points": 0,
+      "rows": [
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 0,
+          "elapsed_s": 0.39344469999923604,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 1,
+          "elapsed_s": 0.38938727699860465,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 4,
+          "repeat": 0,
+          "elapsed_s": 0.3864855940009875,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 4,
+          "repeat": 1,
+          "elapsed_s": 0.34649200800049584,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 2048,
+          "static_query_workers": 4,
+          "repeat": 0,
+          "elapsed_s": 0.2787440569991304,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 2048,
+          "static_query_workers": 4,
+          "repeat": 1,
+          "elapsed_s": 0.4017725409994455,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 4096,
+          "static_query_workers": 4,
+          "repeat": 0,
+          "elapsed_s": 0.3186301080004341,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 4096,
+          "static_query_workers": 4,
+          "repeat": 1,
+          "elapsed_s": 0.3047050000004674,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 0,
+          "elapsed_s": 0.5287363509996794,
+          "all_fields_exact": true
+        },
+        {
+          "query_rows": 1024,
+          "static_query_workers": 1,
+          "repeat": 1,
+          "elapsed_s": 0.39865631999964535,
+          "all_fields_exact": true
+        }
+      ],
+      "mean_elapsed_by_variant": {
+        "1024/1": 0.42755616199929136,
+        "1024/4": 0.36648880100074166,
+        "2048/4": 0.34025829899928794,
+        "4096/4": 0.31166755400045076
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "observed_at": "2026-10-14T21:35:02.903293+08:00",
+  "pid": 961455,
+  "completed_updates_in_trace": 59,
+  "planned_updates": 10000,
+  "all_recorded_loss_and_preclip_gradient_norm_finite": true,
+  "mean_update_s_excluding_first": 3.0325563670861624,
+  "median_update_s_excluding_first": 2.948762975500358,
+  "mean_preparation_s_excluding_first": 0.5957179126035357,
+  "mean_compute_s_excluding_first": 2.43564052237936,
+  "last_lr": 1.179898652427524e-05,
+  "support_cache_hits": 118,
+  "support_cache_misses": 0,
+  "first_validation_cases": 36,
+  "first_validation_and_save_s": 546.7239883509992,
+  "model_quality_status": "Too early: first VAL after only one update is initialization baseline; need fixed-panel trends after warmup.",
+  "remaining_ego_phase_hours_range": [
+    9,
+    12
+  ],
+  "eta_scope": "This 10000-update ego phase only; includes future DDIM monitoring and saving; excludes exo adaptation/final paper evaluation.",
+  "eta_method": "remaining updates times measured short-segment mean plus ten future 24-case validations and 12 extra scene-OFF cases at each of 5000/10000; first 36-case validation+save as rough per-case estimate.",
+  "query_benchmark_status": "passed",
+  "query_benchmark_live_training_modified": false,
+  "query_benchmark_all_fields_exact": true,
+  "timing_caveat": "Small panel, two repeats per candidate and four baseline repeats, concurrent GPU training; not statistically stable full-model performance.",
+  "decision": "Keep current sealed training configuration/runtime. Larger chunks and four KD-tree workers have scene-dependent, modest/noisy benefits; not sufficient evidence to invalidate support caches or restart the run.",
+  "disk_free_GiB": {
+    ".": 38.302978515625,
+    "/mnt/e": 200.291015625
+  }
+}
