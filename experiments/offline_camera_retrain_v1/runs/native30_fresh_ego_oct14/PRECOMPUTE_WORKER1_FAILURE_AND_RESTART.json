@@ -1,0 +1,30 @@
+{
+  "observed_at": "2026-10-14T23:46:26.162104+08:00",
+  "previous_failure": {
+    "status": "failed",
+    "split": "train",
+    "worker": 1,
+    "workers": 2,
+    "planned_windows": 16707,
+    "total_train_windows": 33415,
+    "priority_stage_windows": 3762,
+    "completed_windows": 9825,
+    "optimizer_steps": 0,
+    "cache_root": "/mnt/e/Projects/SceneMI/cache/native30_runtime_cache_v2",
+    "started_pid": 1572530,
+    "elapsed_s": 6607.752232805,
+    "hits": 180,
+    "misses": 9645,
+    "mean_s_per_window": 0.6725447567049363,
+    "last_case": {
+      "group": "trumans",
+      "mode": "ego",
+      "start": 1024
+    },
+    "traceback": "Traceback (most recent call last):\n  File \"/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/precompute_native30_support.py\", line 59, in run\n    cache.get(identity)\n  File \"/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_support_cache.py\", line 65, in get\n    sample, scene, asset = self.builder.build(self.data, sample, base, mode, (15,) if mode == 'ego' else None)\n  File \"/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observations.py\", line 153, in build\n    scene=cached_surface(data,identity,mode,frames)\n  File \"/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_surface_cache.py\", line 92, in cached_surface\n    return data.surface_cache.get(identity,mode,frames)\n  File \"/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_surface_cache.py\", line 79, in get\n    np.savez(stream,**arrays);stream.flush();os.fsync(stream.fileno())\n  File \"<__array_function__ internals>\", line 200, in savez\n  File \"/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/numpy/lib/npyio.py\", line 615, in savez\n    _savez(file, args, kwds, False)\n  File \"/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/numpy/lib/npyio.py\", line 719, in _savez\n    format.write_array(fid, val,\n  File \"/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/numpy/lib/format.py\", line 728, in write_array\n    fp.write(chunk.tobytes('C'))\n  File \"/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/zipfile.py\", line 1156, in write\n    self._fileobj.write(data)\nOSError: [Errno 12] Cannot allocate memory\n"
+  },
+  "retry_pid": 1413369,
+  "retry_log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_cached_ego_oct14/prepared/precompute_worker1_retry.log",
+  "action": "Restart only failed CPU worker; existing atomic caches reused. Training model/config/optimizer unchanged.",
+  "reason": "OSError ENOMEM while writing a temporary surface npz on E/DrvFS; not a model gradient failure. Other worker completed. Retry now runs alone."
+}
