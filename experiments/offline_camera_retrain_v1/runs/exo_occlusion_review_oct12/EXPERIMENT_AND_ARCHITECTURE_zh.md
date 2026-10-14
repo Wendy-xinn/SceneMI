@@ -1,6 +1,6 @@
 # Ego/exo 模型与实验唯一总清单
 
-更新：2026-10-14。**按用户最新要求，已停止从4200步初始化的v6 ego训练（trace完成394步，定期last.pt保存300步）；保留历史模型与记录。新v7随机初始化／空Adam／全官方TRAIN ego池／head-only的数据、模型与吞吐验收已通过；独立训练进程961455的随机初始参数与空Adam来源已核验，首步可恢复last.pt已保存；首次36例DDIM20监控已完成，21:35快照trace为59步、loss／梯度均有限，持续训练中。当前状态与论文评估边界见4.10。** 原小集7:3累计4200步的场景收益门槛未通过，不作为新模型初始化。
+更新：2026-10-14。**按用户最新要求，已停止从4200步初始化的v6 ego训练（trace完成394步，定期last.pt保存300步）；保留历史模型与记录。新v7随机初始化／空Adam／全官方TRAIN ego池／head-only的数据、模型与吞吐验收已通过；独立训练进程961455的随机初始参数与空Adam来源已核验，首步可恢复last.pt已保存；首次36例DDIM20监控已完成；600步同窗复测ego总体误差和支撑期脚速改善，但脚部落点未达标，EgoBody个例脚位置误差恶化。训练持续运行，新增独立足部监控；GPU查询原型的有限面板等价／吞吐结果见4.11。当前状态与论文评估边界见4.10。** 原小集7:3累计4200步的场景收益门槛未通过，不作为新模型初始化。
 
 历史500步基线：E盘30Hz缓存及重新挂载后的完整审计已通过；原始发布量、选定范围和未接入部分见3.1。历史短训使用[500步短训配置](../../native30_short500_config.json)。首轮原始exo观测最多连续18帧完全无关节输入，保留关节局部遮挡；原始缓存、整段静态记忆和六例压力可视化保留。71项旧回归通过。**500/500步及第1/250/500步固定验证已完成，进程正常退出；最终可恢复last.pt已核验。这个基线的训练链路通过，生成效果未通过。** 原55k/3k模型保留。证据：[SHORT500_PROGRESS.json](../native30_short500_oct13/SHORT500_PROGRESS.json)、[CHECKPOINT_AUDIT.json](../native30_short500_oct13/training/CHECKPOINT_AUDIT.json)、[500步mesh对比](../native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)。
 
@@ -976,3 +976,50 @@ v7启动前门槛已通过：[PREFLIGHT.json](../native30_fresh_ego_oct14/PREFLI
 [QUERY_BATCH_BENCHMARK.json](../native30_fresh_ego_oct14/QUERY_BATCH_BENCHMARK.json)及[可复现脚本](../native30_fresh_ego_oct14/benchmark_query_batches.py)在独立零更新进程测试查询行数1024／2048／4096与静态KD-tree 1／4线程（[SciPy workers文档](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.cKDTree.query_ball_point.html)）；不修改正在运行的训练器、权重、配置或依赖源码。三套预先定义的TRAIN ego窗口，192×67探针取GT skin加固定0.12m抖动，三尺度／8邻居／排序／FPS均保留，30次完整查询的所有字段均逐项完全一致。TRUMANS当前1024／1线程平均0.906秒，1024／4线程0.858秒，2048／4线程0.846秒，4096／4线程0.958秒；RICH分别0.428／0.366／0.340／0.312秒。EgoBody查询很短，原实现单次0.020–0.159秒，4线程也有额外开销。两次候选重复、四次原实现重复且与实际GPU训练并发，存在调度离群，不能据此宣称全模型加速比例或最优设置。
 
 本次保留当前B2／FP32和封存运行：简单加线程／扩大查询批次未证明有稳定、足够大的整体收益。查询源码同时进入TRAIN弱标签cache key，直接改动会使这些缓存失效；正常resume也会校验封存代码指纹。后续真正值得做的是压缩邻居索引／批量构建，减少Python逐帧组装和CPU↔GPU同步，或实现精确GPU空间索引；接入前须比较三尺度边界、排序／tie、owner／法线／速度、完整前向／loss／梯度及包含准备／Adam的真实吞吐。不能把缩小半径、邻居数、IK或DDIM步数当作等价优化。当前Linux约38.3GiB、E约200.3GiB空闲，保持既有缓存空间下限；本次没有新增权重副本。
+
+
+## 4.11 10月14日22时：足部监督复查、600步固定ego评估与GPU查询原型
+
+用户担心提速改动使脚步监督丢失。[FOOT_SUPERVISION_AUDIT.json](../native30_fresh_ego_oct14/FOOT_SUPERVISION_AUDIT.json)核对本轮封存配置、磁盘源码及上一轮v6 prepared：native30_losses／relation_losses／scene_support／physical_guidance／support_cache五个文件与v6逐字节一致，本轮所有封存代码均未变化。几何系数与物理引导设置也与v6相同。速度试验仅在独立进程改运行时函数，不影响训练进程961455。
+
+|仍在训练的足部监督|当前设置与边界|
+|---|---|
+|GT全身姿态／FK位置／速度／加速度|包含脚，不因head-only而删除；head-only限制输入，不限制监督身体部位。|
+|脚速度匹配与支撑期防滑|feet=(10,11)，速度向量匹配系数0.075；GT脚速<0.2m/s定义支撑期，预测额外脚速超过GT+0.02m/s受罚，系数0.1；低噪声门控及GT差分可靠性mask沿用。|
+|接触与表面监督|接触分类0.2、GT标定接触距离2.0、相对表面滑动0.02；官方标签优先、权重1，补充弱标签权重0.25。弱接触仍要求可靠已见表面、距离≤5cm、相对速度≤0.2m/s、连续3帧，脚部要求朝上法向。|
+|无场景证据时|接触标UNKNOWN，不虚构地板或补负标签；GT姿态／脚速度／支撑期防滑仍保留。不能因场景点数多就推定脚下表面可见。|
+
+与v6相比，从零初始化、峰值LR／warmup及重新标定的观测项系数有变化；不能说总训练目标和优化轨迹完全相同。这里确认的是足部损失定义／系数、接触标签规则和物理引导未因提速被删除或削弱。训练1–100步／401–500步的中位总loss约0.952／0.449，planting均值0.902／0.254、相对表面slip均值0.658／0.204；不同窗与噪声步混合，只是训练观察，不替代固定VAL。
+
+[review_feet.py](../native30_fresh_ego_oct14/review_feet.py)独立加载当时唯一last.pt（600步），不更新优化器，对原有三个fixed官方VAL ego窗×clean/noisy作DDIM20 scene-ON复测。与第1步使用相同case seed、逐项一致的GT／观测／availability，结果见[FOOT_REVIEW.json](../native30_fresh_ego_oct14/foot_review_step600/FOOT_REVIEW.json)，采样约149.7秒；未额外保存checkpoint。
+
+|固定ego监控|第1步 clean / noisy|第600步 clean / noisy|
+|---|---|---|
+|全身MPJPE，mm|415.85 / 416.75|257.57 / 264.96|
+|缺失部位MPJPE，mm|435.07 / 434.21|269.21 / 275.54|
+|GT支撑期脚速，m/s，按有效脚帧加权|2.780 / 4.026|0.758 / 0.864|
+|EgoBody个例踝＋脚位置误差，mm|556.72 / 588.70|655.97 / 650.22|
+
+**足滑指标改善，不等于脚放对了，更不等于论文验收通过。** 三窗GT支撑期实际脚速约0.030–0.084m/s，预测仍明显偏高；EgoBody脚位置误差恶化，600步clean的root相对踝／脚误差约588mm，去除root旋转差异后仍约327mm，问题不能只归因于root平移。clean头部朝向误差也从12.33°到19.22°，不应只挑改善项。当前仍是早期三窗监控；1000／2000步应同时核对脚落点、滑动、ego总体与观测一致性，再决定是否做专项梯度／样本覆盖诊断，不能保证继续训练就一定解决。
+
+已启动独立只读[watch_feet.py](../native30_fresh_ego_oct14/watch_feet.py)，进程1490464，见[启动记录](../native30_fresh_ego_oct14/foot_monitor_launcher.json)。它每20秒检查原trainer的最新原子VAL输出，对相同fixed ego窗核验seed／GT／观测，计算踝＋脚世界位置误差、root相对误差、脚速度向量RMSE及GT支撑期脚速，更新本地[FOOT_TREND.json](../native30_fresh_ego_oct14/FOOT_TREND.json)，训练完成／停止后退出。只分析已有输出，不额外跑模型、不改loss，也不自动作出效果通过结论。
+
+CPU查询并非无法继续优化。[gpu_radius_probe.py](../native30_fresh_ego_oct14/gpu_radius_probe.py)是独立原型：GPU分块双精度半径筛选，极近半径边界回退原KD-tree；保留原ID顺序、float32／float64 nearest＋FPS、三半径8邻居以及owner／法向／速度语义。现有8项查询回归及额外静态／动态半径边界探针通过。三套预先定义TRAIN窗口的[GPU_RADIUS_BENCHMARK.json](../native30_fresh_ego_oct14/GPU_RADIUS_BENCHMARK.json)中24次完整查询所有字段逐项一致：
+
+|查询面板|原CPU membership＋GPU FPS均值|GPU membership，1024行分块均值|
+|---|---|---|
+|TRUMANS|0.962秒|0.244秒|
+|EgoBody wearer|0.020秒|0.079秒，反而变慢|
+|RICH|0.420秒|0.168秒|
+
+当前原型为分块穷举，并非GPU空间索引；小／空邻域可能不值得搬GPU。不能据此对全部样本统一宣称4倍加速，也不能根据语料名称硬编码科学分支。后续应考虑由观测点规模和实际邻域负载驱动的CPU／GPU选择，或真正的GPU空间索引。
+
+[check_gpu_training.py](../native30_fresh_ego_oct14/check_gpu_training.py)用当前700步checkpoint、三个预定义真实TRAIN B2组合覆盖三语料与ego/exo，零优化器更新，模型参数不变。第一次常规CUDA检查在原实现自身重复时出现约1.52e-7梯度抖动并触发atol1e-7／rtol1e-6门槛，尚未执行那一组GPU候选；保留[FIRST_AUDIT](../native30_fresh_ego_oct14/GPU_FULL_TRAINING_FIRST_AUDIT.json)。随后在独立进程启用确定性算法／CUBLAS workspace复测，未放宽门槛；[完整复测结果](../native30_fresh_ego_oct14/GPU_FULL_TRAINING_EQUIVALENCE.json)三个组合的前向输出、所有loss项和全部梯度均逐位一致，最大梯度差0。
+
+|完整前向＋loss＋反传面板|原实现两次均值|GPU原型两次均值|耗时变化|
+|---|---|---|---|
+|TRUMANS ego＋EgoBody wearer ego|3.281秒|2.394秒|下降27.0%|
+|TRUMANS ego＋RICH ego|4.185秒|3.003秒|下降28.2%|
+|EgoBody wearer exo＋RICH ego|2.630秒|2.679秒|增加1.9%|
+
+以上是与实际训练并发的小面板、确定性FP32、t300，GPU原型完整模型默认512行分块；不含数据准备／clip／Adam／保存／验证，不是整轮训练吞吐承诺。**原型未接入当前正式训练，当前仍使用原查询实现与封存配置。** 正式迁移需明确记录新运行时来源、保持optimizer／sampler／RNG、沿用未变化的TRAIN标签身份，并验证真实采样吞吐；不能通过隐蔽monkeypatch冒充旧代码指纹。22:18快照训练845步、全部loss／梯度有限，最近100步约3.04秒／步；Linux约37GiB、E约171GiB空闲，未新增模型副本。

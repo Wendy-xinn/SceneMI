@@ -1,0 +1,778 @@
+{
+  "observed_at": "2026-10-14T22:08:02.260367+08:00",
+  "checkpoint_step": 600,
+  "optimizer_steps_in_review": 0,
+  "live_training_modified": false,
+  "scope": "Existing three fixed official VAL ego windows, clean/noisy, same case seeds and identical observations/GT, DDIM20 scene ON; early monitoring only, not full benchmark.",
+  "elapsed_sampling_s": 149.66411973600043,
+  "comparisons": [
+    {
+      "sequence_id": "2023-02-18@22-11-49",
+      "dataset": "trumans",
+      "regime": "clean",
+      "baseline_step": 1,
+      "current_step": 600,
+      "baseline_metrics": {
+        "mpjpe_mm": {
+          "value": 493.7846374511719,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 0.017809590324759483,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 517.29736328125,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 493.7846374511719,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 336.4414978027344,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 71.86085510253906,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 2.6602911949157715,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 65.00626373291016,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 1.6514240503311157,
+          "count": 254
+        }
+      },
+      "current_metrics": {
+        "mpjpe_mm": {
+          "value": 257.7065734863281,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 0.004286843352019787,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 269.9780578613281,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 257.7065734863281,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 222.4933319091797,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 48.380584716796875,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 14.640148162841797,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 43.483890533447266,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.7923493385314941,
+          "count": 254
+        }
+      },
+      "baseline_feet": {
+        "ankle_and_foot_world_error_mm": 1154.913818359375,
+        "ankle_and_foot_root_relative_error_mm": 836.8175048828125,
+        "foot_velocity_vector_rmse_m_s": 1.8932580947875977,
+        "GT_stance_count": 254,
+        "foot_speed_during_GT_stance_m_s": 1.6514241695404053,
+        "GT_foot_speed_during_GT_stance_m_s": 0.0414307601749897
+      },
+      "current_feet": {
+        "ankle_and_foot_world_error_mm": 461.04583740234375,
+        "ankle_and_foot_root_relative_error_mm": 332.1081848144531,
+        "foot_velocity_vector_rmse_m_s": 1.0267267227172852,
+        "GT_stance_count": 254,
+        "foot_speed_during_GT_stance_m_s": 0.7923492789268494,
+        "GT_foot_speed_during_GT_stance_m_s": 0.0414307601749897
+      }
+    },
+    {
+      "sequence_id": "2023-02-18@22-11-49",
+      "dataset": "trumans",
+      "regime": "noisy",
+      "baseline_step": 1,
+      "current_step": 600,
+      "baseline_metrics": {
+        "mpjpe_mm": {
+          "value": 488.813232421875,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 28.594953536987305,
+          "count": 174
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 508.58551025390625,
+          "count": 4050
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 488.813232421875,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 326.01678466796875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 73.07424926757812,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 10.164100646972656,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 66.0793228149414,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 3.332792282104492,
+          "count": 254
+        }
+      },
+      "current_metrics": {
+        "mpjpe_mm": {
+          "value": 265.1210021972656,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 23.51707649230957,
+          "count": 174
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 275.50103759765625,
+          "count": 4050
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 265.1210021972656,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 266.09674072265625,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 48.958919525146484,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 10.690502166748047,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 42.7699089050293,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 1.0540025234222412,
+          "count": 254
+        }
+      },
+      "baseline_feet": {
+        "ankle_and_foot_world_error_mm": 1148.140380859375,
+        "ankle_and_foot_root_relative_error_mm": 840.5220336914062,
+        "foot_velocity_vector_rmse_m_s": 3.5201621055603027,
+        "GT_stance_count": 254,
+        "foot_speed_during_GT_stance_m_s": 3.3327925205230713,
+        "GT_foot_speed_during_GT_stance_m_s": 0.0414307601749897
+      },
+      "current_feet": {
+        "ankle_and_foot_world_error_mm": 463.6587219238281,
+        "ankle_and_foot_root_relative_error_mm": 327.3905334472656,
+        "foot_velocity_vector_rmse_m_s": 1.3173136711120605,
+        "GT_stance_count": 254,
+        "foot_speed_during_GT_stance_m_s": 1.0540024042129517,
+        "GT_foot_speed_during_GT_stance_m_s": 0.0414307601749897
+      }
+    },
+    {
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "dataset": "egobody",
+      "regime": "clean",
+      "baseline_step": 1,
+      "current_step": 600,
+      "baseline_metrics": {
+        "mpjpe_mm": {
+          "value": 297.0512390136719,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 36.5947265625,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 309.45391845703125,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 297.0512390136719,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 160.5318603515625,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 49.706695556640625,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 30.046276092529297,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 76.04325103759766,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 3.990204334259033,
+          "count": 382
+        }
+      },
+      "current_metrics": {
+        "mpjpe_mm": {
+          "value": 267.44598388671875,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 39.66009521484375,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 278.29290771484375,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 267.44598388671875,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 93.05767822265625,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 51.72777557373047,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 27.490692138671875,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 63.77577590942383,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.36748117208480835,
+          "count": 382
+        }
+      },
+      "baseline_feet": {
+        "ankle_and_foot_world_error_mm": 556.7239990234375,
+        "ankle_and_foot_root_relative_error_mm": 515.3726196289062,
+        "foot_velocity_vector_rmse_m_s": 4.012635231018066,
+        "GT_stance_count": 382,
+        "foot_speed_during_GT_stance_m_s": 3.990204334259033,
+        "GT_foot_speed_during_GT_stance_m_s": 0.029580194503068924
+      },
+      "current_feet": {
+        "ankle_and_foot_world_error_mm": 655.9696655273438,
+        "ankle_and_foot_root_relative_error_mm": 588.402099609375,
+        "foot_velocity_vector_rmse_m_s": 0.4351266026496887,
+        "GT_stance_count": 382,
+        "foot_speed_during_GT_stance_m_s": 0.3674812614917755,
+        "GT_foot_speed_during_GT_stance_m_s": 0.029580194503068924
+      }
+    },
+    {
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "dataset": "egobody",
+      "regime": "noisy",
+      "baseline_step": 1,
+      "current_step": 600,
+      "baseline_metrics": {
+        "mpjpe_mm": {
+          "value": 300.9779357910156,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 63.169647216796875,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 312.3021545410156,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 300.9779357910156,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 99.88945007324219,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 52.36436462402344,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.84014892578125,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 76.1349868774414,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 4.824388027191162,
+          "count": 382
+        }
+      },
+      "current_metrics": {
+        "mpjpe_mm": {
+          "value": 261.4078674316406,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 64.10498046875,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 270.80322265625,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 261.4078674316406,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 60.76594543457031,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 53.00631332397461,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.817235946655273,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 63.41328811645508,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.3534228503704071,
+          "count": 382
+        }
+      },
+      "baseline_feet": {
+        "ankle_and_foot_world_error_mm": 588.6964111328125,
+        "ankle_and_foot_root_relative_error_mm": 556.6129150390625,
+        "foot_velocity_vector_rmse_m_s": 4.8662428855896,
+        "GT_stance_count": 382,
+        "foot_speed_during_GT_stance_m_s": 4.82438850402832,
+        "GT_foot_speed_during_GT_stance_m_s": 0.029580194503068924
+      },
+      "current_feet": {
+        "ankle_and_foot_world_error_mm": 650.2213745117188,
+        "ankle_and_foot_root_relative_error_mm": 600.796630859375,
+        "foot_velocity_vector_rmse_m_s": 0.40068718791007996,
+        "GT_stance_count": 382,
+        "foot_speed_during_GT_stance_m_s": 0.3534228205680847,
+        "GT_foot_speed_during_GT_stance_m_s": 0.029580194503068924
+      }
+    },
+    {
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "dataset": "rich",
+      "regime": "clean",
+      "baseline_step": 1,
+      "current_step": 600,
+      "baseline_metrics": {
+        "mpjpe_mm": {
+          "value": 456.71875,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 0.022531766444444656,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 478.4662170410156,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 456.71875,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 224.49276733398438,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 46.15471649169922,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 4.293619155883789,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 66.5428695678711,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 2.18393874168396,
+          "count": 295
+        }
+      },
+      "current_metrics": {
+        "mpjpe_mm": {
+          "value": 247.57237243652344,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 0.006000240333378315,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 259.3612365722656,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 247.57237243652344,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 253.41769409179688,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 26.05544662475586,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 15.516942977905273,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 37.8738899230957,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 1.2346407175064087,
+          "count": 295
+        }
+      },
+      "baseline_feet": {
+        "ankle_and_foot_world_error_mm": 1141.435302734375,
+        "ankle_and_foot_root_relative_error_mm": 1007.610107421875,
+        "foot_velocity_vector_rmse_m_s": 2.813903570175171,
+        "GT_stance_count": 295,
+        "foot_speed_during_GT_stance_m_s": 2.18393874168396,
+        "GT_foot_speed_during_GT_stance_m_s": 0.08437446504831314
+      },
+      "current_feet": {
+        "ankle_and_foot_world_error_mm": 417.12554931640625,
+        "ankle_and_foot_root_relative_error_mm": 396.356201171875,
+        "foot_velocity_vector_rmse_m_s": 1.6972062587738037,
+        "GT_stance_count": 295,
+        "foot_speed_during_GT_stance_m_s": 1.2346408367156982,
+        "GT_foot_speed_during_GT_stance_m_s": 0.08437446504831314
+      }
+    },
+    {
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "dataset": "rich",
+      "regime": "noisy",
+      "baseline_step": 1,
+      "current_step": 600,
+      "baseline_metrics": {
+        "mpjpe_mm": {
+          "value": 460.45751953125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 20.37175750732422,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 481.4140319824219,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 460.45751953125,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 241.4757537841797,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 45.022613525390625,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 12.869382858276367,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 66.60897827148438,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 3.587740421295166,
+          "count": 295
+        }
+      },
+      "current_metrics": {
+        "mpjpe_mm": {
+          "value": 268.3516845703125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 17.221757888793945,
+          "count": 192
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 280.3102722167969,
+          "count": 4032
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 268.3516845703125,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 244.0549774169922,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 27.240873336791992,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 9.246484756469727,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 38.88286590576172,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 1.3613042831420898,
+          "count": 295
+        }
+      },
+      "baseline_feet": {
+        "ankle_and_foot_world_error_mm": 1128.920166015625,
+        "ankle_and_foot_root_relative_error_mm": 1006.6498413085938,
+        "foot_velocity_vector_rmse_m_s": 4.014077186584473,
+        "GT_stance_count": 295,
+        "foot_speed_during_GT_stance_m_s": 3.587740421295166,
+        "GT_foot_speed_during_GT_stance_m_s": 0.08437446504831314
+      },
+      "current_feet": {
+        "ankle_and_foot_world_error_mm": 507.8392639160156,
+        "ankle_and_foot_root_relative_error_mm": 457.53338623046875,
+        "foot_velocity_vector_rmse_m_s": 1.8446952104568481,
+        "GT_stance_count": 295,
+        "foot_speed_during_GT_stance_m_s": 1.3613042831420898,
+        "GT_foot_speed_during_GT_stance_m_s": 0.08437446504831314
+      }
+    }
+  ],
+  "summary": {
+    "fixed/ego/clean/scene_on": {
+      "mpjpe_mm": {
+        "value": 257.5749766031901,
+        "count": 12672
+      },
+      "conditioned_mpjpe_mm": {
+        "value": 13.223460766176382,
+        "count": 576
+      },
+      "unconditioned_mpjpe_mm": {
+        "value": 269.2107340494792,
+        "count": 12096
+      },
+      "regular_position_mpjpe_mm": {
+        "value": 257.5749766031901,
+        "count": 12672
+      },
+      "root_position_error_mm": {
+        "value": 189.65623474121094,
+        "count": 576
+      },
+      "root_orientation_deg": {
+        "value": 42.0546023050944,
+        "count": 576
+      },
+      "head_orientation_deg": {
+        "value": 19.215927759806316,
+        "count": 576
+      },
+      "regular_rotation_deg": {
+        "value": 48.37785212198893,
+        "count": 12672
+      },
+      "foot_speed_during_GT_stance_m_s": {
+        "value": 0.7581670799009526,
+        "count": 931
+      }
+    },
+    "fixed/ego/noisy/scene_on": {
+      "mpjpe_mm": {
+        "value": 264.96018473307294,
+        "count": 12672
+      },
+      "conditioned_mpjpe_mm": {
+        "value": 35.31667576041273,
+        "count": 558
+      },
+      "unconditioned_mpjpe_mm": {
+        "value": 275.5381223046585,
+        "count": 12114
+      },
+      "regular_position_mpjpe_mm": {
+        "value": 264.96018473307294,
+        "count": 12672
+      },
+      "root_position_error_mm": {
+        "value": 190.3058878580729,
+        "count": 576
+      },
+      "root_orientation_deg": {
+        "value": 43.06870206197103,
+        "count": 576
+      },
+      "head_orientation_deg": {
+        "value": 15.251407623291016,
+        "count": 576
+      },
+      "regular_rotation_deg": {
+        "value": 48.35535430908203,
+        "count": 12672
+      },
+      "foot_speed_during_GT_stance_m_s": {
+        "value": 0.8639193698363709,
+        "count": 931
+      }
+    }
+  }
+}

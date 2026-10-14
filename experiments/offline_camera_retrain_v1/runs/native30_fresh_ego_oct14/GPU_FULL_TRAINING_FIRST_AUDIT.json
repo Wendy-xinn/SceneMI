@@ -1,0 +1,87 @@
+{
+  "status": "stopped_on_original_control_repeat_gradient_jitter",
+  "observed_at": "2026-10-14T22:11:35.951618+08:00",
+  "checkpoint_step": 700,
+  "optimizer_steps": 0,
+  "live_training_modified": false,
+  "scope": "Three predefined TRAIN B2 pairs covering three corpora and ego/exo; same checkpoint, noise and dropout seeds, FP32, full forward/loss/backward. Concurrent trainer; excludes prep/clip/Adam/validation.",
+  "prototype_sha256": "5062967efb24420c49663a4b250ea0f05e8dcece74b03948ecf45ab6a52592e9",
+  "initial_model_sha256": "fbd48a2971935d85fd69378562090cd7d16dae337fd58c4e645a72a24879851c",
+  "cases": [
+    {
+      "pair": [
+        [
+          "trumans",
+          "ego"
+        ],
+        [
+          "camera_wearer",
+          "ego"
+        ]
+      ],
+      "rows": [
+        {
+          "variant": "original_warmup",
+          "seconds": 3.5265329410012782,
+          "loss": 0.3539803624153137,
+          "peak_cuda_GiB": 2.5961365699768066,
+          "finite": true
+        },
+        {
+          "variant": "original",
+          "seconds": 3.2022129429988127,
+          "loss": 0.3539803624153137,
+          "peak_cuda_GiB": 2.594179630279541,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 6.717164069414139e-08,
+          "gradients_close": true
+        },
+        {
+          "variant": "gpu",
+          "seconds": 1.8742655789992568,
+          "loss": 0.3539803624153137,
+          "peak_cuda_GiB": 2.649486541748047,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 7.525522960349917e-08,
+          "gradients_close": true
+        },
+        {
+          "variant": "gpu",
+          "seconds": 1.9633911689998058,
+          "loss": 0.3539803624153137,
+          "peak_cuda_GiB": 2.649486541748047,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 7.64266587793827e-08,
+          "gradients_close": true
+        },
+        {
+          "variant": "original",
+          "seconds": 2.8416879609994794,
+          "loss": 0.3539803624153137,
+          "peak_cuda_GiB": 2.594179630279541,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 8.719507604837418e-08,
+          "gradients_close": true
+        }
+      ]
+    }
+  ],
+  "original_control_gradient_max_abs_difference": 1.518928911536932e-07,
+  "gradient_tolerance": {
+    "atol": 1e-07,
+    "rtol": 1e-06
+  },
+  "note": "Second pair failed strict gradient allclose on original-vs-original repeat, before the GPU candidate ran. Forward and all loss terms were bitwise unchanged. Repeat in deterministic mode without relaxing tolerance."
+}

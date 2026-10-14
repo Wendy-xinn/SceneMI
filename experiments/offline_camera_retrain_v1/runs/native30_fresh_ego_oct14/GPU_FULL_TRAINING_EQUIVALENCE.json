@@ -1,0 +1,225 @@
+{
+  "status": "passed",
+  "observed_at": "2026-10-14T22:14:30.701104+08:00",
+  "checkpoint_step": 700,
+  "optimizer_steps": 0,
+  "live_training_modified": false,
+  "scope": "Three predefined TRAIN B2 pairs covering three corpora and ego/exo; same checkpoint, noise and dropout seeds, FP32, full forward/loss/backward. Concurrent trainer; excludes prep/clip/Adam/validation.",
+  "deterministic_algorithms": true,
+  "gradient_tolerance": {
+    "atol": 1e-07,
+    "rtol": 1e-06
+  },
+  "prototype_sha256": "5062967efb24420c49663a4b250ea0f05e8dcece74b03948ecf45ab6a52592e9",
+  "initial_model_sha256": "fbd48a2971935d85fd69378562090cd7d16dae337fd58c4e645a72a24879851c",
+  "cases": [
+    {
+      "pair": [
+        [
+          "trumans",
+          "ego"
+        ],
+        [
+          "camera_wearer",
+          "ego"
+        ]
+      ],
+      "rows": [
+        {
+          "variant": "original_warmup",
+          "seconds": 3.988737449999462,
+          "loss": 0.3539760410785675,
+          "peak_cuda_GiB": 2.641295909881592,
+          "finite": true
+        },
+        {
+          "variant": "original",
+          "seconds": 3.457899326998813,
+          "loss": 0.3539760410785675,
+          "peak_cuda_GiB": 2.6407923698425293,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        },
+        {
+          "variant": "gpu",
+          "seconds": 2.2042428360000486,
+          "loss": 0.3539760410785675,
+          "peak_cuda_GiB": 2.697537899017334,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        },
+        {
+          "variant": "gpu",
+          "seconds": 2.5839032439998846,
+          "loss": 0.3539760410785675,
+          "peak_cuda_GiB": 2.697537899017334,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        },
+        {
+          "variant": "original",
+          "seconds": 3.1036662599999545,
+          "loss": 0.3539760410785675,
+          "peak_cuda_GiB": 2.6407923698425293,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        }
+      ]
+    },
+    {
+      "pair": [
+        [
+          "trumans",
+          "ego"
+        ],
+        [
+          "rich",
+          "ego"
+        ]
+      ],
+      "rows": [
+        {
+          "variant": "original_warmup",
+          "seconds": 4.049268444001427,
+          "loss": 0.8144422769546509,
+          "peak_cuda_GiB": 2.6406402587890625,
+          "finite": true
+        },
+        {
+          "variant": "original",
+          "seconds": 3.8336629630011885,
+          "loss": 0.8144422769546509,
+          "peak_cuda_GiB": 2.6406402587890625,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        },
+        {
+          "variant": "gpu",
+          "seconds": 3.165890340998885,
+          "loss": 0.8144422769546509,
+          "peak_cuda_GiB": 2.6972951889038086,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        },
+        {
+          "variant": "gpu",
+          "seconds": 2.8410155350011337,
+          "loss": 0.8144422769546509,
+          "peak_cuda_GiB": 2.6972951889038086,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        },
+        {
+          "variant": "original",
+          "seconds": 4.537246038999001,
+          "loss": 0.8144422769546509,
+          "peak_cuda_GiB": 2.6406402587890625,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        }
+      ]
+    },
+    {
+      "pair": [
+        [
+          "camera_wearer",
+          "exo"
+        ],
+        [
+          "rich",
+          "ego"
+        ]
+      ],
+      "rows": [
+        {
+          "variant": "original_warmup",
+          "seconds": 2.3233757540001534,
+          "loss": 0.7031415700912476,
+          "peak_cuda_GiB": 2.6401872634887695,
+          "finite": true
+        },
+        {
+          "variant": "original",
+          "seconds": 2.5603511600002093,
+          "loss": 0.7031415700912476,
+          "peak_cuda_GiB": 2.6401872634887695,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        },
+        {
+          "variant": "gpu",
+          "seconds": 2.443770150999626,
+          "loss": 0.7031415700912476,
+          "peak_cuda_GiB": 2.6401872634887695,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        },
+        {
+          "variant": "gpu",
+          "seconds": 2.9152073549994384,
+          "loss": 0.7031415700912476,
+          "peak_cuda_GiB": 2.6401872634887695,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        },
+        {
+          "variant": "original",
+          "seconds": 2.699242572000003,
+          "loss": 0.7031415700912476,
+          "peak_cuda_GiB": 2.6401872634887695,
+          "finite": true,
+          "prediction_bitwise_equal": true,
+          "loss_equal": true,
+          "all_loss_terms_equal": true,
+          "gradient_max_abs_difference": 0.0,
+          "gradients_close": true
+        }
+      ]
+    }
+  ],
+  "model_parameters_unchanged": true
+}

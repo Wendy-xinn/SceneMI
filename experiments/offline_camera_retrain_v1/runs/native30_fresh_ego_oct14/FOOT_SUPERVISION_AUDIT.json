@@ -1,0 +1,72 @@
+{
+  "observed_at": "2026-10-14T22:13:14.234457+08:00",
+  "current_step": 756,
+  "config_matches_prepared": true,
+  "sealed_code_changed": [],
+  "same_foot_supervision_sources_as_previous_v6": {
+    "native30_losses.py": true,
+    "native30_relation_losses.py": true,
+    "native30_scene_support.py": true,
+    "native30_physical_guidance.py": true,
+    "native30_support_cache.py": true
+  },
+  "same_geometry_coefficients_as_v6": true,
+  "same_physical_guidance_as_v6": true,
+  "active_foot_terms": {
+    "full_body_GT_pose_FK": true,
+    "foot_velocity_coefficient": 0.075,
+    "GT_stance_planting_coefficient": 0.1,
+    "GT_stance_speed_threshold_m_s": 0.2,
+    "planting_excess_slack_m_s": 0.02,
+    "contact_classifier": 0.2,
+    "GT_calibrated_contact_distance": 2.0,
+    "relative_surface_slip": 0.02,
+    "weak_label_weight": 0.25,
+    "official_label_weight": 1.0,
+    "unknown_surface_policy": "Unknown is not negative; no fabricated floor. Base GT pose/velocity/planting losses remain even without scene support."
+  },
+  "current_all_losses_gradnorms_finite": true,
+  "recent_100_update_s": 3.0817928466200284,
+  "segments": [
+    {
+      "first_step": 1,
+      "last_step": 100,
+      "count": 100,
+      "median_total_loss": 0.9520111083984375,
+      "mean_planting": 0.9019711246178486,
+      "mean_contact": 0.23299313569918922,
+      "mean_relative_slip": 0.6584888847120051,
+      "caveat": "Different sampled windows/timesteps; training loss trends do not replace fixed VAL."
+    },
+    {
+      "first_step": 101,
+      "last_step": 200,
+      "count": 100,
+      "median_total_loss": 0.6242398619651794,
+      "mean_planting": 0.49720045854628553,
+      "mean_contact": 0.20694000122195574,
+      "mean_relative_slip": 0.3312209903910533,
+      "caveat": "Different sampled windows/timesteps; training loss trends do not replace fixed VAL."
+    },
+    {
+      "first_step": 401,
+      "last_step": 500,
+      "count": 100,
+      "median_total_loss": 0.44924935698509216,
+      "mean_planting": 0.25382808272581314,
+      "mean_contact": 0.19485303687911,
+      "mean_relative_slip": 0.20351672321477793,
+      "caveat": "Different sampled windows/timesteps; training loss trends do not replace fixed VAL."
+    },
+    {
+      "first_step": 501,
+      "last_step": 600,
+      "count": 100,
+      "median_total_loss": 0.4525748938322067,
+      "mean_planting": 0.3071147587733503,
+      "mean_contact": 0.17660471773706377,
+      "mean_relative_slip": 0.20637684717658886,
+      "caveat": "Different sampled windows/timesteps; training loss trends do not replace fixed VAL."
+    }
+  ]
+}
