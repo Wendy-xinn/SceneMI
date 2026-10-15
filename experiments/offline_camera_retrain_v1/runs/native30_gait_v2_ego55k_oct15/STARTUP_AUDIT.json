@@ -1,0 +1,68 @@
+{
+  "status": "first_real_update_and_checkpoint_verified",
+  "checked_at": "2026-10-15T22:33:14.607557+08:00",
+  "pid": 59933,
+  "saved_step": 1,
+  "planned_steps": 55000,
+  "review_step": 1000,
+  "initialization": {
+    "type": "from_scratch",
+    "seed": 2026101267,
+    "source_checkpoint": null,
+    "optimizer_reset": true,
+    "all_model_parameters_trainable": true,
+    "initial_model_sha256": "9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69",
+    "optimizer_state_entries": 0
+  },
+  "optimizer_tensors_and_all_RNG_preserved": true,
+  "first_update": {
+    "step": 1,
+    "loss": 4.411220550537109,
+    "gradient_norm": 14761.1748046875,
+    "lr": 1.9999999983686605e-07,
+    "preparation_s": 3.919708546003676,
+    "compute_s": 2.675967840004887,
+    "update_s": 6.597587363998173,
+    "timesteps": [
+      458,
+      15
+    ],
+    "scene": true,
+    "identities": [
+      {
+        "group": "trumans",
+        "mode": "ego",
+        "sequence_id": "2023-02-13@21-31-02",
+        "start": 960,
+        "yaw_augmentation_rad": 2.878975540376853
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "ego",
+        "sequence_id": "recording_20210911_S08_S03_02_camera_wearer_2191-2461",
+        "start": 0,
+        "yaw_augmentation_rad": -2.8206620278617796
+      }
+    ],
+    "support_cache_misses": 0
+  },
+  "code_and_effective_fingerprint_match": true,
+  "data_revalidation": {
+    "status": "passed",
+    "checked_at": "2026-10-15T22:30:25.382611+08:00",
+    "splits": [
+      "train",
+      "validation"
+    ],
+    "TEST_used": false,
+    "durations_s": {
+      "train": 210.6563240139949,
+      "validation": 29.834711297000467
+    },
+    "unchanged_from": "runs/native30_gait_v2_arch_review_oct15/prepared",
+    "files": 1032
+  },
+  "checkpoint_bytes": 1477839912,
+  "disk_free_bytes": 23036252160,
+  "original_models_untouched": true
+}

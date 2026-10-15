@@ -1,0 +1,19 @@
+{
+  "purpose": "Explicit recovery commands only; not scheduled or automatically executed. Same55k horizon and frozen effective config.",
+  "resume_after_interruption_before1000": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/run_training.py",
+    "--resume",
+    "--review-step",
+    "1000"
+  ],
+  "after1000_review_passes_next_stage": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/run_training.py",
+    "--resume",
+    "--review-step",
+    "2000"
+  ]
+}

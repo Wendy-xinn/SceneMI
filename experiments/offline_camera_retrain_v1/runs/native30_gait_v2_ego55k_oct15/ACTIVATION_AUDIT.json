@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "reasoning": "All unchanged engineering/data/finite-gradient checks passed;128-step small-pool triage was exploratory and is not proof of long-run failure. Convergence moves to recorded1000-step review, not a guarantee.",
+  "changed": [
+    "preflight-only administrative flag",
+    "output location/status metadata",
+    "ego-only cheaper monitoring",
+    "review wrapper registration"
+  ],
+  "unchanged": [
+    "all model parameters/architecture",
+    "from-zero seed",
+    "gaitV2 objective/coefficient calibration",
+    "B2FP32",
+    "official fullTRAIN data/sampler",
+    "LR1e-4/500warmup/55k horizon",
+    "physics enabled/13DDIM-eligible steps",
+    "IK6",
+    "query backend exactGPU"
+  ],
+  "numeric_checks_repeated": false,
+  "source_seal_sha256": "b5c9222500cdd5a2ccc69de11073b0d034629c34e7f5d6917ad7cdc2f971af59",
+  "wrapper_sha256": "476b58acb78e6eb3448c41ea6e368b2610b5decf8477f073d3a9ba56126fff07",
+  "no_old_checkpoint_initialization": true,
+  "formal_training_ready": true,
+  "first_review": 1000,
+  "max_steps": 55000
+}

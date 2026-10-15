@@ -1,0 +1,81 @@
+{
+  "status": "measured_full_pool_updates",
+  "observed_at": "2026-10-15T22:39:24.157332+08:00",
+  "latest_step": 177,
+  "measured_updates": 175,
+  "batch_size": 2,
+  "scope": "Actual full-pool stratified TRAIN sampling, input build, forward/loss/backward, gradient clip and Adam. Not the reused small-pool benchmark.",
+  "per_update_seconds": {
+    "preparation_s": {
+      "mean": 0.5954573179082945,
+      "median": 0.5877532039958169,
+      "p10": 0.5613105125987203,
+      "p90": 0.6295756937965052
+    },
+    "compute_s": {
+      "mean": 1.650770620251382,
+      "median": 1.6760347759991419,
+      "p10": 0.8711501207988477,
+      "p90": 2.3215757387981286
+    },
+    "update_s": {
+      "mean": 2.2481098786512406,
+      "median": 2.2793378729984397,
+      "p10": 1.459660330800398,
+      "p90": 2.942339967000589
+    }
+  },
+  "compact_measured_trace": "STARTUP_THROUGHPUT_TRACE.jsonl",
+  "observed_scene_off_fraction": 0.08571428571428572,
+  "support_cache_misses": 0,
+  "observed_elapsed_non_update_seconds": 94.60300474003452,
+  "assumptions": {
+    "high_update_seconds": 3.372164817976861,
+    "high_rate_explanation": "max(observedp90,1.5xearly mean); allowance for learned physical contact/variable scene cost, not a statistical confidence interval.",
+    "validation_seconds_per1000": 182.8397650859988,
+    "validation_basis": "max(12 calls at trained10k sceneON/physicsON mean plus10s,2xactual first6-call validation); later actual monitoring can update this.",
+    "checkpoint_seconds_per100": 5.0
+  },
+  "remaining_walltime_projection": {
+    "1000": {
+      "remaining_steps": 823,
+      "hours_from_now": [
+        0.5772317208933249,
+        0.8720975813399875
+      ],
+      "estimated_time_from_now": [
+        "2026-10-15T23:14:02.191527+08:00",
+        "2026-10-15T23:31:43.708625+08:00"
+      ],
+      "conditional_on_passing_reviews": false,
+      "automatic_continuation": false
+    },
+    "10000": {
+      "remaining_steps": 9823,
+      "hours_from_now": [
+        6.779605830236424,
+        10.238158745354635
+      ],
+      "estimated_time_from_now": [
+        "2026-10-16T05:26:10.738321+08:00",
+        "2026-10-16T08:53:41.528815+08:00"
+      ],
+      "conditional_on_passing_reviews": true,
+      "automatic_continuation": false
+    },
+    "55000": {
+      "remaining_steps": 54823,
+      "hours_from_now": [
+        37.79147637695192,
+        57.06846456542788
+      ],
+      "estimated_time_from_now": [
+        "2026-10-17T12:26:53.472289+08:00",
+        "2026-10-18T07:43:30.629768+08:00"
+      ],
+      "conditional_on_passing_reviews": true,
+      "automatic_continuation": false
+    }
+  },
+  "limitation": "Early30-200 updates cannot establish final runtime or convergence.55k is a projection and cap; this invocation stops at1000."
+}
