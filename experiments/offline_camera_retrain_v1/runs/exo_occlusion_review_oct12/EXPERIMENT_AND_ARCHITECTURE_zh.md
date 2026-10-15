@@ -1,6 +1,6 @@
 # Ego/exo 模型与实验唯一总清单
 
-更新：2026-10-15。**v7随机初始化ego训练凌晨中断：trace最后完整7480步，原子last.pt实际7400步；尚未完成10000步首段。7400步模型／Adam／配置／RNG已核验通过，恢复进程1815已通过完整依赖复查，09:53恢复真实更新至7408步并核验前五步采样／RNG／学习率一致；已归档未保存80步及损坏日志尾。足部监控1816恢复并保留1／600／1000–7000步共54条历史记录。当前恢复状态见4.12。** 原4200 warm-start已停，旧55k仅保留，不作为本轮初始化。
+更新：2026-10-15。**尚未完成10000步ego首段：上午再次中断，trace最后8692、原子last.pt8600。14:02从8600恢复，前五步采样／RNG／LR核验通过，持续训练中。已用真实8000步VAL输出制作全部六个ego窗的原生mesh、离线骨架回放和静态图；固定ego全身误差197/214mm，但坐姿／支撑／脚部姿态未达论文标准。当前入口、恢复和可视化见4.13。** 旧55k保留，不作为本轮初始化。
 
 历史500步基线：E盘30Hz缓存及重新挂载后的完整审计已通过；原始发布量、选定范围和未接入部分见3.1。历史短训使用[500步短训配置](../../native30_short500_config.json)。首轮原始exo观测最多连续18帧完全无关节输入，保留关节局部遮挡；原始缓存、整段静态记忆和六例压力可视化保留。71项旧回归通过。**500/500步及第1/250/500步固定验证已完成，进程正常退出；最终可恢复last.pt已核验。这个基线的训练链路通过，生成效果未通过。** 原55k/3k模型保留。证据：[SHORT500_PROGRESS.json](../native30_short500_oct13/SHORT500_PROGRESS.json)、[CHECKPOINT_AUDIT.json](../native30_short500_oct13/training/CHECKPOINT_AUDIT.json)、[500步mesh对比](../native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)。
 
@@ -1065,3 +1065,32 @@ CPU查询并非无法继续优化。[gpu_radius_probe.py](../native30_fresh_ego_
 
 
 **09:53恢复实跑验收通过**：[RESUME_VERIFICATION.json](../native30_fresh_ego_oct14/reboot_oct15/RESUME_VERIFICATION.json)记录7401–7405的sample／yaw、扩散t、scene dropout与LR均与崩溃前归档逐项一致，首步loss完全相同；后续loss最大差约2.48e-5，记录CUDA重启后小数值差异，不宣称整个训练轨迹逐位相同。此时trace实际到7408、模型／梯度有限，完整源依赖复查已通过；原子last.pt仍为7400，下一常规7500点会覆写，不能把trace新进度误记为已保存步数。恢复仍保留最初from_scratch provenance；其中optimizer_reset=true描述最初随机初始化时Adam为空，不表示这次resume重置Adam。恢复日志使用training_resume_oct15.log，launcher已标记resumed_training_verified。预计剩余本段约2.5–3小时，粗估今天12:30–13:00完成10000步ego；这不是最终长训／exo／论文评估的完成时间。
+
+
+## 4.13 10月15日下午：再次中断、8600步恢复与真实VAL可视化
+
+14:00检查时训练进程已不存在；trace最后完整8692，mtime11:07:44，末行含零字节；原子last.pt实际8600（mtime11:02:20），protocol的training为残留状态。uptime -s此次读数11:18:34，训练环境再次中断；未确认Windows整机重启原因。不能按早先估时宣称已完成。完整核验8600步模型／Adam均有限、配置及封存代码一致，保留model／Adam／sampler与各RNG，原始随机初始化来源不变。归档8601–8692共92个未保存更新及损坏尾，trace原子整理到8600；14:02启动3259，足部监控3279保留全部历史。见[第二次恢复记录](../native30_fresh_ego_oct14/reboot_oct15_second/RECOVERY.json)。
+
+完整来源复查后已恢复真实更新；[RESUME_VERIFICATION.json](../native30_fresh_ego_oct14/reboot_oct15_second/RESUME_VERIFICATION.json)核对8601–8605的sample／yaw、扩散t、scene开关和LR全部与中断前相同，首步loss相同、其余最大差约1.13e-5，不声称CUDA重启后整条梯度轨迹逐位一致。模型／Adam未重置，仍B2／FP32／原CPU查询／原足部监督，不自动进入exo。新stdout为training_resume_oct15_second.log。当前同窗重放的少量步速约5秒，较中断前约3秒慢；已计入重启后的观察值，不能继续机械沿用上午结束时间。剩余本段约1.5–2.5小时，仅是运行不中断时的粗估。
+
+|同一fixed ego面板|2000步 clean / noisy|6000步 clean / noisy|8000步 clean / noisy|
+|---|---|---|---|
+|全身MPJPE，mm|232.70 / 254.73|209.36 / 214.96|196.83 / 213.78|
+|缺失部位MPJPE，mm|243.11 / 264.64|218.64 / 223.06|205.60 / 221.99|
+|GT支撑期脚速，m/s|0.623 / 0.705|0.460 / 0.477|0.443 / 0.393|
+
+8000步固定ego仍有改善，但EgoBody踝脚世界位置误差clean/noisy约540.6/567.6mm，RICH约238.9/360.3mm。脚速低不能说明落点正确。这里只是3固定窗监控，不替代全官方VAL／TEST或论文主表。轮换窗已一起展示，但不同轮换面板不连成同样本质量曲线。
+
+### 当前可视化入口
+
+- [原生SMPL/SMPL-X mesh播放器](http://127.0.0.1:8788)：当前进程4558，可切换6个ego窗、clean/noisy、播放／暂停／逐帧、GT／预测／场景显示及透明度。远程IDE需转发8788。
+- [轻量骨架回放](http://127.0.0.1:8789/REPLAY.html)：当前HTTP进程3833，远程IDE转发8789；[自包含HTML](../native30_fresh_ego_oct14/visual_review_step8000/REPLAY.html)也能离线打开，内置全部点云／GT／预测轨迹，不依赖CDN。
+- [干净输入原生mesh总览](../native30_fresh_ego_oct14/visual_review_step8000/MESH_CLEAN_STEP8000.png)、[带噪输入总览](../native30_fresh_ego_oct14/visual_review_step8000/MESH_NOISY_STEP8000.png)、[固定VAL曲线](../native30_fresh_ego_oct14/visual_review_step8000/METRIC_TRENDS.png)。蓝色GT、紫红预测，上排固定窗，下排轮换窗；预设中间帧96，标题指标是整窗均值。
+
+这些是**实际已保存的8000步DDIM20、scene-ON、官方VAL**，不是8600或最终10000步采样。8000步输出已另作本地8MiB快照，避免后续latest覆盖；不重复生成预测，不更新模型。包含全部3固定＋3轮换ego窗和两种输入条件，没有按结果挑选成功窗。可视化只解码已知native体型的22关节动作，手／脸保持中性；保留原世界位置、姿态与时间，不作GT对齐、贴地、插值修复或推理后的IK。灰／青色只显示实际已见静态／动态表面，空白仍未知，不添加地板。显示点云做固定下采样，模型原点预算不变。
+
+[VISUALIZATION_AUDIT.json](../native30_fresh_ego_oct14/visual_review_step8000/VISUALIZATION_AUDIT.json)逐帧核验native mesh关节与训练FK，六窗最大绝对误差约5.96e-7m，小于0.001mm。中间帧可见EgoBody fixed的GT坐姿腿部恢复错、RICH rotating的GT撑地姿态被预测为蹲姿，属于模型输出问题，不能解释为mesh解码或额外坐标偏移。图表及动作可视化使用标准数值渲染，无生成式图片修饰。
+
+[BROWSER_CHECK.json](../native30_fresh_ego_oct14/visual_review_step8000/BROWSER_CHECK.json)用真实Chromium检查自包含回放的6窗×2噪声切换、191帧渲染及播放推进；原生播放器WebSocket连接、mesh canvas与播放推进均通过，运行时JS异常0。浏览器只为核验使用临时软件WebGL和本地字体；实际用户浏览器可正常使用硬件加速。[原生播放器实测截图](../native30_fresh_ego_oct14/visual_review_step8000/NATIVE_VIEWER_BROWSER.png)、[离线回放实测截图](../native30_fresh_ego_oct14/visual_review_step8000/REPLAY_BROWSER.png)保留。数据／大型mesh数组仅本地，脚本、审计和紧凑图片继续备份。
+
+建议仍是继续ego：先补完已注册的10k首段，再用末期／更大官方VAL、脚部与pelvis姿态、坐姿／撑地片段及监督梯度作复核，定义更长、保留Adam／RNG且学习率连续的ego续训；目前不将exo／联训自动接上，也不把“拉到旧55k”当成上述错误必定解决的保证。8000步仍有下降趋势，因此不把当前结果判为已无训练价值；但也不能只凭总loss或脚滑变小接受模型。机器可读结论见[REVIEW_SUMMARY.json](../native30_fresh_ego_oct14/visual_review_step8000/REVIEW_SUMMARY.json)。

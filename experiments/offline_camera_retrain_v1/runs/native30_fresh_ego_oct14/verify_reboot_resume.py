@@ -1,5 +1,6 @@
 """Verify resumed sampling against the archived, unsaved pre-crash updates."""
 import datetime
+import argparse
 import json
 import math
 from pathlib import Path
@@ -8,10 +9,10 @@ import time
 ROOT = Path(__file__).resolve().parent
 
 
-def main():
-    saved = json.loads((ROOT / 'reboot_oct15/RECOVERY.json').read_text())['checkpoint_step']
+def main(archive=ROOT / 'reboot_oct15'):
+    saved = json.loads((archive / 'RECOVERY.json').read_text())['checkpoint_step']
     previous = []
-    for line in (ROOT / 'reboot_oct15/trace_after_saved_7400.raw').read_bytes().splitlines():
+    for line in (archive / f'trace_after_saved_{saved}.raw').read_bytes().splitlines():
         try:
             previous.append(json.loads(line))
         except (json.JSONDecodeError, UnicodeDecodeError):
@@ -46,7 +47,7 @@ def main():
                 observed_at=datetime.datetime.now().astimezone().isoformat(), resumed_from_step=saved,
                 latest_step=rows[-1]['step'], wait_s=time.monotonic()-began, comparisons=comparisons,
                 numerical_note='Small loss/gradient differences can occur across CUDA restarts; report rather than claim bitwise continuation.')
-            (ROOT / 'reboot_oct15/RESUME_VERIFICATION.json').write_text(json.dumps(report, indent=2) + '\n')
+            (archive / 'RESUME_VERIFICATION.json').write_text(json.dumps(report, indent=2) + '\n')
             print(json.dumps(report), flush=True)
             assert report['status'] == 'passed'
             return
@@ -55,4 +56,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--archive', type=Path, default=ROOT / 'reboot_oct15')
+    main(parser.parse_args().archive)

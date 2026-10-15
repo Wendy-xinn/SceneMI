@@ -1,0 +1,37 @@
+{
+  "started_at": "2026-10-15T14:07:25.118703+08:00",
+  "jobs": [
+    {
+      "kind": "native_mesh",
+      "pid": 4558,
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/view_visual_review.py",
+        "--folder",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/visual_review_step8000",
+        "--port",
+        "8788"
+      ]
+    },
+    {
+      "kind": "portable_replay",
+      "pid": 3833,
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "http.server",
+        "8789",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/visual_review_step8000"
+      ]
+    }
+  ],
+  "urls": [
+    "http://127.0.0.1:8788",
+    "http://127.0.0.1:8789/REPLAY.html"
+  ]
+}
