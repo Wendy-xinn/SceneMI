@@ -1,0 +1,11 @@
+test_prior_off_cannot_see_poisoned_prior_features (__main__.ReferencePriorTest) ... ok
+test_scene_and_prior_factorial_controls_are_separate (__main__.ReferencePriorTest) ... /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/legacy55k_exo_residual_oct15/test_reference_probe.py:39: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  self.assertGreater(float((c-b).abs().sum()),0)
+ok
+test_zero_residual_ignores_bad_prior_and_preserves_reference (__main__.ReferencePriorTest) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.023s
+
+OK
