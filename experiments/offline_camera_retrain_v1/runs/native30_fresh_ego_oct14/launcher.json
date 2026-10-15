@@ -1,6 +1,6 @@
 {
-  "status": "training_first_update_verified",
-  "pid": 961455,
+  "status": "resumed_training_verified",
+  "pid": 1815,
   "planned_updates": 10000,
   "config": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_fresh_ego_config.json",
   "training_mode": "ego",
@@ -8,5 +8,22 @@
   "automatic_exo_transition": false,
   "started_at": "2026-10-14T21:12:48.560365+08:00",
   "checkpoint_step": 1,
-  "initial_model_sha256": "9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69"
+  "initial_model_sha256": "9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69",
+  "resume_started_at": "2026-10-15T09:45:36.679487+08:00",
+  "resume_from_step": 7400,
+  "resume_command": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.train_native30",
+    "--config",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_fresh_ego_config.json",
+    "--steps",
+    "10000",
+    "--output",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/training",
+    "--resume"
+  ],
+  "resume_verified_at": "2026-10-15T09:54:23.549544+08:00",
+  "resume_verified_step": 7424
 }

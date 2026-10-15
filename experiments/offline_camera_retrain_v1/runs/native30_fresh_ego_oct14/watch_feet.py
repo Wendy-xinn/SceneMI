@@ -18,7 +18,26 @@ def collect():
         regime=r['regime'], source='initial scheduled VAL', metrics=r['baseline_feet']) for r in review['comparisons']]
     entries += [dict(step=r['current_step'], dataset=r['dataset'], sequence_id=r['sequence_id'],
         regime=r['regime'], source='independent same-seed checkpoint review', metrics=r['current_feet']) for r in review['comparisons']]
-    seen = {1, 600}
+    previous = ROOT / 'FOOT_TREND.json'
+    if previous.exists():
+        persisted = json.loads(previous.read_text())['entries']
+        by_key = {(r['step'], r['sequence_id'], r['regime']): r for r in entries}
+        for row in persisted:
+            if (row['sequence_id'], row['regime']) not in prior:
+                raise ValueError('Persisted foot trend contains an unknown fixed case')
+            if not all(np.isfinite(v) for v in row['metrics'].values() if v is not None):
+                raise ValueError('Persisted foot trend has nonfinite metrics')
+            key = row['step'], row['sequence_id'], row['regime']
+            if key in by_key and by_key[key] != row:
+                raise ValueError('Persisted baseline foot metrics changed')
+            by_key[key] = row
+        entries = sorted(by_key.values(), key=lambda r: (r['step'], r['sequence_id'], r['regime']))
+    counts = {}
+    for row in entries:
+        counts[row['step']] = counts.get(row['step'], 0) + 1
+    if any(n != len(prior) for n in counts.values()):
+        raise ValueError('Persisted foot trend has an incomplete panel')
+    seen = set(counts)
     torch.set_num_threads(1)
     while True:
         with np.load(ROOT / 'training/validation_latest.npz') as outputs:

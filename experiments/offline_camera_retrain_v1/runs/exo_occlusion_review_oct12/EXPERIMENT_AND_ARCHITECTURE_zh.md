@@ -1,6 +1,6 @@
 # Ego/exo 模型与实验唯一总清单
 
-更新：2026-10-14。**按用户最新要求，已停止从4200步初始化的v6 ego训练（trace完成394步，定期last.pt保存300步）；保留历史模型与记录。新v7随机初始化／空Adam／全官方TRAIN ego池／head-only的数据、模型与吞吐验收已通过；独立训练进程961455的随机初始参数与空Adam来源已核验，首步可恢复last.pt已保存；首次36例DDIM20监控已完成；600步同窗复测ego总体误差和支撑期脚速改善，但脚部落点未达标，EgoBody个例脚位置误差恶化。训练持续运行，新增独立足部监控；GPU查询原型的有限面板等价／吞吐结果见4.11。当前状态与论文评估边界见4.10。** 原小集7:3累计4200步的场景收益门槛未通过，不作为新模型初始化。
+更新：2026-10-15。**v7随机初始化ego训练凌晨中断：trace最后完整7480步，原子last.pt实际7400步；尚未完成10000步首段。7400步模型／Adam／配置／RNG已核验通过，恢复进程1815已通过完整依赖复查，09:53恢复真实更新至7408步并核验前五步采样／RNG／学习率一致；已归档未保存80步及损坏日志尾。足部监控1816恢复并保留1／600／1000–7000步共54条历史记录。当前恢复状态见4.12。** 原4200 warm-start已停，旧55k仅保留，不作为本轮初始化。
 
 历史500步基线：E盘30Hz缓存及重新挂载后的完整审计已通过；原始发布量、选定范围和未接入部分见3.1。历史短训使用[500步短训配置](../../native30_short500_config.json)。首轮原始exo观测最多连续18帧完全无关节输入，保留关节局部遮挡；原始缓存、整段静态记忆和六例压力可视化保留。71项旧回归通过。**500/500步及第1/250/500步固定验证已完成，进程正常退出；最终可恢复last.pt已核验。这个基线的训练链路通过，生成效果未通过。** 原55k/3k模型保留。证据：[SHORT500_PROGRESS.json](../native30_short500_oct13/SHORT500_PROGRESS.json)、[CHECKPOINT_AUDIT.json](../native30_short500_oct13/training/CHECKPOINT_AUDIT.json)、[500步mesh对比](../native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)。
 
@@ -1044,3 +1044,24 @@ CPU查询并非无法继续优化。[gpu_radius_probe.py](../native30_fresh_ego_
 **10k只是第一段ego预算与复核节点，不是最终收敛步数，也不是完整ego＋exo训练期限。** 早先“明早完成”的估时只指这一段；不能拿当前约2k的模型与旧55k末期效果直接判输赢，也不能因此忽略固定VAL局部退化。后续按固定／扩展VAL趋势和实际每模式样本量确定更长预算，旧55k保留但不加载到当前从零运行。若扩训，必须明确续接当前权重、Adam、sampler与RNG，并定义连续学习率；当前cosine分母已按10k封存，不能直接改活进程的--steps或重置优化器冒充连续长训。当前尚未变更本段预算／学习率，未自动启动exo。
 
 另发现CPU预计算worker1此前在写E盘临时surface npz时以ENOMEM退出（已完成9825/16707），worker0则完成16708/16708；这不是训练器或梯度失败。当前训练仍会按需生成缺失标签，快照4378命中／144未命中，最近步速仍约2.93秒。失败原始记录保留于[PRECOMPUTE_WORKER1_FAILURE_AND_RESTART.json](../native30_fresh_ego_oct14/PRECOMPUTE_WORKER1_FAILURE_AND_RESTART.json)，已单独重启worker1（1413369），复用原子已生成文件，不改变训练数据／模型／优化器。当前可用RAM约24GiB、swap未用，Linux约32GiB、E约143GiB空闲；重试不并发第二个预计算worker。
+
+
+## 4.12 10月15日：凌晨中断后的7400步恢复
+
+09:43检查时没有训练／足部监控进程，GPU空闲；protocol仍写training只是进程退出前的残留，不能据此宣称正在训练。trace最后完整更新7480、mtime为04:48:20，之后有一行损坏残尾；stdout末尾也有零字节。最后原子last.pt为7400步，mtime04:44:00；10000步ego首段尚未完成。uptime -s显示04:55:47，但journal／wtmp的启动时间记录有不一致，Windows可执行文件当前也无法通过WSL互操作运行；只能确认训练环境中断／重启迹象，未确认整机具体重启时刻与原因。
+
+[REBOOT_CHECKPOINT_AUDIT.json](../native30_fresh_ego_oct14/REBOOT_CHECKPOINT_AUDIT.json)完整读取实际1.376GiB last.pt：模型和Adam所有浮点张量有限，prepared／配置相同、封存源码无改动；315个Adam状态中182个step7400、133个step6648，后者与前7400步scene-ON次数6648完全相符（scene dropout分支不每步更新），不是optimizer损坏。data／condition／Torch／CUDA／NumPy RNG齐全，随机初始化来源仍为from_scratch、source_checkpoint=null、最初空Adam来源保留。未加载4200或旧55k，未改学习率／足部监督／B2／FP32／总预算10000。
+
+恢复前先把7401–7480的80条完整但未保存更新及损坏残尾归档为本地reboot_oct15/trace_after_saved_7400.raw，记录原文件／保留前缀／移出后缀SHA；trace原子整理为1–7400，避免恢复追加重复步数。相关元数据见[RECOVERY.json](../native30_fresh_ego_oct14/reboot_oct15/RECOVERY.json)。原stdout完整保留，恢复stdout另写training_resume_oct15.log。09:45:36启动1815，使用原配置、--steps 10000及--resume，先按正式入口重新验证全TRAIN／VAL来源，不跳过指纹检查；此时尚不能宣称有新的optimizer更新。
+
+独立足部监控原脚本重启时只重建1／600及最新面板，现补上读取并验证已存FOOT_TREND历史；真实重启验收保留全部54条、九个检查点，无重复／缺失。只改运行目录下的监控辅助脚本，不改训练封存源码。监控进程1816已运行；[恢复核验脚本](../native30_fresh_ego_oct14/verify_reboot_resume.py)等待前五个新更新，与崩溃前未保存记录核对样本身份、yaw、扩散t、scene dropout及LR，结果写reboot_oct15/RESUME_VERIFICATION.json。
+
+|固定ego监控|2000步 clean / noisy|6000步 clean / noisy|7000步 clean / noisy|
+|---|---|---|---|
+|全身MPJPE，mm|232.70 / 254.73|209.36 / 214.96|210.72 / 225.20|
+|GT支撑期脚速，m/s|0.623 / 0.705|0.460 / 0.477|0.379 / 0.409|
+
+原始快照见[VALIDATION_BEFORE_RESUME.json](../native30_fresh_ego_oct14/reboot_oct15/VALIDATION_BEFORE_RESUME.json)。7000步EgoBody固定窗踝脚误差clean约564.5mm、RICH约300.3mm，脚更稳定但姿态未达标；整体MPJPE在6000附近较好、7000 noisy有回退，不宣称收敛或论文通过。只恢复这段10k ego预算；旧55k对应的长期训练预算仍按前节口径复核，未自动启动exo。依赖检查通过后，剩余2600更新按中断前约2.9秒／步，加8000／9000／10000的DDIM监控与保存，暂估还需2.5–3小时；Linux约31GiB／E约113GiB空闲，仍满足空间下限。两个TRAIN预计算分片均已完成，无需重跑预计算或重新生成全部数据。
+
+
+**09:53恢复实跑验收通过**：[RESUME_VERIFICATION.json](../native30_fresh_ego_oct14/reboot_oct15/RESUME_VERIFICATION.json)记录7401–7405的sample／yaw、扩散t、scene dropout与LR均与崩溃前归档逐项一致，首步loss完全相同；后续loss最大差约2.48e-5，记录CUDA重启后小数值差异，不宣称整个训练轨迹逐位相同。此时trace实际到7408、模型／梯度有限，完整源依赖复查已通过；原子last.pt仍为7400，下一常规7500点会覆写，不能把trace新进度误记为已保存步数。恢复仍保留最初from_scratch provenance；其中optimizer_reset=true描述最初随机初始化时Adam为空，不表示这次resume重置Adam。恢复日志使用training_resume_oct15.log，launcher已标记resumed_training_verified。预计剩余本段约2.5–3小时，粗估今天12:30–13:00完成10000步ego；这不是最终长训／exo／论文评估的完成时间。
