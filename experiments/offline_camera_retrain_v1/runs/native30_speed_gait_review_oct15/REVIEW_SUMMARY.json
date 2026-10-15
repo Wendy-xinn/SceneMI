@@ -1,0 +1,95 @@
+{
+  "observed_at": "2026-10-15T20:02:28.566779+08:00",
+  "status": "zero_update_review_complete_long_training_not_ready",
+  "optimizer_steps": 0,
+  "training_launched": false,
+  "query_candidate_sha256": "963b686a0a6d6e92a3e8ed45de81ec20fbb62feecbaf6929b1af6a45b1809cd9",
+  "trained": [
+    {
+      "pair": [
+        "trumans",
+        "camera_wearer"
+      ],
+      "baseline_seconds": 2.4022806044995377,
+      "candidate_seconds": 0.9249210545003734,
+      "speedup": 2.5972817818459206
+    },
+    {
+      "pair": [
+        "trumans",
+        "rich"
+      ],
+      "baseline_seconds": 3.2905651190030767,
+      "candidate_seconds": 1.3658213624985365,
+      "speedup": 2.4092207146207985
+    },
+    {
+      "pair": [
+        "camera_wearer",
+        "rich"
+      ],
+      "baseline_seconds": 1.4877252874994156,
+      "candidate_seconds": 0.987678703999336,
+      "speedup": 1.5062846667395755
+    }
+  ],
+  "fresh_deterministic": [
+    {
+      "pair": [
+        "trumans",
+        "camera_wearer"
+      ],
+      "speedup": 1.6084317790823814,
+      "output_error": 0.0,
+      "gradient_error": 0.0
+    },
+    {
+      "pair": [
+        "trumans",
+        "rich"
+      ],
+      "speedup": 1.5839392754775898,
+      "output_error": 0.0,
+      "gradient_error": 0.0
+    },
+    {
+      "pair": [
+        "camera_wearer",
+        "rich"
+      ],
+      "speedup": 1.1800190217804183,
+      "output_error": 0.0,
+      "gradient_error": 0.0
+    }
+  ],
+  "batch": [
+    {
+      "batch_size": 2,
+      "samples_per_second": 2.1614514196846426,
+      "peak_cuda_gib": 3.508124351501465
+    },
+    {
+      "batch_size": 4,
+      "samples_per_second": 2.16635007166484,
+      "peak_cuda_gib": 4.641146659851074
+    },
+    {
+      "batch_size": 8,
+      "samples_per_second": 2.4410223316703252,
+      "peak_cuda_gib": 7.156339645385742
+    }
+  ],
+  "timing_exclusions": [
+    "data preparation",
+    "actual Adam compute",
+    "checkpoint",
+    "validation"
+  ],
+  "training_blocker": "Gait quality has not passed; no new optimization authorized/executed in this review.",
+  "candidate_installed_in_formal_training": false,
+  "disk_free_after": {
+    "/home/wenxin/projects/SceneMI": 28539047936,
+    "/mnt/e": 120934367232
+  },
+  "local_artifact_bytes": 22789261
+}

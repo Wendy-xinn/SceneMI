@@ -1,0 +1,246 @@
+{
+  "status": "passed",
+  "optimizer_steps": 0,
+  "checkpoint_updated": false,
+  "scene_sizes": {
+    "trumans": {
+      "static": 32326,
+      "dynamic_total": 49152,
+      "dynamic_max": 256
+    },
+    "camera_wearer": {
+      "static": 16240,
+      "dynamic_total": 49143,
+      "dynamic_max": 256
+    },
+    "rich": {
+      "static": 18691,
+      "dynamic_total": 0,
+      "dynamic_max": 0
+    }
+  },
+  "parent_sha256": "aaec44f9353a32acfca818aa8c5ed903e93aca78548b5d52f31cf506db35e835",
+  "candidate_sha256": "963b686a0a6d6e92a3e8ed45de81ec20fbb62feecbaf6929b1af6a45b1809cd9",
+  "cases": [
+    {
+      "pair": [
+        "trumans",
+        "camera_wearer"
+      ],
+      "original_warmup": {
+        "seconds": 3.327353366999887,
+        "loss": 0.15036091208457947,
+        "peak_CUDA_GiB": 2.594571113586426,
+        "accepted_physical_steps": [
+          0.0,
+          0.0
+        ]
+      },
+      "original_measured": [
+        {
+          "seconds": 2.42405632900045,
+          "loss": 0.15036091208457947,
+          "peak_CUDA_GiB": 2.5954647064208984,
+          "accepted_physical_steps": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "seconds": 2.3805048799986253,
+          "loss": 0.15036091208457947,
+          "peak_CUDA_GiB": 2.5954647064208984,
+          "accepted_physical_steps": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "candidate_warmup": {
+        "seconds": 0.965649868001492,
+        "loss": 0.15036091208457947,
+        "peak_CUDA_GiB": 2.5954647064208984,
+        "accepted_physical_steps": [
+          0.0,
+          0.0
+        ]
+      },
+      "candidate_measured": [
+        {
+          "seconds": 0.9132153720020142,
+          "loss": 0.15036091208457947,
+          "peak_CUDA_GiB": 2.5954647064208984,
+          "accepted_physical_steps": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "seconds": 0.9366267369987327,
+          "loss": 0.15036091208457947,
+          "peak_CUDA_GiB": 2.5954647064208984,
+          "accepted_physical_steps": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "exact_real_query_cases": 4,
+      "all_query_fields_bitwise_equal": true,
+      "prediction_max_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "gradient_max_abs_error": 1.0873191058635712e-07,
+      "original_repeat_gradient_max_abs_error": 1.0256189852952957e-07,
+      "failed_gradient_names": [],
+      "speedup": 2.5972817818459206
+    },
+    {
+      "pair": [
+        "trumans",
+        "rich"
+      ],
+      "original_warmup": {
+        "seconds": 3.4783611470011238,
+        "loss": 0.3664171099662781,
+        "peak_CUDA_GiB": 2.5953125953674316,
+        "accepted_physical_steps": [
+          0.0,
+          2.0
+        ]
+      },
+      "original_measured": [
+        {
+          "seconds": 3.3184118020035385,
+          "loss": 0.3664171099662781,
+          "peak_CUDA_GiB": 2.5953125953674316,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        },
+        {
+          "seconds": 3.262718436002615,
+          "loss": 0.3664171099662781,
+          "peak_CUDA_GiB": 2.5953125953674316,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "candidate_warmup": {
+        "seconds": 1.3362845410010777,
+        "loss": 0.3664171099662781,
+        "peak_CUDA_GiB": 2.5953125953674316,
+        "accepted_physical_steps": [
+          0.0,
+          2.0
+        ]
+      },
+      "candidate_measured": [
+        {
+          "seconds": 1.37346348400024,
+          "loss": 0.3664171099662781,
+          "peak_CUDA_GiB": 2.5953125953674316,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        },
+        {
+          "seconds": 1.358179240996833,
+          "loss": 0.3664171099662781,
+          "peak_CUDA_GiB": 2.5953125953674316,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "exact_real_query_cases": 4,
+      "all_query_fields_bitwise_equal": true,
+      "prediction_max_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "gradient_max_abs_error": 1.364387571811676e-07,
+      "original_repeat_gradient_max_abs_error": 1.7508864402770996e-07,
+      "failed_gradient_names": [],
+      "speedup": 2.4092207146207985
+    },
+    {
+      "pair": [
+        "camera_wearer",
+        "rich"
+      ],
+      "original_warmup": {
+        "seconds": 1.592327769001713,
+        "loss": 0.3624119162559509,
+        "peak_CUDA_GiB": 2.5948596000671387,
+        "accepted_physical_steps": [
+          0.0,
+          2.0
+        ]
+      },
+      "original_measured": [
+        {
+          "seconds": 1.4830608269985532,
+          "loss": 0.3624119162559509,
+          "peak_CUDA_GiB": 2.5948596000671387,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        },
+        {
+          "seconds": 1.492389748000278,
+          "loss": 0.3624119162559509,
+          "peak_CUDA_GiB": 2.5948596000671387,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "candidate_warmup": {
+        "seconds": 0.9811637109996809,
+        "loss": 0.3624119162559509,
+        "peak_CUDA_GiB": 2.5948596000671387,
+        "accepted_physical_steps": [
+          0.0,
+          2.0
+        ]
+      },
+      "candidate_measured": [
+        {
+          "seconds": 0.9864787090009486,
+          "loss": 0.3624119162559509,
+          "peak_CUDA_GiB": 2.5948596000671387,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        },
+        {
+          "seconds": 0.9888786989977234,
+          "loss": 0.3624119162559509,
+          "peak_CUDA_GiB": 2.5948596000671387,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "exact_real_query_cases": 4,
+      "all_query_fields_bitwise_equal": true,
+      "prediction_max_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "gradient_max_abs_error": 1.2764940038323402e-07,
+      "original_repeat_gradient_max_abs_error": 1.932494342327118e-07,
+      "failed_gradient_names": [],
+      "speedup": 1.5062846667395755
+    }
+  ],
+  "deterministic_algorithms": false,
+  "model_initialization": "parent 10000 weights",
+  "contract": "All original radii, neighbor counts, sorted-ID FPS tie rules and float precision retained. Only spatial search implementation changes.",
+  "timing_scope": "Full forward/objective/backward B2 FP32 30Hz/L192; excludes preparation, Adam, save and validation"
+}

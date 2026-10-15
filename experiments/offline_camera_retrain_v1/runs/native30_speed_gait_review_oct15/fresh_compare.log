@@ -1,0 +1,15 @@
+trumans {'static': 32326, 'dynamic_total': 49152, 'dynamic_max': 256}
+camera_wearer {'static': 16240, 'dynamic_total': 49143, 'dynamic_max': 256}
+rich {'static': 18691, 'dynamic_total': 0, 'dynamic_max': 0}
+MDM latent dim:  256
+Using UNET with lantent dim:  256  and mults:  (1, 2, 4)
+dims:  [201, 256, 512, 1024] mults:  (1, 2, 4)
+[ models/temporal ] Channel dimensions: [(201, 256), (256, 512), (512, 1024)]
+[ models/temporal ] added_input_channels: 97
+{"pair": ["trumans", "camera_wearer"], "original_warmup": {"seconds": 2.793080593997729, "loss": 0.734944224357605, "peak_CUDA_GiB": 2.596177101135254, "accepted_physical_steps": [2.0, 0.0]}, "original_measured": [{"seconds": 2.282947482999589, "loss": 0.734944224357605, "peak_CUDA_GiB": 2.5946359634399414, "accepted_physical_steps": [2.0, 0.0]}, {"seconds": 2.0878624219985795, "loss": 0.734944224357605, "peak_CUDA_GiB": 2.5946359634399414, "accepted_physical_steps": [2.0, 0.0]}], "candidate_warmup": {"seconds": 1.1329396559995075, "loss": 0.734944224357605, "peak_CUDA_GiB": 2.653883934020996, "accepted_physical_steps": [2.0, 0.0]}, "candidate_measured": [{"seconds": 1.1914172120013973, "loss": 0.734944224357605, "peak_CUDA_GiB": 2.653883934020996, "accepted_physical_steps": [2.0, 0.0]}, {"seconds": 1.0977997179979866, "loss": 0.734944224357605, "peak_CUDA_GiB": 2.653883934020996, "accepted_physical_steps": [2.0, 0.0]}], "exact_real_query_cases": 4, "all_query_fields_bitwise_equal": true, "prediction_max_abs_error": 0.0, "loss_abs_error": 0.0, "gradient_max_abs_error": 6.726384162902832e-05, "failed_gradient_names": ["core.unet.downs.0.0.blocks.1.block.0.weight", "core.unet.downs.0.0.blocks.1.block.0.bias", "core.unet.downs.0.1.blocks.1.block.0.weight", "core.unet.downs.0.1.blocks.1.block.0.bias", "core.unet.downs.1.0.blocks.1.block.0.weight", "core.unet.downs.1.0.blocks.1.block.0.bias", "core.unet.downs.1.1.blocks.1.block.0.weight", "core.unet.downs.1.1.blocks.1.block.0.bias", "core.unet.downs.2.0.blocks.1.block.0.weight", "core.unet.downs.2.0.blocks.1.block.0.bias", "core.unet.downs.2.1.blocks.1.block.0.weight", "core.unet.downs.2.1.blocks.1.block.0.bias", "core.unet.ups.0.0.blocks.1.block.0.weight", "core.unet.ups.0.0.blocks.1.block.0.bias", "core.unet.ups.0.1.blocks.1.block.0.weight", "core.unet.ups.0.1.blocks.1.block.0.bias", "core.unet.ups.1.0.blocks.1.block.0.weight", "core.unet.ups.1.1.blocks.1.block.0.weight", "core.unet.mid_block1.blocks.1.block.0.weight", "core.unet.mid_block1.blocks.1.block.0.bias", "core.unet.mid_block2.blocks.1.block.0.weight", "core.unet.mid_block2.blocks.1.block.0.bias"], "speedup": 1.9093035036218018}
+Traceback (most recent call last):
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_speed_gait_review_oct15/compare_exact_query.py", line 106, in <module>
+    if __name__=='__main__':main()
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_speed_gait_review_oct15/compare_exact_query.py", line 100, in main
+    if error>5e-6 or failed:raise AssertionError('Full model equivalence failed')
+AssertionError: Full model equivalence failed

@@ -1,0 +1,242 @@
+{
+  "status": "passed",
+  "optimizer_steps": 0,
+  "checkpoint_updated": false,
+  "scene_sizes": {
+    "trumans": {
+      "static": 32326,
+      "dynamic_total": 49152,
+      "dynamic_max": 256
+    },
+    "camera_wearer": {
+      "static": 16240,
+      "dynamic_total": 49143,
+      "dynamic_max": 256
+    },
+    "rich": {
+      "static": 18691,
+      "dynamic_total": 0,
+      "dynamic_max": 0
+    }
+  },
+  "parent_sha256": "aaec44f9353a32acfca818aa8c5ed903e93aca78548b5d52f31cf506db35e835",
+  "candidate_sha256": "900fec21baa5909184faebc5667f0c710203aa4b25cd69fc7ab6aa8492e41511",
+  "cases": [
+    {
+      "pair": [
+        "trumans",
+        "camera_wearer"
+      ],
+      "original_warmup": {
+        "seconds": 3.2543902859979426,
+        "loss": 0.15036091208457947,
+        "peak_CUDA_GiB": 2.594571113586426,
+        "accepted_physical_steps": [
+          0.0,
+          0.0
+        ]
+      },
+      "original_measured": [
+        {
+          "seconds": 2.4939170489997196,
+          "loss": 0.15036091208457947,
+          "peak_CUDA_GiB": 2.5954647064208984,
+          "accepted_physical_steps": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "seconds": 2.363040362997708,
+          "loss": 0.15036091208457947,
+          "peak_CUDA_GiB": 2.5954647064208984,
+          "accepted_physical_steps": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "candidate_warmup": {
+        "seconds": 1.245751343001757,
+        "loss": 0.15036091208457947,
+        "peak_CUDA_GiB": 2.5954647064208984,
+        "accepted_physical_steps": [
+          0.0,
+          0.0
+        ]
+      },
+      "candidate_measured": [
+        {
+          "seconds": 1.2873758540008566,
+          "loss": 0.15036091208457947,
+          "peak_CUDA_GiB": 2.5954647064208984,
+          "accepted_physical_steps": [
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "seconds": 1.2193472020007903,
+          "loss": 0.15036091208457947,
+          "peak_CUDA_GiB": 2.5954647064208984,
+          "accepted_physical_steps": [
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "exact_real_query_cases": 4,
+      "all_query_fields_bitwise_equal": true,
+      "prediction_max_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "gradient_max_abs_error": 1.1129304766654968e-07,
+      "failed_gradient_names": [],
+      "speedup": 1.9375724016934388
+    },
+    {
+      "pair": [
+        "trumans",
+        "rich"
+      ],
+      "original_warmup": {
+        "seconds": 3.156926627998473,
+        "loss": 0.3664171099662781,
+        "peak_CUDA_GiB": 2.5953125953674316,
+        "accepted_physical_steps": [
+          0.0,
+          2.0
+        ]
+      },
+      "original_measured": [
+        {
+          "seconds": 3.1548147989997233,
+          "loss": 0.3664171099662781,
+          "peak_CUDA_GiB": 2.5953125953674316,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        },
+        {
+          "seconds": 3.2856393080001,
+          "loss": 0.3664171099662781,
+          "peak_CUDA_GiB": 2.5953125953674316,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "candidate_warmup": {
+        "seconds": 1.8791574189999665,
+        "loss": 0.3664171099662781,
+        "peak_CUDA_GiB": 2.5953125953674316,
+        "accepted_physical_steps": [
+          0.0,
+          2.0
+        ]
+      },
+      "candidate_measured": [
+        {
+          "seconds": 1.726784063001105,
+          "loss": 0.3664171099662781,
+          "peak_CUDA_GiB": 2.5953125953674316,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        },
+        {
+          "seconds": 1.7951609270021436,
+          "loss": 0.3664171099662781,
+          "peak_CUDA_GiB": 2.5953125953674316,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "exact_real_query_cases": 4,
+      "all_query_fields_bitwise_equal": true,
+      "prediction_max_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "gradient_max_abs_error": 1.3363751349970698e-07,
+      "failed_gradient_names": [],
+      "speedup": 1.8286640266331595
+    },
+    {
+      "pair": [
+        "camera_wearer",
+        "rich"
+      ],
+      "original_warmup": {
+        "seconds": 1.5016040820009948,
+        "loss": 0.3624119162559509,
+        "peak_CUDA_GiB": 2.5948596000671387,
+        "accepted_physical_steps": [
+          0.0,
+          2.0
+        ]
+      },
+      "original_measured": [
+        {
+          "seconds": 1.5192429700000503,
+          "loss": 0.3624119162559509,
+          "peak_CUDA_GiB": 2.5948596000671387,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        },
+        {
+          "seconds": 1.606843261000904,
+          "loss": 0.3624119162559509,
+          "peak_CUDA_GiB": 2.5948596000671387,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "candidate_warmup": {
+        "seconds": 1.1087431110026955,
+        "loss": 0.3624119162559509,
+        "peak_CUDA_GiB": 2.5948596000671387,
+        "accepted_physical_steps": [
+          0.0,
+          2.0
+        ]
+      },
+      "candidate_measured": [
+        {
+          "seconds": 1.1387569129983603,
+          "loss": 0.3624119162559509,
+          "peak_CUDA_GiB": 2.5948596000671387,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        },
+        {
+          "seconds": 1.2938793459979934,
+          "loss": 0.3624119162559509,
+          "peak_CUDA_GiB": 2.5948596000671387,
+          "accepted_physical_steps": [
+            0.0,
+            2.0
+          ]
+        }
+      ],
+      "exact_real_query_cases": 4,
+      "all_query_fields_bitwise_equal": true,
+      "prediction_max_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "gradient_max_abs_error": 1.812586560845375e-07,
+      "failed_gradient_names": [],
+      "speedup": 1.2850611016916689
+    }
+  ],
+  "contract": "All original radii, neighbor counts, sorted-ID FPS tie rules and float precision retained. Only spatial search implementation changes.",
+  "timing_scope": "Full forward/objective/backward B2 FP32 30Hz/L192; excludes preparation, Adam, save and validation",
+  "candidate_source": "exact_gpu_query_unculled.py"
+}

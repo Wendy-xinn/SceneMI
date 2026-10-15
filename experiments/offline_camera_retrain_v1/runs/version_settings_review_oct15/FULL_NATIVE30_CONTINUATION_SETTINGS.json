@@ -1,5 +1,5 @@
 {
-  "status": "prepared_not_launched_target_pending",
+  "status": "superseded_do_not_launch",
   "parent_checkpoint": "experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/training/last.pt",
   "parent_step": 10000,
   "max_global_step": 55000,
@@ -25,5 +25,8 @@
     "explicit_new_sampler_phase": true,
     "scene_camera_track_architecture_unchanged": true
   },
-  "reason_not_launched": "User requested distinguish full new architecture from separate residual branch; ego-only versus mixed continuation changes the experiment objective, preference question pending."
+  "reason_not_launched": "User now requests speed and supervision review first; future long training must start from zero after gates.",
+  "selected_mode_before_superseding": "ego",
+  "replacement_review": "runs/native30_speed_gait_review_oct15/PRETRAIN_REVIEW.json",
+  "replacement_initialization": "from_scratch_after_speed_and_gait_checks"
 }

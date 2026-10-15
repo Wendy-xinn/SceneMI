@@ -1,0 +1,79 @@
+{
+  "status": "completed",
+  "optimizer_steps": 0,
+  "model_weight_updates": 0,
+  "scope": "Forward/objective/backward only; Adam-sized memory buffers included; preparation, actual Adam compute, checkpoint and validation excluded. Repeated timing windows are not quality experiments.",
+  "resident_moment_buffer_gib": 0.9139443635940552,
+  "cuda_memory_fraction": 0.5,
+  "cases": [
+    {
+      "batch_size": 2,
+      "warmup": {
+        "seconds": 1.5944579870010784,
+        "samples_per_second": 1.25434474680746,
+        "peak_cuda_allocated_gib": 3.5127410888671875,
+        "peak_cuda_reserved_gib": 4.6875
+      },
+      "measured": [
+        {
+          "seconds": 0.9480664219991013,
+          "samples_per_second": 2.1095568344070053,
+          "peak_cuda_allocated_gib": 3.508124351501465,
+          "peak_cuda_reserved_gib": 4.6875
+        },
+        {
+          "seconds": 0.9025419070021599,
+          "samples_per_second": 2.2159635851626045,
+          "peak_cuda_allocated_gib": 3.508124351501465,
+          "peak_cuda_reserved_gib": 4.6875
+        }
+      ]
+    },
+    {
+      "batch_size": 4,
+      "warmup": {
+        "seconds": 1.781692729000497,
+        "samples_per_second": 2.245056027278026,
+        "peak_cuda_allocated_gib": 4.641146659851074,
+        "peak_cuda_reserved_gib": 5.587890625
+      },
+      "measured": [
+        {
+          "seconds": 1.8745736989985744,
+          "samples_per_second": 2.1338184794424784,
+          "peak_cuda_allocated_gib": 4.641146659851074,
+          "peak_cuda_reserved_gib": 5.587890625
+        },
+        {
+          "seconds": 1.8182735949994822,
+          "samples_per_second": 2.19988895565584,
+          "peak_cuda_allocated_gib": 4.641146659851074,
+          "peak_cuda_reserved_gib": 5.587890625
+        }
+      ]
+    },
+    {
+      "batch_size": 8,
+      "warmup": {
+        "seconds": 3.4564311920003092,
+        "samples_per_second": 2.3145260401872,
+        "peak_cuda_allocated_gib": 7.163641929626465,
+        "peak_cuda_reserved_gib": 8.486328125
+      },
+      "measured": [
+        {
+          "seconds": 3.242155523003021,
+          "samples_per_second": 2.467494215882051,
+          "peak_cuda_allocated_gib": 7.156339645385742,
+          "peak_cuda_reserved_gib": 8.486328125
+        },
+        {
+          "seconds": 3.3124752120020275,
+          "samples_per_second": 2.415112412317458,
+          "peak_cuda_allocated_gib": 7.156339645385742,
+          "peak_cuda_reserved_gib": 8.486328125
+        }
+      ]
+    }
+  ]
+}

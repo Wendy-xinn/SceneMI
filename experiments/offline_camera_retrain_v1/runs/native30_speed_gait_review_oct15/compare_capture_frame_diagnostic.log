@@ -1,0 +1,14 @@
+trumans {'static': 32326, 'dynamic_total': 49152, 'dynamic_max': 256}
+camera_wearer {'static': 16240, 'dynamic_total': 49143, 'dynamic_max': 256}
+rich {'static': 18691, 'dynamic_total': 0, 'dynamic_max': 0}
+MDM latent dim:  256
+Using UNET with lantent dim:  256  and mults:  (1, 2, 4)
+dims:  [201, 256, 512, 1024] mults:  (1, 2, 4)
+[ models/temporal ] Channel dimensions: [(201, 256), (256, 512), (512, 1024)]
+[ models/temporal ] added_input_channels: 97
+Traceback (most recent call last):
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_speed_gait_review_oct15/compare_exact_query.py", line 85, in <module>
+    if __name__=='__main__':main()
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_speed_gait_review_oct15/compare_exact_query.py", line 64, in main
+    if bad:raise AssertionError(('Changed real query fields',pair,bad))
+AssertionError: ('Changed real query fields', ('trumans', 'camera_wearer'), ['points', 'normals', 'velocities'])

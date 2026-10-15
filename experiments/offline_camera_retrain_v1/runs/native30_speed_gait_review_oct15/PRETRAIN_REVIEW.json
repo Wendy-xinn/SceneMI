@@ -1,0 +1,37 @@
+{
+  "status": "speed_candidate_verified_supervision_not_ready_for_long_training",
+  "updated_at": "2026-10-15T19:59:50.627225+08:00",
+  "user_instruction": "Do not launch yet; investigate speed and gait supervision, then start fresh after checks.",
+  "optimizer_updates_this_review": 0,
+  "training_launched": false,
+  "next_long_run_initialization": "from_scratch",
+  "training_mode": "ego",
+  "max_global_step": 55000,
+  "parent_10000_used_for_training_initialization": false,
+  "original_10000_retained": true,
+  "old55k_retained": true,
+  "independent_exo_7831_retained": true,
+  "gates": {
+    "official_TRAIN_VAL_data": "passed; full source hashes identical, no TEST examples",
+    "original_supervision_disabled_profile_parity": "passed 7 tests; this is compatibility, not gait quality",
+    "GPU_query_same_fields_and_full_model": "passed three trained B2 pairs; all fields/output/loss exact, gradients within tolerance",
+    "fresh_random_initialization_and_gradient_parity": "passed three deterministic B2 pairs; exact original initial SHA, all output/loss/gradients bitwise equal",
+    "batch_throughput_and_memory": "measured B2/B4/B8, zero updates; Adam-sized buffers only",
+    "gait_quality": "NOT PASSED; previous 100-update restoration failed amplitude gate versus control; no new quality training this review",
+    "GPU_query_edges": "passed existing8 plus10 extra exact all-field cases",
+    "non_deterministic_gradient_audit": "original-original max6.726e-5; original-candidate7.45e-9, deterministic all gradients bitwise identical"
+  },
+  "supervision": {
+    "old55k": "20Hz coordination_v1: independent stance/swing velocity, foot height, pelvis-relative position, 0.2/0.4s displacement, coordination/amplitude and phase-free support",
+    "native30_10000": "basic velocity/acceleration, unbalanced foot velocity and planting; foot velocity gated by alpha_bar squared; extra gait profile disabled",
+    "previous_restoration": "30Hz balanced stance/swing + relative foot position + stride + coordination/amplitude; intentionally did not port height/envelope proxies; 100-step test not sufficient evidence to extend",
+    "recommended_next": "Validate a training-only gait candidate before long training: physical-time stance/swing and stride; pelvis/body-local foot dynamics; left/right coordination and amplitude; explicitly audit which old height/support terms to retain versus observed-scene physics. Do not blindly copy20Hz frame lags or treat a new coefficient as solved gait."
+  },
+  "short_pilot_plan": {
+    "status": "not_started; design only",
+    "initialization": "same sealed fresh random weights for objective arms; reset Adam/sampler/RNG identically",
+    "first_stage": "bounded small official TRAIN locomotion overfit, isolate genuine leg motion from shared root translation; require nonzero foot gradients and meaningful relative-step amplitude before expanding",
+    "second_stage": "bounded full-pool paired check on fixed and separate confirmation official VAL; report clean/noisy separately and scene ON/OFF, reject degraded foot alternation or overall motion",
+    "long_training_gate": "Do not launch 55k on loss decline alone; require foot-specific motion evidence plus stable generalization. Existing small VAL panels and one seed are development evidence, not final paper acceptance."
+  }
+}

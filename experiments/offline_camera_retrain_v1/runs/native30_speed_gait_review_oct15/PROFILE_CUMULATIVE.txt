@@ -1,0 +1,86 @@
+         668359 function calls (660516 primitive calls) in 3.311 seconds
+
+   Ordered by: cumulative time
+   List reduced from 502 to 80 due to restriction <80>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    3.311    3.311 profile_full.py:57(compute)
+    771/1    0.000    0.000    3.083    3.083 module.py:1769(_wrapped_call_impl)
+    771/1    0.001    0.000    3.083    3.083 module.py:1777(_call_impl)
+        1    0.000    0.000    3.083    3.083 native30_scene_relations.py:135(forward)
+        4    0.649    0.162    2.231    0.558 native30_query_runtime.py:175(query_surfaces_cuda)
+        1    0.006    0.006    1.571    1.571 native30_physical_guidance.py:96(guide_motion)
+        1    0.001    0.001    1.512    1.512 native30_model.py:238(forward)
+        1    0.001    0.001    1.360    1.360 native30_scene_relations.py:91(local_geometry)
+        1    0.001    0.001    1.280    1.280 native30_model.py:193(local_geometry)
+      872    1.268    0.001    1.269    0.001 {method 'query_ball_point' of 'scipy.spatial._ckdtree.cKDTree' objects}
+        2    0.015    0.008    1.250    0.625 native30_overnight.py:159(query_motion)
+        2    0.005    0.002    1.235    0.617 native30_geometry.py:106(query_motion)
+        2    0.002    0.001    1.046    0.523 native30_physical_guidance.py:28(prepare_evidence)
+        2    0.015    0.008    1.023    0.511 native30_overnight.py:164(query_wide_motion)
+        2    0.007    0.003    1.008    0.504 native30_geometry.py:111(query_wide_motion)
+        9    0.001    0.000    0.463    0.051 native30_refinement.py:196(constrain_motion)
+        9    0.031    0.003    0.380    0.042 native30_observation_ik.py:14(position_proximal)
+       86    0.021    0.000    0.243    0.003 native30_model.py:18(reconcile_motion)
+      176    0.168    0.001    0.211    0.001 supervision.py:24(forward_kinematics)
+        4    0.000    0.000    0.200    0.050 graph.py:820(_engine_run_backward)
+        4    0.200    0.050    0.200    0.050 {method 'run_backward' of 'torch._C._EngineBase' objects}
+       99    0.063    0.001    0.197    0.002 native30_query_runtime.py:147(select_radius_samples_cuda)
+        1    0.000    0.000    0.158    0.158 _tensor.py:592(backward)
+        1    0.000    0.000    0.158    0.158 __init__.py:243(backward)
+       75    0.000    0.000    0.095    0.001 rotation_conversions.py:466(axis_angle_to_matrix)
+       18    0.003    0.000    0.086    0.005 unified_geometry.py:92(skin_points)
+        9    0.003    0.000    0.082    0.009 native30_refinement.py:144(confidence_anchor)
+       18    0.064    0.004    0.078    0.004 lbs.py:345(batch_rigid_transform)
+       12    0.003    0.000    0.077    0.006 native30_physical_guidance.py:74(energy)
+      4/2    0.015    0.004    0.073    0.037 native30_scene_relations.py:17(relation_query)
+      470    0.073    0.000    0.073    0.000 {built-in method torch.as_tensor}
+       75    0.062    0.001    0.068    0.001 rotation_conversions.py:498(axis_angle_to_quaternion)
+       54    0.067    0.001    0.067    0.001 {built-in method torch._C._linalg.linalg_solve}
+        1    0.000    0.000    0.061    0.061 native30_losses.py:158(objective)
+   102912    0.061    0.000    0.061    0.000 native30_query_runtime.py:223(<listcomp>)
+      283    0.012    0.000    0.059    0.000 supervision.py:13(rotation_from_6d)
+       81    0.022    0.000    0.043    0.001 orientation_supervision.py:5(global_rotations)
+        3    0.000    0.000    0.042    0.014 __init__.py:365(grad)
+      196    0.038    0.000    0.040    0.000 {method 'query' of 'scipy.spatial._ckdtree.cKDTree' objects}
+        1    0.004    0.004    0.039    0.039 native30_relation_losses.py:10(relation_geometry_losses)
+       19    0.000    0.000    0.030    0.002 rotation_conversions.py:482(matrix_to_axis_angle)
+      788    0.030    0.000    0.030    0.000 native30_query_runtime.py:154(squared)
+        2    0.000    0.000    0.029    0.015 native30_refinement.py:215(_core_pass)
+        2    0.000    0.000    0.029    0.015 native30_model.py:158(_core_pass)
+      478    0.029    0.000    0.029    0.000 {method 'new_tensor' of 'torch._C.TensorBase' objects}
+       75    0.020    0.000    0.027    0.000 rotation_conversions.py:43(quaternion_to_matrix)
+8337/7185    0.014    0.000    0.023    0.000 {built-in method numpy.core._multiarray_umath.implement_array_function}
+     1011    0.023    0.000    0.023    0.000 {built-in method torch.stack}
+     2639    0.022    0.000    0.022    0.000 {built-in method numpy.zeros}
+      566    0.005    0.000    0.018    0.000 functional.py:5537(normalize)
+       19    0.006    0.000    0.016    0.001 rotation_conversions.py:107(matrix_to_quaternion)
+     1043    0.003    0.000    0.015    0.000 functional.py:1703(norm)
+      949    0.001    0.000    0.015    0.000 _tensor.py:881(norm)
+        2    0.005    0.003    0.014    0.007 native30_scene_support.py:100(region_contact_loss)
+       19    0.013    0.001    0.014    0.001 rotation_conversions.py:530(quaternion_to_axis_angle)
+        5    0.001    0.000    0.013    0.003 native30_observations.py:42(observation_derivatives)
+        1    0.001    0.001    0.013    0.013 native30_losses.py:79(observation_losses)
+       31    0.006    0.000    0.013    0.000 native30_observations.py:29(sanitize_observations)
+     1002    0.012    0.000    0.012    0.000 {built-in method torch.matmul}
+     1043    0.012    0.000    0.012    0.000 {built-in method torch._C._linalg.linalg_vector_norm}
+      881    0.000    0.000    0.012    0.000 <__array_function__ internals>:177(where)
+        2    0.000    0.000    0.011    0.006 scene_model.py:29(forward)
+      106    0.011    0.000    0.011    0.000 {method 'nonzero' of 'torch._C.TensorBase' objects}
+      208    0.011    0.000    0.011    0.000 {method 'cpu' of 'torch._C.TensorBase' objects}
+        2    0.000    0.000    0.011    0.005 mdm_scene_unet.py:842(forward)
+        2    0.000    0.000    0.010    0.005 mdm_scene_unet.py:866(forward_core)
+        2    0.000    0.000    0.010    0.005 mdm_scene_unet.py:319(forward)
+  109/107    0.000    0.000    0.010    0.000 container.py:242(forward)
+        2    0.009    0.004    0.009    0.005 native30_model.py:227(<listcomp>)
+        1    0.001    0.001    0.009    0.009 native30_losses.py:21(base_losses)
+       24    0.000    0.000    0.009    0.000 mdm_scene_unet.py:200(forward)
+      420    0.009    0.000    0.009    0.000 {built-in method torch.where}
+        2    0.000    0.000    0.009    0.004 native30_refinement.py:203(observation_condition)
+      979    0.008    0.000    0.008    0.000 {method 'clamp_min' of 'torch._C.TensorBase' objects}
+      578    0.000    0.000    0.008    0.000 _tensor.py:33(wrapped)
+        2    0.001    0.000    0.008    0.004 native30_model.py:90(observation_condition)
+206500/206404    0.006    0.000    0.007    0.000 {built-in method builtins.len}
+   219549    0.007    0.000    0.007    0.000 {method 'append' of 'list' objects}
+        2    0.001    0.000    0.007    0.003 native30_model.py:109(camera_condition)
+      104    0.004    0.000    0.007    0.000 native30_query_runtime.py:225(<listcomp>)

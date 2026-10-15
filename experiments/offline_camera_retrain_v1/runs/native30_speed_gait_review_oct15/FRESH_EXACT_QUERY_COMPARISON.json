@@ -1,0 +1,125 @@
+{
+  "status": "failed_strict_gradient_gate_under_nondeterministic_backend",
+  "optimizer_steps": 0,
+  "checkpoint_updated": false,
+  "scene_sizes": {
+    "trumans": {
+      "static": 32326,
+      "dynamic_total": 49152,
+      "dynamic_max": 256
+    },
+    "camera_wearer": {
+      "static": 16240,
+      "dynamic_total": 49143,
+      "dynamic_max": 256
+    },
+    "rich": {
+      "static": 18691,
+      "dynamic_total": 0,
+      "dynamic_max": 0
+    }
+  },
+  "parent_sha256": "aaec44f9353a32acfca818aa8c5ed903e93aca78548b5d52f31cf506db35e835",
+  "candidate_sha256": "963b686a0a6d6e92a3e8ed45de81ec20fbb62feecbaf6929b1af6a45b1809cd9",
+  "cases": [
+    {
+      "pair": [
+        "trumans",
+        "camera_wearer"
+      ],
+      "original_warmup": {
+        "seconds": 2.793080593997729,
+        "loss": 0.734944224357605,
+        "peak_CUDA_GiB": 2.596177101135254,
+        "accepted_physical_steps": [
+          2.0,
+          0.0
+        ]
+      },
+      "original_measured": [
+        {
+          "seconds": 2.282947482999589,
+          "loss": 0.734944224357605,
+          "peak_CUDA_GiB": 2.5946359634399414,
+          "accepted_physical_steps": [
+            2.0,
+            0.0
+          ]
+        },
+        {
+          "seconds": 2.0878624219985795,
+          "loss": 0.734944224357605,
+          "peak_CUDA_GiB": 2.5946359634399414,
+          "accepted_physical_steps": [
+            2.0,
+            0.0
+          ]
+        }
+      ],
+      "candidate_warmup": {
+        "seconds": 1.1329396559995075,
+        "loss": 0.734944224357605,
+        "peak_CUDA_GiB": 2.653883934020996,
+        "accepted_physical_steps": [
+          2.0,
+          0.0
+        ]
+      },
+      "candidate_measured": [
+        {
+          "seconds": 1.1914172120013973,
+          "loss": 0.734944224357605,
+          "peak_CUDA_GiB": 2.653883934020996,
+          "accepted_physical_steps": [
+            2.0,
+            0.0
+          ]
+        },
+        {
+          "seconds": 1.0977997179979866,
+          "loss": 0.734944224357605,
+          "peak_CUDA_GiB": 2.653883934020996,
+          "accepted_physical_steps": [
+            2.0,
+            0.0
+          ]
+        }
+      ],
+      "exact_real_query_cases": 4,
+      "all_query_fields_bitwise_equal": true,
+      "prediction_max_abs_error": 0.0,
+      "loss_abs_error": 0.0,
+      "gradient_max_abs_error": 6.726384162902832e-05,
+      "failed_gradient_names": [
+        "core.unet.downs.0.0.blocks.1.block.0.weight",
+        "core.unet.downs.0.0.blocks.1.block.0.bias",
+        "core.unet.downs.0.1.blocks.1.block.0.weight",
+        "core.unet.downs.0.1.blocks.1.block.0.bias",
+        "core.unet.downs.1.0.blocks.1.block.0.weight",
+        "core.unet.downs.1.0.blocks.1.block.0.bias",
+        "core.unet.downs.1.1.blocks.1.block.0.weight",
+        "core.unet.downs.1.1.blocks.1.block.0.bias",
+        "core.unet.downs.2.0.blocks.1.block.0.weight",
+        "core.unet.downs.2.0.blocks.1.block.0.bias",
+        "core.unet.downs.2.1.blocks.1.block.0.weight",
+        "core.unet.downs.2.1.blocks.1.block.0.bias",
+        "core.unet.ups.0.0.blocks.1.block.0.weight",
+        "core.unet.ups.0.0.blocks.1.block.0.bias",
+        "core.unet.ups.0.1.blocks.1.block.0.weight",
+        "core.unet.ups.0.1.blocks.1.block.0.bias",
+        "core.unet.ups.1.0.blocks.1.block.0.weight",
+        "core.unet.ups.1.1.blocks.1.block.0.weight",
+        "core.unet.mid_block1.blocks.1.block.0.weight",
+        "core.unet.mid_block1.blocks.1.block.0.bias",
+        "core.unet.mid_block2.blocks.1.block.0.weight",
+        "core.unet.mid_block2.blocks.1.block.0.bias"
+      ],
+      "speedup": 1.9093035036218018
+    }
+  ],
+  "model_initialization": "fresh original seed, no parent weights loaded",
+  "contract": "All original radii, neighbor counts, sorted-ID FPS tie rules and float precision retained. Only spatial search implementation changes.",
+  "timing_scope": "Full forward/objective/backward B2 FP32 30Hz/L192; excludes preparation, Adam, save and validation",
+  "initial_model_sha256": "9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69",
+  "followup": "Resolved: original-original repeated gradient jitter6.726384e-5; original-candidate7.45e-9; deterministic full fresh checks passed all3 pairs bitwise. Strict historical nondeterministic failure remains recorded."
+}
