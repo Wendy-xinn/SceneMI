@@ -1,0 +1,141 @@
+{
+  "created_at": "2026-10-15T16:10:56.615291+08:00",
+  "status": "passed",
+  "checkpoint_step": 55000,
+  "strict_model_load": true,
+  "optimizer_steps": 0,
+  "source_checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/last.pt",
+  "source_checkpoint_bytes": 1449880654,
+  "config_sha256": "18e7a4cbeb86e30da1269b082e1eb58731f74e04b6c296f6b5a8a993be7258ac",
+  "launch_command": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.train",
+    "--output",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07",
+    "--steps",
+    "55000",
+    "--batch-size",
+    "4",
+    "--latent-dim",
+    "256",
+    "--save-every",
+    "5000",
+    "--validation-samples",
+    "4",
+    "--ddim-every",
+    "5000",
+    "--keep-inference-every",
+    "5000",
+    "--body-protocol",
+    "native_v1",
+    "--temporal-scene-manifest",
+    "experiments/offline_camera_retrain_v1/data/native20_temporal_scenes_v4/manifest.jsonl",
+    "--trumans-scene-manifest",
+    "experiments/offline_camera_retrain_v1/data/trumans_temporal_training_v3/manifest.jsonl",
+    "--trumans-window-protocol",
+    "temporal_valid_v1",
+    "--rich-contact-root",
+    "experiments/offline_camera_retrain_v1/data/rich_contact_native20_v1",
+    "--contact-loss-weight",
+    "0.1",
+    "--domain-duration-alpha",
+    "0.5",
+    "--loss-profile",
+    "coordination_v1",
+    "--precision",
+    "float32",
+    "--low-noise-fraction",
+    "0.25"
+  ],
+  "cases": [
+    {
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-52-40",
+      "source_start_30fps": 270,
+      "historical": {
+        "fk_mpjpe_cm": 14.044317245483398,
+        "truth_stance_foot_slide_cm_per_frame": 0.298603892326355,
+        "foot_relative_speed_ratio": 0.6292144060134888
+      },
+      "reproduced": {
+        "fk_mpjpe_cm": 14.044317245483398,
+        "truth_stance_foot_slide_cm_per_frame": 0.298603892326355,
+        "foot_relative_speed_ratio": 0.6292144060134888
+      },
+      "absolute_difference": {
+        "fk_mpjpe_cm": 0.0,
+        "truth_stance_foot_slide_cm_per_frame": 0.0,
+        "foot_relative_speed_ratio": 0.0
+      }
+    },
+    {
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220225_S25_S24_01_camera_wearer_2441-4151",
+      "source_start_30fps": 3011,
+      "historical": {
+        "fk_mpjpe_cm": 12.131144523620605,
+        "truth_stance_foot_slide_cm_per_frame": 0.24858631193637848,
+        "foot_relative_speed_ratio": 0.2389998584985733
+      },
+      "reproduced": {
+        "fk_mpjpe_cm": 12.131144523620605,
+        "truth_stance_foot_slide_cm_per_frame": 0.24858631193637848,
+        "foot_relative_speed_ratio": 0.2389998584985733
+      },
+      "absolute_difference": {
+        "fk_mpjpe_cm": 0.0,
+        "truth_stance_foot_slide_cm_per_frame": 0.0,
+        "foot_relative_speed_ratio": 0.0
+      }
+    },
+    {
+      "group": "interactee",
+      "sequence_id": "recording_20220315_S30_S21_02_interactee_2921-3551",
+      "source_start_30fps": 3311,
+      "historical": {
+        "fk_mpjpe_cm": 15.107941627502441,
+        "truth_stance_foot_slide_cm_per_frame": 0.4882822632789612,
+        "foot_relative_speed_ratio": 0.7788906097412109
+      },
+      "reproduced": {
+        "fk_mpjpe_cm": 15.107941627502441,
+        "truth_stance_foot_slide_cm_per_frame": 0.4882822632789612,
+        "foot_relative_speed_ratio": 0.7788906097412109
+      },
+      "absolute_difference": {
+        "fk_mpjpe_cm": 0.0,
+        "truth_stance_foot_slide_cm_per_frame": 0.0,
+        "foot_relative_speed_ratio": 0.0
+      }
+    },
+    {
+      "group": "rich",
+      "sequence_id": "ParkingLot2_008_eating2",
+      "source_start_30fps": 413.5,
+      "historical": {
+        "fk_mpjpe_cm": 16.284482955932617,
+        "truth_stance_foot_slide_cm_per_frame": 1.4563690423965454,
+        "foot_relative_speed_ratio": 1.098761796951294
+      },
+      "reproduced": {
+        "fk_mpjpe_cm": 16.284482955932617,
+        "truth_stance_foot_slide_cm_per_frame": 1.4563690423965454,
+        "foot_relative_speed_ratio": 1.098761796951294
+      },
+      "absolute_difference": {
+        "fk_mpjpe_cm": 0.0,
+        "truth_stance_foot_slide_cm_per_frame": 0.0,
+        "foot_relative_speed_ratio": 0.0
+      }
+    }
+  ],
+  "elapsed_s": 10.723565397998755,
+  "limits": [
+    "Four historical internal-VAL cases, not official benchmark comparison.",
+    "Original metadata/static-reference archive was reconstructed; no bitwise55000-step retraining claim.",
+    "Historical TRAIN includes12 official EgoBodyTEST recordings; development reference only.",
+    "Historical20Hz128frames and present30Hz192frames have different input, split and aggregation protocols."
+  ]
+}

@@ -1,6 +1,6 @@
 # Ego/exo 模型与实验唯一总清单
 
-更新：2026-10-15。**15:49已正常完成10000步ego首段及最后验证，last.pt实际10000，模型／Adam全有限，封存源码未改；本次不是再次中断。末次固定ego全身误差215/227mm，相比8000步197/214mm回退，脚部幅度不足／带噪足滑仍未解决，不作为论文验收通过，未自动续训或进入exo。完整末期复核见4.15。** Windows两次蓝屏与旧55k脚步监督差异见4.14；现有8788/8789回放仍是明确标注的8000步输出。旧55k保留，不作为本轮初始化。
+更新：2026-10-15。**10000步ego首段15:49正常结束，末次固定ego误差215/227mm，未达质量门槛（4.15）。用户随后授权核对旧55k复现并尝试改监督：四个历史案例三项指标复跑数值完全一致，旧TRAIN／VAL候选池也一致，但严格恢复门禁要求刷新重建来源审计；不宣称逐步复现完整55k。当前增加显式可选的30Hz脚步监督，112项测试与全TRAIN／VAL来源校验通过，16:26启动同一干净10000起点、保留Adam／RNG的100＋100步配对小试，40分钟上限，不自动长训或接exo（4.16）。** 原始10000权重未改，修改前源码已封存。现有8788/8789播放器仍为8000步。
 
 历史500步基线：E盘30Hz缓存及重新挂载后的完整审计已通过；原始发布量、选定范围和未接入部分见3.1。历史短训使用[500步短训配置](../../native30_short500_config.json)。首轮原始exo观测最多连续18帧完全无关节输入，保留关节局部遮挡；原始缓存、整段静态记忆和六例压力可视化保留。71项旧回归通过。**500/500步及第1/250/500步固定验证已完成，进程正常退出；最终可恢复last.pt已核验。这个基线的训练链路通过，生成效果未通过。** 原55k/3k模型保留。证据：[SHORT500_PROGRESS.json](../native30_short500_oct13/SHORT500_PROGRESS.json)、[CHECKPOINT_AUDIT.json](../native30_short500_oct13/training/CHECKPOINT_AUDIT.json)、[500步mesh对比](../native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)。
 
@@ -1165,3 +1165,40 @@ WSL互操作此次可用，直接用非管理员PowerShell读取System事件1001
 末次同seed场景消融：scene OFF全身MPJPE clean/noisy220.84/246.54mm，相比scene ON215.05/226.98mm，平均改善5.79/19.55mm；但EgoBody clean scene ON264.10比OFF261.70mm更差，noisy支撑期脚速ON0.750比OFF0.605m/s更差，不能宣称场景一致修复脚步或所有录制均受益。这里只有3固定窗，不足以确认全面过拟合或最终泛化水平；但足以否定“总loss还下降，因此直接沿原目标长训就一定更好”。
 
 当前保留干净10000 checkpoint及优化器，不自动拉长原cosine预算，不启动exo或旧55k迁移。下一步仍按4.14：用相同干净起点、样本／seed预算验证30Hz步幅、脚相对位置／摆动期与动作幅度监督，并分离参考prior、raw网络输出、观察IK／物理投影的贡献，再确定ego续训与exo阶段。当前8788／8789播放器未切换，仍展示8000步，避免把旧回放冒充10000末期。Linux余约30.3GiB、E余112.7GiB，本轮只新增小型诊断JSON／曲线，无权重副本或大缓存。
+
+## 4.16 10月15日：旧55k复跑与100＋100步监督修正小试
+
+用户要求复核旧55k能否复现，并希望当前监督修正先小预算试验，避免再次盲训半天。本节不启动旧55k长训，也不混用旧权重到干净官方模型。
+
+### 旧结果实际复跑与训练配方边界
+
+[OLD55K_REPRODUCTION_AUDIT.json](../native30_gait_restore_probe_oct15/OLD55K_REPRODUCTION_AUDIT.json)：实际strict加载旧55000步，按历史data_seed777、sampling_seed777＋group_index×1000、128帧@20Hz、DDIM20、head／scene ON，保留每组原先4次抽样以重现其RNG，复跑每组第1窗。以下三项指标对历史记录的差均为0，不将它说成已经比较过逐帧预测数组：
+
+|旧内部VAL案例|复跑全身误差cm|GT支撑期脚滑cm/frame|脚相对运动速度比|
+|---|---:|---:|---:|
+|TRUMANS `2023-02-17@10-52-40`，source270|14.044317|0.298604|0.629214|
+|EgoBody wearer `recording_20220225_S25_S24_01...`，source3011|12.131145|0.248586|0.239000|
+|EgoBody interactee `recording_20220315_S30_S21_02...`，source3311|15.107942|0.488282|0.778891|
+|RICH `ParkingLot2_008_eating2`，source413.5|16.284483|1.456369|1.098762|
+
+旧配置、原启动命令、模型、Adam／sampler与日志仍完整保存。额外[OLD55K_TRAIN_RECIPE_AUDIT.json](../native30_gait_restore_probe_oct15/OLD55K_TRAIN_RECIPE_AUDIT.json)核对所有group×64/128/192的TRAIN／VAL序列数和合法起点数，与历史config中的summary一致；同架构、同coordination_v1监督的训练配方可以重建。但原metadata／静态reference归档曾重建，当前`source_recovery_contract`检测到pipeline相对10月9日192窗审计发生变化，拒绝将旧checkpoint当作相同来源直接恢复；本轮没有改guard或强行替换旧hash。完整严格续训需更新对应恢复审计及来源封存，不声称随机初始化重跑55000步会逐位相同。
+
+旧模型含12个官方EgoBody TEST录制的训练来源，依然只能作开发／旧内部协议参考。旧15.39cm是不同split／20Hz／窗口／聚合的全量结果，不直接作为当前3固定窗215mm的同协议优劣结论；旧模型有脚步的观察仍是有效的架构／监督参考。若以旧主干作干净论文基线，需在官方TRAIN重新训练并保持明确的输入／人体／评估协议。
+
+### 显式可选监督改动，未改变推理输入或网络
+
+新增[native30_gait_supervision.py](../../native30_gait_supervision.py)，协议`native30-gait-restore-v1`，只在config显式`gait_supervision.enabled=true`时生效。补回旧轮的关键项：支撑期／摆动期速度0.10/0.05分开归一化（替换原不分期0.075脚速度，避免双算），脚相对pelvis位置1，多帧相对位移2，肢体时序幅度5和lagged relation0.05。全部以alpha_bar门控，30Hz的0.2/0.4秒使用lag6/12，协调窗1.6秒使用48帧。GT可靠性传播到相对位置与完整导数stencil／统计窗；不从预测决定监督是否存在。保留当前planting／scene contact，未重复添加旧GT地板高度／支撑包络代理，也未虚构场景地板。
+
+模型架构、参考残差输出、输入、scene查询、IK／物理迭代、B2／FP32／L192／DDIM20保持原设置。本轮不同时激活GPU查询原型，避免混淆监督与运行时变化。新增基础脚速度日志便于检查，关闭新profile时原有所有base项、总loss及raw-motion梯度与修改前封存实现逐项逐位相同。
+
+[TESTS.json](../native30_gait_restore_probe_oct15/TESTS.json)：112项native30回归通过，含7项新增测试（静止腿对真实脚步的检出及非零梯度、整体平移不混入相对运动、lag6/12、异常GT脉冲不生成步幅／速度标签、零信号／无有效标签安全、原目标数值及梯度一致）。[BASELINE_SOURCE_SNAPSHOT.json](../native30_gait_restore_probe_oct15/BASELINE_SOURCE_SNAPSHOT.json)记录修改前350个封存源码SHA与源码zip指纹，保留原10000 checkpoint及prepared记录；源码变更不冒充原进程的strict resume。[PREFLIGHT.json](../native30_gait_restore_probe_oct15/PREFLIGHT.json)重新完成全TRAIN／VAL依赖／原数组校验，耗时422秒，data SHA与父run一致；weak-support缓存依赖未变，不重新预计算整套数据。
+
+### 配对预算与先验验收门槛
+
+[PROTOCOL.json](../native30_gait_restore_probe_oct15/PROTOCOL.json)与[LAUNCHER.json](../native30_gait_restore_probe_oct15/LAUNCHER.json)：16:26启动PID25459，先复跑父模型监控，再分别从同一个干净10000 checkpoint／Adam／data与condition sampler／Torch-CUDA-NumPy RNG续接原目标control100步与新目标gait_restore100步，各200样本槽。保持已结束cosine的floor2e-5作常数，明确为新诊断阶段，不更改历史10000预算／优化器，不重置Adam，不自动续长。每25步覆盖各自一个原子last.pt，记录全部RNG／阶段预算和来源；两组最后逐步核对sample身份／yaw、扩散t、scene开关与LR一致。
+
+[VAL_PLAN.json](../native30_gait_restore_probe_oct15/VAL_PLAN.json)在任何新模型预测前封存：保留原3个fixed ego窗，另在每数据集等距预选24个合法VAL序列、取中间合法窗，仅按GT骨盆净移≥0.6m、身体坐标脚RMS≥0.06m、左右脚前后方向相关≤−0.1、支撑比例0.1–0.9筛选，再取净移最大者；不按预测挑例。实际选中TRUMANS `2023-02-17@10-55-17`、EgoBody `recording_20211002_S03_S18_04_camera_wearer_3601-5401`、RICH `ParkingLot2_008_eating2`，均clean/noisy、DDIM20、scene ON，3个模型用相同输入／seed；本小试不重复scene-OFF，TEST未使用。
+
+首个真实TRAIN batch另核对新目标对raw腿旋转的非零梯度、数值有限，新增目标梯度相对原目标不超过5倍。VAL同时在最后x0记录reference、raw-FK、学习反馈、观察IK后、物理后，GT只在输出之后算诊断；这不是把整条DDIM投影关闭的因果消融。父模型固定窗重现误差须<0.01mm。对control和parent均要求：fixed clean/noisy全身误差不退化超过2%，踝脚位置不退化超过5%，noisy支撑脚速不退化超过10%；GT步行窗幅度log-ratio误差至少改善5%，同时脚速度向量RMSE不退化超过5%。所有门槛提前写入，100步只作筛查，不是收敛／论文保证；即使通过也不自动长训。
+
+运行上限40分钟（完整数据复查之后计时），超限在检查边界停止，保留已保存结果；目前GPU另有其它负载，本试验CUDA分配限制为总显存28%，不动其它进程。开始时Linux余约30GiB、E余113GiB；两组权重预计新增约2.8GiB，仍留足空间。结果完成后统一写`RESULTS.json`及配对图，再决定是否值得下一段训练。

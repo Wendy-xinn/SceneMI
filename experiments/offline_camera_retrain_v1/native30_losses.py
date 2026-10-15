@@ -18,7 +18,7 @@ def weighted_mean(value,mask,gate):
     return (per*gate.detach().reshape(-1)).mean()
 
 
-def base_losses(prediction,truth,batch,signal,raw_motion=None):
+def base_losses(prediction,truth,batch,signal,raw_motion=None,gait_config=None):
     joint=forward_kinematics(prediction,batch['rest']);target=forward_kinematics(truth,batch['rest']).detach()
     rotations=global_rotations(prediction);target_rot=global_rotations(truth).detach()
     weights=prediction.new_ones(201);weights[:3]=2
@@ -62,10 +62,18 @@ def base_losses(prediction,truth,batch,signal,raw_motion=None):
     # 2*ddpos², not reused unchanged against m/s and m/s² values.
     total=x0+.5*raw_x0+.2*rotation+2*position+.025*v+.0000125*a+head_pos+.5*raw_consistency
     total+=.25*root+.5*head+.25*neck+.1*coordination+.02*turning+.075*feet_velocity+.1*planting
+    extra={}
+    if gait_config and gait_config.get('enabled'):
+        from experiments.offline_camera_retrain_v1.native30_gait_supervision import gait_terms
+        gait=gait_terms(joint,target,qp,signal,gait_config)
+        # Replace the unbalanced foot velocity term instead of counting it twice.
+        total=total-.075*feet_velocity+gait['total']
+        extra={f'gait_{key}':value for key,value in gait.items()}
     return dict(total=total,x0=x0,raw_x0=raw_x0,fk_position_m2=position,fk_velocity_m2_s2=v,
                 fk_acceleration_m2_s4=a,root_absolute_chordal=root,head_absolute_chordal=head,
                 neck_absolute_chordal=neck,head_root_coordination=coordination,
-                relative_turning_s2=turning,planting_m2_s2=planting,raw_fk_consistency_m2=raw_consistency)
+                relative_turning_s2=turning,planting_m2_s2=planting,raw_fk_consistency_m2=raw_consistency,
+                foot_velocity_m2_s2=feet_velocity,**extra)
 
 
 def observation_losses(prediction,truth,batch,signal,observation_config=None):
@@ -148,7 +156,7 @@ def geometry_losses(prediction,details,batch,signal,tolerance_m=.02,slip_toleran
 
 
 def objective(prediction,truth,batch,signal,details,config,observation_weights):
-    base=base_losses(prediction,truth,batch,signal,details['raw_motion'])
+    base=base_losses(prediction,truth,batch,signal,details['raw_motion'],config.get('gait_supervision'))
     observation=observation_losses(prediction,truth,batch,signal,config['observation'])
     if config.get('scene_relations',{}).get('enabled'):
         from experiments.offline_camera_retrain_v1.native30_relation_losses import relation_geometry_losses

@@ -61,6 +61,9 @@ def read_config(path=CONFIG_PATH):
     from experiments.offline_camera_retrain_v1.native30_input_noise import validate_input_noise
     from experiments.offline_camera_retrain_v1.native30_gt_reliability import validate_gt_reliability
     validate_input_noise(config['observation']['input_noise']);validate_gt_reliability(config['gt_reliability'])
+    if config.get('gait_supervision',{}).get('enabled'):
+        from experiments.offline_camera_retrain_v1.native30_gait_supervision import validate_config
+        validate_config(config['gait_supervision'])
     if config['validation']['interval_steps']<1 or config['validation']['members_per_group_mode']<1:
         raise ValueError('Validation cadence and scope must be positive')
     if config['validation']['regimes']!=['clean','noisy']:
