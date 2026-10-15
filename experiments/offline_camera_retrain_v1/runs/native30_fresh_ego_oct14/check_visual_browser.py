@@ -72,24 +72,32 @@ def main():
         (OUT / 'REPLAY_BROWSER.png').write_bytes(base64.b64decode(png))
         rpc('Page.navigate', dict(url='http://127.0.0.1:8788/'))
         for _ in range(200):
-            if evaluate("document.body?.innerText.includes('第96帧')"):
+            if evaluate("/第\\d+帧/.test(document.body?.innerText)"):
                 break
             time.sleep(.1)
         assert evaluate("document.querySelectorAll('canvas').length") >= 1
-        assert evaluate("document.body.innerText.includes('第96帧')")
+        assert evaluate("/第\\d+帧/.test(document.body.innerText)")
         controls = evaluate("Array.from(document.querySelectorAll('input[type=checkbox]')).map(x=>({id:x.id,checked:x.checked,html:x.parentElement.parentElement.outerHTML}))")
         (OUT / 'browser_native_controls.json').write_text(json.dumps(controls, ensure_ascii=False, indent=2))
         toggle_play = "Array.from(document.querySelectorAll('input[type=checkbox]')).find(x=>/^[0-9a-f]{8}-/.test(x.id)).click()"
+        if evaluate("Array.from(document.querySelectorAll('input[type=checkbox]')).find(x=>/^[0-9a-f]{8}-/.test(x.id)).checked"):
+            evaluate(toggle_play)
+            time.sleep(.3)
+        initial_frame = evaluate("document.body.innerText.match(/第(\\d+)帧/)[1]")
         evaluate(toggle_play)
         time.sleep(2.)
-        playing = evaluate("document.body.innerText")
-        assert '第96帧' not in playing
+        playing_frame = evaluate("document.body.innerText.match(/第(\\d+)帧/)[1]")
+        assert playing_frame != initial_frame
         evaluate(toggle_play)
+        time.sleep(.3)
+        paused = evaluate("document.body.innerText.match(/第(\\d+)帧/)[1]")
+        time.sleep(.4)
+        assert evaluate("document.body.innerText.match(/第(\\d+)帧/)[1]") == paused
         png = rpc('Page.captureScreenshot', dict(format='png'))['data']
         (OUT / 'NATIVE_VIEWER_BROWSER.png').write_bytes(base64.b64decode(png))
         assert not exceptions, exceptions
         report = dict(status='passed', portable_replay_cases=checks, portable_playback_advanced_to=frame,
-            native_websocket_connected=True, native_mesh_canvas_present=True, native_playback_advanced=True,
+            native_websocket_connected=True, native_mesh_canvas_present=True, native_playback_advanced=True, native_pause_stable=True,
             browser_runtime_exceptions=exceptions, sources='Actual archived step8000 VAL, not new model inference.')
         (OUT / 'BROWSER_CHECK.json').write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n')
         print(json.dumps(report), flush=True)
