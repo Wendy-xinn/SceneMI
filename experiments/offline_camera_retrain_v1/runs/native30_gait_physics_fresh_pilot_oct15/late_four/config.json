@@ -1,0 +1,306 @@
+{
+  "version": "native30-fresh-ego-gait-v2-candidate",
+  "fps": 30,
+  "frames": 192,
+  "seed": 2026101267,
+  "initialization": "from_scratch",
+  "shared_output_initialization": "normal_std_0.001_bias_zero",
+  "train_manifest": "data/native30_official_memory_v3/manifest.jsonl",
+  "review_manifest": "data/native30_observer_target_review_oct12/manifest.jsonl",
+  "prepared_output": "runs/native30_gait_v2_arch_review_oct15/prepared",
+  "mount_defaults": "data/native30_official_memory_v3/TRAIN_camera_mounts.json",
+  "batch_size": 2,
+  "latent_dim": 256,
+  "dim_mults": [
+    1,
+    2,
+    4
+  ],
+  "ego_probability": 0.7,
+  "ego_head_only_probability": 1.0,
+  "noise": {
+    "steps": 1000,
+    "extra_low_noise_probability": 0.25,
+    "low_noise_steps": 100
+  },
+  "sampling": {
+    "ddim_steps": 20,
+    "global_tokens_reuse": "one sampling call only"
+  },
+  "scene": {
+    "dropout_probability": 0.1,
+    "patch_tokens": 16,
+    "neighbors_per_scale": 8,
+    "scales_m": [
+      0.08,
+      0.25,
+      0.6
+    ],
+    "observation_budget": "entire supplied recording observed-static union; same observer/world/split only; dynamics current frame",
+    "unknown_policy": "surface-only; no free-space inference",
+    "memory_protocol": "observed-static-recording-union-v3",
+    "coordinate_protocol": "persistent world map; transform to current window anchor at query",
+    "memory_control_protocol": "observed-static-prefix-through-window-end-v2",
+    "evaluation_input_scope": "supplied recording only; restricted benchmark clips must use a restricted observation manifest"
+  },
+  "anchor_protocol": "native_body_dominant_only_67_low_foot_v1",
+  "dynamic_condition": "current_visible_owner_patch_tokens_plus_local_queries; source_known_simulation_velocities_only",
+  "feedback": {
+    "root_limit_m": 0.08,
+    "rotation_limit_rad": 0.12,
+    "feedback_gain": 1.0,
+    "gate": "cosine_alpha_squared",
+    "placement": "inside x0 before DDIM update",
+    "position_protocol": "root translation and SO3 FK, fixed bone lengths"
+  },
+  "optimizer": {
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "clip_norm": 1.0,
+    "warmup_steps": 500,
+    "floor_fraction": 0.2
+  },
+  "observation": {
+    "scales": {
+      "position": 0.05,
+      "rotation": 0.17453292519943295,
+      "velocity": 0.15,
+      "acceleration": 1.0,
+      "angular_velocity": 0.3490658503988659,
+      "body_turn_rate": 0.3490658503988659
+    },
+    "target_gradient_ratios": {
+      "position": 0.1,
+      "rotation": 0.04,
+      "velocity": 0.03,
+      "acceleration": 0.005,
+      "angular_velocity": 0.015,
+      "body_turn_rate": 0.015
+    },
+    "maximum_coefficients": {
+      "position": 0.1,
+      "rotation": 0.025,
+      "velocity": 0.015,
+      "acceleration": 0.001,
+      "angular_velocity": 0.005,
+      "body_turn_rate": 0.0025
+    },
+    "input_noise": {
+      "protocol": "native30-smooth-observation-error-v1",
+      "clean_probability": 0.5,
+      "ego_head": {
+        "offset_sigma_m": 0.01,
+        "endpoint_sigma_m": 0.02,
+        "rotation_offset_deg": 2.0,
+        "rotation_endpoint_deg": 3.0
+      },
+      "ego_wrists": {
+        "enabled": false,
+        "offset_sigma_m": 0.005,
+        "endpoint_sigma_m": 0.01,
+        "rotation_offset_deg": 2.0,
+        "rotation_endpoint_deg": 3.0
+      },
+      "exo": {
+        "offset_sigma_m": 0.01,
+        "endpoint_sigma_m": 0.02,
+        "shared_offset_sigma_m": 0.005,
+        "shared_endpoint_sigma_m": 0.01
+      },
+      "gap_probability": 0.3,
+      "gap_seconds": 0.6,
+      "ego_gap_joints": [
+        15
+      ],
+      "wrist_extra_gap": false
+    },
+    "joint_weights": [
+      2.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.5,
+      1.5,
+      1.0,
+      1.5,
+      1.5,
+      1.0,
+      1.0,
+      1.0,
+      2.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.5,
+      1.5
+    ]
+  },
+  "geometry": {
+    "tolerance_m": 0.02,
+    "slip_tolerance_m_s": 0.2,
+    "coefficients": {
+      "contact": 0.2,
+      "contact_distance_m2": 2.0,
+      "contact_relative_slip_m2_s2": 0.02,
+      "observed_plane_proxy_m2": 0.1,
+      "correspondence": 0.01,
+      "feedback_smoothness": 0.0001,
+      "support_relation_m2": 1.0
+    }
+  },
+  "training_status": "Preflight candidate only; no optimizer updates; hold long training until gait learnability/VAL gates pass",
+  "split_protocol": "egobody-official-recording-v2",
+  "diagnostic_mount_defaults": "runs/ego_exo_surface_continue_oct11/TRAIN_camera_mounts.json",
+  "gt_reliability": {
+    "protocol": "native30-isolated-candidate-soft-v1",
+    "enabled": true,
+    "candidate_weight": 0.25,
+    "rotation_step_deg": 60.0,
+    "isolated_return_deg": 20.0,
+    "isolated_joint_excursion_m": 0.08,
+    "isolated_neighbor_displacement_m": 0.04,
+    "derivative_policy": "skip_stencils_touching_candidates",
+    "target_editing": false
+  },
+  "validation": {
+    "interval_steps": 1000,
+    "members_per_group_mode": 1,
+    "seed": 2026101351,
+    "regimes": [
+      "clean",
+      "noisy"
+    ],
+    "scope": "6 fixed plus 6 rotating official VAL windows; head-only ego; clean/noisy separate; fixed trends and rotating coverage reported separately; full official final evaluation unchanged",
+    "subset_protocol": "fixed-plus-rotating-recordings-v1",
+    "fixed_recordings_per_dataset_mode": 1,
+    "rotating_recordings_per_dataset_mode": 1,
+    "scene_ablation_interval_steps": 5000
+  },
+  "exo_window_policy": "at least one observed joint; maximum 18 consecutive all-joint-missing raw30 frames; partial joint occlusion retained; full static recording memory unchanged",
+  "exo_max_empty_frames": 18,
+  "window_stride": 64,
+  "window_index": "data/native30_official_windows64_v1/dataset.json",
+  "diffusion_target": "reference_residual",
+  "reference_input": {
+    "coordinate_frame": "same fixed window world coordinates as scene and observed tracks",
+    "full_frontend_optional": true,
+    "fields": [
+      "reference_motion",
+      "reference_confidence"
+    ],
+    "fallback": "observed-track kinematic initializer with supplied rest bones; no GT motion",
+    "occluded_prior": "retain full estimated motion; encode low position/rotation confidence",
+    "availability": "real video frontend predictions are not yet in current dataset cache"
+  },
+  "refinement": {
+    "observation_anchor_gain": 0.9,
+    "placement": "predicted proposal and final x0 within diffusion",
+    "exo": "confidence/uncertainty weighted observed torso rigid pose",
+    "ego": "head position translation only; no camera-to-body heading constraint",
+    "joint_anchor_gain": 0.9,
+    "joint_anchor_iterations": 6,
+    "joint_anchor_damping_m2": 0.0025,
+    "joint_anchor_angle_limit_rad": 0.35,
+    "joint_anchor_schedule": "cosine alpha; skip alpha<0.05; predicted proposal and final x0; root excluded",
+    "joint_anchor_compact": false
+  },
+  "scene_relations": {
+    "enabled": true,
+    "radius_m": 1.5,
+    "support_radius_m": 1.25,
+    "gain": 1.0,
+    "neighbors": 4,
+    "supervision": "observed-GT-calibrated-region-and-weak-contact-v2",
+    "input_policy": "predicted body and trusted tracks only; broad upward samples are context, not completed surfaces"
+  },
+  "physical_guidance": {
+    "enabled": true,
+    "iterations": 2,
+    "minimum_alpha": 0.9,
+    "contact_threshold": 0.5,
+    "query_limit_m": 0.25,
+    "penetration_band_m": 0.06,
+    "contact_tolerance_m": 0.03,
+    "plane_tolerance_m": 0.02,
+    "plane_weight": 0.5,
+    "slip_weight": 0.02,
+    "observation_weight": 1.0,
+    "prior_weight": 0.5,
+    "temporal_weight": 0.1,
+    "translation_lr": 0.0003,
+    "rotation_lr": 0.003,
+    "translation_step_m": 0.01,
+    "rotation_step_rad": 0.035,
+    "root_total_limit_m": 0.02,
+    "trusted_tolerance_m": 0.002,
+    "acceptance": "joint physical/observation/prior energy decreases and trusted measurements protected",
+    "placement": "every clean x0 before next DDIM update; shallow observed support only",
+    "query_contact_regions_only": false
+  },
+  "sampler": {
+    "protocol": "native30-recording-cycles-v1",
+    "mode_block_size": 10,
+    "recording_cooldown": 8,
+    "recent_windows_per_target": 4,
+    "dataset_weights": "preserve per-mode sqrt(valid-window-count) corpus weights and EgoBody role weights",
+    "recording_weights": "equal recording cycles per group/mode, no replacement until cycle ends",
+    "windows": "without replacement per recording/mode; prefer no overlap with recent same-target windows across modes; logged fallback if exhausted",
+    "training_mode": "ego"
+  },
+  "training_mode": "ego",
+  "runtime": {
+    "canonical_surface_cache": true,
+    "precomputed_support": true,
+    "protocol": "canonical geometry and GT supervision then shared rigid yaw; same protocol as prior pilot",
+    "precompute_split": "train",
+    "cache_location": "E drive adjacent to raw30 cache",
+    "unchanged": "B2 FP32 L192 S64 DDIM20 scales/neighbors physics/IK iteration counts and loss coefficients",
+    "query_backend": "cuda_exact_radius_v1"
+  },
+  "phase_plan": {
+    "planned_updates": 55000,
+    "review_milestones": [
+      1000,
+      2000,
+      5000,
+      10000
+    ],
+    "next_phase": "exo adaptation with ego retention, followed by low-LR joint training, contingent on validation",
+    "mixed_control": "same seed/initial weights, input protocol, optimizer schedule and matched per-mode sample budgets; not yet run",
+    "budget_status": "Global cap55000 from scratch; no training launched; quality gates pending"
+  },
+  "gait_supervision": {
+    "enabled": true,
+    "protocol": "native30-gait-bilateral-v2",
+    "fps": 30,
+    "stance_speed_m_s": 0.2,
+    "stride_lags_s": [
+      0.2,
+      0.4
+    ],
+    "coordination_window_s": 1.6,
+    "raw_gait_weight": 0.5,
+    "signal_gate": "alpha_bar",
+    "coefficients": {
+      "stance_velocity": 0.1,
+      "swing_velocity": 0.05,
+      "relative_position": 1.0,
+      "stride_displacement": 2.0,
+      "coordination_amplitude": 5.0,
+      "coordination_relation": 0.05,
+      "support_height": 2.0,
+      "swing_height": 0.5,
+      "support_envelope": 4.0,
+      "support_penetration": 2.0,
+      "phase_free_planting": 0.1,
+      "bilateral_stride": 1.0,
+      "bilateral_amplitude": 5.0,
+      "bilateral_relation": 0.05
+    }
+  },
+  "preflight_only": true
+}

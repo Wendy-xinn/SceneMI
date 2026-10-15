@@ -1,6 +1,6 @@
 # Ego/exo 模型与实验唯一总清单
 
-**当前改动（§4.21）：脚步V2候选与模型级GPU精确查询入口已实现，127项回归及新监督下三组完整反传检查通过，仍为0次optimizer更新。精简IK未过严格等价门槛，不启用；物理查询27点裁剪数值一致但耗时收益不稳定，仅保留开关。新配置preflight_only=true，长训暂停；未来从0 ego、最多55k，先验收脚步可学习性和VAL。架构依据、当前自定义部分及消融计划见4.21，原55k／完整10k／EXO7831均保留。**
+**当前结论（§4.22）：已完成旧10k同权重的物理时机／5帧增量平滑诊断，以及四组各128更新的从零V2步行小池。物理继续保留；增量平滑降低总体脚速度／加速度误差，但部分步行窗仍退化，暂不更换正式默认。四组小池都未过身体坐标逐帧脚位门槛，没有启动55k或续训旧模型。127项工程回归见§4.21；精简IK、27点裁剪均未启用，preflight_only=true保持。全部计算已结束，原55k／完整10k／EXO7831保留。**
 
 **此前小试（10月15日，§4.17）：按用户要求完成旧55k冻结先验＋exo残差小试。保留观测参考并加遮挡分支保护后，遮挡MPJPE clean/noisy-mixture 156.90/162.82→125.14/133.55mm；相对同预算无场景版本，scene额外改善3.43%/3.71%，输入可见关节位置最大变化不足1μm。但脚步交替指标退化，当前仅为有初步收益的开发候选，不作论文验收通过。32个VAL特征窗来自16源窗；旧聚类标记问题见4.19。保护为posthoc、VAL被复用，旧55k又有历史官方TEST重叠。骨架回放：[8790 遮挡保护版](http://127.0.0.1:8790/PROTECTED_REPLAY.html)。原55k未改，候选与最小对照保留Adam。**
 
@@ -1476,3 +1476,84 @@ flowchart LR
 最终[FINAL_PREFLIGHT_AUDIT.json](../native30_gait_v2_arch_review_oct15/FINAL_PREFLIGHT_AUDIT.json)核对：完整官方TRAIN/VAL数据SHA与此前全量审计逐项相同，当前代码SHA与新effective_config一致；14类输入／反馈／反传／DDIM检查通过，参数仍122667536，更新0。最终`engineering_ready=true`、`training_ready=false`，原因是明确的preflight-only设置，而不是数据或数值失败。新观察系数按V2的8窗TRAIN面板重标，完整数值在prepared/TRAIN_gradient_scales.json。小试质量和结构消融仍未运行。
 
 双脚差分stride与逐脚stride存在代数联系，V2用它增强左右差动的权重，不将其宣称为额外独立观测；是否同时保留由监督消融决定。候选目标能识别脚不动／同相错误并给出梯度，不足以替代训练收敛证据。新目录约12MiB，Linux约26.6GiB／E约112.6GiB空闲；只清理中途未封存准备的重复可重建预览，保留最终输入预览、失败数值记录及全部原始依赖，没有生成重复模型。
+
+
+## 4.22 保留物理修正的实际对照与从零小池诊断
+
+用户同意先试，且强调保留物理。当前正式V2配置仍开启物理修正，minimum_alpha=0.25、每次最多2次能量迭代；没有把后期4／2步直接设为正式方案。场景也通过全局patch、当前动态、局部皮肤几何、支撑关系及学习反馈进入生成器；显式修正和学习条件是两条作用路径。
+
+### 同权重、全DDIM轨迹时机对照（已完成，0次更新）
+
+[run_probe.py](../native30_physics_schedule_probe_oct15/run_probe.py)只加载原10000步ego模型，权重SHA仍aaec44f9353a32acfca818aa8c5ed903e93aca78548b5d52f31cf506db35e835，不用它初始化后续新模型。每个完整DDIM20调用都按对应门槛执行，不是只在最后输出上重做一次后处理。精确GPU查询、原6次IK、67点三尺度、支撑和主干保持；四种物理时机之外追加完全scene-OFF。
+
+面板为已有3个固定、3个GT筛选步行、3个额外官方轮换VAL窗，clean／强制noisy分开，同窗口同DDIM seed。共90次质量推理，另有1次不计时warmup；轮转执行顺序减少固定顺序偏差。没有TEST，也没有独立训练四组模型；附加VAL不是未见的最终测试集。原固定面板MPJPE复现最大偏差0.0034mm。
+
+[RESULTS.json](../native30_physics_schedule_probe_oct15/RESULTS.json)的9窗等窗长汇总如下，均为原GT无mask误差：
+
+|推理设置|MPJPE clean／noisy mm|完整DDIM20秒 clean／noisy|脚速度向量RMSE clean／noisy m/s|
+|---|---:|---:|---:|
+|场景＋当前物理（13步符合门槛）|175.57／183.11|10.72／10.33|0.659／0.827|
+|场景＋关闭显式物理|175.47／184.21|6.32／6.19|0.602／0.648|
+|场景＋后期4步物理|175.53／183.06|7.84／7.84|0.662／0.874|
+|场景＋后期2步物理|175.49／183.14|7.26／7.19|0.664／0.871|
+|完全关闭场景|197.79／221.67|3.19／3.12|0.728／0.777|
+
+相同权重且显式物理均关闭时，scene-ON比OFF的MPJPE约改善11.3%／16.9%，证明本开发面板的场景条件有实际误差收益，**不证明当前架构最优或每条场景分支独立有效**。完全scene-OFF也移除局部与支撑查询，耗时不能当作只删一个修正器的收益。
+
+物理并非空开关：18个条件中当前版共234次证据查询、202次迭代接受；后期4步72次查询、66次接受；后期2步36次查询、34次接受。EgoBody若没有有效接触，存在查询但不接受修正，四种输出可完全相同。后期4步平均约省25.6%完整推理时间，而全身误差接近；**GT步行/noisy面板脚速度RMSE却从0.770升到0.911m/s**，因此不能以“MPJPE相同”宣布它通过脚步稳定性门槛。关闭物理同样不是所有指标都变差；当前显式修正对部分窗口的脚速会有负作用。
+
+[PHYSICS_COMPARISON.png](../native30_physics_schedule_probe_oct15/PHYSICS_COMPARISON.png)与[GAIT_TRAJECTORIES.png](../native30_physics_schedule_probe_oct15/GAIT_TRAJECTORIES.png)保留30Hz原始预测，无平滑。身体坐标双脚曲线显示，原10k仍明显漏掉GT抬脚／交替，当前／后期4步／无物理多数曲线接近。物理只做附近已见patch上的小幅可接受修正，不能补出网络没有生成的完整步态；V2是否学会必须另看从零学习实验。
+
+计时同步CUDA，含本次ViT编码、40次core、查询、观察IK、物理回溯和少量诊断标量同步，排除输入构造及GT指标。单seed／小面板／含诊断开销，不能外推整轮训练速度。最后raw x0仍受到前面DDIM步的影响，不能称作完整无约束采样器。
+
+表面代理另有口径纠正：[FINITE_PATCH_AUDIT.json](../native30_physics_schedule_probe_oct15/FINITE_PATCH_AUDIT.json)明确原trace的固定GT关联平面延伸量不是有限patch碰撞指标；重新只在切向9cm、欧氏25cm内统计，并对四个scene-ON设置取共同覆盖。必须同时报告覆盖量，不用这个条件代理挑选方案或声称场景整体穿模改善。
+
+### 从零V2步行小池（四组均已完成，非55k长训）
+
+[run_pilot.py](../native30_gait_physics_fresh_pilot_oct15/run_pilot.py)固定每组128次更新，对照current／physics-OFF／后期4／后期2；各组都使用同一V2监督和同一新标定观察系数。初始模型SHA必须复现9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69，Adam空状态，不加载任何已训练模型。正式preflight-only长训开关没有解除。
+
+六个官方TRAIN步行窗按GT规则预先选择，三语料各2窗，固定共同yaw=0.6；各窗clean／强制noisy共12个输入，在相同随机无放回循环中形成B2。所有TRAIN弱支撑缓存必须hit，在线预测人体查询仍每次计算，不能缓存学习得到的几何。为了做小池可学习性诊断，明确采用8步warmup后固定1e-4，而非伪装成原500步warmup／55k cosine。
+
+预先指定的TRAIN门槛为完整DDIM预测的身体相对脚误差降20%、脚速度向量误差降10%、幅度log-ratio误差降20%；不以teacher-forced loss下降代替。每组还报告固定三VAL窗clean/noisy。这些小池门槛仅用于排除明显不能学的候选，不能替代全池配对、独立录制覆盖与最终论文benchmark，也不自动授权延长。
+
+
+四组已全部完成各128更新，共512次optimizer更新；初始化、batch索引、timestep、scene dropout、LR逐步核对一致。每组原始脚步目标对腿部旋转的梯度有限且非零，没有读取旧模型权重。结果见[RESULTS.json](../native30_gait_physics_fresh_pilot_oct15/RESULTS.json)：
+
+|从零V2小池组|TRAIN MPJPE mm|身体坐标脚位误差 mm|脚速度RMSE m/s|幅度log-ratio误差|固定VAL MPJPE clean／noisy mm|
+|---|---:|---:|---:|---:|---:|
+|当前物理128|120.82|376.68|0.904|1.017|257.88／271.98|
+|无显式物理128|121.78|379.82|0.875|1.165|261.77／274.14|
+|后期4步128|129.47|366.64|0.950|0.893|261.92／278.08|
+|后期2步128|120.52|373.84|0.917|1.809|257.55／272.18|
+
+当前物理组初始TRAIN为311.18／207.49mm（全身／身体坐标脚位）、速度1.181m/s、幅度误差3.258。训练后全身、脚速度、幅度有改善，**身体坐标逐帧脚位反而变差**；四组都未通过预设三项TRAIN门槛中的脚位项，故没有开启长训。初始输出也受各自物理配置影响，所有门槛均逐组对自己的初始值计算。128更新不能证明长期一定失败，128小池与完整10k也不能直接比较来判定监督优劣。
+
+[TRAIN_GAIT_LEARNING.png](../native30_gait_physics_fresh_pilot_oct15/TRAIN_GAIT_LEARNING.png)显示幅度增大仍伴有身体局部偏置与时序不匹配。[GAIT_DECOMPOSITION.json](../native30_gait_physics_fresh_pilot_oct15/GAIT_DECOMPOSITION.json)为事后诊断，不改原门槛：当前物理组身体局部脚位静态偏差RMS均值约148→354mm，去均值动态轨迹误差约179→187mm。幅度／双脚互相关的改善不能代替逐帧轨迹正确。应优先继续检查root与腿姿态之间的代偿、身体坐标逐脚位置／时序目标及预算，而不是因overall loss下降就上55k；这里尚未用匹配监督消融证实具体因果。
+
+所有小池输入已预先构造并复用，不能用其update秒数给全语料ETA。另有短暂的有限patch审计与首组早期计算重叠，详见[TIMING_SCOPE.json](../native30_gait_physics_fresh_pilot_oct15/TIMING_SCOPE.json)，因此本轮不按这些TRAIN秒数给四种结构排名。原90次DDIM时机测试发生在从零小试之前，没有训练并行干扰。小池图与原10k图明确分开，不把原模型可视化当作V2效果。
+
+
+### 求解器内部5帧增量平滑（已完成，隔离候选）
+
+逐步捕获发现，原10k的一个TRUMANS扰动步行窗在最后一次修正前脚速度RMSE约0.878m/s，后期4步方案的最后一次修正后变成1.404m/s。说明至少一部分跳变来自显式修正，而不是仅靠更多训练就能排除。这里的before只是最后一次修正前，不等同于全DDIM关闭物理。
+
+[run_increment_smoothing.py](../native30_physics_schedule_probe_oct15/run_increment_smoothing.py)固定选择5帧候选，对每次求解器的有界translation／axis-angle增量分别沿时间均值，再施加原norm上限，随后仍走原能量下降、可信观测保护、root总位移限制与回溯。**过滤的是求解器试探增量，不是最终动作或GT轨迹**；不凭GT设滤波参数，不混合关节／batch。恒定输入、脉冲、跨batch／关节独立性、norm边界和不原位修改检查均通过，未改root模型源码或正式配置。
+
+在同一9窗／18条件／相同10k权重上完成36次候选DDIM，另复跑原control确认最大特征差为0。结果见[increment_smoothing/RESULTS.json](../native30_physics_schedule_probe_oct15/increment_smoothing/RESULTS.json)与[INCREMENT_SMOOTHING.png](../native30_physics_schedule_probe_oct15/increment_smoothing/INCREMENT_SMOOTHING.png)：
+
+|设置|MPJPE clean／noisy mm|脚速度RMSE clean／noisy m/s|脚加速度RMSE clean／noisy m/s²|18条件接受更新总数|
+|---|---:|---:|---:|---:|
+|当前物理|175.57／183.11|0.659／0.827|16.65／27.06|202|
+|当前物理＋5帧增量|175.90／182.79|0.622／0.719|12.00／17.26|196|
+|后期4步物理|175.53／183.06|0.662／0.874|16.92／31.09|66|
+|后期4步＋5帧增量|175.83／182.87|0.622／0.721|12.04／17.44|62|
+
+当前物理＋平滑的总体扰动脚速度误差降约13.1%，加速度误差降约36.2%，全身误差基本相同，且仍接受196次物理更新，并非把物理变成空开关。但**GT步行/noisy子组当前物理0.770→平滑0.816m/s，仍有约6%退化**；不能因总体变好宣称每类脚步都改善，也未据此解锁长训。后期4步＋增量也同样需要逐类检查。
+
+候选当前／后期4步的整次推理均值约9.99／7.47秒，包含本次诊断包装；它们与早先不同运行阶段的control耗时不构成精确滤波开销基准。原同轮时机对照给出的约25%推理节省仍只说明减少物理执行频率的潜力，不能当成训练总耗时加速承诺。本轮停止于这些有界结果；保留物理、改善更新连续性是有证据支持的方向，脚步收敛与具体正式方案尚未通过验收。
+
+### 留存与运行结束
+
+所有试验已退出，无后台训练。正式V2配置仍preflight-only，未启动55k；本轮额外optimizer更新恰为4×128，不接exo或旧55k续训。原55k、原完整10000及独立EXO7831均未写入。
+
+每个从零诊断组只有一份原子last.pt；current／late_four保留Adam和RNG作为有用诊断对照，不自动延长。完成且未过门槛的physics_off／late_two去掉Adam，保留模型、配置、RNG与审计并明确evaluation-only；移除前后模型SHA一致，回收约1.83GiB，见[CHECKPOINT_RETENTION_AUDIT.json](../native30_gait_physics_fresh_pilot_oct15/CHECKPOINT_RETENTION_AUDIT.json)。从零目录约3.7GiB、推理目录约33MiB；结束Linux约22.8GiB、E约112.6GiB空闲。大权重与预测数组留本地，代码、小记录和图备份授权仓库；未清理任何原始数据、body或场景依赖。
