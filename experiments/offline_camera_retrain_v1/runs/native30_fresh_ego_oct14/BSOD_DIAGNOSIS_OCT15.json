@@ -1,0 +1,53 @@
+{
+  "observed_at": "2026-10-15T15:08:20.684170+08:00",
+  "status": "Windows host bugchecks confirmed; originating driver/hardware unresolved",
+  "current_Windows_boot": "2026-10-15T11:08:12.5000000+08:00",
+  "events": [
+    {
+      "recovery_event_time": "2026-10-15T11:08:25.2201660+08:00",
+      "bugcheck": "0x00000050",
+      "minidump": "101526-13109-01.dmp",
+      "WER_failure_bucket": "AV_nt!RtlDeleteNoSplay"
+    },
+    {
+      "recovery_event_time": "2026-10-15T04:49:02.2917688+08:00",
+      "bugcheck": "0x000000d1",
+      "minidump": "101526-13171-01.dmp",
+      "WER_failure_bucket": "AV_tcpip!IppFillPathRodUnderLock"
+    },
+    {
+      "recovery_event_time": "2026-10-14T18:46:54.2890293+08:00",
+      "bugcheck": "0x000000be",
+      "minidump": "101426-13140-01.dmp",
+      "WER_failure_bucket": "AV_nt!MiAgePteWorker"
+    }
+  ],
+  "event41_times": [
+    "2026-10-15T11:08:16.8931748+08:00",
+    "2026-10-15T04:48:53.9157236+08:00",
+    "2026-10-14T18:46:45.9552606+08:00"
+  ],
+  "event1074_times": [],
+  "display_drivers": [
+    {
+      "DeviceName": "AMD Radeon(TM) Graphics",
+      "DriverVersion": "32.0.11024.2"
+    },
+    {
+      "DeviceName": "NVIDIA GeForce RTX 5090 D v2",
+      "DriverVersion": "32.0.15.9186"
+    },
+    {
+      "DeviceName": "GameViewer Virtual Display Adapter",
+      "DriverVersion": "15.6.5.199"
+    }
+  ],
+  "minidump_readable": false,
+  "limitations": "Non-elevated access denies minidump and WER Report.wer. Failure bucket is crash location, not proof of originating faulty driver. Event timestamps are recovery/report times, not exact crash times. No automatic driver update, reboot, permissions or training changes.",
+  "next_diagnostic": "Administrator-readable copies of both Oct15 minidumps and WinDbg !analyze -v / stack / module review; correlate network filters for tcpip bucket without blaming tcpip alone.",
+  "references": [
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0xd1--driver-irql-not-less-or-equal",
+    "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x50--page-fault-in-nonpaged-area"
+  ],
+  "system_changes_performed": false
+}

@@ -1,0 +1,1202 @@
+{
+  "observed_at": "2026-10-15T15:15:34.121652+08:00",
+  "optimizer_steps": 0,
+  "live_training_modified": false,
+  "scope": "All scheduled ego windows at 8000 and latest saved VAL. No case selection by prediction. Root translation and rotation removed separately per trajectory. Temporal RMS is articulation amplitude, not gait accuracy; low amplitude can be correct on stationary GT.",
+  "source_sha256": {
+    "visual_review_step8000/validation_outputs.npz": "dd7e5d23ae5e687a7b8f9ddba0eaabb92abd03c59666e7a67dd2752e2369fbca",
+    "articulation_review_oct15/validation_step9000.npz": "3ede0528ee405b52bb1b4d7eeec2d459524db8286beee41a2b52d8c8ec93da10"
+  },
+  "owner_audit": [
+    {
+      "case": 0,
+      "sequence_id": "2023-02-18@22-11-49",
+      "counts": {
+        "0": 80492,
+        "1": 6316,
+        "2": 8527,
+        "3": 1869,
+        "7": 1100
+      },
+      "GT_foot_position_reliability_mean": 1.0,
+      "GT_foot_velocity_stencil_valid_fraction": 1.0,
+      "meaning": {
+        "-1": "padding/unknown",
+        "0": "static",
+        "1..99": "rigid object",
+        "100": "target (excluded)",
+        "101+": "other person"
+      }
+    },
+    {
+      "case": 1,
+      "sequence_id": "2023-02-18@22-18-35",
+      "counts": {
+        "0": 62173,
+        "1": 4469,
+        "2": 17741,
+        "6": 276,
+        "7": 11970,
+        "8": 1675
+      },
+      "GT_foot_position_reliability_mean": 1.0,
+      "GT_foot_velocity_stencil_valid_fraction": 1.0,
+      "meaning": {
+        "-1": "padding/unknown",
+        "0": "static",
+        "1..99": "rigid object",
+        "100": "target (excluded)",
+        "101+": "other person"
+      }
+    },
+    {
+      "case": 4,
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "counts": {
+        "0": 49152,
+        "101": 49152
+      },
+      "GT_foot_position_reliability_mean": 1.0,
+      "GT_foot_velocity_stencil_valid_fraction": 1.0,
+      "meaning": {
+        "-1": "padding/unknown",
+        "0": "static",
+        "1..99": "rigid object",
+        "100": "target (excluded)",
+        "101+": "other person"
+      }
+    },
+    {
+      "case": 5,
+      "sequence_id": "recording_20211002_S03_S18_03_camera_wearer_1941-3471",
+      "counts": {
+        "-1": 670,
+        "0": 48482,
+        "101": 49152
+      },
+      "GT_foot_position_reliability_mean": 1.0,
+      "GT_foot_velocity_stencil_valid_fraction": 1.0,
+      "meaning": {
+        "-1": "padding/unknown",
+        "0": "static",
+        "1..99": "rigid object",
+        "100": "target (excluded)",
+        "101+": "other person"
+      }
+    },
+    {
+      "case": 8,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "counts": {
+        "0": 98304
+      },
+      "GT_foot_position_reliability_mean": 1.0,
+      "GT_foot_velocity_stencil_valid_fraction": 1.0,
+      "meaning": {
+        "-1": "padding/unknown",
+        "0": "static",
+        "1..99": "rigid object",
+        "100": "target (excluded)",
+        "101+": "other person"
+      }
+    },
+    {
+      "case": 9,
+      "sequence_id": "ParkingLot1_005_pushup1",
+      "counts": {
+        "0": 98304
+      },
+      "GT_foot_position_reliability_mean": 1.0,
+      "GT_foot_velocity_stencil_valid_fraction": 1.0,
+      "meaning": {
+        "-1": "padding/unknown",
+        "0": "static",
+        "1..99": "rigid object",
+        "100": "target (excluded)",
+        "101+": "other person"
+      }
+    }
+  ],
+  "entries": [
+    {
+      "step": 8000,
+      "case": 0,
+      "dataset": "trumans",
+      "panel": "fixed",
+      "regime": "clean",
+      "sequence_id": "2023-02-18@22-11-49",
+      "truth": {
+        "root_net_displacement_m": 0.9902083277702332,
+        "root_path_m": 1.423248291015625,
+        "body_local_foot_temporal_RMS_m": [
+          0.2189173698425293,
+          0.23827138543128967
+        ],
+        "knee_angle_95minus5_deg": [
+          66.59933586120607,
+          70.5646224975586
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.32043126225471497,
+          0.3171711564064026
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.8411891460418701,
+        "root_path_m": 2.5215046405792236,
+        "body_local_foot_temporal_RMS_m": [
+          0.13990885019302368,
+          0.13488717377185822
+        ],
+        "knee_angle_95minus5_deg": [
+          72.73001403808595,
+          78.05834846496583
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.7090716361999512,
+          0.6834540367126465
+        ]
+      },
+      "body_local_foot_position_error_mm": 225.07214546203613,
+      "foot_articulation_RMS_ratio": [
+        0.6390943317730444,
+        0.5661073130023648
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 0,
+      "dataset": "trumans",
+      "panel": "fixed",
+      "regime": "noisy",
+      "sequence_id": "2023-02-18@22-11-49",
+      "truth": {
+        "root_net_displacement_m": 0.9902083277702332,
+        "root_path_m": 1.423248291015625,
+        "body_local_foot_temporal_RMS_m": [
+          0.2189173698425293,
+          0.23827138543128967
+        ],
+        "knee_angle_95minus5_deg": [
+          66.59933586120607,
+          70.5646224975586
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.32043126225471497,
+          0.3171711564064026
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.9713915586471558,
+        "root_path_m": 2.432117462158203,
+        "body_local_foot_temporal_RMS_m": [
+          0.1200864240527153,
+          0.13832299411296844
+        ],
+        "knee_angle_95minus5_deg": [
+          75.22267074584963,
+          83.88241882324219
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.48716697096824646,
+          0.470994234085083
+        ]
+      },
+      "body_local_foot_position_error_mm": 276.790976524353,
+      "foot_articulation_RMS_ratio": [
+        0.5485468062177769,
+        0.5805270904124434
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 1,
+      "dataset": "trumans",
+      "panel": "rotating",
+      "regime": "clean",
+      "sequence_id": "2023-02-18@22-18-35",
+      "truth": {
+        "root_net_displacement_m": 0.1105550080537796,
+        "root_path_m": 0.8897174596786499,
+        "body_local_foot_temporal_RMS_m": [
+          0.22685949504375458,
+          0.2641833424568176
+        ],
+        "knee_angle_95minus5_deg": [
+          19.915525054931635,
+          13.691037750244135
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.06066896393895149,
+          0.0695352628827095
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.12999731302261353,
+        "root_path_m": 1.7135016918182373,
+        "body_local_foot_temporal_RMS_m": [
+          0.15225815773010254,
+          0.12594915926456451
+        ],
+        "knee_angle_95minus5_deg": [
+          47.97308082580567,
+          64.20329093933104
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.3261723220348358,
+          0.35933801531791687
+        ]
+      },
+      "body_local_foot_position_error_mm": 222.77657687664032,
+      "foot_articulation_RMS_ratio": [
+        0.6711562048603537,
+        0.4767490565199116
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 1,
+      "dataset": "trumans",
+      "panel": "rotating",
+      "regime": "noisy",
+      "sequence_id": "2023-02-18@22-18-35",
+      "truth": {
+        "root_net_displacement_m": 0.1105550080537796,
+        "root_path_m": 0.8897174596786499,
+        "body_local_foot_temporal_RMS_m": [
+          0.22685949504375458,
+          0.2641833424568176
+        ],
+        "knee_angle_95minus5_deg": [
+          19.915525054931635,
+          13.691037750244135
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.06066896393895149,
+          0.0695352628827095
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.1460666060447693,
+        "root_path_m": 1.7317590713500977,
+        "body_local_foot_temporal_RMS_m": [
+          0.10194212943315506,
+          0.09254787117242813
+        ],
+        "knee_angle_95minus5_deg": [
+          40.340097427368164,
+          54.13306617736815
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.3887016773223877,
+          0.42845460772514343
+        ]
+      },
+      "body_local_foot_position_error_mm": 264.9632394313812,
+      "foot_articulation_RMS_ratio": [
+        0.4493624100392774,
+        0.35031683039423894
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 4,
+      "dataset": "egobody",
+      "panel": "fixed",
+      "regime": "clean",
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "truth": {
+        "root_net_displacement_m": 0.02334187924861908,
+        "root_path_m": 0.17155736684799194,
+        "body_local_foot_temporal_RMS_m": [
+          0.05068029463291168,
+          0.04464021697640419
+        ],
+        "knee_angle_95minus5_deg": [
+          7.666628265380851,
+          2.753394317626956
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.03558512032032013,
+          0.02357526868581772
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.02023780718445778,
+        "root_path_m": 0.2070125937461853,
+        "body_local_foot_temporal_RMS_m": [
+          0.012547698803246021,
+          0.023959022015333176
+        ],
+        "knee_angle_95minus5_deg": [
+          3.8069061279296648,
+          2.2587852478027344
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.05518253147602081,
+          0.06635665148496628
+        ]
+      },
+      "body_local_foot_position_error_mm": 283.2302153110504,
+      "foot_articulation_RMS_ratio": [
+        0.24758535628357556,
+        0.5367138342539278
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 4,
+      "dataset": "egobody",
+      "panel": "fixed",
+      "regime": "noisy",
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "truth": {
+        "root_net_displacement_m": 0.02334187924861908,
+        "root_path_m": 0.17155736684799194,
+        "body_local_foot_temporal_RMS_m": [
+          0.05068029463291168,
+          0.04464021697640419
+        ],
+        "knee_angle_95minus5_deg": [
+          7.666628265380851,
+          2.753394317626956
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.03558512032032013,
+          0.02357526868581772
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.11945367604494095,
+        "root_path_m": 0.26823490858078003,
+        "body_local_foot_temporal_RMS_m": [
+          0.02049592137336731,
+          0.024543700739741325
+        ],
+        "knee_angle_95minus5_deg": [
+          18.213789367675787,
+          18.922395324707026
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.07681833952665329,
+          0.09000912308692932
+        ]
+      },
+      "body_local_foot_position_error_mm": 276.43200755119324,
+      "foot_articulation_RMS_ratio": [
+        0.4044159869595016,
+        0.5498114122678788
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 5,
+      "dataset": "egobody",
+      "panel": "rotating",
+      "regime": "clean",
+      "sequence_id": "recording_20211002_S03_S18_03_camera_wearer_1941-3471",
+      "truth": {
+        "root_net_displacement_m": 0.24297823011875153,
+        "root_path_m": 0.7150884866714478,
+        "body_local_foot_temporal_RMS_m": [
+          0.05743827670812607,
+          0.06204903498291969
+        ],
+        "knee_angle_95minus5_deg": [
+          11.833326721191412,
+          18.863063049316423
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.07689489424228668,
+          0.07894103974103928
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.2180236577987671,
+        "root_path_m": 0.667343020439148,
+        "body_local_foot_temporal_RMS_m": [
+          0.020546114072203636,
+          0.02885967493057251
+        ],
+        "knee_angle_95minus5_deg": [
+          6.790439605712891,
+          3.354602050781267
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.13227246701717377,
+          0.14459814131259918
+        ]
+      },
+      "body_local_foot_position_error_mm": 116.88234657049179,
+      "foot_articulation_RMS_ratio": [
+        0.35770770381237565,
+        0.46511077792775896
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 5,
+      "dataset": "egobody",
+      "panel": "rotating",
+      "regime": "noisy",
+      "sequence_id": "recording_20211002_S03_S18_03_camera_wearer_1941-3471",
+      "truth": {
+        "root_net_displacement_m": 0.24297823011875153,
+        "root_path_m": 0.7150884866714478,
+        "body_local_foot_temporal_RMS_m": [
+          0.05743827670812607,
+          0.06204903498291969
+        ],
+        "knee_angle_95minus5_deg": [
+          11.833326721191412,
+          18.863063049316423
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.07689489424228668,
+          0.07894103974103928
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.17470768094062805,
+        "root_path_m": 0.6615662574768066,
+        "body_local_foot_temporal_RMS_m": [
+          0.020910006016492844,
+          0.029100211337208748
+        ],
+        "knee_angle_95minus5_deg": [
+          7.0178070068359375,
+          3.6266609191894474
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.13829608261585236,
+          0.15125924348831177
+        ]
+      },
+      "body_local_foot_position_error_mm": 121.28337472677231,
+      "foot_articulation_RMS_ratio": [
+        0.3640430600442197,
+        0.46898733147452165
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 8,
+      "dataset": "rich",
+      "panel": "fixed",
+      "regime": "clean",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "truth": {
+        "root_net_displacement_m": 1.516719937324524,
+        "root_path_m": 2.157902717590332,
+        "body_local_foot_temporal_RMS_m": [
+          0.376148521900177,
+          0.35890993475914
+        ],
+        "knee_angle_95minus5_deg": [
+          33.51565170288083,
+          24.675100708007818
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.40403467416763306,
+          0.333503395318985
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 1.7476437091827393,
+        "root_path_m": 3.676342487335205,
+        "body_local_foot_temporal_RMS_m": [
+          0.13744968175888062,
+          0.11788221448659897
+        ],
+        "knee_angle_95minus5_deg": [
+          50.37310981750487,
+          63.27515869140626
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.6964595317840576,
+          0.6994536519050598
+        ]
+      },
+      "body_local_foot_position_error_mm": 415.2183532714844,
+      "foot_articulation_RMS_ratio": [
+        0.3654133241426302,
+        0.3284451141362477
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 8,
+      "dataset": "rich",
+      "panel": "fixed",
+      "regime": "noisy",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "truth": {
+        "root_net_displacement_m": 1.516719937324524,
+        "root_path_m": 2.157902717590332,
+        "body_local_foot_temporal_RMS_m": [
+          0.376148521900177,
+          0.35890993475914
+        ],
+        "knee_angle_95minus5_deg": [
+          33.51565170288083,
+          24.675100708007818
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.40403467416763306,
+          0.333503395318985
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 1.7360841035842896,
+        "root_path_m": 4.17618989944458,
+        "body_local_foot_temporal_RMS_m": [
+          0.10320883989334106,
+          0.09773597866296768
+        ],
+        "knee_angle_95minus5_deg": [
+          51.330777359008806,
+          61.69204330444336
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.7090388536453247,
+          0.7235351204872131
+        ]
+      },
+      "body_local_foot_position_error_mm": 446.4596211910248,
+      "foot_articulation_RMS_ratio": [
+        0.27438321270535476,
+        0.2723133833800312
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 9,
+      "dataset": "rich",
+      "panel": "rotating",
+      "regime": "clean",
+      "sequence_id": "ParkingLot1_005_pushup1",
+      "truth": {
+        "root_net_displacement_m": 0.18141186237335205,
+        "root_path_m": 2.131772994995117,
+        "body_local_foot_temporal_RMS_m": [
+          0.21607710421085358,
+          0.20713676512241364
+        ],
+        "knee_angle_95minus5_deg": [
+          31.860103607177734,
+          16.063105010986334
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.2514002025127411,
+          0.187550887465477
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.22704319655895233,
+        "root_path_m": 4.461052894592285,
+        "body_local_foot_temporal_RMS_m": [
+          0.06141744181513786,
+          0.07598251849412918
+        ],
+        "knee_angle_95minus5_deg": [
+          40.8311279296875,
+          44.90926513671873
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.7497725486755371,
+          0.9231367707252502
+        ]
+      },
+      "body_local_foot_position_error_mm": 365.9917414188385,
+      "foot_articulation_RMS_ratio": [
+        0.28423854549256244,
+        0.3668229464200865
+      ]
+    },
+    {
+      "step": 8000,
+      "case": 9,
+      "dataset": "rich",
+      "panel": "rotating",
+      "regime": "noisy",
+      "sequence_id": "ParkingLot1_005_pushup1",
+      "truth": {
+        "root_net_displacement_m": 0.18141186237335205,
+        "root_path_m": 2.131772994995117,
+        "body_local_foot_temporal_RMS_m": [
+          0.21607710421085358,
+          0.20713676512241364
+        ],
+        "knee_angle_95minus5_deg": [
+          31.860103607177734,
+          16.063105010986334
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.2514002025127411,
+          0.187550887465477
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.21155282855033875,
+        "root_path_m": 4.0059494972229,
+        "body_local_foot_temporal_RMS_m": [
+          0.06519176810979843,
+          0.07920420914888382
+        ],
+        "knee_angle_95minus5_deg": [
+          39.071791648864725,
+          44.785040473937975
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.7139363884925842,
+          0.8082024455070496
+        ]
+      },
+      "body_local_foot_position_error_mm": 375.5711615085602,
+      "foot_articulation_RMS_ratio": [
+        0.3017060430714706,
+        0.3823763932109094
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 0,
+      "dataset": "trumans",
+      "panel": "fixed",
+      "regime": "clean",
+      "sequence_id": "2023-02-18@22-11-49",
+      "truth": {
+        "root_net_displacement_m": 0.9902083277702332,
+        "root_path_m": 1.423248291015625,
+        "body_local_foot_temporal_RMS_m": [
+          0.2189173698425293,
+          0.23827138543128967
+        ],
+        "knee_angle_95minus5_deg": [
+          66.59933586120607,
+          70.5646224975586
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.32043126225471497,
+          0.3171711564064026
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.827989935874939,
+        "root_path_m": 2.4279632568359375,
+        "body_local_foot_temporal_RMS_m": [
+          0.13762988150119781,
+          0.15124665200710297
+        ],
+        "knee_angle_95minus5_deg": [
+          78.48891334533693,
+          77.39512672424317
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.524039089679718,
+          0.5663345456123352
+        ]
+      },
+      "body_local_foot_position_error_mm": 217.3732966184616,
+      "foot_articulation_RMS_ratio": [
+        0.628684154209404,
+        0.6347663263607369
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 0,
+      "dataset": "trumans",
+      "panel": "fixed",
+      "regime": "noisy",
+      "sequence_id": "2023-02-18@22-11-49",
+      "truth": {
+        "root_net_displacement_m": 0.9902083277702332,
+        "root_path_m": 1.423248291015625,
+        "body_local_foot_temporal_RMS_m": [
+          0.2189173698425293,
+          0.23827138543128967
+        ],
+        "knee_angle_95minus5_deg": [
+          66.59933586120607,
+          70.5646224975586
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.32043126225471497,
+          0.3171711564064026
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.9335934519767761,
+        "root_path_m": 2.393860101699829,
+        "body_local_foot_temporal_RMS_m": [
+          0.13076360523700714,
+          0.1525278240442276
+        ],
+        "knee_angle_95minus5_deg": [
+          92.35589561462402,
+          98.96055297851562
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.566201388835907,
+          0.5968329310417175
+        ]
+      },
+      "body_local_foot_position_error_mm": 273.65773916244507,
+      "foot_articulation_RMS_ratio": [
+        0.5973194604478733,
+        0.6401432709519039
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 1,
+      "dataset": "trumans",
+      "panel": "rotating",
+      "regime": "clean",
+      "sequence_id": "2023-02-18@22-22-08",
+      "truth": {
+        "root_net_displacement_m": 0.8144566416740417,
+        "root_path_m": 1.847096562385559,
+        "body_local_foot_temporal_RMS_m": [
+          0.29570791125297546,
+          0.30248764157295227
+        ],
+        "knee_angle_95minus5_deg": [
+          32.08506088256836,
+          30.701058197021467
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.3427511155605316,
+          0.2747400104999542
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.9127660989761353,
+        "root_path_m": 2.4805116653442383,
+        "body_local_foot_temporal_RMS_m": [
+          0.14730609953403473,
+          0.13444720208644867
+        ],
+        "knee_angle_95minus5_deg": [
+          53.07294158935548,
+          67.2324005126953
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.45833998918533325,
+          0.44998660683631897
+        ]
+      },
+      "body_local_foot_position_error_mm": 311.2141191959381,
+      "foot_articulation_RMS_ratio": [
+        0.49814730661032497,
+        0.44447171919922374
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 1,
+      "dataset": "trumans",
+      "panel": "rotating",
+      "regime": "noisy",
+      "sequence_id": "2023-02-18@22-22-08",
+      "truth": {
+        "root_net_displacement_m": 0.8144566416740417,
+        "root_path_m": 1.847096562385559,
+        "body_local_foot_temporal_RMS_m": [
+          0.29570791125297546,
+          0.30248764157295227
+        ],
+        "knee_angle_95minus5_deg": [
+          32.08506088256836,
+          30.701058197021467
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.3427511155605316,
+          0.2747400104999542
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.8869140148162842,
+        "root_path_m": 2.471100330352783,
+        "body_local_foot_temporal_RMS_m": [
+          0.14645643532276154,
+          0.13057537376880646
+        ],
+        "knee_angle_95minus5_deg": [
+          65.8172939300537,
+          82.76575241088867
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.5364760756492615,
+          0.52334064245224
+        ]
+      },
+      "body_local_foot_position_error_mm": 335.5504274368286,
+      "foot_articulation_RMS_ratio": [
+        0.4952739840547227,
+        0.4316717638109358
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 4,
+      "dataset": "egobody",
+      "panel": "fixed",
+      "regime": "clean",
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "truth": {
+        "root_net_displacement_m": 0.02334187924861908,
+        "root_path_m": 0.17155736684799194,
+        "body_local_foot_temporal_RMS_m": [
+          0.05068029463291168,
+          0.04464021697640419
+        ],
+        "knee_angle_95minus5_deg": [
+          7.666628265380851,
+          2.753394317626956
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.03558512032032013,
+          0.02357526868581772
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.023985665291547775,
+        "root_path_m": 0.2497144490480423,
+        "body_local_foot_temporal_RMS_m": [
+          0.010984578169882298,
+          0.018897611647844315
+        ],
+        "knee_angle_95minus5_deg": [
+          5.364904022216791,
+          4.824082183837874
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.048166852444410324,
+          0.05689812824130058
+        ]
+      },
+      "body_local_foot_position_error_mm": 273.12710881233215,
+      "foot_articulation_RMS_ratio": [
+        0.2167425870241278,
+        0.4233315366238736
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 4,
+      "dataset": "egobody",
+      "panel": "fixed",
+      "regime": "noisy",
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "truth": {
+        "root_net_displacement_m": 0.02334187924861908,
+        "root_path_m": 0.17155736684799194,
+        "body_local_foot_temporal_RMS_m": [
+          0.05068029463291168,
+          0.04464021697640419
+        ],
+        "knee_angle_95minus5_deg": [
+          7.666628265380851,
+          2.753394317626956
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.03558512032032013,
+          0.02357526868581772
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.10629298537969589,
+        "root_path_m": 0.32864564657211304,
+        "body_local_foot_temporal_RMS_m": [
+          0.10988011211156845,
+          0.12723298370838165
+        ],
+        "knee_angle_95minus5_deg": [
+          89.23558349609377,
+          95.70706901550294
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.12885954976081848,
+          0.1447879821062088
+        ]
+      },
+      "body_local_foot_position_error_mm": 224.37681257724762,
+      "foot_articulation_RMS_ratio": [
+        2.1681032619769445,
+        2.850187394376558
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 5,
+      "dataset": "egobody",
+      "panel": "rotating",
+      "regime": "clean",
+      "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-2171",
+      "truth": {
+        "root_net_displacement_m": 0.04690290242433548,
+        "root_path_m": 0.4303950369358063,
+        "body_local_foot_temporal_RMS_m": [
+          0.048554372042417526,
+          0.05964978039264679
+        ],
+        "knee_angle_95minus5_deg": [
+          6.394081115722656,
+          5.568373870849598
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.03656250983476639,
+          0.03128841519355774
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.03754132241010666,
+        "root_path_m": 1.0926049947738647,
+        "body_local_foot_temporal_RMS_m": [
+          0.018062850460410118,
+          0.028081530705094337
+        ],
+        "knee_angle_95minus5_deg": [
+          6.305523681640608,
+          3.0830505371093864
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.34617283940315247,
+          0.39163950085639954
+        ]
+      },
+      "body_local_foot_position_error_mm": 94.86324340105057,
+      "foot_articulation_RMS_ratio": [
+        0.3720128528205504,
+        0.47077341308294296
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 5,
+      "dataset": "egobody",
+      "panel": "rotating",
+      "regime": "noisy",
+      "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-2171",
+      "truth": {
+        "root_net_displacement_m": 0.04690290242433548,
+        "root_path_m": 0.4303950369358063,
+        "body_local_foot_temporal_RMS_m": [
+          0.048554372042417526,
+          0.05964978039264679
+        ],
+        "knee_angle_95minus5_deg": [
+          6.394081115722656,
+          5.568373870849598
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.03656250983476639,
+          0.03128841519355774
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.024441221728920937,
+        "root_path_m": 1.1295658349990845,
+        "body_local_foot_temporal_RMS_m": [
+          0.022826876491308212,
+          0.02798425778746605
+        ],
+        "knee_angle_95minus5_deg": [
+          5.654363250732416,
+          2.9971244812011832
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.2933647334575653,
+          0.30370959639549255
+        ]
+      },
+      "body_local_foot_position_error_mm": 97.68373519182205,
+      "foot_articulation_RMS_ratio": [
+        0.47013019695459046,
+        0.46914267920617114
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 8,
+      "dataset": "rich",
+      "panel": "fixed",
+      "regime": "clean",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "truth": {
+        "root_net_displacement_m": 1.516719937324524,
+        "root_path_m": 2.157902717590332,
+        "body_local_foot_temporal_RMS_m": [
+          0.376148521900177,
+          0.35890993475914
+        ],
+        "knee_angle_95minus5_deg": [
+          33.51565170288083,
+          24.675100708007818
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.40403467416763306,
+          0.333503395318985
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 1.7943814992904663,
+        "root_path_m": 3.6866395473480225,
+        "body_local_foot_temporal_RMS_m": [
+          0.13197632133960724,
+          0.13528011739253998
+        ],
+        "knee_angle_95minus5_deg": [
+          58.53072853088378,
+          64.57853584289552
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.7071122527122498,
+          0.7319234609603882
+        ]
+      },
+      "body_local_foot_position_error_mm": 420.8727777004242,
+      "foot_articulation_RMS_ratio": [
+        0.350862262259883,
+        0.37691940035966065
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 8,
+      "dataset": "rich",
+      "panel": "fixed",
+      "regime": "noisy",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "truth": {
+        "root_net_displacement_m": 1.516719937324524,
+        "root_path_m": 2.157902717590332,
+        "body_local_foot_temporal_RMS_m": [
+          0.376148521900177,
+          0.35890993475914
+        ],
+        "knee_angle_95minus5_deg": [
+          33.51565170288083,
+          24.675100708007818
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.40403467416763306,
+          0.333503395318985
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 1.7289509773254395,
+        "root_path_m": 4.3212432861328125,
+        "body_local_foot_temporal_RMS_m": [
+          0.12049709260463715,
+          0.11237810552120209
+        ],
+        "knee_angle_95minus5_deg": [
+          68.3428897857666,
+          81.98664131164551
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.7758276462554932,
+          0.8088273406028748
+        ]
+      },
+      "body_local_foot_position_error_mm": 467.3800468444824,
+      "foot_articulation_RMS_ratio": [
+        0.3203444532918167,
+        0.3131094869151996
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 9,
+      "dataset": "rich",
+      "panel": "rotating",
+      "regime": "clean",
+      "sequence_id": "Pavallion_013_sidebalancerun",
+      "truth": {
+        "root_net_displacement_m": 0.1916475147008896,
+        "root_path_m": 1.9270597696304321,
+        "body_local_foot_temporal_RMS_m": [
+          0.18189820647239685,
+          0.18238291144371033
+        ],
+        "knee_angle_95minus5_deg": [
+          133.3175142288208,
+          129.24515342712402
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.8352090120315552,
+          0.8853431940078735
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.4145273268222809,
+        "root_path_m": 2.7244889736175537,
+        "body_local_foot_temporal_RMS_m": [
+          0.09940044581890106,
+          0.08872999250888824
+        ],
+        "knee_angle_95minus5_deg": [
+          33.14165916442872,
+          42.126135063171375
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.4940779209136963,
+          0.5154653787612915
+        ]
+      },
+      "body_local_foot_position_error_mm": 325.59335231781006,
+      "foot_articulation_RMS_ratio": [
+        0.546461934653463,
+        0.4865038714785151
+      ]
+    },
+    {
+      "step": 9000,
+      "case": 9,
+      "dataset": "rich",
+      "panel": "rotating",
+      "regime": "noisy",
+      "sequence_id": "Pavallion_013_sidebalancerun",
+      "truth": {
+        "root_net_displacement_m": 0.1916475147008896,
+        "root_path_m": 1.9270597696304321,
+        "body_local_foot_temporal_RMS_m": [
+          0.18189820647239685,
+          0.18238291144371033
+        ],
+        "knee_angle_95minus5_deg": [
+          133.3175142288208,
+          129.24515342712402
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.8352090120315552,
+          0.8853431940078735
+        ]
+      },
+      "prediction": {
+        "root_net_displacement_m": 0.3185819387435913,
+        "root_path_m": 3.2161030769348145,
+        "body_local_foot_temporal_RMS_m": [
+          0.04488835483789444,
+          0.04105090722441673
+        ],
+        "knee_angle_95minus5_deg": [
+          14.298083496093753,
+          13.748651504516602
+        ],
+        "world_foot_speed_mean_m_s": [
+          0.5927398800849915,
+          0.6055896878242493
+        ]
+      },
+      "body_local_foot_position_error_mm": 339.941531419754,
+      "foot_articulation_RMS_ratio": [
+        0.2467773361179692,
+        0.22508088559100814
+      ]
+    }
+  ]
+}

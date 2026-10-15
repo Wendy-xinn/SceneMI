@@ -1,6 +1,6 @@
 # Ego/exo 模型与实验唯一总清单
 
-更新：2026-10-15。**尚未完成10000步ego首段：上午再次中断，trace最后8692、原子last.pt8600。14:02从8600恢复，前五步采样／RNG／LR核验通过，持续训练中。已用真实8000步VAL输出制作全部六个ego窗的原生mesh、离线骨架回放和静态图；固定ego全身误差197/214mm，但坐姿／支撑／脚部姿态未达论文标准。当前入口、恢复和可视化见4.13。** 旧55k保留，不作为本轮初始化。
+更新：2026-10-15。**15:12仍在训练，trace9423，尚未完成10000步ego首段；9000步固定ego误差203/213mm，相比8000步197/214mm没有一致改善。Windows日志已确认两次中断对应整机蓝屏，具体致因驱动待转储分析。新增足部诊断确认相对身体运动幅度偏小；重要纠正：此前“足部监督未变”只指最近v6→v7，不等于完整保留旧55k的步幅／摆动期／动作幅度监督。见4.14；当前封存训练代码／配置未改。** 8000步原生mesh与全部六个ego窗回放入口见4.13；旧55k保留，不作为本轮初始化。
 
 历史500步基线：E盘30Hz缓存及重新挂载后的完整审计已通过；原始发布量、选定范围和未接入部分见3.1。历史短训使用[500步短训配置](../../native30_short500_config.json)。首轮原始exo观测最多连续18帧完全无关节输入，保留关节局部遮挡；原始缓存、整段静态记忆和六例压力可视化保留。71项旧回归通过。**500/500步及第1/250/500步固定验证已完成，进程正常退出；最终可恢复last.pt已核验。这个基线的训练链路通过，生成效果未通过。** 原55k/3k模型保留。证据：[SHORT500_PROGRESS.json](../native30_short500_oct13/SHORT500_PROGRESS.json)、[CHECKPOINT_AUDIT.json](../native30_short500_oct13/training/CHECKPOINT_AUDIT.json)、[500步mesh对比](../native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)。
 
@@ -1094,3 +1094,56 @@ CPU查询并非无法继续优化。[gpu_radius_probe.py](../native30_fresh_ego_
 [BROWSER_CHECK.json](../native30_fresh_ego_oct14/visual_review_step8000/BROWSER_CHECK.json)用真实Chromium检查自包含回放的6窗×2噪声切换、191帧渲染及播放推进；原生播放器WebSocket连接、mesh canvas与播放推进均通过，运行时JS异常0。浏览器只为核验使用临时软件WebGL和本地字体；实际用户浏览器可正常使用硬件加速。[原生播放器实测截图](../native30_fresh_ego_oct14/visual_review_step8000/NATIVE_VIEWER_BROWSER.png)、[离线回放实测截图](../native30_fresh_ego_oct14/visual_review_step8000/REPLAY_BROWSER.png)保留。数据／大型mesh数组仅本地，脚本、审计和紧凑图片继续备份。
 
 建议仍是继续ego：先补完已注册的10k首段，再用末期／更大官方VAL、脚部与pelvis姿态、坐姿／撑地片段及监督梯度作复核，定义更长、保留Adam／RNG且学习率连续的ego续训；目前不将exo／联训自动接上，也不把“拉到旧55k”当成上述错误必定解决的保证。8000步仍有下降趋势，因此不把当前结果判为已无训练价值；但也不能只凭总loss或脚滑变小接受模型。机器可读结论见[REVIEW_SUMMARY.json](../native30_fresh_ego_oct14/visual_review_step8000/REVIEW_SUMMARY.json)。
+
+## 4.14 10月15日：青色身份、动作幅度、旧55k监督差异与Windows蓝屏证据
+
+**这次没有改训练模型／loss／配置／学习率，没有载入旧55k，也没有新增optimizer更新或GPU推理。** CPU只读分析已保存的8000与9000步官方VAL输出，逐一核验原始owner／GT可靠性；原始9k输出另作本地小型归档，避免被下一次监控覆盖。代码、紧凑JSON与图备份，权重／生成数组仍只留本地。
+
+### 青色表示什么
+
+截图对应EgoBody固定窗`recording_20210921_S11_S10_01_camera_wearer_1111-1921`。192帧的`visible_frame_owner`只有0（静态）和101（另一位参与者），两者各49152个采样点；青色只画owner>0，因此这个人是相机可见的另一位参与者的表面，不是要补全的目标人物。owner100目标人体被明确排除。蓝色是目标GT，紫红是目标预测。这里的可见点由原始数据集网格按相机first-hit遮挡渲染，并非已经接入真实视频前端。TRUMANS青色还可能是owner1–99的动态物体，不应把每个青色点都叫人；RICH这六窗中的两窗没有动态点。
+
+### 运动不足有量化依据，但不能把坐姿窗当作走路验收
+
+[ARTICULATION_AUDIT.json](../native30_fresh_ego_oct14/articulation_review_oct15/ARTICULATION_AUDIT.json)覆盖8000与9000步各全部六个已登记ego窗及clean/noisy。分别从GT／预测去掉各自root平移和root旋转，在身体坐标系计算双脚相对整窗均值的三维时间RMS；该指标只量运动幅度，不代表动作相位正确，也不用于掩盖世界坐标误差。没有用GT对齐预测、改动作、贴地或挑好看的预测。8000步幅度图见[FOOT_ARTICULATION_STEP8000.png](../native30_fresh_ego_oct14/articulation_review_oct15/FOOT_ARTICULATION_STEP8000.png)。
+
+|固定窗、clean|8000步预测／GT双脚幅度比|9000步预测／GT双脚幅度比|解释|
+|---|---|---|---|
+|TRUMANS|左0.639／右0.566|左0.629／右0.635|仍有相对运动，但幅度偏小，世界脚速也偏高|
+|EgoBody|左0.248／右0.537|左0.217／右0.423|GT骨盆净移仅2.3cm、脚速约0.036/0.024m/s，主要是坐姿、小幅调整，不是明确交替行走窗；坐姿本身仍错|
+|RICH擦椅子|左0.365／右0.328|左0.351／右0.377|GT骨盆净移1.52m，脚相对身体幅度明显被压小；8000步GT双脚RMS约0.376/0.359m，预测0.137/0.118m|
+
+六个8000步窗的GT脚位置可靠性均值和脚速度导数有效比例均为1.0，排除了这些窗里脚监督被GT可靠性mask整体关掉的解释。这不等于审计了所有TRAIN帧，也不证明缺失损失是唯一原因。膝关节仍有变化，部分窗口甚至抖动／屈伸过大，因此不能称为完全刚体；相对脚运动不足、落点错与世界足滑可以同时存在。不同step的rotating录制变化，不把它们连成同窗改善曲线。
+
+### 重要纠正：最近版本未改监督，不等于旧55k监督完整继承
+
+[SUPERVISION_AND_55K_TRANSFER_AUDIT.json](../native30_fresh_ego_oct14/SUPERVISION_AND_55K_TRANSFER_AUDIT.json)读取实际旧55000步checkpoint，确认`loss_profile=coordination_v1`；旧真实`training_log.jsonl`含下列非空独立项，而非只看现存函数名称推断。4.11与[FOOT_SUPERVISION_AUDIT.json](../native30_fresh_ego_oct14/FOOT_SUPERVISION_AUDIT.json)的“未变”严格限定于Native30 v6→v7。若将此前说明理解为相对旧55k也完全一致，应按本节纠正。
+
+|监督|旧55k实际启用|当前Native30|
+|---|---|---|
+|脚速度|支撑期0.10／摆动期0.05分别取mask均值，alpha门控|全部脚速度向量误差0.075，alpha²门控＋GT导数可靠性mask；两者不等价|
+|脚相对pelvis位置|独立项，权重1|只有全身姿态／FK位置隐式约束，无同名独立项|
+|多帧步幅|20Hz lag4/8，即0.2/0.4秒，权重2|无对应脚步幅项；root/head turning lag不能替代|
+|脚高度／支撑包络|区分支撑／摆动高度，并有GT包络／穿透代理|全身pose＋已见场景contact／plane，未知场景不约束；不是同一目标|
+|肢体时序协调／幅度|relation0.05、amplitude5|无对应肢体时序幅度项；head-root朝向协调不等价|
+
+当前仍有完整GT全身pose/FK、速度／加速度、脚速度、planting及场景接触监督，不能说脚完全没受监督；但确实没有完整保留旧轮专门防止动作缩水的项。它们是应优先验证的原因，不把“再训久一点”当作已证明的解决方案。应在下一段明确实现30Hz的0.2/0.4秒lag6/12、GT可靠性和噪声门控，先查TRAIN梯度，再从同一干净checkpoint、同seed／样本预算比较不变目标与动作幅度修正目标；不在当前封存进程中悄悄改loss。还需分离参考动作、网络raw输出、观察IK与物理投影的贡献，并补GT规则选取的明确步行VAL窗，以定位压缩具体发生在哪一层。
+
+### 两次中断已证实是Windows整机蓝屏
+
+WSL互操作此次可用，直接用非管理员PowerShell读取System事件1001/41及Application WER1001，补上此前仅有Linux残尾的证据。[BSOD_DIAGNOSIS_OCT15.json](../native30_fresh_ego_oct14/BSOD_DIAGNOSIS_OCT15.json)记录：
+
+|恢复／报告事件时间（北京时间）|Bugcheck|WER故障位置|转储|
+|---|---|---|---|
+|10月15日04:49:02|0xD1|`AV_tcpip!IppFillPathRodUnderLock`|`101526-13171-01.dmp`|
+|10月15日11:08:25|0x50|`AV_nt!RtlDeleteNoSplay`|`101526-13109-01.dmp`|
+
+这些是重启后的报告时间，不把它们冒充精确崩溃时刻。10月14日18:46还有0xBE／`AV_nt!MiAgePteWorker`，表明这轮训练前也有系统级崩溃记录。微软[0xD1说明](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0xd1--driver-irql-not-less-or-equal)与[0x50说明](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/bug-check-0x50--page-fault-in-nonpaged-area)分别对应驱动高IRQL内存访问与无效系统内存访问；后者可能涉及驱动／服务或硬件内存。**故障位置不是致因驱动结论，现有证据不能认定显卡、TCP/IP自身或RAM已坏。** 下一步须管理员可读转储后用WinDbg分析栈／模块，网络栈一例还应结合过滤驱动核对。当前token读取Minidump和Report.wer均Access denied，已如实记录；没有改权限、装／更新驱动、重启、开启Driver Verifier或改变Windows设置。当前训练loss／preclip梯度全有限，没有证据把这两次中断归因训练NaN或正常Python退出。
+
+### 当前进度与后续选择
+
+[STATUS_AND_DIAGNOSIS_OCT15.json](../native30_fresh_ego_oct14/STATUS_AND_DIAGNOSIS_OCT15.json)：15:12 trace9423，PID3259仍在；所有封存源码SHA与prepared相同、配置一致。最近100步均值2.77秒；9000步监控／保存实测间隔约460秒，最终10000步还有scene-OFF面板，按36对24次推理放大估算。本段剩余约38分钟，保守40–50分钟，前提不再次中断；不是完整ego＋exo期限。Linux余约30.4GiB／E余112.7GiB，新增诊断只约9MiB、没有模型副本或新缓存预计算。
+
+固定ego clean/noisy全身MPJPE：8000步196.83/213.78mm，9000步202.98/212.66mm；支撑期脚速0.443/0.393→0.388/0.471m/s，指标并非一致改善。训练loss继续下降不足以证明步态学好了，也不应把目前结果视为收敛／论文通过。
+
+保留当前干净运行完成登记的10k首段，再优先验证上述监督／投影与步行窗，而非直接把预算拉到55k或切exo。旧55k有238/246个tensor名称及形状能与当前317个tensor匹配，但缺旧sparse-control／contact映射并新增观察／relation等模块；尤其20Hz绝对x0与30Hz参考残差的语义不同，不能原样strict resume。可以设计明确标注的开发用权重迁移对照，但旧TRAIN含12个官方TEST录制，不能作为本轮干净官方benchmark初始化；这不由后续exo续训消除。旧权重可能减少需要的优化更新量，却不会自动消除当前查询／IK的单步成本。现有GPU查询原型的完整计算收益约27%–28%仍只是受限面板结果，未接入正式进程；正式提速迁移须保留来源／Adam／RNG并先验证真实混合batch，不能暗改代码指纹。尚未启动新目标续训、旧55k迁移或exo。
