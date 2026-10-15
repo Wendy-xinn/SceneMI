@@ -23,6 +23,6 @@
 
 每臂只有一个原子`last.pt`。结束且淘汰的候选去掉Adam并核验模型张量未变，保留模型、配置、指标、RNG和配对审计；原父模型、control及被选版本继续可恢复。大权重／预测数组只留本地。
 
-恢复管理器：使用LAUNCH.json里的命令（含`--resume-manager`）。它校验源文件哈希，跳过已完成且步数匹配的阶段；worker按已提交checkpoint清理未提交日志尾部，并可仅重跑中断的阶段末验证。修改运行中扩展代码会触发哈希拒绝。
+恢复管理器：**仅在原manager和worker均已中断后使用，不要并发启动manager**。沿用LAUNCH.json中的参数，将脚本改为`resume_review.py`，例如`/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/resume_review.py --resume-manager --phase1-updates 1000 --phase2-updates 2000 --decision-hours 8 --final-stop 10000`。独立恢复入口核对STATUS中的PID及进程命令，拒绝已有同review进程；对已去Adam的落选模型先核验cleanup记录和模型hash，再幂等跳过。缺失证据时保守拒绝。它不修改六个封存扩展或原checkpoint元数据，仍校验源文件哈希、跳过已完成且步数匹配的阶段；worker按已提交checkpoint清理未提交日志尾部，并可仅重跑中断的阶段末验证。修改运行中扩展代码会触发哈希拒绝。
 
 所有结果以实际记录为准。脚滑降低、总loss下降或短程胜出，都不单独等于步态正确或55k必然收敛。
