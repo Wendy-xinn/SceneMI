@@ -1,0 +1,45 @@
+{
+  "status": "running_real_updates_verified",
+  "started_at": "2026-10-16T01:13:48.654533+08:00",
+  "pid": 69523,
+  "command": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/run_training.py",
+    "--resume",
+    "--review-step",
+    "55000"
+  ],
+  "resume_from_step": 1000,
+  "planned_steps": 55000,
+  "final_boundary": 55000,
+  "validation_every": 1000,
+  "automatic_exo": false,
+  "source_and_config_unchanged": true,
+  "reason": "User requests the fresh V2 ego run toward55k; step1000 integrity and isolated inference review completed. Early gait quality is unresolved and is not treated as proof of impossible convergence.",
+  "checked_at": "2026-10-16T01:22:27.040673+08:00",
+  "latest_verified_step": 1050,
+  "real_updates_since_resume": 50,
+  "last_lr": 9.991009935952196e-05,
+  "losses_and_gradients_finite": true,
+  "support_cache_misses": 0,
+  "full_TRAIN_VAL_revalidation": {
+    "status": "passed",
+    "checked_at": "2026-10-16T01:20:25.325058+08:00",
+    "splits": [
+      "train",
+      "validation"
+    ],
+    "TEST_used": false,
+    "durations_s": {
+      "train": 273.8047704310011,
+      "validation": 34.57712313799857
+    },
+    "unchanged_from": "runs/native30_gait_v2_arch_review_oct15/prepared",
+    "files": 1032
+  },
+  "disk_free_bytes": {
+    ".": 22378938368,
+    "/mnt/e": 120934367232
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "checked_at": "2026-10-16T01:16:22.807837+08:00",
+  "reviewed_steps": 1000,
+  "planned_steps": 55000,
+  "trace_rows": 1000,
+  "contiguous_steps": true,
+  "finite_losses_and_gradient_norms": true,
+  "all_inputs_ego": true,
+  "support_cache_misses": 0,
+  "scene_on_updates": 899,
+  "expected_optimizer_parameter_steps": {
+    "main": 1000,
+    "scene_only": 899
+  },
+  "last_lr": 9.991845519630678e-05,
+  "sample_slots": 2000,
+  "mean_train_loss": {
+    "first100": 2.537317096590996,
+    "last100": 0.8644457341730595
+  },
+  "recent200_update_mean_s": 1.8682771218597554,
+  "recent200_update_p90_s": 2.5546184849954443,
+  "validation": [
+    {
+      "step": 1,
+      "summary": {
+        "fixed/ego/clean/scene_on": {
+          "mpjpe_mm": {
+            "value": 415.4420979817708,
+            "count": 12672
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 11.267966777707139,
+            "count": 576
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 434.6885070800781,
+            "count": 12096
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 415.4420979817708,
+            "count": 12672
+          },
+          "root_position_error_mm": {
+            "value": 241.60745747884116,
+            "count": 576
+          },
+          "root_orientation_deg": {
+            "value": 55.80979665120443,
+            "count": 576
+          },
+          "head_orientation_deg": {
+            "value": 12.855036815007528,
+            "count": 576
+          },
+          "regular_rotation_deg": {
+            "value": 69.16065979003906,
+            "count": 12672
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 2.7243845444872865,
+            "count": 931
+          }
+        },
+        "fixed/ego/noisy/scene_on": {
+          "mpjpe_mm": {
+            "value": 416.2284342447917,
+            "count": 12672
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 40.369321843629244,
+            "count": 558
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 433.54138890984865,
+            "count": 12114
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 416.2284342447917,
+            "count": 12672
+          },
+          "root_position_error_mm": {
+            "value": 224.59112803141275,
+            "count": 576
+          },
+          "root_orientation_deg": {
+            "value": 56.713183085123696,
+            "count": 576
+          },
+          "head_orientation_deg": {
+            "value": 15.670056343078613,
+            "count": 576
+          },
+          "regular_rotation_deg": {
+            "value": 69.37257639567058,
+            "count": 12672
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 4.316429491073822,
+            "count": 931
+          }
+        }
+      }
+    },
+    {
+      "step": 1000,
+      "summary": {
+        "fixed/ego/clean/scene_on": {
+          "mpjpe_mm": {
+            "value": 245.87907918294272,
+            "count": 12672
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 13.440762360813096,
+            "count": 576
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 256.9475860595703,
+            "count": 12096
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 245.87907918294272,
+            "count": 12672
+          },
+          "root_position_error_mm": {
+            "value": 185.54427591959634,
+            "count": 576
+          },
+          "root_orientation_deg": {
+            "value": 40.20373280843099,
+            "count": 576
+          },
+          "head_orientation_deg": {
+            "value": 25.424195607503254,
+            "count": 576
+          },
+          "regular_rotation_deg": {
+            "value": 51.357382456461586,
+            "count": 12672
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 0.7901589382603909,
+            "count": 931
+          }
+        },
+        "fixed/ego/noisy/scene_on": {
+          "mpjpe_mm": {
+            "value": 253.62057495117188,
+            "count": 12672
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 41.811924780568766,
+            "count": 558
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 263.37699166874654,
+            "count": 12114
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 253.62057495117188,
+            "count": 12672
+          },
+          "root_position_error_mm": {
+            "value": 180.06978861490884,
+            "count": 576
+          },
+          "root_orientation_deg": {
+            "value": 41.070003509521484,
+            "count": 576
+          },
+          "head_orientation_deg": {
+            "value": 18.025878588358562,
+            "count": 576
+          },
+          "regular_rotation_deg": {
+            "value": 52.0610237121582,
+            "count": 12672
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 0.8808776350205746,
+            "count": 931
+          }
+        },
+        "rotating/ego/clean/scene_on": {
+          "mpjpe_mm": {
+            "value": 275.10508728027344,
+            "count": 12672
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 0.01798491133376956,
+            "count": 576
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 288.20447794596356,
+            "count": 12096
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 275.10508728027344,
+            "count": 12672
+          },
+          "root_position_error_mm": {
+            "value": 157.24309285481772,
+            "count": 576
+          },
+          "root_orientation_deg": {
+            "value": 37.62858963012695,
+            "count": 576
+          },
+          "head_orientation_deg": {
+            "value": 8.17396608988444,
+            "count": 576
+          },
+          "regular_rotation_deg": {
+            "value": 50.39505386352539,
+            "count": 12672
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 0.6687014403152667,
+            "count": 951
+          }
+        },
+        "rotating/ego/noisy/scene_on": {
+          "mpjpe_mm": {
+            "value": 275.3006846110026,
+            "count": 12672
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 12.568602813187466,
+            "count": 558
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 287.40276696033675,
+            "count": 12114
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 275.3006846110026,
+            "count": 12672
+          },
+          "root_position_error_mm": {
+            "value": 159.87454732259116,
+            "count": 576
+          },
+          "root_orientation_deg": {
+            "value": 39.51071039835612,
+            "count": 576
+          },
+          "head_orientation_deg": {
+            "value": 5.340824127197266,
+            "count": 576
+          },
+          "regular_rotation_deg": {
+            "value": 50.91743596394857,
+            "count": 12672
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 0.709287424882253,
+            "count": 951
+          }
+        }
+      }
+    }
+  ],
+  "foot_monitor": [
+    {
+      "step": 1,
+      "summary": {
+        "fixed/clean": {
+          "foot_world_error_mm": 949.6465657552084,
+          "body_local_foot_error_mm": 358.57066853841144,
+          "articulation_log_ratio_error": 2.4462528626124063,
+          "bilateral_sagittal_correlation_error": 0.06087259451548258,
+          "foot_velocity_RMSE_m_s": 2.848393281300863,
+          "swing_velocity_RMSE_m_s": 2.192642569541931,
+          "foot_acceleration_RMSE_m_s2": 124.9989496866862
+        },
+        "fixed/noisy": {
+          "foot_world_error_mm": 954.2319742838541,
+          "body_local_foot_error_mm": 359.6747131347656,
+          "articulation_log_ratio_error": 2.7161449591318765,
+          "bilateral_sagittal_correlation_error": 0.10321996609369914,
+          "foot_velocity_RMSE_m_s": 4.499263763427734,
+          "swing_velocity_RMSE_m_s": 4.625032901763916,
+          "foot_acceleration_RMSE_m_s2": 248.77039082845053
+        }
+      }
+    },
+    {
+      "step": 1000,
+      "summary": {
+        "fixed/clean": {
+          "foot_world_error_mm": 482.8172607421875,
+          "body_local_foot_error_mm": 411.6764729817708,
+          "articulation_log_ratio_error": 0.7407951056957245,
+          "bilateral_sagittal_correlation_error": 1.4423627058664958,
+          "foot_velocity_RMSE_m_s": 1.0151519378026326,
+          "swing_velocity_RMSE_m_s": 1.3215405941009521,
+          "foot_acceleration_RMSE_m_s2": 34.46153577168783
+        },
+        "fixed/noisy": {
+          "foot_world_error_mm": 512.6363830566406,
+          "body_local_foot_error_mm": 423.9474792480469,
+          "articulation_log_ratio_error": 0.6299919237693151,
+          "bilateral_sagittal_correlation_error": 1.5752241611480713,
+          "foot_velocity_RMSE_m_s": 1.1751590569814045,
+          "swing_velocity_RMSE_m_s": 1.533659279346466,
+          "foot_acceleration_RMSE_m_s2": 43.25878715515137
+        },
+        "rotating/clean": {
+          "foot_world_error_mm": 636.1989440917969,
+          "body_local_foot_error_mm": 504.26073201497394,
+          "articulation_log_ratio_error": 0.2804630249738693,
+          "bilateral_sagittal_correlation_error": 0.49828654527664185,
+          "foot_velocity_RMSE_m_s": 0.8973774711290995,
+          "foot_acceleration_RMSE_m_s2": 28.14741579691569
+        },
+        "rotating/noisy": {
+          "foot_world_error_mm": 625.1018269856771,
+          "body_local_foot_error_mm": 503.5655212402344,
+          "articulation_log_ratio_error": 0.3309105436007182,
+          "bilateral_sagittal_correlation_error": 0.5510437488555908,
+          "foot_velocity_RMSE_m_s": 0.966262420018514,
+          "foot_acceleration_RMSE_m_s2": 32.19138209025065
+        }
+      }
+    }
+  ],
+  "runtime_projection": {
+    "5000": {
+      "hours_after_resume_startup": [
+        2.3043764399663957,
+        3.484342437727371
+      ],
+      "assumptions": "Recent200 complete Adam updates; observed1000 validation time; assumed checkpoint5-10s per100; extra sceneOFF60-90s per5000; no future pause or restart. Runtime projection, not convergence prediction."
+    },
+    "10000": {
+      "hours_after_resume_startup": [
+        5.180680323257723,
+        7.833520484886585
+      ],
+      "assumptions": "Recent200 complete Adam updates; observed1000 validation time; assumed checkpoint5-10s per100; extra sceneOFF60-90s per5000; no future pause or restart. Runtime projection, not convergence prediction."
+    },
+    "55000": {
+      "hours_after_resume_startup": [
+        31.067415272879675,
+        46.976122909319514
+      ],
+      "assumptions": "Recent200 complete Adam updates; observed1000 validation time; assumed checkpoint5-10s per100; extra sceneOFF60-90s per5000; no future pause or restart. Runtime projection, not convergence prediction."
+    }
+  },
+  "training_vs_old55k": "New55k B2=110000 sample slots, old55k B4=220000; different split/task/FPS/window protocol, not an equivalent exposure or architecture-only comparison.",
+  "disk_free_bytes": {
+    ".": 22383738880,
+    "/mnt/e": 120934367232
+  }
+}

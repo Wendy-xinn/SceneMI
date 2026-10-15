@@ -1,0 +1,53 @@
+{
+  "invocation.json": {
+    "status": "review_hold",
+    "started_at": "2026-10-15T22:25:09.594796+08:00",
+    "pid": 59933,
+    "planned_steps": 55000,
+    "review_step": 1000,
+    "resume": false,
+    "training_mode": "ego",
+    "initialization": "from_scratch",
+    "wrapper_sha256": "476b58acb78e6eb3448c41ea6e368b2610b5decf8477f073d3a9ba56126fff07",
+    "automatic_exo": false,
+    "automatic_review_extension": false,
+    "memory_fraction": 0.35,
+    "threads": 4,
+    "deterministic": true,
+    "completed_steps": 1000,
+    "finished_at": "2026-10-15T23:10:29.134270+08:00"
+  },
+  "REVIEW_BOUNDARY.json": {
+    "status": "ready_for_review",
+    "step": 1000,
+    "planned_steps": 55000,
+    "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/last.pt",
+    "completed_at": "2026-10-15T23:10:29.132544+08:00",
+    "optimizer_and_sampler_RNG_preserved": true,
+    "automatic_extension": false
+  },
+  "training/protocol.json": {
+    "status": "stopped",
+    "planned_steps": 55000,
+    "completed_steps": 1000,
+    "free_disk_before": 24517390336,
+    "checkpoint_policy": "one atomic resumable last.pt",
+    "initialization": {
+      "type": "from_scratch",
+      "seed": 2026101267,
+      "source_checkpoint": null,
+      "optimizer_reset": true,
+      "all_model_parameters_trainable": true,
+      "initial_model_sha256": "9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69",
+      "optimizer_state_entries": 0
+    },
+    "counts": {
+      "trumans/ego": 1254,
+      "camera_wearer/ego": 278,
+      "interactee/ego": 260,
+      "rich/ego": 208
+    },
+    "elapsed_s": 2219.177879791001,
+    "free_disk_after": 22387843072
+  }
+}
