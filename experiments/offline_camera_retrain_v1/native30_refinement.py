@@ -183,12 +183,23 @@ def sample_motion(model,batch,config,**kwargs):
 
 
 class Native30Refinement(Native30SceneMI):
-    def __init__(self,*args,observation_anchor_gain=0.,joint_anchor_gain=0.,**kwargs):
+    def __init__(self,*args,observation_anchor_gain=0.,joint_anchor_gain=0.,
+                 joint_anchor_iterations=6,joint_anchor_damping_m2=.0025,
+                 joint_anchor_angle_limit_rad=.35,joint_anchor_compact=False,**kwargs):
         super().__init__(*args,**kwargs)
         if not 0<=observation_anchor_gain<=1:raise ValueError('Observation anchor gain must be in [0,1]')
         self.observation_anchor_gain=observation_anchor_gain
         if not 0<=joint_anchor_gain<=1:raise ValueError('Joint anchor gain must be in [0,1]')
         self.joint_anchor_gain=joint_anchor_gain
+        if isinstance(joint_anchor_iterations,bool) or not isinstance(joint_anchor_iterations,int) or joint_anchor_iterations<1:
+            raise ValueError('IK iterations must be a positive integer')
+        if not 0<joint_anchor_damping_m2<float('inf') or not 0<joint_anchor_angle_limit_rad<float('inf'):
+            raise ValueError('IK damping and angle limit must be positive finite')
+        if not isinstance(joint_anchor_compact,bool):raise ValueError('Compact IK must be boolean')
+        self.joint_anchor_iterations=joint_anchor_iterations
+        self.joint_anchor_damping_m2=joint_anchor_damping_m2
+        self.joint_anchor_angle_limit_rad=joint_anchor_angle_limit_rad
+        self.joint_anchor_compact=joint_anchor_compact
         self.reference_encoder=nn.Sequential(nn.Linear(27,64),nn.SiLU(),nn.Linear(64,64))
         self.reference_attention=nn.MultiheadAttention(64,4,batch_first=True)
         self.reference_projection=nn.Linear(22*64,64,bias=False)
@@ -197,7 +208,9 @@ class Native30Refinement(Native30SceneMI):
         result=confidence_anchor(motion,batch,self.alphas[timestep],self.observation_anchor_gain)
         if self.joint_anchor_gain:
             from experiments.offline_camera_retrain_v1.native30_observation_ik import position_proximal
-            result=position_proximal(result,batch,self.alphas[timestep],self.joint_anchor_gain)
+            result=position_proximal(result,batch,self.alphas[timestep],self.joint_anchor_gain,
+                iterations=self.joint_anchor_iterations,damping_m2=self.joint_anchor_damping_m2,
+                angle_limit_rad=self.joint_anchor_angle_limit_rad,compact=self.joint_anchor_compact)
         return result
 
     def observation_condition(self,batch,control_mask=None):

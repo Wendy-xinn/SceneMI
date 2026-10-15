@@ -1,0 +1,353 @@
+PREPARATION_PID 49162
+MDM latent dim:  256
+Using UNET with lantent dim:  256  and mults:  (1, 2, 4)
+dims:  [201, 256, 512, 1024] mults:  (1, 2, 4)
+[ models/temporal ] Channel dimensions: [(201, 256), (256, 512), (512, 1024)]
+[ models/temporal ] added_input_channels: 97
+audited TRAIN gradient bucket train/trumans/ego
+audited TRAIN gradient bucket train/trumans/exo
+audited TRAIN gradient bucket train/camera_wearer/ego
+audited TRAIN gradient bucket train/camera_wearer/exo
+audited TRAIN gradient bucket train/interactee/ego
+audited TRAIN gradient bucket train/interactee/exo
+audited TRAIN gradient bucket train/rich/ego
+audited TRAIN gradient bucket train/rich/exo
+{
+  "status": "passed",
+  "optimizer_steps": 0,
+  "data_mode": "full",
+  "training_started": false,
+  "free_disk_before": 28536819712,
+  "checks": {
+    "fixed_validation_plan": {
+      "cases": 12,
+      "clean_noisy_evaluations": 24,
+      "split": "validation",
+      "test_tuning": false
+    },
+    "post_anchor_common_world_yaw": {
+      "angle_rad": 0.6,
+      "maximum_joint_error_m": 3.888548132380265e-07
+    },
+    "predicted_proposal_query_coverage": [
+      {
+        "label": "train/trumans/ego",
+        "known_anchor_fraction": 0.9894278645515442,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/trumans/exo",
+        "known_anchor_fraction": 0.9932368993759155,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/camera_wearer/ego",
+        "known_anchor_fraction": 0.0,
+        "known_region_fraction": 0.9997633099555969,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/camera_wearer/exo",
+        "known_anchor_fraction": 0.4253731369972229,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/interactee/ego",
+        "known_anchor_fraction": 0.17296330630779266,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/interactee/exo",
+        "known_anchor_fraction": 0.6677549481391907,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/rich/ego",
+        "known_anchor_fraction": 0.3404073417186737,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      },
+      {
+        "label": "train/rich/exo",
+        "known_anchor_fraction": 0.7871579527854919,
+        "known_region_fraction": 1.0,
+        "query_source": "untrained predicted x0, no GT skin queries"
+      }
+    ],
+    "full_objective_backward": {
+      "batch_size": 2,
+      "frames": 192,
+      "finite": true,
+      "optimizer_steps": 0,
+      "loss": 7.448747158050537,
+      "root_feedback_gradient_norm": 0.0004428510437719524,
+      "rotation_feedback_gradient_norm": 0.013947974890470505,
+      "peak_cuda_gib": 2.642505168914795,
+      "condition_gradient_norms": {
+        "observation_encoder.0.weight": 0.01733260601758957,
+        "camera_encoder.0.weight": 0.028787238523364067,
+        "patch_projection.weight": 0.08540576696395874,
+        "dynamic_condition.weight": 0.01415969617664814,
+        "patch_condition.weight": 0.32095977663993835,
+        "surface_embedding.0.weight": 0.003078201087191701,
+        "region_condition.weight": 0.022938892245292664,
+        "contact_pose.0.weight": 0.010023035109043121
+      },
+      "zero_initialized_feedback_upstream_gradients": "temporal/contact path initially waits for zero residual heads to learn"
+    },
+    "frozen_no_body_truth_loader": {
+      "passed": true,
+      "cases": [
+        "train/trumans/exo",
+        "train/camera_wearer/exo",
+        "train/interactee/exo",
+        "train/rich/exo",
+        "validation/trumans/exo",
+        "validation/camera_wearer/exo",
+        "validation/interactee/exo",
+        "validation/rich/exo"
+      ]
+    },
+    "frozen_self_camera_head_without_body_truth": true,
+    "hidden_truth_poison": true,
+    "zero_confidence_poison_all_paths": true,
+    "position_rotation_feedback": {
+      "test_parameters_only": true,
+      "root_delta_max_m": 0.019395900890231133,
+      "joint_position_change_max_m": 0.1410694569349289,
+      "bone_length_error_max_m": 2.086162567138672e-07,
+      "fk_branch_error_max_m": 0.0,
+      "geometry": "controlled observed plane at untrained predicted feet; no GT body query",
+      "real_motion_quality_claim": false
+    },
+    "contact_gate_controls_position_feedback": true,
+    "scene_condition_reaches_output": {
+      "maximum_difference": 0.011136265471577644,
+      "quality_claim": false
+    },
+    "patch_condition_reaches_output": {
+      "maximum_difference": 0.011564025655388832,
+      "quality_claim": false
+    },
+    "local_condition_reaches_output": {
+      "maximum_difference": 0.0010036006569862366,
+      "geometry": "controlled observed plane",
+      "quality_claim": false
+    },
+    "full_window_ddim_smoke": {
+      "frames": 192,
+      "steps": 2,
+      "core_forwards": 4,
+      "finite": true,
+      "quality_claim": false,
+      "normal_evaluation_steps": 20,
+      "static_tokens_reused": true
+    }
+  },
+  "elapsed_s": 87.44662050099942,
+  "engineering_ready": true,
+  "training_ready": false,
+  "preflight_only": true,
+  "data_scope": "full corpus",
+  "free_disk_after": 28525277184,
+  "model_parameters": 122667536,
+  "alignment": [
+    {
+      "label": "train/trumans/ego",
+      "source": 0,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 4.76837158203125e-07,
+      "head_inverse_mean_m": 7.871796725567037e-08,
+      "reliable_position_mean": 1.0,
+      "static_points": 32326,
+      "current_dynamic_points_mean": 256.0,
+      "contact_label_entries": 1018
+    },
+    {
+      "label": "train/trumans/exo",
+      "source": 0,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 4.172325134277344e-07,
+      "head_inverse_mean_m": null,
+      "reliable_position_mean": 15.791666666666666,
+      "static_points": 7502,
+      "current_dynamic_points_mean": 256.0,
+      "contact_label_entries": 786
+    },
+    {
+      "label": "train/camera_wearer/ego",
+      "source": 1551,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 4.76837158203125e-07,
+      "head_inverse_mean_m": 0.030674805864691734,
+      "reliable_position_mean": 1.0,
+      "static_points": 16240,
+      "current_dynamic_points_mean": 255.953125,
+      "contact_label_entries": 0
+    },
+    {
+      "label": "train/camera_wearer/exo",
+      "source": 1551,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 7.152557373046875e-07,
+      "head_inverse_mean_m": null,
+      "reliable_position_mean": 19.973958333333332,
+      "static_points": 12207,
+      "current_dynamic_points_mean": 256.0,
+      "contact_label_entries": 814
+    },
+    {
+      "label": "train/interactee/ego",
+      "source": 1551,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 7.152557373046875e-07,
+      "head_inverse_mean_m": 4.345052673215832e-08,
+      "reliable_position_mean": 1.0,
+      "static_points": 33854,
+      "current_dynamic_points_mean": 252.796875,
+      "contact_label_entries": 375
+    },
+    {
+      "label": "train/interactee/exo",
+      "source": 1551,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 7.152557373046875e-07,
+      "head_inverse_mean_m": null,
+      "reliable_position_mean": 21.84375,
+      "static_points": 11387,
+      "current_dynamic_points_mean": 256.0,
+      "contact_label_entries": 778
+    },
+    {
+      "label": "train/rich/ego",
+      "source": 5,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 2.1457672119140625e-06,
+      "head_inverse_mean_m": 4.917667340009757e-08,
+      "reliable_position_mean": 1.0,
+      "static_points": 18691,
+      "current_dynamic_points_mean": 0.0,
+      "contact_label_entries": 4224
+    },
+    {
+      "label": "train/rich/exo",
+      "source": 5,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 2.205371856689453e-06,
+      "head_inverse_mean_m": null,
+      "reliable_position_mean": 21.265625,
+      "static_points": 6482,
+      "current_dynamic_points_mean": 0.0,
+      "contact_label_entries": 4224
+    },
+    {
+      "label": "validation/trumans/ego",
+      "source": 0,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 3.5762786865234375e-07,
+      "head_inverse_mean_m": 6.225018012173678e-08,
+      "reliable_position_mean": 1.0,
+      "static_points": 39336,
+      "current_dynamic_points_mean": 217.77604166666666,
+      "contact_label_entries": 0
+    },
+    {
+      "label": "validation/trumans/exo",
+      "source": 0,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 4.76837158203125e-07,
+      "head_inverse_mean_m": null,
+      "reliable_position_mean": 10.567708333333334,
+      "static_points": 15006,
+      "current_dynamic_points_mean": 256.0,
+      "contact_label_entries": 0
+    },
+    {
+      "label": "validation/camera_wearer/ego",
+      "source": 1111,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 5.960464477539062e-07,
+      "head_inverse_mean_m": 0.03237202391028404,
+      "reliable_position_mean": 1.0,
+      "static_points": 8957,
+      "current_dynamic_points_mean": 256.0,
+      "contact_label_entries": 0
+    },
+    {
+      "label": "validation/camera_wearer/exo",
+      "source": 1111,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 9.5367431640625e-07,
+      "head_inverse_mean_m": null,
+      "reliable_position_mean": 20.072916666666668,
+      "static_points": 11825,
+      "current_dynamic_points_mean": 256.0,
+      "contact_label_entries": 0
+    },
+    {
+      "label": "validation/interactee/ego",
+      "source": 1111,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 5.960464477539062e-07,
+      "head_inverse_mean_m": 2.7148510994834396e-08,
+      "reliable_position_mean": 1.0,
+      "static_points": 16496,
+      "current_dynamic_points_mean": 110.36458333333333,
+      "contact_label_entries": 0
+    },
+    {
+      "label": "validation/interactee/exo",
+      "source": 1111,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 7.152557373046875e-07,
+      "head_inverse_mean_m": null,
+      "reliable_position_mean": 21.828125,
+      "static_points": 11825,
+      "current_dynamic_points_mean": 256.0,
+      "contact_label_entries": 0
+    },
+    {
+      "label": "validation/rich/ego",
+      "source": 5,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 1.3113021850585938e-06,
+      "head_inverse_mean_m": 2.0710017167857586e-07,
+      "reliable_position_mean": 1.0,
+      "static_points": 48193,
+      "current_dynamic_points_mean": 0.0,
+      "contact_label_entries": 4224
+    },
+    {
+      "label": "validation/rich/exo",
+      "source": 5,
+      "frames": 192,
+      "fps": 30,
+      "maximum_native_fk_m": 1.430511474609375e-06,
+      "head_inverse_mean_m": null,
+      "reliable_position_mean": 19.6875,
+      "static_points": 17890,
+      "current_dynamic_points_mean": 0.0,
+      "contact_label_entries": 4224
+    }
+  ]
+}

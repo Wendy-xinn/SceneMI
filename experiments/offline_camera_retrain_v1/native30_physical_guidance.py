@@ -14,6 +14,8 @@ from experiments.offline_camera_retrain_v1.unified_geometry import skin_points
 from experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations
 from experiments.offline_camera_retrain_v1.scene_model import cosine_alphas
 
+CONTACT_JOINTS=(0,1,2,7,8,10,11,20,21)
+
 
 def select_batch(batch, i):
     size = len(batch['mode'])
@@ -29,9 +31,20 @@ def prepare_evidence(motion, batch, contact_probability, config):
     asset = batch['skin_assets'][0]; scene = batch['surface_windows'][0]
     vertices = skin_points(motion[0], asset)
     labels = asset['labels']; rotations = global_rotations(motion)[0, :, labels]
-    v_numpy,r_numpy=vertices.detach().cpu().numpy(),rotations.detach().cpu().numpy()
+    selected=None
+    if config.get('query_contact_regions_only',False):
+        selected=torch.isin(labels,labels.new_tensor(CONTACT_JOINTS)).nonzero().flatten()
+    probes=vertices if selected is None else vertices[:,selected]
+    probe_rotations=rotations if selected is None else rotations[:,selected]
+    v_numpy,r_numpy=probes.detach().cpu().numpy(),probe_rotations.detach().cpu().numpy()
     raw = scene.query_wide_motion(v_numpy,r_numpy,motion.device) if hasattr(scene,'query_wide_motion') else getattr(scene,'query_wide',scene.query)(v_numpy,r_numpy)
     q = {k: torch.as_tensor(v, device=motion.device) for k,v in raw.items()}
+    if selected is not None:
+        # The unused anchors retain zero contact/plane/slip weights below.
+        # Preserve full shapes and summation order for the actual energy.
+        full={k:v.new_zeros(v.shape[0],len(labels),*v.shape[2:]) for k,v in q.items()}
+        for k,v in q.items():full[k][:,selected]=v
+        q=full
     feet = torch.isin(labels,labels.new_tensor([7,8,10,11]))[None]
     distances=(vertices.detach()[:,:,None]-q['points'][:,:,2]).norm(dim=-1)
     compatible=q['valid'][:,:,2] & q['normal_reliable'][:,:,2]
@@ -50,8 +63,9 @@ def prepare_evidence(motion, batch, contact_probability, config):
     probability = contact_probability.detach()[0]
     support = ((probability-config['contact_threshold'])/(1-config['contact_threshold'])).clamp(0,1)
     contact_weight = torch.zeros_like(signed)
-    for joint in (0,1,2,7,8,10,11,20,21):
+    for joint in CONTACT_JOINTS:
         ids = (labels==joint).nonzero().flatten()
+        if not len(ids):continue
         score = torch.where(local[:,ids], delta[:,ids].norm(dim=-1), torch.inf)
         closest = score.argmin(-1)
         mask = local[:,ids].gather(1,closest[:,None])[:,0]
@@ -100,6 +114,8 @@ def guide_motion(motion,timestep,batch,details,config,constrain):
         for b in range(len(motion)):
             sub=select_batch(batch,b);base=motion[b:b+1].detach()
             if float(alphas[b])<config['minimum_alpha']:
+                output.append(base);before.append(0.);after.append(0.);accepted.append(0.);continue
+            if config.get('query_contact_regions_only',False) and not bool((details['contact_logits'][b,:,CONTACT_JOINTS].sigmoid()>config['contact_threshold']).any()):
                 output.append(base);before.append(0.);after.append(0.);accepted.append(0.);continue
             evidence=prepare_evidence(base,sub,details['contact_logits'][b:b+1].sigmoid(),config)
             if not bool((evidence['contact_weight']>0).any()):

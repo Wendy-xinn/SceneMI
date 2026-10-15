@@ -1,0 +1,55 @@
+{
+  "status": "passed_engineering_quality_not_yet_validated",
+  "checked_at": "2026-10-15T20:49:18.498866+08:00",
+  "optimizer_updates": 0,
+  "training_started": false,
+  "preflight_only": true,
+  "training_ready": false,
+  "engineering_ready": true,
+  "parameters": 122667536,
+  "official_TRAIN_VAL_data_unchanged": true,
+  "TEST_examples_used": false,
+  "code_hashes_match_effective_config": true,
+  "checks_passed": [
+    "contact_gate_controls_position_feedback",
+    "fixed_validation_plan",
+    "frozen_no_body_truth_loader",
+    "frozen_self_camera_head_without_body_truth",
+    "full_objective_backward",
+    "full_window_ddim_smoke",
+    "hidden_truth_poison",
+    "local_condition_reaches_output",
+    "patch_condition_reaches_output",
+    "position_rotation_feedback",
+    "post_anchor_common_world_yaw",
+    "predicted_proposal_query_coverage",
+    "scene_condition_reaches_output",
+    "zero_confidence_poison_all_paths"
+  ],
+  "calibration_TRAIN_windows": 8,
+  "calibration_noise_buckets": [
+    25,
+    300,
+    800
+  ],
+  "observation_coefficients": {
+    "position": 0.09597684428424401,
+    "rotation": 0.025,
+    "velocity": 0.00029011997255170386,
+    "acceleration": 3.16126911095216e-06,
+    "angular_velocity": 0.0023217302368079363,
+    "body_turn_rate": 0.0007816471124286364
+  },
+  "regression_tests": 127,
+  "regression_log_sha256": "ff037016fd2b21d1654b7ad661d491e387b3484befbd9f767ef22320b658bd42",
+  "chosen_runtime": {
+    "query_backend": "cuda_exact_radius_v1",
+    "compact_IK": false,
+    "physical_contact_query_subset": false
+  },
+  "unresolved": "Gait convergence/VAL benefit and architecture ablation not yet trained; no long training launched.",
+  "free_disk_after": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1": 28524556288,
+    "/mnt/e": 120934367232
+  }
+}

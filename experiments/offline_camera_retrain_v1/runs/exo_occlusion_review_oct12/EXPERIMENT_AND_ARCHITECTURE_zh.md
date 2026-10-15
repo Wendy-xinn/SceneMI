@@ -1,6 +1,6 @@
 # Ego/exo 模型与实验唯一总清单
 
-**当前决定（§4.20）：用户要求先检查速度与脚步监督，暂不训练，确定后从零开始ego阶段（累计上限55k）。10k→55k续训准备已取消，未启动、0次优化器更新；完整Native30原10000及独立EXO支线7831均保留。当前只做零更新耗时与等价性检查。两套完整架构与第三支线差别见§4.19；不能把新版10k监督等同于旧55k的脚步监督。**
+**当前改动（§4.21）：脚步V2候选与模型级GPU精确查询入口已实现，127项回归及新监督下三组完整反传检查通过，仍为0次optimizer更新。精简IK未过严格等价门槛，不启用；物理查询27点裁剪数值一致但耗时收益不稳定，仅保留开关。新配置preflight_only=true，长训暂停；未来从0 ego、最多55k，先验收脚步可学习性和VAL。架构依据、当前自定义部分及消融计划见4.21，原55k／完整10k／EXO7831均保留。**
 
 **此前小试（10月15日，§4.17）：按用户要求完成旧55k冻结先验＋exo残差小试。保留观测参考并加遮挡分支保护后，遮挡MPJPE clean/noisy-mixture 156.90/162.82→125.14/133.55mm；相对同预算无场景版本，scene额外改善3.43%/3.71%，输入可见关节位置最大变化不足1μm。但脚步交替指标退化，当前仅为有初步收益的开发候选，不作论文验收通过。32个VAL特征窗来自16源窗；旧聚类标记问题见4.19。保护为posthoc、VAL被复用，旧55k又有历史官方TEST重叠。骨架回放：[8790 遮挡保护版](http://127.0.0.1:8790/PROTECTED_REPLAY.html)。原55k未改，候选与最小对照保留Adam。**
 
@@ -1400,3 +1400,79 @@ WSL互操作此次可用，直接用非管理员PowerShell读取System事件1001
 完整旧55k还包含head／pelvis／wrists等多条件任务且B4，55k共220000样本槽；完整新版10k是head-only／B2、20000槽，时间采样和官方划分也不同。因此“同样55k步”并非相同任务／曝光量，不能把步数或相同loss名字当作脚步可复现保证。原55k仍用于现象与训练目标核对，不作为新正式模型的初始化。
 
 查询边界检查通过：沿用8项既有回归，再加10项float32/64全字段核对，覆盖半径边界／平局、稀疏邻点、全部候选剔除及十万个窗外无关静态点，见[QUERY_EDGE_TESTS.json](../native30_speed_gait_review_oct15/QUERY_EDGE_TESTS.json)。数据原文件、body与scene缓存均保留；本预检目录约22MiB（含可重建计时输入，不是模型权重），Linux约26.6GiB、E约112.6GiB空闲。所有计时与检查进程均已结束，无后台训练。代码及小记录备份授权仓库，大数组留本地。
+
+## 4.21 完善脚步监督、接入加速与逐模块依据审查
+
+按用户最新顺序：先完成监督实现，再接入加速，审查复杂场景结构的必要性。本轮没有训练、没有新增checkpoint、没有修改旧55k／10k／EXO7831权重。新[候选配置](../../native30_fresh_ego_gait_v2_config.json)沿用30Hz／L192／S64、B2、官方划分、head-only ego和原模型参数形状，从零初始化；`preflight_only=true`使准备过程不能直接解锁长训。没有用当前10k继续训练来冒充从零。
+
+### 脚步监督V2的实际修改
+
+[native30_gait_supervision_v2.py](../../native30_gait_supervision_v2.py)在已存在V1基础上补齐此前遗漏的脚高和phase-free支撑代理，并把双脚关系从全身关节关系平均中单列；既有V1及未启用gait的旧配置仍走原分支。
+
+|目标|V2处理|初始系数|
+|---|---|---:|
+|支撑／摆动脚速度|分别按GT状态归一化，匹配GT速度，不要求所有脚都静止|0.10／0.05|
+|pelvis相对脚位、0.2／0.4秒位移|30Hz对应6／12帧，隔离整个人的平移|1／2|
+|支撑／摆动脚高|恢复旧55k的GT脚高目标|2／0.5|
+|最低脚高包络、低于GT包络、phase-free planting|只作为训练目标，不当作已知真实地板输入|4／2／0.1|
+|原全身协调幅度／关系|保留原思路和1.6秒统计窗|5／0.05|
+|新增身体坐标双脚差分位移、差分幅度、直接左右相关|各自匹配本片段GT；跳跃／双脚同相时不会强制反相|1／5／0.05|
+
+所有上述项按alpha_bar门控；包括支撑代理也门控，**这与旧55k未门控的phase-free支撑项并非逐项完全相同**。导数和统计窗跳过触及GT孤立反跳候选的stencil，点位仍保留软权重，完整GT不平滑、不编辑、不删除快速动作。身体坐标使用各自root旋转，统一世界yaw或身体平移不能假装脚步交替。
+
+[native30_losses.py](../../native30_losses.py)的V2分支替换原未分状态的foot_velocity和GT-phase planting，避免两套脚速／planting重复累加。对网络原始x0（内部IK／物理修正之前）另加0.5倍同类脚步目标，同时保留final目标；可以检查网络本身是否学会，而不是仅看到修正器后的表面改善。原始输出分支也只读训练GT，不增加推理输入。新系数是基于旧目标的候选初值，**没有凭单元测试宣称脚步已学会或最优**。
+
+补查并修正了准备阶段的梯度标定入口：原来无论选哪种gait profile，参考body loss都没有传入该profile；现在按当前配置计算final输出参考梯度，再标定观察项。raw辅助分支不对这个final叶子求导，另外在完整反传中核对。标定仍只使用8个TRAIN条件窗×3噪声桶，不等于总体最优权重。
+
+11项新增脚步反事实检查包含：整身平移不能掩盖腿不动、同幅同相脚识别、双脚同相跳跃允许、身体坐标对共同root运动不敏感、6／12帧物理时长、GT脉冲／全缺失／零signal、原始输出分支梯度。加4项backend隔离／异常／deepcopy检查，全部Native30回归127项通过。三组真实TRAIN完整从零模型、同一V2目标的前反传均有限，随机初始模型SHA与封存的原随机初始化相同，**optimizer更新0**。
+
+### 加速入口与没有采用的候选
+
+GPU查询从隔离脚本接入[native30_exact_query.py](../../native30_exact_query.py)，由`runtime.query_backend=cuda_exact_radius_v1`选择。[native30_query_backend.py](../../native30_query_backend.py)只在对应模型forward期间切换，退出／异常后恢复，普通模型不被另一个模型的设置污染；不增加state_dict参数。CPU弱标签查询与缓存源码没有改动，13项缓存依赖SHA均与原版相同，见[SUPPORT_CACHE_DEPENDENCY_AUDIT.json](../native30_gait_v2_arch_review_oct15/SUPPORT_CACHE_DEPENDENCY_AUDIT.json)。没有触发33k窗重新标注，也没有绕过来源指纹。
+
+[完整模型验证](../native30_gait_v2_arch_review_oct15/FULL_MODEL_VERIFICATION.json)使用同一从零参数、B2／FP32、相同dropout和扩散噪声、V2目标，在确定性后端做三组对照。精确GPU查询与原查询的输出、loss、全部参数梯度逐位一致；完整前反传均值约2.440→1.476、3.132→2.172、1.588→1.438秒，约1.65／1.44／1.10倍。与§4.20的已训练10k／旧目标／默认后端计时不同，不能混报成同一倍速。均不含随机数据准备、实际Adam计算、checkpoint及验证。
+
+额外查出物理`prepare_evidence`会查询67点，但接触能量仅使用0/1/2/7/8/10/11/20/21共9个区域，即当前native选择中的27点；其余点的contact／plane／slip权重始终为0。`physical_guidance.query_contact_regions_only`提供可选裁剪和确定无接触时跳过查询，能量保留原67点形状及求和顺序。三组完整模型输出、loss及梯度均逐位一致，但测得1.672／2.143／1.313秒，相对GPU-only并非稳定改善，因此候选默认仍为false。几何编码的67点三尺度未删减。
+
+另将配置中已写明的IK iterations／damping／angle limit正式传入求解器，旧配置数值与旧默认一致。精简变量的compact IK虽有代数依据，实际全模型FP32迭代后的输出差约9.2e-5–1.1e-4特征单位、梯度差约0.016–0.019，超过预设容差，因此`joint_anchor_compact=false`；不放宽门槛把它包装成等价提速。失败记录保留，后续若采用，应作为需要质量验证的数值算法变体。
+
+### 这些模块的文献依据与自定义边界
+
+结论：**一般建模原则有依据，当前所有模块叠加以及具体预算的必要性尚未由本项目匹配训练消融证明。** “某项梯度非零／能改变输出”仅证明接通，不证明带来泛化收益。
+
+|模块|依据与本项目实际选择|改进／验收方向|
+|---|---|---|
+|全局patch|[SceneMI §3.1](https://arxiv.org/html/2503.16289v1#S3.SS1)支持全局occupancy ViT与局部BPS配合。本项目保留16个有位置的patch作attention，而非只用summary，是自己的扩展|先保留低频布局；当前DDIM已按整次采样缓存global＋dynamic token，并非每步重编码ViT。对16patch versus summary另做消融|
+|动态对象|本实现将当前帧可见owner的中心、可见范围、有效速度与静态union分开，避免把移动物体残影写成静态障碍；独立owner attention不是SceneMI原设置的必选组件|区分“关掉动态token但保留局部动态点”与“去掉全部动态信息”，两者回答不同问题；先保持当前帧／valid语义|
+|67皮肤anchor＋三尺度|原SceneMI是**64个全局FPS表面点、关键帧最近邻BPS**。本项目67来自22个native区域各3点＋1头点，脚区偏低面，选择法与原文不同。[PointNet++](https://proceedings.neurips.cc/paper_files/paper/2017/hash/d8bf84be3800d12f74d8b05e9b89836f-Abstract.html)支持多尺度局部特征这一原则，不证明0.08／0.25／0.6m和8邻点最优|按区域保留脚底／手／骨盆覆盖，对22／34／67点和单／多尺度做匹配模型消融；不能只改数字而沿用固定维度权重|
+|支撑关系|当前22关节的1.5m邻域和1.25m向上静态context，补足0.6m皮肤邻域够不到支撑的情况。[LEMO](https://openaccess.thecvf.com/content/ICCV2021/papers/Zhang_Learning_Motion_Priors_for_4D_Human_Body_Capture_in_3D_ICCV_2021_paper.pdf)给出运动先验／接触摩擦建模依据，当前宽支撑attention是自己的设计|需单独ON/OFF；可共用场景索引、合并相近关系编码，但表面法线向上不等于完整地板，不能凭context补出未知自由空间|
+|proposal／final两遍|先估计干净人体，再在预测身体周围查询，避免拿扩散噪声或完整GT人体当查询中心；这是实现理由，不是原论文规定。[自条件扩散](https://arxiv.org/html/2208.04202v2#S2)有使用前一x0估计的先例|优先考虑“前一扩散步x0＋首步输入参考fallback”的单遍方案；训练需匹配自条件分布，不能只把10k模型推理砍一遍并当公平架构结果|
+|IK与物理修正|[OmniControl](https://arxiv.org/abs/2310.08580)支持观察关节的空间约束；[PhysDiff §4.3](https://arxiv.org/html/2212.02500v2#S4.SS3)显示扩散内物理投影存在次数／时机与质量的权衡，后期少量投影值得测试。当前6次IK、2次能量迭代及回溯均为自己的预算|先对比无物理／当前／最后4步／最后2步，观察脚步、观测误差及代价。当前仅是已见patch上的几何修正，并非PhysDiff的动力学模拟器|
+
+当前20步DDIM实际对应40次core前向；按alpha门槛，有17步允许IK、13步允许物理修正，物理还会因无有效接触提前退出，并非20步都完整运行求解。物理回溯候选会再次调用观察约束，实际IK次数随case变化；原profile中的9次constrain／54次IK迭代只是一个TRAIN batch，不能当所有窗口的固定次数。查询中心在proposal和final不同，不能无条件复用同一组近邻。CPU profiler的core条目也不等于独立CUDA同步计时，不能据此精确推算删除一遍主干的GPU收益。
+
+```mermaid
+flowchart LR
+    O[相机与可信轨迹] --> R[输入参考与置信度]
+    S[已见静态与当前动态] --> T[全局与动态token]
+    X[扩散状态xt] --> P[proposal主干 无梯度]
+    R --> P
+    T --> P
+    P --> I[观察约束]
+    I --> Q[预测人体局部几何与支撑查询]
+    Q --> F[final主干]
+    T --> F
+    R --> F
+    F --> C[学习反馈与观察约束]
+    C --> H[满足门槛时几何物理修正]
+    H --> D[DDIM下一步]
+    D --> X
+```
+
+下一结构对照写入[ARCHITECTURE_ABLATION_PLAN.json](../native30_gait_v2_arch_review_oct15/ARCHITECTURE_ABLATION_PLAN.json)：保持V2监督、相同从零初始化、采样／扰动种子和每模式样本预算，先测试physics OFF／alpha≥0.9（本20步时钟最后4步）／alpha≥0.98（最后2步）。这些门槛是本项目候选，不是直接复制PhysDiff的采样器。前一x0单遍、anchor预算、支撑合并均明确标注尚未实现／训练，不能宣称已改善质量。原架构仍保留作control。
+
+本轮仅完成监督／工程可学习方向与数值运行检查，尚未证明新版脚步收敛；新系数和架构取舍仍需有界从零步行小试及独立VAL。`preflight_only=true`继续阻止把工程通过当成直接长训许可；不自动启动55k。
+
+最终[FINAL_PREFLIGHT_AUDIT.json](../native30_gait_v2_arch_review_oct15/FINAL_PREFLIGHT_AUDIT.json)核对：完整官方TRAIN/VAL数据SHA与此前全量审计逐项相同，当前代码SHA与新effective_config一致；14类输入／反馈／反传／DDIM检查通过，参数仍122667536，更新0。最终`engineering_ready=true`、`training_ready=false`，原因是明确的preflight-only设置，而不是数据或数值失败。新观察系数按V2的8窗TRAIN面板重标，完整数值在prepared/TRAIN_gradient_scales.json。小试质量和结构消融仍未运行。
+
+双脚差分stride与逐脚stride存在代数联系，V2用它增强左右差动的权重，不将其宣称为额外独立观测；是否同时保留由监督消融决定。候选目标能识别脚不动／同相错误并给出梯度，不足以替代训练收敛证据。新目录约12MiB，Linux约26.6GiB／E约112.6GiB空闲；只清理中途未封存准备的重复可重建预览，保留最终输入预览、失败数值记录及全部原始依赖，没有生成重复模型。

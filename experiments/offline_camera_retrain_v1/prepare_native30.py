@@ -45,6 +45,7 @@ def code_hashes():
 
 def read_config(path=CONFIG_PATH):
     config=json.loads(Path(path).read_text())
+    if not isinstance(config.get('preflight_only',False),bool):raise ValueError('preflight_only must be boolean')
     if config.get('diffusion_target','absolute_x0') not in ('absolute_x0','reference_residual'):
         raise ValueError('Unknown native30 diffusion target')
     from experiments.offline_camera_retrain_v1.unified_losses import SCALES
@@ -62,8 +63,14 @@ def read_config(path=CONFIG_PATH):
     from experiments.offline_camera_retrain_v1.native30_gt_reliability import validate_gt_reliability
     validate_input_noise(config['observation']['input_noise']);validate_gt_reliability(config['gt_reliability'])
     if config.get('gait_supervision',{}).get('enabled'):
-        from experiments.offline_camera_retrain_v1.native30_gait_supervision import validate_config
+        if config['gait_supervision'].get('protocol')=='native30-gait-bilateral-v2':
+            from experiments.offline_camera_retrain_v1.native30_gait_supervision_v2 import validate_config
+        else:
+            from experiments.offline_camera_retrain_v1.native30_gait_supervision import validate_config
         validate_config(config['gait_supervision'])
+    from experiments.offline_camera_retrain_v1.native30_query_backend import BACKENDS
+    if config.get('runtime',{}).get('query_backend','reference') not in BACKENDS:
+        raise ValueError('Unknown scene query backend')
     if config['validation']['interval_steps']<1 or config['validation']['members_per_group_mode']<1:
         raise ValueError('Validation cadence and scope must be positive')
     if config['validation']['regimes']!=['clean','noisy']:
@@ -108,6 +115,8 @@ def read_config(path=CONFIG_PATH):
         raise ValueError('DDIM inference steps outside supported schedule')
     if config.get('scene_relations',{}).get('enabled'):
         relations=config['scene_relations'];guidance=config['physical_guidance']
+        if not isinstance(guidance.get('query_contact_regions_only',False),bool):
+            raise ValueError('Contact-only physical queries must be boolean')
         if relations['neighbors']!=4 or relations['radius_m']<=0 or relations['support_radius_m']<=0 or relations['gain']<0:
             raise ValueError('Invalid metric relation query configuration')
         if not 0<guidance['contact_threshold']<1 or guidance['iterations']<1 or not 0<=guidance['minimum_alpha']<=1:
@@ -136,16 +145,22 @@ def training_plan(data, config):
 
 
 def make_model(config):
+    from experiments.offline_camera_retrain_v1.native30_query_backend import attach_query_backend
+    refinement=config.get('refinement',{})
+    extra={k:refinement.get(k,0.) for k in ('observation_anchor_gain','joint_anchor_gain')}
+    extra.update({k:refinement[k] for k in ('joint_anchor_iterations','joint_anchor_damping_m2',
+        'joint_anchor_angle_limit_rad','joint_anchor_compact') if k in refinement})
     if config.get('scene_relations',{}).get('enabled'):
         from experiments.offline_camera_retrain_v1.native30_scene_relations import Native30SceneRelations
-        return Native30SceneRelations(config['latent_dim'],tuple(config['dim_mults']),
-            **{k:config.get('refinement',{}).get(k,0.) for k in ('observation_anchor_gain','joint_anchor_gain')},
+        model=Native30SceneRelations(config['latent_dim'],tuple(config['dim_mults']),**extra,
             **{k:config['feedback'][k] for k in ('root_limit_m','rotation_limit_rad','feedback_gain')},
             relations=config['scene_relations'],guidance=config['physical_guidance'])
+        return attach_query_backend(model,config)
     model_type=Native30Refinement if config.get('diffusion_target','absolute_x0')=='reference_residual' else Native30SceneMI
-    extra={k:config.get('refinement',{}).get(k,0.) for k in ('observation_anchor_gain','joint_anchor_gain')} if model_type is Native30Refinement else {}
-    return model_type(config['latent_dim'],tuple(config['dim_mults']),**extra,**{k:config['feedback'][k]
+    if model_type is not Native30Refinement:extra={}
+    model=model_type(config['latent_dim'],tuple(config['dim_mults']),**extra,**{k:config['feedback'][k]
         for k in ('root_limit_m','rotation_limit_rad','feedback_gain')})
+    return attach_query_backend(model,config)
 
 
 def dataset_digest(data):
@@ -289,7 +304,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
         for timestep in (25,300,800):
             signal=alphas[torch.tensor([timestep],device='cuda')]
             leaf=prediction.detach().requires_grad_(True)
-            base=base_losses(leaf,batch['motion'],batch,signal,details['raw_motion'].detach())['total']
+            base=base_losses(leaf,batch['motion'],batch,signal,details['raw_motion'].detach(),config.get('gait_supervision'))['total']
             terms=observation_losses(leaf,batch['motion'],batch,signal,config['observation'])
             reference=float(torch.autograd.grad(base,leaf,retain_graph=True)[0].norm())
             row=dict(label=label,timestep=timestep,reference_gradient_norm=reference,terms={})
@@ -435,7 +450,9 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
         checks['full_window_ddim_smoke']=dict(frames=192,steps=2,core_forwards=4,finite=True,
             quality_claim=False,normal_evaluation_steps=config['sampling']['ddim_steps'],static_tokens_reused=True)
         if model._sampling_scene is not None:raise AssertionError('Stale sampling tokens survived generation')
-    report.update(status='passed',elapsed_s=time.monotonic()-started,training_ready=bool(full_data),
+    report.update(status='passed',elapsed_s=time.monotonic()-started,
+        engineering_ready=bool(full_data),training_ready=bool(full_data) and not config.get('preflight_only',False),
+        preflight_only=config.get('preflight_only',False),
         data_scope='full corpus' if full_data else '8 raw30 review clips; 12 ego/exo input cases; full-corpus export pending',
         free_disk_after=shutil.disk_usage(HERE).free,model_parameters=sum(p.numel() for p in model.parameters()),
         alignment=alignment)

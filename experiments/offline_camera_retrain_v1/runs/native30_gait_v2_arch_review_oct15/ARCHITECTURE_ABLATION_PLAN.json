@@ -1,0 +1,70 @@
+{
+  "status": "planned_not_trained",
+  "base_config": "native30_fresh_ego_gait_v2_config.json",
+  "optimizer_updates": 0,
+  "common_controls": [
+    "same fresh initialization",
+    "same sampler/yaw/noise/DDIM seeds",
+    "same official TRAIN/VAL split",
+    "same V2 supervision",
+    "matched per-mode sample budget",
+    "wall time and actual query/solve counts reported"
+  ],
+  "quality_metrics": [
+    "MPJPE and relative foot position",
+    "stance/swing velocity",
+    "body-local bilateral amplitude and relation",
+    "visible/occluded errors separately",
+    "raw versus constrained output",
+    "sceneON/OFF paired outputs",
+    "clean and forced-noisy panels"
+  ],
+  "variants": [
+    {
+      "name": "current",
+      "patch": {},
+      "status": "implemented_control"
+    },
+    {
+      "name": "physics_off",
+      "patch": {
+        "physical_guidance.enabled": false
+      },
+      "status": "config-supported_not_run"
+    },
+    {
+      "name": "late_four_physics",
+      "patch": {
+        "physical_guidance.minimum_alpha": 0.9
+      },
+      "eligible_DDIM20_steps": 4,
+      "status": "config-supported_not_run"
+    },
+    {
+      "name": "late_two_physics",
+      "patch": {
+        "physical_guidance.minimum_alpha": 0.98
+      },
+      "eligible_DDIM20_steps": 2,
+      "status": "config-supported_not_run"
+    },
+    {
+      "name": "previous_x0_single_pass",
+      "patch": null,
+      "status": "architecture_change_not_implemented",
+      "proposal": "previous denoised x0 for queries; input-only reference fallback at first step; matched training self-conditioning"
+    },
+    {
+      "name": "anchor_and_scale_budget",
+      "patch": null,
+      "status": "architecture_change_not_implemented",
+      "proposal": "matched models with22/34/67 region-preserving surface anchors and1/2/3 scales; cannot silently alter fixed tensor shapes"
+    },
+    {
+      "name": "support_context",
+      "patch": null,
+      "status": "architecture_change_not_implemented",
+      "proposal": "explicit region-support attention OFF versus ON, then shared scene index; keep input observations and losses matched"
+    }
+  ]
+}

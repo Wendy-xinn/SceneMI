@@ -1,0 +1,61 @@
+{
+  "status": "primary_sources_checked",
+  "sources": [
+    {
+      "title": "SceneMI",
+      "url": "https://arxiv.org/html/2503.16289v1",
+      "sections": [
+        "3.1",
+        "3.2"
+      ],
+      "supports": "Global occupancy ViT and keyframe-local BPS;64 fixed surface anchors.",
+      "does_not_establish": "Our67 native region-balanced anchors,3 radii,16 attended patch tokens or two same-step core passes."
+    },
+    {
+      "title": "PointNet++",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2017/hash/d8bf84be3800d12f74d8b05e9b89836f-Abstract.html",
+      "supports": "Hierarchical local metric neighborhoods and multi-scale features.",
+      "does_not_establish": "Our exact radius/neighbor budgets or gait benefit."
+    },
+    {
+      "title": "PhysDiff",
+      "url": "https://arxiv.org/html/2212.02500v2",
+      "sections": [
+        "3.1",
+        "4.3"
+      ],
+      "supports": "Physics projection within diffusion; scheduling trades motion quality against physical constraints; late limited projections can work well.",
+      "does_not_establish": "Our partial-surface geometric solver,6 IK iterations,2 solver iterations or projection every eligible step."
+    },
+    {
+      "title": "Analog Bits",
+      "url": "https://arxiv.org/html/2208.04202v2",
+      "sections": [
+        "2 Self-Conditioning"
+      ],
+      "supports": "Previous x0 self-conditioning at inference and probabilistic no-grad estimates during training.",
+      "does_not_establish": "Human-scene query quality or exact transfer without retraining."
+    },
+    {
+      "title": "OmniControl",
+      "url": "https://arxiv.org/abs/2310.08580",
+      "supports": "Analytic spatial guidance and realism guidance for arbitrary observed joint constraints.",
+      "does_not_establish": "Our fixed-bone damped IK solver or six-iteration choice."
+    },
+    {
+      "title": "LEMO",
+      "url": "https://openaccess.thecvf.com/content/ICCV2021/papers/Zhang_Learning_Motion_Priors_for_4D_Human_Body_Capture_in_3D_ICCV_2021_paper.pdf",
+      "supports": "Motion priors and contact-friction reasoning for scene-aware capture.",
+      "does_not_establish": "Completing an unknown floor from partial observed surfaces."
+    }
+  ],
+  "implementation_findings": {
+    "surface_anchor_selection": "3 dominant-skin vertices per22 supported regions +1 head =67; foot regions selected low in native template; own selection differs from original SceneMI64 globalFPS",
+    "cached_per_DDIM_call": "global patch and dynamic-owner embeddings already cached together in sampling_scene",
+    "proposal": "no-grad estimated clean articulated body; never use GT body as query center",
+    "IK_actual_defaults": "6 damped iterations; compact mode was previously disabled; full-model strict equivalence now failed, remains disabled",
+    "physical_query_optional_pruning": "energy uses9 CONTACT_JOINTS ->27 of67 anchors; optional subset query is numerically exact in tested full model, mixed timing so not selected",
+    "physics_is_geometric": "partial observed patches + pose/contact/velocity/prior energy with backtracking, not a rigid-body dynamics simulator",
+    "training_quality": "No architecture causal superiority or new gait convergence established; all current review optimization updates zero"
+  }
+}

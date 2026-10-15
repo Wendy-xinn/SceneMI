@@ -64,11 +64,26 @@ def base_losses(prediction,truth,batch,signal,raw_motion=None,gait_config=None):
     total+=.25*root+.5*head+.25*neck+.1*coordination+.02*turning+.075*feet_velocity+.1*planting
     extra={}
     if gait_config and gait_config.get('enabled'):
-        from experiments.offline_camera_retrain_v1.native30_gait_supervision import gait_terms
-        gait=gait_terms(joint,target,qp,signal,gait_config)
+        bilateral=gait_config.get('protocol')=='native30-gait-bilateral-v2'
+        if bilateral:
+            from experiments.offline_camera_retrain_v1.native30_gait_supervision_v2 import gait_terms
+            gait=gait_terms(joint,target,qp,signal,gait_config,
+                root_rotations=rotations[:,:,0],target_root_rotations=target_rot[:,:,0])
+        else:
+            from experiments.offline_camera_retrain_v1.native30_gait_supervision import gait_terms
+            gait=gait_terms(joint,target,qp,signal,gait_config)
         # Replace the unbalanced foot velocity term instead of counting it twice.
         total=total-.075*feet_velocity+gait['total']
         extra={f'gait_{key}':value for key,value in gait.items()}
+        if bilateral:
+            # V2 replaces the old planting term with its phase-free counterpart.
+            total=total-.1*planting
+            if gait_config['raw_gait_weight']:
+                raw_root=rotation_from_6d(raw_motion[...,3:9])
+                raw_gait=gait_terms(raw_fk,target,qp,signal,gait_config,
+                    root_rotations=raw_root,target_root_rotations=target_rot[:,:,0])
+                total=total+gait_config['raw_gait_weight']*raw_gait['total']
+                extra.update({f'gait_raw_{key}':value for key,value in raw_gait.items()})
     return dict(total=total,x0=x0,raw_x0=raw_x0,fk_position_m2=position,fk_velocity_m2_s2=v,
                 fk_acceleration_m2_s4=a,root_absolute_chordal=root,head_absolute_chordal=head,
                 neck_absolute_chordal=neck,head_root_coordination=coordination,

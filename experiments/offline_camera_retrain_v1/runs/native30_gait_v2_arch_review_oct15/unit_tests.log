@@ -1,0 +1,46 @@
+test_body_local_terms_invariant_to_time_varying_root_motion (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... ok
+test_correct_motion_zero_finite_gradient_and_no_target_gradient (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_native30_gait_v2.py:24: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  terms=self.terms(p,target);self.assertEqual(float(terms['total']),0)
+FAIL
+test_hopping_is_not_forced_to_alternate (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... ok
+test_invalid_parameters_fail (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... ok
+test_isolated_fit_pulse_skips_temporal_stencils (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... ok
+test_raw_output_is_supervised_before_solver (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... FAIL
+test_same_amplitude_in_phase_feet_are_detected (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... ok
+test_six_and_twelve_frame_bilateral_displacements (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... ok
+test_stationary_height_errors_and_planting_are_not_hidden (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... ok
+test_whole_body_translation_does_not_fake_leg_articulation (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... ok
+test_zero_signal_and_no_reliable_points_are_safe (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests) ... ok
+test_disabled_profile_matches_completed_sealed_objective (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_frozen_feet_detected_and_can_receive_gradient (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_identical_motion_zero_and_finite_gradient (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_root_relative_terms_ignore_common_body_translation (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_stride_uses_six_and_twelve_frames (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_unreliable_pulse_does_not_become_velocity_or_stride_target (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_zero_signal_and_no_reliable_labels_are_safe (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_deepcopy_forward_uses_copied_model (experiments.offline_camera_retrain_v1.test_native30_query_backend.QueryBackendTests) ... ok
+test_default_backend_preserves_forward (experiments.offline_camera_retrain_v1.test_native30_query_backend.QueryBackendTests) ... ok
+test_exception_restores_global_backend (experiments.offline_camera_retrain_v1.test_native30_query_backend.QueryBackendTests) ... ok
+test_opt_in_is_model_scoped_and_has_no_checkpoint_keys (experiments.offline_camera_retrain_v1.test_native30_query_backend.QueryBackendTests) ... ok
+
+======================================================================
+FAIL: test_correct_motion_zero_finite_gradient_and_no_target_gradient (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_native30_gait_v2.py", line 24, in test_correct_motion_zero_finite_gradient_and_no_target_gradient
+    terms=self.terms(p,target);self.assertEqual(float(terms['total']),0)
+AssertionError: 1.4673749962305243e-16 != 0
+
+======================================================================
+FAIL: test_raw_output_is_supervised_before_solver (experiments.offline_camera_retrain_v1.test_native30_gait_v2.BilateralGaitTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_native30_gait_v2.py", line 85, in test_raw_output_is_supervised_before_solver
+    self.assertGreater(float(a['gait_raw_total']),0)
+AssertionError: 0.0 not greater than 0
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.063s
+
+FAILED (failures=2)
