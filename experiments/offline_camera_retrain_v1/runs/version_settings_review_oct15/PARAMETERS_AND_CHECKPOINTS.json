@@ -1,0 +1,39 @@
+{
+  "full_native30": {
+    "class": "Native30SceneRelations",
+    "parameter_count": 122667536,
+    "trainable_count": 122667536,
+    "state_tensor_elements": 125227536,
+    "checkpoint_step": 10000,
+    "training_modes": {
+      "trumans/ego": 12546,
+      "camera_wearer/ego": 2777,
+      "interactee/ego": 2599,
+      "rich/ego": 2078
+    },
+    "optimizer_lr": 2e-05,
+    "optimizer_retained": true,
+    "initialization": {
+      "type": "from_scratch",
+      "seed": 2026101267,
+      "source_checkpoint": null,
+      "optimizer_reset": true,
+      "all_model_parameters_trainable": true,
+      "initial_model_sha256": "9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69",
+      "optimizer_state_entries": 0
+    }
+  },
+  "legacy55k_exo_branch": {
+    "class": "SmoothResidual",
+    "parameter_count": 1150341,
+    "trainable_count": 1150341,
+    "state_tensor_elements": 1150341,
+    "checkpoint_step": 7831,
+    "training_mode": "exo_only",
+    "frozen_base_step": 55000,
+    "optimizer_lr": 0.00019298770358360762,
+    "optimizer_retained": true,
+    "status": "stopped_at_update_boundary",
+    "pool_size": 512
+  }
+}

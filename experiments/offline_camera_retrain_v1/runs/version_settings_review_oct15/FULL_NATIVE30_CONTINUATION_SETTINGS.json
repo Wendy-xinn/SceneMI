@@ -1,0 +1,29 @@
+{
+  "status": "prepared_not_launched_target_pending",
+  "parent_checkpoint": "experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/training/last.pt",
+  "parent_step": 10000,
+  "max_global_step": 55000,
+  "remaining_updates": 45000,
+  "preserve": [
+    "model",
+    "Adam",
+    "Torch/CUDA/NumPy RNG",
+    "ego sampler and condition RNG if ego-only continues"
+  ],
+  "optimizer_reset": false,
+  "continuous_lr": 2e-05,
+  "ego_option": {
+    "training_mode": "ego",
+    "config_unchanged": true,
+    "gait_restore_enabled": false,
+    "temporal_guard_from_light_branch_applied": false
+  },
+  "mixed_option": {
+    "training_mode": "ego_exo_mixed",
+    "ego_probability": 0.7,
+    "exo_probability": 0.3,
+    "explicit_new_sampler_phase": true,
+    "scene_camera_track_architecture_unchanged": true
+  },
+  "reason_not_launched": "User requested distinguish full new architecture from separate residual branch; ego-only versus mixed continuation changes the experiment objective, preference question pending."
+}

@@ -1,0 +1,52 @@
+{
+  "train": {
+    "clean": {
+      "nominal_count": 64,
+      "actual_position_perturbed": 0,
+      "threshold_m": 0.0001
+    },
+    "noisy": {
+      "nominal_count": 64,
+      "actual_position_perturbed": 27,
+      "threshold_m": 0.0001
+    }
+  },
+  "validation": {
+    "clean": {
+      "nominal_count": 16,
+      "actual_position_perturbed": 0,
+      "threshold_m": 0.0001
+    },
+    "noisy": {
+      "nominal_count": 16,
+      "actual_position_perturbed": 8,
+      "threshold_m": 0.0001
+    },
+    "identical_pairs": 8
+  },
+  "interpretation": {
+    "light_TRAIN_expected_actual_rate": 0.25,
+    "full_TRAIN_expected_actual_rate": 0.5,
+    "full_noisy_VAL_forced": true,
+    "light_noisy_VAL_forced": false,
+    "old_light_noisy_label": "noisy_mixture, not all samples perturbed",
+    "targets_perturbed": false,
+    "exo_rotation_observations_invented": false,
+    "position_error_profile": "joint offset sigma1cm + linearly varying endpoint sigma2cm; shared offset0.5cm, shared endpoint1cm",
+    "gap": "conditional30% probability of one joint18-frame0.6s gap at30Hz, in already-perturbed branch"
+  },
+  "stopped7831_validation": {
+    "clean": {
+      "nominal_count": 24,
+      "actual_position_perturbed": 0
+    },
+    "noisy": {
+      "nominal_count": 24,
+      "actual_position_perturbed": 14
+    }
+  },
+  "stopped7831_pool": {
+    "windows": 512,
+    "actual_position_perturbed": 111
+  }
+}

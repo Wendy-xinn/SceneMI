@@ -1,6 +1,8 @@
 # Ego/exo 模型与实验唯一总清单
 
-**最新（10月15日，§4.17）：按用户要求完成旧55k冻结先验＋exo残差小试。保留观测参考并加遮挡分支保护后，遮挡MPJPE clean/noisy 156.90/162.82→125.14/133.55mm；相对同预算无场景版本，scene额外改善3.43%/3.71%，输入可见关节位置最大变化不足1μm。但脚步交替指标退化，当前仅为有初步收益的开发候选，不自动长训／不作论文验收通过。32个VAL特征窗来自16源窗、9个录制cluster；保护为posthoc、VAL被复用，旧55k又有历史官方TEST重叠。当前骨架回放：[8790 遮挡保护版](http://127.0.0.1:8790/PROTECTED_REPLAY.html)。原55k未改，候选与最小对照保留Adam。**
+**当前版本口径（§4.19）：主对比是“原55k完整生成器”与“重做场景／相机／可见轨迹输入的完整Native30新版”。55k＋exo小残差是另外一条独立网络试验支线，不是完整新版。用户澄清后，该支线已保存停在7831步，Adam／RNG／滚动池齐全；完整Native30仍保留10000步ego-only原checkpoint，尚未切换训练目标。两套实际配置及第三支线对照见4.19。轻量支线另查出两层50%噪声开关，原标noisy的16窗只有8窗真正扰动，须改按noisy混合口径理解；完整Native30的noisy VAL强制扰动，不受此问题影响。**
+
+**此前小试（10月15日，§4.17）：按用户要求完成旧55k冻结先验＋exo残差小试。保留观测参考并加遮挡分支保护后，遮挡MPJPE clean/noisy-mixture 156.90/162.82→125.14/133.55mm；相对同预算无场景版本，scene额外改善3.43%/3.71%，输入可见关节位置最大变化不足1μm。但脚步交替指标退化，当前仅为有初步收益的开发候选，不作论文验收通过。32个VAL特征窗来自16源窗；旧聚类标记问题见4.19。保护为posthoc、VAL被复用，旧55k又有历史官方TEST重叠。骨架回放：[8790 遮挡保护版](http://127.0.0.1:8790/PROTECTED_REPLAY.html)。原55k未改，候选与最小对照保留Adam。**
 
 更新：2026-10-15。**10000步ego首段已完成；随后100＋100步配对监督小试也已结束，全部采样／RNG核对一致。原目标control固定ego误差203.40/216.55mm，补脚步监督202.38/212.53mm；步行幅度误差对control仅改善1.65%，未达预设5%门槛，左右交替仍有问题，因此没有自动长训或接exo。旧55k四窗三项指标复跑完全一致，旧候选池也一致，严格旧续训仍需刷新来源恢复审计。另已实际跑通旧式轻量主干＋当前30Hz数据的零更新计算链，核心前后向0.18–0.22秒，当前重模型3.39–6.53秒（不含准备／Adam，不是质量对比或整轮提速承诺）。完整结论见4.16末。** 原始10000和control10100保留Adam／RNG；未通过小试的监督候选保留原模型与全部审计，去掉optimizer并标注evaluation-only。现有8788/8789回放仍为8000步。
 
@@ -1288,3 +1290,77 @@ WSL互操作此次可用，直接用非管理员PowerShell读取System事件1001
 交互[遮挡保护版回放](http://127.0.0.1:8790/PROTECTED_REPLAY.html)及[普通残差回放](http://127.0.0.1:8790/REPLAY.html)同时保留，蓝GT／品红预测／橙输入可见关节，三栏同一相机视角、世界坐标未对齐。这里是native骨架而非SMPL网格；场景只画最近观测patch，不冒充完整扫描。浏览器实测32种case、首／中／末帧、播放暂停及三个canvas，无JS异常。原8788/8789仍展示旧8000步网格，不混淆。
 
 结论：这条“保留观测初始姿态＋冻结55k辅助先验＋exo残差＋隐藏分支保护”的开发路线在当前面板有遮挡与scene增益，值得保留；**不自动开始更长训练**。下一验收要先固定新的独立确认面板、步行交替和保护机制，保留相同factorial对照，再决定是否扩大预算；旧55k路径始终标开发迁移，真实前端与论文干净初始化问题仍待解决。
+
+## 4.18 用户授权后台续训至最多55k：跳变诊断及时间连续保护
+
+用户查看回放后指出持续跳变，并明确授权新版在后台继续训练、残差总步数最高55000。此授权替代§4.17“不自动长训”的当前执行决定；旧试验及其失败／posthoc记录不改写。本段续接保留的`reference_anchor/prior_scene/last.pt`第1000步权重、Adam及学习RNG，最多追加54000更新，旧55k生成器冻结。它不是继续训练从零10k的Native30重模型，也不是重新运行旧55k的完整20Hz主干训练。
+
+### 跳变的实测原因
+
+[JUMP_AUDIT.json](../legacy55k_exo_long_oct15/JUMP_AUDIT.json)只读原32个VAL特征窗。GT可靠二阶差分stencil上，加速度RMS为GT4.55、参考45.16、普通残差27.43、硬保护后45.99m/s²；约21.6%的帧有输入可见性mask变化，参考在mask切换帧的关节平均速度0.772m/s，非切换帧0.249m/s。说明主要问题已存在于逐帧拟合的参考骨架，事后硬保护又恢复／放大了不连续；不能简单归因为主干完全没有时序监督。旧网络已有时序卷积及GT速度／加速度loss，但保护后输出此前没有直接进入训练目标。旧回放还将30Hz输出隔帧显示为15Hz，并按回调增帧，可能增加观看顿挫；这不解释原始30Hz数值中的真实跳变。
+
+### 新续训协议
+
+[temporal_guard.py](../legacy55k_exo_long_oct15/temporal_guard.py)对**输入参考**做5帧局部SO(3)切空间均值及根平移Gaussian，sigma0.8帧；完整GT目标不平滑。残差先做7帧sigma1短窗滤波，再根据完全隐藏分支权限做4帧余弦渐入渐出：可见后代仍严格禁止移动，单帧可见性闪烁不触发大幅修正。训练与推理使用同一条保护后的FK输出，保持骨长；可见位置约束相对本段平滑后的参考，不能冒称原始输入位置完全不变。
+
+在原32窗上，仅输入参考平滑将可靠加速度RMS45.16→17.09m/s²；池化可见GT误差24.82→25.55mm，约增0.72mm，全部关节池化误差80.01→80.23mm。这里是池化数值，与§4.17每窗宏平均不混用。保留30Hz平衡stance／swing、脚相对位置、0.2／0.4秒stride及原协调项，新增0.05倍专门的body-local左右脚相关项；训练目标匹配GT运动，未用“把脚速度压低”为平滑捷径。
+
+[train.py](../legacy55k_exo_long_oct15/train.py)沿用1150341个残差参数、B8／FP32，Adam不重置；LR从原2e-4连续起步，按剩余54000更新cosine到2e-5。启用所有合格官方TRAIN EXO窗口的recording-cycle sampler，随机yaw、50% clean／noisy；初始256窗、上限512窗的滚动CPU特征池，每20更新补8个新窗，避免只对128个小试窗训练55k。每个新输入的冻结先验／场景查询仅算一次，训练时不重复几何查询。新增EXO原始数组进入任务独有4GiB verified-read LRU；只淘汰本任务可重建的校验读缓存，原数据和共享已验证缓存均不删除。
+
+每500步原子覆写一份last.pt，含模型／Adam／整池／sampler／全部RNG；每1000步固定VAL＋新增确认窗评估，每5000步scene／prior输入OFF。新增确认面板优先未见录制；若对应group不存在未见录制，明确记录同录制新source窗口，不冒充独立录制确认。正式更新前重新校验全TRAIN／VAL原数组（312.41秒通过），新平滑／渐变4项测试和私有缓存原文件保护测试通过，真实保存TRAIN张量前反传smoke有限且optimizer更新0。完整实际VAL质量门槛还会在新进程准备后、首次更新前检查。
+
+启动目录：[legacy55k_exo_long_oct15](../legacy55k_exo_long_oct15)。进度入口为`STATUS.json`／`status.py`，分别记录实际更新与已保存checkpoint步数。后台独立会话PID见LAUNCH.json；初始Linux约27.5GiB、E约112.6GiB空闲。仍标legacy-prior开发路线：理想可见点前端、已知体型及旧55k历史TEST重叠均未因续训消失。原小试组合在已测面板中最佳，支持扩训验证；单seed、小面板与posthoc保护不足以证明全局最优架构。
+
+实际已启动更新：保留的本段1000初始化checkpoint与父1000模型、Adam每个张量、Torch／CUDA RNG逐项完全一致，见[CONTINUATION_VERIFICATION.json](../legacy55k_exo_long_oct15/CONTINUATION_VERIFICATION.json)。原15,319个合法TRAIN exo窗可采样，初始256窗逐步滚动到512；独立参考／轨迹／scene新窗准备后进入新目标。固定VAL的1000零更新新协议预检遮挡129.32/136.98mm、可见30.65/43.23mm、脚速向量0.472/0.479m/s、加速度16.78/17.08m/s²，各前置门槛通过；另有8个新增源窗×clean/noisy确认面板。更新7831时用户澄清“新版”是完整Native30，因此已响应SIGTERM完成当前更新并原子保存停在7831，模型／Adam／全部RNG及512池保留，见[STOP_REASON.json](../legacy55k_exo_long_oct15/STOP_REASON.json)。它不是数值失败或机器重启，也没有训练到55k。
+
+## 4.19 原55k、完整Native30新版与EXO独立支线：设置对照及扰动口径纠正
+
+用户要求弄清“两个版本”差别。本节以**原55k完整生成器 vs 完整Native30新版**为主对照；把刚做的55k＋exo残差明确单列为第三条支线。前文交流中把残差支线的平滑续训也称为“新版”，未明确区分，按本节纠正。实际checkpoint、参数量和配置快照见[PARAMETERS_AND_CHECKPOINTS.json](../version_settings_review_oct15/PARAMETERS_AND_CHECKPOINTS.json)、[完整新版实际配置](../version_settings_review_oct15/FULL_NATIVE30_ACTUAL_CONFIG.json)、[EXO支线实际配置](../version_settings_review_oct15/EXO_BRANCH_ACTUAL_CONFIG.json)。
+
+### 两个主版本的实际差别
+
+|设置|原55k完整生成器|完整Native30新版（用户所指新版）|
+|---|---|---|
+|实现|OfflineSceneMI；原AdaGN TemporalUNet＋ViT occupancy＋BPS MLP|Native30SceneRelations→Native30Refinement→Native30SceneMI，保留原UNet主干并重做条件与反馈|
+|初始化／状态|从零训到55000；旧权重保留|从零训到10000；**没有载入旧55k**；122667536个可训练参数|
+|实际任务|head为主的多条件混合：head55%、head＋pelvis15%、head＋wrists10%、pelvis8%、wrists4%、mixed3%、history5%|目前训练配置为**ego-only、head-only**；架构支持exo，但这个10000步阶段并未训练exo适配|
+|ego/exo网络关系|旧模型没有当前完整的置信度exo位置-only接口|**一个共享生成／残差扩散模型**；相机与轨迹有各自编码器，不是另设exo输出网络|
+|时间／窗口／batch|20Hz；64/128/192混长；B4|30Hz；固定192帧即6.4秒、S64；B2|
+|训练量|55k×4＝220000样本槽|10k×2＝20000样本槽，仅旧轮槽数的1/11，且协议与任务不同|
+|输出语义|201D绝对x0：根平移＋22关节局部6D＋全局位置|201D参考动作残差扩散，绝对动作＝reference＋residual，FK／SO3统一重建|
+|相机输入|相机主导的模拟人体head等轨迹；无专门的K／mount／相机不确定性编码器|显式相机pose、可用性与置信度、归一化K、mount位姿／标定有效性／误差、self/other、真实/合成类型；相机光轴不直接强迫身体heading|
+|可见轨迹|位置和旋转共用一个boolean mask，无当前的独立置信度／不确定性路径|22关节有序编码；位置／旋转mask分离、各自置信度、不确定性、速度／加速度／角速度与有效stencil；exo可只有位置|
+|全局场景|相机周围67个BPS＋可见occupancy；exact20 first-hit、静态因果前缀／当前动态|16个全局占据patch token＋动态owner token；同观察者整段已见静态union＋当前动态|
+|局部场景|BPS MLP，没有随预测人体重查询的多尺度native skin反馈|67个native皮肤anchor，0.08/0.25/0.6m三尺度；局部法线／owner／速度／mask，人体与surface attention；1.5m关系与1.25m宽支撑上下文|
+|推理内修正|基本单次UNet x0预测|每x0先proposal后final两次主干；6次观察IK施于proposal／final；contact＋correspondence反馈及2次局部物理修正；DDIM20反复使用|
+|监督|coordination_v1，含独立stance/swing、相对脚、stride、协调／幅度；RICH contact BCE|native30基础pose／FK／速度／加速度／朝向／脚速／planting＋观察loss＋geometry contact／correspondence／support；**原10k配置未启用后来新增的gait_restore**|
+|数据划分|历史内部划分，TRAIN含12个官方TEST录制|官方recording split，新训练不使用官方TEST；真实RGB前端仍未接入，已知native体型|
+|训练成本|历史整段平均约0.231秒／步，B4／混长／不同任务|原10k末100步均值2.739秒／步，B2／L192；反复人体相关几何查询、IK、物理过程是主要新增成本，不能归咎30Hz本身|
+
+原55k[实际config](../native_dynamic_scene20_contact_55k_oct07/config.json)已是可见first-hit场景，不能把它误称为“完整GT扫描输入”。完整新版升级的是观察语义、相机／置信度接口、native人体相关局部几何与扩散内修正，并非仅换数据路径。复杂结构更符合当前建模目标，并不自动证明更高精度；时间协议、划分、输入、loss和训练量同时变化，尚不能做纯架构归因。
+
+### 刚才的exo方案是第三条支线
+
+`SmoothResidual`只有1150341个可训练参数，**另外冻结并调用旧55k生成器**作为辅助prior；它本身是EXO-only时序卷积网络，当前保存7831步，B8／30Hz／192帧。它接可见位置／mask／置信度、骨架参考、55k prior−reference与rest；相机外参用于统一坐标，**没有完整新版的相机K／mount编码器**。场景仅在参考22关节上预查一次最近静态／动态patch（1.5m），没有完整新版的67皮肤anchor多尺度／全局patch与动态attention链，也不在每次DDIM里做重复人体查询、IK或物理反馈。
+
+该支线先得到参考与冻结55k辅助预测，再由小网络输出SO3／平移残差；之前是事后硬保护，后续7831版本加入输入SO3短窗平滑、权限渐变，并直接监督保护后的结果。监督还含恢复的30Hz脚步项与新增专门左右脚相关项。它的速度约0.12–0.20秒／更新含滚动特征刷新，**不能把这个速度、125mm左右的EXO遮挡误差，直接拿来与完整新版B2的head-only ego全身误差215mm比架构优劣**。冻结55k仍带历史TEST重叠，这个问题不因EXO新采样使用官方TRAIN而消失。
+
+还需明确：该支线调用冻结55k时，sparse control与scene均关闭，做4次低噪声绝对x0先验投影；新scene特征只进入小EXO网络。它并非“保持旧55k所有原条件生成流程，再直接外挂修正”的同协议实现，更不是完整Native30中的scene encoder续训。
+
+### EXO扰动的实测与需要纠正的地方
+
+[NOISE_REGIME_AUDIT.json](../version_settings_review_oct15/NOISE_REGIME_AUDIT.json)检查实际保存轨迹。两条新路线使用同一个底层position扰动：每关节常量offset标准差1cm＋随时间线性漂移endpoint标准差2cm，叠加共享offset0.5cm／endpoint1cm；置信度随误差衰减、记录不确定性；已进入噪声分支后30%概率对一个关节加0.6秒（18帧）缺失。**它模拟可见tracker误差，不给隐藏关节补GT、不生成exo旋转观测，不改完整动作／contact GT。** 自然遮挡来自first-hit可见性，本身不等于人工扰动。
+
+完整Native30的TRAIN直接调用底层一次50% clean／50%扰动；其`native30_validation.validate`在noisy分支强制`clean_probability=0`，clean和真正noisy分开。轻量EXO试验的外层又先选50% clean／noisy，再在noisy调用默认仍有50% clean返回的builder，形成**两次50%开关**；期望仅25%训练样本真的扰动。实测初始128个TRAIN窗只有27个被位置扰动（21.1%）；16个标noisy的VAL窗只有8个真正扰动，另8个与配对clean轨迹及meta完全相同。停训时512滚动池里111个确有位置扰动（21.7%）。
+
+因此§4.17／4.18轻量支线的历史“noisy”应理解为**noisy-mixture**，不能称全部扰动下的鲁棒性结果；所有原数值保留作审计，不冒称重算成真noisy。完整Native30原正式noisy验证无此问题。后续若做两模型公平EXO对照，必须统一外层／底层单次噪声选择，并对noisy验证强制扰动、按配对同seed／同源窗重新评估；不能沿用旧混合标签作最终论文结果。
+
+7831停训快照的扩展48个VAL特征窗中，标clean的24个均未扰动，标noisy的24个有14个实际扰动；同一双开关问题仍存在。所有6831次新增更新loss／梯度有限、模型与Adam浮点张量有限，trace末步与保存末步均为7831，完整Native30原10000文件SHA与此前审计完全一致。见[STOP_AUDIT.json](../legacy55k_exo_long_oct15/STOP_AUDIT.json)。新目录约0.88GiB，Linux约26.6GiB／E约112.6GiB空闲；保留全部有用模型／优化器，没有删除数据或把停止伪装成训练完成。
+
+另外，TRUMANS/RICH的metadata含`recording=null`，旧支线报告的`dict.get`未回退sequence_id。按非空recording／否则sequence_id审计，原16个VAL源窗对应15个录制／序列来源key，而旧bootstrap按9个粗组统计；原区间不能当15源分组后的结果。新确认8窗的实际来源均未在原固定面板使用，见[CONFIRMATION_PROVENANCE_AUDIT.json](../legacy55k_exo_long_oct15/CONFIRMATION_PROVENANCE_AUDIT.json)。这项纠正只改报告口径，未改采样窗口、输入、权重或正在保存的checkpoint。
+
+### 后台训练应续接哪一份
+
+完整新版应从`native30_fresh_ego_oct14/training/last.pt`的**10000步**继续，保留Adam和RNG；当前LR已到2e-5，应另登记连续新阶段，不能直接把原10k cosine分母改成55k冒充同计划resume。若继续ego-only，数据／模型与原目标保持；若转ego/exo混合，则是明确新适配阶段，需登记新sampler配比和各模式样本量。两种候选设置已经写入[FULL_NATIVE30_CONTINUATION_SETTINGS.json](../version_settings_review_oct15/FULL_NATIVE30_CONTINUATION_SETTINGS.json)，完整新版尚未启动新的目标，等待用户区分希望ego续训还是进入混训。
+
+建议将完整新版保留为主路线，旧55k＋小EXO作为快速对照与开发方案。可用后台长训验证训练不足假说，但需同时看固定VAL、独立源窗、脚步与scene消融，不能只看loss或承诺到55k必然改善。按完整新版旧末期实测2.739秒／步，余45000更新仅更新部分就约34.2小时，另加验证／保存；此前约3小时是小残差网络的估时，**不是完整新版的期限**。各原模型与Adam均保留，停的是支线7831而非删除权重。
