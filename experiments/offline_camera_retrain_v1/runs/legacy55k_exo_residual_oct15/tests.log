@@ -1,0 +1,20 @@
+test_cached_yaw_surface_rotates_geometry_without_changing_masks (experiments.offline_camera_retrain_v1.test_legacy55k_exo_residual.ResidualTest) ... ok
+test_hidden_and_label_poisoning_cannot_change_initial_or_features (experiments.offline_camera_retrain_v1.test_legacy55k_exo_residual.ResidualTest) ... ok
+test_scene_off_is_invariant_and_corrections_preserve_bones (experiments.offline_camera_retrain_v1.test_legacy55k_exo_residual.ResidualTest) ... ok
+test_unknown_scene_has_zero_features_and_target_owner_rejected (experiments.offline_camera_retrain_v1.test_legacy55k_exo_residual.ResidualTest) ... ok
+test_zero_residual_preserves_initial_pose (experiments.offline_camera_retrain_v1.test_legacy55k_exo_residual.ResidualTest) ... ok
+test_disabled_profile_matches_completed_sealed_objective (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_frozen_feet_detected_and_can_receive_gradient (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_identical_motion_zero_and_finite_gradient (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_native30_gait_supervision.py:30: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  self.assertEqual(float(terms['total']), 0)
+ok
+test_root_relative_terms_ignore_common_body_translation (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_stride_uses_six_and_twelve_frames (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_unreliable_pulse_does_not_become_velocity_or_stride_target (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+test_zero_signal_and_no_reliable_labels_are_safe (experiments.offline_camera_retrain_v1.test_native30_gait_supervision.GaitSupervisionTest) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.074s
+
+OK

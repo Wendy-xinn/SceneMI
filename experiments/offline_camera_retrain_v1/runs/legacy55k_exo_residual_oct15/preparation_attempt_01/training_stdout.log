@@ -1,0 +1,17 @@
+MDM latent dim:  256
+Using UNET with lantent dim:  256  and mults:  (1, 2, 4)
+dims:  [201, 256, 512, 1024] mults:  (1, 2, 4)
+[ models/temporal ] Channel dimensions: [(201, 256), (256, 512), (512, 1024)]
+[ models/temporal ] added_input_channels: 97
+Traceback (most recent call last):
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/legacy55k_exo_residual_oct15/run_probe.py", line 280, in <module>
+    if __name__=='__main__':main()
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/legacy55k_exo_residual_oct15/run_probe.py", line 194, in main
+    banks[split],identities[split]=make_bank(data,builder,plan,prior,validation=split=='validation')
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/legacy55k_exo_residual_oct15/run_probe.py", line 82, in make_bank
+    geometry=torch.from_numpy(scene_features(scene,joint[0].cpu().numpy()))[None].cuda()
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/legacy55k_exo_residual.py", line 66, in scene_features
+    for slot,cloud in enumerate((scene.static,scene.dynamic[t])):
+AttributeError: 'YawSurface' object has no attribute 'static'
