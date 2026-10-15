@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-15T16:26:47.419172+08:00",
   "pid": 25459,
   "parent_checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/training/last.pt",
@@ -380,5 +380,20 @@
     "minimum_GT_locomotion_cases": 1,
     "note": "Short-trial triage gate vs paired control, not paper acceptance. No automatic extension even if passed."
   },
-  "arms": {}
+  "arms": {
+    "control": {
+      "status": "completed",
+      "updates": 100,
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_restore_probe_oct15/control/last.pt"
+    },
+    "gait_restore": {
+      "status": "completed",
+      "updates": 100,
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_restore_probe_oct15/gait_restore/last.pt"
+    }
+  },
+  "completed_at": "2026-10-15T16:59:42.896396+08:00",
+  "elapsed_s": 1831.9995584850003,
+  "all_sampling_and_diffusion_draws_paired": true,
+  "no_automatic_long_training": true
 }

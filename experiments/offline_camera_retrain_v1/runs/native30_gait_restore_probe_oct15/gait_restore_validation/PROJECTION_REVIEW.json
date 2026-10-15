@@ -1,0 +1,761 @@
+{
+  "placement": "Last x0 only; other DDIM steps retain original projection. Not full no-projection ablation.",
+  "cases": [
+    {
+      "case": 0,
+      "panel": "fixed",
+      "dataset": "trumans",
+      "regime": "clean",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 497.9351501464844,
+          "foot_world_error_mm": 1164.18115234375,
+          "foot_velocity_vector_RMSE_m_s": 1.6265944242477417,
+          "body_local_foot_position_error_mm": 284.0458679199219,
+          "stance_foot_speed_m_s": 1.3991668224334717,
+          "foot_articulation_RMS_ratio": [
+            6.989101848375867e-07,
+            5.556582891586004e-07
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 197.8872528076172,
+          "foot_world_error_mm": 375.2771301269531,
+          "foot_velocity_vector_RMSE_m_s": 0.726430356502533,
+          "body_local_foot_position_error_mm": 181.4110107421875,
+          "stance_foot_speed_m_s": 0.5172600150108337,
+          "foot_articulation_RMS_ratio": [
+            0.9268070459365845,
+            0.7867319583892822
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 195.28961181640625,
+          "foot_world_error_mm": 366.84735107421875,
+          "foot_velocity_vector_RMSE_m_s": 0.7001461982727051,
+          "body_local_foot_position_error_mm": 176.50242614746094,
+          "stance_foot_speed_m_s": 0.49450919032096863,
+          "foot_articulation_RMS_ratio": [
+            0.921673595905304,
+            0.791358232498169
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 191.0106964111328,
+          "foot_world_error_mm": 388.5950927734375,
+          "foot_velocity_vector_RMSE_m_s": 0.653641939163208,
+          "body_local_foot_position_error_mm": 176.50242614746094,
+          "stance_foot_speed_m_s": 0.4267202317714691,
+          "foot_articulation_RMS_ratio": [
+            0.921673595905304,
+            0.791358232498169
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 188.96429443359375,
+          "foot_world_error_mm": 381.4385986328125,
+          "foot_velocity_vector_RMSE_m_s": 0.7523723840713501,
+          "body_local_foot_position_error_mm": 175.02301025390625,
+          "stance_foot_speed_m_s": 0.5391809344291687,
+          "foot_articulation_RMS_ratio": [
+            0.9090254306793213,
+            0.7890259623527527
+          ]
+        }
+      }
+    },
+    {
+      "case": 0,
+      "panel": "fixed",
+      "dataset": "trumans",
+      "regime": "noisy",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 495.4589538574219,
+          "foot_world_error_mm": 1164.1832275390625,
+          "foot_velocity_vector_RMSE_m_s": 1.6270908117294312,
+          "body_local_foot_position_error_mm": 284.0458679199219,
+          "stance_foot_speed_m_s": 1.397855281829834,
+          "foot_articulation_RMS_ratio": [
+            6.929809615030535e-07,
+            5.646766680911242e-07
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 196.3363800048828,
+          "foot_world_error_mm": 349.8533020019531,
+          "foot_velocity_vector_RMSE_m_s": 0.711117148399353,
+          "body_local_foot_position_error_mm": 210.3959197998047,
+          "stance_foot_speed_m_s": 0.5245146155357361,
+          "foot_articulation_RMS_ratio": [
+            0.6287693381309509,
+            0.7251619696617126
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 196.1661376953125,
+          "foot_world_error_mm": 350.197509765625,
+          "foot_velocity_vector_RMSE_m_s": 0.6944568753242493,
+          "body_local_foot_position_error_mm": 209.18589782714844,
+          "stance_foot_speed_m_s": 0.5163436532020569,
+          "foot_articulation_RMS_ratio": [
+            0.621388852596283,
+            0.728239119052887
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 180.45132446289062,
+          "foot_world_error_mm": 354.8843078613281,
+          "foot_velocity_vector_RMSE_m_s": 0.6681602597236633,
+          "body_local_foot_position_error_mm": 209.18589782714844,
+          "stance_foot_speed_m_s": 0.471976637840271,
+          "foot_articulation_RMS_ratio": [
+            0.6213887929916382,
+            0.728239119052887
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 179.680908203125,
+          "foot_world_error_mm": 349.72479248046875,
+          "foot_velocity_vector_RMSE_m_s": 0.7252646684646606,
+          "body_local_foot_position_error_mm": 209.20150756835938,
+          "stance_foot_speed_m_s": 0.5302361845970154,
+          "foot_articulation_RMS_ratio": [
+            0.6213182806968689,
+            0.729498565196991
+          ]
+        }
+      }
+    },
+    {
+      "case": 1,
+      "panel": "fixed",
+      "dataset": "egobody",
+      "regime": "clean",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 291.238525390625,
+          "foot_world_error_mm": 545.056884765625,
+          "foot_velocity_vector_RMSE_m_s": 0.09453815221786499,
+          "body_local_foot_position_error_mm": 281.9533996582031,
+          "stance_foot_speed_m_s": 0.06698466092348099,
+          "foot_articulation_RMS_ratio": [
+            4.7296980483224615e-06,
+            2.9794412057526642e-06
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 268.403076171875,
+          "foot_world_error_mm": 555.9254150390625,
+          "foot_velocity_vector_RMSE_m_s": 0.08906789124011993,
+          "body_local_foot_position_error_mm": 292.4195861816406,
+          "stance_foot_speed_m_s": 0.06581676751375198,
+          "foot_articulation_RMS_ratio": [
+            0.16000087559223175,
+            0.328319251537323
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 271.1478271484375,
+          "foot_world_error_mm": 565.7603149414062,
+          "foot_velocity_vector_RMSE_m_s": 0.07903134077787399,
+          "body_local_foot_position_error_mm": 293.0003662109375,
+          "stance_foot_speed_m_s": 0.05520791560411453,
+          "foot_articulation_RMS_ratio": [
+            0.16229766607284546,
+            0.33574599027633667
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 257.9369812011719,
+          "foot_world_error_mm": 558.5585327148438,
+          "foot_velocity_vector_RMSE_m_s": 0.07349684834480286,
+          "body_local_foot_position_error_mm": 293.0003662109375,
+          "stance_foot_speed_m_s": 0.049444034695625305,
+          "foot_articulation_RMS_ratio": [
+            0.16229774057865143,
+            0.3357459604740143
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 257.9369812011719,
+          "foot_world_error_mm": 558.5585327148438,
+          "foot_velocity_vector_RMSE_m_s": 0.07349684834480286,
+          "body_local_foot_position_error_mm": 293.0003662109375,
+          "stance_foot_speed_m_s": 0.049444034695625305,
+          "foot_articulation_RMS_ratio": [
+            0.16229774057865143,
+            0.3357459604740143
+          ]
+        }
+      }
+    },
+    {
+      "case": 1,
+      "panel": "fixed",
+      "dataset": "egobody",
+      "regime": "noisy",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 297.05291748046875,
+          "foot_world_error_mm": 581.49365234375,
+          "foot_velocity_vector_RMSE_m_s": 0.10266301035881042,
+          "body_local_foot_position_error_mm": 281.953369140625,
+          "stance_foot_speed_m_s": 0.07463277131319046,
+          "foot_articulation_RMS_ratio": [
+            4.657605131797027e-06,
+            2.9471696052496554e-06
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 235.9068603515625,
+          "foot_world_error_mm": 515.43212890625,
+          "foot_velocity_vector_RMSE_m_s": 0.16130109131336212,
+          "body_local_foot_position_error_mm": 195.2004852294922,
+          "stance_foot_speed_m_s": 0.12927913665771484,
+          "foot_articulation_RMS_ratio": [
+            1.8477036952972412,
+            2.1483213901519775
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 236.271240234375,
+          "foot_world_error_mm": 522.6683959960938,
+          "foot_velocity_vector_RMSE_m_s": 0.15260863304138184,
+          "body_local_foot_position_error_mm": 195.52357482910156,
+          "stance_foot_speed_m_s": 0.12140098214149475,
+          "foot_articulation_RMS_ratio": [
+            1.845020055770874,
+            2.1053106784820557
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 232.79603576660156,
+          "foot_world_error_mm": 517.7628173828125,
+          "foot_velocity_vector_RMSE_m_s": 0.1477704495191574,
+          "body_local_foot_position_error_mm": 195.52357482910156,
+          "stance_foot_speed_m_s": 0.11952991038560867,
+          "foot_articulation_RMS_ratio": [
+            1.845020055770874,
+            2.1053106784820557
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 232.79603576660156,
+          "foot_world_error_mm": 517.7628173828125,
+          "foot_velocity_vector_RMSE_m_s": 0.1477704495191574,
+          "body_local_foot_position_error_mm": 195.52357482910156,
+          "stance_foot_speed_m_s": 0.11952991038560867,
+          "foot_articulation_RMS_ratio": [
+            1.845020055770874,
+            2.1053106784820557
+          ]
+        }
+      }
+    },
+    {
+      "case": 2,
+      "panel": "fixed",
+      "dataset": "rich",
+      "regime": "clean",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 463.83270263671875,
+          "foot_world_error_mm": 1161.270751953125,
+          "foot_velocity_vector_RMSE_m_s": 2.810422420501709,
+          "body_local_foot_position_error_mm": 519.8375854492188,
+          "stance_foot_speed_m_s": 2.045480251312256,
+          "foot_articulation_RMS_ratio": [
+            7.213896537905384e-07,
+            3.328750040054729e-07
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 174.62362670898438,
+          "foot_world_error_mm": 244.43612670898438,
+          "foot_velocity_vector_RMSE_m_s": 1.373267412185669,
+          "body_local_foot_position_error_mm": 416.65185546875,
+          "stance_foot_speed_m_s": 0.9867579340934753,
+          "foot_articulation_RMS_ratio": [
+            0.5010309815406799,
+            0.4436756372451782
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 173.64236450195312,
+          "foot_world_error_mm": 238.09384155273438,
+          "foot_velocity_vector_RMSE_m_s": 1.2402914762496948,
+          "body_local_foot_position_error_mm": 414.5450744628906,
+          "stance_foot_speed_m_s": 0.8563668727874756,
+          "foot_articulation_RMS_ratio": [
+            0.5018911361694336,
+            0.44230666756629944
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 160.77053833007812,
+          "foot_world_error_mm": 208.34561157226562,
+          "foot_velocity_vector_RMSE_m_s": 0.9996262192726135,
+          "body_local_foot_position_error_mm": 414.5450744628906,
+          "stance_foot_speed_m_s": 0.6414715647697449,
+          "foot_articulation_RMS_ratio": [
+            0.5018911361694336,
+            0.44230666756629944
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 160.22584533691406,
+          "foot_world_error_mm": 205.5229949951172,
+          "foot_velocity_vector_RMSE_m_s": 0.9914259910583496,
+          "body_local_foot_position_error_mm": 413.5066223144531,
+          "stance_foot_speed_m_s": 0.6304114460945129,
+          "foot_articulation_RMS_ratio": [
+            0.5002026557922363,
+            0.44340118765830994
+          ]
+        }
+      }
+    },
+    {
+      "case": 2,
+      "panel": "fixed",
+      "dataset": "rich",
+      "regime": "noisy",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 462.8799133300781,
+          "foot_world_error_mm": 1143.5927734375,
+          "foot_velocity_vector_RMSE_m_s": 2.8229033946990967,
+          "body_local_foot_position_error_mm": 519.8375854492188,
+          "stance_foot_speed_m_s": 2.05584716796875,
+          "foot_articulation_RMS_ratio": [
+            7.102517542989517e-07,
+            3.5503836670613964e-07
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 239.92835998535156,
+          "foot_world_error_mm": 412.32366943359375,
+          "foot_velocity_vector_RMSE_m_s": 1.40720534324646,
+          "body_local_foot_position_error_mm": 455.5335388183594,
+          "stance_foot_speed_m_s": 1.0066667795181274,
+          "foot_articulation_RMS_ratio": [
+            0.3946917653083801,
+            0.34234124422073364
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 237.42604064941406,
+          "foot_world_error_mm": 405.454833984375,
+          "foot_velocity_vector_RMSE_m_s": 1.2222731113433838,
+          "body_local_foot_position_error_mm": 453.2033996582031,
+          "stance_foot_speed_m_s": 0.822995126247406,
+          "foot_articulation_RMS_ratio": [
+            0.40424811840057373,
+            0.3452085256576538
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 226.3391876220703,
+          "foot_world_error_mm": 390.4573059082031,
+          "foot_velocity_vector_RMSE_m_s": 1.1065843105316162,
+          "body_local_foot_position_error_mm": 453.2033996582031,
+          "stance_foot_speed_m_s": 0.7293499708175659,
+          "foot_articulation_RMS_ratio": [
+            0.4042481780052185,
+            0.3452084958553314
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 225.1119842529297,
+          "foot_world_error_mm": 386.9599304199219,
+          "foot_velocity_vector_RMSE_m_s": 1.0528770685195923,
+          "body_local_foot_position_error_mm": 452.2195739746094,
+          "stance_foot_speed_m_s": 0.6885974407196045,
+          "foot_articulation_RMS_ratio": [
+            0.40211358666419983,
+            0.34687110781669617
+          ]
+        }
+      }
+    },
+    {
+      "case": 3,
+      "panel": "GT_locomotion",
+      "dataset": "trumans",
+      "regime": "clean",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 510.761962890625,
+          "foot_world_error_mm": 1255.3646240234375,
+          "foot_velocity_vector_RMSE_m_s": 1.8736850023269653,
+          "body_local_foot_position_error_mm": 245.69381713867188,
+          "stance_foot_speed_m_s": 1.4375218152999878,
+          "foot_articulation_RMS_ratio": [
+            7.256199410221598e-07,
+            8.218007110372127e-07
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 147.83380126953125,
+          "foot_world_error_mm": 248.09413146972656,
+          "foot_velocity_vector_RMSE_m_s": 0.9474331140518188,
+          "body_local_foot_position_error_mm": 200.5258026123047,
+          "stance_foot_speed_m_s": 0.5780200958251953,
+          "foot_articulation_RMS_ratio": [
+            1.1083239316940308,
+            1.0810045003890991
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 148.1660614013672,
+          "foot_world_error_mm": 241.47598266601562,
+          "foot_velocity_vector_RMSE_m_s": 0.9106693863868713,
+          "body_local_foot_position_error_mm": 219.9283447265625,
+          "stance_foot_speed_m_s": 0.5518989562988281,
+          "foot_articulation_RMS_ratio": [
+            1.1509097814559937,
+            1.1324186325073242
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 141.89047241210938,
+          "foot_world_error_mm": 250.3401641845703,
+          "foot_velocity_vector_RMSE_m_s": 0.8708615303039551,
+          "body_local_foot_position_error_mm": 219.9283447265625,
+          "stance_foot_speed_m_s": 0.49214670062065125,
+          "foot_articulation_RMS_ratio": [
+            1.1509097814559937,
+            1.1324186325073242
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 141.4193572998047,
+          "foot_world_error_mm": 248.9833984375,
+          "foot_velocity_vector_RMSE_m_s": 0.9687297344207764,
+          "body_local_foot_position_error_mm": 220.5454864501953,
+          "stance_foot_speed_m_s": 0.5207765102386475,
+          "foot_articulation_RMS_ratio": [
+            1.1539684534072876,
+            1.1311743259429932
+          ]
+        }
+      }
+    },
+    {
+      "case": 3,
+      "panel": "GT_locomotion",
+      "dataset": "trumans",
+      "regime": "noisy",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 519.232177734375,
+          "foot_world_error_mm": 1253.1866455078125,
+          "foot_velocity_vector_RMSE_m_s": 1.8737068176269531,
+          "body_local_foot_position_error_mm": 245.69381713867188,
+          "stance_foot_speed_m_s": 1.4392714500427246,
+          "foot_articulation_RMS_ratio": [
+            7.362475002992142e-07,
+            8.002443792065606e-07
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 148.8407440185547,
+          "foot_world_error_mm": 233.18141174316406,
+          "foot_velocity_vector_RMSE_m_s": 0.947895348072052,
+          "body_local_foot_position_error_mm": 190.0598907470703,
+          "stance_foot_speed_m_s": 0.5666369199752808,
+          "foot_articulation_RMS_ratio": [
+            1.0199884176254272,
+            1.007401943206787
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 152.0961151123047,
+          "foot_world_error_mm": 228.5406036376953,
+          "foot_velocity_vector_RMSE_m_s": 0.9051401615142822,
+          "body_local_foot_position_error_mm": 208.5748291015625,
+          "stance_foot_speed_m_s": 0.532720685005188,
+          "foot_articulation_RMS_ratio": [
+            1.0615977048873901,
+            1.0666481256484985
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 138.0703582763672,
+          "foot_world_error_mm": 221.0908966064453,
+          "foot_velocity_vector_RMSE_m_s": 0.8772077560424805,
+          "body_local_foot_position_error_mm": 208.5748291015625,
+          "stance_foot_speed_m_s": 0.4947826564311981,
+          "foot_articulation_RMS_ratio": [
+            1.0615977048873901,
+            1.0666481256484985
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 138.1536102294922,
+          "foot_world_error_mm": 221.45994567871094,
+          "foot_velocity_vector_RMSE_m_s": 0.9646301865577698,
+          "body_local_foot_position_error_mm": 208.84765625,
+          "stance_foot_speed_m_s": 0.5761271119117737,
+          "foot_articulation_RMS_ratio": [
+            1.0616693496704102,
+            1.0648384094238281
+          ]
+        }
+      }
+    },
+    {
+      "case": 4,
+      "panel": "GT_locomotion",
+      "dataset": "egobody",
+      "regime": "clean",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 238.45166015625,
+          "foot_world_error_mm": 411.8653259277344,
+          "foot_velocity_vector_RMSE_m_s": 0.7363852858543396,
+          "body_local_foot_position_error_mm": 141.0769500732422,
+          "stance_foot_speed_m_s": 0.29332050681114197,
+          "foot_articulation_RMS_ratio": [
+            1.260802832803165e-06,
+            6.757119876965589e-07
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 132.08541870117188,
+          "foot_world_error_mm": 219.52610778808594,
+          "foot_velocity_vector_RMSE_m_s": 0.624022901058197,
+          "body_local_foot_position_error_mm": 163.5829315185547,
+          "stance_foot_speed_m_s": 0.19931776821613312,
+          "foot_articulation_RMS_ratio": [
+            0.2049851417541504,
+            0.10468240082263947
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 131.6492156982422,
+          "foot_world_error_mm": 222.83847045898438,
+          "foot_velocity_vector_RMSE_m_s": 0.6208983063697815,
+          "body_local_foot_position_error_mm": 164.46424865722656,
+          "stance_foot_speed_m_s": 0.19373902678489685,
+          "foot_articulation_RMS_ratio": [
+            0.21750709414482117,
+            0.11814925074577332
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 128.49383544921875,
+          "foot_world_error_mm": 220.60830688476562,
+          "foot_velocity_vector_RMSE_m_s": 0.6155077219009399,
+          "body_local_foot_position_error_mm": 164.46426391601562,
+          "stance_foot_speed_m_s": 0.1880418062210083,
+          "foot_articulation_RMS_ratio": [
+            0.21750709414482117,
+            0.11814922839403152
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 128.49383544921875,
+          "foot_world_error_mm": 220.60830688476562,
+          "foot_velocity_vector_RMSE_m_s": 0.6155077219009399,
+          "body_local_foot_position_error_mm": 164.46426391601562,
+          "stance_foot_speed_m_s": 0.1880418062210083,
+          "foot_articulation_RMS_ratio": [
+            0.21750709414482117,
+            0.11814922839403152
+          ]
+        }
+      }
+    },
+    {
+      "case": 4,
+      "panel": "GT_locomotion",
+      "dataset": "egobody",
+      "regime": "noisy",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 235.36236572265625,
+          "foot_world_error_mm": 412.52288818359375,
+          "foot_velocity_vector_RMSE_m_s": 0.7253459692001343,
+          "body_local_foot_position_error_mm": 141.07693481445312,
+          "stance_foot_speed_m_s": 0.28699931502342224,
+          "foot_articulation_RMS_ratio": [
+            1.259530790775898e-06,
+            8.422314863310021e-07
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 206.03216552734375,
+          "foot_world_error_mm": 434.0404052734375,
+          "foot_velocity_vector_RMSE_m_s": 0.6316726207733154,
+          "body_local_foot_position_error_mm": 244.3627166748047,
+          "stance_foot_speed_m_s": 0.22512732446193695,
+          "foot_articulation_RMS_ratio": [
+            0.31733500957489014,
+            0.3054369390010834
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 204.7275390625,
+          "foot_world_error_mm": 428.79901123046875,
+          "foot_velocity_vector_RMSE_m_s": 0.6251394152641296,
+          "body_local_foot_position_error_mm": 245.0829315185547,
+          "stance_foot_speed_m_s": 0.20949497818946838,
+          "foot_articulation_RMS_ratio": [
+            0.3000051975250244,
+            0.2873517572879791
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 202.52638244628906,
+          "foot_world_error_mm": 429.9730224609375,
+          "foot_velocity_vector_RMSE_m_s": 0.6184289455413818,
+          "body_local_foot_position_error_mm": 245.08290100097656,
+          "stance_foot_speed_m_s": 0.20711202919483185,
+          "foot_articulation_RMS_ratio": [
+            0.3000051975250244,
+            0.2873517572879791
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 202.52638244628906,
+          "foot_world_error_mm": 429.9730224609375,
+          "foot_velocity_vector_RMSE_m_s": 0.6184289455413818,
+          "body_local_foot_position_error_mm": 245.08290100097656,
+          "stance_foot_speed_m_s": 0.20711202919483185,
+          "foot_articulation_RMS_ratio": [
+            0.3000051975250244,
+            0.2873517572879791
+          ]
+        }
+      }
+    },
+    {
+      "case": 5,
+      "panel": "GT_locomotion",
+      "dataset": "rich",
+      "regime": "clean",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 185.50686645507812,
+          "foot_world_error_mm": 267.0404357910156,
+          "foot_velocity_vector_RMSE_m_s": 0.8629471659660339,
+          "body_local_foot_position_error_mm": 167.3268585205078,
+          "stance_foot_speed_m_s": 0.6232234835624695,
+          "foot_articulation_RMS_ratio": [
+            6.974900657041871e-07,
+            6.787242341488309e-07
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 186.03004455566406,
+          "foot_world_error_mm": 257.354248046875,
+          "foot_velocity_vector_RMSE_m_s": 0.7325161695480347,
+          "body_local_foot_position_error_mm": 148.02593994140625,
+          "stance_foot_speed_m_s": 0.45802101492881775,
+          "foot_articulation_RMS_ratio": [
+            0.1404324620962143,
+            0.08235862106084824
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 186.79237365722656,
+          "foot_world_error_mm": 263.44097900390625,
+          "foot_velocity_vector_RMSE_m_s": 0.6458848714828491,
+          "body_local_foot_position_error_mm": 155.77398681640625,
+          "stance_foot_speed_m_s": 0.34580516815185547,
+          "foot_articulation_RMS_ratio": [
+            0.24612125754356384,
+            0.14841066300868988
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 134.15679931640625,
+          "foot_world_error_mm": 217.2299041748047,
+          "foot_velocity_vector_RMSE_m_s": 0.6279197335243225,
+          "body_local_foot_position_error_mm": 155.77395629882812,
+          "stance_foot_speed_m_s": 0.314517080783844,
+          "foot_articulation_RMS_ratio": [
+            0.24612128734588623,
+            0.14841066300868988
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 134.3533935546875,
+          "foot_world_error_mm": 218.0623321533203,
+          "foot_velocity_vector_RMSE_m_s": 0.6942467093467712,
+          "body_local_foot_position_error_mm": 155.34262084960938,
+          "stance_foot_speed_m_s": 0.3715882897377014,
+          "foot_articulation_RMS_ratio": [
+            0.24470312893390656,
+            0.14696653187274933
+          ]
+        }
+      }
+    },
+    {
+      "case": 5,
+      "panel": "GT_locomotion",
+      "dataset": "rich",
+      "regime": "noisy",
+      "stages": {
+        "reference": {
+          "mpjpe_mm": 163.61773681640625,
+          "foot_world_error_mm": 204.1471405029297,
+          "foot_velocity_vector_RMSE_m_s": 0.8615591526031494,
+          "body_local_foot_position_error_mm": 167.3268585205078,
+          "stance_foot_speed_m_s": 0.6217694878578186,
+          "foot_articulation_RMS_ratio": [
+            6.688408120680833e-07,
+            6.790156703573302e-07
+          ]
+        },
+        "raw": {
+          "mpjpe_mm": 219.4847869873047,
+          "foot_world_error_mm": 386.9330749511719,
+          "foot_velocity_vector_RMSE_m_s": 0.7623796463012695,
+          "body_local_foot_position_error_mm": 268.9765319824219,
+          "stance_foot_speed_m_s": 0.4458698034286499,
+          "foot_articulation_RMS_ratio": [
+            0.5952737331390381,
+            0.3976529538631439
+          ]
+        },
+        "feedback": {
+          "mpjpe_mm": 219.3780059814453,
+          "foot_world_error_mm": 385.1625671386719,
+          "foot_velocity_vector_RMSE_m_s": 0.7028279304504395,
+          "body_local_foot_position_error_mm": 270.68292236328125,
+          "stance_foot_speed_m_s": 0.35724592208862305,
+          "foot_articulation_RMS_ratio": [
+            0.5747947096824646,
+            0.39190953969955444
+          ]
+        },
+        "after_IK": {
+          "mpjpe_mm": 180.2200164794922,
+          "foot_world_error_mm": 366.8830261230469,
+          "foot_velocity_vector_RMSE_m_s": 0.6851449608802795,
+          "body_local_foot_position_error_mm": 270.68292236328125,
+          "stance_foot_speed_m_s": 0.3300012946128845,
+          "foot_articulation_RMS_ratio": [
+            0.5747947096824646,
+            0.39190950989723206
+          ]
+        },
+        "after_physics": {
+          "mpjpe_mm": 177.86021423339844,
+          "foot_world_error_mm": 365.76953125,
+          "foot_velocity_vector_RMSE_m_s": 0.7454037666320801,
+          "body_local_foot_position_error_mm": 270.3914794921875,
+          "stance_foot_speed_m_s": 0.381456583738327,
+          "foot_articulation_RMS_ratio": [
+            0.5859924554824829,
+            0.3987055718898773
+          ]
+        }
+      }
+    }
+  ]
+}

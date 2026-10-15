@@ -1,0 +1,157 @@
+{
+  "optimizer_steps": 0,
+  "quality_comparison": false,
+  "fps": 30,
+  "frames": 192,
+  "batch_size": 2,
+  "precision": "FP32",
+  "identities": {
+    "trumans": {
+      "sequence_id": "2023-01-14@22-06-10",
+      "start": 0,
+      "source_start_30fps": 0
+    },
+    "camera_wearer": {
+      "sequence_id": "recording_20210907_S02_S01_01_camera_wearer_1551-2811",
+      "start": 0,
+      "source_start_30fps": 1551
+    },
+    "rich": {
+      "sequence_id": "BBQ_001_guitar",
+      "start": 0,
+      "source_start_30fps": 5
+    }
+  },
+  "initial_gpu_load": "memory.used [MiB], utilization.gpu [%]\n15310 MiB, 77 %\n",
+  "scope": "Three predetermined officialTRAIN B2 pairs; repeated full forward/objective/backward. Excludes prep, clipping, Adam, checkpoint and validation. External GPU load may affect timing.",
+  "lightweight": "Old55k architecture, absolute x0 and one UNet pass, existing occupancy/BPS/head track;30Hz native base plus gait restoration and observation/contact losses; no body-dependent query/IK/physical solver. Old55k weights loaded only for zero-update runtime probe, not official quality/training initialization.",
+  "cases": [
+    {
+      "variant": "current",
+      "pair": [
+        "trumans",
+        "camera_wearer"
+      ],
+      "warmup": {
+        "seconds": 4.616319170996576,
+        "peak_CUDA_GiB": 2.594571113586426
+      },
+      "measured": [
+        {
+          "seconds": 4.502888101000281,
+          "peak_CUDA_GiB": 2.5954647064208984
+        },
+        {
+          "seconds": 4.492376557998796,
+          "peak_CUDA_GiB": 2.5954647064208984
+        }
+      ]
+    },
+    {
+      "variant": "current",
+      "pair": [
+        "trumans",
+        "rich"
+      ],
+      "warmup": {
+        "seconds": 6.546293678002257,
+        "peak_CUDA_GiB": 2.5953125953674316
+      },
+      "measured": [
+        {
+          "seconds": 6.479849020000984,
+          "peak_CUDA_GiB": 2.5953125953674316
+        },
+        {
+          "seconds": 6.570687978000933,
+          "peak_CUDA_GiB": 2.5953125953674316
+        }
+      ]
+    },
+    {
+      "variant": "current",
+      "pair": [
+        "camera_wearer",
+        "rich"
+      ],
+      "warmup": {
+        "seconds": 3.243996232002246,
+        "peak_CUDA_GiB": 2.5948596000671387
+      },
+      "measured": [
+        {
+          "seconds": 3.458493919999455,
+          "peak_CUDA_GiB": 2.5948596000671387
+        },
+        {
+          "seconds": 3.3221701080001367,
+          "peak_CUDA_GiB": 2.5948596000671387
+        }
+      ]
+    },
+    {
+      "variant": "legacy_backbone",
+      "pair": [
+        "trumans",
+        "camera_wearer"
+      ],
+      "warmup": {
+        "seconds": 0.19817397899896605,
+        "peak_CUDA_GiB": 1.8566856384277344
+      },
+      "measured": [
+        {
+          "seconds": 0.1914167169998109,
+          "peak_CUDA_GiB": 1.8544445037841797
+        },
+        {
+          "seconds": 0.17745751600159565,
+          "peak_CUDA_GiB": 1.8544445037841797
+        }
+      ]
+    },
+    {
+      "variant": "legacy_backbone",
+      "pair": [
+        "trumans",
+        "rich"
+      ],
+      "warmup": {
+        "seconds": 0.1535094550017675,
+        "peak_CUDA_GiB": 1.8544445037841797
+      },
+      "measured": [
+        {
+          "seconds": 0.17460061800011317,
+          "peak_CUDA_GiB": 1.8544445037841797
+        },
+        {
+          "seconds": 0.20661279700289015,
+          "peak_CUDA_GiB": 1.8544445037841797
+        }
+      ]
+    },
+    {
+      "variant": "legacy_backbone",
+      "pair": [
+        "camera_wearer",
+        "rich"
+      ],
+      "warmup": {
+        "seconds": 0.19761368300169124,
+        "peak_CUDA_GiB": 1.8544445037841797
+      },
+      "measured": [
+        {
+          "seconds": 0.2090094630002568,
+          "peak_CUDA_GiB": 1.8544445037841797
+        },
+        {
+          "seconds": 0.2246616120028193,
+          "peak_CUDA_GiB": 1.8544445037841797
+        }
+      ]
+    }
+  ],
+  "status": "passed_execution_and_finite_gradients"
+}

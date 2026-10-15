@@ -1,0 +1,79 @@
+{
+  "observed_at": "2026-10-15T16:59:44.101243+08:00",
+  "status": "not_passed_do_not_extend",
+  "comparison": {
+    "parent": {
+      "fixed": {
+        "clean": {
+          "mpjpe_mm": 215.04988606770834,
+          "stance_foot_speed_m_s": 0.41489072680217237,
+          "foot_world_error_mm": 411.46985880533856
+        },
+        "noisy": {
+          "mpjpe_mm": 226.98153686523438,
+          "stance_foot_speed_m_s": 0.7500476507123892,
+          "foot_world_error_mm": 454.72231038411456
+        }
+      },
+      "locomotion_conditions": 6,
+      "locomotion_amplitude_log_ratio_error": 1.039084490103258,
+      "locomotion_foot_velocity_RMSE_m_s": 0.7553726136684418
+    },
+    "control": {
+      "fixed": {
+        "clean": {
+          "mpjpe_mm": 203.39861551920572,
+          "stance_foot_speed_m_s": 0.35283719443352984,
+          "foot_world_error_mm": 380.0935312906901
+        },
+        "noisy": {
+          "mpjpe_mm": 216.54574584960938,
+          "stance_foot_speed_m_s": 0.40214729475539684,
+          "foot_world_error_mm": 427.7587381998698
+        }
+      },
+      "locomotion_conditions": 6,
+      "locomotion_amplitude_log_ratio_error": 0.9558316398001191,
+      "locomotion_foot_velocity_RMSE_m_s": 0.7995871802171072
+    },
+    "gait_restore": {
+      "fixed": {
+        "clean": {
+          "mpjpe_mm": 202.3757069905599,
+          "stance_foot_speed_m_s": 0.3671438468882272,
+          "foot_world_error_mm": 381.8400421142578
+        },
+        "noisy": {
+          "mpjpe_mm": 212.52964782714844,
+          "stance_foot_speed_m_s": 0.4118976032983604,
+          "foot_world_error_mm": 418.14918009440106
+        }
+      },
+      "locomotion_conditions": 6,
+      "locomotion_amplitude_log_ratio_error": 0.9400586118060955,
+      "locomotion_foot_velocity_RMSE_m_s": 0.7678245107332865
+    }
+  },
+  "checks": {
+    "parent_clean_MPJPE_no_more_than2pct_worse": true,
+    "parent_clean_foot_position_no_more_than5pct_worse": true,
+    "parent_noisy_MPJPE_no_more_than2pct_worse": true,
+    "parent_noisy_foot_position_no_more_than5pct_worse": true,
+    "parent_noisy_stance_no_more_than10pct_worse": true,
+    "parent_locomotion_amplitude_error_improves5pct": true,
+    "parent_locomotion_velocity_no_more_than5pct_worse": true,
+    "control_clean_MPJPE_no_more_than2pct_worse": true,
+    "control_clean_foot_position_no_more_than5pct_worse": true,
+    "control_noisy_MPJPE_no_more_than2pct_worse": true,
+    "control_noisy_foot_position_no_more_than5pct_worse": true,
+    "control_noisy_stance_no_more_than10pct_worse": true,
+    "control_locomotion_amplitude_error_improves5pct": false,
+    "control_locomotion_velocity_no_more_than5pct_worse": true,
+    "at_least_one_GT_locomotion_window": true
+  },
+  "parent_fixed_MPJPE_reproduction_max_difference_mm": 0.0033772786458143855,
+  "original_checkpoint_unchanged": true,
+  "optimizer_steps_per_arm": 100,
+  "limitation": "Single paired100-update continuation, small fixed/GT-selected VAL panel and one sampling seed. A failure here is lack of evidence for longer training, not proof that every gait objective or longer budget fails.",
+  "action": "No automatic further training or exo handoff."
+}
