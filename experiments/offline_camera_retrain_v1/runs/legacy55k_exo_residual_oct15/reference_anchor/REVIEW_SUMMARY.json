@@ -1,0 +1,34 @@
+{
+  "status": "promising_occlusion_and_scene_gains_gait_not_accepted",
+  "training_active": false,
+  "original55k_unchanged": true,
+  "registered_raw_trial_status": "not_passed_do_not_extend",
+  "guarded_posthoc_status": "passed_exploratory_only",
+  "recommended_action": "Retain useful candidate and observation-only control; no automatic long training. Need independent confirmation and gait alternation protection.",
+  "validation_source_windows": 16,
+  "validation_feature_windows": 32,
+  "recording_clusters": 9,
+  "TRAIN_unique_windows": 128,
+  "matched_updates_per_arm": 1000,
+  "precision": "FP32",
+  "learned_residual_parameters": 1150341,
+  "available_joint_max_displacement_m": 9.5367431640625e-07,
+  "foot_alternation_correlation_error": {
+    "clean": {
+      "initial": 0.2764884037896991,
+      "combined": 0.3296136874705553
+    },
+    "noisy": {
+      "initial": 0.3358734864741564,
+      "combined": 0.36087321722880006
+    }
+  },
+  "visualization_url": "http://127.0.0.1:8790/PROTECTED_REPLAY.html",
+  "limitations": [
+    "Posthoc guard and reused development VAL",
+    "Single training seed",
+    "Ideal visible-position tracker and known native shape",
+    "Legacy55k historical TEST overlap; no official TEST examples used in this new pilot",
+    "Conservative guard cannot repair hidden joints between observed anchors"
+  ]
+}

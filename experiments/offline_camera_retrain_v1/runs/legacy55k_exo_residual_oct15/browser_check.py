@@ -8,7 +8,7 @@ import time
 import urllib.request
 from websockets.sync.client import connect
 
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parent/'reference_anchor'
 
 
 def main():
@@ -42,7 +42,7 @@ def main():
             result=rpc('Runtime.evaluate',dict(expression=code,returnByValue=True))
             if 'exceptionDetails' in result:raise RuntimeError(result)
             return result['result'].get('value')
-        rpc('Runtime.enable');rpc('Page.enable');rpc('Page.navigate',dict(url='http://127.0.0.1:8790/REPLAY.html'))
+        rpc('Runtime.enable');rpc('Page.enable');rpc('Page.navigate',dict(url='http://127.0.0.1:8790/PROTECTED_REPLAY.html'))
         for _ in range(200):
             count=evaluate("document.getElementById('case')?.options.length")
             if count:break

@@ -15,17 +15,7 @@ PARENT=Path(__file__).resolve().parent
 ROOT=PARENT/'reference_anchor'
 
 
-def main():
-    result=json.loads((ROOT/'RESULTS.json').read_text())
-    protocol=json.loads((ROOT/'PROTOCOL.json').read_text())
-    reports={arm:json.loads((ROOT/arm/'VALIDATION.json').read_text()) for arm in protocol['arms']}
-    paired={}
-    for arm in protocol['arms']:
-        rows=[json.loads(line) for line in (ROOT/arm/'training_log.jsonl').read_text().splitlines()]
-        assert len(rows)==1000
-        assert all(np.isfinite(row[k]) for row in rows for k in ('loss','grad','seconds'))
-        paired[arm]=[r['sample_indices'] for r in rows]
-    assert all(x==next(iter(paired.values())) for x in paired.values())
+def paired_statistics(reports):
     statistics={}
     for regime in ('clean','noisy'):
         rows={arm:[r for r in report['cases'] if r['regime']==regime] for arm,report in reports.items()}
@@ -45,10 +35,29 @@ def main():
         weights=np.array([r['metrics']['occluded_count'] for r in current])
         statistics[regime]['pooled_occluded_mm']={arm:float(np.average([r['metrics']['occluded_mm'] for r in entries],weights=weights)) for arm,entries in rows.items()}
         statistics[regime]['by_group']={g:{arm:float(np.mean([r['metrics']['occluded_mm'] for r in entries if r['group']==g])) for arm,entries in rows.items()} for g in sorted({r['group'] for r in current})}
+    return statistics
+
+
+def main():
+    result=json.loads((ROOT/'RESULTS.json').read_text())
+    protocol=json.loads((ROOT/'PROTOCOL.json').read_text())
+    reports={arm:json.loads((ROOT/arm/'VALIDATION.json').read_text()) for arm in protocol['arms']}
+    paired={}
+    for arm in protocol['arms']:
+        rows=[json.loads(line) for line in (ROOT/arm/'training_log.jsonl').read_text().splitlines()]
+        assert len(rows)==1000
+        assert all(np.isfinite(row[k]) for row in rows for k in ('loss','grad','seconds'))
+        paired[arm]=[r['sample_indices'] for r in rows]
+    assert all(x==next(iter(paired.values())) for x in paired.values())
+    statistics=paired_statistics(reports)
     write_json(ROOT/'PAIRED_ANALYSIS.json',statistics)
+    guarded={arm:json.loads((ROOT/arm/'GUARDED_VALIDATION.json').read_text()) for arm in protocol['arms']}
+    write_json(ROOT/'GUARDED_PAIRED_ANALYSIS.json',paired_statistics(guarded))
     saved=torch.load(ROOT/'predictions.pt',map_location='cpu',weights_only=False)
     identities=json.loads((ROOT/'IDENTITIES.json').read_text())['validation']
     motions=dict(initial=saved['initial'],truth=saved['truth'],**{k:saved['outputs'][k] for k in protocol['arms']})
+    protected=torch.load(ROOT/'predictions_protected.pt',map_location='cpu',weights_only=False)
+    motions.update({'protected_'+k:protected['outputs'][k] for k in protocol['arms']})
     local={}
     for name,m in motions.items():
         j=forward_kinematics(m,saved['rest'])
@@ -73,7 +82,7 @@ def main():
     for row_index,group in enumerate(('trumans','camera_wearer','interactee','rich')):
         ids=[i for i,r in enumerate(identities) if r['group']==group and r['regime']=='clean']
         i=ids[min(2,len(ids)-1)];selected.append(identities[i])
-        for ax,name in zip(axes[row_index],('initial','prior_only','prior_scene')):
+        for ax,name in zip(axes[row_index],('initial','protected_prior_only','protected_prior_scene')):
             for foot,style in ((0,'-'),(1,'--')):
                 ax.plot(np.arange(192)/30,local['truth'][i,:,foot,2],style,color='#333333',alpha=.6,label='GT '+str(foot))
                 ax.plot(np.arange(192)/30,local[name][i,:,foot,2],style,color='#b52b91',label='prediction '+str(foot))
@@ -88,7 +97,10 @@ def main():
         model_hash=digest(state['model']);before=path.stat().st_size
         # Useful minimal observation control remains resumable. A candidate
         # which failed the full registered protocol has no extension planned.
-        strip=arm!='observation_only' and result['status']=='not_passed_do_not_extend'
+        guard_path=ROOT/'GUARDED_RESULTS.json'
+        guard_passed=guard_path.exists() and json.loads(guard_path.read_text())['status']=='passed_exploratory_only'
+        useful_guarded=arm=='prior_scene' and guard_passed
+        strip=arm!='observation_only' and not useful_guarded and result['status']=='not_passed_do_not_extend'
         if strip:
             state.pop('optimizer',None);state.update(evaluation_only=True,resume_planned=False,
                 optimizer_removed_reason='Completed bounded candidate; registered combined protocol failed; no continuation planned')

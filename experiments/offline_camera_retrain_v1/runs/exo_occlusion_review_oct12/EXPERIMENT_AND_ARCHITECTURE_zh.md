@@ -1,5 +1,7 @@
 # Ego/exo 模型与实验唯一总清单
 
+**最新（10月15日，§4.17）：按用户要求完成旧55k冻结先验＋exo残差小试。保留观测参考并加遮挡分支保护后，遮挡MPJPE clean/noisy 156.90/162.82→125.14/133.55mm；相对同预算无场景版本，scene额外改善3.43%/3.71%，输入可见关节位置最大变化不足1μm。但脚步交替指标退化，当前仅为有初步收益的开发候选，不自动长训／不作论文验收通过。32个VAL特征窗来自16源窗、9个录制cluster；保护为posthoc、VAL被复用，旧55k又有历史官方TEST重叠。当前骨架回放：[8790 遮挡保护版](http://127.0.0.1:8790/PROTECTED_REPLAY.html)。原55k未改，候选与最小对照保留Adam。**
+
 更新：2026-10-15。**10000步ego首段已完成；随后100＋100步配对监督小试也已结束，全部采样／RNG核对一致。原目标control固定ego误差203.40/216.55mm，补脚步监督202.38/212.53mm；步行幅度误差对control仅改善1.65%，未达预设5%门槛，左右交替仍有问题，因此没有自动长训或接exo。旧55k四窗三项指标复跑完全一致，旧候选池也一致，严格旧续训仍需刷新来源恢复审计。另已实际跑通旧式轻量主干＋当前30Hz数据的零更新计算链，核心前后向0.18–0.22秒，当前重模型3.39–6.53秒（不含准备／Adam，不是质量对比或整轮提速承诺）。完整结论见4.16末。** 原始10000和control10100保留Adam／RNG；未通过小试的监督候选保留原模型与全部审计，去掉optimizer并标注evaluation-only。现有8788/8789回放仍为8000步。
 
 历史500步基线：E盘30Hz缓存及重新挂载后的完整审计已通过；原始发布量、选定范围和未接入部分见3.1。历史短训使用[500步短训配置](../../native30_short500_config.json)。首轮原始exo观测最多连续18帧完全无关节输入，保留关节局部遮挡；原始缓存、整段静态记忆和六例压力可视化保留。71项旧回归通过。**500/500步及第1/250/500步固定验证已完成，进程正常退出；最终可恢复last.pt已核验。这个基线的训练链路通过，生成效果未通过。** 原55k/3k模型保留。证据：[SHORT500_PROGRESS.json](../native30_short500_oct13/SHORT500_PROGRESS.json)、[CHECKPOINT_AUDIT.json](../native30_short500_oct13/training/CHECKPOINT_AUDIT.json)、[500步mesh对比](../native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)。
@@ -1260,3 +1262,29 @@ WSL互操作此次可用，直接用非管理员PowerShell读取System事件1001
 **在真实更新前声明第二版纠正协议**：[run_reference_probe.py](../legacy55k_exo_residual_oct15/run_reference_probe.py)保留可见点参考为初始姿态，旧55k的冻结预测只作为额外201维prior−reference特征，零残差输出严格等于参考；不再让先验覆盖较准的观测姿态。场景重新在参考关节查询一次，逐项断言原始输入／GT与第一版一致，沿用全部窗口、seed、噪声、目标及batch索引。四个同形同初始化、各1000步的factorial控制：仅观测、观测＋scene、观测＋55k、观测＋55k＋scene；另对最后一组分别推理时关scene／prior。新增3项测试确认坏prior不改变零残差、prior-OFF屏蔽污染先验、scene和prior开关独立。
 
 第二版门槛在训练前固定为clean/noisy均满足：遮挡较参考改善5%，scene相对prior-only额外改善2%，55k相对scene-only额外改善2%，可见误差相对**原观测参考**最多退化5mm，脚速向量RMSE最多退化10%。仍是第二个有上限的开发试验，不自动长训。第一版结果已用于选择此协议，复用的VAL不能冒充独立确认集；即使通过，也需新的确认面板／更大预算、真实前端及干净初始化路线才能形成论文结论。
+
+### 第二版及可见位置保护的最终结果
+
+四臂各1000更新完成，全1000个batch索引逐项相同，loss／梯度有限，旧55k文件及封存核心源码SHA不变，见[FINAL_AUDIT.json](../legacy55k_exo_residual_oct15/reference_anchor/FINAL_AUDIT.json)。**普通残差仍未通过验收**：prior＋scene遮挡105.75/111.19mm虽低，但可见位置48.65/56.59mm，相对参考29.72/42.73mm退化18.94/13.87mm；全身80.07/88.22mm也劣于参考73.94/86.09mm。不能只报缺失误差。
+
+因此额外做了**优化更新0的posthoc部署保护**：[protected_residual.py](../legacy55k_exo_residual_oct15/protected_residual.py)根据实际输入available mask，将会牵动任何可见后代位置的局部旋转置零；有可见位置时根平移置零，其余旋转经FK施加。该保护只支持完全隐藏的后代分支，不能处理“遮挡膝盖但踝可见”等需要联合约束求解的情况；保证的是可见关节位置，不是可见网格表面或方向。guard不读GT；随机骨架／mask与全可见／全缺失边界测试均通过。真实32个VAL特征窗最大可见关节位移9.54e-7m，可见GT误差也保持。规则声明及评估单独记录，不改写普通残差失败结论，见[GUARD_PROTOCOL.json](../legacy55k_exo_residual_oct15/reference_anchor/GUARD_PROTOCOL.json)、[GUARDED_RESULTS.json](../legacy55k_exo_residual_oct15/reference_anchor/GUARDED_RESULTS.json)。
+
+下表均使用相同保护、相同16个VAL源窗，数值为每窗遮挡MPJPE均值（mm），并非全量VAL／微平均：
+
+|方案|clean|noisy|
+|---|---:|---:|
+|可见点参考初始化|156.90|162.82|
+|exo残差，无55k、无scene|128.37|139.18|
+|exo残差＋scene，无55k|130.77|139.65|
+|exo残差＋55k，无scene|129.59|138.70|
+|exo残差＋55k＋scene|**125.14**|**133.55**|
+
+组合较初始化遮挡改善20.24%/17.98%；scene相对55k-only额外改善4.45/5.15mm（3.43%/3.71%，11/16与12/16窗改善）；55k相对scene-only额外改善5.63/6.10mm（4.30%/4.37%）。大部分改善来自exo残差本身，**55k单独或scene单独未在全部条件稳定胜过最小exo残差**，应按组合对照解释。组合全身64.89/77.48mm，可见29.72/42.73mm，踝脚误差68.56/80.18mm（参考79.64/90.38）。按9个recording cluster做10000次paired bootstrap，scene差值95%描述区间clean[2.27,8.44]mm、noisy[2.90,9.07]mm；这是小开发面板、单训练seed且规则有posthoc选择，不是独立显著性确认。完整逐窗／按组／微平均见[GUARDED_PAIRED_ANALYSIS.json](../legacy55k_exo_residual_oct15/reference_anchor/GUARDED_PAIRED_ANALYSIS.json)。
+
+**脚步暂不通过**：组合脚速向量RMSE从参考0.750/0.760降到0.708/0.731m/s，但左右脚body-local Z相关性误差从0.276/0.336增到0.330/0.361；幅度／脚滑改善不能替代交替正确。全部窗的RMS比例、左右相关及GT活动量见[FOOT_ARTICULATION_AUDIT.json](../legacy55k_exo_residual_oct15/reference_anchor/FOOT_ARTICULATION_AUDIT.json)，按预选遮挡分位而非结果挑选的四组曲线见[FOOT_CURVES.png](../legacy55k_exo_residual_oct15/reference_anchor/FOOT_CURVES.png)。当前不是专用步行确认面板，不把误差下降宣传为已学好脚步。
+
+保留prior_scene与最小observation_only对照的原子last.pt／Adam／RNG；其余已结束且无续训计划的对照去Adam，模型SHA核对不变，仍可评估。原55k、原10k、前一轮control10100均未改。输入／预测数组与大权重本地保留，代码、协议、记录、图备份授权仓库。当前Linux约27.5GiB、E约112.6GiB可用，新目录约0.72GiB，无新全量标签预计算。第二版单步均值0.054–0.056秒，1150341个残差参数；每臂1000更新＋末尾验证约55–57秒，不含数据校验／一次性输入生成、RGB前端和独立可视化准备，不能作为原重模型的等价提速声称。
+
+交互[遮挡保护版回放](http://127.0.0.1:8790/PROTECTED_REPLAY.html)及[普通残差回放](http://127.0.0.1:8790/REPLAY.html)同时保留，蓝GT／品红预测／橙输入可见关节，三栏同一相机视角、世界坐标未对齐。这里是native骨架而非SMPL网格；场景只画最近观测patch，不冒充完整扫描。浏览器实测32种case、首／中／末帧、播放暂停及三个canvas，无JS异常。原8788/8789仍展示旧8000步网格，不混淆。
+
+结论：这条“保留观测初始姿态＋冻结55k辅助先验＋exo残差＋隐藏分支保护”的开发路线在当前面板有遮挡与scene增益，值得保留；**不自动开始更长训练**。下一验收要先固定新的独立确认面板、步行交替和保护机制，保留相同factorial对照，再决定是否扩大预算；旧55k路径始终标开发迁移，真实前端与论文干净初始化问题仍待解决。

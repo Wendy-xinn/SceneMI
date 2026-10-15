@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-10-15T18:04:22.663890+08:00",
+  "optimizer_updates": 0,
+  "method": "Freeze root translation when any input position is available; freeze local rotations whose strict descendants include an available joint; apply remaining learned residual via FK",
+  "reason": "First reference-preserving observation-only control improves occlusion but degrades visible joints",
+  "scope": "Exploratory posthoc evaluation of all four fixed1000-step models; no new training, no GT in guard; same exact cases",
+  "thresholds": "Report same5% occluded,2% extra scene/prior,5mm visible,10% foot-velocity gates, without reclassifying registered raw trial",
+  "guarantee": "Input-available JOINT POSITIONS invariant to2e-6m; not a visible-surface or orientation guarantee"
+}
