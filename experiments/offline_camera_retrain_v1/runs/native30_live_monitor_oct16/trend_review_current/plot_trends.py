@@ -54,7 +54,8 @@ for ax in axes.flat:
     ax.spines[["top", "right"]].set_visible(False)
     ax.set_xlim(left=0)
 
-fig.suptitle("Current baseline: training loss falls, but fixed VAL position error rebounds at 9k", fontsize=15)
+latest_label = f"{data['latest_validation_step'] / 1000:g}k"
+fig.suptitle(f"{latest_label} review: training loss falls; fixed VAL pose, heading and feet still fluctuate", fontsize=15)
 fig.supxlabel("Fixed VAL = 3 matched windows, one per dataset; same input / sampling seeds. Not full VAL.\n"
                "Pose / orientation: count-weighted; local feet: equal-window mean. All panels: lower is better.",
                fontsize=10)
