@@ -1,0 +1,164 @@
+{
+  "status": "passed_complete",
+  "checkpoint_step": 15100,
+  "plan_sha256": "a78c4eb7539914ae9b6efdac946b554afb3172bc6f35a6c4f201f9ec92d316f6",
+  "cases": [
+    {
+      "regime": "clean",
+      "case": 1,
+      "original_full_RICH_case": 29,
+      "seed": 303671090,
+      "baseline_artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_baseline_clean.npz",
+      "baseline_sha256": "4245be760a6e45c8e423cd1c9d4ad5c718d3b3b8487fff618181db377a2d02e9",
+      "reference_artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/motions/case29_clean.npz",
+      "reference_sha256": "7d4fb801abb0f4f596f0d05305420e7f875525c5785d3f3c939e7c238ae9aed0",
+      "source_identity_equal": true,
+      "input_fields": {
+        "truth": {
+          "byte_identical": true,
+          "shape": [
+            192,
+            201
+          ],
+          "dtype": "float32",
+          "actual_sha256": "0b2505d406c85728e8775322d6c48ee735591da8691ba509b679a2e1eaa2414f",
+          "reference_sha256": "0b2505d406c85728e8775322d6c48ee735591da8691ba509b679a2e1eaa2414f",
+          "maximum_absolute_difference": 0.0
+        },
+        "rest": {
+          "byte_identical": true,
+          "shape": [
+            22,
+            3
+          ],
+          "dtype": "float32",
+          "actual_sha256": "43833e00468db6419523779817d3416d8aada66a3b796a7fd101e544ab67d372",
+          "reference_sha256": "43833e00468db6419523779817d3416d8aada66a3b796a7fd101e544ab67d372",
+          "maximum_absolute_difference": 0.0
+        },
+        "observations": {
+          "byte_identical": true,
+          "shape": [
+            192,
+            22,
+            9
+          ],
+          "dtype": "float32",
+          "actual_sha256": "77b55410185fb35332b3b07b9c3f551910532ddfb61e00abb8ee3fe0d0caf13d",
+          "reference_sha256": "77b55410185fb35332b3b07b9c3f551910532ddfb61e00abb8ee3fe0d0caf13d",
+          "maximum_absolute_difference": 0.0
+        },
+        "observation_meta": {
+          "byte_identical": true,
+          "shape": [
+            192,
+            22,
+            5
+          ],
+          "dtype": "float32",
+          "actual_sha256": "ac0e730f769b1155c5650cc90af1c35471c839c16cf7cca56860ab5cb637dd90",
+          "reference_sha256": "ac0e730f769b1155c5650cc90af1c35471c839c16cf7cca56860ab5cb637dd90",
+          "maximum_absolute_difference": 0.0
+        },
+        "reference": {
+          "byte_identical": true,
+          "shape": [
+            192,
+            201
+          ],
+          "dtype": "float32",
+          "actual_sha256": "6c5883c9822f8c828d77f1f66d3cb0d11ab63033f2ef0d05e4c7b0bbf03b1155",
+          "reference_sha256": "6c5883c9822f8c828d77f1f66d3cb0d11ab63033f2ef0d05e4c7b0bbf03b1155",
+          "maximum_absolute_difference": 0.0
+        }
+      },
+      "prediction_byte_identical": true,
+      "prediction_allclose_atol": 1e-06,
+      "prediction_allclose_rtol": 1e-06,
+      "prediction_maximum_absolute_difference": 0.0,
+      "prediction_allclose_passed": true
+    },
+    {
+      "regime": "noisy",
+      "case": 1,
+      "original_full_RICH_case": 29,
+      "seed": 303671090,
+      "baseline_artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_baseline_noisy.npz",
+      "baseline_sha256": "8495b9f4ac00a0694a81049c556403c5732c259b282a33437e15d5cd157ec947",
+      "reference_artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/motions/case29_noisy.npz",
+      "reference_sha256": "87c24409d006a42162964c36c7d76e03c0463ed4b682379fb43e27024f00546e",
+      "source_identity_equal": true,
+      "input_fields": {
+        "truth": {
+          "byte_identical": true,
+          "shape": [
+            192,
+            201
+          ],
+          "dtype": "float32",
+          "actual_sha256": "0b2505d406c85728e8775322d6c48ee735591da8691ba509b679a2e1eaa2414f",
+          "reference_sha256": "0b2505d406c85728e8775322d6c48ee735591da8691ba509b679a2e1eaa2414f",
+          "maximum_absolute_difference": 0.0
+        },
+        "rest": {
+          "byte_identical": true,
+          "shape": [
+            22,
+            3
+          ],
+          "dtype": "float32",
+          "actual_sha256": "43833e00468db6419523779817d3416d8aada66a3b796a7fd101e544ab67d372",
+          "reference_sha256": "43833e00468db6419523779817d3416d8aada66a3b796a7fd101e544ab67d372",
+          "maximum_absolute_difference": 0.0
+        },
+        "observations": {
+          "byte_identical": true,
+          "shape": [
+            192,
+            22,
+            9
+          ],
+          "dtype": "float32",
+          "actual_sha256": "21bc4caa1374215249101005395a3159ee1824226b76981779eb9191035051ae",
+          "reference_sha256": "21bc4caa1374215249101005395a3159ee1824226b76981779eb9191035051ae",
+          "maximum_absolute_difference": 0.0
+        },
+        "observation_meta": {
+          "byte_identical": true,
+          "shape": [
+            192,
+            22,
+            5
+          ],
+          "dtype": "float32",
+          "actual_sha256": "88cbad4beb5768e3e1b2c611c04f760e3fb043bca7aa980bdd6d5acb81d65b8f",
+          "reference_sha256": "88cbad4beb5768e3e1b2c611c04f760e3fb043bca7aa980bdd6d5acb81d65b8f",
+          "maximum_absolute_difference": 0.0
+        },
+        "reference": {
+          "byte_identical": true,
+          "shape": [
+            192,
+            201
+          ],
+          "dtype": "float32",
+          "actual_sha256": "b76a589aa63e549f2cef0f175f53e8df985a98fdb4a2298ccd16e9b6d695c417",
+          "reference_sha256": "b76a589aa63e549f2cef0f175f53e8df985a98fdb4a2298ccd16e9b6d695c417",
+          "maximum_absolute_difference": 0.0
+        }
+      },
+      "prediction_byte_identical": true,
+      "prediction_allclose_atol": 1e-06,
+      "prediction_allclose_rtol": 1e-06,
+      "prediction_maximum_absolute_difference": 0.0,
+      "prediction_allclose_passed": true
+    }
+  ],
+  "scope": "Original full-RICH process versus new zero-intervention baseline; same seed and reconstructed input, both clean/noisy.",
+  "verifier_script_sha256": "0829657da60f9bd41b1182a6eca4775abfe8757163f35cf753bce44abf151991",
+  "verifier_script_source": "from __future__ import annotations\nimport os\nos.environ['CUDA_VISIBLE_DEVICES'] = ''\nos.environ['OMP_NUM_THREADS'] = '2'\nos.environ['MKL_NUM_THREADS'] = '2'\nos.environ['OPENBLAS_NUM_THREADS'] = '2'\nimport datetime as dt\nimport gc\nimport hashlib\nimport importlib.util\nimport json\nimport math\nfrom pathlib import Path\nimport sys\nimport time\n\nREPO = Path('/home/wenxin/projects/SceneMI')\nBASE = REPO/'experiments/offline_camera_retrain_v1'\nOUT = BASE/'runs/native30_live_monitor_oct16/support_ablation'\nFULL = OUT.parent/'rich_full_validation_oct16'\nsys.path.insert(0,str(REPO))\n\ndef now(): return dt.datetime.now().astimezone().isoformat()\ndef read(path): return json.loads(Path(path).read_text())\ndef sha(path):\n    h=hashlib.sha256()\n    with Path(path).open('rb') as f:\n        for block in iter(lambda:f.read(8*1024**2),b''):h.update(block)\n    return h.hexdigest()\ndef write(path,value):\n    p=Path(path);tmp=p.with_suffix(p.suffix+'.cpu-tmp')\n    tmp.write_text(json.dumps(value,ensure_ascii=False,indent=2,allow_nan=False)+'\\n');tmp.replace(p)\ndef require(condition,message):\n    if not condition: raise ValueError(message)\ndef module(name,path):\n    spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m\ndef provenance():\n    return dict(verifier_script_sha256=sha(__file__),verifier_script_source=Path(__file__).read_text(),\n                pid=os.getpid(),checked_at=now(),CPU_threads=2,CUDA_VISIBLE_DEVICES=os.environ['CUDA_VISIBLE_DEVICES'])\ndef npz(path):\n    import numpy as np\n    with np.load(path,allow_pickle=False) as a:return {k:a[k] for k in a.files}\ndef bytes_digest(value):\n    h=hashlib.sha256();h.update(str(value.dtype).encode());h.update(str(value.shape).encode());h.update(value.tobytes(order='C'));return h.hexdigest()\n\ndef baseline_control():\n    import numpy as np\n    plan=read(OUT/'PLAN.json')\n    cases=[]\n    full_rows=[json.loads(l) for l in (FULL/'rows.jsonl').read_text().splitlines()]\n    for regime in plan['regimes']:\n        a=OUT/'motions'/f'case01_baseline_{regime}.npz'\n        b=FULL/'motions'/f'case29_{regime}.npz'\n        left,right=npz(a),npz(b)\n        require(int(left['step'])==int(right['step'])==15100,'Control step mismatch')\n        require(json.loads(str(left['identity_json']))==json.loads(str(right['identity_json'])),'Control source identity mismatch')\n        record=next(r for r in full_rows if r['case']==29 and r['regime']==regime)\n        require(sha(b)==record['motion_sha256'],'Full reference artifact changed')\n        fields={}\n        for key in ('truth','rest','observations','observation_meta','reference'):\n            x,y=left[key],right[key]\n            exact=x.dtype==y.dtype and x.shape==y.shape and x.tobytes()==y.tobytes()\n            fields[key]=dict(byte_identical=exact,shape=list(x.shape),dtype=str(x.dtype),\n                             actual_sha256=bytes_digest(x),reference_sha256=bytes_digest(y),\n                             maximum_absolute_difference=float(np.max(np.abs(x-y))))\n            require(exact,'Baseline control nonidentical '+regime+'/'+key)\n        x,y=left['prediction'],right['prediction']\n        require(x.shape==y.shape==(192,201),'Control prediction shape mismatch')\n        same=np.allclose(x,y,atol=1e-6,rtol=1e-6)\n        require(same,'Baseline original sampling mismatch '+regime)\n        cases.append(dict(regime=regime,case=1,original_full_RICH_case=29,seed=303671090,\n            baseline_artifact=str(a),baseline_sha256=sha(a),reference_artifact=str(b),reference_sha256=sha(b),\n            source_identity_equal=True,input_fields=fields,prediction_byte_identical=x.dtype==y.dtype and x.tobytes()==y.tobytes(),\n            prediction_allclose_atol=1e-6,prediction_allclose_rtol=1e-6,\n            prediction_maximum_absolute_difference=float(np.max(np.abs(x-y))),prediction_allclose_passed=bool(same)))\n    report=dict(status='passed_complete',checkpoint_step=15100,plan_sha256=sha(OUT/'PLAN.json'),\n                cases=cases,scope='Original full-RICH process versus new zero-intervention baseline; same seed and reconstructed input, both clean/noisy.',**provenance())\n    write(OUT/'BASELINE_CONTROL.json',report)\n    print(json.dumps(dict(event='baseline_control_passed',exact_predictions=[x['prediction_byte_identical'] for x in cases]),ensure_ascii=False),flush=True)\n\ndef compare_metrics(actual,expected,label):\n    require(set(actual)==set(expected),label+' keys differ '+str(set(actual)^set(expected)))\n    max_delta=0.\n    for key,a in actual.items():\n        e=expected[key]\n        if a is None or e is None:\n            require(a is None and e is None,label+'/'+key+' None mismatch');continue\n        require(isinstance(a,(int,float)) and isinstance(e,(int,float)),label+'/'+key+' type mismatch')\n        require(math.isclose(a,e,rel_tol=1e-6,abs_tol=3e-5),label+'/'+key+' mismatch '+repr((a,e)))\n        max_delta=max(max_delta,abs(a-e))\n    return max_delta\n\ndef common_surface(truth,asset,scene):\n    import numpy as np\n    import torch\n    from scipy.spatial import cKDTree\n    from experiments.offline_camera_retrain_v1.unified_geometry import skin_points\n    while not hasattr(scene,'static') and hasattr(scene,'base'):\n        require(np.allclose(scene.rotation,np.eye(3),atol=1e-7),'Nonidentity surface transform must not be silently unwrapped')\n        scene=scene.base\n    static=scene.static\n    valid=static['reliable']&(static['normals'][:,1]>.9)&(static['owners']==0)\n    cloud,normals=static['points'][valid],static['normals'][valid]\n    labels=asset['labels'].detach().cpu().numpy();feet=np.isin(labels,[7,8,10,11])\n    with torch.no_grad():g=skin_points(torch.from_numpy(truth),asset).numpy()[:,feet]\n    if not len(cloud):return dict(count=0,mask_digest=hashlib.sha256(b'no_surface').hexdigest(),feet=feet)\n    distance,ids=cKDTree(cloud).query(g);point,normal=cloud[ids],normals[ids]\n    gd=g-point;signed=(gd*normal).sum(-1);tangent=np.linalg.norm(gd-signed[...,None]*normal,axis=-1)\n    mask=(distance<.25)&(tangent<.12)&(np.abs(signed)<.2)\n    h=hashlib.sha256()\n    for x in (feet,mask,point,normal,signed):h.update(bytes_digest(x).encode())\n    return dict(count=int(mask.sum()),mask_digest=h.hexdigest(),feet=feet,mask=mask,point=point,normal=normal,signed=signed,\n                reliable_upward_static_points=len(cloud))\n\ndef independently_surface_metrics(prediction,asset,evidence):\n    import numpy as np\n    import torch\n    from experiments.offline_camera_retrain_v1.unified_geometry import skin_points\n    count=evidence['count']\n    if count==0:return dict(support_evaluation_anchor_count=0)\n    with torch.no_grad():p=skin_points(torch.from_numpy(prediction),asset).numpy()[:,evidence['feet']]\n    ps=((p-evidence['point'])*evidence['normal']).sum(-1);mask=evidence['mask'];g=evidence['signed']\n    return dict(support_evaluation_anchor_count=count,\n        support_calibrated_absolute_error_mm=float(np.abs(ps-g)[mask].mean()*1000),\n        support_signed_height_mm=float(ps[mask].mean()*1000),\n        support_float_over_50mm_fraction=float((ps[mask]>.05).mean()),\n        support_penetrate_below_20mm_fraction=float((ps[mask]<-.02).mean()),\n        support_gt_signed_height_mm=float(g[mask].mean()*1000))\n\ndef final_verify():\n    import numpy as np\n    import torch\n    from experiments.offline_camera_retrain_v1.prepare_native30 import window_options\n    from experiments.offline_camera_retrain_v1.native30_data import Native30Data\n    from experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAnchorCache\n    from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder\n    from experiments.offline_camera_retrain_v1.unified_observations import collate_observations\n    from experiments.offline_camera_retrain_v1.native30_refinement import model_inputs\n    from experiments.offline_camera_retrain_v1.native30_surface_cache import CanonicalSurfaceCache\n    from experiments.offline_camera_retrain_v1 import native30_surface_cache as surfaces,native30_memory as memory\n    from experiments.offline_camera_retrain_v1.ops.support_metrics import support_metrics\n    torch.set_num_threads(2);torch.set_num_interop_threads(1)\n    require(not torch.cuda.is_initialized(),'CUDA unexpectedly initialized before CPU verification')\n    plan=read(OUT/'PLAN.json');protocol=read(OUT/'PROTOCOL.json');status=read(OUT/'STATUS.json')\n    require(status['status']==protocol['status']=='completed','Worker not complete')\n    require(protocol['plan_sha256']==sha(OUT/'PLAN.json'),'Plan digest differs')\n    require(protocol['model_tensor_digest_before']==protocol['model_tensor_digest_after'],'Worker model tensors changed')\n    for path,digest in plan['dependency_sha256'].items():require(sha(path)==digest,'Dependency changed '+path)\n    require(sha(plan['source_manifest'])==plan['source_manifest_sha256'],'Selection manifest changed')\n    helper=module('independent_constraint_eval_helpers',FULL/'runner.py');effective=helper.verify_sources();cfg=effective['config']\n    require(sha(plan['checkpoint'])==plan['checkpoint_sha256'],'Checkpoint SHA differs')\n    ck=torch.load(plan['checkpoint'],map_location='cpu',mmap=True,weights_only=False)\n    require(ck['step']==15100 and ck['effective_config']==effective,'Checkpoint identity differs')\n    tensor_digest=helper.model_tensor_digest(ck['model'])\n    require(tensor_digest==protocol['model_tensor_digest_before'],'Model tensor identity differs');del ck;gc.collect()\n    raw=(OUT/'rows.jsonl').read_bytes();require(raw.endswith(b'\\n'),'Partial row tail')\n    rows=[json.loads(x) for x in raw.splitlines()]\n    expected={(e['case'],r,a) for e in plan['entries'] for r in plan['regimes'] for a in plan['arms']}\n    by={(r['case'],r['regime'],r['arm']):r for r in rows}\n    require(len(rows)==len(by)==40 and set(by)==expected,'Coverage/duplicate/unplanned rows')\n    require(all(r['checkpoint_step']==15100 for r in rows),'Mixed checkpoint rows')\n    started=dt.datetime.fromisoformat(protocol['started_at'])\n    require(all(dt.datetime.fromisoformat(r['checked_at'])>=started for r in rows),'Rows predate recorded worker session')\n    io=module('independent_constraint_crc_reads',BASE/'runs/native30_final_review_oct16/io_recovery.py')\n    surfaces.np=io.NumpyProxy(surfaces.np,OUT/'INDEPENDENT_CPU_IO_READS.jsonl')\n    memory.np=io.NumpyProxy(memory.np,OUT/'INDEPENDENT_CPU_IO_READS.jsonl')\n    data=Native30Data(BASE/cfg['train_manifest'],'validation',cfg['seed']+1,frames=cfg['frames'],\n        memory_protocol=cfg['scene']['memory_protocol'],quality_config=cfg['gt_reliability'],\n        exo_max_empty_frames=cfg['exo_max_empty_frames'],**window_options(cfg))\n    data.runtime_cache_root=OUT/'native30_runtime_cache_v2'\n    old_path=data.scene_memory._cache_path\n    data.scene_memory._cache_path=lambda *args:(p if (p:=old_path(*args)) is not None and p.exists() else None)\n    data.surface_cache=CanonicalSurfaceCache(data,limit=1);data.scene_memory.cached_streams=1\n    builder=Native30ObservationBuilder(Native30SkinAnchorCache(device='cpu'),read(BASE/cfg['mount_defaults']),cfg['observation']['input_noise'])\n    noisy=Native30ObservationBuilder(builder.skin_cache,builder.mounts,dict(builder.noise_config,clean_probability=0.))\n    checked=[];evidences=[];maximum_delta=0.;empty_low=[];reference_reconstruction=[]\n    for entry in plan['entries']:\n        members=[i for i,(m,_) in enumerate(data.members[entry['group']]) if m['path']==entry['path']]\n        require(len(members)==1,'Nonunique source identity')\n        sample,identity=data.sample(entry['group'],'ego',member=members[0],start=entry['start'],yaw=0)\n        require(identity['sequence_id']==entry['sequence_id'] and identity['source_start_30fps']==entry['source_first'],'Source index differs')\n        for regime in plan['regimes']:\n            observed,scene,asset=(builder if regime=='clean' else noisy).build(data,sample,identity,'ego',(15,),\n                noise_rng=None if regime=='clean' else np.random.default_rng(entry['case_seed']))\n            batch=collate_observations([(observed,scene,asset,'ego')],device='cpu');known=model_inputs(cfg,batch)\n            baseline=npz(by[(entry['case'],regime,'baseline')]['artifact'])\n            cpu_reference=known['reference_motion'][0].numpy()\n            reference_delta=float(np.max(np.abs(cpu_reference-baseline['reference'])))\n            require(np.allclose(cpu_reference,baseline['reference'],atol=1e-5,rtol=1e-5),'Cross-device rebuilt reference differs')\n            reference_reconstruction.append(dict(case=entry['case'],regime=regime,\n                CPU_vs_saved_GPU_maximum_absolute_reference_delta=reference_delta,\n                CPU_vs_saved_GPU_reference_byte_identical=bool(np.array_equal(cpu_reference,baseline['reference'])),\n                allclose_absolute_tolerance=1e-5,allclose_relative_tolerance=1e-5))\n            h=hashlib.sha256()\n            for key in ('trajectory','observation_meta','observation_uncertainty','reference_motion','reference_confidence'):\n                value=baseline['reference'][None] if key=='reference_motion' else known[key].detach().cpu().contiguous().numpy()\n                h.update(value.tobytes())\n            input_sha=h.hexdigest();evidence=common_surface(sample['motion'],asset,scene)\n            ev=dict(case=entry['case'],regime=regime,count=evidence['count'],mask_sha256=evidence['mask_digest'],\n                    reliable_upward_static_points=evidence.get('reliable_upward_static_points',0),arms=[])\n            for arm in plan['arms']:\n                row=by[(entry['case'],regime,arm)];path=Path(row['artifact'])\n                require(sha(path)==row['artifact_sha256'],'Artifact SHA differs')\n                a=npz(path)\n                require(row['input_sha256']==str(a['input_sha256'])==input_sha,'Rebuilt input SHA differs')\n                require(str(a['arm'])==arm and int(a['step'])==15100,'Artifact arm/step differs')\n                require(json.loads(str(a['identity_json']))==identity,'Rebuilt artifact identity differs')\n                for key,expected_array in [('truth',sample['motion']),('rest',sample['rest']),('observations',observed['trajectory']),\n                        ('observation_meta',observed['observation_meta']),('reference',baseline['reference'])]:\n                    require(np.array_equal(a[key],expected_array),'Rebuilt source array differs '+key)\n                metrics=support_metrics(a['prediction'],a['truth'],a['rest'],a['observations'],a['observation_meta'],asset)\n                metrics.update(independently_surface_metrics(a['prediction'],asset,evidence))\n                delta=compare_metrics(metrics,row['metrics'],str((entry['case'],regime,arm)));maximum_delta=max(maximum_delta,delta)\n                require(metrics['support_evaluation_anchor_count']==evidence['count'],'Arm mask count differs')\n                if metrics['gt_low_speed_foot_joint_samples']==0:\n                    require(metrics['foot_joint_horizontal_speed_gt_low_m_s'] is None,'Empty GT-low proxy not None')\n                    empty_low.append(dict(case=entry['case'],regime=regime,arm=arm))\n                ev['arms'].append(arm)\n                checked.append(dict(case=entry['case'],regime=regime,arm=arm,artifact_sha256=row['artifact_sha256'],\n                    all_metric_keys_recomputed=len(metrics),maximum_absolute_metric_delta=delta,\n                    gt_low_speed_foot_joint_samples=metrics['gt_low_speed_foot_joint_samples'],\n                    common_surface_count=evidence['count'],common_surface_mask_sha256=evidence['mask_digest']))\n            evidences.append(ev)\n            print(json.dumps(dict(event='cpu_case_regime_verified',case=entry['case'],regime=regime,rows=len(checked)),ensure_ascii=False),flush=True)\n            del known,batch,observed,scene,asset\n            gc.collect()\n        data.arrays.clear()\n    require(not torch.cuda.is_initialized(),'CUDA initialized during CPU verification')\n    require(sha(OUT/'rows.jsonl')==hashlib.sha256(raw).hexdigest(),'Rows changed during complete verification')\n    helper.verify_sources()\n    result=dict(status='passed_complete',checkpoint_step=15100,plan_sha256=sha(OUT/'PLAN.json'),\n        checkpoint_sha256=plan['checkpoint_sha256'],independent_model_tensor_digest=tensor_digest,\n        rows_sha256=sha(OUT/'rows.jsonl'),expected_rows=40,verified_rows=len(checked),unique_cases=5,\n        regimes=plan['regimes'],arms=list(plan['arms']),CPU_only=True,CUDA_initialized=False,\n        input_reconstruction='truth,rest,trajectory,meta byte equality; stored references byte-identical across all arms and independently CPU rebuilt within 1e-5; uncertainty and reference confidence in rebuilt aggregate fingerprint using saved GPU reference',\n        all_saved_metric_keys_recomputed=True,surface_masks_shared_between_all_arms=True,\n        maximum_absolute_metric_delta=maximum_delta,numeric_tolerances=dict(relative=1e-6,absolute=3e-5),\n        rows_predating_worker_session=0,resumed_rows_compatible_with_session_timestamps=0,\n        resume_audit_limit='No row predates worker start; no explicit resumed counter existed in runner, so this is a timestamp/session audit, not proof of process history.',\n        empty_GT_low_speed_groups=empty_low,reference_reconstruction=reference_reconstruction,\n        common_surface_evidence=evidences,verified=checked,**provenance())\n    write(OUT/'INDEPENDENT_CPU_VERIFY.json',result)\n    print(json.dumps(dict(event='independent_cpu_verify_passed',rows=len(checked),maximum_absolute_metric_delta=maximum_delta)),flush=True)\n\ndef main():\n    import numpy\n    while not all((OUT/'motions'/f'case01_baseline_{r}.npz').exists() for r in ('clean','noisy')):\n        s=read(OUT/'STATUS.json');require(s['status']!='failed','GPU worker failed before baseline control')\n        time.sleep(15)\n    baseline_control()\n    while read(OUT/'STATUS.json')['status']!='completed':\n        s=read(OUT/'STATUS.json');require(s['status']!='failed','GPU worker failed before final CPU verification')\n        time.sleep(20)\n    final_verify()\n\nif __name__=='__main__':\n    try:main()\n    except BaseException as error:\n        write(OUT/'INDEPENDENT_CPU_VERIFY_FAILURE.json',dict(status='failed',error=repr(error),**provenance()))\n        raise\n",
+  "pid": 184723,
+  "checked_at": "2026-10-16T20:48:58.423536+08:00",
+  "CPU_threads": 2,
+  "CUDA_VISIBLE_DEVICES": ""
+}

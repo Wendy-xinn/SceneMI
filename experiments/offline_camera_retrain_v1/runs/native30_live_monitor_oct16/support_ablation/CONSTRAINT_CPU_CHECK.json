@@ -1,0 +1,89 @@
+{
+  "schema": "support-constraint-cpu-check-v1",
+  "created_at": "2026-10-16T12:40:03.330553+00:00",
+  "source": "experiments/offline_camera_retrain_v1/ops/support_constraints.py",
+  "source_sha256": "b5c9900638189ac47604ce9064ebaf78e25163ea7dc5d801a9f423724b5684af",
+  "tested_config": {
+    "gravity_weight": 0.15
+  },
+  "algorithm_input_keys_for_gravity": [
+    "rest",
+    "mode"
+  ],
+  "ground_truth_used_by_candidate": false,
+  "ground_truth_used_for_evaluation_only": true,
+  "cuda_initialized": false,
+  "controlled_fk": {
+    "native_rest": "TRUMANS SMPL-X male; source manifest case 1",
+    "root_tilt_before_deg": 26.25861930847168,
+    "root_tilt_after_deg": 24.82213592529297,
+    "heading_max_error_deg": 3.415094397496432e-06,
+    "update_max_deg": 1.464786410331726,
+    "nonroot_local_rotation_max_error": 5.960464477539063e-08,
+    "root_translation_max_error_m": 0.0,
+    "bone_length_max_error_m": 8.940696716308594e-08,
+    "finite_fk_gradient": true,
+    "gradient_abs_sum": 0.10833669453859329
+  },
+  "identity_checks": {
+    "weight_zero": true,
+    "early_noise_signal_0p2": true,
+    "exo_default_skip": true,
+    "support_disabled_requires_no_scene": true,
+    "bent_spine_and_raised_leg_with_upright_root": true,
+    "deep_root_tilt_74p5deg_at_heading_pi_skipped": true
+  },
+  "actual_frozen_windows": [
+    {
+      "case": "1. TRUMANS · 16k走动",
+      "step": 16000,
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/7a4409995d8af5ecfd302d00471094eb1ce4dcc884eac6781857d46c46b6f618/playback.npz",
+      "regime": "truth",
+      "tilt_mean_before_deg": 7.2630510330200195,
+      "tilt_mean_after_deg": 7.256489276885986,
+      "frames_changed": 19,
+      "heading_max_error_deg": 6.830188794992864e-06,
+      "head_displacement_max_mm": 2.142059326171875,
+      "foot_displacement_max_mm": 3.2236180305480957
+    },
+    {
+      "case": "1. TRUMANS · 16k走动",
+      "step": 16000,
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/7a4409995d8af5ecfd302d00471094eb1ce4dcc884eac6781857d46c46b6f618/playback.npz",
+      "regime": "clean_prediction",
+      "tilt_mean_before_deg": 15.211777687072754,
+      "tilt_mean_after_deg": 14.492836952209473,
+      "frames_changed": 189,
+      "heading_max_error_deg": 6.830188794992864e-06,
+      "head_displacement_max_mm": 19.269287109375,
+      "foot_displacement_max_mm": 27.701496124267578
+    },
+    {
+      "case": "5. RICH · 16k椅子附近走动",
+      "step": 16000,
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/f3f5de0bdf3cabcc6a00b29b9b2d68ec991581cf9335adb56d32986f2dae2eef/playback.npz",
+      "regime": "truth",
+      "tilt_mean_before_deg": 21.25855255126953,
+      "tilt_mean_after_deg": 20.21903419494629,
+      "frames_changed": 126,
+      "heading_max_error_deg": 6.830188794992864e-06,
+      "head_displacement_max_mm": 19.775588989257812,
+      "foot_displacement_max_mm": 33.72647476196289
+    },
+    {
+      "case": "5. RICH · 16k椅子附近走动",
+      "step": 16000,
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/f3f5de0bdf3cabcc6a00b29b9b2d68ec991581cf9335adb56d32986f2dae2eef/playback.npz",
+      "regime": "clean_prediction",
+      "tilt_mean_before_deg": 9.553938865661621,
+      "tilt_mean_after_deg": 9.362695693969727,
+      "frames_changed": 88,
+      "heading_max_error_deg": 6.830188794992864e-06,
+      "head_displacement_max_mm": 9.604090690612793,
+      "foot_displacement_max_mm": 15.954070091247559
+    }
+  ],
+  "interpretation": "Root-upright is a gravity-direction alignment proxy, not a Newtonian simulation or a guaranteed support correction. RICH GT itself has greater average root tilt than prediction, so this case can expose harmful suppression of legitimate pelvis tilt. Full same-seed generation ablation, support/foot slip/head metrics and visual inspection must decide usefulness.",
+  "ordering_note": "Module describes AFTER-observation adapter usage; registered experiment explicitly applies upright BEFORE original root-anchor and six IK iterations in all arms. Report experiment ordering verbatim; neither is assumed generally superior.",
+  "status": "passed"
+}

@@ -14,6 +14,7 @@ COMMANDS = {
     "view": ("motion_viewer", "查看已有预测、GT 和场景，不运行模型推理"),
     "best": ("checkpoint_guardian", "按固定验证指标保留一个最佳模型副本"),
     "scene-check": ("scene_causal_check", "运行已登记的冻结权重场景/物理修正配对检查"),
+    "motion-check": ("motion_ablation", "运行冻结权重的头部锚定、重力方向和支撑配对实验"),
 }
 
 

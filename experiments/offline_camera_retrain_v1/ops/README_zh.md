@@ -10,3 +10,8 @@
 - `cleanup_oct16_evening/`：此次清理的精确文件清单、依赖核验和实际执行记录。
 
 工具放在本目录；权重和预测仍留本地实验目录。已退役工具随其完整实验移到 archive，保留历史重现信息。
+# 冻结权重的动作约束实验
+
+使用 `python -m experiments.offline_camera_retrain_v1.ops motion-check` 运行同权重、同输入和同 seed 的头部锚定/弱重力方向先验配对检查；`--prepare-only` 先登记清单。`motion_ablation.py` 负责实验、`support_constraints.py` 负责无GT的候选约束、`support_metrics.py` 负责只在评价阶段读取GT的指标。案例与结果放 `runs/native30_live_monitor_oct16/support_ablation/`，不往runs复制Python脚本。
+
+本轮四臂的重力项在原头部约束之前应用；它是有死区与角度限幅的root直立先验，不是牛顿重力或接触动力学。弯腰、俯卧撑和瑜伽同时作为反例；不能把倾角变小当作成功。当前训练、既有全RICH评估与排队场景检验不改配置。
