@@ -1,0 +1,33 @@
+{
+  "protocol": "paired-independent-physics-training-v1",
+  "created_at": "2026-10-17T01:16:45.420424+08:00",
+  "parent_sha256": "a76fd2c2c01ac1c2c7657ae7a2b0ad65236fae2ea56ea239be2e243603aa003b",
+  "parent_step": 24500,
+  "stop_step": 25500,
+  "fork_updates": 1000,
+  "planned_steps": 55000,
+  "arms": {
+    "control": true,
+    "no_physics": false
+  },
+  "dependency_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/worker.py": "959d04653c5251412044e77a3119d7b81577688780f0ce327467850aa72b7b08",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/supervise.py": "143161cb6c39e20a48b887820e9baefdd8df7d641b91f803806f8ff3293df9cc",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/test_worker.py": "afe60d2357c3553a7523075662abd21a5443862c40b6e5eac2516fb74fd6763d",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/test_supervise.py": "4e1f6d8188fd2c985e1a55244852a4dfaf002a0fd606f60ebc12f9fce1e075e7",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/run_training.py": "476b58acb78e6eb3448c41ea6e368b2610b5decf8477f073d3a9ba56126fff07",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/io_recovery.py": "6b398c210a36496c175a4e88077b73a5c038aea9dbaebc45f51f555ea283ef99",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/paired_foot_trial.py": "5f70f61e51babb3de0df15b0de1803cca1ed5e89cbc463bd231b45b4c1d83baa",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/prepared/effective_config.json": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8"
+  },
+  "config": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+  "io_adapter": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/io_recovery.py",
+  "optimizer_reset": false,
+  "main_training_modified": false,
+  "intervention": "guidance_enabled process-local override; all learned scene paths, observation anchoring, IK and loss coefficients unchanged",
+  "monitoring": "Both arms skip periodic VAL; fixed paired final evaluation separately. LR uses original global step and 55000 horizon.",
+  "cache_policy": "Original source-keyed CRC-verified derived caches; writes are unique-temporary atomic replacements, same as the baseline.",
+  "primary_evaluation": "All three models (parent/control/no_physics) use physics OFF on the same 14 recording windows, clean/noisy; 5 core windows also ON.",
+  "checkpoint_policy": "one atomic last.pt per fork, plus one fixed resumable parent; no numbered/best copies"
+}

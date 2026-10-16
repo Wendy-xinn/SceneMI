@@ -1,0 +1,57 @@
+{
+  "protocol": "frozen-short-foot-trial-evaluation-v1",
+  "cohort_sha256": "bbadc5772b835a7f3aa46fa54416b54f16b97ae6236b599b99450a81ac77cb99",
+  "models": {
+    "parent": {
+      "source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/parent.pt",
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/parent.pt",
+      "expected_step": 24500,
+      "metadata": {
+        "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/parent.pt",
+        "expected_step": 24500,
+        "checkpoint_sha256": "a76fd2c2c01ac1c2c7657ae7a2b0ad65236fae2ea56ea239be2e243603aa003b",
+        "role": "untouched actual common training parent"
+      },
+      "evaluation_config": "Unmodified original architecture/config; guidance_enabled overridden equally at inference only."
+    },
+    "control": {
+      "source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/control/training/last.pt",
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/control.pt",
+      "expected_step": 25500,
+      "metadata": {
+        "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/control/training/last.pt",
+        "expected_step": 25500,
+        "role": "1000 updates original physical guidance ON"
+      },
+      "evaluation_config": "Unmodified original architecture/config; guidance_enabled overridden equally at inference only."
+    },
+    "no_physics": {
+      "source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/no_physics/training/last.pt",
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/no_physics.pt",
+      "expected_step": 25500,
+      "metadata": {
+        "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/no_physics/training/last.pt",
+        "expected_step": 25500,
+        "role": "1000 matched updates independent physical guidance OFF"
+      },
+      "evaluation_config": "Unmodified original architecture/config; guidance_enabled overridden equally at inference only."
+    }
+  },
+  "inference_config": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/prepared/effective_config.json",
+  "inference_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+  "primary": "All 14 VAL windows × clean/noisy with physical guidance OFF for every model.",
+  "secondary": "Same five preselected core windows × clean/noisy with physical guidance ON for every model.",
+  "planned_predictions": 114,
+  "dependency_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/foot_trial_evaluation.py": "dd7eef5980701c9a5012d11e1273ae55a84bc0683ee7dfa75c7d08754196f033",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_ablation.py": "6bb80474d6d7ebd376913e2b16cf8039c2a3b8a600f6bd0fa8efac1b209ef134",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/support_metrics.py": "adfad2b422188e4bdd29abd6f79fb9f4b58e9914503cfef8d38ae346011fcecd",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/runner.py": "7ea4516973c2d72e4d5a370cfc0fd78d839b9dd12199f793e2348d74dbab51a4",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/prepared/effective_config.json": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/io_recovery.py": "6b398c210a36496c175a4e88077b73a5c038aea9dbaebc45f51f555ea283ef99"
+  },
+  "targets": "GT and contact labels never passed into inference. GT used for matched CPU evaluation only.",
+  "metric_scope": "22 body joints; horizontal/vertical foot speed on GT 3D-speed<.2 m/s frames. Body height is current-pose joint vertical extent/head-foot span, not mesh stature. Sparse skin-anchor surface proxies are not full-mesh collision or self-collision.",
+  "surface_scope": "Same GT-associated reliable visible static upward patches for every compared output; calibrated pred-GT signed deviation, not a global inferred floor.",
+  "aggregation": "Window arithmetic means by dataset/regime/inference guidance; paired changes on identical windows/inputs/seeds; no TEST inference or ranking."
+}

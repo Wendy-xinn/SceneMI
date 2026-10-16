@@ -17,6 +17,7 @@ COMMANDS = {
     "motion-check": ("motion_ablation", "运行冻结权重的头部锚定、重力方向和支撑配对实验"),
     "support-check": ("contact_projection", "仅用 CPU 检查已有输出的可见支撑关节投影"),
     "motion-trace": ("motion_diagnostics", "记录冻结权重采样中各阶段的脚部误差"),
+    "foot-trial": ("paired_foot_trial", "从相同模型、Adam和随机状态配对短训，验证独立物理修正的影响"),
 }
 
 

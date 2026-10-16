@@ -1,0 +1,2986 @@
+{
+  "status": "independent_cpu_passed",
+  "verified_at": "2026-10-17T01:30:34.014533+08:00",
+  "models": [
+    "parent"
+  ],
+  "predictions": 38,
+  "CUDA_initialized": false,
+  "optimizer_updates": 0,
+  "exact_expected_phase_coverage": true,
+  "source_dependency_sha256_matches": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/foot_trial_evaluation.py": true,
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_ablation.py": true,
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/support_metrics.py": true,
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/runner.py": true,
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/prepared/effective_config.json": true,
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/io_recovery.py": true
+  },
+  "plan_sha256": "1ec84504030a5a05b0919f234d5c97894bbf0abce41ad37125ce73fa964dd195",
+  "maximum_cpu_recomputed_metric_errors": {
+    "mpjpe_mm": 0.0,
+    "conditioned_mpjpe_mm": 0.0,
+    "unconditioned_mpjpe_mm": 0.0,
+    "regular_position_mpjpe_mm": 0.0,
+    "root_position_error_mm": 0.0,
+    "root_orientation_deg": 0.0,
+    "head_orientation_deg": 0.0,
+    "regular_rotation_deg": 0.0,
+    "foot_speed_during_GT_stance_m_s": 0.0,
+    "w_mpjpe_mm": 0.0,
+    "root_relative_mpjpe_mm": 0.0,
+    "pa_mpjpe_mm": 0.0,
+    "mpjve_mm_s": 0.0,
+    "acceleration_error_mm_s2": 0.0,
+    "gt_head_position_error_mm": 0.0,
+    "observed_head_position_error_mm": 0.0,
+    "observed_head_position_error_p95_mm": 0.0,
+    "observed_head_position_valid_frames": 0.0,
+    "root_tilt_deg": 0.0,
+    "gt_root_tilt_deg": 0.0,
+    "root_tilt_abs_error_deg": 0.0,
+    "root_up_direction_error_deg": 0.0,
+    "torso_pelvis_neck_tilt_deg": 0.0,
+    "gt_torso_pelvis_neck_tilt_deg": 0.0,
+    "torso_pelvis_neck_tilt_abs_error_deg": 0.0,
+    "torso_pelvis_neck_direction_error_deg": 0.0,
+    "gt_low_speed_foot_joint_samples": 0.0,
+    "gt_low_speed_foot_joint_fraction": 0.0,
+    "foot_joint_horizontal_speed_gt_low_m_s": 0.0,
+    "gt_foot_joint_horizontal_speed_gt_low_m_s": 0.0,
+    "foot_joint_vertical_speed_gt_low_m_s": 0.0,
+    "gt_foot_joint_vertical_speed_gt_low_m_s": 0.0,
+    "foot_joint_horizontal_velocity_error_gt_low_m_s": 0.0,
+    "foot_joint_vertical_velocity_error_gt_low_m_s": 0.0,
+    "foot_joint_y_signed_error_mm": 0.0,
+    "foot_joint_y_abs_error_mm": 0.0,
+    "foot_joint_y_signed_error_gt_low_mm": 0.0,
+    "foot_joint_y_abs_error_gt_low_mm": 0.0,
+    "left_foot_joint_y_signed_error_mm": 0.0,
+    "left_foot_joint_y_abs_error_mm": 0.0,
+    "left_foot_joint_horizontal_speed_gt_low_m_s": 0.0,
+    "right_foot_joint_y_signed_error_mm": 0.0,
+    "right_foot_joint_y_abs_error_mm": 0.0,
+    "right_foot_joint_horizontal_speed_gt_low_m_s": 0.0,
+    "left_foot_skin_anchor_low_y_signed_error_mm": 0.0,
+    "left_foot_skin_anchor_low_y_abs_error_mm": 0.0,
+    "left_foot_skin_anchor_low_y_signed_error_gt_low_mm": 0.0,
+    "right_foot_skin_anchor_low_y_signed_error_mm": 0.0,
+    "right_foot_skin_anchor_low_y_abs_error_mm": 0.0,
+    "right_foot_skin_anchor_low_y_signed_error_gt_low_mm": 0.0,
+    "foot_skin_anchor_low_y_signed_error_mm": 0.0,
+    "foot_skin_anchor_low_y_abs_error_mm": 0.0,
+    "foot_skin_anchor_low_y_abs_error_gt_low_mm": 0.0,
+    "root_y_signed_error_mm": 0.0,
+    "root_y_abs_error_mm": 0.0,
+    "predicted_root_y_mean_m": 0.0,
+    "gt_root_y_mean_m": 0.0,
+    "predicted_body_joint_vertical_extent_mean_m": 0.0,
+    "gt_body_joint_vertical_extent_mean_m": 0.0,
+    "body_joint_vertical_extent_abs_error_mm": 0.0,
+    "predicted_head_to_foot_vertical_span_mean_m": 0.0,
+    "gt_head_to_foot_vertical_span_mean_m": 0.0,
+    "head_to_foot_vertical_span_abs_error_mm": 0.0,
+    "bilateral_motion_rms_m": 0.0,
+    "gt_bilateral_motion_rms_m": 0.0,
+    "bilateral_motion_rms_error_mm": 0.0,
+    "bilateral_motion_rms_ratio": 0.0,
+    "bilateral_stride_change_mean_m": 0.0,
+    "gt_bilateral_stride_change_mean_m": 0.0,
+    "bilateral_stride_change_abs_error_mm": 0.0,
+    "support_evaluation_anchor_count": 0.0,
+    "support_calibrated_absolute_error_mm": 0.0,
+    "support_signed_height_mm": 0.0,
+    "support_float_over_50mm_fraction": 0.0,
+    "support_penetrate_below_20mm_fraction": 0.0,
+    "support_gt_signed_height_mm": 0.0
+  },
+  "maximum_independent_formula_errors": {
+    "w_mpjpe_mm": 0.0,
+    "pa_mpjpe_mm": 2.842170943040401e-14,
+    "observed_head_position_error_mm": 0.0,
+    "foot_joint_horizontal_speed_gt_low_m_s": 0.0,
+    "foot_joint_vertical_speed_gt_low_m_s": 0.0,
+    "gt_foot_joint_horizontal_speed_gt_low_m_s": 0.0,
+    "gt_foot_joint_vertical_speed_gt_low_m_s": 0.0,
+    "foot_joint_y_abs_error_gt_low_mm": 0.0,
+    "foot_joint_y_signed_error_gt_low_mm": 0.0,
+    "root_y_signed_error_mm": 0.0,
+    "root_y_abs_error_mm": 0.0,
+    "predicted_root_y_mean_m": 0.0,
+    "gt_root_y_mean_m": 0.0,
+    "predicted_body_joint_vertical_extent_mean_m": 0.0,
+    "gt_body_joint_vertical_extent_mean_m": 0.0,
+    "body_joint_vertical_extent_abs_error_mm": 3.552713678800501e-15,
+    "predicted_head_to_foot_vertical_span_mean_m": 0.0,
+    "gt_head_to_foot_vertical_span_mean_m": 0.0,
+    "head_to_foot_vertical_span_abs_error_mm": 0.0,
+    "bilateral_motion_rms_m": 0.0,
+    "gt_bilateral_motion_rms_m": 0.0,
+    "bilateral_motion_rms_error_mm": 0.0,
+    "bilateral_motion_rms_ratio": 0.0,
+    "bilateral_stride_change_mean_m": 0.0,
+    "gt_bilateral_stride_change_mean_m": 0.0,
+    "bilateral_stride_change_abs_error_mm": 0.0
+  },
+  "gt_rest_and_observed_arrays_byte_identical_to_regenerated_sources": true,
+  "same_window_inputs_and_evaluation_denominators_identical": true,
+  "checks": [
+    {
+      "model": "parent",
+      "case": 0,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "363a935cc9d13e7e39c4bb0179013937b9a00bae64496f992ae092526dcd8da4",
+      "gt_and_observed_array_sha256": "3d85646f838fb895a2d6c57e2a20ee1babfddff327b88d430ad385c32bd10bb9",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 332,
+        "left_gt_low_speed_foot_samples": 161,
+        "right_gt_low_speed_foot_samples": 171,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2304
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 227,
+          "fp": 0,
+          "fn": 105,
+          "tn": 50
+        },
+        "low_speed_proxy_accuracy": 0.725130890052356,
+        "bilateral_sagittal_temporal_correlation": 0.9247007175444191,
+        "bilateral_stride_vector_error_mm": 79.69761947798298,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 5,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 99.19300073612106,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 17.006005927035293,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 104.58370226935108
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2304,
+        "support_calibrated_absolute_error_mm": 27.379227802157402,
+        "support_signed_height_mm": -23.811541497707367,
+        "support_float_over_50mm_fraction": 0.006944444444444444,
+        "support_penetrate_below_20mm_fraction": 0.5590277777777778,
+        "support_gt_signed_height_mm": -48.62713813781738,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      }
+    },
+    {
+      "model": "parent",
+      "case": 0,
+      "regime": "clean",
+      "guidance": "on",
+      "artifact_sha256": "936f42b95a026c3733a81c6c64ee6e6b00caf4a4c9879b98a62bd0eada634c4a",
+      "gt_and_observed_array_sha256": "3d85646f838fb895a2d6c57e2a20ee1babfddff327b88d430ad385c32bd10bb9",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 332,
+        "left_gt_low_speed_foot_samples": 161,
+        "right_gt_low_speed_foot_samples": 171,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2304
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 219,
+          "fp": 0,
+          "fn": 113,
+          "tn": 50
+        },
+        "low_speed_proxy_accuracy": 0.7041884816753927,
+        "bilateral_sagittal_temporal_correlation": 0.922776139909773,
+        "bilateral_stride_vector_error_mm": 80.13490827855641,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 5,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 97.88345199885366,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 17.006005927035293,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 102.91965340503718
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2304,
+        "support_calibrated_absolute_error_mm": 27.49290131032467,
+        "support_signed_height_mm": -23.51212501525879,
+        "support_float_over_50mm_fraction": 0.006944444444444444,
+        "support_penetrate_below_20mm_fraction": 0.5559895833333334,
+        "support_gt_signed_height_mm": -48.62713813781738,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      }
+    },
+    {
+      "model": "parent",
+      "case": 0,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "86175677de0c4755ead4491c684b006106cd36df6f42b73402c9034c87bb0fea",
+      "gt_and_observed_array_sha256": "75d2069727628c24f3f0e2823d3c07e1df05b3b86be7f01777a5a78347386e7b",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 332,
+        "left_gt_low_speed_foot_samples": 161,
+        "right_gt_low_speed_foot_samples": 171,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2304
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 201,
+          "fp": 0,
+          "fn": 131,
+          "tn": 50
+        },
+        "low_speed_proxy_accuracy": 0.6570680628272252,
+        "bilateral_sagittal_temporal_correlation": 0.8170519249042918,
+        "bilateral_stride_vector_error_mm": 83.24893652111889,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 5,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 194.47274178215883,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 17.006005927035293,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 201.73564246542043
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2304,
+        "support_calibrated_absolute_error_mm": 48.83807525038719,
+        "support_signed_height_mm": -0.46115947770886123,
+        "support_float_over_50mm_fraction": 0.04904513888888889,
+        "support_penetrate_below_20mm_fraction": 0.2591145833333333,
+        "support_gt_signed_height_mm": -48.62713813781738,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      }
+    },
+    {
+      "model": "parent",
+      "case": 0,
+      "regime": "noisy",
+      "guidance": "on",
+      "artifact_sha256": "ae0c0b0f44cbd986fc0b8d2792b337ea0fe62fd50cc5646185e37f98f7d2a300",
+      "gt_and_observed_array_sha256": "75d2069727628c24f3f0e2823d3c07e1df05b3b86be7f01777a5a78347386e7b",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 332,
+        "left_gt_low_speed_foot_samples": 161,
+        "right_gt_low_speed_foot_samples": 171,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2304
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 192,
+          "fp": 0,
+          "fn": 140,
+          "tn": 50
+        },
+        "low_speed_proxy_accuracy": 0.6335078534031413,
+        "bilateral_sagittal_temporal_correlation": 0.8209237993653553,
+        "bilateral_stride_vector_error_mm": 81.56855191126016,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 5,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 183.10902044576827,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 17.006005927035293,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 189.86318615928397
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2304,
+        "support_calibrated_absolute_error_mm": 47.497108578681946,
+        "support_signed_height_mm": -1.8947318894788623,
+        "support_float_over_50mm_fraction": 0.04600694444444445,
+        "support_penetrate_below_20mm_fraction": 0.2664930555555556,
+        "support_gt_signed_height_mm": -48.62713813781738,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      }
+    },
+    {
+      "model": "parent",
+      "case": 1,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "7c1023207ee4ae33421e03ad505915be895c3d234e337e0b25c77fa7efc02981",
+      "gt_and_observed_array_sha256": "eafe3a41e5175d52ac37692094fd276ad3412ac8169f2b5e4e9cc2ad0eebf304",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 295,
+        "left_gt_low_speed_foot_samples": 148,
+        "right_gt_low_speed_foot_samples": 147,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2236
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 107,
+          "fp": 9,
+          "fn": 188,
+          "tn": 78
+        },
+        "low_speed_proxy_accuracy": 0.48429319371727747,
+        "bilateral_sagittal_temporal_correlation": 0.744127427422198,
+        "bilateral_stride_vector_error_mm": 126.07201277533808,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 14,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 84.57728371733931,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 4.864560711161162,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 84.36904194227978
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2236,
+        "support_calibrated_absolute_error_mm": 33.74278545379639,
+        "support_signed_height_mm": 8.321036584675312,
+        "support_float_over_50mm_fraction": 0.09928443649373882,
+        "support_penetrate_below_20mm_fraction": 0.19141323792486584,
+        "support_gt_signed_height_mm": 31.628698110580444,
+        "support_gt_float_over_50mm_fraction": 0.08407871198568873,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 1,
+      "regime": "clean",
+      "guidance": "on",
+      "artifact_sha256": "ba79122f28142bfc32b4a7dff098b001267b2f3b1da4446f130f1409a1300154",
+      "gt_and_observed_array_sha256": "eafe3a41e5175d52ac37692094fd276ad3412ac8169f2b5e4e9cc2ad0eebf304",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 295,
+        "left_gt_low_speed_foot_samples": 148,
+        "right_gt_low_speed_foot_samples": 147,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2236
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 100,
+          "fp": 10,
+          "fn": 195,
+          "tn": 77
+        },
+        "low_speed_proxy_accuracy": 0.46335078534031415,
+        "bilateral_sagittal_temporal_correlation": 0.7467819005787487,
+        "bilateral_stride_vector_error_mm": 125.68486335349449,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 14,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 82.19947811572497,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 4.864560711161162,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 81.95239424459389
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2236,
+        "support_calibrated_absolute_error_mm": 34.05135124921799,
+        "support_signed_height_mm": 7.47003685683012,
+        "support_float_over_50mm_fraction": 0.09749552772808587,
+        "support_penetrate_below_20mm_fraction": 0.19901610017889088,
+        "support_gt_signed_height_mm": 31.628698110580444,
+        "support_gt_float_over_50mm_fraction": 0.08407871198568873,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 1,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "70ea27c237d01750d742166cefdb76714197b36b5db432042dfee1868c8d665a",
+      "gt_and_observed_array_sha256": "2ca8c1eaebd7bccc0fdb7270b408f37056fee86cdd7e61a8c2b7a25cd5c79241",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 295,
+        "left_gt_low_speed_foot_samples": 148,
+        "right_gt_low_speed_foot_samples": 147,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2236
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 79,
+          "fp": 5,
+          "fn": 216,
+          "tn": 82
+        },
+        "low_speed_proxy_accuracy": 0.4214659685863874,
+        "bilateral_sagittal_temporal_correlation": 0.6665491117876345,
+        "bilateral_stride_vector_error_mm": 148.09604670664166,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 14,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 116.97210510069765,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 4.864560711161162,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 116.25957489055159
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2236,
+        "support_calibrated_absolute_error_mm": 39.95684161782265,
+        "support_signed_height_mm": -0.14520672266371548,
+        "support_float_over_50mm_fraction": 0.07334525939177101,
+        "support_penetrate_below_20mm_fraction": 0.2974060822898032,
+        "support_gt_signed_height_mm": 31.628698110580444,
+        "support_gt_float_over_50mm_fraction": 0.08407871198568873,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 1,
+      "regime": "noisy",
+      "guidance": "on",
+      "artifact_sha256": "4bf4f27d39420946143d240bf721d35a567d744d60a878528bb9936982e4f21c",
+      "gt_and_observed_array_sha256": "2ca8c1eaebd7bccc0fdb7270b408f37056fee86cdd7e61a8c2b7a25cd5c79241",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 295,
+        "left_gt_low_speed_foot_samples": 148,
+        "right_gt_low_speed_foot_samples": 147,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2236
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 70,
+          "fp": 3,
+          "fn": 225,
+          "tn": 84
+        },
+        "low_speed_proxy_accuracy": 0.4031413612565445,
+        "bilateral_sagittal_temporal_correlation": 0.6724520474245861,
+        "bilateral_stride_vector_error_mm": 146.73298605141792,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 14,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 113.67088067237906,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 4.864560711161162,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 112.87708347168018
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2236,
+        "support_calibrated_absolute_error_mm": 39.65532034635544,
+        "support_signed_height_mm": -0.30091922963038087,
+        "support_float_over_50mm_fraction": 0.07334525939177101,
+        "support_penetrate_below_20mm_fraction": 0.29427549194991054,
+        "support_gt_signed_height_mm": 31.628698110580444,
+        "support_gt_float_over_50mm_fraction": 0.08407871198568873,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 2,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "571f0eca1b130521a4663e5da85180a487482fa6c3ce9cf1787caeb4943c0cfe",
+      "gt_and_observed_array_sha256": "ec14d6a8915f2b10fd229b0156384efb8715b2521577a1f8c879b1e660355c94",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 173,
+        "left_gt_low_speed_foot_samples": 79,
+        "right_gt_low_speed_foot_samples": 94,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1434
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 77,
+          "fp": 20,
+          "fn": 96,
+          "tn": 189
+        },
+        "low_speed_proxy_accuracy": 0.6963350785340314,
+        "bilateral_sagittal_temporal_correlation": 0.5073762372214767,
+        "bilateral_stride_vector_error_mm": 180.504910616522,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 136.93771268414886,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 38.80807754927903,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 125.01251545865011
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1434,
+        "support_calibrated_absolute_error_mm": 27.88623422384262,
+        "support_signed_height_mm": -11.880780570209026,
+        "support_float_over_50mm_fraction": 0.024407252440725245,
+        "support_penetrate_below_20mm_fraction": 0.40585774058577406,
+        "support_gt_signed_height_mm": 8.330406621098518,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      }
+    },
+    {
+      "model": "parent",
+      "case": 2,
+      "regime": "clean",
+      "guidance": "on",
+      "artifact_sha256": "bfd9c3774fc345dc69ee041d9163e6b446d3d39fe6226d8b589aa26a1ce42e30",
+      "gt_and_observed_array_sha256": "ec14d6a8915f2b10fd229b0156384efb8715b2521577a1f8c879b1e660355c94",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 173,
+        "left_gt_low_speed_foot_samples": 79,
+        "right_gt_low_speed_foot_samples": 94,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1434
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 63,
+          "fp": 29,
+          "fn": 110,
+          "tn": 180
+        },
+        "low_speed_proxy_accuracy": 0.6361256544502618,
+        "bilateral_sagittal_temporal_correlation": 0.5024029684460536,
+        "bilateral_stride_vector_error_mm": 182.7185406673472,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 137.28169270748634,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 38.80807754927903,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 128.59453089979164
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1434,
+        "support_calibrated_absolute_error_mm": 27.599385008215904,
+        "support_signed_height_mm": -12.059836648404598,
+        "support_float_over_50mm_fraction": 0.021617852161785217,
+        "support_penetrate_below_20mm_fraction": 0.4072524407252441,
+        "support_gt_signed_height_mm": 8.330406621098518,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      }
+    },
+    {
+      "model": "parent",
+      "case": 2,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "ad926a1beb1279dede68bd0219ed66398b211cea7c0abbe6d5d383c63c6285a2",
+      "gt_and_observed_array_sha256": "5a2225a90fece2069278d4e182c018c32a02cc95931b29dcc36cb5ad3a7a277f",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 173,
+        "left_gt_low_speed_foot_samples": 79,
+        "right_gt_low_speed_foot_samples": 94,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1434
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 52,
+          "fp": 15,
+          "fn": 121,
+          "tn": 194
+        },
+        "low_speed_proxy_accuracy": 0.643979057591623,
+        "bilateral_sagittal_temporal_correlation": 0.4816557305816525,
+        "bilateral_stride_vector_error_mm": 181.8864737270247,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 157.2445951923799,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 38.80807754927903,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 156.04969018110484
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1434,
+        "support_calibrated_absolute_error_mm": 42.12302342057228,
+        "support_signed_height_mm": -31.11175075173378,
+        "support_float_over_50mm_fraction": 0.02580195258019526,
+        "support_penetrate_below_20mm_fraction": 0.7517433751743375,
+        "support_gt_signed_height_mm": 8.330406621098518,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      }
+    },
+    {
+      "model": "parent",
+      "case": 2,
+      "regime": "noisy",
+      "guidance": "on",
+      "artifact_sha256": "634330cc613a123bca5bb4f1c84ea205135b24a65db7907f8c7b09174ba6bb3f",
+      "gt_and_observed_array_sha256": "5a2225a90fece2069278d4e182c018c32a02cc95931b29dcc36cb5ad3a7a277f",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 173,
+        "left_gt_low_speed_foot_samples": 79,
+        "right_gt_low_speed_foot_samples": 94,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1434
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 42,
+          "fp": 15,
+          "fn": 131,
+          "tn": 194
+        },
+        "low_speed_proxy_accuracy": 0.6178010471204188,
+        "bilateral_sagittal_temporal_correlation": 0.47079951796933994,
+        "bilateral_stride_vector_error_mm": 184.15605457542378,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 162.92870684840835,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 38.80807754927903,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 161.87695550984125
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1434,
+        "support_calibrated_absolute_error_mm": 37.92039304971695,
+        "support_signed_height_mm": -26.664355769753456,
+        "support_float_over_50mm_fraction": 0.027196652719665274,
+        "support_penetrate_below_20mm_fraction": 0.700139470013947,
+        "support_gt_signed_height_mm": 8.330406621098518,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      }
+    },
+    {
+      "model": "parent",
+      "case": 3,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "a684eb41ead596f7548a16b825d8eb98075dc2db8c3c1a8b6125a99cde1a8016",
+      "gt_and_observed_array_sha256": "77e5fa412245f180e5aec48ea003068f1ed6b90a3455306166ce1c5b0f59b4c5",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 273,
+        "left_gt_low_speed_foot_samples": 141,
+        "right_gt_low_speed_foot_samples": 132,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 147
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 193,
+          "fp": 40,
+          "fn": 80,
+          "tn": 69
+        },
+        "low_speed_proxy_accuracy": 0.6858638743455497,
+        "bilateral_sagittal_temporal_correlation": -0.026774938948867736,
+        "bilateral_stride_vector_error_mm": 122.96827312505692,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 15,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 57.89773644169836,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 8.152793344448236,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 56.5861033769726
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 147,
+        "support_calibrated_absolute_error_mm": 11.619681492447853,
+        "support_signed_height_mm": 26.416145265102386,
+        "support_float_over_50mm_fraction": 0.02040816326530612,
+        "support_penetrate_below_20mm_fraction": 0.05442176870748299,
+        "support_gt_signed_height_mm": 30.36665730178356,
+        "support_gt_float_over_50mm_fraction": 0.006802721088435374,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 3,
+      "regime": "clean",
+      "guidance": "on",
+      "artifact_sha256": "0dc60a67c1e6f660c7a31dee26fd8a382210a7c1e866cf842899c34e2a6826ed",
+      "gt_and_observed_array_sha256": "77e5fa412245f180e5aec48ea003068f1ed6b90a3455306166ce1c5b0f59b4c5",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 273,
+        "left_gt_low_speed_foot_samples": 141,
+        "right_gt_low_speed_foot_samples": 132,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 147
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 195,
+          "fp": 37,
+          "fn": 78,
+          "tn": 72
+        },
+        "low_speed_proxy_accuracy": 0.6989528795811518,
+        "bilateral_sagittal_temporal_correlation": 0.012206757176665604,
+        "bilateral_stride_vector_error_mm": 120.05460538049344,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 15,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 56.3970451954732,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 8.152793344448236,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 55.50944253766078
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 147,
+        "support_calibrated_absolute_error_mm": 13.59526626765728,
+        "support_signed_height_mm": 27.8684850782156,
+        "support_float_over_50mm_fraction": 0.027210884353741496,
+        "support_penetrate_below_20mm_fraction": 0.05442176870748299,
+        "support_gt_signed_height_mm": 30.36665730178356,
+        "support_gt_float_over_50mm_fraction": 0.006802721088435374,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 3,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "1d5f972b1bfdd831c70cae18df6410e29aacfdc12b8e690320a5702f2053f54c",
+      "gt_and_observed_array_sha256": "67a8657e8f8a140d6ba9bfe5ebd33b042ebe53a91a5071cd4c4fcfd1d2d76d98",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 174,
+        "gt_low_speed_foot_samples": 273,
+        "left_gt_low_speed_foot_samples": 141,
+        "right_gt_low_speed_foot_samples": 132,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 147
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 162,
+          "fp": 49,
+          "fn": 111,
+          "tn": 60
+        },
+        "low_speed_proxy_accuracy": 0.581151832460733,
+        "bilateral_sagittal_temporal_correlation": -0.06131429313335888,
+        "bilateral_stride_vector_error_mm": 142.60175795079115,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 15,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 79.56437001692628,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 8.152793344448236,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 75.4480228772818
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 147,
+        "support_calibrated_absolute_error_mm": 21.355047821998596,
+        "support_signed_height_mm": 9.6362866461277,
+        "support_float_over_50mm_fraction": 0.0,
+        "support_penetrate_below_20mm_fraction": 0.061224489795918366,
+        "support_gt_signed_height_mm": 30.36665730178356,
+        "support_gt_float_over_50mm_fraction": 0.006802721088435374,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 3,
+      "regime": "noisy",
+      "guidance": "on",
+      "artifact_sha256": "98d3b5cc0742b92ca18448285dfa722760a599685f1e229c40729396b49bc284",
+      "gt_and_observed_array_sha256": "67a8657e8f8a140d6ba9bfe5ebd33b042ebe53a91a5071cd4c4fcfd1d2d76d98",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 174,
+        "gt_low_speed_foot_samples": 273,
+        "left_gt_low_speed_foot_samples": 141,
+        "right_gt_low_speed_foot_samples": 132,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 147
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 82,
+          "fp": 28,
+          "fn": 191,
+          "tn": 81
+        },
+        "low_speed_proxy_accuracy": 0.42670157068062825,
+        "bilateral_sagittal_temporal_correlation": -0.03669209250699918,
+        "bilateral_stride_vector_error_mm": 142.6104446550021,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 15,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 75.91949550435736,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 8.152793344448236,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 72.31427058741176
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 147,
+        "support_calibrated_absolute_error_mm": 18.437355756759644,
+        "support_signed_height_mm": 15.899956226348877,
+        "support_float_over_50mm_fraction": 0.0,
+        "support_penetrate_below_20mm_fraction": 0.04081632653061224,
+        "support_gt_signed_height_mm": 30.36665730178356,
+        "support_gt_float_over_50mm_fraction": 0.006802721088435374,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 4,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "b6f17128f0d037535d3d4ff7409bac5efd224719f98982bcc315fa78a098fae9",
+      "gt_and_observed_array_sha256": "4bc1300d98d72b75fd41f55c657e8d7961a593fb9d2e94888e0328a3462fae0e",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 318,
+        "left_gt_low_speed_foot_samples": 162,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2298
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 222,
+          "fp": 4,
+          "fn": 96,
+          "tn": 60
+        },
+        "low_speed_proxy_accuracy": 0.7382198952879581,
+        "bilateral_sagittal_temporal_correlation": 0.8758372821021893,
+        "bilateral_stride_vector_error_mm": 76.18803804099497,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 178.73262118954474,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 14.839047641924035,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 177.15360355581532
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2298,
+        "support_calibrated_absolute_error_mm": 15.439862385392189,
+        "support_signed_height_mm": 34.21161323785782,
+        "support_float_over_50mm_fraction": 0.1875543951261967,
+        "support_penetrate_below_20mm_fraction": 0.005221932114882507,
+        "support_gt_signed_height_mm": 30.602457001805305,
+        "support_gt_float_over_50mm_fraction": 0.08964316797214969,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 4,
+      "regime": "clean",
+      "guidance": "on",
+      "artifact_sha256": "1dd6719c30a3e9e3ea7968f04c22e3f958cc35e7f86b74313ff5468309904de4",
+      "gt_and_observed_array_sha256": "4bc1300d98d72b75fd41f55c657e8d7961a593fb9d2e94888e0328a3462fae0e",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 318,
+        "left_gt_low_speed_foot_samples": 162,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2298
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 224,
+          "fp": 4,
+          "fn": 94,
+          "tn": 60
+        },
+        "low_speed_proxy_accuracy": 0.743455497382199,
+        "bilateral_sagittal_temporal_correlation": 0.8761059548222664,
+        "bilateral_stride_vector_error_mm": 75.89616916609887,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 177.7841098616752,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 14.839047641924035,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 176.1974438017555
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2298,
+        "support_calibrated_absolute_error_mm": 15.451816841959953,
+        "support_signed_height_mm": 34.25193205475807,
+        "support_float_over_50mm_fraction": 0.18842471714534378,
+        "support_penetrate_below_20mm_fraction": 0.005221932114882507,
+        "support_gt_signed_height_mm": 30.602457001805305,
+        "support_gt_float_over_50mm_fraction": 0.08964316797214969,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 4,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "be458a20dbb66da3d7fbe9028096d6be253c742f05e12c3d479bf08a9a0bb61a",
+      "gt_and_observed_array_sha256": "8b0ef57490ccca6f406ce746455fddbdb9a0a1b307782b36331aaec6b738ac7e",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 318,
+        "left_gt_low_speed_foot_samples": 162,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2298
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 106,
+          "fp": 16,
+          "fn": 212,
+          "tn": 48
+        },
+        "low_speed_proxy_accuracy": 0.4031413612565445,
+        "bilateral_sagittal_temporal_correlation": -0.4060143476023746,
+        "bilateral_stride_vector_error_mm": 185.44194099058151,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 375.5515991355368,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 14.839047641924035,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 373.64480105512297
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2298,
+        "support_calibrated_absolute_error_mm": 34.344930201768875,
+        "support_signed_height_mm": 52.3783415555954,
+        "support_float_over_50mm_fraction": 0.4299390774586597,
+        "support_penetrate_below_20mm_fraction": 0.0013054830287206266,
+        "support_gt_signed_height_mm": 30.602457001805305,
+        "support_gt_float_over_50mm_fraction": 0.08964316797214969,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 4,
+      "regime": "noisy",
+      "guidance": "on",
+      "artifact_sha256": "215f4da56c63c5fffe0a3eb4334407d89c528e721be07fa098a36bcd82de0c8b",
+      "gt_and_observed_array_sha256": "8b0ef57490ccca6f406ce746455fddbdb9a0a1b307782b36331aaec6b738ac7e",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 318,
+        "left_gt_low_speed_foot_samples": 162,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2298
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 117,
+          "fp": 14,
+          "fn": 201,
+          "tn": 50
+        },
+        "low_speed_proxy_accuracy": 0.43717277486910994,
+        "bilateral_sagittal_temporal_correlation": -0.4080437441621773,
+        "bilateral_stride_vector_error_mm": 181.1161358001181,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 365.3999593142716,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 14.839047641924035,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 363.16653983717333
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2298,
+        "support_calibrated_absolute_error_mm": 33.3329513669014,
+        "support_signed_height_mm": 52.754901349544525,
+        "support_float_over_50mm_fraction": 0.43255004351610093,
+        "support_penetrate_below_20mm_fraction": 0.0004351610095735422,
+        "support_gt_signed_height_mm": 30.602457001805305,
+        "support_gt_float_over_50mm_fraction": 0.08964316797214969,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 5,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "ca6725196ea6e3514075e2b0e5120edf24b28a23026724895cc99757bd41b1bc",
+      "gt_and_observed_array_sha256": "abad67089a8cb44d1acda003e31a77a62450da9831c72e3bfb90b199b9f5cdf7",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 196,
+        "left_gt_low_speed_foot_samples": 94,
+        "right_gt_low_speed_foot_samples": 102,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2274
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 48,
+          "fp": 7,
+          "fn": 148,
+          "tn": 179
+        },
+        "low_speed_proxy_accuracy": 0.5942408376963351,
+        "bilateral_sagittal_temporal_correlation": 0.8950311574755386,
+        "bilateral_stride_vector_error_mm": 277.104385616436,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 13,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 110.01233067200499,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 10.518922626223151,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 104.06870049046644
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2274,
+        "support_calibrated_absolute_error_mm": 69.62960958480835,
+        "support_signed_height_mm": -15.029264613986015,
+        "support_float_over_50mm_fraction": 0.08135444151275285,
+        "support_penetrate_below_20mm_fraction": 0.39050131926121373,
+        "support_gt_signed_height_mm": 53.44605818390846,
+        "support_gt_float_over_50mm_fraction": 0.4129287598944591,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 5,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "d9a6504c9fcb55a61c5667a77c732f96669f57f26b4d32c146999e04d4085f92",
+      "gt_and_observed_array_sha256": "4045b0aa3c052a9a1269edbaa3fabbd8d942f7d536cf04ab3155fe15495606d3",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 196,
+        "left_gt_low_speed_foot_samples": 94,
+        "right_gt_low_speed_foot_samples": 102,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 2274
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 29,
+          "fp": 14,
+          "fn": 167,
+          "tn": 172
+        },
+        "low_speed_proxy_accuracy": 0.5261780104712042,
+        "bilateral_sagittal_temporal_correlation": -0.08508143154884283,
+        "bilateral_stride_vector_error_mm": 560.1043361278106,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 13,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 302.7742121485059,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 10.518922626223151,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 296.2888361512
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 2274,
+        "support_calibrated_absolute_error_mm": 71.05909287929535,
+        "support_signed_height_mm": -8.630967698991299,
+        "support_float_over_50mm_fraction": 0.08619173262972735,
+        "support_penetrate_below_20mm_fraction": 0.33509234828496043,
+        "support_gt_signed_height_mm": 53.44605818390846,
+        "support_gt_float_over_50mm_fraction": 0.4129287598944591,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 6,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "f4a7350b36f98aa092c0cf76a02680fd70e11c5a57a68e5a10e196c307573971",
+      "gt_and_observed_array_sha256": "91926fd81bfa6ded3efb66bc75bbca19d146857313e54a63c5862a8b4770f0d9",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 220,
+        "left_gt_low_speed_foot_samples": 118,
+        "right_gt_low_speed_foot_samples": 102,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 82
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 150,
+          "fp": 30,
+          "fn": 70,
+          "tn": 132
+        },
+        "low_speed_proxy_accuracy": 0.7382198952879581,
+        "bilateral_sagittal_temporal_correlation": -0.6349775769118865,
+        "bilateral_stride_vector_error_mm": 79.13212462673772,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 9,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 65.95777364567941,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 8.478572827208065,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 61.178301791065934
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 82,
+        "support_calibrated_absolute_error_mm": 42.912766337394714,
+        "support_signed_height_mm": 29.392750933766365,
+        "support_float_over_50mm_fraction": 0.4024390243902439,
+        "support_penetrate_below_20mm_fraction": 0.07317073170731707,
+        "support_gt_signed_height_mm": 28.891760855913162,
+        "support_gt_float_over_50mm_fraction": 0.07317073170731707,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 6,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "7ecf66cf66a2a74d4ea2f72b069c3d216468865db8d10266062f1302f4aca1f6",
+      "gt_and_observed_array_sha256": "74fae2044502838198e8f6acc91c8a73656d98cd32e241ca3174d925bfe0c83e",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 220,
+        "left_gt_low_speed_foot_samples": 118,
+        "right_gt_low_speed_foot_samples": 102,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 82
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 140,
+          "fp": 29,
+          "fn": 80,
+          "tn": 133
+        },
+        "low_speed_proxy_accuracy": 0.7146596858638743,
+        "bilateral_sagittal_temporal_correlation": -0.6269407331720135,
+        "bilateral_stride_vector_error_mm": 72.07126318183099,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 9,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 77.43186505502756,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 8.478572827208065,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 71.26934110041412
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 82,
+        "support_calibrated_absolute_error_mm": 48.401787877082825,
+        "support_signed_height_mm": 43.93593966960907,
+        "support_float_over_50mm_fraction": 0.4146341463414634,
+        "support_penetrate_below_20mm_fraction": 0.13414634146341464,
+        "support_gt_signed_height_mm": 28.891760855913162,
+        "support_gt_float_over_50mm_fraction": 0.07317073170731707,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 7,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "cb9f3f9616b1ab76649e69cf5a84a4e2bf886faaeb3775b7e8aa7ce76661d289",
+      "gt_and_observed_array_sha256": "856e77b8d267897d6467ff9ef4362e0806fbebf170db9828e8f42d3fd37d83ea",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 276,
+        "left_gt_low_speed_foot_samples": 127,
+        "right_gt_low_speed_foot_samples": 149,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1726
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 90,
+          "fp": 20,
+          "fn": 186,
+          "tn": 86
+        },
+        "low_speed_proxy_accuracy": 0.4607329842931937,
+        "bilateral_sagittal_temporal_correlation": 0.3461957117943848,
+        "bilateral_stride_vector_error_mm": 253.61009015396561,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 89.63871657656979,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 9.167215463264958,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 87.76897952861911
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1726,
+        "support_calibrated_absolute_error_mm": 85.79152822494507,
+        "support_signed_height_mm": -46.013347804546356,
+        "support_float_over_50mm_fraction": 0.0005793742757821553,
+        "support_penetrate_below_20mm_fraction": 0.6546929316338355,
+        "support_gt_signed_height_mm": 39.22570496797562,
+        "support_gt_float_over_50mm_fraction": 0.17670915411355737,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 7,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "df2d508b80823a96c8a3cb19452ffdd76946cd0f829e929a09dd24279097de66",
+      "gt_and_observed_array_sha256": "69bf56d7d726c47d575d973dc611f2bbeae7f522fd83f4b00e88f2e697d90136",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 276,
+        "left_gt_low_speed_foot_samples": 127,
+        "right_gt_low_speed_foot_samples": 149,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1726
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 80,
+          "fp": 20,
+          "fn": 196,
+          "tn": 86
+        },
+        "low_speed_proxy_accuracy": 0.43455497382198954,
+        "bilateral_sagittal_temporal_correlation": 0.41172061482961014,
+        "bilateral_stride_vector_error_mm": 248.90356885735386,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 81.67272418549676,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 9.167215463264958,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 82.86277029923907
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1726,
+        "support_calibrated_absolute_error_mm": 91.39641374349594,
+        "support_signed_height_mm": -50.848349928855896,
+        "support_float_over_50mm_fraction": 0.0005793742757821553,
+        "support_penetrate_below_20mm_fraction": 0.7589803012746235,
+        "support_gt_signed_height_mm": 39.22570496797562,
+        "support_gt_float_over_50mm_fraction": 0.17670915411355737,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 8,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "6ef9c4f4e9e0b8337254c7d38098e130f1c019761a6e51c20b2e6a4d0f34f555",
+      "gt_and_observed_array_sha256": "904ef97d0be71bd8a69279edf905d8ae7e3fa610e12e01efd3287cbdfff4be17",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 258,
+        "left_gt_low_speed_foot_samples": 126,
+        "right_gt_low_speed_foot_samples": 132,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 143,
+          "fp": 17,
+          "fn": 115,
+          "tn": 107
+        },
+        "low_speed_proxy_accuracy": 0.6544502617801047,
+        "bilateral_sagittal_temporal_correlation": 0.5532675374772137,
+        "bilateral_stride_vector_error_mm": 267.810980097146,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 131.42661803749368,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 12.533587033323753,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 133.85903288425274
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1,
+        "support_calibrated_absolute_error_mm": 115.19703269004822,
+        "support_signed_height_mm": 79.63776588439941,
+        "support_float_over_50mm_fraction": 1.0,
+        "support_penetrate_below_20mm_fraction": 0.0,
+        "support_gt_signed_height_mm": 194.83479857444763,
+        "support_gt_float_over_50mm_fraction": 1.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 8,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "ba68c97c154976c1265c7201a255f32572ba0422ad71af362560b7a10c2ad298",
+      "gt_and_observed_array_sha256": "e27461bf47e73eb44fbe96155f460f127902f8c7040ad00675a54004240ba7a8",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 174,
+        "gt_low_speed_foot_samples": 258,
+        "left_gt_low_speed_foot_samples": 126,
+        "right_gt_low_speed_foot_samples": 132,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 93,
+          "fp": 36,
+          "fn": 165,
+          "tn": 88
+        },
+        "low_speed_proxy_accuracy": 0.4738219895287958,
+        "bilateral_sagittal_temporal_correlation": 0.04246617780595919,
+        "bilateral_stride_vector_error_mm": 302.1257188928105,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 7,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 180.47759963314004,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 12.533587033323753,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 184.07200173412235
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1,
+        "support_calibrated_absolute_error_mm": 137.87028193473816,
+        "support_signed_height_mm": 56.964512914419174,
+        "support_float_over_50mm_fraction": 1.0,
+        "support_penetrate_below_20mm_fraction": 0.0,
+        "support_gt_signed_height_mm": 194.83479857444763,
+        "support_gt_float_over_50mm_fraction": 1.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 9,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "82a68d368d5ee617f471928caab14785068ce3244c226b8a5a6da98abd02f99c",
+      "gt_and_observed_array_sha256": "5690500335444292eed49d12e111cbc2f7f0fe993f433a2e7ce69e3ce2abffde",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 252,
+        "left_gt_low_speed_foot_samples": 131,
+        "right_gt_low_speed_foot_samples": 121,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1403
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 152,
+          "fp": 24,
+          "fn": 100,
+          "tn": 106
+        },
+        "low_speed_proxy_accuracy": 0.675392670157068,
+        "bilateral_sagittal_temporal_correlation": 0.3811940295889119,
+        "bilateral_stride_vector_error_mm": 81.79565168429907,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 14,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 42.36014566727265,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 7.563994178211074,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 42.88714311952784
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1403,
+        "support_calibrated_absolute_error_mm": 47.546159476041794,
+        "support_signed_height_mm": 38.565754890441895,
+        "support_float_over_50mm_fraction": 0.29508196721311475,
+        "support_penetrate_below_20mm_fraction": 0.13257305773342837,
+        "support_gt_signed_height_mm": 52.87361890077591,
+        "support_gt_float_over_50mm_fraction": 0.31076265146115467,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 9,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "b667d34c58f0aadd7e7272a456e68eff28622b94c830cc9880a5a615f6c452df",
+      "gt_and_observed_array_sha256": "96447b4d9f084882445d2d961d0c09edf1cc74cf09144c883059b41fd1a0168c",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 252,
+        "left_gt_low_speed_foot_samples": 131,
+        "right_gt_low_speed_foot_samples": 121,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1403
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 140,
+          "fp": 18,
+          "fn": 112,
+          "tn": 112
+        },
+        "low_speed_proxy_accuracy": 0.6596858638743456,
+        "bilateral_sagittal_temporal_correlation": 0.24995031485522498,
+        "bilateral_stride_vector_error_mm": 74.2571464299055,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 14,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 74.21636128965112,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 7.563994178211074,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 74.51150854707164
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1403,
+        "support_calibrated_absolute_error_mm": 43.87475177645683,
+        "support_signed_height_mm": 45.916687697172165,
+        "support_float_over_50mm_fraction": 0.5388453314326443,
+        "support_penetrate_below_20mm_fraction": 0.1240199572344975,
+        "support_gt_signed_height_mm": 52.87361890077591,
+        "support_gt_float_over_50mm_fraction": 0.31076265146115467,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 10,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "6cd2b4a9fa6cc5d3c83444ad495d5c37af13e2ab2afb46a05dc5d9ffac48bcfc",
+      "gt_and_observed_array_sha256": "eea635bcd4a85aa6d26a4d4c50f97e869d7aec3cfb22cfe8b7b6e518e2c58cc1",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 310,
+        "left_gt_low_speed_foot_samples": 154,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 0
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 170,
+          "fp": 33,
+          "fn": 140,
+          "tn": 39
+        },
+        "low_speed_proxy_accuracy": 0.5471204188481675,
+        "bilateral_sagittal_temporal_correlation": 0.5371885052064789,
+        "bilateral_stride_vector_error_mm": 68.4826653054182,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 11,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 53.781037358748854,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 14.481959885863768,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 58.61244013037631
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 0,
+        "support_gt_float_over_50mm_fraction": null,
+        "support_gt_penetrate_below_20mm_fraction": null
+      }
+    },
+    {
+      "model": "parent",
+      "case": 10,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "b30991d50b3ce0532d81318491dbb2baece120dd5659d58474a53ca704001a67",
+      "gt_and_observed_array_sha256": "c0dc01275ddefafca66f6171a941cf0a3ea59cc7052621ea5da2b931fbfeb2dc",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 310,
+        "left_gt_low_speed_foot_samples": 154,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 0
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 139,
+          "fp": 19,
+          "fn": 171,
+          "tn": 53
+        },
+        "low_speed_proxy_accuracy": 0.5026178010471204,
+        "bilateral_sagittal_temporal_correlation": 0.44392893237827846,
+        "bilateral_stride_vector_error_mm": 72.95820156655348,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 11,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 54.48898850748303,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 14.481959885863768,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 49.7203716583048
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 0,
+        "support_gt_float_over_50mm_fraction": null,
+        "support_gt_penetrate_below_20mm_fraction": null
+      }
+    },
+    {
+      "model": "parent",
+      "case": 11,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "663bf65b6db7a72b47ebe817cdf6ae8a73ca4e22738c2b8238d17a9e4ce51385",
+      "gt_and_observed_array_sha256": "8b78b24c0e126b25264f7d2c3097eac25e0467def80295e5c9f08a79fe90b82d",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 85,
+        "left_gt_low_speed_foot_samples": 44,
+        "right_gt_low_speed_foot_samples": 41,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 75
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 26,
+          "fp": 91,
+          "fn": 59,
+          "tn": 206
+        },
+        "low_speed_proxy_accuracy": 0.6073298429319371,
+        "bilateral_sagittal_temporal_correlation": -0.030060775971878752,
+        "bilateral_stride_vector_error_mm": 476.0891265868561,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 4,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 91.58222467690747,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 15.819745947586975,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 101.55590462708977
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 75,
+        "support_calibrated_absolute_error_mm": 153.0221551656723,
+        "support_signed_height_mm": 5.570714361965656,
+        "support_float_over_50mm_fraction": 0.26666666666666666,
+        "support_penetrate_below_20mm_fraction": 0.37333333333333335,
+        "support_gt_signed_height_mm": 158.59287977218628,
+        "support_gt_float_over_50mm_fraction": 1.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 11,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "0a9923de40aa745149f80eccaaced278fcb0694b1b18c42b7e03d56b3268412d",
+      "gt_and_observed_array_sha256": "1cec303f74eaf4b7bb61b24fc3fa116fb70040bca6770ab6049de102c7540a9e",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 85,
+        "left_gt_low_speed_foot_samples": 44,
+        "right_gt_low_speed_foot_samples": 41,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 75
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 19,
+          "fp": 59,
+          "fn": 66,
+          "tn": 238
+        },
+        "low_speed_proxy_accuracy": 0.6727748691099477,
+        "bilateral_sagittal_temporal_correlation": 0.10011720889355723,
+        "bilateral_stride_vector_error_mm": 476.41316964172955,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 4,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 120.61241523689813,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 15.819745947586975,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 131.19248507811466
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 75,
+        "support_calibrated_absolute_error_mm": 182.5331747531891,
+        "support_signed_height_mm": -23.94028753042221,
+        "support_float_over_50mm_fraction": 0.10666666666666667,
+        "support_penetrate_below_20mm_fraction": 0.4533333333333333,
+        "support_gt_signed_height_mm": 158.59287977218628,
+        "support_gt_float_over_50mm_fraction": 1.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 12,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "93984c34d84cda2fa0c7fd5c2d314e3fe1e7e27f1fbf8c534901850f89595f7f",
+      "gt_and_observed_array_sha256": "da8fec1a742e56154d4d5df7aede54cb4d69c39542354045f45be946394122fd",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 364,
+        "left_gt_low_speed_foot_samples": 182,
+        "right_gt_low_speed_foot_samples": 182,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1152
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 149,
+          "fp": 1,
+          "fn": 215,
+          "tn": 17
+        },
+        "low_speed_proxy_accuracy": 0.43455497382198954,
+        "bilateral_sagittal_temporal_correlation": 0.9111366189594272,
+        "bilateral_stride_vector_error_mm": 91.25269430532792,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 3,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 77.66989083434503,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 13.144278311355142,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 84.03554353232785
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1152,
+        "support_calibrated_absolute_error_mm": 88.77971768379211,
+        "support_signed_height_mm": -30.608156695961952,
+        "support_float_over_50mm_fraction": 0.14930555555555555,
+        "support_penetrate_below_20mm_fraction": 0.5920138888888888,
+        "support_gt_signed_height_mm": 44.80321705341339,
+        "support_gt_float_over_50mm_fraction": 0.3888888888888889,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 12,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "2c2056254d031b6c288fb2f951ef0cce9353733367cbb23c8018814ca556dde5",
+      "gt_and_observed_array_sha256": "20bac0077bfb4af159e74a6309bf25c07b259d18aca4de5880c77d29246bdcb0",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 174,
+        "gt_low_speed_foot_samples": 364,
+        "left_gt_low_speed_foot_samples": 182,
+        "right_gt_low_speed_foot_samples": 182,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1152
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 139,
+          "fp": 0,
+          "fn": 225,
+          "tn": 18
+        },
+        "low_speed_proxy_accuracy": 0.4109947643979058,
+        "bilateral_sagittal_temporal_correlation": 0.6590657326807725,
+        "bilateral_stride_vector_error_mm": 111.37674095586463,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 3,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 138.26387582690566,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 13.144278311355142,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 148.05626790380776
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1152,
+        "support_calibrated_absolute_error_mm": 78.68389785289764,
+        "support_signed_height_mm": -25.69586969912052,
+        "support_float_over_50mm_fraction": 0.12065972222222222,
+        "support_penetrate_below_20mm_fraction": 0.5381944444444444,
+        "support_gt_signed_height_mm": 44.80321705341339,
+        "support_gt_float_over_50mm_fraction": 0.3888888888888889,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 13,
+      "regime": "clean",
+      "guidance": "off",
+      "artifact_sha256": "7a952ebb42d158b9b160346030fad294e24231e609d7eaa7c5eff32dafb147cf",
+      "gt_and_observed_array_sha256": "8b542bde59d6e7f76d989482096058c380a475d9b3a953cbfe32cc6519ff4429",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1344
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 207,
+          "fp": 0,
+          "fn": 175,
+          "tn": 0
+        },
+        "low_speed_proxy_accuracy": 0.5418848167539267,
+        "bilateral_sagittal_temporal_correlation": 0.5735059963494696,
+        "bilateral_stride_vector_error_mm": 101.25753260884882,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 2,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 82.63791429744408,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 4.734554587790434,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 84.40914083661697
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1344,
+        "support_calibrated_absolute_error_mm": 37.22919151186943,
+        "support_signed_height_mm": 4.844833165407181,
+        "support_float_over_50mm_fraction": 0.11235119047619048,
+        "support_penetrate_below_20mm_fraction": 0.21875,
+        "support_gt_signed_height_mm": 28.986865654587746,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    {
+      "model": "parent",
+      "case": 13,
+      "regime": "noisy",
+      "guidance": "off",
+      "artifact_sha256": "a08099d9fd4fdbd31dc6193066f01b22d000bea90d089386606bf91370c5f1fe",
+      "gt_and_observed_array_sha256": "6ef5948737aca03c29057e2da95b63d3dc2f0462a1ae5b23b74351c3076f9475",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "support_anchor_samples": 1344
+      },
+      "supplementary": {
+        "low_speed_proxy_confusion": {
+          "tp": 186,
+          "fp": 0,
+          "fn": 196,
+          "tn": 0
+        },
+        "low_speed_proxy_accuracy": 0.4869109947643979,
+        "bilateral_sagittal_temporal_correlation": 0.5180306128137885,
+        "bilateral_stride_vector_error_mm": 108.5426811195439,
+        "gt_articulated_window": true,
+        "gt_low_speed_runs_min_3_intervals": 2,
+        "predicted_horizontal_drift_over_GT_low_runs_mean_mm": 104.23943531623854,
+        "gt_horizontal_drift_over_low_runs_mean_mm": 4.734554587790434,
+        "horizontal_displacement_error_over_GT_low_runs_mean_mm": 106.1341598208273
+      },
+      "sparse_support_proxies": {
+        "support_evaluation_anchor_count": 1344,
+        "support_calibrated_absolute_error_mm": 42.182814329862595,
+        "support_signed_height_mm": 10.719913989305496,
+        "support_float_over_50mm_fraction": 0.21726190476190477,
+        "support_penetrate_below_20mm_fraction": 0.2113095238095238,
+        "support_gt_signed_height_mm": 28.986865654587746,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    }
+  ],
+  "groups": {
+    "parent/off/all/clean": {
+      "windows": 14,
+      "valid_sparse_surface_windows": 13,
+      "sparse_surface_anchor_samples": 16476,
+      "window_means": {
+        "w_mpjpe_mm": 164.66513271712054,
+        "pa_mpjpe_mm": 128.6983982808265,
+        "observed_head_position_error_mm": 0.135772812121961,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.22400641491160125,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.07862016551758845,
+        "foot_joint_y_abs_error_gt_low_mm": 49.23005199859039,
+        "root_y_signed_error_mm": -27.815305156677606,
+        "root_y_abs_error_mm": 43.50930408552466,
+        "body_joint_vertical_extent_abs_error_mm": 72.84561946636089,
+        "bilateral_motion_rms_ratio": 0.8751904719720897,
+        "bilateral_motion_rms_error_mm": 116.31918188364035,
+        "bilateral_stride_change_abs_error_mm": 116.99837293187223,
+        "support_calibrated_absolute_error_mm": 58.1673809255545,
+        "support_signed_height_mm": 7.662886395477331,
+        "support_gt_signed_height_mm": 50.30430652774297,
+        "support_float_over_50mm_fraction": 0.20356745475851676,
+        "support_penetrate_below_20mm_fraction": 0.2808444399745231,
+        "support_gt_float_over_50mm_fraction": 0.2810439284349734,
+        "support_gt_penetrate_below_20mm_fraction": 0.08416087776704931
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.10220927409565428,
+        "support_penetrate_below_20mm_fraction": 0.33576110706482154,
+        "support_gt_float_over_50mm_fraction": 0.16812333090555961,
+        "support_gt_penetrate_below_20mm_fraction": 0.1442704539936878
+      }
+    },
+    "parent/off/all/noisy": {
+      "windows": 14,
+      "valid_sparse_surface_windows": 13,
+      "sparse_surface_anchor_samples": 16476,
+      "window_means": {
+        "w_mpjpe_mm": 184.29573925637393,
+        "pa_mpjpe_mm": 135.7742356036754,
+        "observed_head_position_error_mm": 10.84938602587366,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.3063265964374797,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.09626256504327967,
+        "foot_joint_y_abs_error_gt_low_mm": 57.97154620020074,
+        "root_y_signed_error_mm": -38.199043355970865,
+        "root_y_abs_error_mm": 55.73638929941115,
+        "body_joint_vertical_extent_abs_error_mm": 83.79792424273633,
+        "bilateral_motion_rms_ratio": 0.9523444964422715,
+        "bilateral_motion_rms_error_mm": 127.33818220430584,
+        "bilateral_stride_change_abs_error_mm": 129.1977952622291,
+        "support_calibrated_absolute_error_mm": 67.89385641996677,
+        "support_signed_height_mm": 6.055237743287132,
+        "support_gt_signed_height_mm": 50.30430652774297,
+        "support_float_over_50mm_fraction": 0.23561310051153275,
+        "support_penetrate_below_20mm_fraction": 0.3019900202666854,
+        "support_gt_float_over_50mm_fraction": 0.2810439284349734,
+        "support_gt_penetrate_below_20mm_fraction": 0.08416087776704931
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.16563486283078416,
+        "support_penetrate_below_20mm_fraction": 0.33667152221412966,
+        "support_gt_float_over_50mm_fraction": 0.16812333090555961,
+        "support_gt_penetrate_below_20mm_fraction": 0.1442704539936878
+      }
+    },
+    "parent/off/rich/clean": {
+      "windows": 12,
+      "valid_sparse_surface_windows": 11,
+      "sparse_surface_anchor_samples": 12738,
+      "window_means": {
+        "w_mpjpe_mm": 174.22259202867153,
+        "pa_mpjpe_mm": 137.50823147335424,
+        "observed_head_position_error_mm": 0.14614320933755476,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.22727372994460326,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.08350277024357979,
+        "foot_joint_y_abs_error_gt_low_mm": 54.054353379852756,
+        "root_y_signed_error_mm": -32.93281265198149,
+        "root_y_abs_error_mm": 49.17651795808019,
+        "body_joint_vertical_extent_abs_error_mm": 81.33974824724848,
+        "bilateral_motion_rms_ratio": 0.8845947498303354,
+        "bilateral_motion_rms_error_mm": 128.2257956508877,
+        "bilateral_stride_change_abs_error_mm": 122.14916798967033,
+        "support_calibrated_absolute_error_mm": 63.71913545510986,
+        "support_signed_height_mm": 12.300895019011064,
+        "support_gt_signed_height_mm": 63.11388330703432,
+        "support_float_over_50mm_fraction": 0.2377295649977771,
+        "support_penetrate_below_20mm_fraction": 0.2441902001186589,
+        "support_gt_float_over_50mm_fraction": 0.3220895261010592,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.12819908933898572,
+        "support_penetrate_below_20mm_fraction": 0.28748626157952584,
+        "support_gt_float_over_50mm_fraction": 0.20450620191552835,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/off/rich/noisy": {
+      "windows": 12,
+      "valid_sparse_surface_windows": 11,
+      "sparse_surface_anchor_samples": 12738,
+      "window_means": {
+        "w_mpjpe_mm": 192.07276745508386,
+        "pa_mpjpe_mm": 144.74271364737996,
+        "observed_head_position_error_mm": 11.673298838409243,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.3131572751282735,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.10265052104085218,
+        "foot_joint_y_abs_error_gt_low_mm": 61.20235139637141,
+        "root_y_signed_error_mm": -44.649140016796686,
+        "root_y_abs_error_mm": 60.23587467562821,
+        "body_joint_vertical_extent_abs_error_mm": 91.49482393210444,
+        "bilateral_motion_rms_ratio": 0.9574171413368915,
+        "bilateral_motion_rms_error_mm": 141.45623702503963,
+        "bilateral_stride_change_abs_error_mm": 136.14439121287967,
+        "support_calibrated_absolute_error_mm": 71.96900316260077,
+        "support_signed_height_mm": 10.026454626561396,
+        "support_gt_signed_height_mm": 63.11388330703432,
+        "support_float_over_50mm_fraction": 0.27164756501644016,
+        "support_penetrate_below_20mm_fraction": 0.2650011186326582,
+        "support_gt_float_over_50mm_fraction": 0.3220895261010592,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.2024650651593657,
+        "support_penetrate_below_20mm_fraction": 0.30397236614853196,
+        "support_gt_float_over_50mm_fraction": 0.20450620191552835,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/off/nonrich/clean": {
+      "windows": 2,
+      "valid_sparse_surface_windows": 2,
+      "sparse_surface_anchor_samples": 3738,
+      "window_means": {
+        "w_mpjpe_mm": 107.32037684781463,
+        "pa_mpjpe_mm": 75.83939912566005,
+        "observed_head_position_error_mm": 0.07355042882839834,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.20440252471358922,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.04932453716164039,
+        "foot_joint_y_abs_error_gt_low_mm": 20.284243711016206,
+        "root_y_signed_error_mm": 2.889739815145731,
+        "root_y_abs_error_mm": 9.506020850191513,
+        "body_joint_vertical_extent_abs_error_mm": 21.880846781035263,
+        "bilateral_motion_rms_ratio": 0.8187648048226154,
+        "bilateral_motion_rms_error_mm": 44.879499280156196,
+        "bilateral_stride_change_abs_error_mm": 86.09360258508354,
+        "support_calibrated_absolute_error_mm": 27.63273101300001,
+        "support_signed_height_mm": -17.846161033958197,
+        "support_gt_signed_height_mm": -20.148365758359432,
+        "support_float_over_50mm_fraction": 0.015675848442584843,
+        "support_penetrate_below_20mm_fraction": 0.4824427591817759,
+        "support_gt_float_over_50mm_fraction": 0.05529314127150163,
+        "support_gt_penetrate_below_20mm_fraction": 0.5470457054858205
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.013643659711075442,
+        "support_penetrate_below_20mm_fraction": 0.5002675227394329,
+        "support_gt_float_over_50mm_fraction": 0.044141252006420544,
+        "support_gt_penetrate_below_20mm_fraction": 0.6359015516318887
+      }
+    },
+    "parent/off/nonrich/noisy": {
+      "windows": 2,
+      "valid_sparse_surface_windows": 2,
+      "sparse_surface_anchor_samples": 3738,
+      "window_means": {
+        "w_mpjpe_mm": 137.6335700641143,
+        "pa_mpjpe_mm": 81.96336734144815,
+        "observed_head_position_error_mm": 5.9059091506601575,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.2653425242927171,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.057934829057844514,
+        "foot_joint_y_abs_error_gt_low_mm": 38.58671502317672,
+        "root_y_signed_error_mm": 0.5015366089840718,
+        "root_y_abs_error_mm": 28.739477042108774,
+        "body_joint_vertical_extent_abs_error_mm": 37.6165261065277,
+        "bilateral_motion_rms_ratio": 0.9219086270745518,
+        "bilateral_motion_rms_error_mm": 42.62985327990307,
+        "bilateral_stride_change_abs_error_mm": 87.51821955832568,
+        "support_calibrated_absolute_error_mm": 45.480549335479736,
+        "support_signed_height_mm": -15.78645511472132,
+        "support_gt_signed_height_mm": -20.148365758359432,
+        "support_float_over_50mm_fraction": 0.037423545734542076,
+        "support_penetrate_below_20mm_fraction": 0.5054289792538355,
+        "support_gt_float_over_50mm_fraction": 0.05529314127150163,
+        "support_gt_penetrate_below_20mm_fraction": 0.5470457054858205
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.04012841091492777,
+        "support_penetrate_below_20mm_fraction": 0.44810058855002677,
+        "support_gt_float_over_50mm_fraction": 0.044141252006420544,
+        "support_gt_penetrate_below_20mm_fraction": 0.6359015516318887
+      }
+    },
+    "parent/off/trumans/clean": {
+      "windows": 1,
+      "valid_sparse_surface_windows": 1,
+      "sparse_surface_anchor_samples": 2304,
+      "window_means": {
+        "w_mpjpe_mm": 111.23628773834355,
+        "pa_mpjpe_mm": 71.73286800366726,
+        "observed_head_position_error_mm": 0.10823380890275187,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.17135311663907113,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.041209470076733326,
+        "foot_joint_y_abs_error_gt_low_mm": 26.957425008337182,
+        "root_y_signed_error_mm": 4.728821727136771,
+        "root_y_abs_error_mm": 13.85404821485281,
+        "body_joint_vertical_extent_abs_error_mm": 31.30240144673735,
+        "bilateral_motion_rms_ratio": 0.8497618525634253,
+        "bilateral_motion_rms_error_mm": 28.592358480702433,
+        "bilateral_stride_change_abs_error_mm": 49.687522922556816,
+        "support_calibrated_absolute_error_mm": 27.379227802157402,
+        "support_signed_height_mm": -23.811541497707367,
+        "support_gt_signed_height_mm": -48.62713813781738,
+        "support_float_over_50mm_fraction": 0.006944444444444444,
+        "support_penetrate_below_20mm_fraction": 0.5590277777777778,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.006944444444444444,
+        "support_penetrate_below_20mm_fraction": 0.5590277777777778,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      }
+    },
+    "parent/off/trumans/noisy": {
+      "windows": 1,
+      "valid_sparse_surface_windows": 1,
+      "sparse_surface_anchor_samples": 2304,
+      "window_means": {
+        "w_mpjpe_mm": 145.83085433312263,
+        "pa_mpjpe_mm": 73.47117343494668,
+        "observed_head_position_error_mm": 5.936474657207516,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.21611651581257957,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.05670103682092873,
+        "foot_joint_y_abs_error_gt_low_mm": 49.548053956893554,
+        "root_y_signed_error_mm": 19.914304216702778,
+        "root_y_abs_error_mm": 38.56772308548292,
+        "body_joint_vertical_extent_abs_error_mm": 43.3665964131554,
+        "bilateral_motion_rms_ratio": 1.0841070369119397,
+        "bilateral_motion_rms_error_mm": 16.00671062022435,
+        "bilateral_stride_change_abs_error_mm": 60.20422309380334,
+        "support_calibrated_absolute_error_mm": 48.83807525038719,
+        "support_signed_height_mm": -0.46115947770886123,
+        "support_gt_signed_height_mm": -48.62713813781738,
+        "support_float_over_50mm_fraction": 0.04904513888888889,
+        "support_penetrate_below_20mm_fraction": 0.2591145833333333,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.04904513888888889,
+        "support_penetrate_below_20mm_fraction": 0.2591145833333333,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      }
+    },
+    "parent/off/egobody/clean": {
+      "windows": 1,
+      "valid_sparse_surface_windows": 1,
+      "sparse_surface_anchor_samples": 1434,
+      "window_means": {
+        "w_mpjpe_mm": 103.40446595728571,
+        "pa_mpjpe_mm": 79.94593024765284,
+        "observed_head_position_error_mm": 0.03886704875404479,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.23745193278810728,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.057439604246547454,
+        "foot_joint_y_abs_error_gt_low_mm": 13.611062413695231,
+        "root_y_signed_error_mm": 1.050657903154691,
+        "root_y_abs_error_mm": 5.157993485530217,
+        "body_joint_vertical_extent_abs_error_mm": 12.459292115333179,
+        "bilateral_motion_rms_ratio": 0.7877677570818055,
+        "bilateral_motion_rms_error_mm": 61.166640079609955,
+        "bilateral_stride_change_abs_error_mm": 122.49968224761028,
+        "support_calibrated_absolute_error_mm": 27.88623422384262,
+        "support_signed_height_mm": -11.880780570209026,
+        "support_gt_signed_height_mm": 8.330406621098518,
+        "support_float_over_50mm_fraction": 0.024407252440725245,
+        "support_penetrate_below_20mm_fraction": 0.40585774058577406,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.024407252440725245,
+        "support_penetrate_below_20mm_fraction": 0.40585774058577406,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      }
+    },
+    "parent/off/egobody/noisy": {
+      "windows": 1,
+      "valid_sparse_surface_windows": 1,
+      "sparse_surface_anchor_samples": 1434,
+      "window_means": {
+        "w_mpjpe_mm": 129.436285795106,
+        "pa_mpjpe_mm": 90.45556124794962,
+        "observed_head_position_error_mm": 5.875343644112799,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.31456853277285457,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.05916862129476029,
+        "foot_joint_y_abs_error_gt_low_mm": 27.6253760894599,
+        "root_y_signed_error_mm": -18.911230998734634,
+        "root_y_abs_error_mm": 18.911230998734634,
+        "body_joint_vertical_extent_abs_error_mm": 31.866455799899995,
+        "bilateral_motion_rms_ratio": 0.7597102172371639,
+        "bilateral_motion_rms_error_mm": 69.25299593958178,
+        "bilateral_stride_change_abs_error_mm": 114.83221602284802,
+        "support_calibrated_absolute_error_mm": 42.12302342057228,
+        "support_signed_height_mm": -31.11175075173378,
+        "support_gt_signed_height_mm": 8.330406621098518,
+        "support_float_over_50mm_fraction": 0.02580195258019526,
+        "support_penetrate_below_20mm_fraction": 0.7517433751743375,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.02580195258019526,
+        "support_penetrate_below_20mm_fraction": 0.7517433751743375,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      }
+    },
+    "parent/on/all/clean": {
+      "windows": 5,
+      "valid_sparse_surface_windows": 5,
+      "sparse_surface_anchor_samples": 8419,
+      "window_means": {
+        "w_mpjpe_mm": 137.79627730578926,
+        "pa_mpjpe_mm": 102.83223539873472,
+        "observed_head_position_error_mm": 0.043244645238674155,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.2344685535498934,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.05905228443761586,
+        "foot_joint_y_abs_error_gt_low_mm": 21.14845869079357,
+        "root_y_signed_error_mm": -24.392902944236994,
+        "root_y_abs_error_mm": 30.108305780837934,
+        "body_joint_vertical_extent_abs_error_mm": 56.76036180326871,
+        "bilateral_motion_rms_ratio": 0.9412166991181351,
+        "bilateral_motion_rms_error_mm": 32.30545845257665,
+        "bilateral_stride_change_abs_error_mm": 78.87052812037581,
+        "support_calibrated_absolute_error_mm": 23.63814413547516,
+        "support_signed_height_mm": 6.803698465228081,
+        "support_gt_signed_height_mm": 10.46021617949009,
+        "support_float_over_50mm_fraction": 0.06833868516668017,
+        "support_penetrate_below_20mm_fraction": 0.24438036501196678,
+        "support_gt_float_over_50mm_fraction": 0.05822217671785541,
+        "support_gt_penetrate_below_20mm_fraction": 0.21881828219432822
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.08338282456348735,
+        "support_penetrate_below_20mm_fraction": 0.27675495902126146,
+        "support_gt_float_over_50mm_fraction": 0.06651621332699846,
+        "support_gt_penetrate_below_20mm_fraction": 0.2823375697826345
+      }
+    },
+    "parent/on/all/noisy": {
+      "windows": 5,
+      "valid_sparse_surface_windows": 5,
+      "sparse_surface_anchor_samples": 8419,
+      "window_means": {
+        "w_mpjpe_mm": 172.50831245749006,
+        "pa_mpjpe_mm": 111.19194390539683,
+        "observed_head_position_error_mm": 3.9221678457328464,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.3463448712971713,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.07582455755535972,
+        "foot_joint_y_abs_error_gt_low_mm": 31.74655352141951,
+        "root_y_signed_error_mm": -35.955076307679214,
+        "root_y_abs_error_mm": 47.46501583916445,
+        "body_joint_vertical_extent_abs_error_mm": 72.06335767405108,
+        "bilateral_motion_rms_ratio": 1.190003442344202,
+        "bilateral_motion_rms_error_mm": 56.88955670798622,
+        "bilateral_stride_change_abs_error_mm": 95.46370085614961,
+        "support_calibrated_absolute_error_mm": 35.368625819683075,
+        "support_signed_height_mm": 7.958970137406141,
+        "support_gt_signed_height_mm": 10.46021617949009,
+        "support_float_over_50mm_fraction": 0.11581978001439633,
+        "support_penetrate_below_20mm_fraction": 0.26043190101191976,
+        "support_gt_float_over_50mm_fraction": 0.05822217671785541,
+        "support_gt_penetrate_below_20mm_fraction": 0.21881828219432822
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.15476897493764105,
+        "support_penetrate_below_20mm_fraction": 0.27117234825988834,
+        "support_gt_float_over_50mm_fraction": 0.06651621332699846,
+        "support_gt_penetrate_below_20mm_fraction": 0.2823375697826345
+      }
+    },
+    "parent/on/rich/clean": {
+      "windows": 3,
+      "valid_sparse_surface_windows": 3,
+      "sparse_surface_anchor_samples": 4681,
+      "window_means": {
+        "w_mpjpe_mm": 158.07583485779446,
+        "pa_mpjpe_mm": 120.76366946070229,
+        "observed_head_position_error_mm": 0.0692822955888564,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.22335545790202804,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.06419663325667395,
+        "foot_joint_y_abs_error_gt_low_mm": 21.820904879050342,
+        "root_y_signed_error_mm": -42.625812658419214,
+        "root_y_abs_error_mm": 43.88687185322245,
+        "body_joint_vertical_extent_abs_error_mm": 80.05627223529801,
+        "bilateral_motion_rms_ratio": 1.0249061090903622,
+        "bilateral_motion_rms_error_mm": 23.49132082250958,
+        "bilateral_stride_change_abs_error_mm": 73.5328092149116,
+        "support_calibrated_absolute_error_mm": 21.032811452945072,
+        "support_signed_height_mm": 23.196817996601265,
+        "support_gt_signed_height_mm": 30.86593747138977,
+        "support_float_over_50mm_fraction": 0.10437704307572372,
+        "support_penetrate_below_20mm_fraction": 0.08621993366708545,
+        "support_gt_float_over_50mm_fraction": 0.0601748670154246,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.13992736594744712,
+        "support_penetrate_below_20mm_fraction": 0.09933774834437085,
+        "support_gt_float_over_50mm_fraction": 0.08438367870113224,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/on/rich/noisy": {
+      "windows": 3,
+      "valid_sparse_surface_windows": 3,
+      "sparse_surface_anchor_samples": 4681,
+      "window_means": {
+        "w_mpjpe_mm": 196.26173528466933,
+        "pa_mpjpe_mm": 130.64458964168097,
+        "observed_head_position_error_mm": 5.852473891177822,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.3463474758666517,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.08628502003396589,
+        "foot_joint_y_abs_error_gt_low_mm": 28.586462312299364,
+        "root_y_signed_error_mm": -61.09804931717614,
+        "root_y_abs_error_mm": 61.69110042456951,
+        "body_joint_vertical_extent_abs_error_mm": 95.53898279167092,
+        "bilateral_motion_rms_ratio": 1.367483677404069,
+        "bilateral_motion_rms_error_mm": 67.06641091562702,
+        "bilateral_stride_change_abs_error_mm": 101.44197163576897,
+        "support_calibrated_absolute_error_mm": 30.47520915667216,
+        "support_signed_height_mm": 22.78464611542101,
+        "support_gt_signed_height_mm": 30.86593747138977,
+        "support_float_over_50mm_fraction": 0.16863176763595733,
+        "support_penetrate_below_20mm_fraction": 0.11184232649669877,
+        "support_gt_float_over_50mm_fraction": 0.0601748670154246,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.24738303781243323,
+        "support_penetrate_below_20mm_fraction": 0.14206366161076692,
+        "support_gt_float_over_50mm_fraction": 0.08438367870113224,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/on/nonrich/clean": {
+      "windows": 2,
+      "valid_sparse_surface_windows": 2,
+      "sparse_surface_anchor_samples": 3738,
+      "window_means": {
+        "w_mpjpe_mm": 107.37694097778147,
+        "pa_mpjpe_mm": 75.93508430578339,
+        "observed_head_position_error_mm": 0.004188169713400776,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.25113819702169143,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.05133576120902871,
+        "foot_joint_y_abs_error_gt_low_mm": 20.139789408408415,
+        "root_y_signed_error_mm": 2.956461627036333,
+        "root_y_abs_error_mm": 9.440456672261158,
+        "body_joint_vertical_extent_abs_error_mm": 21.81649615522474,
+        "bilateral_motion_rms_ratio": 0.8156825841597943,
+        "bilateral_motion_rms_error_mm": 45.526664897677264,
+        "bilateral_stride_change_abs_error_mm": 86.87710647857216,
+        "support_calibrated_absolute_error_mm": 27.546143159270287,
+        "support_signed_height_mm": -17.785980831831694,
+        "support_gt_signed_height_mm": -20.148365758359432,
+        "support_float_over_50mm_fraction": 0.01428114830311483,
+        "support_penetrate_below_20mm_fraction": 0.48162101202928875,
+        "support_gt_float_over_50mm_fraction": 0.05529314127150163,
+        "support_gt_penetrate_below_20mm_fraction": 0.5470457054858205
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.012573568753344035,
+        "support_penetrate_below_20mm_fraction": 0.4989299090422686,
+        "support_gt_float_over_50mm_fraction": 0.044141252006420544,
+        "support_gt_penetrate_below_20mm_fraction": 0.6359015516318887
+      }
+    },
+    "parent/on/nonrich/noisy": {
+      "windows": 2,
+      "valid_sparse_surface_windows": 2,
+      "sparse_surface_anchor_samples": 3738,
+      "window_means": {
+        "w_mpjpe_mm": 136.87817821672115,
+        "pa_mpjpe_mm": 82.01297530097061,
+        "observed_head_position_error_mm": 1.0267087775653838,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.3463409644429506,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.06013386383745048,
+        "foot_joint_y_abs_error_gt_low_mm": 36.48669033509973,
+        "root_y_signed_error_mm": 1.7593832065661745,
+        "root_y_abs_error_mm": 26.125888961056866,
+        "body_joint_vertical_extent_abs_error_mm": 36.84991999762133,
+        "bilateral_motion_rms_ratio": 0.9237830897544015,
+        "bilateral_motion_rms_error_mm": 41.624275396525036,
+        "bilateral_stride_change_abs_error_mm": 86.4962946867206,
+        "support_calibrated_absolute_error_mm": 42.70875081419945,
+        "support_signed_height_mm": -14.27954382961616,
+        "support_gt_signed_height_mm": -20.148365758359432,
+        "support_float_over_50mm_fraction": 0.03660179858205486,
+        "support_penetrate_below_20mm_fraction": 0.4833162627847513,
+        "support_gt_float_over_50mm_fraction": 0.05529314127150163,
+        "support_gt_penetrate_below_20mm_fraction": 0.5470457054858205
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.03879079721776351,
+        "support_penetrate_below_20mm_fraction": 0.4328517924023542,
+        "support_gt_float_over_50mm_fraction": 0.044141252006420544,
+        "support_gt_penetrate_below_20mm_fraction": 0.6359015516318887
+      }
+    },
+    "parent/on/trumans/clean": {
+      "windows": 1,
+      "valid_sparse_surface_windows": 1,
+      "sparse_surface_anchor_samples": 2304,
+      "window_means": {
+        "w_mpjpe_mm": 111.39408731357788,
+        "pa_mpjpe_mm": 71.7729962022976,
+        "observed_head_position_error_mm": 0.0067854332488591915,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.18786392343666747,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.044304297631045424,
+        "foot_joint_y_abs_error_gt_low_mm": 27.030805148274066,
+        "root_y_signed_error_mm": 4.841172757248084,
+        "root_y_abs_error_mm": 13.70899472385645,
+        "body_joint_vertical_extent_abs_error_mm": 31.596066003354885,
+        "bilateral_motion_rms_ratio": 0.844835036964783,
+        "bilateral_motion_rms_error_mm": 29.529998355582844,
+        "bilateral_stride_change_abs_error_mm": 50.34051959310522,
+        "support_calibrated_absolute_error_mm": 27.49290131032467,
+        "support_signed_height_mm": -23.51212501525879,
+        "support_gt_signed_height_mm": -48.62713813781738,
+        "support_float_over_50mm_fraction": 0.006944444444444444,
+        "support_penetrate_below_20mm_fraction": 0.5559895833333334,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.006944444444444444,
+        "support_penetrate_below_20mm_fraction": 0.5559895833333334,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      }
+    },
+    "parent/on/trumans/noisy": {
+      "windows": 1,
+      "valid_sparse_surface_windows": 1,
+      "sparse_surface_anchor_samples": 2304,
+      "window_means": {
+        "w_mpjpe_mm": 145.74002715074585,
+        "pa_mpjpe_mm": 73.59465640422778,
+        "observed_head_position_error_mm": 1.4623549117017915,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.2207565846666154,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.05629694964512285,
+        "foot_joint_y_abs_error_gt_low_mm": 48.54171929589237,
+        "root_y_signed_error_mm": 18.68539707114299,
+        "root_y_abs_error_mm": 37.03967450807492,
+        "body_joint_vertical_extent_abs_error_mm": 45.175023920213185,
+        "bilateral_motion_rms_ratio": 1.0821620964758414,
+        "bilateral_motion_rms_error_mm": 15.636562058614773,
+        "bilateral_stride_change_abs_error_mm": 59.386240678485194,
+        "support_calibrated_absolute_error_mm": 47.497108578681946,
+        "support_signed_height_mm": -1.8947318894788623,
+        "support_gt_signed_height_mm": -48.62713813781738,
+        "support_float_over_50mm_fraction": 0.04600694444444445,
+        "support_penetrate_below_20mm_fraction": 0.2664930555555556,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.04600694444444445,
+        "support_penetrate_below_20mm_fraction": 0.2664930555555556,
+        "support_gt_float_over_50mm_fraction": 0.007378472222222222,
+        "support_gt_penetrate_below_20mm_fraction": 0.9288194444444444
+      }
+    },
+    "parent/on/egobody/clean": {
+      "windows": 1,
+      "valid_sparse_surface_windows": 1,
+      "sparse_surface_anchor_samples": 1434,
+      "window_means": {
+        "w_mpjpe_mm": 103.35979464198506,
+        "pa_mpjpe_mm": 80.09717240926916,
+        "observed_head_position_error_mm": 0.0015909061779423607,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.3144124706067154,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.058367224787012,
+        "foot_joint_y_abs_error_gt_low_mm": 13.248773668542762,
+        "root_y_signed_error_mm": 1.0717504968245823,
+        "root_y_abs_error_mm": 5.171918620665868,
+        "body_joint_vertical_extent_abs_error_mm": 12.036926307094594,
+        "bilateral_motion_rms_ratio": 0.7865301313548057,
+        "bilateral_motion_rms_error_mm": 61.52333143977168,
+        "bilateral_stride_change_abs_error_mm": 123.41369336403909,
+        "support_calibrated_absolute_error_mm": 27.599385008215904,
+        "support_signed_height_mm": -12.059836648404598,
+        "support_gt_signed_height_mm": 8.330406621098518,
+        "support_float_over_50mm_fraction": 0.021617852161785217,
+        "support_penetrate_below_20mm_fraction": 0.4072524407252441,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.021617852161785217,
+        "support_penetrate_below_20mm_fraction": 0.4072524407252441,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      }
+    },
+    "parent/on/egobody/noisy": {
+      "windows": 1,
+      "valid_sparse_surface_windows": 1,
+      "sparse_surface_anchor_samples": 1434,
+      "window_means": {
+        "w_mpjpe_mm": 128.0163292826965,
+        "pa_mpjpe_mm": 90.43129419771344,
+        "observed_head_position_error_mm": 0.5910626434289759,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.47192534421928584,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.0639707780297781,
+        "foot_joint_y_abs_error_gt_low_mm": 24.431661374307094,
+        "root_y_signed_error_mm": -15.166630658010641,
+        "root_y_abs_error_mm": 15.212103414038816,
+        "body_joint_vertical_extent_abs_error_mm": 28.524816075029474,
+        "bilateral_motion_rms_ratio": 0.7654040830329615,
+        "bilateral_motion_rms_error_mm": 67.6119887344353,
+        "bilateral_stride_change_abs_error_mm": 113.60634869495601,
+        "support_calibrated_absolute_error_mm": 37.92039304971695,
+        "support_signed_height_mm": -26.664355769753456,
+        "support_gt_signed_height_mm": 8.330406621098518,
+        "support_float_over_50mm_fraction": 0.027196652719665274,
+        "support_penetrate_below_20mm_fraction": 0.700139470013947,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      },
+      "anchor_pooled_fractions": {
+        "support_float_over_50mm_fraction": 0.027196652719665274,
+        "support_penetrate_below_20mm_fraction": 0.700139470013947,
+        "support_gt_float_over_50mm_fraction": 0.10320781032078104,
+        "support_gt_penetrate_below_20mm_fraction": 0.16527196652719664
+      }
+    }
+  },
+  "within_model_physics_paired_deltas": {
+    "parent/all/clean": {
+      "windows": 5,
+      "delta_on_minus_off": {
+        "w_mpjpe_mm": 1.0480358343230136,
+        "pa_mpjpe_mm": -0.11436842930035027,
+        "observed_head_position_error_mm": -0.059693348957089935,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.01907647816828529,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.0010389684010193925,
+        "foot_joint_y_abs_error_gt_low_mm": 0.2655584276267035,
+        "root_y_signed_error_mm": -0.53439207064609,
+        "root_y_abs_error_mm": 0.45946704534192906,
+        "body_joint_vertical_extent_abs_error_mm": 0.10030757305988516,
+        "bilateral_motion_rms_ratio": -0.009194059734697979,
+        "bilateral_motion_rms_error_mm": 0.3471590621383914,
+        "bilateral_stride_change_abs_error_mm": -0.3919581763399009,
+        "support_calibrated_absolute_error_mm": 0.42458586394786835,
+        "support_signed_height_mm": 0.15240386128425598,
+        "support_gt_signed_height_mm": 0.0,
+        "support_float_over_50mm_fraction": 0.0006189468125978953,
+        "support_penetrate_below_20mm_fraction": 0.0011918735898101274,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/all/noisy": {
+      "windows": 5,
+      "delta_on_minus_off": {
+        "w_mpjpe_mm": 0.40997257117569463,
+        "pa_mpjpe_mm": -0.3116584831987893,
+        "observed_head_position_error_mm": -6.931967993048759,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.05616232382316815,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.0010409203433596082,
+        "foot_joint_y_abs_error_gt_low_mm": -2.509332274622584,
+        "root_y_signed_error_mm": 0.9925642361243578,
+        "root_y_abs_error_mm": -1.5530640259385127,
+        "body_joint_vertical_extent_abs_error_mm": -1.9639250240288681,
+        "bilateral_motion_rms_ratio": -0.021074767379504,
+        "bilateral_motion_rms_error_mm": -4.568444081286613,
+        "bilateral_stride_change_abs_error_mm": -1.115757275817053,
+        "support_calibrated_absolute_error_mm": -1.9549578428268433,
+        "support_signed_height_mm": 1.8996678874827921,
+        "support_gt_signed_height_mm": 0.0,
+        "support_float_over_50mm_fraction": 0.00019349435049335686,
+        "support_penetrate_below_20mm_fraction": -0.013726901712502817,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/rich/clean": {
+      "windows": 3,
+      "delta_on_minus_off": {
+        "w_mpjpe_mm": 1.7090169705604599,
+        "pa_mpjpe_mm": -0.25440416891613893,
+        "observed_head_position_error_mm": -0.05324740885181819,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.0006370154084073265,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.0003907979701067733,
+        "foot_joint_y_abs_error_gt_low_mm": 0.5389002477830344,
+        "root_y_signed_error_mm": -0.9351346590038846,
+        "root_y_abs_error_mm": 0.8094878608567851,
+        "body_joint_vertical_extent_abs_error_mm": 0.2100797056401582,
+        "bilateral_motion_rms_ratio": -0.013268619115949268,
+        "bilateral_motion_rms_error_mm": 0.1471546918832735,
+        "bilateral_stride_change_abs_error_mm": -1.175599556225573,
+        "support_calibrated_absolute_error_mm": 0.7653683423995972,
+        "support_signed_height_mm": 0.21388630072275797,
+        "support_gt_signed_height_mm": 0.0,
+        "support_float_over_50mm_fraction": 0.0019613781139765016,
+        "support_penetrate_below_20mm_fraction": 0.0025342874180083463,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/rich/noisy": {
+      "windows": 3,
+      "delta_on_minus_off": {
+        "w_mpjpe_mm": 1.1868821835549188,
+        "pa_mpjpe_mm": -0.5525027783462898,
+        "observed_head_position_error_mm": -8.300479739684748,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.03960491293845789,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.0002688440525287032,
+        "foot_joint_y_abs_error_gt_low_mm": -2.78220399898631,
+        "root_y_signed_error_mm": 0.8157093284858613,
+        "root_y_abs_error_mm": -0.8460479891962484,
+        "body_joint_vertical_extent_abs_error_mm": -2.7621376341105353,
+        "bilateral_motion_rms_ratio": -0.036374254085739764,
+        "bilateral_motion_rms_error_mm": -6.94368821322567,
+        "bilateral_stride_change_abs_error_mm": -1.1783122119583709,
+        "support_calibrated_absolute_error_mm": -1.4103973905245464,
+        "support_signed_height_mm": 2.161505622401213,
+        "support_gt_signed_height_mm": 0.0,
+        "support_float_over_50mm_fraction": 0.0008703220191470703,
+        "support_penetrate_below_20mm_fraction": -0.008136358541448622,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/nonrich/clean": {
+      "windows": 2,
+      "delta_on_minus_off": {
+        "w_mpjpe_mm": 0.056564129966844234,
+        "pa_mpjpe_mm": 0.09568518012333271,
+        "observed_head_position_error_mm": -0.06936225911499756,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.04673567230810223,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.0020112240473883214,
+        "foot_joint_y_abs_error_gt_low_mm": -0.14445430260779268,
+        "root_y_signed_error_mm": 0.06672181189060211,
+        "root_y_abs_error_mm": -0.06556417793035507,
+        "body_joint_vertical_extent_abs_error_mm": -0.06435062581052442,
+        "bilateral_motion_rms_ratio": -0.0030822206628210447,
+        "bilateral_motion_rms_error_mm": 0.6471656175210683,
+        "bilateral_stride_change_abs_error_mm": 0.7835038934886072,
+        "support_calibrated_absolute_error_mm": -0.08658785372972488,
+        "support_signed_height_mm": 0.06018020212650299,
+        "support_gt_signed_height_mm": 0.0,
+        "support_float_over_50mm_fraction": -0.0013947001394700141,
+        "support_penetrate_below_20mm_fraction": -0.0008217471524872011,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/nonrich/noisy": {
+      "windows": 2,
+      "delta_on_minus_off": {
+        "w_mpjpe_mm": -0.7553918473931418,
+        "pa_mpjpe_mm": 0.04960795952246144,
+        "observed_head_position_error_mm": -4.879200373094774,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.08099844015023355,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.0021990347796059656,
+        "foot_joint_y_abs_error_gt_low_mm": -2.100024688076994,
+        "root_y_signed_error_mm": 1.2578465975821027,
+        "root_y_abs_error_mm": -2.613588081051909,
+        "body_joint_vertical_extent_abs_error_mm": -0.7666061089063678,
+        "bilateral_motion_rms_ratio": 0.0018744626798496422,
+        "bilateral_motion_rms_error_mm": -1.0055778833780282,
+        "bilateral_stride_change_abs_error_mm": -1.0219248716050764,
+        "support_calibrated_absolute_error_mm": -2.7717985212802887,
+        "support_signed_height_mm": 1.5069112851051614,
+        "support_gt_signed_height_mm": 0.0,
+        "support_float_over_50mm_fraction": -0.0008217471524872132,
+        "support_penetrate_below_20mm_fraction": -0.02211271646908411,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/trumans/clean": {
+      "windows": 1,
+      "delta_on_minus_off": {
+        "w_mpjpe_mm": 0.15779957523433552,
+        "pa_mpjpe_mm": 0.04012819863034167,
+        "observed_head_position_error_mm": -0.10144837565389268,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.01651080679759634,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.0030948275543120976,
+        "foot_joint_y_abs_error_gt_low_mm": 0.07338013993688364,
+        "root_y_signed_error_mm": 0.11235103011131287,
+        "root_y_abs_error_mm": -0.14505349099636078,
+        "body_joint_vertical_extent_abs_error_mm": 0.29366455661753577,
+        "bilateral_motion_rms_ratio": -0.004926815598642276,
+        "bilateral_motion_rms_error_mm": 0.9376398748804107,
+        "bilateral_stride_change_abs_error_mm": 0.6529966705484043,
+        "support_calibrated_absolute_error_mm": 0.11367350816726685,
+        "support_signed_height_mm": 0.2994164824485779,
+        "support_gt_signed_height_mm": 0.0,
+        "support_float_over_50mm_fraction": 0.0,
+        "support_penetrate_below_20mm_fraction": -0.0030381944444444198,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/trumans/noisy": {
+      "windows": 1,
+      "delta_on_minus_off": {
+        "w_mpjpe_mm": -0.09082718237678478,
+        "pa_mpjpe_mm": 0.12348296928109903,
+        "observed_head_position_error_mm": -4.474119745505725,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.004640068854035839,
+        "foot_joint_vertical_speed_gt_low_m_s": -0.00040408717580588116,
+        "foot_joint_y_abs_error_gt_low_mm": -1.0063346610011834,
+        "root_y_signed_error_mm": -1.2289071455597878,
+        "root_y_abs_error_mm": -1.5280485774080006,
+        "body_joint_vertical_extent_abs_error_mm": 1.808427507057786,
+        "bilateral_motion_rms_ratio": -0.0019449404360982747,
+        "bilateral_motion_rms_error_mm": -0.370148561609577,
+        "bilateral_stride_change_abs_error_mm": -0.8179824153181485,
+        "support_calibrated_absolute_error_mm": -1.340966671705246,
+        "support_signed_height_mm": -1.433572411770001,
+        "support_gt_signed_height_mm": 0.0,
+        "support_float_over_50mm_fraction": -0.0030381944444444406,
+        "support_penetrate_below_20mm_fraction": 0.007378472222222265,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/egobody/clean": {
+      "windows": 1,
+      "delta_on_minus_off": {
+        "w_mpjpe_mm": -0.04467131530064705,
+        "pa_mpjpe_mm": 0.15124216161632376,
+        "observed_head_position_error_mm": -0.037276142576102435,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.07696053781860812,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.0009276205404645452,
+        "foot_joint_y_abs_error_gt_low_mm": -0.362288745152469,
+        "root_y_signed_error_mm": 0.021092593669891357,
+        "root_y_abs_error_mm": 0.013925135135650635,
+        "body_joint_vertical_extent_abs_error_mm": -0.4223658082385846,
+        "bilateral_motion_rms_ratio": -0.0012376257269998137,
+        "bilateral_motion_rms_error_mm": 0.35669136016172587,
+        "bilateral_stride_change_abs_error_mm": 0.91401111642881,
+        "support_calibrated_absolute_error_mm": -0.2868492156267166,
+        "support_signed_height_mm": -0.1790560781955719,
+        "support_gt_signed_height_mm": 0.0,
+        "support_float_over_50mm_fraction": -0.0027894002789400282,
+        "support_penetrate_below_20mm_fraction": 0.0013947001394700176,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    },
+    "parent/egobody/noisy": {
+      "windows": 1,
+      "delta_on_minus_off": {
+        "w_mpjpe_mm": -1.4199565124094988,
+        "pa_mpjpe_mm": -0.024267050236176146,
+        "observed_head_position_error_mm": -5.284281000683823,
+        "foot_joint_horizontal_speed_gt_low_m_s": 0.15735681144643127,
+        "foot_joint_vertical_speed_gt_low_m_s": 0.004802156735017812,
+        "foot_joint_y_abs_error_gt_low_mm": -3.1937147151528045,
+        "root_y_signed_error_mm": 3.744600340723993,
+        "root_y_abs_error_mm": -3.699127584695818,
+        "body_joint_vertical_extent_abs_error_mm": -3.3416397248705216,
+        "bilateral_motion_rms_ratio": 0.005693865795797559,
+        "bilateral_motion_rms_error_mm": -1.6410072051464795,
+        "bilateral_stride_change_abs_error_mm": -1.2258673278920043,
+        "support_calibrated_absolute_error_mm": -4.202630370855331,
+        "support_signed_height_mm": 4.447394981980324,
+        "support_gt_signed_height_mm": 0.0,
+        "support_float_over_50mm_fraction": 0.0013947001394700141,
+        "support_penetrate_below_20mm_fraction": -0.051603905160390484,
+        "support_gt_float_over_50mm_fraction": 0.0,
+        "support_gt_penetrate_below_20mm_fraction": 0.0
+      }
+    }
+  },
+  "metric_method": "Reopened every committed NPZ, independently rebuilt source/observations/native CPU skin assets/visible scene. Recomputed all saved metrics using existing pure evaluators; separately implemented World/PA/foot speed/height/root height/pose extent/bilateral RMS/stride formulas with NumPy after unchanged FK.",
+  "supplementary_scope": "GT low-speed is a speed proxy, not measured contact. Run drift uses >=3 consecutive low-speed intervals, including truncated window-boundary runs. Root-local temporal correlation and stride-vector error diagnose timing; stationary/low-amplitude correlation is null. No new training objective or inference was run.",
+  "sparse_surface_scope": "Float >50mm and penetrate below -20mm are fractions of sparse foot/ankle skin anchors against identical GT-associated reliable visible upward surface patches. Their signs include scan/body fitting bias; GT reference fractions are recomputed and reported. These are not full-mesh floating, collision, or self-collision rates. Window means and anchor-count pooled fractions are separately labeled.",
+  "input_scope": "Saved observed trajectory/meta/rest and full tensor input fingerprints are checked across compared rows. CPU verifier does not regenerate GPU reference tensors or claim byte identity for unsaved GPU intermediates.",
+  "verifier_script_sha256": "a3b0c9f71dea933fe215b77131745a248f3b6915af3006fccfb8c86a50cb25e9",
+  "verifier_script": "\"\"\"CPU-only independent verification of saved paired foot-trial evaluations.\"\"\"\nfrom __future__ import annotations\n\nimport argparse\nimport collections\nimport hashlib\nimport json\nfrom pathlib import Path\nimport statistics\n\nimport numpy as np\nimport torch\n\nfrom .motion_ablation import BASE, FULL, load_module, now, read, require, sha, surface_metrics, write\n\nDEFAULT_OUT = BASE / 'runs/native30_live_monitor_oct16/paired_foot_trial/evaluation'\n\n\ndef array_digest(arrays, keys):\n    digest = hashlib.sha256()\n    for key in keys:\n        value = np.ascontiguousarray(arrays[key])\n        digest.update(json.dumps([key, str(value.dtype), list(value.shape)]).encode())\n        digest.update(value.tobytes())\n    return digest.hexdigest()\n\n\ndef independent_metrics(prediction, truth, rest, observed, meta):\n    \"\"\"Direct NumPy formulas after unchanged native FK, including timing checks.\"\"\"\n    from experiments.offline_camera_retrain_v1.supervision import forward_kinematics\n    from experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations\n\n    p, g = (torch.from_numpy(np.array(a, dtype=np.float32, copy=True))[None] for a in (prediction, truth))\n    r = torch.from_numpy(np.array(rest, dtype=np.float32, copy=True))[None]\n    with torch.no_grad():\n        jp, jg = (forward_kinematics(a, r)[0].numpy().astype(np.float64) for a in (p, g))\n        rp, rg = (global_rotations(a)[0, :, 0].numpy().astype(np.float64) for a in (p, g))\n    frames = len(jp)\n    valid = (meta[:, 15, 0] > 0) & (meta[:, 15, 2] > 0)\n    vp, vg = (np.diff(j[:, [10, 11]], axis=0) * 30 for j in (jp, jg))\n    low = np.linalg.norm(vg, axis=-1) < .2\n    mean = lambda a, mask=None: float((a if mask is None else a[mask]).mean()) if (a if mask is None else a[mask]).size else None\n    pa_errors = []\n    for x, y in zip(jp, jg):\n        xc, yc = x - x.mean(0), y - y.mean(0)\n        u, singular, vt = np.linalg.svd(xc.T @ yc)\n        sign = np.ones(3)\n        sign[-1] = np.linalg.det(u @ vt)\n        rotation = (u * sign[None]) @ vt\n        scale = (singular * sign).sum() / max(float((xc * xc).sum()), 1e-12)\n        pa_errors.extend(np.linalg.norm(scale * (xc @ rotation) + y.mean(0) - y, axis=-1))\n    foot_y = jp[:, [10, 11], 1] - jg[:, [10, 11], 1]\n    root_y = jp[:, 0, 1] - jg[:, 0, 1]\n    extent_p, extent_g = (j[..., 1].max(-1) - j[..., 1].min(-1) for j in (jp, jg))\n    span_p, span_g = (j[:, 15, 1] - j[:, [10, 11], 1].min(-1) for j in (jp, jg))\n    local_p, local_g = (np.stack([rotation.T @ (j[10] - j[11]) for rotation, j in zip(rotations, joints)])\n                        for rotations, joints in ((rp, jp), (rg, jg)))\n    rms = lambda a: float(np.sqrt(np.mean(np.sum((a - a.mean(0)) ** 2, axis=-1))))\n    rms_p, rms_g = rms(local_p), rms(local_g)\n    dp, dg = ([a[lag:] - a[:-lag] for lag in (6, 12)] for a in (local_p, local_g))\n    changes_p, changes_g = ([np.linalg.norm(a, axis=-1) for a in values] for values in (dp, dg))\n    metrics = dict(w_mpjpe_mm=float(np.linalg.norm(jp - jg, axis=-1).mean() * 1000),\n        pa_mpjpe_mm=float(np.mean(pa_errors) * 1000),\n        observed_head_position_error_mm=mean(np.linalg.norm(jp[valid, 15] - observed[valid, 15, :3] * 2, axis=-1) * 1000),\n        foot_joint_horizontal_speed_gt_low_m_s=mean(np.linalg.norm(vp[..., [0, 2]], axis=-1), low),\n        foot_joint_vertical_speed_gt_low_m_s=mean(np.abs(vp[..., 1]), low),\n        gt_foot_joint_horizontal_speed_gt_low_m_s=mean(np.linalg.norm(vg[..., [0, 2]], axis=-1), low),\n        gt_foot_joint_vertical_speed_gt_low_m_s=mean(np.abs(vg[..., 1]), low),\n        foot_joint_y_abs_error_gt_low_mm=mean(np.abs(foot_y[1:]) * 1000, low),\n        foot_joint_y_signed_error_gt_low_mm=mean(foot_y[1:] * 1000, low),\n        root_y_signed_error_mm=mean(root_y * 1000), root_y_abs_error_mm=mean(np.abs(root_y) * 1000),\n        predicted_root_y_mean_m=mean(jp[:, 0, 1]), gt_root_y_mean_m=mean(jg[:, 0, 1]),\n        predicted_body_joint_vertical_extent_mean_m=mean(extent_p), gt_body_joint_vertical_extent_mean_m=mean(extent_g),\n        body_joint_vertical_extent_abs_error_mm=mean(np.abs(extent_p - extent_g) * 1000),\n        predicted_head_to_foot_vertical_span_mean_m=mean(span_p), gt_head_to_foot_vertical_span_mean_m=mean(span_g),\n        head_to_foot_vertical_span_abs_error_mm=mean(np.abs(span_p - span_g) * 1000),\n        bilateral_motion_rms_m=rms_p, gt_bilateral_motion_rms_m=rms_g,\n        bilateral_motion_rms_error_mm=abs(rms_p - rms_g) * 1000,\n        bilateral_motion_rms_ratio=rms_p / rms_g if rms_g > .01 else None,\n        bilateral_stride_change_mean_m=float(np.mean([a.mean() for a in changes_p])),\n        gt_bilateral_stride_change_mean_m=float(np.mean([a.mean() for a in changes_g])),\n        bilateral_stride_change_abs_error_mm=float(np.mean([np.abs(a - b).mean() for a, b in zip(changes_p, changes_g)]) * 1000))\n    predicted_low = np.linalg.norm(vp, axis=-1) < .2\n    confusion = dict(tp=int((predicted_low & low).sum()), fp=int((predicted_low & ~low).sum()),\n                     fn=int((~predicted_low & low).sum()), tn=int((~predicted_low & ~low).sum()))\n    articulated = rms_g > .01\n    sagittal_p, sagittal_g = local_p[:, 2] - local_p[:, 2].mean(), local_g[:, 2] - local_g[:, 2].mean()\n    correlation = float(np.corrcoef(sagittal_p, sagittal_g)[0, 1]) if articulated and sagittal_p.std() > 1e-8 and sagittal_g.std() > .01 else None\n    drifts, gt_drifts, drift_errors = [], [], []\n    for side in range(2):\n        changes = np.diff(np.r_[False, low[:, side], False].astype(np.int8))\n        for start, end in zip(np.flatnonzero(changes == 1), np.flatnonzero(changes == -1)):\n            if end - start >= 3:\n                displacement = (jp[end, [10, 11][side]] - jp[start, [10, 11][side]])[[0, 2]]\n                gt_displacement = (jg[end, [10, 11][side]] - jg[start, [10, 11][side]])[[0, 2]]\n                drifts.append(float(np.linalg.norm(displacement) * 1000))\n                gt_drifts.append(float(np.linalg.norm(gt_displacement) * 1000))\n                drift_errors.append(float(np.linalg.norm(displacement - gt_displacement) * 1000))\n    supplemental = dict(low_speed_proxy_confusion=confusion,\n        low_speed_proxy_accuracy=float((predicted_low == low).mean()),\n        bilateral_sagittal_temporal_correlation=correlation,\n        bilateral_stride_vector_error_mm=float(np.mean([np.linalg.norm(a - b, axis=-1).mean() for a, b in zip(dp, dg)]) * 1000),\n        gt_articulated_window=articulated, gt_low_speed_runs_min_3_intervals=len(drifts),\n        predicted_horizontal_drift_over_GT_low_runs_mean_mm=float(np.mean(drifts)) if drifts else None,\n        gt_horizontal_drift_over_low_runs_mean_mm=float(np.mean(gt_drifts)) if gt_drifts else None,\n        horizontal_displacement_error_over_GT_low_runs_mean_mm=float(np.mean(drift_errors)) if drift_errors else None)\n    denominators = dict(frames=frames, body_joint_samples=frames * 22, observed_head_frames=int(valid.sum()),\n        gt_low_speed_foot_samples=int(low.sum()), left_gt_low_speed_foot_samples=int(low[:, 0].sum()),\n        right_gt_low_speed_foot_samples=int(low[:, 1].sum()), foot_velocity_samples=int(low.size),\n        stride_pairs_by_lag_frames={'6': frames - 6, '12': frames - 12},\n        stride_aggregation='Arithmetic mean of the two per-lag means; not pooled pair mean.',\n        bilateral_rms_windows=1, bilateral_ratio_valid=int(rms_g > .01),\n        PA_alignment='Per-frame proper similarity transform across all 22 joints.')\n    return metrics, supplemental, denominators\n\n\ndef run(out, labels):\n    from experiments.offline_camera_retrain_v1.prepare_native30 import window_options\n    from experiments.offline_camera_retrain_v1.native30_data import Native30Data\n    from experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAnchorCache\n    from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder\n    from experiments.offline_camera_retrain_v1.native30_surface_cache import CanonicalSurfaceCache\n    from .support_metrics import support_metrics\n    from .foot_trial_evaluation import extended_metrics\n\n    torch.set_num_threads(2)\n    torch.set_num_interop_threads(1)\n    require(not torch.cuda.is_initialized(), 'CPU verifier must not initialize CUDA')\n    plan, cohort = read(out / 'PLAN.json'), read(out / 'COHORT.json')\n    require(sha(out / 'COHORT.json') == plan['cohort_sha256'], 'Cohort changed')\n    require(all(label in plan['models'] for label in labels), 'Unknown requested model')\n    source_matches = {path: sha(path) == digest for path, digest in plan['dependency_sha256'].items()}\n    require(all(source_matches.values()), 'Sealed evaluation dependency changed')\n    all_rows = [json.loads(line) for line in (out / 'rows.jsonl').read_text().splitlines()]\n    rows = [row for row in all_rows if row['model'] in labels]\n    expected = {(label, entry['case'], regime, guidance) for label in labels for entry in cohort['entries']\n                for regime in cohort['regimes'] for guidance in ('off', 'on')\n                if guidance == 'off' or entry['case'] in cohort['secondary']['cases']}\n    found = {(row['model'], row['case'], row['regime'], row['guidance']) for row in rows}\n    require(len(rows) == len(found) and found == expected, 'Requested phase is not exactly complete')\n    for label in labels:\n        checkpoint = read(out / 'checkpoints' / (label + '.json'))\n        require(checkpoint['declaration'] == plan['models'][label], 'Checkpoint declaration differs')\n        require(sha(checkpoint['checkpoint']) == checkpoint['checkpoint_sha256'], 'Pinned checkpoint changed')\n        require(all(row['checkpoint_sha256'] == checkpoint['checkpoint_sha256'] for row in rows if row['model'] == label), 'Mixed checkpoint rows')\n    helper = load_module('foot_recheck_source_guard', FULL / 'runner.py')\n    effective = helper.verify_sources()\n    cfg = effective['config']\n    data = Native30Data(BASE / cfg['train_manifest'], 'validation', cfg['seed'] + 1, frames=cfg['frames'],\n        memory_protocol=cfg['scene']['memory_protocol'], quality_config=cfg['gt_reliability'],\n        exo_max_empty_frames=cfg['exo_max_empty_frames'], **window_options(cfg))\n    data.runtime_cache_root = out / 'native30_runtime_cache_v2'\n    cache_path = data.scene_memory._cache_path\n    data.scene_memory._cache_path = lambda *args: (path if (path := cache_path(*args)) is not None and path.exists() else None)\n    data.surface_cache = CanonicalSurfaceCache(data, limit=1)\n    data.scene_memory.cached_streams = 1\n    skin = Native30SkinAnchorCache(device='cpu', limit=4)\n    clean = Native30ObservationBuilder(skin, read(BASE / cfg['mount_defaults']), cfg['observation']['input_noise'])\n    noisy = Native30ObservationBuilder(skin, clean.mounts, dict(clean.noise_config, clean_probability=0.))\n    maximum_errors, direct_errors = collections.defaultdict(float), collections.defaultdict(float)\n    checks, stable = [], {}\n    aggregate_rows = []\n    for entry in cohort['entries']:\n        members = [i for i, (meta, _) in enumerate(data.members[entry['group']]) if meta['path'] == entry['path']]\n        require(len(members) == 1, 'Nonunique source recording')\n        sample, identity = data.sample(entry['group'], 'ego', member=members[0], start=entry['start'], yaw=0)\n        require(identity['source_start_30fps'] == entry['source_first'], 'Source frame changed')\n        for regime in cohort['regimes']:\n            observed, scene, asset = (clean if regime == 'clean' else noisy).build(data, sample, identity, 'ego', (15,),\n                noise_rng=None if regime == 'clean' else np.random.default_rng(entry['case_seed']))\n            gt_surface = surface_metrics(sample['motion'], sample['motion'], asset, scene)\n            subset = [row for row in rows if row['case'] == entry['case'] and row['regime'] == regime]\n            for row in subset:\n                require(all(row[key] == entry[key] for key in ('dataset', 'sequence_id', 'start', 'source_first', 'case_seed')),\n                        'Saved row cohort identity differs')\n                require(row['checkpoint_step'] == plan['models'][row['model']]['expected_step'], 'Saved checkpoint step differs')\n                require(sha(row['artifact']) == row['artifact_sha256'], 'Saved motion artifact changed')\n                with np.load(row['artifact'], allow_pickle=False) as saved:\n                    arrays = {key: saved[key] for key in saved.files}\n                saved_identity = json.loads(str(arrays['identity_json']))\n                require(all(saved_identity[key] == identity[key] for key in ('path', 'start', 'sequence_id', 'source_start_30fps')),\n                        'Artifact source identity differs')\n                require(str(arrays['model']) == row['model'] and str(arrays['guidance']) == row['guidance'], 'Artifact arm differs')\n                require(str(arrays['checkpoint_sha256']) == row['checkpoint_sha256'] and str(arrays['input_sha256']) == row['input_sha256'], 'Artifact provenance differs')\n                for key, actual in [('truth', sample['motion']), ('rest', sample['rest']),\n                                    ('observations', observed['trajectory']), ('observation_meta', observed['observation_meta'])]:\n                    require(np.array_equal(arrays[key], actual), 'Saved source GT/input changed: ' + key)\n                digest = array_digest(arrays, ['truth', 'rest', 'observations', 'observation_meta'])\n                key = entry['case'], regime\n                require(key not in stable or stable[key] == (digest, row['input_sha256']), 'Same-window GT/input differs across models/modes')\n                stable[key] = digest, row['input_sha256']\n                prediction, truth, rest = (arrays[key] for key in ('prediction', 'truth', 'rest'))\n                regenerated = support_metrics(prediction, truth, rest, arrays['observations'], arrays['observation_meta'], asset)\n                regenerated.update(extended_metrics(prediction, truth, rest))\n                regenerated.update(surface_metrics(prediction, truth, asset, scene))\n                require(set(regenerated) == set(row['metrics']), 'Saved metric schema differs')\n                for metric, actual in regenerated.items():\n                    saved_value = row['metrics'][metric]\n                    require((actual is None) == (saved_value is None), 'Metric valid coverage differs: ' + metric)\n                    if actual is not None:\n                        error = abs(actual - saved_value)\n                        maximum_errors[metric] = max(maximum_errors[metric], error)\n                        require(error < 1e-3, 'CPU metric differs: ' + metric)\n                direct, supplementary, denominators = independent_metrics(prediction, truth, rest, arrays['observations'], arrays['observation_meta'])\n                for metric, actual in direct.items():\n                    saved_value = row['metrics'][metric]\n                    require((actual is None) == (saved_value is None), 'Independent metric coverage differs')\n                    if actual is not None:\n                        error = abs(actual - saved_value)\n                        direct_errors[metric] = max(direct_errors[metric], error)\n                        require(error < 1e-3, 'Independent metric differs: ' + metric)\n                denominators['support_anchor_samples'] = regenerated.get('support_evaluation_anchor_count', 0)\n                checks.append(dict(model=row['model'], case=entry['case'], regime=regime, guidance=row['guidance'],\n                    artifact_sha256=row['artifact_sha256'], gt_and_observed_array_sha256=digest,\n                    denominators=denominators, supplementary=supplementary))\n                extra = dict(support_gt_float_over_50mm_fraction=gt_surface.get('support_float_over_50mm_fraction'),\n                    support_gt_penetrate_below_20mm_fraction=gt_surface.get('support_penetrate_below_20mm_fraction'))\n                checks[-1]['sparse_support_proxies'] = {key: value for key, value in regenerated.items() if key.startswith('support_')}\n                checks[-1]['sparse_support_proxies'].update(extra)\n                aggregate_rows.append(dict(model=row['model'], case=entry['case'], dataset=row['dataset'], regime=regime,\n                    guidance=row['guidance'], metrics=dict(regenerated, **extra)))\n            del observed, scene, asset\n        data.arrays.clear()\n    by_case = collections.defaultdict(list)\n    for check in checks:\n        by_case[check['case'], check['regime']].append(check['denominators'])\n    require(all(all(item == values[0] for item in values) for values in by_case.values()), 'Same-window denominators differ')\n    require(not torch.cuda.is_initialized(), 'Verifier unexpectedly initialized CUDA')\n    groups = {}\n    group_keys = ('w_mpjpe_mm', 'pa_mpjpe_mm', 'observed_head_position_error_mm',\n        'foot_joint_horizontal_speed_gt_low_m_s', 'foot_joint_vertical_speed_gt_low_m_s',\n        'foot_joint_y_abs_error_gt_low_mm', 'root_y_signed_error_mm', 'root_y_abs_error_mm',\n        'body_joint_vertical_extent_abs_error_mm', 'bilateral_motion_rms_ratio',\n        'bilateral_motion_rms_error_mm', 'bilateral_stride_change_abs_error_mm',\n        'support_calibrated_absolute_error_mm', 'support_signed_height_mm', 'support_gt_signed_height_mm',\n        'support_float_over_50mm_fraction', 'support_penetrate_below_20mm_fraction',\n        'support_gt_float_over_50mm_fraction', 'support_gt_penetrate_below_20mm_fraction')\n    for label in labels:\n        for guidance in ('off', 'on'):\n            for dataset in ('all', 'rich', 'nonrich', 'trumans', 'egobody'):\n                for regime in cohort['regimes']:\n                    subset = [row['metrics'] for row in aggregate_rows if row['model'] == label and\n                        row['guidance'] == guidance and row['regime'] == regime and\n                        (dataset == 'all' or row['dataset'] == dataset or dataset == 'nonrich' and row['dataset'] != 'rich')]\n                    if not subset:\n                        continue\n                    valid = [item for item in subset if item.get('support_evaluation_anchor_count', 0) > 0]\n                    total = sum(item['support_evaluation_anchor_count'] for item in valid)\n                    means = {key: statistics.mean(values) if (values := [item[key] for item in subset if item.get(key) is not None]) else None for key in group_keys}\n                    pooled = {key: sum(item[key] * item['support_evaluation_anchor_count'] for item in valid) / total if total else None\n                        for key in ('support_float_over_50mm_fraction', 'support_penetrate_below_20mm_fraction',\n                                    'support_gt_float_over_50mm_fraction', 'support_gt_penetrate_below_20mm_fraction')}\n                    groups['/'.join((label, guidance, dataset, regime))] = dict(windows=len(subset),\n                        valid_sparse_surface_windows=len(valid), sparse_surface_anchor_samples=total,\n                        window_means=means, anchor_pooled_fractions=pooled)\n    indexed = {(row['model'], row['case'], row['regime'], row['guidance']): row for row in aggregate_rows}\n    physics_paired = {}\n    for label in labels:\n        for dataset in ('all', 'rich', 'nonrich', 'trumans', 'egobody'):\n            for regime in cohort['regimes']:\n                pairs = [(indexed[label, row['case'], regime, 'off']['metrics'], row['metrics'])\n                    for row in aggregate_rows if row['model'] == label and row['guidance'] == 'on' and row['regime'] == regime and\n                    (dataset == 'all' or row['dataset'] == dataset or dataset == 'nonrich' and row['dataset'] != 'rich')]\n                if pairs:\n                    physics_paired['/'.join((label, dataset, regime))] = dict(windows=len(pairs),\n                        delta_on_minus_off={key: statistics.mean(values) if (values := [b[key] - a[key] for a, b in pairs\n                            if a.get(key) is not None and b.get(key) is not None]) else None for key in group_keys})\n    text = Path(__file__).read_text()\n    result = dict(status='independent_cpu_passed', verified_at=now(), models=labels, predictions=len(rows),\n        CUDA_initialized=False, optimizer_updates=0, exact_expected_phase_coverage=True,\n        source_dependency_sha256_matches=source_matches, plan_sha256=sha(out / 'PLAN.json'),\n        maximum_cpu_recomputed_metric_errors=dict(maximum_errors), maximum_independent_formula_errors=dict(direct_errors),\n        gt_rest_and_observed_arrays_byte_identical_to_regenerated_sources=True,\n        same_window_inputs_and_evaluation_denominators_identical=True, checks=checks,\n        groups=groups, within_model_physics_paired_deltas=physics_paired,\n        metric_method='Reopened every committed NPZ, independently rebuilt source/observations/native CPU skin assets/visible scene. Recomputed all saved metrics using existing pure evaluators; separately implemented World/PA/foot speed/height/root height/pose extent/bilateral RMS/stride formulas with NumPy after unchanged FK.',\n        supplementary_scope='GT low-speed is a speed proxy, not measured contact. Run drift uses >=3 consecutive low-speed intervals, including truncated window-boundary runs. Root-local temporal correlation and stride-vector error diagnose timing; stationary/low-amplitude correlation is null. No new training objective or inference was run.',\n        sparse_surface_scope='Float >50mm and penetrate below -20mm are fractions of sparse foot/ankle skin anchors against identical GT-associated reliable visible upward surface patches. Their signs include scan/body fitting bias; GT reference fractions are recomputed and reported. These are not full-mesh floating, collision, or self-collision rates. Window means and anchor-count pooled fractions are separately labeled.',\n        input_scope='Saved observed trajectory/meta/rest and full tensor input fingerprints are checked across compared rows. CPU verifier does not regenerate GPU reference tensors or claim byte identity for unsaved GPU intermediates.',\n        verifier_script_sha256=hashlib.sha256(text.encode()).hexdigest(), verifier_script=text)\n    suffix = labels[0] if len(labels) == 1 else 'all'\n    write(out / ('CPU_RECHECK_' + suffix + '.json'), result)\n    print(json.dumps({key: value for key, value in result.items() if key not in ('verifier_script', 'checks', 'groups')}, ensure_ascii=False))\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--out', type=Path, default=DEFAULT_OUT)\n    parser.add_argument('--models', nargs='+', default=['parent'])\n    args = parser.parse_args()\n    run(args.out.resolve(), args.models)\n\n\nif __name__ == '__main__':\n    main()\n"
+}
