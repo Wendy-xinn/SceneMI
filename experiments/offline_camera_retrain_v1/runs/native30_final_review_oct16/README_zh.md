@@ -23,6 +23,14 @@
 
 每臂只有一个原子`last.pt`。结束且淘汰的候选去掉Adam并核验模型张量未变，保留模型、配置、指标、RNG和配对审计；原父模型、control及被选版本继续可恢复。大权重／预测数组只留本地。
 
-恢复管理器：**仅在原manager和worker均已中断后使用，不要并发启动manager**。沿用LAUNCH.json中的参数，将脚本改为`resume_review.py`，例如`/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/resume_review.py --resume-manager --phase1-updates 1000 --phase2-updates 2000 --decision-hours 8 --final-stop 10000`。独立恢复入口核对STATUS中的PID及进程命令，拒绝已有同review进程；对已去Adam的落选模型先核验cleanup记录和模型hash，再幂等跳过。缺失证据时保守拒绝。它不修改六个封存扩展或原checkpoint元数据，仍校验源文件哈希、跳过已完成且步数匹配的阶段；worker按已提交checkpoint清理未提交日志尾部，并可仅重跑中断的阶段末验证。修改运行中扩展代码会触发哈希拒绝。
+旧恢复入口（11:00故障复核后已由下段取代）：**不要对已被fallback推进parent的现状使用此入口**。沿用LAUNCH.json中的参数，将脚本改为`resume_review.py`，例如`/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/resume_review.py --resume-manager --phase1-updates 1000 --phase2-updates 2000 --decision-hours 8 --final-stop 10000`。独立恢复入口核对STATUS中的PID及进程命令，拒绝已有同review进程；对已去Adam的落选模型先核验cleanup记录和模型hash，再幂等跳过。缺失证据时保守拒绝。它不修改六个封存扩展或原checkpoint元数据，仍校验源文件哈希、跳过已完成且步数匹配的阶段；worker按已提交checkpoint清理未提交日志尾部，并可仅重跑中断的阶段末验证。修改运行中扩展代码会触发哈希拒绝。
 
 所有结果以实际记录为准。脚滑降低、总loss下降或短程胜出，都不单独等于步态正确或55k必然收敛。
+
+## 11:00 故障复核与显式续行
+
+原定8小时流程未完成：ik_off在源指纹检查退出，原manager的fallback随后因一个surface NPZ CRC损坏而停止，原目录checkpoint已到5200。前三臂各1000更新结果与配对证据有效，阶段结论见[INTERIM_REPORT_zh.md](INTERIM_REPORT_zh.md)。新检查1032项源指纹均匹配，坏surface单文件已保留证据并由原方法重建，见REAL_CACHE_REPAIR.json。
+
+本次使用独立continue_review.py及recovered_worker.py/io_recovery.py续行原2453起点候选，保留5200 parent，不再fallback修改它；原六个封存扩展与各臂配置不改，新的扩展哈希记录在RECOVERY_PROTOCOL.json。所有原守卫保持不变，先补ik_off、再阶段2及10k门控。lean即使未胜出也保留Adam供后续审阅。CRC验证与读取重试可能影响准备耗时，比较新旧worker总耗时时需要计入这一差异。
+
+当前恢复命令：`/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/continue_review.py --phase1-updates 1000 --phase2-updates 2000 --decision-hours 8 --final-stop 10000 --expected-parent-step 5200`。仅在无活跃manager/worker时使用；PID守卫和进程锁拒绝重复启动。本次恢复重新计时，不声称原8小时任务已成功。

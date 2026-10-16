@@ -1,0 +1,897 @@
+{
+  "status": "interim_incomplete_no_final_long_train_winner",
+  "checked_at": "2026-10-16T11:26:54.060575+08:00",
+  "recommendation": "暂保留 control 默认；lean 接近但未过原守卫，继续复核前不能直接胜出；foot 不推广。先修复并重新校验数据/缓存，再恢复未完成比较。",
+  "final_selection_file_present": false,
+  "final_long_train_config_file_present": false,
+  "phase2_summary_files": [],
+  "parent_step": 2453,
+  "arm_results": {
+    "control": {
+      "step": 3453,
+      "observed_at": "2026-10-16T03:12:50.171465+08:00",
+      "aggregate": {
+        "all/clean": {
+          "unconditioned_mpjpe_mm": 201.7700941297743,
+          "bilateral_sagittal_correlation_error": 0.48840505215856767,
+          "root_position_error_mm": 155.91769748263889,
+          "swing_velocity_RMSE_m_s": 1.0439997091889381,
+          "regular_position_mpjpe_mm": 193.47228495279947,
+          "foot_velocity_RMSE_m_s": 0.6945918715662427,
+          "foot_world_error_mm": 340.03796047634546,
+          "body_local_foot_error_mm": 331.0563693576389,
+          "foot_speed_during_GT_stance_m_s": 0.43880707853370243,
+          "conditioned_mpjpe_mm": 19.312504190046134,
+          "regular_rotation_deg": 41.90592511494955,
+          "candidate_position_mpjpe_mm": 291.2297058105469,
+          "articulation_log_ratio_error": 0.752417685257064,
+          "foot_acceleration_RMSE_m_s2": 17.683848592970108,
+          "mpjpe_mm": 193.47655232747397,
+          "root_orientation_deg": 33.762030283610024,
+          "candidate_rotation_deg": 135.8238868713379,
+          "head_orientation_deg": 13.046139505174425
+        },
+        "all/noisy": {
+          "unconditioned_mpjpe_mm": 216.07830810546875,
+          "bilateral_sagittal_correlation_error": 0.5390618443489075,
+          "root_position_error_mm": 176.87584940592447,
+          "swing_velocity_RMSE_m_s": 1.0523861423134804,
+          "regular_position_mpjpe_mm": 208.61527506510416,
+          "foot_velocity_RMSE_m_s": 0.7471461031172011,
+          "foot_world_error_mm": 367.1225772433811,
+          "body_local_foot_error_mm": 333.61395263671875,
+          "foot_speed_during_GT_stance_m_s": 0.4794871326949861,
+          "conditioned_mpjpe_mm": 45.06132825215658,
+          "regular_rotation_deg": 41.48939323425293,
+          "candidate_position_mpjpe_mm": 311.7539978027344,
+          "articulation_log_ratio_error": 0.6733955492575964,
+          "foot_acceleration_RMSE_m_s2": 19.3298593627082,
+          "mpjpe_mm": 208.61854214138455,
+          "root_orientation_deg": 34.17825338575575,
+          "candidate_rotation_deg": 140.81824493408203,
+          "head_orientation_deg": 11.811164908938938
+        },
+        "fixed/clean": {
+          "unconditioned_mpjpe_mm": 227.97733561197916,
+          "bilateral_sagittal_correlation_error": 0.46729113658269245,
+          "root_position_error_mm": 180.29936726888022,
+          "swing_velocity_RMSE_m_s": 1.2363062500953674,
+          "regular_position_mpjpe_mm": 218.22802734375,
+          "foot_velocity_RMSE_m_s": 0.7475131303071976,
+          "foot_world_error_mm": 389.3134460449219,
+          "body_local_foot_error_mm": 329.1763051350911,
+          "foot_speed_during_GT_stance_m_s": 0.5437090794245402,
+          "conditioned_mpjpe_mm": 13.493115702546978,
+          "regular_rotation_deg": 47.36365000406901,
+          "articulation_log_ratio_error": 0.762874166170756,
+          "foot_acceleration_RMSE_m_s2": 24.72000217437744,
+          "mpjpe_mm": 218.22802734375,
+          "root_orientation_deg": 39.410057067871094,
+          "head_orientation_deg": 17.637389818827312
+        },
+        "fixed/noisy": {
+          "unconditioned_mpjpe_mm": 240.1682383219401,
+          "bilateral_sagittal_correlation_error": 0.6655997037887573,
+          "root_position_error_mm": 184.2211151123047,
+          "swing_velocity_RMSE_m_s": 1.1302083730697632,
+          "regular_position_mpjpe_mm": 231.55030314127603,
+          "foot_velocity_RMSE_m_s": 0.8121402064959208,
+          "foot_world_error_mm": 429.98150634765625,
+          "body_local_foot_error_mm": 330.46962483723956,
+          "foot_speed_during_GT_stance_m_s": 0.5754735072453817,
+          "conditioned_mpjpe_mm": 43.74151357014974,
+          "regular_rotation_deg": 46.690329233805336,
+          "articulation_log_ratio_error": 0.7067663470904032,
+          "foot_acceleration_RMSE_m_s2": 23.35685698191325,
+          "mpjpe_mm": 231.55030314127603,
+          "root_orientation_deg": 39.8553524017334,
+          "head_orientation_deg": 13.867678960164389
+        },
+        "locomotion/clean": {
+          "unconditioned_mpjpe_mm": 149.64562479654947,
+          "bilateral_sagittal_correlation_error": 0.563907245794932,
+          "root_position_error_mm": 116.47462717692058,
+          "swing_velocity_RMSE_m_s": 1.2206474939982097,
+          "regular_position_mpjpe_mm": 143.37879435221353,
+          "foot_velocity_RMSE_m_s": 0.7677939335505167,
+          "foot_world_error_mm": 249.99115498860678,
+          "body_local_foot_error_mm": 317.9323221842448,
+          "foot_speed_during_GT_stance_m_s": 0.3677499641974767,
+          "conditioned_mpjpe_mm": 11.775604248502836,
+          "regular_rotation_deg": 35.66203244527181,
+          "articulation_log_ratio_error": 0.7059149394432703,
+          "foot_acceleration_RMSE_m_s2": 16.976092020670574,
+          "mpjpe_mm": 143.37879435221353,
+          "root_orientation_deg": 29.95634587605794,
+          "head_orientation_deg": 11.593318303426107
+        },
+        "locomotion/noisy": {
+          "unconditioned_mpjpe_mm": 160.1425018310547,
+          "bilateral_sagittal_correlation_error": 0.5031195481618246,
+          "root_position_error_mm": 142.30775451660156,
+          "swing_velocity_RMSE_m_s": 1.1878525416056316,
+          "regular_position_mpjpe_mm": 154.5897674560547,
+          "foot_velocity_RMSE_m_s": 0.7582155466079712,
+          "foot_world_error_mm": 255.93465677897134,
+          "body_local_foot_error_mm": 326.7102508544922,
+          "foot_speed_during_GT_stance_m_s": 0.3910372704267502,
+          "conditioned_mpjpe_mm": 35.00717226664225,
+          "regular_rotation_deg": 35.28170839945475,
+          "articulation_log_ratio_error": 0.6031396836042404,
+          "foot_acceleration_RMSE_m_s2": 15.250832716623941,
+          "mpjpe_mm": 154.5897674560547,
+          "root_orientation_deg": 30.47665278116862,
+          "head_orientation_deg": 9.80346123377482
+        },
+        "additional/clean": {
+          "unconditioned_mpjpe_mm": 227.68732198079428,
+          "bilateral_sagittal_correlation_error": 0.43401677409807843,
+          "root_position_error_mm": 170.97909800211588,
+          "swing_velocity_RMSE_m_s": 0.7391475637753805,
+          "regular_position_mpjpe_mm": 218.8100331624349,
+          "foot_velocity_RMSE_m_s": 0.5684685508410136,
+          "foot_world_error_mm": 380.8092803955078,
+          "body_local_foot_error_mm": 346.06048075358075,
+          "foot_speed_during_GT_stance_m_s": 0.4049621919790904,
+          "conditioned_mpjpe_mm": 32.668792619088585,
+          "regular_rotation_deg": 42.69209289550781,
+          "candidate_position_mpjpe_mm": 291.2297058105469,
+          "articulation_log_ratio_error": 0.7884639501571655,
+          "foot_acceleration_RMSE_m_s2": 11.355451583862305,
+          "mpjpe_mm": 218.82283528645834,
+          "root_orientation_deg": 31.919687906901043,
+          "candidate_rotation_deg": 135.8238868713379,
+          "head_orientation_deg": 9.907710393269857
+        },
+        "additional/noisy": {
+          "unconditioned_mpjpe_mm": 247.92418416341147,
+          "bilateral_sagittal_correlation_error": 0.44846628109614056,
+          "root_position_error_mm": 204.0986785888672,
+          "swing_velocity_RMSE_m_s": 0.865038255850474,
+          "regular_position_mpjpe_mm": 239.70575459798178,
+          "foot_velocity_RMSE_m_s": 0.6710825562477112,
+          "foot_world_error_mm": 415.4515686035156,
+          "body_local_foot_error_mm": 343.6619822184245,
+          "foot_speed_during_GT_stance_m_s": 0.47195062041282654,
+          "conditioned_mpjpe_mm": 56.435298919677734,
+          "regular_rotation_deg": 42.496142069498696,
+          "candidate_position_mpjpe_mm": 311.7539978027344,
+          "articulation_log_ratio_error": 0.7102806170781454,
+          "foot_acceleration_RMSE_m_s2": 19.381888389587402,
+          "mpjpe_mm": 239.7155558268229,
+          "root_orientation_deg": 32.202754974365234,
+          "candidate_rotation_deg": 140.81824493408203,
+          "head_orientation_deg": 11.762354532877604
+        }
+      },
+      "timing": {
+        "mean_compute_s": 1.5479205091473935,
+        "mean_update_s": 1.9672332972684634,
+        "mean_preparation_s": 0.41742844851901234
+      },
+      "evaluation_seconds": 199.82293035800103,
+      "case_count": 18,
+      "plan_sha256": "cd222b37452b39bf25526285dd40dba15964f40a55685cc4383b1834afd6c125",
+      "summary_sha256": "b14821a2e6b3709f59efe6d368e480a7acfe379151617f964954ecf8dd000ef5"
+    },
+    "lean": {
+      "step": 3453,
+      "observed_at": "2026-10-16T03:47:38.405717+08:00",
+      "aggregate": {
+        "all/clean": {
+          "candidate_position_mpjpe_mm": 263.407470703125,
+          "foot_acceleration_RMSE_m_s2": 12.519377284579807,
+          "body_local_foot_error_mm": 326.3400302463108,
+          "mpjpe_mm": 201.54364013671875,
+          "root_position_error_mm": 169.1425035264757,
+          "root_orientation_deg": 34.201497607760956,
+          "head_orientation_deg": 12.30740303463406,
+          "foot_world_error_mm": 360.96680026584204,
+          "bilateral_sagittal_correlation_error": 0.49969563633203506,
+          "swing_velocity_RMSE_m_s": 1.0123958215117455,
+          "foot_speed_during_GT_stance_m_s": 0.43690713826153016,
+          "articulation_log_ratio_error": 0.6418486287196478,
+          "foot_velocity_RMSE_m_s": 0.6769778612587187,
+          "conditioned_mpjpe_mm": 19.795756899648243,
+          "regular_position_mpjpe_mm": 201.54043579101562,
+          "candidate_rotation_deg": 137.15711212158203,
+          "unconditioned_mpjpe_mm": 210.1983184814453,
+          "regular_rotation_deg": 42.02259084913466
+        },
+        "all/noisy": {
+          "candidate_position_mpjpe_mm": 284.8672790527344,
+          "foot_acceleration_RMSE_m_s2": 13.656994766659206,
+          "body_local_foot_error_mm": 329.07354566786023,
+          "mpjpe_mm": 215.7621307373047,
+          "root_position_error_mm": 183.03235541449652,
+          "root_orientation_deg": 34.40401162041558,
+          "head_orientation_deg": 12.326378716362846,
+          "foot_world_error_mm": 378.083257039388,
+          "bilateral_sagittal_correlation_error": 0.5486576822068956,
+          "swing_velocity_RMSE_m_s": 1.0240427553653717,
+          "foot_speed_during_GT_stance_m_s": 0.4484020463294453,
+          "articulation_log_ratio_error": 0.6013911217451096,
+          "foot_velocity_RMSE_m_s": 0.6938323643472459,
+          "conditioned_mpjpe_mm": 52.17267968919542,
+          "regular_position_mpjpe_mm": 215.75972154405383,
+          "candidate_rotation_deg": 141.9600830078125,
+          "unconditioned_mpjpe_mm": 223.23166741265192,
+          "regular_rotation_deg": 41.94067149692111
+        },
+        "fixed/clean": {
+          "foot_acceleration_RMSE_m_s2": 15.420312722524008,
+          "body_local_foot_error_mm": 329.87427775065106,
+          "mpjpe_mm": 218.0554453531901,
+          "root_position_error_mm": 186.37262980143228,
+          "root_orientation_deg": 38.46901067097982,
+          "head_orientation_deg": 14.26553757985433,
+          "foot_world_error_mm": 399.2374267578125,
+          "bilateral_sagittal_correlation_error": 0.3010895351568858,
+          "swing_velocity_RMSE_m_s": 1.154089480638504,
+          "foot_speed_during_GT_stance_m_s": 0.515077032148838,
+          "articulation_log_ratio_error": 0.6737812707821528,
+          "foot_velocity_RMSE_m_s": 0.7005893439054489,
+          "conditioned_mpjpe_mm": 14.294624408086142,
+          "regular_position_mpjpe_mm": 218.0554453531901,
+          "unconditioned_mpjpe_mm": 227.7583465576172,
+          "regular_rotation_deg": 45.36649958292643
+        },
+        "fixed/noisy": {
+          "foot_acceleration_RMSE_m_s2": 17.773795286814373,
+          "body_local_foot_error_mm": 336.8766225179036,
+          "mpjpe_mm": 232.2748057047526,
+          "root_position_error_mm": 186.33091735839844,
+          "root_orientation_deg": 39.22711435953776,
+          "head_orientation_deg": 13.59402879079183,
+          "foot_world_error_mm": 431.9796854654948,
+          "bilateral_sagittal_correlation_error": 0.3702997366587321,
+          "swing_velocity_RMSE_m_s": 1.1375758051872253,
+          "foot_speed_during_GT_stance_m_s": 0.536234992245833,
+          "articulation_log_ratio_error": 0.6404270480076472,
+          "foot_velocity_RMSE_m_s": 0.7313420375188192,
+          "conditioned_mpjpe_mm": 47.58166186014811,
+          "regular_position_mpjpe_mm": 232.2748057047526,
+          "unconditioned_mpjpe_mm": 240.74920654296875,
+          "regular_rotation_deg": 46.30103556315104
+        },
+        "locomotion/clean": {
+          "foot_acceleration_RMSE_m_s2": 12.044708887736002,
+          "body_local_foot_error_mm": 305.3634084065755,
+          "mpjpe_mm": 150.60588582356772,
+          "root_position_error_mm": 124.62889607747395,
+          "root_orientation_deg": 30.227874755859375,
+          "head_orientation_deg": 11.32951800028483,
+          "foot_world_error_mm": 267.82422892252606,
+          "bilateral_sagittal_correlation_error": 0.8277705411116282,
+          "swing_velocity_RMSE_m_s": 1.1996665795644124,
+          "foot_speed_during_GT_stance_m_s": 0.3776855369408925,
+          "articulation_log_ratio_error": 0.5917725265026093,
+          "foot_velocity_RMSE_m_s": 0.7582979798316956,
+          "conditioned_mpjpe_mm": 11.917695802946886,
+          "regular_position_mpjpe_mm": 150.60588582356772,
+          "unconditioned_mpjpe_mm": 157.21009826660156,
+          "regular_rotation_deg": 35.84282875061035
+        },
+        "locomotion/noisy": {
+          "foot_acceleration_RMSE_m_s2": 12.03399387995402,
+          "body_local_foot_error_mm": 310.32115681966144,
+          "mpjpe_mm": 159.69590759277344,
+          "root_position_error_mm": 145.05442810058594,
+          "root_orientation_deg": 30.645379384358723,
+          "head_orientation_deg": 10.898399035135904,
+          "foot_world_error_mm": 266.8554331461589,
+          "bilateral_sagittal_correlation_error": 0.8288506170113882,
+          "swing_velocity_RMSE_m_s": 1.2110306024551392,
+          "foot_speed_during_GT_stance_m_s": 0.3687253495057424,
+          "articulation_log_ratio_error": 0.506830076376597,
+          "foot_velocity_RMSE_m_s": 0.7582185467084249,
+          "conditioned_mpjpe_mm": 37.90069834391276,
+          "regular_position_mpjpe_mm": 159.69590759277344,
+          "unconditioned_mpjpe_mm": 165.3473154703776,
+          "regular_rotation_deg": 35.26065254211426
+        },
+        "additional/clean": {
+          "candidate_position_mpjpe_mm": 263.407470703125,
+          "foot_acceleration_RMSE_m_s2": 10.09311024347941,
+          "body_local_foot_error_mm": 343.78240458170575,
+          "mpjpe_mm": 235.96958923339844,
+          "root_position_error_mm": 196.42598470052084,
+          "root_orientation_deg": 33.90760739644369,
+          "head_orientation_deg": 11.327153523763021,
+          "foot_world_error_mm": 415.8387451171875,
+          "bilateral_sagittal_correlation_error": 0.3702268327275912,
+          "swing_velocity_RMSE_m_s": 0.7306626240412394,
+          "foot_speed_during_GT_stance_m_s": 0.4179588456948598,
+          "articulation_log_ratio_error": 0.6599920888741811,
+          "foot_velocity_RMSE_m_s": 0.5720462600390116,
+          "conditioned_mpjpe_mm": 33.1749504879117,
+          "regular_position_mpjpe_mm": 235.95997619628906,
+          "candidate_rotation_deg": 137.15711212158203,
+          "unconditioned_mpjpe_mm": 245.6265106201172,
+          "regular_rotation_deg": 44.85844421386719
+        },
+        "additional/noisy": {
+          "candidate_position_mpjpe_mm": 284.8672790527344,
+          "foot_acceleration_RMSE_m_s2": 11.163195133209229,
+          "body_local_foot_error_mm": 340.0228576660156,
+          "mpjpe_mm": 255.31567891438803,
+          "root_position_error_mm": 217.71172078450522,
+          "root_orientation_deg": 33.33954111735026,
+          "head_orientation_deg": 12.486708323160807,
+          "foot_world_error_mm": 435.41465250651044,
+          "bilateral_sagittal_correlation_error": 0.4468226929505666,
+          "swing_velocity_RMSE_m_s": 0.7613662083943685,
+          "foot_speed_during_GT_stance_m_s": 0.44024579723676044,
+          "articulation_log_ratio_error": 0.6569162408510844,
+          "foot_velocity_RMSE_m_s": 0.5919365088144938,
+          "conditioned_mpjpe_mm": 71.03567886352539,
+          "regular_position_mpjpe_mm": 255.3084513346354,
+          "candidate_rotation_deg": 141.9600830078125,
+          "unconditioned_mpjpe_mm": 263.5984802246094,
+          "regular_rotation_deg": 44.26032638549805
+        }
+      },
+      "timing": {
+        "mean_compute_s": 0.948552070000863,
+        "mean_update_s": 1.3623526224305802,
+        "mean_preparation_s": 0.41192058941052223
+      },
+      "evaluation_seconds": 118.45188181300182,
+      "case_count": 18,
+      "plan_sha256": "cd222b37452b39bf25526285dd40dba15964f40a55685cc4383b1834afd6c125",
+      "summary_sha256": "322e7a1628ea6ff0ddb9ccf6287e08974cca8005333904da5276076150a4db23"
+    },
+    "foot": {
+      "step": 3453,
+      "observed_at": "2026-10-16T04:23:14.990362+08:00",
+      "aggregate": {
+        "all/clean": {
+          "body_local_foot_error_mm": 256.9030405680339,
+          "root_orientation_deg": 32.59016376071506,
+          "foot_acceleration_RMSE_m_s2": 12.056433836619059,
+          "bilateral_sagittal_correlation_error": 0.5189785328176286,
+          "conditioned_mpjpe_mm": 18.84114575965537,
+          "swing_velocity_RMSE_m_s": 0.9930537045001984,
+          "mpjpe_mm": 199.0400848388672,
+          "root_position_error_mm": 153.49096001519098,
+          "articulation_log_ratio_error": 0.9438589447074466,
+          "head_orientation_deg": 12.298776202731663,
+          "foot_speed_during_GT_stance_m_s": 0.42115643206569886,
+          "foot_velocity_RMSE_m_s": 0.6580304495162435,
+          "regular_position_mpjpe_mm": 199.03573438856336,
+          "candidate_position_mpjpe_mm": 297.7073059082031,
+          "foot_world_error_mm": 369.78278266059027,
+          "regular_rotation_deg": 40.89680290222168,
+          "candidate_rotation_deg": 134.88770294189453,
+          "unconditioned_mpjpe_mm": 207.62099880642361
+        },
+        "all/noisy": {
+          "body_local_foot_error_mm": 258.3690897623698,
+          "root_orientation_deg": 33.18291579352485,
+          "foot_acceleration_RMSE_m_s2": 14.122180514865452,
+          "bilateral_sagittal_correlation_error": 0.47677329637938076,
+          "conditioned_mpjpe_mm": 51.069477293226456,
+          "swing_velocity_RMSE_m_s": 1.000854916870594,
+          "mpjpe_mm": 218.073489718967,
+          "root_position_error_mm": 175.76808844672308,
+          "articulation_log_ratio_error": 0.8818637331326803,
+          "head_orientation_deg": 12.340893851386177,
+          "foot_speed_during_GT_stance_m_s": 0.442596923145983,
+          "foot_velocity_RMSE_m_s": 0.6893704061706861,
+          "regular_position_mpjpe_mm": 218.07100084092883,
+          "candidate_position_mpjpe_mm": 297.4805603027344,
+          "foot_world_error_mm": 404.45562574598523,
+          "regular_rotation_deg": 41.17602878146701,
+          "candidate_rotation_deg": 140.68292999267578,
+          "unconditioned_mpjpe_mm": 225.68365648057727
+        },
+        "fixed/clean": {
+          "body_local_foot_error_mm": 288.7710723876953,
+          "root_orientation_deg": 38.31092198689779,
+          "foot_acceleration_RMSE_m_s2": 15.029682159423828,
+          "bilateral_sagittal_correlation_error": 0.3010973036289215,
+          "conditioned_mpjpe_mm": 12.50629843523105,
+          "swing_velocity_RMSE_m_s": 1.1356923580169678,
+          "mpjpe_mm": 223.25469970703125,
+          "root_position_error_mm": 178.70228068033853,
+          "articulation_log_ratio_error": 0.8224286238352457,
+          "head_orientation_deg": 15.487929979960123,
+          "foot_speed_during_GT_stance_m_s": 0.5293393110235532,
+          "foot_velocity_RMSE_m_s": 0.702697642147541,
+          "regular_position_mpjpe_mm": 223.25469970703125,
+          "foot_world_error_mm": 423.8684590657552,
+          "regular_rotation_deg": 45.958414713541664,
+          "unconditioned_mpjpe_mm": 233.29034423828125
+        },
+        "fixed/noisy": {
+          "body_local_foot_error_mm": 288.7132975260417,
+          "root_orientation_deg": 39.07277297973633,
+          "foot_acceleration_RMSE_m_s2": 18.711263020833332,
+          "bilateral_sagittal_correlation_error": 0.37457649906476337,
+          "conditioned_mpjpe_mm": 46.689860026041664,
+          "swing_velocity_RMSE_m_s": 1.1474185287952423,
+          "mpjpe_mm": 241.19649251302084,
+          "root_position_error_mm": 181.84427897135416,
+          "articulation_log_ratio_error": 0.7645223488410314,
+          "head_orientation_deg": 13.86334228515625,
+          "foot_speed_during_GT_stance_m_s": 0.5688235685229301,
+          "foot_velocity_RMSE_m_s": 0.75492212921381,
+          "regular_position_mpjpe_mm": 241.19649251302084,
+          "foot_world_error_mm": 466.46714274088544,
+          "regular_rotation_deg": 46.76052220662435,
+          "unconditioned_mpjpe_mm": 250.09912618001303
+        },
+        "locomotion/clean": {
+          "body_local_foot_error_mm": 219.10118611653647,
+          "root_orientation_deg": 28.87101682027181,
+          "foot_acceleration_RMSE_m_s2": 11.56865406036377,
+          "bilateral_sagittal_correlation_error": 1.0055386821428935,
+          "conditioned_mpjpe_mm": 11.509632552663485,
+          "swing_velocity_RMSE_m_s": 1.1628638903299968,
+          "mpjpe_mm": 147.62454732259116,
+          "root_position_error_mm": 115.74411010742188,
+          "articulation_log_ratio_error": 1.0235216716925304,
+          "head_orientation_deg": 10.988049825032553,
+          "foot_speed_during_GT_stance_m_s": 0.35444800059000653,
+          "foot_velocity_RMSE_m_s": 0.7240188519159952,
+          "regular_position_mpjpe_mm": 147.62454732259116,
+          "foot_world_error_mm": 261.76353963216144,
+          "regular_rotation_deg": 34.85049374898275,
+          "unconditioned_mpjpe_mm": 154.1062215169271
+        },
+        "locomotion/noisy": {
+          "body_local_foot_error_mm": 226.0527140299479,
+          "root_orientation_deg": 29.259562810262043,
+          "foot_acceleration_RMSE_m_s2": 11.598290920257568,
+          "bilateral_sagittal_correlation_error": 0.9033597310384115,
+          "conditioned_mpjpe_mm": 39.02325630187988,
+          "swing_velocity_RMSE_m_s": 1.1738948027292888,
+          "mpjpe_mm": 157.15719095865884,
+          "root_position_error_mm": 138.76936848958334,
+          "articulation_log_ratio_error": 0.9369785835345587,
+          "head_orientation_deg": 10.258389155069986,
+          "foot_speed_during_GT_stance_m_s": 0.3510983983675639,
+          "foot_velocity_RMSE_m_s": 0.7281027237574259,
+          "regular_position_mpjpe_mm": 157.15719095865884,
+          "foot_world_error_mm": 266.8523406982422,
+          "regular_rotation_deg": 34.34538650512695,
+          "unconditioned_mpjpe_mm": 162.64148966471353
+        },
+        "additional/clean": {
+          "body_local_foot_error_mm": 262.8368631998698,
+          "root_orientation_deg": 30.588552474975586,
+          "foot_acceleration_RMSE_m_s2": 9.57096529006958,
+          "bilateral_sagittal_correlation_error": 0.250299612681071,
+          "conditioned_mpjpe_mm": 32.50750629107157,
+          "swing_velocity_RMSE_m_s": 0.7281510829925537,
+          "mpjpe_mm": 226.24100748697916,
+          "root_position_error_mm": 166.0264892578125,
+          "articulation_log_ratio_error": 0.9856265385945638,
+          "head_orientation_deg": 10.42034880320231,
+          "foot_speed_during_GT_stance_m_s": 0.3796819845835368,
+          "foot_velocity_RMSE_m_s": 0.5473748544851939,
+          "regular_position_mpjpe_mm": 226.22795613606772,
+          "candidate_position_mpjpe_mm": 297.7073059082031,
+          "foot_world_error_mm": 423.7163492838542,
+          "regular_rotation_deg": 41.881500244140625,
+          "candidate_rotation_deg": 134.88770294189453,
+          "unconditioned_mpjpe_mm": 235.4664306640625
+        },
+        "additional/noisy": {
+          "body_local_foot_error_mm": 260.3412577311198,
+          "root_orientation_deg": 31.216411590576172,
+          "foot_acceleration_RMSE_m_s2": 12.056987603505453,
+          "bilateral_sagittal_correlation_error": 0.15238365903496742,
+          "conditioned_mpjpe_mm": 67.49531555175781,
+          "swing_velocity_RMSE_m_s": 0.7301059563954672,
+          "mpjpe_mm": 255.86678568522134,
+          "root_position_error_mm": 206.69061787923178,
+          "articulation_log_ratio_error": 0.9440902670224508,
+          "head_orientation_deg": 12.900950113932291,
+          "foot_speed_during_GT_stance_m_s": 0.40786880254745483,
+          "foot_velocity_RMSE_m_s": 0.5850863655408224,
+          "regular_position_mpjpe_mm": 255.85931905110678,
+          "candidate_position_mpjpe_mm": 297.4805603027344,
+          "foot_world_error_mm": 480.0473937988281,
+          "regular_rotation_deg": 42.42217763264974,
+          "candidate_rotation_deg": 140.68292999267578,
+          "unconditioned_mpjpe_mm": 264.3103535970052
+        }
+      },
+      "timing": {
+        "mean_compute_s": 0.9930218557820971,
+        "mean_update_s": 1.4058007606002272,
+        "mean_preparation_s": 0.41080992164323105
+      },
+      "evaluation_seconds": 120.59646787800011,
+      "case_count": 18,
+      "plan_sha256": "cd222b37452b39bf25526285dd40dba15964f40a55685cc4383b1834afd6c125",
+      "summary_sha256": "74a769eec7b6f438f4a0b47e8dc9b8d6b3cbfd695ba64d258e9ca4b050f0f697"
+    }
+  },
+  "finite_training_checks": {
+    "control": {
+      "steps": 1000,
+      "first_step": 2454,
+      "last_step": 3453,
+      "loss_and_gradient_finite": true,
+      "all_recorded_terms_finite": true
+    },
+    "lean": {
+      "steps": 1000,
+      "first_step": 2454,
+      "last_step": 3453,
+      "loss_and_gradient_finite": true,
+      "all_recorded_terms_finite": true
+    },
+    "foot": {
+      "steps": 1000,
+      "first_step": 2454,
+      "last_step": 3453,
+      "loss_and_gradient_finite": true,
+      "all_recorded_terms_finite": true
+    }
+  },
+  "matched_input_checks": {
+    "lean": {
+      "same_trace_length": true,
+      "training_identities_timesteps_scene_equal": true,
+      "complete_input_hash_trace_equal": true,
+      "input_trace_rows": 1000
+    },
+    "foot": {
+      "same_trace_length": true,
+      "training_identities_timesteps_scene_equal": true,
+      "complete_input_hash_trace_equal": true,
+      "input_trace_rows": 1000
+    }
+  },
+  "frozen_policy_result_for_completed_three_arms": {
+    "selected": "control",
+    "eligible": [],
+    "reasons": {
+      "control": [
+        "Valid control; retained as a fallback and selection option",
+        "Selected by quality score, then compute time within 0.03 of best"
+      ],
+      "foot": [
+        "locomotion/clean/articulation_log_ratio_error: 1.02352167 exceeds 0.826506433",
+        "all/noisy/conditioned_mpjpe_mm: 51.0694773 exceeds 50.0613283",
+        "locomotion/noisy/articulation_log_ratio_error: 0.936978584 exceeds 0.713453652"
+      ],
+      "lean": [
+        "all/noisy/conditioned_mpjpe_mm: 52.1726797 exceeds 50.0613283"
+      ]
+    },
+    "scores": {
+      "control": 1.0,
+      "foot": 1.0250246495336384,
+      "lean": 0.9386223729256935
+    },
+    "policy": {
+      "scope": "Practical development noninferiority tolerances; not statistical significance or benchmark acceptance",
+      "regimes": [
+        "clean",
+        "noisy"
+      ],
+      "guardrails": [
+        {
+          "panel": "all",
+          "metric": "mpjpe_mm",
+          "control_multiplier": 1.05,
+          "additive_allowance": 2.0
+        },
+        {
+          "panel": "all",
+          "metric": "conditioned_mpjpe_mm",
+          "control_multiplier": 1.0,
+          "additive_allowance": 5.0
+        },
+        {
+          "panel": "all",
+          "metric": "root_orientation_deg",
+          "control_multiplier": 1.0,
+          "additive_allowance": 3.0
+        },
+        {
+          "panel": "locomotion",
+          "metric": "body_local_foot_error_mm",
+          "control_multiplier": 1.05,
+          "additive_allowance": 5.0
+        },
+        {
+          "panel": "locomotion",
+          "metric": "foot_velocity_RMSE_m_s",
+          "control_multiplier": 1.1,
+          "additive_allowance": 0.02
+        },
+        {
+          "panel": "locomotion",
+          "metric": "articulation_log_ratio_error",
+          "control_multiplier": 1.1,
+          "additive_allowance": 0.05
+        }
+      ],
+      "quality_weights": [
+        {
+          "panel": "locomotion",
+          "metric": "body_local_foot_error_mm",
+          "weight": 0.4
+        },
+        {
+          "panel": "locomotion",
+          "metric": "articulation_log_ratio_error",
+          "weight": 0.3
+        },
+        {
+          "panel": "locomotion",
+          "metric": "foot_velocity_RMSE_m_s",
+          "weight": 0.15
+        },
+        {
+          "panel": "all",
+          "metric": "mpjpe_mm",
+          "weight": 0.15
+        }
+      ],
+      "quality_aggregation": "Weighted sum of candidate/control metric ratios, averaged equally across clean/noisy",
+      "normalization_denominator_floor": 1e-12,
+      "quality_tie_tolerance": 0.03,
+      "speed_metric": "mean_compute_s",
+      "control_participates": true,
+      "invalid_candidate": "ineligible; score null",
+      "invalid_control": "raise ValueError"
+    }
+  },
+  "policy_execution_scope": "Manual read-only invocation of unchanged selection_policy.choose_candidate over completed phase1 summaries. Not a completed manager final selection.",
+  "baseline_checkpoint": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/last.pt",
+    "checked_step": 5200,
+    "planned_steps": 55000,
+    "state_fields": [
+      "step",
+      "planned_steps",
+      "model",
+      "optimizer",
+      "initialization",
+      "effective_config",
+      "counts",
+      "data_rng",
+      "condition_rng",
+      "torch_rng",
+      "cuda_rng",
+      "numpy_rng"
+    ],
+    "optimizer_state_present": true,
+    "model_present": true,
+    "RNG_fields_present": true,
+    "latest_trace_step": 5257,
+    "trace_tail_after_checkpoint_uncommitted": 57,
+    "latest_validation_step": 5000,
+    "loss_gradient_finite_recorded": true,
+    "resumability_scope": "Checkpoint structure, model, optimizer and RNG state verified readable. Data/cache integrity must be repaired and revalidated before resuming; this report does not claim the input data or full run is currently healthy."
+  },
+  "baseline_fixed_three_window_trend": [
+    {
+      "step": 1000,
+      "clean": {
+        "mpjpe_mm": 245.87907918294272,
+        "conditioned_mpjpe_mm": 13.440762360813096,
+        "root_orientation_deg": 40.20373280843099,
+        "head_orientation_deg": 25.424195607503254,
+        "body_local_foot_error_mm": 411.6764729817708,
+        "articulation_log_ratio_error": 0.7407951056957245,
+        "bilateral_sagittal_correlation_error": 1.4423627058664958,
+        "foot_velocity_RMSE_m_s": 1.0151519378026326
+      },
+      "noisy": {
+        "mpjpe_mm": 253.62057495117188,
+        "conditioned_mpjpe_mm": 41.811924780568766,
+        "root_orientation_deg": 41.070003509521484,
+        "head_orientation_deg": 18.025878588358562,
+        "body_local_foot_error_mm": 423.9474792480469,
+        "articulation_log_ratio_error": 0.6299919237693151,
+        "bilateral_sagittal_correlation_error": 1.5752241611480713,
+        "foot_velocity_RMSE_m_s": 1.1751590569814045
+      }
+    },
+    {
+      "step": 2000,
+      "clean": {
+        "mpjpe_mm": 235.84850565592447,
+        "conditioned_mpjpe_mm": 13.344462536663437,
+        "root_orientation_deg": 40.298906326293945,
+        "head_orientation_deg": 22.443369547526043,
+        "body_local_foot_error_mm": 323.09112548828125,
+        "articulation_log_ratio_error": 0.8113517065842947,
+        "bilateral_sagittal_correlation_error": 0.2592525780200958,
+        "foot_velocity_RMSE_m_s": 0.8344049453735352
+      },
+      "noisy": {
+        "mpjpe_mm": 241.6141815185547,
+        "conditioned_mpjpe_mm": 36.00090233997632,
+        "root_orientation_deg": 41.091058095296226,
+        "head_orientation_deg": 16.29195261001587,
+        "body_local_foot_error_mm": 324.5848693847656,
+        "articulation_log_ratio_error": 0.758499672015508,
+        "bilateral_sagittal_correlation_error": 0.23416854937871298,
+        "foot_velocity_RMSE_m_s": 0.9289076328277588
+      }
+    },
+    {
+      "step": 3000,
+      "clean": {
+        "mpjpe_mm": 229.06000773111978,
+        "conditioned_mpjpe_mm": 13.402134179176452,
+        "root_orientation_deg": 39.3239549001058,
+        "head_orientation_deg": 17.99505678812663,
+        "body_local_foot_error_mm": 316.082280476888,
+        "articulation_log_ratio_error": 0.8200423121452332,
+        "bilateral_sagittal_correlation_error": 0.08629337946573894,
+        "foot_velocity_RMSE_m_s": 0.8980596760908762
+      },
+      "noisy": {
+        "mpjpe_mm": 239.47860209147134,
+        "conditioned_mpjpe_mm": 37.21665724887643,
+        "root_orientation_deg": 39.817029317220054,
+        "head_orientation_deg": 14.696161270141602,
+        "body_local_foot_error_mm": 322.89891052246094,
+        "articulation_log_ratio_error": 0.7702855070432028,
+        "bilateral_sagittal_correlation_error": 0.0916967789332072,
+        "foot_velocity_RMSE_m_s": 1.02389361957709
+      }
+    },
+    {
+      "step": 4000,
+      "clean": {
+        "mpjpe_mm": 220.3844197591146,
+        "conditioned_mpjpe_mm": 13.48954480009464,
+        "root_orientation_deg": 39.80090141296387,
+        "head_orientation_deg": 15.797345479329428,
+        "body_local_foot_error_mm": 319.98960367838544,
+        "articulation_log_ratio_error": 0.708250105381012,
+        "bilateral_sagittal_correlation_error": 0.5387155711650848,
+        "foot_velocity_RMSE_m_s": 0.6924609144528707
+      },
+      "noisy": {
+        "mpjpe_mm": 233.58069356282553,
+        "conditioned_mpjpe_mm": 46.626960036575156,
+        "root_orientation_deg": 40.587367375691734,
+        "head_orientation_deg": 14.01483949025472,
+        "body_local_foot_error_mm": 324.9402821858724,
+        "articulation_log_ratio_error": 0.642252097527186,
+        "bilateral_sagittal_correlation_error": 0.6048282980918884,
+        "foot_velocity_RMSE_m_s": 0.7312073409557343
+      }
+    },
+    {
+      "step": 5000,
+      "clean": {
+        "mpjpe_mm": 211.03726196289062,
+        "conditioned_mpjpe_mm": 13.690633136002967,
+        "root_orientation_deg": 38.98633702596029,
+        "head_orientation_deg": 12.189452330271402,
+        "body_local_foot_error_mm": 329.7021840413411,
+        "articulation_log_ratio_error": 0.5239152510960897,
+        "bilateral_sagittal_correlation_error": 1.0123499035835266,
+        "foot_velocity_RMSE_m_s": 0.5710686395565668
+      },
+      "noisy": {
+        "mpjpe_mm": 225.59977213541666,
+        "conditioned_mpjpe_mm": 46.61562439703172,
+        "root_orientation_deg": 39.73324394226074,
+        "head_orientation_deg": 14.632346471150717,
+        "body_local_foot_error_mm": 331.15208435058594,
+        "articulation_log_ratio_error": 0.4096071571111679,
+        "bilateral_sagittal_correlation_error": 1.1374505360921223,
+        "foot_velocity_RMSE_m_s": 0.5859381655852
+      }
+    }
+  ],
+  "baseline_step5000_fixed_scene_on_off": {
+    "clean": {
+      "mpjpe_mm": {
+        "scene_on": 211.03726196289062,
+        "scene_off": 223.6267293294271,
+        "on_minus_off": -12.589467366536468,
+        "relative_reduction_from_off": 0.05629679155209921
+      },
+      "foot_speed_during_GT_stance_m_s": {
+        "scene_on": 0.37259494078722727,
+        "scene_off": 0.6645942733059892,
+        "on_minus_off": -0.2919993325187619,
+        "relative_reduction_from_off": 0.4393648038317072
+      },
+      "conditioned_mpjpe_mm": {
+        "scene_on": 13.690633136002967,
+        "scene_off": 13.882444905738035,
+        "on_minus_off": -0.19181176973506808,
+        "relative_reduction_from_off": 0.013816857984128319
+      },
+      "root_orientation_deg": {
+        "scene_on": 38.98633702596029,
+        "scene_off": 39.31615193684896,
+        "on_minus_off": -0.3298149108886719,
+        "relative_reduction_from_off": 0.008388789203440678
+      }
+    },
+    "noisy": {
+      "mpjpe_mm": {
+        "scene_on": 225.59977213541666,
+        "scene_off": 239.0633748372396,
+        "on_minus_off": -13.463602701822936,
+        "relative_reduction_from_off": 0.056318132005746584
+      },
+      "foot_speed_during_GT_stance_m_s": {
+        "scene_on": 0.3869793550956646,
+        "scene_off": 0.7343335950028883,
+        "on_minus_off": -0.3473542399072237,
+        "relative_reduction_from_off": 0.47301967698462366
+      },
+      "conditioned_mpjpe_mm": {
+        "scene_on": 46.61562439703172,
+        "scene_off": 45.333875266454555,
+        "on_minus_off": 1.2817491305771682,
+        "relative_reduction_from_off": -0.028273539886973145
+      },
+      "root_orientation_deg": {
+        "scene_on": 39.73324394226074,
+        "scene_off": 40.22968991597494,
+        "on_minus_off": -0.4964459737141951,
+        "relative_reduction_from_off": 0.012340288348010849
+      }
+    }
+  },
+  "failures": {
+    "manager_failure_recorded_at": "2026-10-16T04:31:24.099235+08:00",
+    "manager_error": "RuntimeError('ik_off/phase1 exited 1; inspect log')",
+    "ik_off_error": "ValueError('Native30 data changed after preparation')",
+    "ik_off_log_mtime": "2026-10-16T04:31:23.182278+08:00",
+    "fallback_error": "zipfile.BadZipFile: Bad CRC-32 for file 'static_normals.npy'",
+    "fallback_log_mtime": "2026-10-16T06:21:09.120792+08:00",
+    "time_interpretation": "Manager time is explicit recorded failure time. Log mtime is the last write timestamp, not an independently instrumented exception timestamp. The two errors are distinct; their common cause is not established by these logs.",
+    "manager_status_snapshot": {
+      "status": "failed",
+      "pid": 77899,
+      "started_at": "2026-10-16T02:25:14.854203+08:00",
+      "parent_step": 2453,
+      "phase1_updates": 1000,
+      "phase2_updates": 2000,
+      "decision_budget_hours": 8.0,
+      "automatic_exo": false,
+      "automatic_tracker": false,
+      "long_train_horizon": 55000,
+      "long_train_review_stop": 10000,
+      "original_parent_preserved": true,
+      "active_arm": "ik_off",
+      "active_label": "phase1",
+      "active_stop": 3453,
+      "updated_at": "2026-10-16T04:23:22.160913+08:00",
+      "worker_pid": 87283,
+      "failed_at": "2026-10-16T04:31:24.099235+08:00",
+      "error": "RuntimeError('ik_off/phase1 exited 1; inspect log')",
+      "fallback_baseline_pid": 87477,
+      "fallback_review_step": 10000
+    },
+    "old_pids_ps_snapshot": "    PID ELAPSED STAT COMMAND\n"
+  },
+  "limitations": [
+    "Only three arms completed phase 1 (1000 matched updates after step 2453); ik_off incomplete, phase 2 not run, no complete automatic final selection.",
+    "All evaluation windows are previously used development VAL, one fixed sampling seed per window; these are not independent TEST or convergence evidence.",
+    "Arm changes are combined interventions; lean speed/quality differences cannot isolate physics OFF from root confidence change.",
+    "Sequential execution allows input cache warm-up; mean preparation times are similar but timing is one run, not a confidence interval.",
+    "The baseline fixed-window trend uses exactly the three fixed development windows; rotating windows are excluded.",
+    "Scene OFF disables the whole scene pathway including explicit physical correction; the 5k comparison cannot isolate learned diffusion scene queries.",
+    "Newer runtime recovery, cache repairs or resumed processes after checked_at are outside this snapshot."
+  ],
+  "source_files": {
+    "selection_policy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/selection_policy.py",
+    "selection_policy_sha256": "8e3ab26ec9fe542fb0483497ed8bdf3ba83bf25ae34f95854086975062e721eb",
+    "baseline_validation": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/validation.jsonl",
+    "baseline_foot_monitor": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/foot_monitor.jsonl",
+    "baseline_trace": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl",
+    "status": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/STATUS.json",
+    "fallback_log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/fallback_baseline.log",
+    "ik_off_log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/arms/ik_off/phase1.log"
+  }
+}
