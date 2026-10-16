@@ -1,0 +1,222 @@
+{
+  "reviewed_at": "2026-10-16T17:10:22.318588+08:00",
+  "case": 6,
+  "baseline_step": 12000,
+  "expanded_checkpoint_step": 12600,
+  "recording": "2023-02-18@22-11-49",
+  "sequence_id": "2023-02-18@22-11-49",
+  "start": 1024,
+  "source_first": 1024,
+  "mode": "ego",
+  "joints": [
+    15
+  ],
+  "yaw": 0,
+  "frames": 192,
+  "fps": 30,
+  "ddim_steps": 20,
+  "scene": "on",
+  "config_checks": {
+    "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+    "equals_frozen_expansion_and_original_continuity": true
+  },
+  "protocol_checks": {
+    "baseline_source": "native30_validation.py validate",
+    "expansion_source": "balanced_validation_oct16/runner.py",
+    "same_yaw_zero": true,
+    "same_noise_protocol": "For noisy, same observation configuration with clean_probability=0, np.random.default_rng(case_seed); clean uses clean builder.",
+    "same_diffusion_seed": "sample_motion seed=case_seed and DDIM20 both paths.",
+    "case_seed": 3294300373
+  },
+  "evidence_limits": [
+    "Direct equality of full GT/rest/observations/observation_meta/reference arrays was checked against the preserved step10000 fixed-window NPZ, not an archived step12000 NPZ.",
+    "For step12000, the evidence is matching identity fields, same effective configuration, same deterministic noise/sampling protocol and seed, plus matching logged input statistics. Do not claim direct step12000 per-element input equality.",
+    "This is a single matched TRUMANS development window. It is not a comparison between 30-window and 3-window averages, and does not establish aggregate improvement."
+  ],
+  "saved_control": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/gait_review_current/FROZEN_VALIDATION.npz",
+    "step": 10000,
+    "sha256": "bf8a44058af5d1f4377ba7d628feca540be6011ae77af4f98f7f0a8ab7cedb19"
+  },
+  "comparisons": [
+    {
+      "regime": "clean",
+      "identity_fields_equal_to12000": {
+        "dataset": true,
+        "recording": true,
+        "group": true,
+        "sequence_id": true,
+        "start": true,
+        "source_first": true,
+        "case_seed": true
+      },
+      "artifact_yaw_augmentation_rad": 0.0,
+      "artifact_source_input_sha256": "e3a5fc730b0125fdbf0f3d80a27eb270152539d079046026f53a47ecdae79ccf",
+      "case_seed": 3294300373,
+      "step12000_input_stats": {
+        "available_joint_fraction": 0.045454545454545456,
+        "mean_position_confidence": 1.0
+      },
+      "step12600_input_stats_recomputed": {
+        "available_joint_fraction": 0.045454545454545456,
+        "mean_position_confidence": 1.0
+      },
+      "step12000_input_stats_equal_to12600": true,
+      "direct_array_equality_to_saved_step10000_fixed_window": {
+        "truth": true,
+        "rest": true,
+        "observations": true,
+        "observation_meta": true,
+        "reference": true
+      },
+      "paired_metrics": {
+        "mpjpe_mm": {
+          "step12000": {
+            "value": 167.16981506347656,
+            "count": 4224
+          },
+          "step12600": {
+            "value": 150.1331787109375,
+            "count": 4224
+          },
+          "delta_latest_minus12000": -17.036636352539062
+        },
+        "root_position_error_mm": {
+          "step12000": {
+            "value": 158.20082092285156,
+            "count": 192
+          },
+          "step12600": {
+            "value": 154.7762908935547,
+            "count": 192
+          },
+          "delta_latest_minus12000": -3.424530029296875
+        },
+        "root_orientation_deg": {
+          "step12000": {
+            "value": 26.189437866210938,
+            "count": 192
+          },
+          "step12600": {
+            "value": 23.59259033203125,
+            "count": 192
+          },
+          "delta_latest_minus12000": -2.5968475341796875
+        },
+        "head_orientation_deg": {
+          "step12000": {
+            "value": 9.090987205505371,
+            "count": 192
+          },
+          "step12600": {
+            "value": 12.42892837524414,
+            "count": 192
+          },
+          "delta_latest_minus12000": 3.3379411697387695
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "step12000": {
+            "value": 0.4452179968357086,
+            "count": 254
+          },
+          "step12600": {
+            "value": 0.528444230556488,
+            "count": 254
+          },
+          "delta_latest_minus12000": 0.08322623372077942
+        }
+      },
+      "step12600_motion_sha256": "0b0ad7d46ad60c3c8c27194c216f5c3b910ddeb93ed7cf42d3c132558f5c58f8"
+    },
+    {
+      "regime": "noisy",
+      "identity_fields_equal_to12000": {
+        "dataset": true,
+        "recording": true,
+        "group": true,
+        "sequence_id": true,
+        "start": true,
+        "source_first": true,
+        "case_seed": true
+      },
+      "artifact_yaw_augmentation_rad": 0.0,
+      "artifact_source_input_sha256": "e3a5fc730b0125fdbf0f3d80a27eb270152539d079046026f53a47ecdae79ccf",
+      "case_seed": 3294300373,
+      "step12000_input_stats": {
+        "available_joint_fraction": 0.041193181818181816,
+        "mean_position_confidence": 0.5767687559127808
+      },
+      "step12600_input_stats_recomputed": {
+        "available_joint_fraction": 0.041193181818181816,
+        "mean_position_confidence": 0.5767687559127808
+      },
+      "step12000_input_stats_equal_to12600": true,
+      "direct_array_equality_to_saved_step10000_fixed_window": {
+        "truth": true,
+        "rest": true,
+        "observations": true,
+        "observation_meta": true,
+        "reference": true
+      },
+      "paired_metrics": {
+        "mpjpe_mm": {
+          "step12000": {
+            "value": 168.55259704589844,
+            "count": 4224
+          },
+          "step12600": {
+            "value": 165.8040008544922,
+            "count": 4224
+          },
+          "delta_latest_minus12000": -2.74859619140625
+        },
+        "root_position_error_mm": {
+          "step12000": {
+            "value": 170.57699584960938,
+            "count": 192
+          },
+          "step12600": {
+            "value": 157.3275909423828,
+            "count": 192
+          },
+          "delta_latest_minus12000": -13.249404907226562
+        },
+        "root_orientation_deg": {
+          "step12000": {
+            "value": 25.15691375732422,
+            "count": 192
+          },
+          "step12600": {
+            "value": 28.660728454589844,
+            "count": 192
+          },
+          "delta_latest_minus12000": 3.503814697265625
+        },
+        "head_orientation_deg": {
+          "step12000": {
+            "value": 12.952299118041992,
+            "count": 192
+          },
+          "step12600": {
+            "value": 15.484234809875488,
+            "count": 192
+          },
+          "delta_latest_minus12000": 2.531935691833496
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "step12000": {
+            "value": 0.526233971118927,
+            "count": 254
+          },
+          "step12600": {
+            "value": 0.5794203877449036,
+            "count": 254
+          },
+          "delta_latest_minus12000": 0.05318641662597656
+        }
+      },
+      "step12600_motion_sha256": "64077b79658bc9c6fdf5e43b59e947184f30b212eff8d3e3f78181ce48d0ff73"
+    }
+  ],
+  "interpretation": "Single-window position errors improve from 12000 to12600, but noisy root orientation worsens and both clean/noisy GT-low-speed foot speed increase. Pose improvement does not establish stable planting or gait convergence."
+}

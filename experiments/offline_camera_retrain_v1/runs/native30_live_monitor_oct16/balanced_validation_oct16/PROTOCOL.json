@@ -1,0 +1,86 @@
+{
+  "status": "completed",
+  "started_at": "2026-10-16T16:55:45.481611+08:00",
+  "pid": 138927,
+  "checkpoint_step": 12600,
+  "checkpoint_sha256": "ac8e0bad7145a1cbe23f36eaee90912b0da96dc060d0edeb49d5ff71f64b4263",
+  "plan_sha256": "3e958a362a49f5c4baed200888c971f652a27058679b8b2007c26f26246cf3fd",
+  "runner_sha256": "d070647323f702ab7c61f5af476ff822242fe51baa9794931a3d191b69efe7d2",
+  "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+  "planned_windows": 30,
+  "planned_predictions": 60,
+  "regimes": [
+    "clean",
+    "noisy"
+  ],
+  "frames": 192,
+  "fps": 30,
+  "ddim_steps": 20,
+  "scene": "on",
+  "mode": "ego",
+  "resources_before": {
+    "MemTotal_bytes": 32389103616,
+    "MemAvailable_bytes": 22291566592,
+    "main_training": {
+      "status": "training",
+      "pid": 106142,
+      "started_at": "2026-10-16T12:07:43.380030+08:00",
+      "goal_step": 55000,
+      "initial_step": 5200,
+      "automatic_ablation": false,
+      "optimizer_reset": false,
+      "stop_at_review_milestone": false,
+      "worker_pid": 106162,
+      "worker_started_at": "2026-10-16T12:07:43.391427+08:00",
+      "consecutive_io_restarts": 0,
+      "verified_resume_step": 5200,
+      "checked_at": "2026-10-16T16:55:38.754565+08:00",
+      "latest_trace_step": 12774,
+      "latest_committed_step": 12700,
+      "latest_loss": 0.2364809215068817,
+      "latest_gradient_norm": 7.682211875915527,
+      "latest_lr": 8.727041559235602e-05
+    },
+    "disk_free_bytes": {
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/balanced_validation_oct16": 69121212416,
+      "/mnt/e": 120898715648
+    }
+  },
+  "memory_fraction": 0.25,
+  "cpu_threads": 2,
+  "training_unchanged": true,
+  "optimizer_updates": 0,
+  "test_used": false,
+  "scope": "Development VAL, 10 distinct recordings per dataset; two regimes; no outcome selection. Not full VAL or independent TEST.",
+  "timing_scope": "Concurrent single GPU: evaluation and training throughput can differ from isolated measurements.",
+  "finished_at": "2026-10-16T17:14:43.262544+08:00",
+  "elapsed_seconds": 1056.8251987580006,
+  "resources_after": {
+    "MemTotal_bytes": 32389103616,
+    "MemAvailable_bytes": 20868165632,
+    "main_training": {
+      "status": "training",
+      "pid": 106142,
+      "started_at": "2026-10-16T12:07:43.380030+08:00",
+      "goal_step": 55000,
+      "initial_step": 5200,
+      "automatic_ablation": false,
+      "optimizer_reset": false,
+      "stop_at_review_milestone": false,
+      "worker_pid": 106162,
+      "worker_started_at": "2026-10-16T12:07:43.391427+08:00",
+      "consecutive_io_restarts": 0,
+      "verified_resume_step": 5200,
+      "checked_at": "2026-10-16T17:14:41.955737+08:00",
+      "latest_trace_step": 13099,
+      "latest_committed_step": 13000,
+      "latest_loss": 0.4505366086959839,
+      "latest_gradient_norm": 7.170952796936035,
+      "latest_lr": 8.664528498655793e-05
+    },
+    "disk_free_bytes": {
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/balanced_validation_oct16": 67361878016,
+      "/mnt/e": 120880889856
+    }
+  }
+}

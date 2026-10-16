@@ -1,0 +1,442 @@
+{
+  "status": "passed_complete",
+  "checked_at": "2026-10-16T17:14:58.774874+08:00",
+  "started_at": "2026-10-16T17:14:57.207290+08:00",
+  "verification_seconds": 1.5676076359959552,
+  "verifier_pid": 148459,
+  "verifier_sha256": "dda1a15b5b494b3c2302f83dfdb08ed008d00804992b9aabf661b249d4fea646",
+  "CPU_only": true,
+  "CPU_threads": 1,
+  "CUDA_initialized": false,
+  "training_or_runner_files_written": false,
+  "checkpoint_step": 12600,
+  "checkpoint": {
+    "compact_checkpoint_sha256": "ac8e0bad7145a1cbe23f36eaee90912b0da96dc060d0edeb49d5ff71f64b4263",
+    "source_full_checkpoint_sha256_recorded_at_freeze": "6ee9dc6a86186f431ecc98076d0921abeee9f4d144273769eadfdcdf43b525d6",
+    "model_tensor_sha256_sorted_names_dtypes_shapes_and_bytes": "ffb41c2eecb9d5a1df013bde9e8b5e2cc9f319c5f11cf486d1d4a8da5eccae1b",
+    "tensor_count": 317,
+    "tensor_values": 125227536,
+    "tensor_bytes": 500910144,
+    "tensor_dtypes": {
+      "torch.float32": 317
+    },
+    "all_finite": true,
+    "no_optimizer_or_RNG_in_compact": true,
+    "source_to_compact_evidence": "Recorded source-full SHA, atomic hard-link freeze procedure in sealed runner, compact-file SHA, matching step/config and finite model tensors.",
+    "direct_source_tensor_comparison": false,
+    "boundary": "The original full pinned inode was unlinked after compact publication. The changing trainer last.pt is not the original source. No independent source tensor digest was recorded before unlink, so byte-for-byte source-model equivalence cannot be re-proved after the fact."
+  },
+  "sealed_training_sources_verified": 365,
+  "sealed_original_sources": 359,
+  "sealed_continuation_sources": 6,
+  "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+  "plan_sha256": "3e958a362a49f5c4baed200888c971f652a27058679b8b2007c26f26246cf3fd",
+  "runner_sha256": "d070647323f702ab7c61f5af476ff822242fe51baa9794931a3d191b69efe7d2",
+  "committed_rows_verified": 60,
+  "rows_committed_prefix_bytes": 136846,
+  "rows_committed_prefix_sha256": "c3c84a6d20f0f162b6f295e9dff762bc9b12eaf9511a4e5659944b744259b90a",
+  "uncommitted_trailing_bytes": 0,
+  "artifacts_SHA_identity_shapes_finite_checked": 60,
+  "expected_predictions": 60,
+  "expected_windows": 30,
+  "planned_dataset_counts": {
+    "trumans": 10,
+    "egobody": 10,
+    "rich": 10
+  },
+  "planned_egobody_role_counts": {
+    "camera_wearer": 5,
+    "interactee": 5
+  },
+  "committed_dataset_regime_counts": {
+    "trumans/clean": 10,
+    "trumans/noisy": 10,
+    "egobody/clean": 10,
+    "egobody/noisy": 10,
+    "rich/clean": 10,
+    "rich/noisy": 10
+  },
+  "missing_case_regime_pairs": [],
+  "CPU_metric_recomputations": [
+    {
+      "case": 0,
+      "regime": "clean",
+      "motion_sha256": "71d6de9de869a9ad6c52e00483ddaf7b6ec6f6915bb2d0acbd96ee05e104e7cd",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "motion_sha256": "74d5ed5c0f57706556b58c0c7a222f9d557cf6e120aaaa8d47feb79c86d2fd42",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 1,
+      "regime": "clean",
+      "motion_sha256": "8f14aeff743c59ec15efbe9d32d30a35fecd2001bd3675efdec9d6f75e92f0a7",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 1,
+      "regime": "noisy",
+      "motion_sha256": "7a1069ae5bbfd2df07218e9dce04cf39debf4a566db0360c1c1f0f22d3bf9cbd",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 2,
+      "regime": "clean",
+      "motion_sha256": "8a220ece4b8313acf6fcd8cfd7c8ee815b9bede343f1ac9c34359c3d676ec8bb",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 2,
+      "regime": "noisy",
+      "motion_sha256": "b8343b68a8a2563630f5a8a63a721ee76770714c1a60aa2d6d6eceac9839059e",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 3,
+      "regime": "clean",
+      "motion_sha256": "57ab4727bf33fb4444314ab46534ffa5f61e92d781317c88d71d06a6608a2134",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 3,
+      "regime": "noisy",
+      "motion_sha256": "709ab0e61175bde3afc978ffc4472b73aa7e657352a995865a498ba1476dfc54",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 4,
+      "regime": "clean",
+      "motion_sha256": "0eabdec7195310dda39390e3f7bce84cf32b2a1b912154a0021955bb477e10d5",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 4,
+      "regime": "noisy",
+      "motion_sha256": "7ad536e56c5663e42cd3d871dfcc46dfcfa8ed057b2fbfc6520ce0467786c888",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 5,
+      "regime": "clean",
+      "motion_sha256": "7e85f7bfe25c6f664b0e6675c83e77d8a1d81458626ff77e9165a391adc79dc3",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 5,
+      "regime": "noisy",
+      "motion_sha256": "4f87ce739306ecff4a8630f53458b1fab15f92d8884afee10a1711efe1f498e2",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 6,
+      "regime": "clean",
+      "motion_sha256": "0b0ad7d46ad60c3c8c27194c216f5c3b910ddeb93ed7cf42d3c132558f5c58f8",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 6,
+      "regime": "noisy",
+      "motion_sha256": "64077b79658bc9c6fdf5e43b59e947184f30b212eff8d3e3f78181ce48d0ff73",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 7,
+      "regime": "clean",
+      "motion_sha256": "cff633be0805aa4e590972108107eb9df775dd9fedcb048fdf72fc1d98918e81",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 7,
+      "regime": "noisy",
+      "motion_sha256": "a7fc733f757bcabe143c249b276e566397aae74a64a1d755d5722e2c3cb02187",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 8,
+      "regime": "clean",
+      "motion_sha256": "c80e920a1e409e61280d96a8965e731fde75a8bf474f5f910548a1dff2eb8aad",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 8,
+      "regime": "noisy",
+      "motion_sha256": "59138869de51a70b6dd71be7c460ca9dfdf26dd4fc4d368e9744401c6f6f07fb",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 9,
+      "regime": "clean",
+      "motion_sha256": "e71a735e32aab8902403bb3d7f12bd8deec3c4a61804b2073507c823e7e399e7",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 9,
+      "regime": "noisy",
+      "motion_sha256": "1eee4b838042495c6234ea3475334e90b4428dccca10f92f7d3faccf19b6d7a0",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 10,
+      "regime": "clean",
+      "motion_sha256": "5e57507f6a5d52ce6e3548080507c227d79d61cdbf138c0bd13e7c7454f5095e",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 10,
+      "regime": "noisy",
+      "motion_sha256": "deb7f52f2e80e3fecde884bd58cbf586fa6786b58a372e20e1e9e12faa3ede73",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 11,
+      "regime": "clean",
+      "motion_sha256": "f905a9ddf744ba61aa55d32667525db28f88b4b47dc2636e08807c7ea5046d7b",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 11,
+      "regime": "noisy",
+      "motion_sha256": "ea7e2655ba58ae818b1b05232a7e209cefcae2a3aaa3eaaf5267aae5799c6331",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 12,
+      "regime": "clean",
+      "motion_sha256": "fe35dfd9c23a70f575d16f549f4b9affadd7538c4b9f38322c4ffc44d6fcec33",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 12,
+      "regime": "noisy",
+      "motion_sha256": "786c96acf524d23c00672567f227f4a3ca31c074a7325e91abf399e90f460531",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 13,
+      "regime": "clean",
+      "motion_sha256": "3f68d1a38a7b4075fea3c333159e92018d1023a5362dfcb960888daa05f89540",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 13,
+      "regime": "noisy",
+      "motion_sha256": "0621b20366460bed8f5feab7d13e770b3d11291ffe80c5d7edcec78e7b3997df",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 14,
+      "regime": "clean",
+      "motion_sha256": "0e735143c14192b596e2c75968894126f3d92534a77643929145fe1178555a30",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 14,
+      "regime": "noisy",
+      "motion_sha256": "d4991c20bfa96dd801e948a9cb3b488740ad7b1929de97874e519a759e817010",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 15,
+      "regime": "clean",
+      "motion_sha256": "6748d35edbc01d132a3ace4fe3668d357f4d6eb3ee2656563b4134ef019ac9d7",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 15,
+      "regime": "noisy",
+      "motion_sha256": "bceb5278b6bbf524924985169852a0ba5f2300075354740633f6d62bd147bcb8",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 16,
+      "regime": "clean",
+      "motion_sha256": "5ec5046fa0a13aa8a365ec57e4b033da080da7561b07306fa37ff81cc1de852b",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 16,
+      "regime": "noisy",
+      "motion_sha256": "e0352dc87443e69347c5db5f8d2f4fbd2d5fcfb62272464cf472b735c40f72c0",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 17,
+      "regime": "clean",
+      "motion_sha256": "8b62967901d8b15e83acbf00f558b9e5b3987cd78ec00198819de67338c72b1e",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 17,
+      "regime": "noisy",
+      "motion_sha256": "96c1be8ebf5052138edc33bf6bd06856a99ed7f89a73e7eb9708bddda7a24a31",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 18,
+      "regime": "clean",
+      "motion_sha256": "1713117c20f1d14f98dc578f28490ea379558992a576e77f71a434749cef0233",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 18,
+      "regime": "noisy",
+      "motion_sha256": "d40c20217290eac1f62d27d382e3ce71d4bfb98403b470317d0f082bdf1a5810",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 19,
+      "regime": "clean",
+      "motion_sha256": "51cb40e764c725d9607427d92ad068c4395c90def088a4b5401436940977c8f4",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 19,
+      "regime": "noisy",
+      "motion_sha256": "cc804115e015b853efd95094d10e3f0e760255b0067cc9c00588f5bcc4b4720c",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 20,
+      "regime": "clean",
+      "motion_sha256": "f248c2d07d06478d7b8aca5a2c87392056091536d353bf789eb1e1f6e54f8870",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 20,
+      "regime": "noisy",
+      "motion_sha256": "2d3a12fe1268e9df66c4a215f33f105f5b99bf35218747d9542ef3355dc536be",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 21,
+      "regime": "clean",
+      "motion_sha256": "b8b825d886810f6727d65df16c402b05e91fc4e7f121b95d70023c79adc94771",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 21,
+      "regime": "noisy",
+      "motion_sha256": "24f34eb641bd1915435d3907a7a347310f7264488a202c5cea3a74bf9eb0f969",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 22,
+      "regime": "clean",
+      "motion_sha256": "e75a1822ee1a8fd655234ba9f7805c61da3119c7c3c82ba16387dc4c2da48048",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 22,
+      "regime": "noisy",
+      "motion_sha256": "2267afced1da6ed0efa4ed654231a4fe6bc5b1973157c881916da05b290eefd5",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 23,
+      "regime": "clean",
+      "motion_sha256": "53fb63b781f4f8bfa4c24161a0209e1415f084b09eb0e5fabf963e1dab461474",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 23,
+      "regime": "noisy",
+      "motion_sha256": "1b0b3028ee8d0771330bcfdb2139641b543462e0ad48a7176e8e912dd9bc1d39",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 24,
+      "regime": "clean",
+      "motion_sha256": "62509ef5c9fa1f02fc0e24c06a39182c949e0870a525b794e0869708e62a7ce5",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 24,
+      "regime": "noisy",
+      "motion_sha256": "237b123b10bc8d602ab88815424dd22bee60367af39aeb5a903695e53f9f92eb",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 25,
+      "regime": "clean",
+      "motion_sha256": "fe08101924ccf59ca80aa3b22f8bae8b3712316ddd89bde6b7510709e6fb15f7",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 25,
+      "regime": "noisy",
+      "motion_sha256": "b46f73a68546804eb480586a9cb0f085e9858cd40d4fe50f4d3e4296fc826d40",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 26,
+      "regime": "clean",
+      "motion_sha256": "f4dbefd221fe7cd4bcc652b31a0f539fcd9900cf6b59a6f466e1e86ab1eb07e7",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 26,
+      "regime": "noisy",
+      "motion_sha256": "fcc2e472da4de11cacae219f02b49ed89c8b98b343fe59d74b6678a839ba1f3f",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 27,
+      "regime": "clean",
+      "motion_sha256": "fb976a0ccc86894990e52733d336af6d0015ed5a16260f53260b470443d9e3d7",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 27,
+      "regime": "noisy",
+      "motion_sha256": "1c0171c3991929fc4b5f54b90078ae769726845b3154746729b85a923984e63e",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 28,
+      "regime": "clean",
+      "motion_sha256": "8e1e13f146a1f9ab2332ae7a510c85a4b7a1139c7449b82335301bccaf7e6e24",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 28,
+      "regime": "noisy",
+      "motion_sha256": "dce4afd711b0e194c4acd6b13907163b7246e917e7ccbbf466073340d61c2be6",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 29,
+      "regime": "clean",
+      "motion_sha256": "c7b033012dda2ce610f44f2afb350d252bfca5f6a07731544216f131bb4fa655",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 29,
+      "regime": "noisy",
+      "motion_sha256": "4b7ded66c952e11907af04566d0420f74c426ff0c3fa3f9b620f788bf5d36c28",
+      "max_absolute_float_difference": 0.0
+    }
+  ],
+  "maximum_absolute_float_difference": 0.0,
+  "metric_tolerance": {
+    "relative": 1e-06,
+    "absolute": 3e-05
+  },
+  "all_final_predictions_recomputed": true,
+  "main_training": {
+    "before_step": 13104,
+    "after_step": 13104,
+    "evaluation_start_step": 12774,
+    "latest_committed_step": 13100,
+    "worker_pid": 106162,
+    "worker_PID_present": true,
+    "goal_step": 55000,
+    "status": "training",
+    "checked_at": "2026-10-16T17:14:51.964507+08:00",
+    "advancement_observed": true
+  },
+  "source_array_scope": "Published source metadata SHA and declared per-array/input hashes checked; large raw arrays were not rehashed or rebuilt. Saved GT is the reference for independent CPU metric recomputation.",
+  "scope": "Expanded development VAL, not full VAL or independent TEST; no model forward, no CUDA, no training update."
+}

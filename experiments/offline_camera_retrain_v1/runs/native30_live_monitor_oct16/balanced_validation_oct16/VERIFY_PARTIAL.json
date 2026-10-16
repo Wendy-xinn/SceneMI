@@ -1,0 +1,203 @@
+{
+  "status": "passed_partial",
+  "checked_at": "2026-10-16T17:06:28.332924+08:00",
+  "started_at": "2026-10-16T17:06:24.525511+08:00",
+  "verification_seconds": 1.2527081510052085,
+  "verifier_pid": 147977,
+  "verifier_sha256": "dda1a15b5b494b3c2302f83dfdb08ed008d00804992b9aabf661b249d4fea646",
+  "CPU_only": true,
+  "CPU_threads": 1,
+  "CUDA_initialized": false,
+  "training_or_runner_files_written": false,
+  "checkpoint_step": 12600,
+  "checkpoint": {
+    "compact_checkpoint_sha256": "ac8e0bad7145a1cbe23f36eaee90912b0da96dc060d0edeb49d5ff71f64b4263",
+    "source_full_checkpoint_sha256_recorded_at_freeze": "6ee9dc6a86186f431ecc98076d0921abeee9f4d144273769eadfdcdf43b525d6",
+    "model_tensor_sha256_sorted_names_dtypes_shapes_and_bytes": "ffb41c2eecb9d5a1df013bde9e8b5e2cc9f319c5f11cf486d1d4a8da5eccae1b",
+    "tensor_count": 317,
+    "tensor_values": 125227536,
+    "tensor_bytes": 500910144,
+    "tensor_dtypes": {
+      "torch.float32": 317
+    },
+    "all_finite": true,
+    "no_optimizer_or_RNG_in_compact": true,
+    "source_to_compact_evidence": "Recorded source-full SHA, atomic hard-link freeze procedure in sealed runner, compact-file SHA, matching step/config and finite model tensors.",
+    "direct_source_tensor_comparison": false,
+    "boundary": "The original full pinned inode was unlinked after compact publication. The changing trainer last.pt is not the original source. No independent source tensor digest was recorded before unlink, so byte-for-byte source-model equivalence cannot be re-proved after the fact."
+  },
+  "sealed_training_sources_verified": 365,
+  "sealed_original_sources": 359,
+  "sealed_continuation_sources": 6,
+  "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+  "plan_sha256": "3e958a362a49f5c4baed200888c971f652a27058679b8b2007c26f26246cf3fd",
+  "runner_sha256": "d070647323f702ab7c61f5af476ff822242fe51baa9794931a3d191b69efe7d2",
+  "committed_rows_verified": 34,
+  "rows_committed_prefix_bytes": 77697,
+  "rows_committed_prefix_sha256": "4442c68d5853627e74c41d550ef946e3ef80fd4b569bd4c1d622271c79b0560b",
+  "uncommitted_trailing_bytes": 0,
+  "artifacts_SHA_identity_shapes_finite_checked": 34,
+  "expected_predictions": 60,
+  "expected_windows": 30,
+  "planned_dataset_counts": {
+    "trumans": 10,
+    "egobody": 10,
+    "rich": 10
+  },
+  "planned_egobody_role_counts": {
+    "camera_wearer": 5,
+    "interactee": 5
+  },
+  "committed_dataset_regime_counts": {
+    "trumans/clean": 10,
+    "trumans/noisy": 10,
+    "egobody/clean": 7,
+    "egobody/noisy": 7
+  },
+  "missing_case_regime_pairs": [
+    [
+      17,
+      "clean"
+    ],
+    [
+      17,
+      "noisy"
+    ],
+    [
+      18,
+      "clean"
+    ],
+    [
+      18,
+      "noisy"
+    ],
+    [
+      19,
+      "clean"
+    ],
+    [
+      19,
+      "noisy"
+    ],
+    [
+      20,
+      "clean"
+    ],
+    [
+      20,
+      "noisy"
+    ],
+    [
+      21,
+      "clean"
+    ],
+    [
+      21,
+      "noisy"
+    ],
+    [
+      22,
+      "clean"
+    ],
+    [
+      22,
+      "noisy"
+    ],
+    [
+      23,
+      "clean"
+    ],
+    [
+      23,
+      "noisy"
+    ],
+    [
+      24,
+      "clean"
+    ],
+    [
+      24,
+      "noisy"
+    ],
+    [
+      25,
+      "clean"
+    ],
+    [
+      25,
+      "noisy"
+    ],
+    [
+      26,
+      "clean"
+    ],
+    [
+      26,
+      "noisy"
+    ],
+    [
+      27,
+      "clean"
+    ],
+    [
+      27,
+      "noisy"
+    ],
+    [
+      28,
+      "clean"
+    ],
+    [
+      28,
+      "noisy"
+    ],
+    [
+      29,
+      "clean"
+    ],
+    [
+      29,
+      "noisy"
+    ]
+  ],
+  "CPU_metric_recomputations": [
+    {
+      "case": 0,
+      "regime": "clean",
+      "motion_sha256": "71d6de9de869a9ad6c52e00483ddaf7b6ec6f6915bb2d0acbd96ee05e104e7cd",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "motion_sha256": "74d5ed5c0f57706556b58c0c7a222f9d557cf6e120aaaa8d47feb79c86d2fd42",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 1,
+      "regime": "clean",
+      "motion_sha256": "8f14aeff743c59ec15efbe9d32d30a35fecd2001bd3675efdec9d6f75e92f0a7",
+      "max_absolute_float_difference": 0.0
+    }
+  ],
+  "maximum_absolute_float_difference": 0.0,
+  "metric_tolerance": {
+    "relative": 1e-06,
+    "absolute": 3e-05
+  },
+  "all_final_predictions_recomputed": false,
+  "main_training": {
+    "before_step": 12999,
+    "after_step": 12999,
+    "evaluation_start_step": 12774,
+    "latest_committed_step": 12900,
+    "worker_pid": 106162,
+    "worker_PID_present": true,
+    "goal_step": 55000,
+    "status": "training",
+    "checked_at": "2026-10-16T17:06:18.331272+08:00",
+    "advancement_observed": true
+  },
+  "source_array_scope": "Published source metadata SHA and declared per-array/input hashes checked; large raw arrays were not rehashed or rebuilt. Saved GT is the reference for independent CPU metric recomputation.",
+  "scope": "Expanded development VAL, not full VAL or independent TEST; no model forward, no CUDA, no training update."
+}

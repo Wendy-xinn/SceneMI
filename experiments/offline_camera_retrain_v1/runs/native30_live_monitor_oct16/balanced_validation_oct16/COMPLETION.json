@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-10-16T17:15:58.603512+08:00",
+  "result": "completed_and_independently_verified",
+  "checkpoint_step": 12600,
+  "unique_windows": 30,
+  "predictions": 60,
+  "CPU_recomputations": 60,
+  "max_metric_difference": 0.0,
+  "retained_local_bytes": {
+    "motions": 21604547,
+    "native30_runtime_cache_v2": 96327486,
+    "evaluation_only_checkpoint": 496200983
+  },
+  "memory_after": {
+    "MemTotal_bytes": 32389103616,
+    "MemAvailable_bytes": 22967427072
+  },
+  "disk_free_after": {
+    "/home/wenxin/projects/SceneMI": 68836175872,
+    "/mnt/e": 120880889856
+  },
+  "main_training": {
+    "status": "training",
+    "pid": 106142,
+    "started_at": "2026-10-16T12:07:43.380030+08:00",
+    "goal_step": 55000,
+    "initial_step": 5200,
+    "automatic_ablation": false,
+    "optimizer_reset": false,
+    "stop_at_review_milestone": false,
+    "worker_pid": 106162,
+    "worker_started_at": "2026-10-16T12:07:43.391427+08:00",
+    "consecutive_io_restarts": 0,
+    "verified_resume_step": 5200,
+    "checked_at": "2026-10-16T17:15:56.550826+08:00",
+    "latest_trace_step": 13136,
+    "latest_committed_step": 13100,
+    "latest_loss": 0.26804396510124207,
+    "latest_gradient_norm": 5.004945278167725,
+    "latest_lr": 8.657331151105515e-05
+  },
+  "cleanup": "No redundant generated checkpoints created; one compact evaluation-only frozen model plus the 60 result artifacts retained locally. Official 55k and ongoing resumable training checkpoints untouched.",
+  "backup_policy": "Only code and compact experimental records; no weights, arrays, cache, log, or PID files."
+}
