@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "completed",
   "started_at": "2026-10-16T18:29:27.100142+08:00",
   "pid": 161550,
   "checkpoint_step": 15100,
@@ -63,5 +63,35 @@
     "temporal_boundaries": "Only within each saved window, no differences across window boundaries; overlapping windows retained",
     "fps": 30
   },
-  "timing_scope": "Concurrent single GPU: evaluation and training throughput can differ from isolated measurements."
+  "timing_scope": "Concurrent single GPU: evaluation and training throughput can differ from isolated measurements.",
+  "finished_at": "2026-10-16T21:00:06.486038+08:00",
+  "elapsed_seconds": 8483.967108347002,
+  "resources_after": {
+    "MemTotal_bytes": 32389103616,
+    "MemAvailable_bytes": 18017456128,
+    "main_training": {
+      "status": "training",
+      "pid": 106142,
+      "started_at": "2026-10-16T12:07:43.380030+08:00",
+      "goal_step": 55000,
+      "initial_step": 5200,
+      "automatic_ablation": false,
+      "optimizer_reset": false,
+      "stop_at_review_milestone": false,
+      "worker_pid": 106162,
+      "worker_started_at": "2026-10-16T12:07:43.391427+08:00",
+      "consecutive_io_restarts": 0,
+      "verified_resume_step": 5200,
+      "checked_at": "2026-10-16T21:00:02.068988+08:00",
+      "latest_trace_step": 18000,
+      "latest_committed_step": 17900,
+      "latest_loss": 0.21863117814064026,
+      "latest_gradient_norm": 3.7655856609344482,
+      "latest_lr": 7.58198730819481e-05
+    },
+    "disk_free_bytes": {
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16": 72708354048,
+      "/mnt/e": 120791760896
+    }
+  }
 }
