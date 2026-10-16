@@ -1,0 +1,237 @@
+{
+  "status": "complete",
+  "scope": "CPU-only post-generation audit; reconstructs exact validation windows and applies existing TRAIN weak-target function only for evaluation; no target sent to model or written to dataset",
+  "plan_sha256": "7fd4d13b611550905842912cd0a3b2a9b86a764f331637a33087b1cfedf1d108",
+  "cuda_initialized": true,
+  "source_sha256": {
+    "/tmp/scenemi_contact_label_audit.py": "bad881082b4934f890f338427a6ff5fd3d1e9c063e272dabccd192dac011516d",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_scene_support.py": "63371fe543f7d59270aeee2cfd7d14fa5307b41578296bb40e1d11a057f9838d"
+  },
+  "audit_script": "import json,hashlib,time\nfrom pathlib import Path\nimport numpy as np,torch\nfrom experiments.offline_camera_retrain_v1.ops.motion_ablation import BASE,FULL,load_module,read,write,sha\nfrom experiments.offline_camera_retrain_v1.native30_data import Native30Data\nfrom experiments.offline_camera_retrain_v1.prepare_native30 import window_options\nfrom experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAnchorCache\nfrom experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder\nfrom experiments.offline_camera_retrain_v1.native30_surface_cache import CanonicalSurfaceCache\nfrom experiments.offline_camera_retrain_v1.native30_scene_support import training_support_targets\nfrom experiments.offline_camera_retrain_v1 import native30_surface_cache as surfaces,native30_memory as memory\n\ntorch.set_num_threads(2);torch.set_num_interop_threads(1)\nout=BASE/'runs/native30_live_monitor_oct16/foot_stage_diagnostics'\nplan=read(out/'PLAN.json');cfg=read(BASE/'runs/native30_gait_v2_ego55k_oct15/prepared/effective_config.json')['config']\nio=load_module('contact_label_crc',BASE/'runs/native30_final_review_oct16/io_recovery.py')\nsurfaces.np=io.NumpyProxy(surfaces.np,out/'CONTACT_LABEL_IO_READS.jsonl');memory.np=io.NumpyProxy(memory.np,out/'CONTACT_LABEL_IO_READS.jsonl')\ndata=Native30Data(BASE/cfg['train_manifest'],'validation',cfg['seed']+1,frames=cfg['frames'],memory_protocol=cfg['scene']['memory_protocol'],quality_config=cfg['gt_reliability'],exo_max_empty_frames=cfg['exo_max_empty_frames'],**window_options(cfg))\ndata.runtime_cache_root=out/'native30_runtime_cache_v2'\nold_path=data.scene_memory._cache_path\ndata.scene_memory._cache_path=lambda *args:(p if (p:=old_path(*args)) is not None and p.exists() else None)\ndata.surface_cache=CanonicalSurfaceCache(data,limit=1);data.scene_memory.cached_streams=1\nbuilder=Native30ObservationBuilder(Native30SkinAnchorCache(),read(BASE/cfg['mount_defaults']),cfg['observation']['input_noise'])\nrows=[]\nfor e in plan['entries']:\n members=[i for i,(meta,_) in enumerate(data.members[e['group']]) if meta['path']==e['path']]\n sample,identity=data.sample(e['group'],'ego',member=members[0],start=e['start'],yaw=0)\n _,scene,asset=builder.build(data,sample,identity,'ego',(15,),noise_rng=None)\n start=time.monotonic();weak=training_support_targets(sample,scene,asset)\n item=dict(case=e['case'],dataset=e['dataset'],sequence_id=e['sequence_id'],recomputed_seconds=time.monotonic()-start,official={},merged_training_rule={},predicted_last_step={})\n for j in [7,8,10,11]:\n  for name,target,valid in [('official',sample['contact_target'],sample['contact_valid']),('merged_training_rule',weak['target'],weak['valid'])]:\n   m=valid[:,j].astype(bool);p=target[:,j]>.5\n   item[name][str(j)]=dict(valid=int(m.sum()),positive=int((p&m).sum()),negative=int((~p&m).sum()),unknown=int((~m).sum()),weight_sum=None if name=='official' else float(weak['weight'][:,j].sum()))\n for regime in plan['regimes']:\n  with np.load(out/'motions'/f\"case{e['case']:02d}_{regime}.npz\",allow_pickle=False) as z:pred=z['contact_probability'][-1]\n  item['predicted_last_step'][regime]={str(j):dict(positive=int((pred[:,j]>.5).sum()),negative=int((pred[:,j]<=.5).sum()),probability_mean=float(pred[:,j].mean())) for j in [7,8,10,11]}\n rows.append(item)\n print(json.dumps(item),flush=True)\nscript=Path(__file__)\nrecord=dict(status='complete',scope='CPU-only post-generation audit; reconstructs exact validation windows and applies existing TRAIN weak-target function only for evaluation; no target sent to model or written to dataset',plan_sha256=sha(out/'PLAN.json'),cuda_initialized=torch.cuda.is_initialized(),source_sha256={str(script):sha(script),str(BASE/'native30_scene_support.py'):sha(BASE/'native30_scene_support.py')},audit_script=script.read_text(),rows=rows)\nwrite(out/'CONTACT_LABEL_AUDIT.json',record)\n",
+  "rows": [
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "sequence_id": "2023-02-17@10-53-45",
+      "recomputed_seconds": 0.07895793700299691,
+      "official": {
+        "7": {
+          "valid": 0,
+          "positive": 0,
+          "negative": 0,
+          "unknown": 192,
+          "weight_sum": null
+        },
+        "8": {
+          "valid": 0,
+          "positive": 0,
+          "negative": 0,
+          "unknown": 192,
+          "weight_sum": null
+        },
+        "10": {
+          "valid": 0,
+          "positive": 0,
+          "negative": 0,
+          "unknown": 192,
+          "weight_sum": null
+        },
+        "11": {
+          "valid": 0,
+          "positive": 0,
+          "negative": 0,
+          "unknown": 192,
+          "weight_sum": null
+        }
+      },
+      "merged_training_rule": {
+        "7": {
+          "valid": 37,
+          "positive": 37,
+          "negative": 0,
+          "unknown": 155,
+          "weight_sum": 9.25
+        },
+        "8": {
+          "valid": 8,
+          "positive": 8,
+          "negative": 0,
+          "unknown": 184,
+          "weight_sum": 2.0
+        },
+        "10": {
+          "valid": 161,
+          "positive": 161,
+          "negative": 0,
+          "unknown": 31,
+          "weight_sum": 40.25
+        },
+        "11": {
+          "valid": 170,
+          "positive": 170,
+          "negative": 0,
+          "unknown": 22,
+          "weight_sum": 42.5
+        }
+      },
+      "predicted_last_step": {
+        "clean": {
+          "7": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.9657497406005859
+          },
+          "8": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.9690666198730469
+          },
+          "10": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.9652193188667297
+          },
+          "11": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.9713473320007324
+          }
+        },
+        "noisy": {
+          "7": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.9635164737701416
+          },
+          "8": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.9669294357299805
+          },
+          "10": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.9622893333435059
+          },
+          "11": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.9720597863197327
+          }
+        }
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "recomputed_seconds": 0.05802417699305806,
+      "official": {
+        "7": {
+          "valid": 192,
+          "positive": 179,
+          "negative": 13,
+          "unknown": 0,
+          "weight_sum": null
+        },
+        "8": {
+          "valid": 192,
+          "positive": 184,
+          "negative": 8,
+          "unknown": 0,
+          "weight_sum": null
+        },
+        "10": {
+          "valid": 192,
+          "positive": 183,
+          "negative": 9,
+          "unknown": 0,
+          "weight_sum": null
+        },
+        "11": {
+          "valid": 192,
+          "positive": 187,
+          "negative": 5,
+          "unknown": 0,
+          "weight_sum": null
+        }
+      },
+      "merged_training_rule": {
+        "7": {
+          "valid": 192,
+          "positive": 179,
+          "negative": 13,
+          "unknown": 0,
+          "weight_sum": 192.0
+        },
+        "8": {
+          "valid": 192,
+          "positive": 184,
+          "negative": 8,
+          "unknown": 0,
+          "weight_sum": 192.0
+        },
+        "10": {
+          "valid": 192,
+          "positive": 183,
+          "negative": 9,
+          "unknown": 0,
+          "weight_sum": 192.0
+        },
+        "11": {
+          "valid": 192,
+          "positive": 187,
+          "negative": 5,
+          "unknown": 0,
+          "weight_sum": 192.0
+        }
+      },
+      "predicted_last_step": {
+        "clean": {
+          "7": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.8186132907867432
+          },
+          "8": {
+            "positive": 188,
+            "negative": 4,
+            "probability_mean": 0.8134498596191406
+          },
+          "10": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.8134840130805969
+          },
+          "11": {
+            "positive": 184,
+            "negative": 8,
+            "probability_mean": 0.8427631258964539
+          }
+        },
+        "noisy": {
+          "7": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.8311592936515808
+          },
+          "8": {
+            "positive": 189,
+            "negative": 3,
+            "probability_mean": 0.8017230033874512
+          },
+          "10": {
+            "positive": 192,
+            "negative": 0,
+            "probability_mean": 0.8336767554283142
+          },
+          "11": {
+            "positive": 188,
+            "negative": 4,
+            "probability_mean": 0.8350540995597839
+          }
+        }
+      }
+    }
+  ]
+}

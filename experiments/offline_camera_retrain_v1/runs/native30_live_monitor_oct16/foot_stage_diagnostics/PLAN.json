@@ -1,0 +1,76 @@
+{
+  "protocol": "frozen-motion-stage-trace-v1",
+  "created_at": "2026-10-17T00:35:37.791820+08:00",
+  "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/foot_stage_diagnostics/checkpoint_eval.pt",
+  "checkpoint_sha256": "4f38f81531b82ef372f49e348778a53c8cab8f3a654a7e88086bc70712819705",
+  "checkpoint_step": 19000,
+  "model_tensor_sha256": "62b820084979ae8da94930ec389f0a3266dfca1731e43dc60cbde43c4afd3627",
+  "source_best": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/best.pt",
+  "source_best_metadata_sha256": "9ad3007a6a7a607276a04951145927956dfa4dc77e6390e1c1944a7f007be3cc",
+  "storage": "Atomic hard link of existing model-only best; no optimizer or duplicate data blocks.",
+  "source_case_plan": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/PLAN.json",
+  "source_case_plan_sha256": "a78c4eb7539914ae9b6efdac946b554afb3172bc6f35a6c4f201f9ec92d316f6",
+  "entries": [
+    {
+      "case": 0,
+      "label": "1. TRUMANS · 16k走动",
+      "dataset": "trumans",
+      "recording": null,
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-53-45",
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-53-45",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 2916409010,
+      "source_cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/7a4409995d8af5ecfd302d00471094eb1ce4dcc884eac6781857d46c46b6f618/playback.npz",
+      "source_cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/7a4409995d8af5ecfd302d00471094eb1ce4dcc884eac6781857d46c46b6f618/MANIFEST.json",
+      "source_manifest_sha256": "28955cd54203059178afa16467f45c67296ea7245bfbf9aa847246471b88ec06"
+    },
+    {
+      "case": 1,
+      "label": "5. RICH · 16k椅子附近走动",
+      "dataset": "rich",
+      "recording": null,
+      "group": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_020_wipingchairs1",
+      "start": 384,
+      "source_first": 389,
+      "case_seed": 303671090,
+      "source_cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/f3f5de0bdf3cabcc6a00b29b9b2d68ec991581cf9335adb56d32986f2dae2eef/playback.npz",
+      "source_cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/f3f5de0bdf3cabcc6a00b29b9b2d68ec991581cf9335adb56d32986f2dae2eef/MANIFEST.json",
+      "source_manifest_sha256": "cbad707fccb9f4a217989b2afaeb7f87f0fda2d62277bedcbaee4db58fde449f"
+    }
+  ],
+  "regimes": [
+    "clean",
+    "noisy"
+  ],
+  "stages": [
+    "raw_fk",
+    "learned_feedback",
+    "head_translation",
+    "head_ik",
+    "physical"
+  ],
+  "ddim_steps": 20,
+  "planned_predictions": 4,
+  "observer_control_predictions": 1,
+  "control": {
+    "case": 1,
+    "regime": "clean",
+    "require": "byte-identical final sampler output"
+  },
+  "dependency_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_diagnostics.py": "85b80ce10043e3764ecd6b5cb724d61f719d364267706ec76f508ae7d00645c3",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_ablation.py": "6bb80474d6d7ebd376913e2b16cf8039c2a3b8a600f6bd0fa8efac1b209ef134",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/support_metrics.py": "adfad2b422188e4bdd29abd6f79fb9f4b58e9914503cfef8d38ae346011fcecd",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/runner.py": "7ea4516973c2d72e4d5a370cfc0fd78d839b9dd12199f793e2348d74dbab51a4",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/io_recovery.py": "6b398c210a36496c175a4e88077b73a5c038aea9dbaebc45f51f555ea283ef99"
+  },
+  "source_scope": "365 sealed training/execution sources; no training modifications or optimizer updates.",
+  "targets": "GT used only after generation for metrics; predicted contact used only for existing physical solver.",
+  "stage_scope": "Final denoiser pass only; proposal constraints and physical line-search constraints excluded.",
+  "metric_scope": "Horizontal foot speed on GT 3D-speed<0.2m/s frames; differs from training validation 3D speed.",
+  "interpretation": "Paired local stage changes conditional on this actual DDIM trajectory, not end-to-end ablations."
+}

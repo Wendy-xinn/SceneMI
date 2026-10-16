@@ -1,0 +1,68 @@
+{
+  "status": "independent_cpu_passed",
+  "verified_at": "2026-10-17T00:41:58.161516+08:00",
+  "cuda_initialized": false,
+  "optimizer_updates": 0,
+  "metric_evaluations": 400,
+  "scalar_checks": 2000,
+  "maximum_scalar_error": {
+    "mpjpe_mm": 2.417260498077667e-05,
+    "observed_head_position_error_mm": 2.842170943040401e-14,
+    "foot_joint_horizontal_speed_gt_low_m_s": 0.0,
+    "foot_joint_vertical_speed_gt_low_m_s": 0.0,
+    "foot_joint_y_abs_error_gt_low_mm": 1.4210854715202004e-14
+  },
+  "scalar_tolerance": 0.001,
+  "raw_fk_arrays_byte_exact": 4,
+  "head_translation_max_nonrigid_error_m": 4.023313522338867e-07,
+  "head_ik_max_foot_position_change_m": 2.384185791015625e-07,
+  "final_sampler_vs_physical_fk_max_error_m": 2.384185791015625e-07,
+  "dependency_sha256_matches": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_diagnostics.py": true,
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_ablation.py": true,
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/support_metrics.py": true,
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/runner.py": true,
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/io_recovery.py": true
+  },
+  "checkpoint_sha256_matches": true,
+  "files": [
+    {
+      "file": "case00_clean.npz",
+      "artifact_sha256": "3319905b56b5c4f0bf33d68548ee1a8481c6e958eb009f8cb10059fb91f9a2a3",
+      "frames": 192,
+      "steps": 20,
+      "gt_low_speed_foot_samples": 332,
+      "final_physics_accepted_steps": 0.0
+    },
+    {
+      "file": "case00_noisy.npz",
+      "artifact_sha256": "53cd0d7742a5807ca7c4abdf1cd8703fbd6a52e8fdf19f6750af9773bcbe5c27",
+      "frames": 192,
+      "steps": 20,
+      "gt_low_speed_foot_samples": 332,
+      "final_physics_accepted_steps": 1.0
+    },
+    {
+      "file": "case01_clean.npz",
+      "artifact_sha256": "2b23fcfadd3d69a052874eee0045452b0b4124a2bdf67ec7a20c5baba844fbe7",
+      "frames": 192,
+      "steps": 20,
+      "gt_low_speed_foot_samples": 295,
+      "final_physics_accepted_steps": 1.0
+    },
+    {
+      "file": "case01_noisy.npz",
+      "artifact_sha256": "9d49b0374b3ac935962fd38ff0078ff44d409319c821d480f2c2c3b917988023",
+      "frames": 192,
+      "steps": 20,
+      "gt_low_speed_foot_samples": 295,
+      "final_physics_accepted_steps": 1.0
+    }
+  ],
+  "independent_method": "Reopened all four NPZ files. Recomputed FK using the unchanged native FK function, then implemented the five scalar metric formulas directly with NumPy; did not call support_metrics. Matched all 80 DDIM records and all five stages. GT low-speed masks use GT 3D foot speed below 0.2 m/s. All GT is evaluation-only.",
+  "hook_review": "Only outer constrain call 2 records feedback/translation/IK; proposal is call 1. inside_physics excludes all physical line-search constraint calls. Physical wrapper checks input equals head_ik and output equals forward output. raw_fk is reconciled actual details.raw_motion, not the proposal.",
+  "interpretation": "t=0 final-output metrics and alpha>0.5 correlated intermediate-step averages are separate. Paired local stage changes follow one actual DDIM trajectory and do not estimate complete module-deletion ablations.",
+  "control_evidence_limit": "Original unhooked RICH-clean control is not serialized. Sealed source directly compares np.array_equal(control, prediction) and requires true before completion; CHECKS/VERIFY report true. This is implementation-level byte equality, not an independent CPU byte re-verification of saved control arrays.",
+  "verifier_script_sha256": "fe343c493e9768f4e45cd43f9170fc67ebff8b478ab3ad4e5becb686876a6616",
+  "verifier_script": "\"\"\"Independent CPU-only FK/metric and stage-integrity check of saved outputs.\"\"\"\nimport hashlib\nimport json\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\n\nfrom experiments.offline_camera_retrain_v1.supervision import forward_kinematics\nfrom experiments.offline_camera_retrain_v1.native30_model import reconcile_motion\n\nROOT = Path('/home/wenxin/projects/SceneMI')\nOUT = ROOT / 'experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/foot_stage_diagnostics'\nplan = json.loads((OUT / 'PLAN.json').read_text())\nrows = [json.loads(line) for line in (OUT / 'rows.jsonl').open()]\nstages = plan['stages']\nkeys = ['mpjpe_mm', 'observed_head_position_error_mm',\n        'foot_joint_horizontal_speed_gt_low_m_s',\n        'foot_joint_vertical_speed_gt_low_m_s', 'foot_joint_y_abs_error_gt_low_mm']\ntorch.set_num_threads(2)\nassert len(rows) == 80\nmaximum_errors = dict.fromkeys(keys, 0.)\nraw_exact = 0\nanchor_error = ik_feet_error = sampler_fk_error = 0.\nfiles = []\n\nfor path in sorted((OUT / 'motions').glob('*.npz')):\n    with np.load(path, allow_pickle=False) as saved:\n        arrays = {key: saved[key] for key in saved.files}\n    case_rows = [row for row in rows if Path(row['artifact']).name == path.name]\n    assert len(case_rows) == 20\n    assert arrays['checkpoint_step'] == 19000\n    assert np.array_equal(arrays['timestep'], np.linspace(999, 0, 20).round().astype(np.int64))\n    assert np.all(np.diff(arrays['alpha']) > 0)\n    assert all(row['timestep'] == int(arrays['timestep'][i]) and\n               row['alpha'] == float(arrays['alpha'][i]) for i, row in enumerate(case_rows))\n    artifact_sha = hashlib.sha256(path.read_bytes()).hexdigest()\n    assert all(row['artifact_sha256'] == artifact_sha for row in case_rows)\n    rest = torch.from_numpy(arrays['rest'])[None]\n    truth = forward_kinematics(torch.from_numpy(arrays['truth'])[None], rest)[0].numpy().astype(np.float64)\n    gt_velocity = np.diff(truth[:, [10, 11]], axis=0) * 30\n    low = np.linalg.norm(gt_velocity, axis=-1) < .2\n    observed, meta = arrays['observations'], arrays['observation_meta']\n    valid = (meta[:, 15, 0] > 0) & (meta[:, 15, 2] > 0)\n    joints = {}\n    for stage in stages:\n        stage_joints = []\n        for index in range(20):\n            joint = forward_kinematics(torch.from_numpy(arrays[stage][index])[None], rest)[0].numpy().astype(np.float64)\n            stage_joints.append(joint)\n            velocity = np.diff(joint[:, [10, 11]], axis=0) * 30\n            measured = {\n                'mpjpe_mm': float(np.linalg.norm(joint - truth, axis=-1).mean() * 1000),\n                'observed_head_position_error_mm': float(np.linalg.norm(joint[valid, 15] - observed[valid, 15, :3] * 2, axis=-1).mean() * 1000),\n                'foot_joint_horizontal_speed_gt_low_m_s': float(np.linalg.norm(velocity[..., [0, 2]], axis=-1)[low].mean()),\n                'foot_joint_vertical_speed_gt_low_m_s': float(np.abs(velocity[..., 1])[low].mean()),\n                'foot_joint_y_abs_error_gt_low_mm': float(np.abs(joint[1:, [10, 11], 1] - truth[1:, [10, 11], 1])[low].mean() * 1000),\n            }\n            for key in keys:\n                error = abs(measured[key] - case_rows[index]['metrics'][stage][key])\n                maximum_errors[key] = max(maximum_errors[key], error)\n                assert error < 1e-3, (path, stage, index, key, error)\n        joints[stage] = np.stack(stage_joints)\n    rebuilt = reconcile_motion(torch.from_numpy(arrays['raw_unreconciled']), rest.expand(20, -1, -1)).numpy()\n    assert np.array_equal(rebuilt, arrays['raw_fk'])\n    raw_exact += 1\n    delta = joints['head_translation'] - joints['learned_feedback']\n    root_delta = (arrays['head_translation'][..., :3] - arrays['learned_feedback'][..., :3]) * 2\n    anchor_error = max(anchor_error, float(np.abs(delta - root_delta[:, :, None, :]).max()))\n    ik_feet_error = max(ik_feet_error, float(np.abs(joints['head_ik'][:, :, [10, 11]] - joints['head_translation'][:, :, [10, 11]]).max()))\n    prediction_joints = forward_kinematics(torch.from_numpy(arrays['prediction'])[None], rest)[0].numpy()\n    sampler_fk_error = max(sampler_fk_error, float(np.abs(prediction_joints - joints['physical'][-1]).max()))\n    assert all(row['diagnostics']['outer_constrain_calls'] == 2 for row in case_rows)\n    files.append(dict(file=path.name, artifact_sha256=artifact_sha, frames=len(truth), steps=20,\n        gt_low_speed_foot_samples=int(low.sum()), final_physics_accepted_steps=case_rows[-1]['diagnostics']['physical_accepted_steps']))\n\nassert len(files) == 4\nassert anchor_error < 1e-6 and ik_feet_error < 1e-6 and sampler_fk_error < 1e-6\ndependency_matches = {path: hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest\n                      for path, digest in plan['dependency_sha256'].items()}\nassert all(dependency_matches.values())\nassert hashlib.sha256(Path(plan['checkpoint']).read_bytes()).hexdigest() == plan['checkpoint_sha256']\nassert json.loads((OUT / 'VERIFY.json').read_text())['status'] == 'passed_complete'\nassert not torch.cuda.is_initialized()\nscript = Path(__file__).read_text()\nreport = dict(status='independent_cpu_passed', verified_at=__import__('datetime').datetime.now().astimezone().isoformat(),\n    cuda_initialized=False, optimizer_updates=0, metric_evaluations=400, scalar_checks=2000,\n    maximum_scalar_error=maximum_errors, scalar_tolerance=1e-3,\n    raw_fk_arrays_byte_exact=raw_exact, head_translation_max_nonrigid_error_m=anchor_error,\n    head_ik_max_foot_position_change_m=ik_feet_error, final_sampler_vs_physical_fk_max_error_m=sampler_fk_error,\n    dependency_sha256_matches=dependency_matches, checkpoint_sha256_matches=True, files=files,\n    independent_method='Reopened all four NPZ files. Recomputed FK using the unchanged native FK function, then implemented the five scalar metric formulas directly with NumPy; did not call support_metrics. Matched all 80 DDIM records and all five stages. GT low-speed masks use GT 3D foot speed below 0.2 m/s. All GT is evaluation-only.',\n    hook_review='Only outer constrain call 2 records feedback/translation/IK; proposal is call 1. inside_physics excludes all physical line-search constraint calls. Physical wrapper checks input equals head_ik and output equals forward output. raw_fk is reconciled actual details.raw_motion, not the proposal.',\n    interpretation='t=0 final-output metrics and alpha>0.5 correlated intermediate-step averages are separate. Paired local stage changes follow one actual DDIM trajectory and do not estimate complete module-deletion ablations.',\n    control_evidence_limit='Original unhooked RICH-clean control is not serialized. Sealed source directly compares np.array_equal(control, prediction) and requires true before completion; CHECKS/VERIFY report true. This is implementation-level byte equality, not an independent CPU byte re-verification of saved control arrays.',\n    verifier_script_sha256=hashlib.sha256(script.encode()).hexdigest(), verifier_script=script)\n(OUT / 'INDEPENDENT_CPU_VERIFY.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\\n')\nprint(json.dumps({key: value for key, value in report.items() if key != 'verifier_script'}, ensure_ascii=False, indent=2))\n"
+}

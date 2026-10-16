@@ -1,0 +1,202 @@
+{
+  "reviewed_at": "2026-10-17T00:45:41.682959+08:00",
+  "training_status": {
+    "status": "training",
+    "pid": 106142,
+    "started_at": "2026-10-16T12:07:43.380030+08:00",
+    "goal_step": 55000,
+    "initial_step": 5200,
+    "automatic_ablation": false,
+    "optimizer_reset": false,
+    "stop_at_review_milestone": false,
+    "worker_pid": 106162,
+    "worker_started_at": "2026-10-16T12:07:43.391427+08:00",
+    "consecutive_io_restarts": 0,
+    "verified_resume_step": 5200,
+    "checked_at": "2026-10-17T00:45:37.268504+08:00",
+    "latest_trace_step": 23971,
+    "latest_committed_step": 23900,
+    "latest_loss": 0.5520738363265991,
+    "latest_gradient_norm": 7.220461845397949,
+    "latest_lr": 6.001068384051246e-05
+  },
+  "trace": {
+    "path": "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl",
+    "committed_prefix_step": 23000,
+    "committed_prefix_rows": 23000,
+    "committed_prefix_bytes": 334504044,
+    "committed_prefix_sha256": "92dc1b45457a9dab40a8e063e33a3509d5ed2dc99e0e6733820b76f3c4b75d3d",
+    "total_loss_complete_1000_step_means": {
+      "20000": 0.243535292185843,
+      "21000": 0.23991650158166886,
+      "22000": 0.23554454408586026,
+      "23000": 0.22277740421146155
+    }
+  },
+  "fixed_rich_validation": [
+    {
+      "step": 19000,
+      "regime": "clean",
+      "mpjpe_mm": 119.1492691040039,
+      "foot_speed_during_GT_stance_m_s": 0.35745322704315186
+    },
+    {
+      "step": 19000,
+      "regime": "noisy",
+      "mpjpe_mm": 141.96507263183594,
+      "foot_speed_during_GT_stance_m_s": 0.3926413655281067
+    },
+    {
+      "step": 20000,
+      "regime": "clean",
+      "mpjpe_mm": 157.61163330078125,
+      "foot_speed_during_GT_stance_m_s": 0.44674909114837646
+    },
+    {
+      "step": 20000,
+      "regime": "noisy",
+      "mpjpe_mm": 178.20933532714844,
+      "foot_speed_during_GT_stance_m_s": 0.398761510848999
+    },
+    {
+      "step": 21000,
+      "regime": "clean",
+      "mpjpe_mm": 122.00240325927734,
+      "foot_speed_during_GT_stance_m_s": 0.32396823167800903
+    },
+    {
+      "step": 21000,
+      "regime": "noisy",
+      "mpjpe_mm": 147.1273193359375,
+      "foot_speed_during_GT_stance_m_s": 0.34045615792274475
+    },
+    {
+      "step": 22000,
+      "regime": "clean",
+      "mpjpe_mm": 140.81553649902344,
+      "foot_speed_during_GT_stance_m_s": 0.36866915225982666
+    },
+    {
+      "step": 22000,
+      "regime": "noisy",
+      "mpjpe_mm": 166.14584350585938,
+      "foot_speed_during_GT_stance_m_s": 0.37079742550849915
+    },
+    {
+      "step": 23000,
+      "regime": "clean",
+      "mpjpe_mm": 151.1902313232422,
+      "foot_speed_during_GT_stance_m_s": 0.35117149353027344
+    },
+    {
+      "step": 23000,
+      "regime": "noisy",
+      "mpjpe_mm": 185.90113830566406,
+      "foot_speed_during_GT_stance_m_s": 0.4458395838737488
+    }
+  ],
+  "best": {
+    "saved_at": "2026-10-16T21:42:27.245108+08:00",
+    "selection_status": "provisional_fixed_rich_window",
+    "selection_metric": "arithmetic mean of clean/noisy raw world MPJPE, one fixed RICH VAL window, scene ON, head-only ego",
+    "selection_scope": "Best among exactly matched checkpoints captured by this guardian; not full-RICH or historical global best",
+    "checkpoint_step": 19000,
+    "score": {
+      "step": 19000,
+      "score_mm": 130.55717086791992,
+      "regime_mpjpe_mm": {
+        "clean": 119.1492691040039,
+        "noisy": 141.96507263183594
+      },
+      "identity": {
+        "dataset": "rich",
+        "recording": "LectureHall_020_wipingchairs1",
+        "group": "rich",
+        "mode": "ego",
+        "sequence_id": "LectureHall_020_wipingchairs1",
+        "source_first": 389,
+        "start": 384,
+        "case_seed": 303671090,
+        "joints": [
+          15
+        ],
+        "panel": "fixed"
+      },
+      "validation_record_sha256": "1285cf4fea3344f3ea7de320b15bc1faa0cebf566ac536145dd3320772050c0b"
+    },
+    "historical_best_metric": {
+      "step": 19000,
+      "score_mm": 130.55717086791992,
+      "regime_mpjpe_mm": {
+        "clean": 119.1492691040039,
+        "noisy": 141.96507263183594
+      },
+      "identity": {
+        "dataset": "rich",
+        "recording": "LectureHall_020_wipingchairs1",
+        "group": "rich",
+        "mode": "ego",
+        "sequence_id": "LectureHall_020_wipingchairs1",
+        "source_first": 389,
+        "start": 384,
+        "case_seed": 303671090,
+        "joints": [
+          15
+        ],
+        "panel": "fixed"
+      },
+      "validation_record_sha256": "1285cf4fea3344f3ea7de320b15bc1faa0cebf566ac536145dd3320772050c0b"
+    },
+    "source_checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/last.pt",
+    "source_checkpoint_sha256": "ef69c521ec55e05c63d67f93bdcaa48792a86f8dd11503bf475406682e593e36",
+    "source_provenance": null,
+    "source_model_tensor_sha256": "62b820084979ae8da94930ec389f0a3266dfca1731e43dc60cbde43c4afd3627",
+    "source_inode": 652568,
+    "guardian_source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/checkpoint_guardian.py",
+    "guardian_sha256": "a87b5329c45a0469e1980f9d05728fbff2223be1e66968b49a71ec23a64eb096",
+    "source_audit": {
+      "verified_at": "2026-10-16T21:42:26.913716+08:00",
+      "sealed_sources": 365,
+      "config_sha256": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad",
+      "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8"
+    },
+    "evaluation_only": true,
+    "optimizer_and_training_RNG_untouched": true,
+    "optimizer_removed_from_copy": true,
+    "storage_policy": "One best.pt plus original resumable last.pt; best is model-only",
+    "compact_model_tensor_sha256": "62b820084979ae8da94930ec389f0a3266dfca1731e43dc60cbde43c4afd3627",
+    "tensor_equality_verified": true,
+    "checkpoint_sha256": "4f38f81531b82ef372f49e348778a53c8cab8f3a654a7e88086bc70712819705",
+    "checkpoint_bytes": 496200071
+  },
+  "trace_experiment": {
+    "checkpoint_step": 19000,
+    "traced_predictions": 4,
+    "control_predictions": 1,
+    "optimizer_updates": 0,
+    "verify_status": "passed_complete",
+    "plan_sha256": "7fd4d13b611550905842912cd0a3b2a9b86a764f331637a33087b1cfedf1d108"
+  },
+  "decisions": {
+    "main_training": "continue original 55000-step ego-only job",
+    "foot_training_fork": "proposed, not launched; matched control vs guidance-off, 1000 updates per arm",
+    "exo_stage": "proposed, not launched; shared diffusion, ego:exo 7:3, 500-1000 updates with matched ego-only control"
+  },
+  "disk_after": {
+    ".": {
+      "total": 1081101176832,
+      "used": 953826402304,
+      "free": 72282419200
+    },
+    "/mnt/e": {
+      "total": 2000387309568,
+      "used": 1879673143296,
+      "free": 120714166272
+    }
+  },
+  "cleanup": {
+    "removed": "CONTACT_TARGET_AUDIT.json",
+    "bytes": 4935,
+    "reason": "Superseded official-only audit; CONTACT_LABEL_AUDIT.json includes official and weak labels, full script and predicted probabilities."
+  }
+}

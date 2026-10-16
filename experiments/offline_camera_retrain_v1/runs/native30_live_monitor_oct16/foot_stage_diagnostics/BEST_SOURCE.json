@@ -1,0 +1,74 @@
+{
+  "saved_at": "2026-10-16T21:42:27.245108+08:00",
+  "selection_status": "provisional_fixed_rich_window",
+  "selection_metric": "arithmetic mean of clean/noisy raw world MPJPE, one fixed RICH VAL window, scene ON, head-only ego",
+  "selection_scope": "Best among exactly matched checkpoints captured by this guardian; not full-RICH or historical global best",
+  "checkpoint_step": 19000,
+  "score": {
+    "step": 19000,
+    "score_mm": 130.55717086791992,
+    "regime_mpjpe_mm": {
+      "clean": 119.1492691040039,
+      "noisy": 141.96507263183594
+    },
+    "identity": {
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "group": "rich",
+      "mode": "ego",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "source_first": 389,
+      "start": 384,
+      "case_seed": 303671090,
+      "joints": [
+        15
+      ],
+      "panel": "fixed"
+    },
+    "validation_record_sha256": "1285cf4fea3344f3ea7de320b15bc1faa0cebf566ac536145dd3320772050c0b"
+  },
+  "historical_best_metric": {
+    "step": 19000,
+    "score_mm": 130.55717086791992,
+    "regime_mpjpe_mm": {
+      "clean": 119.1492691040039,
+      "noisy": 141.96507263183594
+    },
+    "identity": {
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "group": "rich",
+      "mode": "ego",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "source_first": 389,
+      "start": 384,
+      "case_seed": 303671090,
+      "joints": [
+        15
+      ],
+      "panel": "fixed"
+    },
+    "validation_record_sha256": "1285cf4fea3344f3ea7de320b15bc1faa0cebf566ac536145dd3320772050c0b"
+  },
+  "source_checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/last.pt",
+  "source_checkpoint_sha256": "ef69c521ec55e05c63d67f93bdcaa48792a86f8dd11503bf475406682e593e36",
+  "source_provenance": null,
+  "source_model_tensor_sha256": "62b820084979ae8da94930ec389f0a3266dfca1731e43dc60cbde43c4afd3627",
+  "source_inode": 652568,
+  "guardian_source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/checkpoint_guardian.py",
+  "guardian_sha256": "a87b5329c45a0469e1980f9d05728fbff2223be1e66968b49a71ec23a64eb096",
+  "source_audit": {
+    "verified_at": "2026-10-16T21:42:26.913716+08:00",
+    "sealed_sources": 365,
+    "config_sha256": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad",
+    "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8"
+  },
+  "evaluation_only": true,
+  "optimizer_and_training_RNG_untouched": true,
+  "optimizer_removed_from_copy": true,
+  "storage_policy": "One best.pt plus original resumable last.pt; best is model-only",
+  "compact_model_tensor_sha256": "62b820084979ae8da94930ec389f0a3266dfca1731e43dc60cbde43c4afd3627",
+  "tensor_equality_verified": true,
+  "checkpoint_sha256": "4f38f81531b82ef372f49e348778a53c8cab8f3a654a7e88086bc70712819705",
+  "checkpoint_bytes": 496200071
+}

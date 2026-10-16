@@ -18,3 +18,5 @@
 本轮四臂的重力项在原头部约束之前应用；它是有死区与角度限幅的root直立先验，不是牛顿重力或接触动力学。选取了弯腰、俯卧撑和瑜伽录制的窗口，但实际最大root倾角未超过60°，尚未验证倒立安全；不能把倾角变小当作成功。当前训练、既有全RICH评估与场景检验不改配置。
 
 `python -m experiments.offline_camera_retrain_v1.ops support-check --out <新目录>` 在已有baseline输出上运行CPU可见支撑关节投影，不重新采样或训练；原结果目录拒绝覆盖。当前候选已因垂直抖动增加而否决。40次配对采样及4次CPU后处理的完整结论见[决策记录](../runs/native30_live_monitor_oct16/support_ablation/DECISION_zh.md)，[同权重Viser](http://localhost:8801/)保留四组回放。
+
+`python -m experiments.offline_camera_retrain_v1.ops motion-trace` 对已冻结的19k权重记录原始FK、学习反馈、整身贴头、IK和物理修正阶段，排除proposal和物理候选内部约束。首轮4次采样和1次无监控控制已完成，默认结果目录不可覆盖。该诊断只解释同一采样轨迹中的阶段变化，不替代删除组件的完整消融。[阶段报告](../runs/native30_live_monitor_oct16/foot_stage_diagnostics/REPORT_zh.md)、[训练趋势与下一阶段建议](../runs/native30_live_monitor_oct16/foot_stage_diagnostics/TRAINING_AND_NEXT_STAGE_zh.md)。
