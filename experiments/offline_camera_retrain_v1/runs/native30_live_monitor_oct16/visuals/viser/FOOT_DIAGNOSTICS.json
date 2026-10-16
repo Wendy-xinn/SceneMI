@@ -1,0 +1,1621 @@
+{
+  "schema": "native-motion-foot-diagnostics-v1",
+  "created_at": "2026-10-16T20:21:07.673297+08:00",
+  "scope": "Read-only CPU measurements of frozen Viser clean predictions; not a new inference or model change; two selected cases, not population metrics.",
+  "fps": 30,
+  "frame_indexing": "zero-based Viser frame within the 192-frame window; time=frame/30",
+  "coordinates": "unchanged shared anchored frame, +Y up, metres. Distances reported mm; speeds m/s.",
+  "support_proxy": {
+    "definition": "For each foot independently, interval norm(GT_joint[t]-GT_joint[t-1])*30 < 0.2 m/s at joints 10 and 11. This is a low-speed proxy, not contact ground truth.",
+    "head_lower_definition": "GT head joint 15 height is >0.2m below the maximum GT head height in this window; threshold is descriptive, not crouch classification."
+  },
+  "mesh_foot_region": {
+    "definition": "For each native SMPL-X vertex, argmax LBS weight is in (7,10) left or (8,11) right. Use the minimum Y among this fixed region per frame. Includes ankle skin; a foot-region lower-envelope diagnostic, not an official sole-contact annotation.",
+    "vertex_counts": [
+      254,
+      264
+    ],
+    "same_shape": "GT and prediction use identical native gender, betas and scale from original identity. Hands/face are neutral in display; lower body is native decoded motion."
+  },
+  "local_observed_plane": {
+    "definition": "Actual observed-static input points within horizontal radius 0.25m of predicted foot joint and within 0.15m in Y of the GT foot-region minimum. Select largest 5mm Y histogram bin, retain points within 10mm of that bin centre, least-squares fit y=a*x+b*z+c. Query this local plane at predicted foot-region lowest vertex. No plane or motion is altered.",
+    "limitation": "A local observed near-horizontal cluster, not an annotated floor or scene-wide floor estimate; GT fitted bodies and scan can disagree."
+  },
+  "conclusions": [
+    "The TRUMANS16k window has true two-foot floating near frames119–120 even relative to a dense, locally flat actually-observed plane; it cannot be explained solely by screen projection or GT/scan mismatch.",
+    "The same TRUMANS window also has GT mesh penetration relative to this scan, so GT joint height must not be treated as absolute ground height.",
+    "RICH16k frame90 has toe/foot-joint elevations but lower ankles and penetrating foot-region minima: a wrong foot pitch/body posture, not whole-foot clearance.",
+    "Both selected windows have substantial foot motion during GT low-speed intervals. Matching the given head closely does not imply correct support or crouch mechanics."
+  ],
+  "cases": [
+    {
+      "label": "1. TRUMANS · 16k走动",
+      "step": 16000,
+      "regime": "clean",
+      "sequence_id": "2023-02-17@10-53-45",
+      "source_start_30fps": 768,
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/7a4409995d8af5ecfd302d00471094eb1ce4dcc884eac6781857d46c46b6f618/playback.npz",
+      "cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/7a4409995d8af5ecfd302d00471094eb1ce4dcc884eac6781857d46c46b6f618/MANIFEST.json",
+      "original_source_SHA256": "9c6b30697b2fa4a19b8caa414b5148267b656b6ab2af6a4f88d04548f81fb636",
+      "mesh_fk_max_error_m": 3.5762786865234375e-07,
+      "source_motion_unchanged": true,
+      "mesh_coordinate_system": "original shared anchor, +Y up, metres",
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "head_error_mean_mm": 0.001822227659431519,
+      "head_error_max_mm": 0.010306013791705482,
+      "GT_low_speed_stats": {
+        "interval_foot_samples": 332,
+        "GT_speed_3d_m_s": 0.022984324023127556,
+        "prediction_speed_3d_m_s": 0.31990909576416016,
+        "GT_speed_horizontal_m_s": 0.01898461952805519,
+        "prediction_speed_horizontal_m_s": 0.28866153955459595,
+        "GT_abs_vertical_speed_m_s": 0.009675417095422745,
+        "prediction_abs_vertical_speed_m_s": 0.09552299231290817,
+        "fraction_prediction_horizontal_over_0p2_m_s": 0.572289156626506
+      },
+      "GT_low_speed_and_head_lower_stats": {
+        "interval_foot_samples": 94,
+        "GT_speed_3d_m_s": 0.010695810429751873,
+        "prediction_speed_3d_m_s": 0.26902806758880615,
+        "GT_speed_horizontal_m_s": 0.00925762951374054,
+        "prediction_speed_horizontal_m_s": 0.2207190990447998,
+        "GT_abs_vertical_speed_m_s": 0.004190029110759497,
+        "prediction_abs_vertical_speed_m_s": 0.12163016200065613,
+        "fraction_prediction_horizontal_over_0p2_m_s": 0.40425531914893614
+      },
+      "head_lower_frames": {
+        "first": 69,
+        "last": 115,
+        "count": 47,
+        "note": "Range may include excluded frames; selection is per-frame threshold."
+      },
+      "foot_joint_height_error_mean_mm": [
+        78.76920318603516,
+        75.23165893554688
+      ],
+      "foot_joint_height_error_max_mm": [
+        232.65957641601562,
+        258.8182678222656
+      ],
+      "foot_region_minimum_height_delta_mean_mm": [
+        72.82709503173828,
+        78.73152923583984
+      ],
+      "foot_region_minimum_height_delta_when_head_lower_mean_mm": [
+        66.46224975585938,
+        93.74192810058594
+      ],
+      "frames": [
+        {
+          "frame": 44,
+          "time_s": 1.4666666666666666,
+          "source_frame_30fps": 812,
+          "GT_head_height_relative_to_frame0_mm": 23.596107959747314,
+          "GT_head_drop_from_window_max_mm": 1.4659762382507324,
+          "head_error_mm": 0.005290625722409459,
+          "pelvis_vertical_pred_minus_GT_mm": 12.588739395141602,
+          "ankle_vertical_pred_minus_GT_mm": [
+            61.12098693847656,
+            30.125499725341797
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            50.75526428222656,
+            27.535200119018555
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            58.302284240722656,
+            30.92229461669922
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.5642900466918945,
+              "region_lowest_prediction_y_m": -1.5059877634048462,
+              "local_observed_plane": {
+                "point_count": 281,
+                "y_ax_bz_c": [
+                  -0.0019306087457587478,
+                  0.0015665808661804448,
+                  -1.4890637284833315
+                ],
+                "upward_normal_cosine": 0.999996909301459,
+                "fit_RMS_mm": 0.8513708667582068,
+                "plane_height_at_prediction_m": -1.489698638586725,
+                "prediction_region_min_clearance_mm": -16.28912481812117,
+                "GT_region_min_clearance_mm": -74.70077507381446
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.5693567991256714,
+              "region_lowest_prediction_y_m": -1.5384345054626465,
+              "local_observed_plane": {
+                "point_count": 260,
+                "y_ax_bz_c": [
+                  -0.003059317912109916,
+                  0.005735008416514198,
+                  -1.4888650010431332
+                ],
+                "upward_normal_cosine": 0.9999788757955546,
+                "fit_RMS_mm": 1.3530395292966764,
+                "plane_height_at_prediction_m": -1.4899892921241396,
+                "prediction_region_min_clearance_mm": -48.44521333850693,
+                "GT_region_min_clearance_mm": -79.3426670594719
+              }
+            }
+          ]
+        },
+        {
+          "frame": 60,
+          "time_s": 2.0,
+          "source_frame_30fps": 828,
+          "GT_head_height_relative_to_frame0_mm": -32.413095235824585,
+          "GT_head_drop_from_window_max_mm": 57.47517943382263,
+          "head_error_mm": 5.819089565761715e-05,
+          "pelvis_vertical_pred_minus_GT_mm": 5.107879638671875,
+          "ankle_vertical_pred_minus_GT_mm": [
+            95.10779571533203,
+            70.72019958496094
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            87.163330078125,
+            53.31158447265625
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            84.41638946533203,
+            67.83628845214844
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.5631794929504395,
+              "region_lowest_prediction_y_m": -1.4787631034851074,
+              "local_observed_plane": {
+                "point_count": 305,
+                "y_ax_bz_c": [
+                  -0.001143015094580924,
+                  -0.009099070491873862,
+                  -1.4905456833385557
+                ],
+                "upward_normal_cosine": 0.9999579528684294,
+                "fit_RMS_mm": 1.0271240684657812,
+                "plane_height_at_prediction_m": -1.489864484929868,
+                "prediction_region_min_clearance_mm": 11.101381444760472,
+                "GT_region_min_clearance_mm": -74.92597988447835
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.571252465248108,
+              "region_lowest_prediction_y_m": -1.5034161806106567,
+              "local_observed_plane": {
+                "point_count": 246,
+                "y_ax_bz_c": [
+                  -0.0037529261926554924,
+                  0.006621795260854713,
+                  -1.4888536378423503
+                ],
+                "upward_normal_cosine": 0.9999710349447682,
+                "fit_RMS_mm": 1.3614592413896107,
+                "plane_height_at_prediction_m": -1.4884955720132431,
+                "prediction_region_min_clearance_mm": -14.92060859741362,
+                "GT_region_min_clearance_mm": -81.08088204945862
+              }
+            }
+          ]
+        },
+        {
+          "frame": 70,
+          "time_s": 2.3333333333333335,
+          "source_frame_30fps": 838,
+          "GT_head_height_relative_to_frame0_mm": -201.4458328485489,
+          "GT_head_drop_from_window_max_mm": 226.50791704654694,
+          "head_error_mm": 0.00015628469896000752,
+          "pelvis_vertical_pred_minus_GT_mm": -11.196434497833252,
+          "ankle_vertical_pred_minus_GT_mm": [
+            76.9611587524414,
+            77.92031860351562
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            84.85126495361328,
+            73.49526977539062
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            81.54940795898438,
+            77.67295837402344
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.5592409372329712,
+              "region_lowest_prediction_y_m": -1.4776915311813354,
+              "local_observed_plane": {
+                "point_count": 312,
+                "y_ax_bz_c": [
+                  -0.002086175886333621,
+                  -0.001723006484146028,
+                  -1.4891181908004834
+                ],
+                "upward_normal_cosine": 0.9999963395795116,
+                "fit_RMS_mm": 0.950060653545019,
+                "plane_height_at_prediction_m": -1.4893638163653102,
+                "prediction_region_min_clearance_mm": 11.672285183974784,
+                "GT_region_min_clearance_mm": -70.43626629426613
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.5784353017807007,
+              "region_lowest_prediction_y_m": -1.5007623434066772,
+              "local_observed_plane": {
+                "point_count": 207,
+                "y_ax_bz_c": [
+                  -0.004684233581383746,
+                  0.008711427077700451,
+                  -1.4888123683335026
+                ],
+                "upward_normal_cosine": 0.9999510880858096,
+                "fit_RMS_mm": 1.3941576576967643,
+                "plane_height_at_prediction_m": -1.4901586658545574,
+                "prediction_region_min_clearance_mm": -10.603677552119883,
+                "GT_region_min_clearance_mm": -87.89374783040272
+              }
+            }
+          ]
+        },
+        {
+          "frame": 80,
+          "time_s": 2.6666666666666665,
+          "source_frame_30fps": 848,
+          "GT_head_height_relative_to_frame0_mm": -318.458616733551,
+          "GT_head_drop_from_window_max_mm": 343.5207009315491,
+          "head_error_mm": 0.00012287812012345967,
+          "pelvis_vertical_pred_minus_GT_mm": -38.229942321777344,
+          "ankle_vertical_pred_minus_GT_mm": [
+            60.0428581237793,
+            78.1044921875
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            71.91503143310547,
+            75.31797790527344
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            63.557029724121094,
+            76.7629165649414
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.5593247413635254,
+              "region_lowest_prediction_y_m": -1.4957677125930786,
+              "local_observed_plane": {
+                "point_count": 300,
+                "y_ax_bz_c": [
+                  -0.002272742986827264,
+                  0.00029831885922826373,
+                  -1.4889218905902908
+                ],
+                "upward_normal_cosine": 0.9999973728329401,
+                "fit_RMS_mm": 0.8954152095402967,
+                "plane_height_at_prediction_m": -1.4897186713172827,
+                "prediction_region_min_clearance_mm": -6.049041275795863,
+                "GT_region_min_clearance_mm": -70.18977558333805
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.579781413078308,
+              "region_lowest_prediction_y_m": -1.5030184984207153,
+              "local_observed_plane": {
+                "point_count": 187,
+                "y_ax_bz_c": [
+                  -0.00475877185754437,
+                  0.009019322158749787,
+                  -1.4888105041588027
+                ],
+                "upward_normal_cosine": 0.9999480070142893,
+                "fit_RMS_mm": 1.4504257736689707,
+                "plane_height_at_prediction_m": -1.4900078712086502,
+                "prediction_region_min_clearance_mm": -13.01062721206514,
+                "GT_region_min_clearance_mm": -89.18602295260447
+              }
+            }
+          ]
+        },
+        {
+          "frame": 90,
+          "time_s": 3.0,
+          "source_frame_30fps": 858,
+          "GT_head_height_relative_to_frame0_mm": -356.2999665737152,
+          "GT_head_drop_from_window_max_mm": 381.36205077171326,
+          "head_error_mm": 0.00012293457984924316,
+          "pelvis_vertical_pred_minus_GT_mm": -55.80240488052368,
+          "ankle_vertical_pred_minus_GT_mm": [
+            42.80018615722656,
+            69.75984191894531
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            61.184288024902344,
+            70.45686340332031
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            44.447898864746094,
+            67.28923034667969
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.55910325050354,
+              "region_lowest_prediction_y_m": -1.514655351638794,
+              "local_observed_plane": {
+                "point_count": 258,
+                "y_ax_bz_c": [
+                  -0.0020992069822309916,
+                  0.003647036077428556,
+                  -1.4890066480318973
+                ],
+                "upward_normal_cosine": 0.99999114634653,
+                "fit_RMS_mm": 0.7839604321658291,
+                "plane_height_at_prediction_m": -1.4902144999850664,
+                "prediction_region_min_clearance_mm": -24.440851653727556,
+                "GT_region_min_clearance_mm": -69.04341789836499
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.5792893171310425,
+              "region_lowest_prediction_y_m": -1.5120000839233398,
+              "local_observed_plane": {
+                "point_count": 165,
+                "y_ax_bz_c": [
+                  -0.005667819062988475,
+                  0.010505730534536628,
+                  -1.488844107492584
+                ],
+                "upward_normal_cosine": 0.9999287603398594,
+                "fit_RMS_mm": 1.5101585866682938,
+                "plane_height_at_prediction_m": -1.4899915475032948,
+                "prediction_region_min_clearance_mm": -22.008536420045075,
+                "GT_region_min_clearance_mm": -88.39076843806649
+              }
+            }
+          ]
+        },
+        {
+          "frame": 100,
+          "time_s": 3.3333333333333335,
+          "source_frame_30fps": 868,
+          "GT_head_height_relative_to_frame0_mm": -357.2677671909332,
+          "GT_head_drop_from_window_max_mm": 382.3298513889313,
+          "head_error_mm": 0.00018326952044844802,
+          "pelvis_vertical_pred_minus_GT_mm": -73.47643375396729,
+          "ankle_vertical_pred_minus_GT_mm": [
+            33.88500213623047,
+            71.45201873779297
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            54.288387298583984,
+            77.12423706054688
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            33.408164978027344,
+            68.293212890625
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.5589431524276733,
+              "region_lowest_prediction_y_m": -1.525534987449646,
+              "local_observed_plane": {
+                "point_count": 192,
+                "y_ax_bz_c": [
+                  -0.0016658728699548487,
+                  0.007901857843656712,
+                  -1.489350340228542
+                ],
+                "upward_normal_cosine": 0.9999673943498619,
+                "fit_RMS_mm": 0.6353049110551598,
+                "plane_height_at_prediction_m": -1.4902669607391559,
+                "prediction_region_min_clearance_mm": -35.26802671049012,
+                "GT_region_min_clearance_mm": -67.47823630232163
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.5788593292236328,
+              "region_lowest_prediction_y_m": -1.5105661153793335,
+              "local_observed_plane": {
+                "point_count": 136,
+                "y_ax_bz_c": [
+                  -0.007190197385118317,
+                  0.013770841132692002,
+                  -1.4889960664616237
+                ],
+                "upward_normal_cosine": 0.9998793543346081,
+                "fit_RMS_mm": 1.600964148984083,
+                "plane_height_at_prediction_m": -1.4897934617865285,
+                "prediction_region_min_clearance_mm": -20.772653592805,
+                "GT_region_min_clearance_mm": -87.12205338332168
+              }
+            }
+          ]
+        },
+        {
+          "frame": 110,
+          "time_s": 3.6666666666666665,
+          "source_frame_30fps": 878,
+          "GT_head_height_relative_to_frame0_mm": -293.5889661312103,
+          "GT_head_drop_from_window_max_mm": 318.6510503292084,
+          "head_error_mm": 0.0002051617116194393,
+          "pelvis_vertical_pred_minus_GT_mm": -75.9744644165039,
+          "ankle_vertical_pred_minus_GT_mm": [
+            101.9601821899414,
+            159.7374725341797
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            125.89764404296875,
+            167.72735595703125
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            100.53265380859375,
+            156.8568878173828
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.5571889877319336,
+              "region_lowest_prediction_y_m": -1.4566563367843628,
+              "local_observed_plane": {
+                "point_count": 100,
+                "y_ax_bz_c": [
+                  0.0006557469246947358,
+                  0.011664335193987796,
+                  -1.4903080497003165
+                ],
+                "upward_normal_cosine": 0.9999317636251662,
+                "fit_RMS_mm": 0.5758771150001666,
+                "plane_height_at_prediction_m": -1.489419180040037,
+                "prediction_region_min_clearance_mm": 32.762843255674134,
+                "GT_region_min_clearance_mm": -63.93255040909507
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.5755289793014526,
+              "region_lowest_prediction_y_m": -1.4186720848083496,
+              "local_observed_plane": {
+                "point_count": 77,
+                "y_ax_bz_c": [
+                  -0.014601870810533322,
+                  0.027745924119046972,
+                  -1.4900414538664548
+                ],
+                "upward_normal_cosine": 0.9995088366311121,
+                "fit_RMS_mm": 1.9080434893948033,
+                "plane_height_at_prediction_m": -1.488617923377681,
+                "prediction_region_min_clearance_mm": 69.94583856933146,
+                "GT_region_min_clearance_mm": -79.96258189966765
+              }
+            }
+          ]
+        },
+        {
+          "frame": 115,
+          "time_s": 3.8333333333333335,
+          "source_frame_30fps": 883,
+          "GT_head_height_relative_to_frame0_mm": -193.97488236427307,
+          "GT_head_drop_from_window_max_mm": 219.03696656227112,
+          "head_error_mm": 0.001930908183567226,
+          "pelvis_vertical_pred_minus_GT_mm": -52.27929353713989,
+          "ankle_vertical_pred_minus_GT_mm": [
+            179.15391540527344,
+            237.3330535888672
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            210.3811492919922,
+            233.6901397705078
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            178.21990966796875,
+            236.35804748535156
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.5545223951339722,
+              "region_lowest_prediction_y_m": -1.3763024806976318,
+              "local_observed_plane": {
+                "point_count": 57,
+                "y_ax_bz_c": [
+                  0.0024852423210663275,
+                  0.015390867164217337,
+                  -1.4908880194867786
+                ],
+                "upward_normal_cosine": 0.9998784945382237,
+                "fit_RMS_mm": 0.6765435160866815,
+                "plane_height_at_prediction_m": -1.4885158865989265,
+                "prediction_region_min_clearance_mm": 112.21340590129469,
+                "GT_region_min_clearance_mm": -59.812955496562736
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.5717631578445435,
+              "region_lowest_prediction_y_m": -1.3354051113128662,
+              "local_observed_plane": {
+                "point_count": 51,
+                "y_ax_bz_c": [
+                  -0.02372139373749013,
+                  0.03780772999276705,
+                  -1.4908020539146563
+                ],
+                "upward_normal_cosine": 0.9990054212663562,
+                "fit_RMS_mm": 2.1310052900557026,
+                "plane_height_at_prediction_m": -1.4878395140589762,
+                "prediction_region_min_clearance_mm": 152.43440274610998,
+                "GT_region_min_clearance_mm": -74.01309950577884
+              }
+            }
+          ]
+        },
+        {
+          "frame": 119,
+          "time_s": 3.966666666666667,
+          "source_frame_30fps": 887,
+          "GT_head_height_relative_to_frame0_mm": -118.54451894760132,
+          "GT_head_drop_from_window_max_mm": 143.60660314559937,
+          "head_error_mm": 0.00022807327582086145,
+          "pelvis_vertical_pred_minus_GT_mm": -27.009427547454834,
+          "ankle_vertical_pred_minus_GT_mm": [
+            219.5608673095703,
+            269.8670654296875
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            232.65957641601562,
+            258.8182678222656
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            221.01116943359375,
+            271.39508056640625
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.554074764251709,
+              "region_lowest_prediction_y_m": -1.3330636024475098,
+              "local_observed_plane": {
+                "point_count": 54,
+                "y_ax_bz_c": [
+                  0.0006416862520155867,
+                  0.01502028946616818,
+                  -1.4903914456933578
+                ],
+                "upward_normal_cosine": 0.9998870087249812,
+                "fit_RMS_mm": 0.9121279639864242,
+                "plane_height_at_prediction_m": -1.488563656601204,
+                "prediction_region_min_clearance_mm": 155.50005415369418,
+                "GT_region_min_clearance_mm": -59.83144446630773
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.56643545627594,
+              "region_lowest_prediction_y_m": -1.2950403690338135,
+              "local_observed_plane": {
+                "point_count": 55,
+                "y_ax_bz_c": [
+                  -0.02001973549383379,
+                  0.03723576243119364,
+                  -1.491034156787305
+                ],
+                "upward_normal_cosine": 0.9991075502165867,
+                "fit_RMS_mm": 2.1532279175606774,
+                "plane_height_at_prediction_m": -1.487621233619199,
+                "prediction_region_min_clearance_mm": 192.58086458538548,
+                "GT_region_min_clearance_mm": -67.99605804402842
+              }
+            }
+          ]
+        },
+        {
+          "frame": 120,
+          "time_s": 4.0,
+          "source_frame_30fps": 888,
+          "GT_head_height_relative_to_frame0_mm": -102.49939560890198,
+          "GT_head_drop_from_window_max_mm": 127.56147980690002,
+          "head_error_mm": 0.0001493952908049323,
+          "pelvis_vertical_pred_minus_GT_mm": -20.800471305847168,
+          "ankle_vertical_pred_minus_GT_mm": [
+            223.7262725830078,
+            269.5864562988281
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            232.472900390625,
+            257.6409606933594
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            225.82591247558594,
+            271.8317565917969
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.5541261434555054,
+              "region_lowest_prediction_y_m": -1.3283002376556396,
+              "local_observed_plane": {
+                "point_count": 54,
+                "y_ax_bz_c": [
+                  0.0005794699366392143,
+                  0.015847638402032516,
+                  -1.490479469997853
+                ],
+                "upward_normal_cosine": 0.9998742819973342,
+                "fit_RMS_mm": 0.9037796314926546,
+                "plane_height_at_prediction_m": -1.4884006607664912,
+                "prediction_region_min_clearance_mm": 160.1004231108516,
+                "GT_region_min_clearance_mm": -59.57313686003785
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.5635286569595337,
+              "region_lowest_prediction_y_m": -1.2916969060897827,
+              "local_observed_plane": {
+                "point_count": 57,
+                "y_ax_bz_c": [
+                  -0.019262312201144053,
+                  0.03686200883720647,
+                  -1.4910501719801634
+                ],
+                "upward_normal_cosine": 0.9991361983369955,
+                "fit_RMS_mm": 2.126930095993031,
+                "plane_height_at_prediction_m": -1.487675030720928,
+                "prediction_region_min_clearance_mm": 195.9781246311454,
+                "GT_region_min_clearance_mm": -65.05743818278819
+              }
+            }
+          ]
+        },
+        {
+          "frame": 125,
+          "time_s": 4.166666666666667,
+          "source_frame_30fps": 893,
+          "GT_head_height_relative_to_frame0_mm": -56.12276494503021,
+          "GT_head_drop_from_window_max_mm": 81.18484914302826,
+          "head_error_mm": 4.842877388000488e-05,
+          "pelvis_vertical_pred_minus_GT_mm": -1.708984375,
+          "ankle_vertical_pred_minus_GT_mm": [
+            208.33493041992188,
+            230.98098754882812
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            205.06442260742188,
+            202.85153198242188
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            203.90188598632812,
+            214.6962890625
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.556259036064148,
+              "region_lowest_prediction_y_m": -1.3523571491241455,
+              "local_observed_plane": {
+                "point_count": 73,
+                "y_ax_bz_c": [
+                  -0.00013888206137904443,
+                  0.013954106594098237,
+                  -1.4901260597966985
+                ],
+                "upward_normal_cosine": 0.9999026460290059,
+                "fit_RMS_mm": 0.8799636930653676,
+                "plane_height_at_prediction_m": -1.485662693232171,
+                "prediction_region_min_clearance_mm": 133.30554410802554,
+                "GT_region_min_clearance_mm": -62.49483580541049
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.5573087930679321,
+              "region_lowest_prediction_y_m": -1.3426125049591064,
+              "local_observed_plane": {
+                "point_count": 95,
+                "y_ax_bz_c": [
+                  -0.008255613587516098,
+                  0.02504136234520571,
+                  -1.4899420576944526
+                ],
+                "upward_normal_cosine": 0.9996525686548167,
+                "fit_RMS_mm": 1.9688312661096867,
+                "plane_height_at_prediction_m": -1.4823662686413661,
+                "prediction_region_min_clearance_mm": 139.75376368225966,
+                "GT_region_min_clearance_mm": -61.55139953674605
+              }
+            }
+          ]
+        },
+        {
+          "frame": 151,
+          "time_s": 5.033333333333333,
+          "source_frame_30fps": 919,
+          "GT_head_height_relative_to_frame0_mm": 4.156887531280518,
+          "GT_head_drop_from_window_max_mm": 20.90519666671753,
+          "head_error_mm": 0.002190318582506734,
+          "pelvis_vertical_pred_minus_GT_mm": 20.54738998413086,
+          "ankle_vertical_pred_minus_GT_mm": [
+            -4.14431095123291,
+            52.25515365600586
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            30.369043350219727,
+            42.815208435058594
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            26.46183967590332,
+            54.232479095458984
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.513695478439331,
+              "region_lowest_prediction_y_m": -1.4872336387634277,
+              "local_observed_plane": {
+                "point_count": 168,
+                "y_ax_bz_c": [
+                  -0.0019980599422688536,
+                  0.016329160556270983,
+                  -1.4888545891504579
+                ],
+                "upward_normal_cosine": 0.9998647105957851,
+                "fit_RMS_mm": 1.7143660220439474,
+                "plane_height_at_prediction_m": -1.4860858470231813,
+                "prediction_region_min_clearance_mm": -1.1477917402464843,
+                "GT_region_min_clearance_mm": -24.354345372175512
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.562877893447876,
+              "region_lowest_prediction_y_m": -1.5086454153060913,
+              "local_observed_plane": {
+                "point_count": 313,
+                "y_ax_bz_c": [
+                  0.002869496330029244,
+                  -0.007480146662345533,
+                  -1.489458146976883
+                ],
+                "upward_normal_cosine": 0.9999679082432482,
+                "fit_RMS_mm": 0.842697354621789,
+                "plane_height_at_prediction_m": -1.4888420604380648,
+                "prediction_region_min_clearance_mm": -19.803354868026535,
+                "GT_region_min_clearance_mm": -74.74880129832839
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "5. RICH · 16k椅子附近走动",
+      "step": 16000,
+      "regime": "clean",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "source_start_30fps": 389,
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/f3f5de0bdf3cabcc6a00b29b9b2d68ec991581cf9335adb56d32986f2dae2eef/playback.npz",
+      "cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/f3f5de0bdf3cabcc6a00b29b9b2d68ec991581cf9335adb56d32986f2dae2eef/MANIFEST.json",
+      "original_source_SHA256": "9c6b30697b2fa4a19b8caa414b5148267b656b6ab2af6a4f88d04548f81fb636",
+      "mesh_fk_max_error_m": 4.76837158203125e-07,
+      "source_motion_unchanged": true,
+      "mesh_coordinate_system": "original shared anchor, +Y up, metres",
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          -0.16652725636959076,
+          -1.112358808517456,
+          -1.4243460893630981,
+          0.4896526038646698,
+          -0.7783043384552002,
+          -0.6628745198249817,
+          1.6186789274215698,
+          0.26335644721984863,
+          0.4888407588005066,
+          -0.6510182023048401
+        ],
+        "scale": 1.006566842415469
+      },
+      "head_error_mean_mm": 0.002147457280443632,
+      "head_error_max_mm": 0.018698576241149567,
+      "GT_low_speed_stats": {
+        "interval_foot_samples": 295,
+        "GT_speed_3d_m_s": 0.08437458425760269,
+        "prediction_speed_3d_m_s": 0.3884636461734772,
+        "GT_speed_horizontal_m_s": 0.06628772616386414,
+        "prediction_speed_horizontal_m_s": 0.3460683524608612,
+        "GT_abs_vertical_speed_m_s": 0.04252830892801285,
+        "prediction_abs_vertical_speed_m_s": 0.12518557906150818,
+        "fraction_prediction_horizontal_over_0p2_m_s": 0.6983050847457627
+      },
+      "GT_low_speed_and_head_lower_stats": {
+        "interval_foot_samples": 234,
+        "GT_speed_3d_m_s": 0.08253680169582367,
+        "prediction_speed_3d_m_s": 0.3619765341281891,
+        "GT_speed_horizontal_m_s": 0.06386404484510422,
+        "prediction_speed_horizontal_m_s": 0.31490686535835266,
+        "GT_abs_vertical_speed_m_s": 0.04379889741539955,
+        "prediction_abs_vertical_speed_m_s": 0.1304597556591034,
+        "fraction_prediction_horizontal_over_0p2_m_s": 0.6709401709401709
+      },
+      "head_lower_frames": {
+        "first": 0,
+        "last": 191,
+        "count": 132,
+        "note": "Range may include excluded frames; selection is per-frame threshold."
+      },
+      "foot_joint_height_error_mean_mm": [
+        7.175695896148682,
+        16.98729705810547
+      ],
+      "foot_joint_height_error_max_mm": [
+        81.81029510498047,
+        93.5964584350586
+      ],
+      "foot_region_minimum_height_delta_mean_mm": [
+        -25.566617965698242,
+        -18.444944381713867
+      ],
+      "foot_region_minimum_height_delta_when_head_lower_mean_mm": [
+        -38.56559753417969,
+        -32.406288146972656
+      ],
+      "frames": [
+        {
+          "frame": 44,
+          "time_s": 1.4666666666666666,
+          "source_frame_30fps": 433,
+          "GT_head_height_relative_to_frame0_mm": -53.561583161354065,
+          "GT_head_drop_from_window_max_mm": 548.7580895423889,
+          "head_error_mm": 0.0015992389990060474,
+          "pelvis_vertical_pred_minus_GT_mm": -239.78498578071594,
+          "ankle_vertical_pred_minus_GT_mm": [
+            8.753120422363281,
+            1.1153221130371094
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            81.81029510498047,
+            51.60725021362305
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            10.919570922851562,
+            12.348413467407227
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.072366714477539,
+              "region_lowest_prediction_y_m": -1.0614471435546875,
+              "local_observed_plane": {
+                "point_count": 319,
+                "y_ax_bz_c": [
+                  0.0038406024587525982,
+                  0.0027534952520806844,
+                  -1.0901536233401363
+                ],
+                "upward_normal_cosine": 0.9999888342053406,
+                "fit_RMS_mm": 0.7941547162484551,
+                "plane_height_at_prediction_m": -1.0914477556016131,
+                "prediction_region_min_clearance_mm": 30.00061204692561,
+                "GT_region_min_clearance_mm": 20.27577662236557
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.077257513999939,
+              "region_lowest_prediction_y_m": -1.0649091005325317,
+              "local_observed_plane": {
+                "point_count": 319,
+                "y_ax_bz_c": [
+                  -0.0010666974800935308,
+                  0.0004988345153227325,
+                  -1.0910194662897594
+                ],
+                "upward_normal_cosine": 0.9999993066610271,
+                "fit_RMS_mm": 0.700634423099334,
+                "plane_height_at_prediction_m": -1.090380300527556,
+                "prediction_region_min_clearance_mm": 25.471199995024342,
+                "GT_region_min_clearance_mm": 13.042625486173964
+              }
+            }
+          ]
+        },
+        {
+          "frame": 60,
+          "time_s": 2.0,
+          "source_frame_30fps": 449,
+          "GT_head_height_relative_to_frame0_mm": -162.82683610916138,
+          "GT_head_drop_from_window_max_mm": 658.0233573913574,
+          "head_error_mm": 0.0005867066192877246,
+          "pelvis_vertical_pred_minus_GT_mm": -112.17460036277771,
+          "ankle_vertical_pred_minus_GT_mm": [
+            -39.53575897216797,
+            -1.2418031692504883
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            28.282047271728516,
+            59.94498825073242
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            -26.279808044433594,
+            4.222512245178223
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.077906608581543,
+              "region_lowest_prediction_y_m": -1.1041864156723022,
+              "local_observed_plane": {
+                "point_count": 310,
+                "y_ax_bz_c": [
+                  -0.0002773393422663738,
+                  0.0035279146263700323,
+                  -1.0910388637114214
+                ],
+                "upward_normal_cosine": 0.999993738509449,
+                "fit_RMS_mm": 0.7641109971885768,
+                "plane_height_at_prediction_m": -1.091202307585878,
+                "prediction_region_min_clearance_mm": -12.98410808642414,
+                "GT_region_min_clearance_mm": 13.242421482341005
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.078531265258789,
+              "region_lowest_prediction_y_m": -1.0743087530136108,
+              "local_observed_plane": {
+                "point_count": 322,
+                "y_ax_bz_c": [
+                  -0.0013043863208612259,
+                  0.0008785813218890048,
+                  -1.0912763591891448
+                ],
+                "upward_normal_cosine": 0.9999987633378874,
+                "fit_RMS_mm": 0.6960803536919435,
+                "plane_height_at_prediction_m": -1.0903712656910958,
+                "prediction_region_min_clearance_mm": 16.062512677484932,
+                "GT_region_min_clearance_mm": 11.792959886006704
+              }
+            }
+          ]
+        },
+        {
+          "frame": 70,
+          "time_s": 2.3333333333333335,
+          "source_frame_30fps": 459,
+          "GT_head_height_relative_to_frame0_mm": -100.67300498485565,
+          "GT_head_drop_from_window_max_mm": 595.8694815635681,
+          "head_error_mm": 0.000280066529967371,
+          "pelvis_vertical_pred_minus_GT_mm": -69.92046535015106,
+          "ankle_vertical_pred_minus_GT_mm": [
+            -66.5953140258789,
+            -50.40431213378906
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            -2.885103225708008,
+            8.62884521484375
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            -56.06627655029297,
+            -43.675899505615234
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.0791441202163696,
+              "region_lowest_prediction_y_m": -1.135210394859314,
+              "local_observed_plane": {
+                "point_count": 315,
+                "y_ax_bz_c": [
+                  -0.002648596808274226,
+                  0.0008946857349736437,
+                  -1.0921870568899457
+                ],
+                "upward_normal_cosine": 0.9999960922590971,
+                "fit_RMS_mm": 0.7197997730064539,
+                "plane_height_at_prediction_m": -1.0909481422568403,
+                "prediction_region_min_clearance_mm": -44.26225260247363,
+                "GT_region_min_clearance_mm": 12.205710714165319
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.0842578411102295,
+              "region_lowest_prediction_y_m": -1.1279337406158447,
+              "local_observed_plane": {
+                "point_count": 315,
+                "y_ax_bz_c": [
+                  -0.0013903296773016577,
+                  0.001958382525088842,
+                  -1.0915778106952612
+                ],
+                "upward_normal_cosine": 0.9999971158731142,
+                "fit_RMS_mm": 0.7253660548351676,
+                "plane_height_at_prediction_m": -1.090634885257789,
+                "prediction_region_min_clearance_mm": -37.298855358055775,
+                "GT_region_min_clearance_mm": 6.150890536100517
+              }
+            }
+          ]
+        },
+        {
+          "frame": 80,
+          "time_s": 2.6666666666666665,
+          "source_frame_30fps": 469,
+          "GT_head_height_relative_to_frame0_mm": -104.32371497154236,
+          "GT_head_drop_from_window_max_mm": 599.520206451416,
+          "head_error_mm": 0.00092281987917886,
+          "pelvis_vertical_pred_minus_GT_mm": -59.27109718322754,
+          "ankle_vertical_pred_minus_GT_mm": [
+            -67.05033874511719,
+            -49.046993255615234
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            -5.428910255432129,
+            15.414118766784668
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            -63.90643310546875,
+            -44.31724548339844
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.068985939025879,
+              "region_lowest_prediction_y_m": -1.132892370223999,
+              "local_observed_plane": {
+                "point_count": 311,
+                "y_ax_bz_c": [
+                  -0.003457162862701833,
+                  0.0005898619953981221,
+                  -1.0925751587488097
+                ],
+                "upward_normal_cosine": 0.9999938501006158,
+                "fit_RMS_mm": 0.655239452432332,
+                "plane_height_at_prediction_m": -1.0908421134073294,
+                "prediction_region_min_clearance_mm": -42.05025681666963,
+                "GT_region_min_clearance_mm": 22.388696382455553
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.0803911685943604,
+              "region_lowest_prediction_y_m": -1.1247084140777588,
+              "local_observed_plane": {
+                "point_count": 313,
+                "y_ax_bz_c": [
+                  -0.0018269176553662228,
+                  0.0017551501659482938,
+                  -1.091763012545995
+                ],
+                "upward_normal_cosine": 0.9999967909253351,
+                "fit_RMS_mm": 0.7138474105483995,
+                "plane_height_at_prediction_m": -1.0905598853636438,
+                "prediction_region_min_clearance_mm": -34.148528714115,
+                "GT_region_min_clearance_mm": 9.940300121627166
+              }
+            }
+          ]
+        },
+        {
+          "frame": 90,
+          "time_s": 3.0,
+          "source_frame_30fps": 479,
+          "GT_head_height_relative_to_frame0_mm": -162.29432821273804,
+          "GT_head_drop_from_window_max_mm": 657.4908494949341,
+          "head_error_mm": 0.000137583796799845,
+          "pelvis_vertical_pred_minus_GT_mm": -149.95938539505005,
+          "ankle_vertical_pred_minus_GT_mm": [
+            -58.562042236328125,
+            -39.74199295043945
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            10.069966316223145,
+            15.76244831085205
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            -49.001930236816406,
+            -33.26725769042969
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.075476050376892,
+              "region_lowest_prediction_y_m": -1.1244779825210571,
+              "local_observed_plane": {
+                "point_count": 316,
+                "y_ax_bz_c": [
+                  -0.0012289626383845044,
+                  0.002828388914247304,
+                  -1.0914045263299463
+                ],
+                "upward_normal_cosine": 0.9999952449674073,
+                "fit_RMS_mm": 0.7664934614914658,
+                "plane_height_at_prediction_m": -1.0911772321821227,
+                "prediction_region_min_clearance_mm": -33.30075033893443,
+                "GT_region_min_clearance_mm": 15.631815625135825
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.076003074645996,
+              "region_lowest_prediction_y_m": -1.1092703342437744,
+              "local_observed_plane": {
+                "point_count": 315,
+                "y_ax_bz_c": [
+                  -0.0021322278398928605,
+                  0.0008295011439736211,
+                  -1.0916899071018813
+                ],
+                "upward_normal_cosine": 0.9999973827764204,
+                "fit_RMS_mm": 0.7167061235246321,
+                "plane_height_at_prediction_m": -1.090289982182402,
+                "prediction_region_min_clearance_mm": -18.980352061372496,
+                "GT_region_min_clearance_mm": 14.247383577588701
+              }
+            }
+          ]
+        },
+        {
+          "frame": 100,
+          "time_s": 3.3333333333333335,
+          "source_frame_30fps": 489,
+          "GT_head_height_relative_to_frame0_mm": -26.4778733253479,
+          "GT_head_drop_from_window_max_mm": 521.674394607544,
+          "head_error_mm": 0.0007599592208862305,
+          "pelvis_vertical_pred_minus_GT_mm": -141.87511801719666,
+          "ankle_vertical_pred_minus_GT_mm": [
+            -24.024486541748047,
+            -11.366486549377441
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            25.488258361816406,
+            8.590459823608398
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            -12.193441390991211,
+            -5.322933197021484
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.0740699768066406,
+              "region_lowest_prediction_y_m": -1.0862634181976318,
+              "local_observed_plane": {
+                "point_count": 317,
+                "y_ax_bz_c": [
+                  -4.3665105599710884e-05,
+                  0.004379373734021419,
+                  -1.0910361323858464
+                ],
+                "upward_normal_cosine": 0.9999904097274899,
+                "fit_RMS_mm": 0.7078691952131273,
+                "plane_height_at_prediction_m": -1.091246180102789,
+                "prediction_region_min_clearance_mm": 4.982761905157229,
+                "GT_region_min_clearance_mm": 17.14522159517906
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.081453561782837,
+              "region_lowest_prediction_y_m": -1.0867764949798584,
+              "local_observed_plane": {
+                "point_count": 306,
+                "y_ax_bz_c": [
+                  -0.0014674872212618935,
+                  0.0008702580383788128,
+                  -1.0912885882098073
+                ],
+                "upward_normal_cosine": 0.9999985445692785,
+                "fit_RMS_mm": 0.7699421174373586,
+                "plane_height_at_prediction_m": -1.090341413058746,
+                "prediction_region_min_clearance_mm": 3.564918078887702,
+                "GT_region_min_clearance_mm": 8.817086586552003
+              }
+            }
+          ]
+        },
+        {
+          "frame": 110,
+          "time_s": 3.6666666666666665,
+          "source_frame_30fps": 499,
+          "GT_head_height_relative_to_frame0_mm": 331.40429854393005,
+          "GT_head_drop_from_window_max_mm": 163.7921929359436,
+          "head_error_mm": 0.000768277345741808,
+          "pelvis_vertical_pred_minus_GT_mm": -74.8012363910675,
+          "ankle_vertical_pred_minus_GT_mm": [
+            19.819795608520508,
+            39.359153747558594
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            15.89655876159668,
+            22.81224822998047
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            -3.089785575866699,
+            -4.669427871704102
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.0698260068893433,
+              "region_lowest_prediction_y_m": -1.07291579246521,
+              "local_observed_plane": {
+                "point_count": 326,
+                "y_ax_bz_c": [
+                  -0.00081774271121254,
+                  0.0034754402769583415,
+                  -1.0914427484010651
+                ],
+                "upward_normal_cosine": 0.999993626366805,
+                "fit_RMS_mm": 0.7437805375571256,
+                "plane_height_at_prediction_m": -1.090814157814043,
+                "prediction_region_min_clearance_mm": 17.898365348832932,
+                "GT_region_min_clearance_mm": 21.79009844327906
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.0718419551849365,
+              "region_lowest_prediction_y_m": -1.0765113830566406,
+              "local_observed_plane": {
+                "point_count": 293,
+                "y_ax_bz_c": [
+                  -0.001704721732190033,
+                  0.0006577937448148941,
+                  -1.0913778766400102
+                ],
+                "upward_normal_cosine": 0.9999983306197828,
+                "fit_RMS_mm": 0.8285471105282762,
+                "plane_height_at_prediction_m": -1.090252786457384,
+                "prediction_region_min_clearance_mm": 13.74140340074348,
+                "GT_region_min_clearance_mm": 18.402479315269062
+              }
+            }
+          ]
+        },
+        {
+          "frame": 115,
+          "time_s": 3.8333333333333335,
+          "source_frame_30fps": 504,
+          "GT_head_height_relative_to_frame0_mm": 457.93136954307556,
+          "GT_head_drop_from_window_max_mm": 37.265121936798096,
+          "head_error_mm": 0.0065264362092420924,
+          "pelvis_vertical_pred_minus_GT_mm": -30.157625675201416,
+          "ankle_vertical_pred_minus_GT_mm": [
+            42.91474914550781,
+            30.93576431274414
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            20.80309295654297,
+            34.44623947143555
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            0.07677078247070312,
+            8.019447326660156
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.0723556280136108,
+              "region_lowest_prediction_y_m": -1.0722788572311401,
+              "local_observed_plane": {
+                "point_count": 314,
+                "y_ax_bz_c": [
+                  -0.0026961589781208505,
+                  0.0028734522148807784,
+                  -1.0921810518296617
+                ],
+                "upward_normal_cosine": 0.9999922370899618,
+                "fit_RMS_mm": 0.7606469850267076,
+                "plane_height_at_prediction_m": -1.0908512887401196,
+                "prediction_region_min_clearance_mm": 18.57243150897947,
+                "GT_region_min_clearance_mm": 18.889758645239453
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.0661494731903076,
+              "region_lowest_prediction_y_m": -1.0581300258636475,
+              "local_observed_plane": {
+                "point_count": 270,
+                "y_ax_bz_c": [
+                  -0.001814832308441987,
+                  0.00023004477775412369,
+                  -1.0914949418030422
+                ],
+                "upward_normal_cosine": 0.9999983267357461,
+                "fit_RMS_mm": 0.8569231008369511,
+                "plane_height_at_prediction_m": -1.090179161969742,
+                "prediction_region_min_clearance_mm": 32.04913610609461,
+                "GT_region_min_clearance_mm": 24.025721556021118
+              }
+            }
+          ]
+        },
+        {
+          "frame": 119,
+          "time_s": 3.966666666666667,
+          "source_frame_30fps": 508,
+          "GT_head_height_relative_to_frame0_mm": 488.1110489368439,
+          "GT_head_drop_from_window_max_mm": 7.085442543029785,
+          "head_error_mm": 0.006205989393492928,
+          "pelvis_vertical_pred_minus_GT_mm": -16.509681940078735,
+          "ankle_vertical_pred_minus_GT_mm": [
+            44.434844970703125,
+            9.936511993408203
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            19.52648162841797,
+            19.315719604492188
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            -2.469658851623535,
+            -1.3223886489868164
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.0717254877090454,
+              "region_lowest_prediction_y_m": -1.074195146560669,
+              "local_observed_plane": {
+                "point_count": 316,
+                "y_ax_bz_c": [
+                  -0.0019184551825253634,
+                  0.003309726976037819,
+                  -1.0918507005458882
+                ],
+                "upward_normal_cosine": 0.9999926826988436,
+                "fit_RMS_mm": 0.7191065602269465,
+                "plane_height_at_prediction_m": -1.090865638178985,
+                "prediction_region_min_clearance_mm": 16.67049161831602,
+                "GT_region_min_clearance_mm": 19.70046592196839
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.0581609010696411,
+              "region_lowest_prediction_y_m": -1.059483289718628,
+              "local_observed_plane": {
+                "point_count": 248,
+                "y_ax_bz_c": [
+                  -0.001887201759461111,
+                  0.00011770776660524618,
+                  -1.0915217806586157
+                ],
+                "upward_normal_cosine": 0.9999982123119942,
+                "fit_RMS_mm": 0.8852833527510736,
+                "plane_height_at_prediction_m": -1.0900844831649854,
+                "prediction_region_min_clearance_mm": 30.601193446357478,
+                "GT_region_min_clearance_mm": 31.88058274980832
+              }
+            }
+          ]
+        },
+        {
+          "frame": 120,
+          "time_s": 4.0,
+          "source_frame_30fps": 509,
+          "GT_head_height_relative_to_frame0_mm": 488.266259431839,
+          "GT_head_drop_from_window_max_mm": 6.930232048034668,
+          "head_error_mm": 0.007838421879569069,
+          "pelvis_vertical_pred_minus_GT_mm": -15.609383583068848,
+          "ankle_vertical_pred_minus_GT_mm": [
+            44.36099624633789,
+            2.231717109680176
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            17.939090728759766,
+            18.162965774536133
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            -3.3025741577148438,
+            0.4960298538208008
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.0718748569488525,
+              "region_lowest_prediction_y_m": -1.0751774311065674,
+              "local_observed_plane": {
+                "point_count": 317,
+                "y_ax_bz_c": [
+                  -0.0017602154234451501,
+                  0.003269074642668013,
+                  -1.0917956434817164
+                ],
+                "upward_normal_cosine": 0.999993107467583,
+                "fit_RMS_mm": 0.7317478460405643,
+                "plane_height_at_prediction_m": -1.0908287501315082,
+                "prediction_region_min_clearance_mm": 15.651319024940769,
+                "GT_region_min_clearance_mm": 19.57470378416093
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.0613309144973755,
+              "region_lowest_prediction_y_m": -1.0608348846435547,
+              "local_observed_plane": {
+                "point_count": 240,
+                "y_ax_bz_c": [
+                  -0.0018214139614488927,
+                  0.0001516520590543191,
+                  -1.0914455966506988
+                ],
+                "upward_normal_cosine": 0.9999983297306017,
+                "fit_RMS_mm": 0.8934514155803891,
+                "plane_height_at_prediction_m": -1.0900229533546049,
+                "prediction_region_min_clearance_mm": 29.188068711050175,
+                "GT_region_min_clearance_mm": 28.592258245021096
+              }
+            }
+          ]
+        },
+        {
+          "frame": 125,
+          "time_s": 4.166666666666667,
+          "source_frame_30fps": 514,
+          "GT_head_height_relative_to_frame0_mm": 478.33481431007385,
+          "GT_head_drop_from_window_max_mm": 16.861677169799805,
+          "head_error_mm": 0.0021176431346248137,
+          "pelvis_vertical_pred_minus_GT_mm": -11.578023433685303,
+          "ankle_vertical_pred_minus_GT_mm": [
+            44.020057678222656,
+            -19.218563079833984
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            26.308895111083984,
+            10.552406311035156
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            1.7538070678710938,
+            -0.3628730773925781
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.0783792734146118,
+              "region_lowest_prediction_y_m": -1.0766254663467407,
+              "local_observed_plane": {
+                "point_count": 324,
+                "y_ax_bz_c": [
+                  -0.0006129036058878961,
+                  0.0031892811624023576,
+                  -1.091376427782264
+                ],
+                "upward_normal_cosine": 0.9999947264591342,
+                "fit_RMS_mm": 0.7571575360752238,
+                "plane_height_at_prediction_m": -1.090718287633796,
+                "prediction_region_min_clearance_mm": 14.092821287055246,
+                "GT_region_min_clearance_mm": 12.910607670757912
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.0715053081512451,
+              "region_lowest_prediction_y_m": -1.0718681812286377,
+              "local_observed_plane": {
+                "point_count": 234,
+                "y_ax_bz_c": [
+                  -0.0019485865166381869,
+                  0.0004481326139995634,
+                  -1.0915530143443908
+                ],
+                "upward_normal_cosine": 0.9999980010998671,
+                "fit_RMS_mm": 0.8946695433040103,
+                "plane_height_at_prediction_m": -1.0902360049646005,
+                "prediction_region_min_clearance_mm": 18.367823735962794,
+                "GT_region_min_clearance_mm": 18.30111171815507
+              }
+            }
+          ]
+        },
+        {
+          "frame": 151,
+          "time_s": 5.033333333333333,
+          "source_frame_30fps": 540,
+          "GT_head_height_relative_to_frame0_mm": 485.35093665122986,
+          "GT_head_drop_from_window_max_mm": 9.845554828643799,
+          "head_error_mm": 0.006668265541520668,
+          "pelvis_vertical_pred_minus_GT_mm": 1.3871192932128906,
+          "ankle_vertical_pred_minus_GT_mm": [
+            43.10345458984375,
+            60.422420501708984
+          ],
+          "foot_joint_vertical_pred_minus_GT_mm": [
+            42.76740646362305,
+            93.5964584350586
+          ],
+          "foot_region_lowest_vertical_pred_minus_GT_mm": [
+            19.46711540222168,
+            67.90506744384766
+          ],
+          "feet": [
+            {
+              "joint_index": 10,
+              "region_lowest_GT_y_m": -1.07513427734375,
+              "region_lowest_prediction_y_m": -1.0556671619415283,
+              "local_observed_plane": {
+                "point_count": 18,
+                "y_ax_bz_c": [
+                  0.005458464550684446,
+                  -0.0006420409804017702,
+                  -1.0832624668486805
+                ],
+                "upward_normal_cosine": 0.9999848968162303,
+                "fit_RMS_mm": 0.4692576849027998,
+                "plane_height_at_prediction_m": -1.0903841461830224,
+                "prediction_region_min_clearance_mm": 34.71698424149405,
+                "GT_region_min_clearance_mm": 14.104108260391657
+              }
+            },
+            {
+              "joint_index": 11,
+              "region_lowest_GT_y_m": -1.0621882677078247,
+              "region_lowest_prediction_y_m": -0.9942831993103027,
+              "local_observed_plane": {
+                "point_count": 97,
+                "y_ax_bz_c": [
+                  -0.0005867910854040682,
+                  -8.725312451307587e-05,
+                  -1.0905189534386412
+                ],
+                "upward_normal_cosine": 0.9999998240316036,
+                "fit_RMS_mm": 0.7693732841872845,
+                "plane_height_at_prediction_m": -1.0899581143116084,
+                "prediction_region_min_clearance_mm": 95.67491500130565,
+                "GT_region_min_clearance_mm": 27.605613473522528
+              }
+            }
+          ]
+        }
+      ],
+      "official_contact_interval_stats": {
+        "interval_foot_samples": 365,
+        "GT_speed_3d_m_s": 0.3065955638885498,
+        "prediction_speed_3d_m_s": 0.44561415910720825,
+        "GT_speed_horizontal_m_s": 0.28516194224357605,
+        "prediction_speed_horizontal_m_s": 0.40328407287597656,
+        "GT_abs_vertical_speed_m_s": 0.06611056625843048,
+        "prediction_abs_vertical_speed_m_s": 0.12977993488311768,
+        "fraction_prediction_horizontal_over_0p2_m_s": 0.7315068493150685
+      },
+      "official_contact_and_low_speed_interval_stats": {
+        "interval_foot_samples": 295,
+        "GT_speed_3d_m_s": 0.08437458425760269,
+        "prediction_speed_3d_m_s": 0.3884636461734772,
+        "GT_speed_horizontal_m_s": 0.06628772616386414,
+        "prediction_speed_horizontal_m_s": 0.3460683524608612,
+        "GT_abs_vertical_speed_m_s": 0.04252830892801285,
+        "prediction_abs_vertical_speed_m_s": 0.12518557906150818,
+        "fraction_prediction_horizontal_over_0p2_m_s": 0.6983050847457627
+      },
+      "official_contact_note": "Original RICH vertex-contact-mapped labels at both interval endpoints. Official contact can contain moving/rolling feet: GT speed is not zero, so report it and also the low-speed subset."
+    }
+  ]
+}

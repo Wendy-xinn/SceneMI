@@ -1,0 +1,107 @@
+{
+  "schema": "controlled-observation-anchor-mechanism-v1",
+  "created_at": "2026-10-16T20:21:48.357167+08:00",
+  "scope": "CPU controlled error injection; no model inference, no checkpoint mutation, no training change. This is not a causal ablation of the actual screenshot prediction.",
+  "case": {
+    "label": "5. RICH · 16k椅子附近走动",
+    "step": 16000,
+    "dataset": "rich",
+    "sequence_id": "LectureHall_020_wipingchairs1",
+    "start": 384
+  },
+  "inputs": {
+    "cache_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/cache/f3f5de0bdf3cabcc6a00b29b9b2d68ec991581cf9335adb56d32986f2dae2eef/playback.npz",
+    "cache_sha256": "eed5015af9f7a2862ed84f885fd49ba0aaa0dbea69332839ccc11b3d26fa916e",
+    "prepared_manifest_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/PREPARED_CASES.json",
+    "prepared_manifest_sha256": "f368c4faeb5ad968a044e46ec476dbd66c0389dc62328d0345208665f1c27e2a",
+    "arrays": [
+      "truth",
+      "rest",
+      "clean_observations",
+      "clean_observation_meta"
+    ]
+  },
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observation_ik.py": "468d525fbeba5e29a6a9b2c965f2447b74def1aa0a68447f6743c2fc29b1274f",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py": "8859036ffa34ec07df79cb795ac3f43f3277e411c8ae02e0eabfc58451fc5854",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/supervision.py": "dff0548ef3f4b8eb44198bde12367e746bd5a8646238bcbcf1666f67b2533e58",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/orientation_supervision.py": "0512aaf7715a210997264cdb8bd747e0cce04c4d3b8a8549a6dfce4b967132c3"
+  },
+  "construction": {
+    "start_from": "GT motion from frozen Viser RICH case 5; not predicted motion",
+    "injection": "Left-multiply local joint 3 (spine1) rotation by +0.45 rad about local X for all 192 frames; keep root translation and legs unchanged; rebuild joints by unchanged reconcile_motion/FK.",
+    "injected_local_joint": 3,
+    "injected_axis": [
+      1,
+      0,
+      0
+    ],
+    "injected_angle_rad": 0.45,
+    "observation_uncertainty": "Explicit synthetic zero tensor; retained actual clean observation metadata.",
+    "torso_anchor_confidence": "zero; ego mode disables exo root fitting.",
+    "signal": "Explicit alpha_bar=1 scalar, representing the low-noise limit, not a replay of every DDIM timestep.",
+    "root_anchor_gain": 0.9,
+    "IK": {
+      "gain": 0.9,
+      "iterations": 6,
+      "damping_m2": 0.0025,
+      "angle_limit_rad": 0.35,
+      "compact": false
+    },
+    "branches": [
+      "injected",
+      "root_anchor",
+      "root_anchor_then_IK",
+      "IK_only"
+    ]
+  },
+  "metrics": {
+    "injected": {
+      "head_position_error_mean_m": 0.2285587191581726,
+      "head_position_error_max_m": 0.23930080235004425,
+      "foot_y_signed_difference_to_GT_mean_m": -6.208817349140361e-10,
+      "foot_position_error_to_GT_mean_m": 9.203913187150192e-09,
+      "foot_position_absolute_component_difference_to_GT_max_m": 1.7881393432617188e-07
+    },
+    "root_anchor": {
+      "head_position_error_mean_m": 0.02285587787628174,
+      "head_position_error_max_m": 0.02393018640577793,
+      "foot_y_signed_difference_to_GT_mean_m": 0.1689801663160324,
+      "foot_position_error_to_GT_mean_m": 0.20570284128189087,
+      "foot_position_absolute_component_difference_to_GT_max_m": 0.20766860246658325
+    },
+    "root_anchor_then_IK": {
+      "head_position_error_mean_m": 3.1778905395185575e-05,
+      "head_position_error_max_m": 0.00018698035273700953,
+      "foot_y_signed_difference_to_GT_mean_m": 0.1689801663160324,
+      "foot_position_error_to_GT_mean_m": 0.20570284128189087,
+      "foot_position_absolute_component_difference_to_GT_max_m": 0.20766860246658325
+    },
+    "IK_only": {
+      "head_position_error_mean_m": 0.0004955990007147193,
+      "head_position_error_max_m": 0.0013223346322774887,
+      "foot_y_signed_difference_to_GT_mean_m": -9.313225746154785e-10,
+      "foot_position_error_to_GT_mean_m": 9.512680421153163e-09,
+      "foot_position_absolute_component_difference_to_GT_max_m": 1.7881393432617188e-07
+    }
+  },
+  "cross_checks": {
+    "injected_foot_positions_match_GT_max_component_error_m": 1.7881393432617188e-07,
+    "IK_after_root_anchor_max_foot_component_change_m": 7.450580596923828e-09,
+    "IK_only_max_foot_component_change_m": 1.1920928955078125e-07
+  },
+  "conclusion": "The configured root translation anchor can lift initially correct feet while reducing head error. Subsequent head-only local IK makes head error very small without restoring feet. IK-only preserves feet in this injection, but this does not establish that removing the root anchor improves real sampled motion; it may leave root translation errors unresolved.",
+  "limitations": [
+    "Only one controlled injection and one clip, not actual checkpoint sampling.",
+    "Uses synthetic zero observation uncertainty and alpha_bar=1.",
+    "No physical guidance executed; this isolates only observation anchoring and IK.",
+    "No claim of benchmark improvement or sole cause of the screenshot failure."
+  ],
+  "code_locations": {
+    "root_translation_anchor": "native30_refinement.py:155-165",
+    "IK_non_root_ancestry": "native30_observation_ik.py:19-24",
+    "IK_iterations": "native30_observation_ik.py:31-51",
+    "ordered_anchor_then_IK": "native30_refinement.py:207-214"
+  }
+}

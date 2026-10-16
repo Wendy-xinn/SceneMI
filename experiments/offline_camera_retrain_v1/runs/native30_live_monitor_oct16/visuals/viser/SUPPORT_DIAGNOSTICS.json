@@ -1,0 +1,186 @@
+{
+  "schema": "native30-visible-support-readonly-diagnostics-v1",
+  "created_at": "2026-10-16T20:22:20.557215+08:00",
+  "scope": "Read-only existing Viser playback and exact source-keyed canonical surface caches. No inference, GPU job, model edit, process or queue mutation.",
+  "screenshot_frame": "User screenshot frame not provided. Frame119 in TRUMANS16k independently exhibits both predicted feet substantially above GT; it is not asserted to be the exact screenshot frame.",
+  "coordinate_system": "Original common camera-first anchored window frame, metres, +Y up. Canonical cached points/normals rotated into viewer identity anchor before joint-neighbour diagnostics.",
+  "scene_semantics": {
+    "viewer_cyan": "Supplied-recording ego observed-static union, not the full reference scan. May include observations from earlier or later times in the same recording.",
+    "model_processing": "Static map is voxelized again in window canonical coordinates by Native30SurfaceWindow. Viser retains the larger source map and applies display-only crop.",
+    "not_guaranteed": "A displayed point does not guarantee a reliable normal, upward support, correct local floor identity, inclusion among sampled nearest/FPS anchors, predicted contact, or accepted physical correction."
+  },
+  "cases": [
+    {
+      "label": "TRUMANS16k",
+      "sequence_id": "2023-02-17@10-53-45",
+      "start": 768,
+      "surface_cache": "/mnt/e/Projects/SceneMI/cache/native30_runtime_cache_v2/surfaces/7797ce4daab522d6eb4ac3867ad9a569c9c2bfc3d94410fd0e9cc5e74529b68d.npz",
+      "viewer_map_points": 77967,
+      "model_static_points": 60359,
+      "reliable_normal_points": 56412,
+      "reliable_upward_points": 21390,
+      "model_points_max_nearest_distance_to_viewer_map_m": 2.455006499962761e-07,
+      "nearest_upward_joint_proxy": {
+        "definition": "KDTree nearest among every static reliable normal.y>.7 point, queried at foot joints10/11. Not the exact skin-anchor/FPS guidance query. Upward surfaces may be floor, chair, etc.",
+        "GT_foot_joint_distance_median_m": 0.03427074242416313,
+        "GT_foot_joint_distance_max_m": 0.04556577969150647,
+        "pred_foot_joint_distance_median_m": 0.036280044851508556,
+        "pred_foot_joint_distance_max_m": 0.21862353557356817,
+        "GT_fraction_under_25cm": 1.0,
+        "pred_fraction_under_25cm": 1.0
+      },
+      "frames": [
+        {
+          "frame": 99,
+          "selection": "GT head minimum Y",
+          "GT_head_Y_m": -0.33041266,
+          "pred_head_Y_m": -0.33041283,
+          "pred_minus_GT_foot_joint_Y_m": [
+            0.05465066,
+            0.07381189
+          ],
+          "GT_foot_joint_nearest_upward_m": [
+            0.03442452,
+            0.04500587
+          ],
+          "pred_foot_joint_nearest_upward_m": [
+            0.02455081,
+            0.04499746
+          ]
+        },
+        {
+          "frame": 119,
+          "selection": "Maximum minimum bilateral positive foot-joint Y error",
+          "GT_head_Y_m": -0.09145984,
+          "pred_head_Y_m": -0.09145966,
+          "pred_minus_GT_foot_joint_Y_m": [
+            0.23265958,
+            0.25881827
+          ],
+          "GT_foot_joint_nearest_upward_m": [
+            0.03249016,
+            0.0440009
+          ],
+          "pred_foot_joint_nearest_upward_m": [
+            0.13955456,
+            0.19164452
+          ],
+          "GT_nearest_upward_normal_Y": [
+            0.99988621,
+            0.99995977
+          ],
+          "sole_anchor_proxy": {
+            "definition": "Native30SkinAnchorCache vertex_ids applied to cached exact native mesh; nearest all-static upward samples, not exact guidance FPS subset. Contact gate deliberately not applied because logits unavailable.",
+            "pred_minus_GT_region10_vertex_Y_m": [
+              0.2314248085,
+              0.2197223902,
+              0.2395577431
+            ],
+            "pred_minus_GT_region11_vertex_Y_m": [
+              0.2635241747,
+              0.2519638538,
+              0.2533279657
+            ],
+            "GT_min_low_foot_anchor_Y_m": -1.5648464,
+            "pred_min_low_foot_anchor_Y_m": -1.3308089,
+            "GT_count_distance25cm_tangent9cm": 12,
+            "pred_count_distance25cm_tangent9cm": 10,
+            "total_low_foot_anchors": 12,
+            "pred_region10_nearest_upward_distance_m": [
+              0.162,
+              0.176,
+              0.147
+            ],
+            "pred_region11_nearest_upward_distance_m": [
+              0.206,
+              0.212,
+              0.201
+            ],
+            "limit": "Nearest upward surfaces can be above the foot (chair etc.). Do not interpret these distances as signed distance to the actual ground or assert the physical solver queried the same samples."
+          }
+        }
+      ]
+    },
+    {
+      "label": "RICH16k",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "start": 384,
+      "surface_cache": "/mnt/e/Projects/SceneMI/cache/native30_runtime_cache_v2/surfaces/bf8f96616f1b5052929590aa33b5b211982fd28cc596f579f565d27a08091728.npz",
+      "viewer_map_points": 51862,
+      "model_static_points": 40639,
+      "reliable_normal_points": 40273,
+      "reliable_upward_points": 39111,
+      "model_points_max_nearest_distance_to_viewer_map_m": 3.572419592687695e-07,
+      "frames": [
+        {
+          "frame": 58,
+          "selection": "GT head minimum Y",
+          "GT_head_Y_m": -0.09375164,
+          "pred_head_Y_m": -0.093751565,
+          "pred_minus_GT_foot_joint_Y_m": [
+            0.02884626,
+            0.04112303
+          ],
+          "GT_foot_joint_nearest_upward_m": [
+            0.04390711,
+            0.03260119
+          ],
+          "pred_foot_joint_nearest_upward_m": [
+            0.07005096,
+            0.07432414
+          ]
+        },
+        {
+          "frame": 44,
+          "selection": "Maximum minimum bilateral positive foot-joint Y error",
+          "pred_minus_GT_foot_joint_Y_m": [
+            0.0818103,
+            0.05160725
+          ],
+          "GT_foot_joint_nearest_upward_m": [
+            0.04900211,
+            0.03184314
+          ],
+          "pred_foot_joint_nearest_upward_m": [
+            0.12845441,
+            0.08129797
+          ]
+        }
+      ]
+    }
+  ],
+  "current_guidance_gates": {
+    "config_enabled": true,
+    "minimum_alpha": 0.25,
+    "predicted_contact_threshold": 0.5,
+    "normal_reliable": true,
+    "foot_normal_Y_min": 0.7,
+    "anchor_patch_distance_max_m": 0.25,
+    "tangent_distance_max_m": 0.09,
+    "plane_crossing_signed_band_m": 0.06,
+    "iterations": 2,
+    "per_x0_root_total_limit_m": 0.02,
+    "trusted_observation_error_increase_limit_m": 0.002,
+    "acceptance": "Total physical/observation/prior energy must decrease; learned constrain_motion reapplied inside candidate."
+  },
+  "training_supervision_limits": {
+    "weak_contact": "Near GT skin anchor<=5cm, relative speed<=0.2m/s, reliable normal, upward feet, persistent3frames; weak weight0.25. Official labels override. Unknown receives no contact force.",
+    "contact_distance_loss": "Requires reliable GT correspondence, GT anchor<=5cm and known positive contact.",
+    "gait_height": "GT foot height/envelope in world-Y, alpha_bar gated, TRAIN-only. Does not guarantee support during sampling."
+  },
+  "conclusions": {
+    "fact": "TRUMANS16k frame119 matches input head while both feet/sole anchors are substantially above GT, and the observed model surface has many reliable upward points near GT feet.",
+    "cannot_attribute_to": "Not justified to say this example failed because the ground was unseen or because all foot evidence exceeds25cm.",
+    "plausible_mechanism": "Head-translation anchoring can preserve head tracking despite inaccurate body pose. Learned contact/correspondence/scene feedback and small local solver do not enforce a persistent support foot.",
+    "unknown": "Playback lacks per-DDIM contact logits, exact selected guidance correspondences, accepted-step/root-delta traces. Cannot identify the active/inactive gate or quantify solver responsibility for this frozen output without a separate controlled replay."
+  },
+  "source_lines": {
+    "map_policy": "native30_memory.py:131-139; config.json:30-44",
+    "normal_reliability": "native30_geometry.py:79-89; observed_body_surfaces.py:13-22",
+    "guidance_gates": "native30_physical_guidance.py:48-75,110-145",
+    "head_translation": "native30_refinement.py:144-165",
+    "scene_feedback": "native30_model.py:264-282",
+    "training_contacts": "native30_scene_support.py:21-63,100-128; native30_relation_losses.py:16-44",
+    "gait_height": "native30_gait_supervision_v2.py:53-67"
+  }
+}
