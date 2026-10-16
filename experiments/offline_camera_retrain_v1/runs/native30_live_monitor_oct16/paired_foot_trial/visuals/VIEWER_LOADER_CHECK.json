@@ -1,0 +1,123 @@
+{
+  "status": "passed",
+  "parent_cases": [
+    {
+      "label": "TRUMANS走动 · 父模型24.5k · 推理物理OFF",
+      "step": 24500,
+      "arrays_byte_equal": [
+        "clean/truth",
+        "clean/rest",
+        "clean/prediction",
+        "clean/observations",
+        "clean/observation_meta",
+        "noisy/truth",
+        "noisy/rest",
+        "noisy/prediction",
+        "noisy/observations",
+        "noisy/observation_meta"
+      ],
+      "checkpoint_identity": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/parent.json",
+        "sha256": "d04547a48a5f087a9f4fceaea5cb091e6fd9e691424324ab848c70547c9f3a46",
+        "step": 24500,
+        "checkpoint_sha256": "a76fd2c2c01ac1c2c7657ae7a2b0ad65236fae2ea56ea239be2e243603aa003b",
+        "model_tensor_sha256": "4df81f0aaf64acb80c28fe4c645c305e27df2752f139e91b2f499e59276ebced"
+      }
+    },
+    {
+      "label": "RICH椅子附近 · 父模型24.5k · 推理物理OFF",
+      "step": 24500,
+      "arrays_byte_equal": [
+        "clean/truth",
+        "clean/rest",
+        "clean/prediction",
+        "clean/observations",
+        "clean/observation_meta",
+        "noisy/truth",
+        "noisy/rest",
+        "noisy/prediction",
+        "noisy/observations",
+        "noisy/observation_meta"
+      ],
+      "checkpoint_identity": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/parent.json",
+        "sha256": "d04547a48a5f087a9f4fceaea5cb091e6fd9e691424324ab848c70547c9f3a46",
+        "step": 24500,
+        "checkpoint_sha256": "a76fd2c2c01ac1c2c7657ae7a2b0ad65236fae2ea56ea239be2e243603aa003b",
+        "model_tensor_sha256": "4df81f0aaf64acb80c28fe4c645c305e27df2752f139e91b2f499e59276ebced"
+      }
+    },
+    {
+      "label": "EgoBody走动 · 父模型24.5k · 推理物理OFF",
+      "step": 24500,
+      "arrays_byte_equal": [
+        "clean/truth",
+        "clean/rest",
+        "clean/prediction",
+        "clean/observations",
+        "clean/observation_meta",
+        "noisy/truth",
+        "noisy/rest",
+        "noisy/prediction",
+        "noisy/observations",
+        "noisy/observation_meta"
+      ],
+      "checkpoint_identity": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/parent.json",
+        "sha256": "d04547a48a5f087a9f4fceaea5cb091e6fd9e691424324ab848c70547c9f3a46",
+        "step": 24500,
+        "checkpoint_sha256": "a76fd2c2c01ac1c2c7657ae7a2b0ad65236fae2ea56ea239be2e243603aa003b",
+        "model_tensor_sha256": "4df81f0aaf64acb80c28fe4c645c305e27df2752f139e91b2f499e59276ebced"
+      }
+    }
+  ],
+  "legacy_regressions": [
+    {
+      "label": "TRUMANS · 原始贴头",
+      "format": "legacy per-case _clean/_noisy",
+      "metadata_identical": true,
+      "arrays_identical": true
+    },
+    {
+      "label": "RICH · 原始贴头",
+      "format": "legacy per-case _clean/_noisy",
+      "metadata_identical": true,
+      "arrays_identical": true
+    },
+    {
+      "label": "current combined trainer-format regression",
+      "format": "legacy combined trainer archive",
+      "step": 25000,
+      "archive_sha256": "a85949a37bfce74755c658f0c18b6b3fdee04034d03e542cf707e384e19011ee",
+      "metadata_identical": true,
+      "arrays_identical": true
+    }
+  ],
+  "negative_identity_checks": [
+    {
+      "altered_field": "step",
+      "rejected": true,
+      "error": "TRUMANS走动 · 父模型24.5k · 推理物理OFF: requested step 24501, archive is 24500"
+    },
+    {
+      "altered_field": "model",
+      "rejected": true,
+      "error": "Archive/manifest model differs"
+    },
+    {
+      "altered_field": "guidance",
+      "rejected": true,
+      "error": "Archive/manifest guidance differs"
+    },
+    {
+      "altered_field": "checkpoint SHA in sidecar",
+      "rejected": true,
+      "error": "TRUMANS走动 · 父模型24.5k · 推理物理OFF: archive/checkpoint record SHA differs"
+    }
+  ],
+  "CUDA_initialized": false,
+  "viewer_source_sha256": "ee45c31771db58faf2a54668e0699d7b6cd63e8d9d89e31f3891cada5978620a",
+  "arrays_modified": false,
+  "weights_loaded": false,
+  "server_started": false
+}

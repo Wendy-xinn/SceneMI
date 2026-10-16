@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops",
+    "view",
+    "--prepare-only",
+    "--manifest",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/visuals/CASES.json",
+    "--config",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+    "--cache-root",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/visuals/cache"
+  ],
+  "working_directory": "/home/wenxin/projects/SceneMI",
+  "run_after": "Final control and no_physics evaluations complete at step25500 and independent CPU recheck passes",
+  "cpu_only": true,
+  "opens_port": false,
+  "schema_conversion_required": false,
+  "copies_original_motion_archives": false,
+  "input_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/visuals/CASES.json",
+  "published_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/visuals/PREPARED_CASES.json",
+  "cases": 9,
+  "regimes_per_case": [
+    "clean",
+    "noisy"
+  ],
+  "checkpoint_weights_loaded": false
+}

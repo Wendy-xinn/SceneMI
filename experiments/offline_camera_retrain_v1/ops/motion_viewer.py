@@ -3,7 +3,10 @@
 One viewer supports trainer ``validation_latest.npz`` files and per-case
 ``motions/caseNN_{clean,noisy}.npz`` exports. Its JSON manifest contains
 ``cases: [{label, archive, case_index?, step?}]``; paths may be absolute or
-relative to the manifest. The original arrays, mesh/FK check, source digests,
+relative to the manifest. Per-case evaluators may instead supply explicit
+``archives: {clean: path, noisy: path}`` and ``checkpoint_record``; the latter
+binds a step to each archive's recorded checkpoint SHA without loading weights.
+The original arrays, mesh/FK check, source digests,
 and display-only scenes are frozen in a content-addressed local cache. No
 model checkpoint, inference, training cache creation, alignment, or floor snap
 is involved. Use another manifest to inspect future evaluations.
@@ -156,12 +159,28 @@ def reference_scene(identity: dict, center: np.ndarray, radius: float) -> tuple[
 
 
 def load_source(case: dict, base: Path) -> tuple[dict, dict]:
-    path = Path(case["archive"])
-    path = path if path.is_absolute() else (base / path).resolve()
+    def resolve(value):
+        path = Path(value)
+        return path if path.is_absolute() else (base / path).resolve()
+
+    archives = case.get("archives")
+    if archives is not None and set(archives) != {"clean", "noisy"}:
+        raise ValueError("Explicit archives must provide exactly clean and noisy")
+    path = resolve(case["archive"] if "archive" in case else archives["clean"])
+    checkpoint, checkpoint_meta = None, None
+    if case.get("checkpoint_record"):
+        record_path = resolve(case["checkpoint_record"])
+        record_bytes = record_path.read_bytes()
+        checkpoint = json.loads(record_bytes)
+        if not isinstance(checkpoint.get("step"), int) or not isinstance(checkpoint.get("checkpoint_sha256"), str):
+            raise ValueError("Checkpoint record must bind an integer step to a checkpoint SHA")
+        checkpoint_meta = dict(path=str(record_path), sha256=hashlib.sha256(record_bytes).hexdigest(),
+            step=checkpoint["step"], checkpoint_sha256=checkpoint["checkpoint_sha256"],
+            model_tensor_sha256=checkpoint.get("model_tensor_sha256"))
     files, arrays, identity, step = {}, {}, None, None
     for regime in ("clean", "noisy"):
-        regime_path = path
-        if "case_index" not in case:
+        regime_path = resolve(archives[regime]) if archives is not None else path
+        if archives is None and "case_index" not in case:
             regime_path = path.with_name(path.name.replace("_clean.npz", f"_{regime}.npz"))
         raw = regime_path.read_bytes()  # one immutable copy, even when latest is replaced
         import io
@@ -176,7 +195,21 @@ def load_source(case: dict, base: Path) -> tuple[dict, dict]:
             else:
                 current_identity = json.loads(str(saved["identity_json"]))
                 part = {key: saved[key] for key in ("truth", "rest", "prediction", "observations", "observation_meta")}
-            current_step = int(saved["step"])
+            stored_step = int(saved["step"]) if "step" in saved else (
+                int(saved["checkpoint_step"]) if "checkpoint_step" in saved else None)
+            if checkpoint is not None:
+                if "checkpoint_sha256" not in saved or str(saved["checkpoint_sha256"]) != checkpoint["checkpoint_sha256"]:
+                    raise ValueError(f"{case['label']}: archive/checkpoint record SHA differs")
+                if stored_step is not None and stored_step != checkpoint["step"]:
+                    raise ValueError("Archive/checkpoint record step differs")
+                for key in ("model", "guidance"):
+                    if key in case and (key not in saved or str(saved[key]) != case[key]):
+                        raise ValueError(f"Archive/manifest {key} differs")
+                current_step = checkpoint["step"]
+            elif stored_step is not None:
+                current_step = stored_step
+            else:
+                raise ValueError("Archive has no step; supply its verified checkpoint_record")
             if case.get("step", current_step) != current_step:
                 raise ValueError(f"{case['label']}: requested step {case['step']}, archive is {current_step}")
             if identity is not None:
@@ -190,9 +223,12 @@ def load_source(case: dict, base: Path) -> tuple[dict, dict]:
             for key in ("prediction", "observations", "observation_meta"):
                 arrays[f"{regime}_{key}"] = part[key]
         files[regime] = dict(path=str(regime_path), sha256=hashlib.sha256(raw).hexdigest())
-    return arrays, dict(schema=SCHEMA, step=step, identity=identity, sources=files,
+    metadata = dict(schema=SCHEMA, step=step, identity=identity, sources=files,
         label=case["label"], selection_reason=case.get("selection_reason", ""),
         metrics=case.get("metrics", {}))
+    if checkpoint_meta is not None:
+        metadata["checkpoint_identity_record"] = checkpoint_meta
+    return arrays, metadata
 
 
 def prepare_case(case: dict, base: Path, config: dict, cache_root: Path) -> dict:
@@ -202,8 +238,10 @@ def prepare_case(case: dict, base: Path, config: dict, cache_root: Path) -> dict
     from experiments.offline_camera_retrain_v1.export_rest_joints import load_model
     from experiments.offline_camera_retrain_v1.supervision import forward_kinematics
     arrays, meta = load_source(case, base)
-    digest = hashlib.sha256(json.dumps(dict(schema=SCHEMA, sources=meta["sources"],
-        identity=meta["identity"], scene_config=config["scene"]), sort_keys=True).encode()).hexdigest()
+    signature = dict(schema=SCHEMA, sources=meta["sources"], identity=meta["identity"], scene_config=config["scene"])
+    if "checkpoint_identity_record" in meta:
+        signature["checkpoint_identity_record"] = meta["checkpoint_identity_record"]
+    digest = hashlib.sha256(json.dumps(signature, sort_keys=True).encode()).hexdigest()
     folder = cache_root / digest
     artifact, record = folder / "playback.npz", folder / "MANIFEST.json"
     if artifact.exists() and record.exists():

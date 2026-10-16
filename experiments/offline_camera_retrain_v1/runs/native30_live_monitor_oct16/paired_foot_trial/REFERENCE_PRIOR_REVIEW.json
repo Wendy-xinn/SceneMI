@@ -1,0 +1,305 @@
+{
+  "status": "passed_cpu_reference_reproduction",
+  "checked_at": "2026-10-17T01:45:54.428279+08:00",
+  "parent_step": 24500,
+  "parent_checkpoint_sha256": "a76fd2c2c01ac1c2c7657ae7a2b0ad65236fae2ea56ea239be2e243603aa003b",
+  "CUDA_initialized": false,
+  "optimizer_updates": 0,
+  "model_inference_calls": 0,
+  "scope": "Reproduce the existing observation-only reference from four already saved parent VAL inputs; no denoiser, weights or scene cache loaded. All statistics unweighted over frames; head elevation only over available rotation frames.",
+  "definitions": {
+    "head_forward_elevation_deg": "atan2(R_head[1,2], sqrt(R_head[0,2]^2+R_head[2,2]^2)); negative means +Z forward points down",
+    "root_tilt_deg": "acos(R_root[1,1]); yaw-independent angle of root +Y to anchored +Y",
+    "foot_y": "Foot joints 10/11, metres in the existing camera-origin Y-up frame, not floor-relative clearance or mesh sole height"
+  },
+  "current_input_rows": [
+    {
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "regime": "clean",
+      "frames": 192,
+      "valid_head_rotation_frames": 192,
+      "head_forward_elevation_deg": {
+        "mean": -30.47156091100381,
+        "min": -67.77764892578125,
+        "max": 36.03997802734375
+      },
+      "reference_root_tilt_deg": {
+        "mean": 44.64576524992784,
+        "min": 9.707557678222656,
+        "max": 74.36885070800781
+      },
+      "gt_root_tilt_deg": {
+        "mean": 7.2630509768302245,
+        "min": 0.8474218845367432,
+        "max": 11.327434539794922
+      },
+      "parent_predicted_root_tilt_deg": {
+        "mean": 9.002362571035823,
+        "min": 0.508988618850708,
+        "max": 12.967716217041016
+      },
+      "reference_root_rotation_confidence": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "reference_root_position_confidence": {
+        "mean": 0.05000000074505806,
+        "min": 0.05000000074505806,
+        "max": 0.05000000074505806
+      },
+      "observed_head_rotation_confidence_valid": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "reference_root_equals_head_rotation_max_abs_on_valid": 1.1920928955078125e-07,
+      "reference_head_position_error_on_valid_mm": 4.9381468925543036e-05,
+      "reference_foot_joint_y_mean_m": -1.2001723220261435,
+      "gt_foot_joint_y_mean_m": -1.5185290109366179,
+      "reference_foot_joint_y_signed_error_mm": 318.35668891047436,
+      "reference_foot_joint_y_abs_error_mm": 320.84491026277345,
+      "parent_foot_joint_y_abs_error_mm": 27.65684388577938,
+      "gt_low_speed_foot_joint_fraction": 0.8691099476439791,
+      "gt_both_feet_low_speed_fraction": 0.7382198952879581
+    },
+    {
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "regime": "noisy",
+      "frames": 192,
+      "valid_head_rotation_frames": 192,
+      "head_forward_elevation_deg": {
+        "mean": -29.18009964035203,
+        "min": -63.6678352355957,
+        "max": 37.417076110839844
+      },
+      "reference_root_tilt_deg": {
+        "mean": 46.96132981777191,
+        "min": 15.587543487548828,
+        "max": 73.74971771240234
+      },
+      "gt_root_tilt_deg": {
+        "mean": 7.2630509768302245,
+        "min": 0.8474218845367432,
+        "max": 11.327434539794922
+      },
+      "parent_predicted_root_tilt_deg": {
+        "mean": 8.737322347859541,
+        "min": 3.591559886932373,
+        "max": 12.692879676818848
+      },
+      "reference_root_rotation_confidence": {
+        "mean": 0.5124891294787327,
+        "min": 0.491496741771698,
+        "max": 0.5218207836151123
+      },
+      "reference_root_position_confidence": {
+        "mean": 0.05000000074505806,
+        "min": 0.05000000074505806,
+        "max": 0.05000000074505806
+      },
+      "observed_head_rotation_confidence_valid": {
+        "mean": 0.5124891294787327,
+        "min": 0.491496741771698,
+        "max": 0.5218207836151123
+      },
+      "reference_root_equals_head_rotation_max_abs_on_valid": 5.960464477539063e-08,
+      "reference_head_position_error_on_valid_mm": 5.123290165257958e-05,
+      "reference_foot_joint_y_mean_m": -1.1543952164550622,
+      "gt_foot_joint_y_mean_m": -1.5185290109366179,
+      "reference_foot_joint_y_signed_error_mm": 364.13379448155564,
+      "reference_foot_joint_y_abs_error_mm": 364.6012656390667,
+      "parent_foot_joint_y_abs_error_mm": 50.64282659441233,
+      "gt_low_speed_foot_joint_fraction": 0.8691099476439791,
+      "gt_both_feet_low_speed_fraction": 0.7382198952879581
+    },
+    {
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "regime": "clean",
+      "frames": 192,
+      "valid_head_rotation_frames": 192,
+      "head_forward_elevation_deg": {
+        "mean": -54.31624366839727,
+        "min": -88.9729232788086,
+        "max": -20.218467712402344
+      },
+      "reference_root_tilt_deg": {
+        "mean": 58.96685702602068,
+        "min": 20.87040138244629,
+        "max": 101.09680938720703
+      },
+      "gt_root_tilt_deg": {
+        "mean": 21.258550831427176,
+        "min": 2.3389170169830322,
+        "max": 37.08486557006836
+      },
+      "parent_predicted_root_tilt_deg": {
+        "mean": 9.434699284533659,
+        "min": 0.6434618234634399,
+        "max": 17.03540802001953
+      },
+      "reference_root_rotation_confidence": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "reference_root_position_confidence": {
+        "mean": 0.05000000074505806,
+        "min": 0.05000000074505806,
+        "max": 0.05000000074505806
+      },
+      "observed_head_rotation_confidence_valid": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "reference_root_equals_head_rotation_max_abs_on_valid": 5.960464477539063e-08,
+      "reference_head_position_error_on_valid_mm": 5.517612858737161e-05,
+      "reference_foot_joint_y_mean_m": -0.6239907358928273,
+      "gt_foot_joint_y_mean_m": -1.0481190799425046,
+      "reference_foot_joint_y_signed_error_mm": 424.12834459294874,
+      "reference_foot_joint_y_abs_error_mm": 429.72659940520924,
+      "parent_foot_joint_y_abs_error_mm": 21.31762153779467,
+      "gt_low_speed_foot_joint_fraction": 0.7722513089005235,
+      "gt_both_feet_low_speed_fraction": 0.5706806282722513
+    },
+    {
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "regime": "noisy",
+      "frames": 192,
+      "valid_head_rotation_frames": 192,
+      "head_forward_elevation_deg": {
+        "mean": -51.00213630994161,
+        "min": -87.93557739257812,
+        "max": -15.792707443237305
+      },
+      "reference_root_tilt_deg": {
+        "mean": 58.14813313881556,
+        "min": 15.86700439453125,
+        "max": 97.56947326660156
+      },
+      "gt_root_tilt_deg": {
+        "mean": 21.258550831427176,
+        "min": 2.3389170169830322,
+        "max": 37.08486557006836
+      },
+      "parent_predicted_root_tilt_deg": {
+        "mean": 10.56179729104042,
+        "min": 3.202101707458496,
+        "max": 17.22793197631836
+      },
+      "reference_root_rotation_confidence": {
+        "mean": 0.5515841227024794,
+        "min": 0.43992966413497925,
+        "max": 0.6598731875419617
+      },
+      "reference_root_position_confidence": {
+        "mean": 0.05000000074505806,
+        "min": 0.05000000074505806,
+        "max": 0.05000000074505806
+      },
+      "observed_head_rotation_confidence_valid": {
+        "mean": 0.5515841227024794,
+        "min": 0.43992966413497925,
+        "max": 0.6598731875419617
+      },
+      "reference_root_equals_head_rotation_max_abs_on_valid": 5.960464477539063e-08,
+      "reference_head_position_error_on_valid_mm": 6.395843845282319e-05,
+      "reference_foot_joint_y_mean_m": -0.6472983144534131,
+      "gt_foot_joint_y_mean_m": -1.0481190799425046,
+      "reference_foot_joint_y_signed_error_mm": 400.8207645577689,
+      "reference_foot_joint_y_abs_error_mm": 411.00774907196563,
+      "parent_foot_joint_y_abs_error_mm": 26.169455610215664,
+      "gt_low_speed_foot_joint_fraction": 0.7722513089005235,
+      "gt_both_feet_low_speed_fraction": 0.5706806282722513
+    }
+  ],
+  "fixed_head_pitch_example": [
+    {
+      "downward_pitch_deg": 0.0,
+      "head_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_root_tilt_deg": 0.0,
+      "root_rotation_confidence": 1.0,
+      "reference_head_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_foot_joint_y_mean_m": -1.6224761009216309,
+      "foot_joint_y_rise_vs_upright_mm": 0.0
+    },
+    {
+      "downward_pitch_deg": 30.0,
+      "head_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_root_tilt_deg": 30.000001907348633,
+      "root_rotation_confidence": 1.0,
+      "reference_head_position_m": [
+        0.0,
+        1.4901161193847656e-08,
+        0.0
+      ],
+      "reference_foot_joint_y_mean_m": -1.4463487267494202,
+      "foot_joint_y_rise_vs_upright_mm": 176.1273741722107
+    },
+    {
+      "downward_pitch_deg": 60.0,
+      "head_position_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "reference_root_tilt_deg": 60.000003814697266,
+      "root_rotation_confidence": 1.0,
+      "reference_head_position_m": [
+        0.0,
+        0.0,
+        -1.4901161193847656e-08
+      ],
+      "reference_foot_joint_y_mean_m": -0.8826733529567719,
+      "foot_joint_y_rise_vs_upright_mm": 739.802747964859
+    }
+  ],
+  "findings": {
+    "root_reference_uses_full_head_rotation_when_no_torso": true,
+    "root_reference_confidence_copies_head_rotation_confidence": true,
+    "hard_ego_root_orientation_constraint": false,
+    "ego_head_anchor_translates_only": true,
+    "global_y_up_is_retained": true,
+    "global_up_vector_or_gravity_acceleration_input": false,
+    "scene_relations_have_explicit_vertical_features": true,
+    "absolute_world_height_lost_by_initial_camera_origin": true,
+    "gt_stance_mask_is_phase_sensitive": true
+  },
+  "interpretation": "Initializer bias, not proof of final-output cause: diffusion can and does correct it. Both paired-training arms share it. Changing the reference changes residual targets, query trajectories and conditioning, requiring separately controlled training; frozen-weight inference substitution is only an out-of-distribution diagnostic. GT-low-speed foot measures use GT leg/time masks and can penalize a valid phase-shifted gait; inspect bilateral amplitude/stride, foot-height/surface support and playback jointly.",
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py": "8859036ffa34ec07df79cb795ac3f43f3277e411c8ae02e0eabfc58451fc5854",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observations.py": "a400b12f5bb8e52a4334f230dab2f9fdd1baa5f19141c07f1eb4d96222d589e5",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_data.py": "effd42741d2638be22e1b9d79d801a83286a036615d5649db164a252060575a2",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_scene_relations.py": "09f207d1afc0e93e029254299f6631c7a4f24d49b1c242c69bfc69564e9b08e3",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/support_metrics.py": "adfad2b422188e4bdd29abd6f79fb9f4b58e9914503cfef8d38ae346011fcecd",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_gait_supervision_v2.py": "8fedb83245ca469e0ba2328997ac048fadedb982fbb12bc9d49c02512601718b",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data_loader.py": "65bb233dbe8853094ca16511798c711cee09ec378a47657fdf3b8edb8ffde0e5"
+  },
+  "source_files_unchanged": true,
+  "artifact_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case00_clean_physical_off.npz": "363a935cc9d13e7e39c4bb0179013937b9a00bae64496f992ae092526dcd8da4",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case00_noisy_physical_off.npz": "86175677de0c4755ead4491c684b006106cd36df6f42b73402c9034c87bb0fea",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case01_clean_physical_off.npz": "7c1023207ee4ae33421e03ad505915be895c3d234e337e0b25c77fa7efc02981",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case01_noisy_physical_off.npz": "70ea27c237d01750d742166cefdb76714197b36b5db432042dfee1868c8d665a"
+  },
+  "verifier_script_sha256": "1cf39d0415a6a5c578bf46858bdc545611a83506f69e4af12c007622f5dc2025",
+  "verifier_script_source": "from pathlib import Path\nimport datetime\nimport hashlib\nimport json\nimport sys\n\nREPO=Path('/home/wenxin/projects/SceneMI')\nsys.path.insert(0,str(REPO))\nimport numpy as np\nimport torch\ntorch.set_num_threads(2)\ntorch.set_num_interop_threads(1)\nfrom experiments.offline_camera_retrain_v1.native30_refinement import reference_from_observations\nfrom experiments.offline_camera_retrain_v1.supervision import forward_kinematics,rotation_from_6d,IDENTITY_6D\nfrom experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations\n\nBASE=REPO/'experiments/offline_camera_retrain_v1'\nOUT=BASE/'runs/native30_live_monitor_oct16/paired_foot_trial'\nEVAL=OUT/'evaluation'\nCODE_FILES=[BASE/'native30_refinement.py',BASE/'native30_model.py',BASE/'native30_observations.py',BASE/'native30_data.py',BASE/'native30_scene_relations.py',BASE/'ops/support_metrics.py',BASE/'native30_gait_supervision_v2.py',REPO.parent/'diffusion-motion-inbetweening/experiments/offline_sequence_v1/data_loader.py']\ndef sha(path):\n    return hashlib.sha256(Path(path).read_bytes()).hexdigest()\ndef angle_up(matrix):\n    return torch.rad2deg(torch.acos(matrix[...,1,1].clamp(-1,1)))\ndef avg(x):return float(torch.as_tensor(x).double().mean())\ndef stats(x):\n    x=torch.as_tensor(x).double()\n    return dict(mean=float(x.mean()),min=float(x.min()),max=float(x.max()))\ndef tensor(x):return torch.from_numpy(np.array(x,dtype=np.float32,copy=True))\ndef reference(observations,meta,rest):\n    batch=dict(trajectory=tensor(observations)[None],observation_meta=tensor(meta)[None],rest=tensor(rest)[None])\n    ref,conf=reference_from_observations(batch)\n    assert ref.device.type=='cpu' and conf.device.type=='cpu'\n    return ref,conf,batch\n\nsources_before={str(p):sha(p) for p in CODE_FILES}\ncohort=json.loads((EVAL/'COHORT.json').read_text())\nrows=[];artifact_sha={};first_rest=None\nwith torch.no_grad():\n    for case in (0,1):\n        entry=cohort['entries'][case]\n        for regime in ('clean','noisy'):\n            path=EVAL/'motions'/f'parent_case{case:02d}_{regime}_physical_off.npz'\n            artifact_sha[str(path)]=sha(path)\n            with np.load(path,allow_pickle=False) as saved:\n                obs=saved['observations'];meta=saved['observation_meta'];rest=saved['rest'];truth=saved['truth'];prediction=saved['prediction']\n            if first_rest is None:first_rest=rest.copy()\n            ref,conf,batch=reference(obs,meta,rest)\n            observed_r=rotation_from_6d(batch['trajectory'][...,3:]-batch['trajectory'].new_tensor(IDENTITY_6D))\n            valid=(batch['observation_meta'][0,:,15,1]*batch['observation_meta'][0,:,15,3])>0\n            cp=batch['observation_meta'][...,0]*batch['observation_meta'][...,2]\n            assert bool((cp[:,:,:15]==0).all() and (cp[:,:,16:]==0).all())\n            head_r=observed_r[0,:,15]\n            pitch=torch.rad2deg(torch.atan2(head_r[:,1,2],head_r[:,(0,2),2].norm(dim=-1)))\n            ref_r=global_rotations(ref)[0,:,0]\n            gt=tensor(truth)[None];pred=tensor(prediction)[None]\n            gt_r=global_rotations(gt)[0,:,0];pred_r=global_rotations(pred)[0,:,0]\n            jr=forward_kinematics(ref,batch['rest'])[0];jg=forward_kinematics(gt,batch['rest'])[0]\n            jp=forward_kinematics(pred,batch['rest'])[0]\n            rows.append(dict(case=case,sequence_id=entry['sequence_id'],regime=regime,frames=len(obs),valid_head_rotation_frames=int(valid.sum()),\n                head_forward_elevation_deg=stats(pitch[valid]),\n                reference_root_tilt_deg=stats(angle_up(ref_r)),gt_root_tilt_deg=stats(angle_up(gt_r)),parent_predicted_root_tilt_deg=stats(angle_up(pred_r)),\n                reference_root_rotation_confidence=stats(conf[0,:,0,1]),reference_root_position_confidence=stats(conf[0,:,0,0]),\n                observed_head_rotation_confidence_valid=stats(batch['observation_meta'][0,valid,15,3]),\n                reference_root_equals_head_rotation_max_abs_on_valid=float((ref_r[valid]-head_r[valid]).abs().max()),\n                reference_head_position_error_on_valid_mm=avg((jr[valid,15]-batch['trajectory'][0,valid,15,:3]*2).norm(dim=-1))*1000,\n                reference_foot_joint_y_mean_m=avg(jr[:,(10,11),1]),gt_foot_joint_y_mean_m=avg(jg[:,(10,11),1]),\n                reference_foot_joint_y_signed_error_mm=avg(jr[:,(10,11),1]-jg[:,(10,11),1])*1000,\n                reference_foot_joint_y_abs_error_mm=avg((jr[:,(10,11),1]-jg[:,(10,11),1]).abs())*1000,\n                parent_foot_joint_y_abs_error_mm=avg((jp[:,(10,11),1]-jg[:,(10,11),1]).abs())*1000,\n                gt_low_speed_foot_joint_fraction=avg((jg[1:,(10,11)]-jg[:-1,(10,11)]).norm(dim=-1)*30<.2),\n                gt_both_feet_low_speed_fraction=avg(((jg[1:,(10,11)]-jg[:-1,(10,11)]).norm(dim=-1)*30<.2).all(-1))))\n\n    # Observed anatomical head at one fixed position, changing only pitch.\n    # Positive Rx tips its +Z forward down; the displayed elevation is negative.\n    pitches=[0.,30.,60.]\n    obs=np.zeros((3,22,9),np.float32);meta=np.zeros((3,22,5),np.float32);meta[...,4]=1\n    meta[:,15,:4]=1\n    for t,degrees in enumerate(pitches):\n        a=np.deg2rad(degrees);c,s=np.cos(a),np.sin(a)\n        rotation=np.array([[1,0,0],[0,c,-s],[0,s,c]],np.float32)\n        obs[t,15,3:]=np.r_[rotation[:,0],rotation[:,1]]\n    ref,conf,batch=reference(obs,meta,first_rest)\n    jr=forward_kinematics(ref,batch['rest'])[0]\n    rotations=global_rotations(ref)[0,:,0]\n    toy=[]\n    for t,degrees in enumerate(pitches):\n        toy.append(dict(downward_pitch_deg=degrees,head_position_m=[0.,0.,0.],\n            reference_root_tilt_deg=float(angle_up(rotations[t])),\n            root_rotation_confidence=float(conf[0,t,0,1]),\n            reference_head_position_m=jr[t,15].tolist(),\n            reference_foot_joint_y_mean_m=avg(jr[t,(10,11),1]),\n            foot_joint_y_rise_vs_upright_mm=avg(jr[t,(10,11),1]-jr[0,(10,11),1])*1000))\n\nsources_after={str(p):sha(p) for p in CODE_FILES}\nassert sources_before==sources_after\nassert not torch.cuda.is_initialized()\nresult=dict(status='passed_cpu_reference_reproduction',checked_at=datetime.datetime.now().astimezone().isoformat(),\n    parent_step=24500,parent_checkpoint_sha256=json.loads((OUT/'PARENT.json').read_text())['checkpoint_sha256'],CUDA_initialized=False,optimizer_updates=0,model_inference_calls=0,\n    scope='Reproduce the existing observation-only reference from four already saved parent VAL inputs; no denoiser, weights or scene cache loaded. All statistics unweighted over frames; head elevation only over available rotation frames.',\n    definitions=dict(head_forward_elevation_deg='atan2(R_head[1,2], sqrt(R_head[0,2]^2+R_head[2,2]^2)); negative means +Z forward points down',root_tilt_deg='acos(R_root[1,1]); yaw-independent angle of root +Y to anchored +Y',foot_y='Foot joints 10/11, metres in the existing camera-origin Y-up frame, not floor-relative clearance or mesh sole height'),\n    current_input_rows=rows,fixed_head_pitch_example=toy,\n    findings=dict(root_reference_uses_full_head_rotation_when_no_torso=True,root_reference_confidence_copies_head_rotation_confidence=True,\n        hard_ego_root_orientation_constraint=False,ego_head_anchor_translates_only=True,global_y_up_is_retained=True,\n        global_up_vector_or_gravity_acceleration_input=False,scene_relations_have_explicit_vertical_features=True,\n        absolute_world_height_lost_by_initial_camera_origin=True,\n        gt_stance_mask_is_phase_sensitive=True),\n    interpretation='Initializer bias, not proof of final-output cause: diffusion can and does correct it. Both paired-training arms share it. Changing the reference changes residual targets, query trajectories and conditioning, requiring separately controlled training; frozen-weight inference substitution is only an out-of-distribution diagnostic. GT-low-speed foot measures use GT leg/time masks and can penalize a valid phase-shifted gait; inspect bilateral amplitude/stride, foot-height/surface support and playback jointly.',\n    source_sha256=sources_before,source_files_unchanged=True,artifact_sha256=artifact_sha,\n    verifier_script_sha256=sha(__file__),verifier_script_source=Path(__file__).read_text())\n(OUT/'REFERENCE_PRIOR_REVIEW.json').write_text(json.dumps(result,indent=2,ensure_ascii=False,allow_nan=False)+'\\n')\nlines=['# Head-only reference先验：纯CPU复核','',\n    '**存在具体先验偏置，但不能据此认定最终输出由它导致。** 用本次24.5k父模型已保存的TRUMANS／RICH椅子clean/noisy输入，直接运行原`reference_from_observations`，无扩散推理、训练或CUDA。','',\n    '`native30_refinement.py:73–89`在head-only时无法拟合躯干，直接令root旋转等于头完整旋转，保留pitch/roll，且root旋转confidence复制头confidence。平移为`p_root=p_head−R_head(rest_head−rest_root)`；其余无观测骨骼继承旋转，得到绕头倾斜的静止身体。','',\n    '|输入|头前向仰角°¹|reference root倾角°|GT root倾角°|root旋转置信度|reference足关节Y−GT mm|父预测root倾角°|',\n    '|---|---:|---:|---:|---:|---:|---:|']\nfor r in rows:\n    label=('TRU' if r['case']==0 else 'RICH椅子')+'/'+r['regime']\n    lines.append(f\"|{label}|{r['head_forward_elevation_deg']['mean']:.2f}|{r['reference_root_tilt_deg']['mean']:.2f}|{r['gt_root_tilt_deg']['mean']:.2f}|{r['reference_root_rotation_confidence']['mean']:.3f}|{r['reference_foot_joint_y_signed_error_mm']:+.1f}|{r['parent_predicted_root_tilt_deg']['mean']:.2f}|\")\nlines+=['','¹负值表示头前向向下；倾角是root +Y相对全局+Y。脚高为足关节Y与GT的差，不能当作离地间隙或脚底高度。',\n    '', '**固定头位置，仅改变向下pitch：**']\nlines+=['','|向下pitch°|reference root倾角°|足关节平均Y m|相对0°足关节上升mm|root置信度|','|---:|---:|---:|---:|---:|']\nfor r in toy:lines.append(f\"|{r['downward_pitch_deg']:.0f}|{r['reference_root_tilt_deg']:.2f}|{r['reference_foot_joint_y_mean_m']:.3f}|{r['foot_joint_y_rise_vs_upright_mm']:.1f}|{r['root_rotation_confidence']:.1f}|\")\nlines+=['',\n    '**Y-up存在，动力学重力项没有显式输入。** `anchor_rotation`和yaw增广均只绕Y；头／关节位置旋转保留Y方向；relation特征直接包含法线Y、垂直差和水平距离（`native30_scene_relations.py:114–118`）。未提供单独gravity/up向量、9.8m/s²、质心／支撑多边形。初始相机位置被整体减去，绝对世界高度未保留，地面相对高度依赖可见场景。',\n    '',\n    '**对本次实验的含义：** ego soft-anchor只平移，不硬转root（`native30_refinement.py:144–165`）；父预测已经能大幅抵消reference倾斜。ON/OFF两臂共用此先验，物理消融阴性不能证明架构无效。修改reference会改变残差目标、查询轨迹与条件，须另做同起点训练验证；直接换给冻结权重属于分布变化诊断。',\n    '',\n    '**相位边界：** 当前GT低足速指标按GT每只脚／每时刻<0.2m/s取mask（`support_metrics.py:139–150`），头轨迹不能唯一确定左右脚相位，可行的错相步态也可能受罚；这不能解释所有静止片段持续漂移。不能仅凭该数下降判胜；结合双足幅度／stride、脚高／同表面支撑和播放检查，防止冻结脚步。统计、源码／输入SHA和完整复核脚本见同名JSON。','']\n(OUT/'REFERENCE_PRIOR_REVIEW_zh.md').write_text('\\n'.join(lines))\nprint(json.dumps({k:result[k] for k in ('status','CUDA_initialized','current_input_rows','fixed_head_pitch_example')},indent=2,ensure_ascii=False))\n"
+}

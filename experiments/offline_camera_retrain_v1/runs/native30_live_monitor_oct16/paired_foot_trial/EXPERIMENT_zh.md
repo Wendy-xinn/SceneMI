@@ -10,6 +10,8 @@
 
 同时看World/PA、头部误差、脚水平/垂直速度、低速期脚高、根高、姿态高度、双足运动幅度/stride/时序、同一可靠可见局部表面的GT校准偏差。不能把脚不动或强行压低root当作修复；稀疏表面锚点比例包含合法摆脚，不等于全mesh悬空/穿模率。
 
-运行状态见STATUS.json及两臂STATUS.json。持久后续进程按PIPELINE_LAUNCH.json记录的代码，在训练审计通过后自动完成统一验证与独立CPU复算；报告写evaluation/REPORT_zh.md，补充脚部证据写evaluation/CPU_RECHECK_all.json。不自动替换主线或启动exo。
+运行状态见STATUS.json及两臂STATUS.json。持久后续进程按PIPELINE_LAUNCH.json记录的代码，在训练审计通过后自动完成统一验证与独立CPU复算；报告写evaluation/REPORT_zh.md，补充脚部证据写evaluation/CPU_RECHECK_all.json。完成后自动准备TRUMANS走动、RICH椅子附近、EgoBody走动三案例×三模型的九项Viser菜单，使用显式clean/noisy路径与checkpoint step/SHA核对，CPU服务端口8802（空闲时）。不自动替换主线或启动exo。
 
 已确认control有真实有限更新，学习率符合原计划；原365份源码、父checkpoint和主训练保持不变。父模型38例已完成并独立CPU复算通过。两臂训练及最终效果结论仍在等待。
+
+纯CPU复现了head-only reference继承头俯仰的先验偏置，父模型已经能显著抵消它。代码与数值见REFERENCE_PRIOR_REVIEW_zh.md；两臂共用此输入，另行验证该先验时须控制残差参数化变化。

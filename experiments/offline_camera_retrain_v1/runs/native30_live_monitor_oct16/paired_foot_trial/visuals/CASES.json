@@ -1,0 +1,202 @@
+{
+  "schema": "paired-foot-visual-input-v1",
+  "status": "selection_predeclared_waiting_for_completed_trial_evaluations",
+  "config": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+  "source_evaluation_plan": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/PLAN.json",
+  "source_evaluation_plan_sha256": "1ec84504030a5a05b0919f234d5c97894bbf0abce41ad37125ce73fa964dd195",
+  "cohort_sha256": "bbadc5772b835a7f3aa46fa54416b54f16b97ae6236b599b99450a81ac77cb99",
+  "cases": [
+    {
+      "label": "TRUMANS走动 · 父模型24.5k · 推理物理OFF",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case00_clean_physical_off.npz",
+      "archives": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case00_clean_physical_off.npz",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case00_noisy_physical_off.npz"
+      },
+      "step": 24500,
+      "checkpoint_record": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/parent.json",
+      "model": "parent",
+      "case": 0,
+      "dataset": "trumans",
+      "sequence_id": "2023-02-17@10-53-45",
+      "start": 768,
+      "case_seed": 2916409010,
+      "guidance": "off",
+      "selection_reason": "预先固定的核心走动/失败窗口；三模型同输入、seed、场景和DDIM20，推理均关闭独立物理修正；蓝色GT、紫色预测，无显示对齐或贴地。父模型24.5k与两臂各1000次更新的25.5k比较。",
+      "checkpoint_identity": {
+        "step": 24500,
+        "checkpoint_sha256": "a76fd2c2c01ac1c2c7657ae7a2b0ad65236fae2ea56ea239be2e243603aa003b",
+        "model_tensor_sha256": "4df81f0aaf64acb80c28fe4c645c305e27df2752f139e91b2f499e59276ebced"
+      }
+    },
+    {
+      "label": "TRUMANS走动 · 物理ON短训25.5k · 推理物理OFF",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/control_case00_clean_physical_off.npz",
+      "archives": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/control_case00_clean_physical_off.npz",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/control_case00_noisy_physical_off.npz"
+      },
+      "step": 25500,
+      "checkpoint_record": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/control.json",
+      "model": "control",
+      "case": 0,
+      "dataset": "trumans",
+      "sequence_id": "2023-02-17@10-53-45",
+      "start": 768,
+      "case_seed": 2916409010,
+      "guidance": "off",
+      "selection_reason": "预先固定的核心走动/失败窗口；三模型同输入、seed、场景和DDIM20，推理均关闭独立物理修正；蓝色GT、紫色预测，无显示对齐或贴地。父模型24.5k与两臂各1000次更新的25.5k比较。"
+    },
+    {
+      "label": "TRUMANS走动 · 物理OFF短训25.5k · 推理物理OFF",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/no_physics_case00_clean_physical_off.npz",
+      "archives": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/no_physics_case00_clean_physical_off.npz",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/no_physics_case00_noisy_physical_off.npz"
+      },
+      "step": 25500,
+      "checkpoint_record": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/no_physics.json",
+      "model": "no_physics",
+      "case": 0,
+      "dataset": "trumans",
+      "sequence_id": "2023-02-17@10-53-45",
+      "start": 768,
+      "case_seed": 2916409010,
+      "guidance": "off",
+      "selection_reason": "预先固定的核心走动/失败窗口；三模型同输入、seed、场景和DDIM20，推理均关闭独立物理修正；蓝色GT、紫色预测，无显示对齐或贴地。父模型24.5k与两臂各1000次更新的25.5k比较。"
+    },
+    {
+      "label": "RICH椅子附近 · 父模型24.5k · 推理物理OFF",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case01_clean_physical_off.npz",
+      "archives": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case01_clean_physical_off.npz",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case01_noisy_physical_off.npz"
+      },
+      "step": 24500,
+      "checkpoint_record": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/parent.json",
+      "model": "parent",
+      "case": 1,
+      "dataset": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "start": 384,
+      "case_seed": 303671090,
+      "guidance": "off",
+      "selection_reason": "预先固定的核心走动/失败窗口；三模型同输入、seed、场景和DDIM20，推理均关闭独立物理修正；蓝色GT、紫色预测，无显示对齐或贴地。父模型24.5k与两臂各1000次更新的25.5k比较。",
+      "checkpoint_identity": {
+        "step": 24500,
+        "checkpoint_sha256": "a76fd2c2c01ac1c2c7657ae7a2b0ad65236fae2ea56ea239be2e243603aa003b",
+        "model_tensor_sha256": "4df81f0aaf64acb80c28fe4c645c305e27df2752f139e91b2f499e59276ebced"
+      }
+    },
+    {
+      "label": "RICH椅子附近 · 物理ON短训25.5k · 推理物理OFF",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/control_case01_clean_physical_off.npz",
+      "archives": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/control_case01_clean_physical_off.npz",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/control_case01_noisy_physical_off.npz"
+      },
+      "step": 25500,
+      "checkpoint_record": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/control.json",
+      "model": "control",
+      "case": 1,
+      "dataset": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "start": 384,
+      "case_seed": 303671090,
+      "guidance": "off",
+      "selection_reason": "预先固定的核心走动/失败窗口；三模型同输入、seed、场景和DDIM20，推理均关闭独立物理修正；蓝色GT、紫色预测，无显示对齐或贴地。父模型24.5k与两臂各1000次更新的25.5k比较。"
+    },
+    {
+      "label": "RICH椅子附近 · 物理OFF短训25.5k · 推理物理OFF",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/no_physics_case01_clean_physical_off.npz",
+      "archives": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/no_physics_case01_clean_physical_off.npz",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/no_physics_case01_noisy_physical_off.npz"
+      },
+      "step": 25500,
+      "checkpoint_record": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/no_physics.json",
+      "model": "no_physics",
+      "case": 1,
+      "dataset": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "start": 384,
+      "case_seed": 303671090,
+      "guidance": "off",
+      "selection_reason": "预先固定的核心走动/失败窗口；三模型同输入、seed、场景和DDIM20，推理均关闭独立物理修正；蓝色GT、紫色预测，无显示对齐或贴地。父模型24.5k与两臂各1000次更新的25.5k比较。"
+    },
+    {
+      "label": "EgoBody走动 · 父模型24.5k · 推理物理OFF",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case02_clean_physical_off.npz",
+      "archives": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case02_clean_physical_off.npz",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case02_noisy_physical_off.npz"
+      },
+      "step": 24500,
+      "checkpoint_record": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/parent.json",
+      "model": "parent",
+      "case": 2,
+      "dataset": "egobody",
+      "sequence_id": "recording_20211002_S03_S18_04_interactee_3601-5401",
+      "start": 832,
+      "case_seed": 2026101652,
+      "guidance": "off",
+      "selection_reason": "预先固定的核心走动/失败窗口；三模型同输入、seed、场景和DDIM20，推理均关闭独立物理修正；蓝色GT、紫色预测，无显示对齐或贴地。父模型24.5k与两臂各1000次更新的25.5k比较。",
+      "checkpoint_identity": {
+        "step": 24500,
+        "checkpoint_sha256": "a76fd2c2c01ac1c2c7657ae7a2b0ad65236fae2ea56ea239be2e243603aa003b",
+        "model_tensor_sha256": "4df81f0aaf64acb80c28fe4c645c305e27df2752f139e91b2f499e59276ebced"
+      }
+    },
+    {
+      "label": "EgoBody走动 · 物理ON短训25.5k · 推理物理OFF",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/control_case02_clean_physical_off.npz",
+      "archives": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/control_case02_clean_physical_off.npz",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/control_case02_noisy_physical_off.npz"
+      },
+      "step": 25500,
+      "checkpoint_record": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/control.json",
+      "model": "control",
+      "case": 2,
+      "dataset": "egobody",
+      "sequence_id": "recording_20211002_S03_S18_04_interactee_3601-5401",
+      "start": 832,
+      "case_seed": 2026101652,
+      "guidance": "off",
+      "selection_reason": "预先固定的核心走动/失败窗口；三模型同输入、seed、场景和DDIM20，推理均关闭独立物理修正；蓝色GT、紫色预测，无显示对齐或贴地。父模型24.5k与两臂各1000次更新的25.5k比较。"
+    },
+    {
+      "label": "EgoBody走动 · 物理OFF短训25.5k · 推理物理OFF",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/no_physics_case02_clean_physical_off.npz",
+      "archives": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/no_physics_case02_clean_physical_off.npz",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/no_physics_case02_noisy_physical_off.npz"
+      },
+      "step": 25500,
+      "checkpoint_record": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/checkpoints/no_physics.json",
+      "model": "no_physics",
+      "case": 2,
+      "dataset": "egobody",
+      "sequence_id": "recording_20211002_S03_S18_04_interactee_3601-5401",
+      "start": 832,
+      "case_seed": 2026101652,
+      "guidance": "off",
+      "selection_reason": "预先固定的核心走动/失败窗口；三模型同输入、seed、场景和DDIM20，推理均关闭独立物理修正；蓝色GT、紫色预测，无显示对齐或贴地。父模型24.5k与两臂各1000次更新的25.5k比较。"
+    }
+  ],
+  "model_weights_loaded": false,
+  "display_only": true,
+  "prepared_mesh_cache_exists": false,
+  "viewer_compatibility": {
+    "checked_source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_viewer.py",
+    "checked_source_sha256": "f41879c20a2c2681f785af268df8fb6d58e14732a038ca450607f887d4289db1",
+    "raw_archives_directly_supported": true,
+    "required_existing_viewer_extension": [],
+    "existing_code_unchanged": false,
+    "implemented_source_sha256": "ee45c31771db58faf2a54668e0699d7b6cd63e8d9d89e31f3891cada5978620a",
+    "loader_check": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/visuals/VIEWER_LOADER_CHECK.json",
+    "schema_conversion_required": false
+  },
+  "no_checkpoint_weights_required_for_viewing": true,
+  "identity_protocol": "Each prediction archive checkpoint_sha256 must match its immutable evaluation/checkpoints/model.json; that record supplies the actual step, which must match the requested menu step."
+}

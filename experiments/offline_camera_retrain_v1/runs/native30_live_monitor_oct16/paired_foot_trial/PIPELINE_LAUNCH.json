@@ -1,8 +1,74 @@
 {
-  "created_at": "2026-10-17T01:31:55.447343+08:00",
-  "pid": 213874,
-  "source": "import json,os,subprocess,sys,time,shutil,datetime\nfrom pathlib import Path\nout=Path(sys.argv[1]); os.nice(10)\ndef write(value):\n value['checked_at']=datetime.datetime.now().astimezone().isoformat()\n p=out/'PIPELINE_STATUS.json'; t=p.with_suffix('.tmp');t.write_text(json.dumps(value,indent=2)+'\\n');t.replace(p)\ndef read(path):return json.loads(path.read_text())\ntry:\n while True:\n  state=read(out/'STATUS.json')\n  if state['status'] in ('training_completed_evaluation_pending','evaluating'):break\n  if state['status']=='failed':raise RuntimeError('Training failed; no evaluation or promotion')\n  write(dict(status='waiting_for_matched_training',training=state,pid=os.getpid()))\n  coordinator=read(out/'LAUNCH.json')['pid'];os.kill(coordinator,0)\n  time.sleep(20)\n state=dict(status='evaluating',checked_at=datetime.datetime.now().astimezone().isoformat(),main_training_modified=False);(out/'STATUS.json').write_text(json.dumps(state,indent=2)+'\\n')\n commands=[\n  [sys.executable,'-m','experiments.offline_camera_retrain_v1.ops','foot-trial','audit','--out',str(out)],\n  [sys.executable,'-u','-m','experiments.offline_camera_retrain_v1.ops.foot_trial_evaluation','--out',str(out/'evaluation'),'--models',str(out/'EVALUATION_MODELS.json'),'--memory-fraction','.20'],\n  [sys.executable,'-u','-m','experiments.offline_camera_retrain_v1.ops.foot_trial_recheck','--out',str(out/'evaluation'),'--models','parent','control','no_physics']]\n for index,command in enumerate(commands):\n  write(dict(status='running',stage=index,command=command,pid=os.getpid()))\n  subprocess.run(command,check=True)\n result=dict(status='completed',main_training_modified=False,automatic_promotion=False,free_disk_after_bytes=shutil.disk_usage(out).free,report=str(out/'evaluation/REPORT_zh.md'),cpu_recheck=str(out/'evaluation/CPU_RECHECK_all.json'));write(result);(out/'STATUS.json').write_text(json.dumps(result,indent=2)+'\\n')\nexcept BaseException as exc:\n write(dict(status='failed',error=repr(exc),pid=os.getpid()))\n raise\n",
-  "source_sha256": "8f70372db70a5f66823625486feebca41417d8e97cdedd3b65ed1a02814460b7",
-  "purpose": "Wait for both1000-step forks; audit, complete paired evaluation, independently recheck CPU metrics; never modify main or promote candidate",
-  "previous_waiter_pid": 213738
+  "created_at": "2026-10-17T01:44:33.524556+08:00",
+  "previous_waiter_pids": [
+    213874,
+    213738
+  ],
+  "source": "import datetime,hashlib,json,os,shutil,subprocess,sys,time\nfrom pathlib import Path\nout=Path(sys.argv[1]);os.nice(10)\ndef read(path):return json.loads(path.read_text())\ndef put(path,value):\n value['checked_at']=datetime.datetime.now().astimezone().isoformat()\n temp=path.with_name(path.name+'.pipeline.tmp');temp.write_text(json.dumps(value,indent=2)+'\\n');temp.replace(path)\ndef status(value,overall=False):\n put(out/'PIPELINE_STATUS.json',value)\n if overall:put(out/'STATUS.json',dict(value))\nstage='waiting'\ntry:\n while True:\n  state=read(out/'STATUS.json')\n  if state['status'] in ('training_completed_evaluation_pending','evaluating'):break\n  if state['status']=='failed':raise RuntimeError('Training failed; no evaluation or promotion')\n  status(dict(status='waiting_for_matched_training',training=state,pid=os.getpid()))\n  os.kill(read(out/'LAUNCH.json')['pid'],0);time.sleep(20)\n status(dict(status='evaluating',main_training_modified=False,pid=os.getpid()),True)\n commands=read(out/'PIPELINE_LAUNCH.json')['commands']\n for stage,command in enumerate(commands):\n  status(dict(status='running',stage=stage,command=command,pid=os.getpid()))\n  subprocess.run(command,check=True)\n server=None\n # Visualization is a durable CPU service. Keep prior viewers running.\n try:\n  import socket\n  with socket.socket() as probe:probe.bind(('127.0.0.1',8802))\n except OSError:\n  server=dict(status='not_started_port_in_use',port=8802)\n else:\n  command=read(out/'PIPELINE_LAUNCH.json')['viewer_command']\n  with (out/'visuals/server.log').open('a') as log:\n   process=subprocess.Popen(command,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)\n  for _ in range(40):\n   if process.poll() is not None:raise RuntimeError('Viewer exited: '+str(process.returncode))\n   record=out/'visuals/SERVER.json'\n   if record.exists() and read(record).get('pid')==process.pid:\n    server=read(record);break\n   time.sleep(1)\n  if server is None:raise RuntimeError('Viewer readiness timeout')\n result=dict(status='completed',main_training_modified=False,automatic_promotion=False,\n  free_disk_after_bytes=shutil.disk_usage(out).free,report=str(out/'evaluation/REPORT_zh.md'),\n  cpu_recheck=str(out/'evaluation/CPU_RECHECK_all.json'),visualization=server)\n status(result,True)\nexcept BaseException as exc:\n status(dict(status='failed',stage=stage,error=repr(exc),pid=os.getpid()),True)\n raise\n",
+  "source_sha256": "f29884519d550381c4c7b83ce387a7297f5d368fa2bf23ddd156a59870ecd228",
+  "commands": [
+    [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops",
+      "foot-trial",
+      "audit",
+      "--out",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial"
+    ],
+    [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops.foot_trial_evaluation",
+      "--out",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation",
+      "--models",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/EVALUATION_MODELS.json",
+      "--memory-fraction",
+      ".20"
+    ],
+    [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops.foot_trial_recheck",
+      "--out",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation",
+      "--models",
+      "parent",
+      "control",
+      "no_physics"
+    ],
+    [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops",
+      "view",
+      "--prepare-only",
+      "--manifest",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/visuals/CASES.json",
+      "--config",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+      "--cache-root",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/visuals/cache"
+    ]
+  ],
+  "viewer_command": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops",
+    "view",
+    "--manifest",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/visuals/PREPARED_CASES.json",
+    "--config",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+    "--cache-root",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/visuals/cache",
+    "--port",
+    "8802"
+  ],
+  "purpose": "Wait for matched1000-step forks; audit, finish paired evaluation, independently recheck CPU metrics, prepare9 paired3D menus and start CPU viewer; never modify main or promote candidate",
+  "pid": 215188
 }
