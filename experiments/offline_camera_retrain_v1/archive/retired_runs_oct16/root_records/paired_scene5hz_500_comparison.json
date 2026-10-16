@@ -1,0 +1,284 @@
+{
+  "pairing": "same seed, sequence order, lengths, diffusion noise and control masks",
+  "final_rng_state_match": {
+    "cpu_torch": true,
+    "cuda": true,
+    "numpy": true,
+    "data": true,
+    "condition": true,
+    "source_hash": true
+  },
+  "steps": 500,
+  "sampling_config": {
+    "length": 128,
+    "ddim_steps": 20,
+    "samples_per_group": 4,
+    "groups": [
+      "trumans",
+      "camera_wearer",
+      "interactee"
+    ]
+  },
+  "fixed_timestep_validation": {
+    "fk_mpjpe_cm": {
+      "scene": 50.887532234191895,
+      "no_scene": 48.889084021250405,
+      "scene_minus_no_scene": 1.99844821294149
+    },
+    "head_error_cm": {
+      "scene": 48.91830356915792,
+      "no_scene": 46.40544331073761,
+      "scene_minus_no_scene": 2.512860258420311
+    },
+    "foot_sliding_cm_per_frame": {
+      "scene": 0.3202653390665849,
+      "no_scene": 0.38136332233746845,
+      "scene_minus_no_scene": -0.06109798327088356
+    }
+  },
+  "ddim_primary_equal_group_mean": {
+    "fk_mpjpe_cm": {
+      "scene": 47.94332162539164,
+      "no_scene": 48.306165059407554,
+      "scene_minus_no_scene": -0.36284343401591457
+    },
+    "head_error_cm": {
+      "scene": 47.19906107584635,
+      "no_scene": 48.05887222290039,
+      "scene_minus_no_scene": -0.8598111470540388
+    },
+    "truth_stance_foot_slide_cm_per_frame": {
+      "scene": 0.16986531019210815,
+      "no_scene": 0.1786812370022138,
+      "scene_minus_no_scene": -0.008815926810105651
+    },
+    "mean_joint_speed_m_per_frame": {
+      "scene": 0.0022699658293277025,
+      "no_scene": 0.0018954459422578414,
+      "scene_minus_no_scene": 0.00037451988706986117
+    },
+    "mean_joint_acceleration_m_per_frame2": {
+      "scene": 0.002609517852154871,
+      "no_scene": 0.001757795544108376,
+      "scene_minus_no_scene": 0.0008517223080464951
+    },
+    "contact_coverage": {
+      "scene": 0.2926509181658427,
+      "no_scene": 0.2844488173723221,
+      "scene_minus_no_scene": 0.008202100793520628
+    },
+    "contact_slide_m_per_frame": {
+      "scene": 0.0005645634664688259,
+      "no_scene": 0.00047063021338544786,
+      "scene_minus_no_scene": 9.393325308337808e-05
+    },
+    "support_floating_m": {
+      "scene": 0.030118413919505354,
+      "no_scene": 0.03432737055118196,
+      "scene_minus_no_scene": -0.004208956631676603
+    },
+    "support_penetration_m": {
+      "scene": 0.09446134526903431,
+      "no_scene": 0.0922791757620871,
+      "scene_minus_no_scene": 0.002182169506947204
+    }
+  },
+  "ddim_ground_truth_proxy_equal_group_mean": {
+    "mean_joint_speed_m_per_frame": 0.011161681051210811,
+    "mean_joint_acceleration_m_per_frame2": 0.003903469226012627,
+    "contact_coverage": 0.6496063023805618,
+    "contact_slide_m_per_frame": 0.0030548200011253357,
+    "support_floating_m": 0.003012318047694862,
+    "support_penetration_m": 0.00022246618755161762
+  },
+  "within_scene_checkpoint_ablation": {
+    "fk_mpjpe_cm": {
+      "with_scene": 47.94332162539164,
+      "scene_disabled": 47.93280975023905,
+      "with_minus_disabled": 0.01051187515258789
+    },
+    "head_error_cm": {
+      "with_scene": 47.19906107584635,
+      "scene_disabled": 47.18921136856079,
+      "with_minus_disabled": 0.009849707285560783
+    },
+    "truth_stance_foot_slide_cm_per_frame": {
+      "with_scene": 0.16986531019210815,
+      "scene_disabled": 0.16806010405222574,
+      "with_minus_disabled": 0.0018052061398824149
+    },
+    "mean_joint_speed_m_per_frame": {
+      "with_scene": 0.0022699658293277025,
+      "scene_disabled": 0.002256993786431849,
+      "with_minus_disabled": 1.297204289585352e-05
+    },
+    "mean_joint_acceleration_m_per_frame2": {
+      "with_scene": 0.002609517852154871,
+      "scene_disabled": 0.00253919519794484,
+      "with_minus_disabled": 7.032265421003103e-05
+    },
+    "contact_coverage": {
+      "with_scene": 0.2926509181658427,
+      "scene_disabled": 0.2926509181658427,
+      "with_minus_disabled": 0.0
+    },
+    "contact_slide_m_per_frame": {
+      "with_scene": 0.0005645634664688259,
+      "scene_disabled": 0.0005709790178419402,
+      "with_minus_disabled": -6.415551373114225e-06
+    },
+    "support_floating_m": {
+      "with_scene": 0.030118413919505354,
+      "scene_disabled": 0.029935586576660473,
+      "with_minus_disabled": 0.00018282734284488095
+    },
+    "support_penetration_m": {
+      "with_scene": 0.09446134526903431,
+      "scene_disabled": 0.09454200882464647,
+      "with_minus_disabled": -8.06635556121621e-05
+    }
+  },
+  "ddim_primary_per_group": {
+    "trumans": {
+      "fk_mpjpe_cm": {
+        "scene": 86.1671998500824,
+        "no_scene": 86.6798005104065,
+        "scene_minus_no_scene": -0.5126006603240967
+      },
+      "head_error_cm": {
+        "scene": 89.64955949783325,
+        "no_scene": 90.71067523956299,
+        "scene_minus_no_scene": -1.0611157417297363
+      },
+      "truth_stance_foot_slide_cm_per_frame": {
+        "scene": 0.1643020324409008,
+        "no_scene": 0.15118886157870293,
+        "scene_minus_no_scene": 0.013113170862197876
+      },
+      "mean_joint_speed_m_per_frame": {
+        "scene": 0.002227222139481455,
+        "no_scene": 0.001484068896388635,
+        "scene_minus_no_scene": 0.00074315324309282
+      },
+      "mean_joint_acceleration_m_per_frame2": {
+        "scene": 0.0025747233303263783,
+        "no_scene": 0.0016373538528569043,
+        "scene_minus_no_scene": 0.0009373694774694741
+      },
+      "contact_coverage": {
+        "scene": 0.38484251499176025,
+        "no_scene": 0.3897637724876404,
+        "scene_minus_no_scene": -0.004921257495880127
+      },
+      "contact_slide_m_per_frame": {
+        "scene": 0.0009307338623329997,
+        "no_scene": 0.0007035911548882723,
+        "scene_minus_no_scene": 0.00022714270744472742
+      },
+      "support_floating_m": {
+        "scene": 0.0,
+        "no_scene": 0.0,
+        "scene_minus_no_scene": 0.0
+      },
+      "support_penetration_m": {
+        "scene": 0.1714800950139761,
+        "no_scene": 0.1670812526717782,
+        "scene_minus_no_scene": 0.004398842342197895
+      }
+    },
+    "camera_wearer": {
+      "fk_mpjpe_cm": {
+        "scene": 23.611443042755127,
+        "no_scene": 24.333160877227783,
+        "scene_minus_no_scene": -0.7217178344726562
+      },
+      "head_error_cm": {
+        "scene": 20.398223400115967,
+        "no_scene": 21.532836437225342,
+        "scene_minus_no_scene": -1.134613037109375
+      },
+      "truth_stance_foot_slide_cm_per_frame": {
+        "scene": 0.16971014067530632,
+        "no_scene": 0.23259173706173897,
+        "scene_minus_no_scene": -0.06288159638643265
+      },
+      "mean_joint_speed_m_per_frame": {
+        "scene": 0.0022985073155723512,
+        "no_scene": 0.002681963116629049,
+        "scene_minus_no_scene": -0.00038345580105669796
+      },
+      "mean_joint_acceleration_m_per_frame2": {
+        "scene": 0.002637619851157069,
+        "no_scene": 0.0020016308408230543,
+        "scene_minus_no_scene": 0.0006359890103340149
+      },
+      "contact_coverage": {
+        "scene": 0.24311023950576782,
+        "no_scene": 0.21358267962932587,
+        "scene_minus_no_scene": 0.029527559876441956
+      },
+      "contact_slide_m_per_frame": {
+        "scene": 0.0003420400316826999,
+        "no_scene": 0.0003456744598224759,
+        "scene_minus_no_scene": -3.6344281397759914e-06
+      },
+      "support_floating_m": {
+        "scene": 0.05948883396922611,
+        "no_scene": 0.07004001681343652,
+        "scene_minus_no_scene": -0.010551182844210416
+      },
+      "support_penetration_m": {
+        "scene": 0.0,
+        "no_scene": 0.0,
+        "scene_minus_no_scene": 0.0
+      }
+    },
+    "interactee": {
+      "fk_mpjpe_cm": {
+        "scene": 34.0513219833374,
+        "no_scene": 33.90553379058838,
+        "scene_minus_no_scene": 0.14578819274902344
+      },
+      "head_error_cm": {
+        "scene": 31.549400329589844,
+        "no_scene": 31.933104991912842,
+        "scene_minus_no_scene": -0.38370466232299805
+      },
+      "truth_stance_foot_slide_cm_per_frame": {
+        "scene": 0.17558375746011734,
+        "no_scene": 0.1522631123661995,
+        "scene_minus_no_scene": 0.023320645093917847
+      },
+      "mean_joint_speed_m_per_frame": {
+        "scene": 0.0022841680329293013,
+        "no_scene": 0.00152030581375584,
+        "scene_minus_no_scene": 0.0007638622191734612
+      },
+      "mean_joint_acceleration_m_per_frame2": {
+        "scene": 0.002616210374981165,
+        "no_scene": 0.0016344019386451691,
+        "scene_minus_no_scene": 0.0009818084363359958
+      },
+      "contact_coverage": {
+        "scene": 0.25,
+        "no_scene": 0.25,
+        "scene_minus_no_scene": 0.0
+      },
+      "contact_slide_m_per_frame": {
+        "scene": 0.0004209165053907782,
+        "no_scene": 0.0003626250254455954,
+        "scene_minus_no_scene": 5.82914799451828e-05
+      },
+      "support_floating_m": {
+        "scene": 0.03086640778928995,
+        "no_scene": 0.03294209484010935,
+        "scene_minus_no_scene": -0.002075687050819397
+      },
+      "support_penetration_m": {
+        "scene": 0.11190394079312682,
+        "no_scene": 0.10975627461448312,
+        "scene_minus_no_scene": 0.0021476661786437035
+      }
+    }
+  }
+}

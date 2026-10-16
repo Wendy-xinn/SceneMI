@@ -5,6 +5,7 @@
 | 要看什么 | 入口 |
 |---|---|
 | 当前训练进度 | [STATUS.json](native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json) |
+| Viser同步动作回放 | [打开六个案例](http://localhost:8800/) · [案例身份与步数](native30_live_monitor_oct16/visuals/viser/CASES.json)；GT/预测、脚轨迹、完整扫描/可见场景可分别切换 |
 | 已保存的 best、选择指标和步数 | [best.json](native30_gait_v2_ego55k_oct15/training/best.json) · [自动保存状态](native30_gait_v2_ego55k_oct15/training/BEST_GUARDIAN_STATUS.json) |
 | 总 loss、各监督贡献、训练时长 | [TensorBoard](http://localhost:6006/#custom_scalars) · [损失说明](native30_live_monitor_oct16/LOSS_GUIDE_zh.md) |
 | RICH 全部合法窗口验证 | [实时报告](native30_live_monitor_oct16/rich_full_validation_oct16/REPORT_zh.md) · [进度](native30_live_monitor_oct16/rich_full_validation_oct16/STATUS.json) · [网页](http://localhost:8795/) |

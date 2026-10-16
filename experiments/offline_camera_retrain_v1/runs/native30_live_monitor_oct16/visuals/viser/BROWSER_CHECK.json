@@ -1,0 +1,26 @@
+{
+  "playback_verified": "TRUMANS frame60 advanced to82 in ~1s; pause verified at86",
+  "case_switches_verified": [
+    "TRUMANS16k -> EgoBody12600 -> RICH16k"
+  ],
+  "clean_rich": "SceneMI · 动作验证\n动作与场景验证\n\n蓝色：GT人体 · 紫色：预测人体\n\n青色为实际输入的已见静态表面；灰色为仅供参考的完整静态扫描（局部裁剪）。黄色点若出现，是其他人或物体的可见片段，不是预测人体。\n\n片段\n\n输入\n\n帧 / 30 Hz\n\n0\n191\n\n播放\n\n播放倍速\n\n0.25\n2\n\nGT 人体\n\n预测人体\n\nGT 线框\n\n预测不透明度\n\n0.15\n1\n\n完整静态扫描（参考）\n\n已见静态场景（实际输入）\n\n其他人 / 物体可见片段\n\n可信头部位置输入\n\n左右脚轨迹\n\n骨盆行走轨迹\n\n跟随 GT 人体\n\n重置视角\n\n训练 16,000 步 · rich · clean\n\nLectureHall_020_wipingchairs1\n\n起始源帧 389 · 第 90 帧 / 3.00 秒\n\n本帧全身误差 157.2 mm，踝脚 46.8 mm；整段全身误差 142.8 mm。\n\n最新固定RICH验证窗口，GT净位移1.52米\n\n左右脚轨迹与人体同色，浅色为右脚。轨迹显示脚尖的最近1秒；骨盆轨迹显示整段运动。未做额外对齐、贴地或动作修正。手和脸按模型约定中性显示。",
+  "noisy_rich": "SceneMI · 动作验证\n动作与场景验证\n\n蓝色：GT人体 · 紫色：预测人体\n\n青色为实际输入的已见静态表面；灰色为仅供参考的完整静态扫描（局部裁剪）。黄色点若出现，是其他人或物体的可见片段，不是预测人体。\n\n片段\n\n输入\n\n帧 / 30 Hz\n\n0\n191\n\n播放\n\n播放倍速\n\n0.25\n2\n\nGT 人体\n\n预测人体\n\nGT 线框\n\n预测不透明度\n\n0.15\n1\n\n完整静态扫描（参考）\n\n已见静态场景（实际输入）\n\n其他人 / 物体可见片段\n\n可信头部位置输入\n\n左右脚轨迹\n\n骨盆行走轨迹\n\n跟随 GT 人体\n\n重置视角\n\n训练 16,000 步 · rich · noisy\n\nLectureHall_020_wipingchairs1\n\n起始源帧 389 · 第 90 帧 / 3.00 秒\n\n本帧全身误差 164.0 mm，踝脚 97.9 mm；整段全身误差 161.5 mm。\n\n最新固定RICH验证窗口，GT净位移1.52米\n\n左右脚轨迹与人体同色，浅色为右脚。轨迹显示脚尖的最近1秒；骨盆轨迹显示整段运动。未做额外对齐、贴地或动作修正。手和脸按模型约定中性显示。",
+  "browser": "Chromium, CPU software WebGL, no GPU",
+  "screenshots": [
+    "VIEWER_TRUMANS_16K.png",
+    "VIEWER_EGOBODY_12600.png",
+    "VIEWER_RICH_16K.png"
+  ],
+  "six_cases_cpu_mesh_FK_and_scene_preparation": "passed",
+  "final_server": {
+    "pid": 174652,
+    "url": "http://localhost:8800/",
+    "bind": "127.0.0.1",
+    "manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/viser/PREPARED_CASES.json",
+    "cases": 6,
+    "cpu_only": true,
+    "source_file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_viewer.py",
+    "source_sha256": "f41879c20a2c2681f785af268df8fb6d58e14732a038ca450607f887d4289db1"
+  },
+  "default_restored": "TRUMANS16k clean; paused"
+}

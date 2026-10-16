@@ -1,0 +1,189 @@
+{
+  "configuration": {
+    "steps": 120,
+    "length": 64,
+    "lr": 0.0003,
+    "ddim_steps": 20,
+    "output": "experiments/offline_camera_retrain_v1/masked_overfit_diagnostic.json"
+  },
+  "initial_probe": {
+    "total": 0.42985624074935913,
+    "x0": 0.07630901783704758,
+    "rotation_matrix_mse": 0.10023504495620728,
+    "fk_joint_mse": 0.09744831174612045,
+    "fk_velocity_mse": 0.00015637424075976014,
+    "fk_acceleration_mse": 2.2388652723748237e-05,
+    "head_position_mse": 0.07417193055152893,
+    "foot_stillness_mse": 0.0,
+    "branch_consistency_mse": 0.12564632296562195,
+    "fk_mpjpe_m": 0.4980582296848297,
+    "head_error_m": 0.4447588324546814,
+    "foot_sliding_m_per_frame": 0.0,
+    "scene_effect_l1": 0.0,
+    "control_effect_l1": 0.0
+  },
+  "progress": [
+    {
+      "step": 1,
+      "elapsed_s": 0.40301942825317383,
+      "training_total": 0.42985624074935913,
+      "probe": {
+        "total": 0.36603641510009766,
+        "x0": 0.07001631706953049,
+        "rotation_matrix_mse": 0.09607803821563721,
+        "fk_joint_mse": 0.07918406277894974,
+        "fk_velocity_mse": 0.00019784551113843918,
+        "fk_acceleration_mse": 0.00013750774087384343,
+        "head_position_mse": 0.05664532259106636,
+        "foot_stillness_mse": 6.610435957554728e-05,
+        "branch_consistency_mse": 0.1177530363202095,
+        "fk_mpjpe_m": 0.44412243366241455,
+        "head_error_m": 0.38400328159332275,
+        "foot_sliding_m_per_frame": 0.007005823776125908,
+        "scene_effect_l1": 5.119396519148722e-05,
+        "control_effect_l1": 2.278222018503584e-05
+      }
+    },
+    {
+      "step": 20,
+      "elapsed_s": 1.2253737449645996,
+      "training_total": 0.1968173086643219,
+      "probe": {
+        "total": 0.1930372714996338,
+        "x0": 0.03257407993078232,
+        "rotation_matrix_mse": 0.05340263992547989,
+        "fk_joint_mse": 0.05050164461135864,
+        "fk_velocity_mse": 0.00027779460651800036,
+        "fk_acceleration_mse": 6.757421942893416e-05,
+        "head_position_mse": 0.04214959591627121,
+        "foot_stillness_mse": 8.178400457836688e-05,
+        "branch_consistency_mse": 0.005797694902867079,
+        "fk_mpjpe_m": 0.3265501856803894,
+        "head_error_m": 0.2777906656265259,
+        "foot_sliding_m_per_frame": 0.006245261058211327,
+        "scene_effect_l1": 0.0005070339539088309,
+        "control_effect_l1": 2.840541856130585e-05
+      }
+    },
+    {
+      "step": 40,
+      "elapsed_s": 2.070119619369507,
+      "training_total": 0.12555673718452454,
+      "probe": {
+        "total": 0.12040407955646515,
+        "x0": 0.026275113224983215,
+        "rotation_matrix_mse": 0.04267318546772003,
+        "fk_joint_mse": 0.027043038979172707,
+        "fk_velocity_mse": 0.0003691676538437605,
+        "fk_acceleration_mse": 0.0001371048711007461,
+        "head_position_mse": 0.01643279567360878,
+        "foot_stillness_mse": 0.00038775766734033823,
+        "branch_consistency_mse": 0.014463983476161957,
+        "fk_mpjpe_m": 0.24087147414684296,
+        "head_error_m": 0.17203554511070251,
+        "foot_sliding_m_per_frame": 0.012421214021742344,
+        "scene_effect_l1": 0.009394864551723003,
+        "control_effect_l1": 0.0033034314401447773
+      }
+    },
+    {
+      "step": 60,
+      "elapsed_s": 2.951261520385742,
+      "training_total": 0.07347919791936874,
+      "probe": {
+        "total": 0.079564668238163,
+        "x0": 0.021943261846899986,
+        "rotation_matrix_mse": 0.03794226422905922,
+        "fk_joint_mse": 0.013530772179365158,
+        "fk_velocity_mse": 0.0003854248789139092,
+        "fk_acceleration_mse": 0.0008927070302888751,
+        "head_position_mse": 0.004109496716409922,
+        "foot_stillness_mse": 0.0010733044473454356,
+        "branch_consistency_mse": 0.004978397861123085,
+        "fk_mpjpe_m": 0.17194034159183502,
+        "head_error_m": 0.08645163476467133,
+        "foot_sliding_m_per_frame": 0.030773179605603218,
+        "scene_effect_l1": 0.019808096811175346,
+        "control_effect_l1": 0.0056946598924696445
+      }
+    },
+    {
+      "step": 80,
+      "elapsed_s": 3.856658458709717,
+      "training_total": 0.05725443363189697,
+      "probe": {
+        "total": 0.056410711258649826,
+        "x0": 0.0193302184343338,
+        "rotation_matrix_mse": 0.03382783755660057,
+        "fk_joint_mse": 0.01090288907289505,
+        "fk_velocity_mse": 0.00015755349886603653,
+        "fk_acceleration_mse": 8.720379264559597e-05,
+        "head_position_mse": 0.002781709423288703,
+        "foot_stillness_mse": 0.0002542547008488327,
+        "branch_consistency_mse": 0.0028699026443064213,
+        "fk_mpjpe_m": 0.15201814472675323,
+        "head_error_m": 0.07170598208904266,
+        "foot_sliding_m_per_frame": 0.012041747570037842,
+        "scene_effect_l1": 0.018348772078752518,
+        "control_effect_l1": 0.0064872195944190025
+      }
+    },
+    {
+      "step": 100,
+      "elapsed_s": 4.738646507263184,
+      "training_total": 0.045319221913814545,
+      "probe": {
+        "total": 0.04624737799167633,
+        "x0": 0.016505042091012,
+        "rotation_matrix_mse": 0.028566662222146988,
+        "fk_joint_mse": 0.009203286841511726,
+        "fk_velocity_mse": 0.0001168785456684418,
+        "fk_acceleration_mse": 4.684324812842533e-05,
+        "head_position_mse": 0.002550095319747925,
+        "foot_stillness_mse": 0.0001243168517248705,
+        "branch_consistency_mse": 0.0011333971051499248,
+        "fk_mpjpe_m": 0.13772083818912506,
+        "head_error_m": 0.06770848482847214,
+        "foot_sliding_m_per_frame": 0.008065411821007729,
+        "scene_effect_l1": 0.012711586430668831,
+        "control_effect_l1": 0.004274940583854914
+      }
+    },
+    {
+      "step": 120,
+      "elapsed_s": 5.620079517364502,
+      "training_total": 0.038061559200286865,
+      "probe": {
+        "total": 0.03844695910811424,
+        "x0": 0.014398221857845783,
+        "rotation_matrix_mse": 0.02430376410484314,
+        "fk_joint_mse": 0.00775936571881175,
+        "fk_velocity_mse": 8.035571227082983e-05,
+        "fk_acceleration_mse": 3.6745783290825784e-05,
+        "head_position_mse": 0.0014553841901943088,
+        "foot_stillness_mse": 8.152871305355802e-05,
+        "branch_consistency_mse": 0.0010430688271299005,
+        "fk_mpjpe_m": 0.12156970798969269,
+        "head_error_m": 0.056768354028463364,
+        "foot_sliding_m_per_frame": 0.006660142447799444,
+        "scene_effect_l1": 0.012603620998561382,
+        "control_effect_l1": 0.004201934207230806
+      }
+    }
+  ],
+  "ddim": {
+    "total": 0.03742332011461258,
+    "x0": 0.014403039589524269,
+    "rotation_matrix_mse": 0.02434607781469822,
+    "fk_joint_mse": 0.007462353445589542,
+    "fk_velocity_mse": 6.520916213048622e-05,
+    "fk_acceleration_mse": 3.0221021006582305e-05,
+    "head_position_mse": 0.001341352704912424,
+    "foot_stillness_mse": 7.778799044899642e-05,
+    "branch_consistency_mse": 0.0007891719578765333,
+    "fk_mpjpe_m": 0.1180095300078392,
+    "head_error_m": 0.05548938363790512,
+    "foot_sliding_m_per_frame": 0.00550646148622036
+  },
+  "elapsed_s": 5.847402334213257
+}
