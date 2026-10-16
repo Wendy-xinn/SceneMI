@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-16T20:43:08.549753+08:00",
+  "checkpoint_step": 15100,
+  "comparison": "paired DDIM20 2 windows x 4 arms x clean/noisy; source16k labels only selected identities, all actual predictions15100",
+  "ground_truth": "evaluation/display only, not used in inference constraints",
+  "config": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+  "cases": [
+    {
+      "label": "TRUMANS · 原始贴头",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_baseline_clean.npz",
+      "step": 15100,
+      "dataset": "trumans",
+      "arm": "baseline",
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。"
+    },
+    {
+      "label": "TRUMANS · 去整身平移 · IK",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_ik_only_clean.npz",
+      "step": 15100,
+      "dataset": "trumans",
+      "arm": "ik_only",
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。"
+    },
+    {
+      "label": "TRUMANS · 原始贴头 + 弱重力",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_gravity_clean.npz",
+      "step": 15100,
+      "dataset": "trumans",
+      "arm": "gravity",
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。"
+    },
+    {
+      "label": "TRUMANS · IK + 弱重力",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_ik_gravity_clean.npz",
+      "step": 15100,
+      "dataset": "trumans",
+      "arm": "ik_gravity",
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。"
+    },
+    {
+      "label": "RICH · 原始贴头",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_baseline_clean.npz",
+      "step": 15100,
+      "dataset": "rich",
+      "arm": "baseline",
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。"
+    },
+    {
+      "label": "RICH · 去整身平移 · IK",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_ik_only_clean.npz",
+      "step": 15100,
+      "dataset": "rich",
+      "arm": "ik_only",
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。"
+    },
+    {
+      "label": "RICH · 原始贴头 + 弱重力",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_gravity_clean.npz",
+      "step": 15100,
+      "dataset": "rich",
+      "arm": "gravity",
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。"
+    },
+    {
+      "label": "RICH · IK + 弱重力",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_ik_gravity_clean.npz",
+      "step": 15100,
+      "dataset": "rich",
+      "arm": "ik_gravity",
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。"
+    }
+  ]
+}

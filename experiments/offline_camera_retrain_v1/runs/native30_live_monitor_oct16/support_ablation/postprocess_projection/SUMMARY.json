@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "rows": 4,
+  "keys": [
+    "mpjpe_mm",
+    "observed_head_position_error_mm",
+    "foot_joint_horizontal_speed_gt_low_m_s",
+    "foot_skin_anchor_low_y_abs_error_gt_low_mm",
+    "support_calibrated_absolute_error_mm",
+    "support_float_over_50mm_fraction"
+  ],
+  "cuda_initialized": false,
+  "source_sha256_after": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/contact_projection.py": "b638e52f48bfc8e1dbd90eef6ada06432f1193e72f7eb0533b1c4ca06c181535",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/PLAN.json": "a78c4eb7539914ae9b6efdac946b554afb3172bc6f35a6c4f201f9ec92d316f6",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_baseline_clean.npz": "ebd4f17c29576d44d4878fc806ecfd8958b3049d1cf3140291de1b6b104ef2cb",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_baseline_noisy.npz": "472302401252d5ad457f3626f3c1bed7bb7309790916c81185ca72c8e9d7811a",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_baseline_clean.npz": "4245be760a6e45c8e423cd1c9d4ad5c718d3b3b8487fff618181db377a2d02e9",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_baseline_noisy.npz": "8495b9f4ac00a0694a81049c556403c5732c259b282a33437e15d5cd157ec947"
+  },
+  "source_unchanged": true,
+  "decision": "reject_current_candidate",
+  "reason": "RICH sole height improves locally but TRUMANS worsens; all four clips show increased vertical foot velocity and essentially unchanged horizontal slip. Sparse local support projection is insufficient.",
+  "cpu_check_sha256": "80e0de078cc6fab4aab15be087e6d29dfcf8dc19c8119eab4265f75dcb35006b",
+  "training_modified": false,
+  "viewer_modified": false
+}

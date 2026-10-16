@@ -1,0 +1,42 @@
+{
+  "protocol": "observed-contact-projection-postprocess-v1",
+  "created_at": "2026-10-16T20:54:12.937919+08:00",
+  "checkpoint_step": 15100,
+  "cases": [
+    0,
+    1
+  ],
+  "regimes": [
+    "clean",
+    "noisy"
+  ],
+  "settings": {
+    "rounds": 3,
+    "ik_iterations": 6,
+    "foot_confidence": 0.5,
+    "foot_uncertainty_m": 0.03,
+    "target_step_limit_m": 0.03,
+    "max_support_height_m": 0.25,
+    "max_penetration_m": 0.05,
+    "tangent_limit_m": 0.08,
+    "min_normal_y": 0.9,
+    "max_foot_speed_m_s": 0.5,
+    "root_tilt_limit_deg": 60.0,
+    "torso_tilt_limit_deg": 75.0,
+    "clearance_m": 0.003,
+    "damping_m2": 0.0025,
+    "angle_limit_rad": 0.35
+  },
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/contact_projection.py": "b638e52f48bfc8e1dbd90eef6ada06432f1193e72f7eb0533b1c4ca06c181535",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/PLAN.json": "a78c4eb7539914ae9b6efdac946b554afb3172bc6f35a6c4f201f9ec92d316f6",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_baseline_clean.npz": "ebd4f17c29576d44d4878fc806ecfd8958b3049d1cf3140291de1b6b104ef2cb",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_baseline_noisy.npz": "472302401252d5ad457f3626f3c1bed7bb7309790916c81185ca72c8e9d7811a",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_baseline_clean.npz": "4245be760a6e45c8e423cd1c9d4ad5c718d3b3b8487fff618181db377a2d02e9",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_baseline_noisy.npz": "8495b9f4ac00a0694a81049c556403c5732c259b282a33437e15d5cd157ec947"
+  },
+  "evaluation_only": true,
+  "cpu_only": true,
+  "interpretation": "Frozen baseline motions receive postprocessing; not DDIM sampling or training. GT masks used only by evaluators.",
+  "outputs": "One output NPZ and before/after metrics per source baseline export; shared scene and GT-associated evaluation mask."
+}

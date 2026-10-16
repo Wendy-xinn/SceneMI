@@ -1,0 +1,697 @@
+{
+  "status": "passed_complete",
+  "checkpoint_step": 15100,
+  "plan_sha256": "a78c4eb7539914ae9b6efdac946b554afb3172bc6f35a6c4f201f9ec92d316f6",
+  "checkpoint_sha256": "b91e61ec75bf8d6720b841bd249d3cdec6d7da80b7c9e273ed509b68e211e3d8",
+  "independent_model_tensor_digest": "ac096d31aede770e279382704ade73c19e4e480cc4e5b1cdc58b88db167d2357",
+  "rows_sha256": "3228fc6116d4f4945ba5d838dfd2629cd1f2d3b2b14b68530eabbfd70072d5d8",
+  "expected_rows": 40,
+  "verified_rows": 40,
+  "unique_cases": 5,
+  "regimes": [
+    "clean",
+    "noisy"
+  ],
+  "arms": [
+    "baseline",
+    "ik_only",
+    "gravity",
+    "ik_gravity"
+  ],
+  "CPU_only": true,
+  "CUDA_initialized": false,
+  "input_reconstruction": "truth,rest,trajectory,meta byte equality; stored references byte-identical across all arms and independently CPU rebuilt within 1e-5; uncertainty and reference confidence in rebuilt aggregate fingerprint using saved GPU reference",
+  "all_saved_metric_keys_recomputed": true,
+  "surface_masks_shared_between_all_arms": true,
+  "maximum_absolute_metric_delta": 0.0,
+  "numeric_tolerances": {
+    "relative": 1e-06,
+    "absolute": 3e-05
+  },
+  "rows_predating_worker_session": 0,
+  "resumed_rows_compatible_with_session_timestamps": 0,
+  "resume_audit_limit": "No row predates worker start; no explicit resumed counter existed in runner, so this is a timestamp/session audit, not proof of process history.",
+  "empty_GT_low_speed_groups": [],
+  "reference_reconstruction": [
+    {
+      "case": 0,
+      "regime": "clean",
+      "CPU_vs_saved_GPU_maximum_absolute_reference_delta": 1.7881393432617188e-07,
+      "CPU_vs_saved_GPU_reference_byte_identical": false,
+      "allclose_absolute_tolerance": 1e-05,
+      "allclose_relative_tolerance": 1e-05
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "CPU_vs_saved_GPU_maximum_absolute_reference_delta": 1.4901161193847656e-07,
+      "CPU_vs_saved_GPU_reference_byte_identical": false,
+      "allclose_absolute_tolerance": 1e-05,
+      "allclose_relative_tolerance": 1e-05
+    },
+    {
+      "case": 1,
+      "regime": "clean",
+      "CPU_vs_saved_GPU_maximum_absolute_reference_delta": 1.9371509552001953e-07,
+      "CPU_vs_saved_GPU_reference_byte_identical": false,
+      "allclose_absolute_tolerance": 1e-05,
+      "allclose_relative_tolerance": 1e-05
+    },
+    {
+      "case": 1,
+      "regime": "noisy",
+      "CPU_vs_saved_GPU_maximum_absolute_reference_delta": 2.086162567138672e-07,
+      "CPU_vs_saved_GPU_reference_byte_identical": false,
+      "allclose_absolute_tolerance": 1e-05,
+      "allclose_relative_tolerance": 1e-05
+    },
+    {
+      "case": 2,
+      "regime": "clean",
+      "CPU_vs_saved_GPU_maximum_absolute_reference_delta": 1.7881393432617188e-07,
+      "CPU_vs_saved_GPU_reference_byte_identical": false,
+      "allclose_absolute_tolerance": 1e-05,
+      "allclose_relative_tolerance": 1e-05
+    },
+    {
+      "case": 2,
+      "regime": "noisy",
+      "CPU_vs_saved_GPU_maximum_absolute_reference_delta": 1.7881393432617188e-07,
+      "CPU_vs_saved_GPU_reference_byte_identical": false,
+      "allclose_absolute_tolerance": 1e-05,
+      "allclose_relative_tolerance": 1e-05
+    },
+    {
+      "case": 3,
+      "regime": "clean",
+      "CPU_vs_saved_GPU_maximum_absolute_reference_delta": 1.7881393432617188e-07,
+      "CPU_vs_saved_GPU_reference_byte_identical": false,
+      "allclose_absolute_tolerance": 1e-05,
+      "allclose_relative_tolerance": 1e-05
+    },
+    {
+      "case": 3,
+      "regime": "noisy",
+      "CPU_vs_saved_GPU_maximum_absolute_reference_delta": 1.7881393432617188e-07,
+      "CPU_vs_saved_GPU_reference_byte_identical": false,
+      "allclose_absolute_tolerance": 1e-05,
+      "allclose_relative_tolerance": 1e-05
+    },
+    {
+      "case": 4,
+      "regime": "clean",
+      "CPU_vs_saved_GPU_maximum_absolute_reference_delta": 1.7881393432617188e-07,
+      "CPU_vs_saved_GPU_reference_byte_identical": false,
+      "allclose_absolute_tolerance": 1e-05,
+      "allclose_relative_tolerance": 1e-05
+    },
+    {
+      "case": 4,
+      "regime": "noisy",
+      "CPU_vs_saved_GPU_maximum_absolute_reference_delta": 1.7881393432617188e-07,
+      "CPU_vs_saved_GPU_reference_byte_identical": false,
+      "allclose_absolute_tolerance": 1e-05,
+      "allclose_relative_tolerance": 1e-05
+    }
+  ],
+  "common_surface_evidence": [
+    {
+      "case": 0,
+      "regime": "clean",
+      "count": 2304,
+      "mask_sha256": "e28c5c45f1ac6d5ce6274c3e47d4633ef28a6b61ce3ae349d851ab0d5f58ce88",
+      "reliable_upward_static_points": 20043,
+      "arms": [
+        "baseline",
+        "ik_only",
+        "gravity",
+        "ik_gravity"
+      ]
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "count": 2304,
+      "mask_sha256": "e28c5c45f1ac6d5ce6274c3e47d4633ef28a6b61ce3ae349d851ab0d5f58ce88",
+      "reliable_upward_static_points": 20043,
+      "arms": [
+        "baseline",
+        "ik_only",
+        "gravity",
+        "ik_gravity"
+      ]
+    },
+    {
+      "case": 1,
+      "regime": "clean",
+      "count": 2236,
+      "mask_sha256": "3bbf0989bfbd61303ceb707f7a26d8bf12fec11a4b946a32bd1e1f0d06d8c368",
+      "reliable_upward_static_points": 39031,
+      "arms": [
+        "baseline",
+        "ik_only",
+        "gravity",
+        "ik_gravity"
+      ]
+    },
+    {
+      "case": 1,
+      "regime": "noisy",
+      "count": 2236,
+      "mask_sha256": "3bbf0989bfbd61303ceb707f7a26d8bf12fec11a4b946a32bd1e1f0d06d8c368",
+      "reliable_upward_static_points": 39031,
+      "arms": [
+        "baseline",
+        "ik_only",
+        "gravity",
+        "ik_gravity"
+      ]
+    },
+    {
+      "case": 2,
+      "regime": "clean",
+      "count": 1434,
+      "mask_sha256": "7bb8e4a3f2fa026ba664e1c252d759e55bbb6a7aa13cf68ee5ce656b6155f6b7",
+      "reliable_upward_static_points": 23089,
+      "arms": [
+        "baseline",
+        "ik_only",
+        "gravity",
+        "ik_gravity"
+      ]
+    },
+    {
+      "case": 2,
+      "regime": "noisy",
+      "count": 1434,
+      "mask_sha256": "7bb8e4a3f2fa026ba664e1c252d759e55bbb6a7aa13cf68ee5ce656b6155f6b7",
+      "reliable_upward_static_points": 23089,
+      "arms": [
+        "baseline",
+        "ik_only",
+        "gravity",
+        "ik_gravity"
+      ]
+    },
+    {
+      "case": 3,
+      "regime": "clean",
+      "count": 147,
+      "mask_sha256": "c0a657698191fa4e1273c044deffc9e59c64a30ddaf54115b776be40502426da",
+      "reliable_upward_static_points": 13498,
+      "arms": [
+        "baseline",
+        "ik_only",
+        "gravity",
+        "ik_gravity"
+      ]
+    },
+    {
+      "case": 3,
+      "regime": "noisy",
+      "count": 147,
+      "mask_sha256": "c0a657698191fa4e1273c044deffc9e59c64a30ddaf54115b776be40502426da",
+      "reliable_upward_static_points": 13498,
+      "arms": [
+        "baseline",
+        "ik_only",
+        "gravity",
+        "ik_gravity"
+      ]
+    },
+    {
+      "case": 4,
+      "regime": "clean",
+      "count": 2298,
+      "mask_sha256": "3a3e69a6bec663a3d25c5e951eb73c5fdd419885b943cb257a29fb949b4ca961",
+      "reliable_upward_static_points": 43720,
+      "arms": [
+        "baseline",
+        "ik_only",
+        "gravity",
+        "ik_gravity"
+      ]
+    },
+    {
+      "case": 4,
+      "regime": "noisy",
+      "count": 2298,
+      "mask_sha256": "3a3e69a6bec663a3d25c5e951eb73c5fdd419885b943cb257a29fb949b4ca961",
+      "reliable_upward_static_points": 43720,
+      "arms": [
+        "baseline",
+        "ik_only",
+        "gravity",
+        "ik_gravity"
+      ]
+    }
+  ],
+  "verified": [
+    {
+      "case": 0,
+      "regime": "clean",
+      "arm": "baseline",
+      "artifact_sha256": "ebd4f17c29576d44d4878fc806ecfd8958b3049d1cf3140291de1b6b104ef2cb",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 332,
+      "common_surface_count": 2304,
+      "common_surface_mask_sha256": "e28c5c45f1ac6d5ce6274c3e47d4633ef28a6b61ce3ae349d851ab0d5f58ce88"
+    },
+    {
+      "case": 0,
+      "regime": "clean",
+      "arm": "ik_only",
+      "artifact_sha256": "971ff94b71e7829219ca352d9c611658f0f2f94075a48463410d03487e92fc9c",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 332,
+      "common_surface_count": 2304,
+      "common_surface_mask_sha256": "e28c5c45f1ac6d5ce6274c3e47d4633ef28a6b61ce3ae349d851ab0d5f58ce88"
+    },
+    {
+      "case": 0,
+      "regime": "clean",
+      "arm": "gravity",
+      "artifact_sha256": "5c161b1b52c3be77a9363a11a376744ae5fdfa5da972ddc6155f737f41dd6407",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 332,
+      "common_surface_count": 2304,
+      "common_surface_mask_sha256": "e28c5c45f1ac6d5ce6274c3e47d4633ef28a6b61ce3ae349d851ab0d5f58ce88"
+    },
+    {
+      "case": 0,
+      "regime": "clean",
+      "arm": "ik_gravity",
+      "artifact_sha256": "da5ed04edda58c7f26f48bfdcb6c4abbc6148c991eba12bbc071779ad0d49384",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 332,
+      "common_surface_count": 2304,
+      "common_surface_mask_sha256": "e28c5c45f1ac6d5ce6274c3e47d4633ef28a6b61ce3ae349d851ab0d5f58ce88"
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "arm": "baseline",
+      "artifact_sha256": "472302401252d5ad457f3626f3c1bed7bb7309790916c81185ca72c8e9d7811a",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 332,
+      "common_surface_count": 2304,
+      "common_surface_mask_sha256": "e28c5c45f1ac6d5ce6274c3e47d4633ef28a6b61ce3ae349d851ab0d5f58ce88"
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "arm": "ik_only",
+      "artifact_sha256": "efbdee7de242f93ad313a3fa0ca0215410c2cc58b739cb918d29188c36bf0c2e",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 332,
+      "common_surface_count": 2304,
+      "common_surface_mask_sha256": "e28c5c45f1ac6d5ce6274c3e47d4633ef28a6b61ce3ae349d851ab0d5f58ce88"
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "arm": "gravity",
+      "artifact_sha256": "943b14ca6dcb34bac566b898e2240050489500e765bd8d4b71899dbf0f121288",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 332,
+      "common_surface_count": 2304,
+      "common_surface_mask_sha256": "e28c5c45f1ac6d5ce6274c3e47d4633ef28a6b61ce3ae349d851ab0d5f58ce88"
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "arm": "ik_gravity",
+      "artifact_sha256": "195615ef738f35a205000129c58f8b5294a88290792e2769152d7018b1ef02ad",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 332,
+      "common_surface_count": 2304,
+      "common_surface_mask_sha256": "e28c5c45f1ac6d5ce6274c3e47d4633ef28a6b61ce3ae349d851ab0d5f58ce88"
+    },
+    {
+      "case": 1,
+      "regime": "clean",
+      "arm": "baseline",
+      "artifact_sha256": "4245be760a6e45c8e423cd1c9d4ad5c718d3b3b8487fff618181db377a2d02e9",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 295,
+      "common_surface_count": 2236,
+      "common_surface_mask_sha256": "3bbf0989bfbd61303ceb707f7a26d8bf12fec11a4b946a32bd1e1f0d06d8c368"
+    },
+    {
+      "case": 1,
+      "regime": "clean",
+      "arm": "ik_only",
+      "artifact_sha256": "42f1e40d950835ca76305d7fb7af724cea88593d3ccf7161f74f4d510b105e5a",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 295,
+      "common_surface_count": 2236,
+      "common_surface_mask_sha256": "3bbf0989bfbd61303ceb707f7a26d8bf12fec11a4b946a32bd1e1f0d06d8c368"
+    },
+    {
+      "case": 1,
+      "regime": "clean",
+      "arm": "gravity",
+      "artifact_sha256": "1ac5611b9b5d61acfa8858483d8d4dd53c74c3d29aa100a387a6455ba2c6ec9c",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 295,
+      "common_surface_count": 2236,
+      "common_surface_mask_sha256": "3bbf0989bfbd61303ceb707f7a26d8bf12fec11a4b946a32bd1e1f0d06d8c368"
+    },
+    {
+      "case": 1,
+      "regime": "clean",
+      "arm": "ik_gravity",
+      "artifact_sha256": "e94a1c48403e8671a4647fe99baf8beb8adc838ce89c2b8a771cca2b2c31130a",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 295,
+      "common_surface_count": 2236,
+      "common_surface_mask_sha256": "3bbf0989bfbd61303ceb707f7a26d8bf12fec11a4b946a32bd1e1f0d06d8c368"
+    },
+    {
+      "case": 1,
+      "regime": "noisy",
+      "arm": "baseline",
+      "artifact_sha256": "8495b9f4ac00a0694a81049c556403c5732c259b282a33437e15d5cd157ec947",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 295,
+      "common_surface_count": 2236,
+      "common_surface_mask_sha256": "3bbf0989bfbd61303ceb707f7a26d8bf12fec11a4b946a32bd1e1f0d06d8c368"
+    },
+    {
+      "case": 1,
+      "regime": "noisy",
+      "arm": "ik_only",
+      "artifact_sha256": "3493c3c8fd1a759c72757729e93ca39a30746c8d2fceae7056d91381e2791254",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 295,
+      "common_surface_count": 2236,
+      "common_surface_mask_sha256": "3bbf0989bfbd61303ceb707f7a26d8bf12fec11a4b946a32bd1e1f0d06d8c368"
+    },
+    {
+      "case": 1,
+      "regime": "noisy",
+      "arm": "gravity",
+      "artifact_sha256": "193f98e25a47d0deb6497bb893278a8866efddcaa88bd82ba6dc5f93b58576e7",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 295,
+      "common_surface_count": 2236,
+      "common_surface_mask_sha256": "3bbf0989bfbd61303ceb707f7a26d8bf12fec11a4b946a32bd1e1f0d06d8c368"
+    },
+    {
+      "case": 1,
+      "regime": "noisy",
+      "arm": "ik_gravity",
+      "artifact_sha256": "39b1178def1df85826b39a0843dfbb9093e97efc1ff5e562d28ff17460115c9e",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 295,
+      "common_surface_count": 2236,
+      "common_surface_mask_sha256": "3bbf0989bfbd61303ceb707f7a26d8bf12fec11a4b946a32bd1e1f0d06d8c368"
+    },
+    {
+      "case": 2,
+      "regime": "clean",
+      "arm": "baseline",
+      "artifact_sha256": "5275fdc7721522d94d1131eec96992206e532b6c73a80aa511dfba87ea650f78",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 173,
+      "common_surface_count": 1434,
+      "common_surface_mask_sha256": "7bb8e4a3f2fa026ba664e1c252d759e55bbb6a7aa13cf68ee5ce656b6155f6b7"
+    },
+    {
+      "case": 2,
+      "regime": "clean",
+      "arm": "ik_only",
+      "artifact_sha256": "e0e84559a6fe5304dbc4da8feb75f4af8f0258b7e807f77eaafbb44c6f56be0e",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 173,
+      "common_surface_count": 1434,
+      "common_surface_mask_sha256": "7bb8e4a3f2fa026ba664e1c252d759e55bbb6a7aa13cf68ee5ce656b6155f6b7"
+    },
+    {
+      "case": 2,
+      "regime": "clean",
+      "arm": "gravity",
+      "artifact_sha256": "5d2c748d0b78549ed2a5dd688b7a94a6a9b0f700f0fd90c575ff99c6f5a38352",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 173,
+      "common_surface_count": 1434,
+      "common_surface_mask_sha256": "7bb8e4a3f2fa026ba664e1c252d759e55bbb6a7aa13cf68ee5ce656b6155f6b7"
+    },
+    {
+      "case": 2,
+      "regime": "clean",
+      "arm": "ik_gravity",
+      "artifact_sha256": "4f22828fa12f930e4794e282295d0e540407af7964e8c7a93650a6bba706dd86",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 173,
+      "common_surface_count": 1434,
+      "common_surface_mask_sha256": "7bb8e4a3f2fa026ba664e1c252d759e55bbb6a7aa13cf68ee5ce656b6155f6b7"
+    },
+    {
+      "case": 2,
+      "regime": "noisy",
+      "arm": "baseline",
+      "artifact_sha256": "d738f76b6db3bfcc56df31f15c4f7381f0e05f40af73a512dd50f53b99419a58",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 173,
+      "common_surface_count": 1434,
+      "common_surface_mask_sha256": "7bb8e4a3f2fa026ba664e1c252d759e55bbb6a7aa13cf68ee5ce656b6155f6b7"
+    },
+    {
+      "case": 2,
+      "regime": "noisy",
+      "arm": "ik_only",
+      "artifact_sha256": "8e99d15a6a39a15f9bdec3b52501d15cf6d70f5d643b25da137e73fc9c03cf0e",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 173,
+      "common_surface_count": 1434,
+      "common_surface_mask_sha256": "7bb8e4a3f2fa026ba664e1c252d759e55bbb6a7aa13cf68ee5ce656b6155f6b7"
+    },
+    {
+      "case": 2,
+      "regime": "noisy",
+      "arm": "gravity",
+      "artifact_sha256": "0eb298bdc0349232e3f4c11aefb750b2356525cbe57d4ef2104d271daa4128e1",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 173,
+      "common_surface_count": 1434,
+      "common_surface_mask_sha256": "7bb8e4a3f2fa026ba664e1c252d759e55bbb6a7aa13cf68ee5ce656b6155f6b7"
+    },
+    {
+      "case": 2,
+      "regime": "noisy",
+      "arm": "ik_gravity",
+      "artifact_sha256": "4422409e3a8e7d8ff2b1e98e6dafc7f66b156a9f63ddcfb2bdf90b1e168802f5",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 173,
+      "common_surface_count": 1434,
+      "common_surface_mask_sha256": "7bb8e4a3f2fa026ba664e1c252d759e55bbb6a7aa13cf68ee5ce656b6155f6b7"
+    },
+    {
+      "case": 3,
+      "regime": "clean",
+      "arm": "baseline",
+      "artifact_sha256": "526fd72102f881ade23453f4b2c8551550fcb6503e1192686477642559679b3e",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 273,
+      "common_surface_count": 147,
+      "common_surface_mask_sha256": "c0a657698191fa4e1273c044deffc9e59c64a30ddaf54115b776be40502426da"
+    },
+    {
+      "case": 3,
+      "regime": "clean",
+      "arm": "ik_only",
+      "artifact_sha256": "4fd3adf79b52e90d4cf9fcf01bad7c22b981379de3b8cba0871fe9506cd5907f",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 273,
+      "common_surface_count": 147,
+      "common_surface_mask_sha256": "c0a657698191fa4e1273c044deffc9e59c64a30ddaf54115b776be40502426da"
+    },
+    {
+      "case": 3,
+      "regime": "clean",
+      "arm": "gravity",
+      "artifact_sha256": "2eff4d7c7d655a821971772ac232f90aae90ab952cd51449cfa6b0017306afce",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 273,
+      "common_surface_count": 147,
+      "common_surface_mask_sha256": "c0a657698191fa4e1273c044deffc9e59c64a30ddaf54115b776be40502426da"
+    },
+    {
+      "case": 3,
+      "regime": "clean",
+      "arm": "ik_gravity",
+      "artifact_sha256": "a1af4b5b1cf080d5a1d7227abe5a0fa341340f66fa85c47f019dd9ab9e04e3c3",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 273,
+      "common_surface_count": 147,
+      "common_surface_mask_sha256": "c0a657698191fa4e1273c044deffc9e59c64a30ddaf54115b776be40502426da"
+    },
+    {
+      "case": 3,
+      "regime": "noisy",
+      "arm": "baseline",
+      "artifact_sha256": "9060e1bd2b335a5ae85378ceb8291002ec52b2861cb43901548aab8467062272",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 273,
+      "common_surface_count": 147,
+      "common_surface_mask_sha256": "c0a657698191fa4e1273c044deffc9e59c64a30ddaf54115b776be40502426da"
+    },
+    {
+      "case": 3,
+      "regime": "noisy",
+      "arm": "ik_only",
+      "artifact_sha256": "95d9a45ea3f80dcba3014c358c0787c7e86bce4f3a0bd99f741fe63a1c2e5f3c",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 273,
+      "common_surface_count": 147,
+      "common_surface_mask_sha256": "c0a657698191fa4e1273c044deffc9e59c64a30ddaf54115b776be40502426da"
+    },
+    {
+      "case": 3,
+      "regime": "noisy",
+      "arm": "gravity",
+      "artifact_sha256": "520f0ebf8888b469de664abd8b09026c7d4678fb889fc01d4cd37fa1975b3788",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 273,
+      "common_surface_count": 147,
+      "common_surface_mask_sha256": "c0a657698191fa4e1273c044deffc9e59c64a30ddaf54115b776be40502426da"
+    },
+    {
+      "case": 3,
+      "regime": "noisy",
+      "arm": "ik_gravity",
+      "artifact_sha256": "9a819acc95db81e0fa3d509dcb60bfd27376cc94e568f74e74b0c0dfd7253d7f",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 273,
+      "common_surface_count": 147,
+      "common_surface_mask_sha256": "c0a657698191fa4e1273c044deffc9e59c64a30ddaf54115b776be40502426da"
+    },
+    {
+      "case": 4,
+      "regime": "clean",
+      "arm": "baseline",
+      "artifact_sha256": "2c539fd29bd7eb009bc0933294fcb6cfcdf0c06b12c3f031dae20d93ad549876",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 318,
+      "common_surface_count": 2298,
+      "common_surface_mask_sha256": "3a3e69a6bec663a3d25c5e951eb73c5fdd419885b943cb257a29fb949b4ca961"
+    },
+    {
+      "case": 4,
+      "regime": "clean",
+      "arm": "ik_only",
+      "artifact_sha256": "6f8d3d0a8120aef1f83c63557def0442daee89c5a114e66faee4bc126b1ecae7",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 318,
+      "common_surface_count": 2298,
+      "common_surface_mask_sha256": "3a3e69a6bec663a3d25c5e951eb73c5fdd419885b943cb257a29fb949b4ca961"
+    },
+    {
+      "case": 4,
+      "regime": "clean",
+      "arm": "gravity",
+      "artifact_sha256": "e9918b812b98e071d8fcfb29768304ff4a47e8c8e8b37d657788282f48a7f12d",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 318,
+      "common_surface_count": 2298,
+      "common_surface_mask_sha256": "3a3e69a6bec663a3d25c5e951eb73c5fdd419885b943cb257a29fb949b4ca961"
+    },
+    {
+      "case": 4,
+      "regime": "clean",
+      "arm": "ik_gravity",
+      "artifact_sha256": "870da2435f6df714b101b3d9643614ec5c1d63a42533801425e2a88cdd6f8aff",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 318,
+      "common_surface_count": 2298,
+      "common_surface_mask_sha256": "3a3e69a6bec663a3d25c5e951eb73c5fdd419885b943cb257a29fb949b4ca961"
+    },
+    {
+      "case": 4,
+      "regime": "noisy",
+      "arm": "baseline",
+      "artifact_sha256": "3ffc20db904d5d60ce288015b31cbad7d2dad794675e9a064c916d9d8f0bcbb8",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 318,
+      "common_surface_count": 2298,
+      "common_surface_mask_sha256": "3a3e69a6bec663a3d25c5e951eb73c5fdd419885b943cb257a29fb949b4ca961"
+    },
+    {
+      "case": 4,
+      "regime": "noisy",
+      "arm": "ik_only",
+      "artifact_sha256": "db6943223c7099584eff4c777e650369502dcabc3e9ca4ed85c5edbdfbef67ef",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 318,
+      "common_surface_count": 2298,
+      "common_surface_mask_sha256": "3a3e69a6bec663a3d25c5e951eb73c5fdd419885b943cb257a29fb949b4ca961"
+    },
+    {
+      "case": 4,
+      "regime": "noisy",
+      "arm": "gravity",
+      "artifact_sha256": "73922bad1136787af9b9302fef351636d7b63a2dd696750cefb42ecf8bed772b",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 318,
+      "common_surface_count": 2298,
+      "common_surface_mask_sha256": "3a3e69a6bec663a3d25c5e951eb73c5fdd419885b943cb257a29fb949b4ca961"
+    },
+    {
+      "case": 4,
+      "regime": "noisy",
+      "arm": "ik_gravity",
+      "artifact_sha256": "e79ca0eb660320239c3764784962de0d11e309e7e3df93834d5fadef7aac3a21",
+      "all_metric_keys_recomputed": 61,
+      "maximum_absolute_metric_delta": 0.0,
+      "gt_low_speed_foot_joint_samples": 318,
+      "common_surface_count": 2298,
+      "common_surface_mask_sha256": "3a3e69a6bec663a3d25c5e951eb73c5fdd419885b943cb257a29fb949b4ca961"
+    }
+  ],
+  "verifier_script_sha256": "0829657da60f9bd41b1182a6eca4775abfe8757163f35cf753bce44abf151991",
+  "verifier_script_source": "from __future__ import annotations\nimport os\nos.environ['CUDA_VISIBLE_DEVICES'] = ''\nos.environ['OMP_NUM_THREADS'] = '2'\nos.environ['MKL_NUM_THREADS'] = '2'\nos.environ['OPENBLAS_NUM_THREADS'] = '2'\nimport datetime as dt\nimport gc\nimport hashlib\nimport importlib.util\nimport json\nimport math\nfrom pathlib import Path\nimport sys\nimport time\n\nREPO = Path('/home/wenxin/projects/SceneMI')\nBASE = REPO/'experiments/offline_camera_retrain_v1'\nOUT = BASE/'runs/native30_live_monitor_oct16/support_ablation'\nFULL = OUT.parent/'rich_full_validation_oct16'\nsys.path.insert(0,str(REPO))\n\ndef now(): return dt.datetime.now().astimezone().isoformat()\ndef read(path): return json.loads(Path(path).read_text())\ndef sha(path):\n    h=hashlib.sha256()\n    with Path(path).open('rb') as f:\n        for block in iter(lambda:f.read(8*1024**2),b''):h.update(block)\n    return h.hexdigest()\ndef write(path,value):\n    p=Path(path);tmp=p.with_suffix(p.suffix+'.cpu-tmp')\n    tmp.write_text(json.dumps(value,ensure_ascii=False,indent=2,allow_nan=False)+'\\n');tmp.replace(p)\ndef require(condition,message):\n    if not condition: raise ValueError(message)\ndef module(name,path):\n    spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m\ndef provenance():\n    return dict(verifier_script_sha256=sha(__file__),verifier_script_source=Path(__file__).read_text(),\n                pid=os.getpid(),checked_at=now(),CPU_threads=2,CUDA_VISIBLE_DEVICES=os.environ['CUDA_VISIBLE_DEVICES'])\ndef npz(path):\n    import numpy as np\n    with np.load(path,allow_pickle=False) as a:return {k:a[k] for k in a.files}\ndef bytes_digest(value):\n    h=hashlib.sha256();h.update(str(value.dtype).encode());h.update(str(value.shape).encode());h.update(value.tobytes(order='C'));return h.hexdigest()\n\ndef baseline_control():\n    import numpy as np\n    plan=read(OUT/'PLAN.json')\n    cases=[]\n    full_rows=[json.loads(l) for l in (FULL/'rows.jsonl').read_text().splitlines()]\n    for regime in plan['regimes']:\n        a=OUT/'motions'/f'case01_baseline_{regime}.npz'\n        b=FULL/'motions'/f'case29_{regime}.npz'\n        left,right=npz(a),npz(b)\n        require(int(left['step'])==int(right['step'])==15100,'Control step mismatch')\n        require(json.loads(str(left['identity_json']))==json.loads(str(right['identity_json'])),'Control source identity mismatch')\n        record=next(r for r in full_rows if r['case']==29 and r['regime']==regime)\n        require(sha(b)==record['motion_sha256'],'Full reference artifact changed')\n        fields={}\n        for key in ('truth','rest','observations','observation_meta','reference'):\n            x,y=left[key],right[key]\n            exact=x.dtype==y.dtype and x.shape==y.shape and x.tobytes()==y.tobytes()\n            fields[key]=dict(byte_identical=exact,shape=list(x.shape),dtype=str(x.dtype),\n                             actual_sha256=bytes_digest(x),reference_sha256=bytes_digest(y),\n                             maximum_absolute_difference=float(np.max(np.abs(x-y))))\n            require(exact,'Baseline control nonidentical '+regime+'/'+key)\n        x,y=left['prediction'],right['prediction']\n        require(x.shape==y.shape==(192,201),'Control prediction shape mismatch')\n        same=np.allclose(x,y,atol=1e-6,rtol=1e-6)\n        require(same,'Baseline original sampling mismatch '+regime)\n        cases.append(dict(regime=regime,case=1,original_full_RICH_case=29,seed=303671090,\n            baseline_artifact=str(a),baseline_sha256=sha(a),reference_artifact=str(b),reference_sha256=sha(b),\n            source_identity_equal=True,input_fields=fields,prediction_byte_identical=x.dtype==y.dtype and x.tobytes()==y.tobytes(),\n            prediction_allclose_atol=1e-6,prediction_allclose_rtol=1e-6,\n            prediction_maximum_absolute_difference=float(np.max(np.abs(x-y))),prediction_allclose_passed=bool(same)))\n    report=dict(status='passed_complete',checkpoint_step=15100,plan_sha256=sha(OUT/'PLAN.json'),\n                cases=cases,scope='Original full-RICH process versus new zero-intervention baseline; same seed and reconstructed input, both clean/noisy.',**provenance())\n    write(OUT/'BASELINE_CONTROL.json',report)\n    print(json.dumps(dict(event='baseline_control_passed',exact_predictions=[x['prediction_byte_identical'] for x in cases]),ensure_ascii=False),flush=True)\n\ndef compare_metrics(actual,expected,label):\n    require(set(actual)==set(expected),label+' keys differ '+str(set(actual)^set(expected)))\n    max_delta=0.\n    for key,a in actual.items():\n        e=expected[key]\n        if a is None or e is None:\n            require(a is None and e is None,label+'/'+key+' None mismatch');continue\n        require(isinstance(a,(int,float)) and isinstance(e,(int,float)),label+'/'+key+' type mismatch')\n        require(math.isclose(a,e,rel_tol=1e-6,abs_tol=3e-5),label+'/'+key+' mismatch '+repr((a,e)))\n        max_delta=max(max_delta,abs(a-e))\n    return max_delta\n\ndef common_surface(truth,asset,scene):\n    import numpy as np\n    import torch\n    from scipy.spatial import cKDTree\n    from experiments.offline_camera_retrain_v1.unified_geometry import skin_points\n    while not hasattr(scene,'static') and hasattr(scene,'base'):\n        require(np.allclose(scene.rotation,np.eye(3),atol=1e-7),'Nonidentity surface transform must not be silently unwrapped')\n        scene=scene.base\n    static=scene.static\n    valid=static['reliable']&(static['normals'][:,1]>.9)&(static['owners']==0)\n    cloud,normals=static['points'][valid],static['normals'][valid]\n    labels=asset['labels'].detach().cpu().numpy();feet=np.isin(labels,[7,8,10,11])\n    with torch.no_grad():g=skin_points(torch.from_numpy(truth),asset).numpy()[:,feet]\n    if not len(cloud):return dict(count=0,mask_digest=hashlib.sha256(b'no_surface').hexdigest(),feet=feet)\n    distance,ids=cKDTree(cloud).query(g);point,normal=cloud[ids],normals[ids]\n    gd=g-point;signed=(gd*normal).sum(-1);tangent=np.linalg.norm(gd-signed[...,None]*normal,axis=-1)\n    mask=(distance<.25)&(tangent<.12)&(np.abs(signed)<.2)\n    h=hashlib.sha256()\n    for x in (feet,mask,point,normal,signed):h.update(bytes_digest(x).encode())\n    return dict(count=int(mask.sum()),mask_digest=h.hexdigest(),feet=feet,mask=mask,point=point,normal=normal,signed=signed,\n                reliable_upward_static_points=len(cloud))\n\ndef independently_surface_metrics(prediction,asset,evidence):\n    import numpy as np\n    import torch\n    from experiments.offline_camera_retrain_v1.unified_geometry import skin_points\n    count=evidence['count']\n    if count==0:return dict(support_evaluation_anchor_count=0)\n    with torch.no_grad():p=skin_points(torch.from_numpy(prediction),asset).numpy()[:,evidence['feet']]\n    ps=((p-evidence['point'])*evidence['normal']).sum(-1);mask=evidence['mask'];g=evidence['signed']\n    return dict(support_evaluation_anchor_count=count,\n        support_calibrated_absolute_error_mm=float(np.abs(ps-g)[mask].mean()*1000),\n        support_signed_height_mm=float(ps[mask].mean()*1000),\n        support_float_over_50mm_fraction=float((ps[mask]>.05).mean()),\n        support_penetrate_below_20mm_fraction=float((ps[mask]<-.02).mean()),\n        support_gt_signed_height_mm=float(g[mask].mean()*1000))\n\ndef final_verify():\n    import numpy as np\n    import torch\n    from experiments.offline_camera_retrain_v1.prepare_native30 import window_options\n    from experiments.offline_camera_retrain_v1.native30_data import Native30Data\n    from experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAnchorCache\n    from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder\n    from experiments.offline_camera_retrain_v1.unified_observations import collate_observations\n    from experiments.offline_camera_retrain_v1.native30_refinement import model_inputs\n    from experiments.offline_camera_retrain_v1.native30_surface_cache import CanonicalSurfaceCache\n    from experiments.offline_camera_retrain_v1 import native30_surface_cache as surfaces,native30_memory as memory\n    from experiments.offline_camera_retrain_v1.ops.support_metrics import support_metrics\n    torch.set_num_threads(2);torch.set_num_interop_threads(1)\n    require(not torch.cuda.is_initialized(),'CUDA unexpectedly initialized before CPU verification')\n    plan=read(OUT/'PLAN.json');protocol=read(OUT/'PROTOCOL.json');status=read(OUT/'STATUS.json')\n    require(status['status']==protocol['status']=='completed','Worker not complete')\n    require(protocol['plan_sha256']==sha(OUT/'PLAN.json'),'Plan digest differs')\n    require(protocol['model_tensor_digest_before']==protocol['model_tensor_digest_after'],'Worker model tensors changed')\n    for path,digest in plan['dependency_sha256'].items():require(sha(path)==digest,'Dependency changed '+path)\n    require(sha(plan['source_manifest'])==plan['source_manifest_sha256'],'Selection manifest changed')\n    helper=module('independent_constraint_eval_helpers',FULL/'runner.py');effective=helper.verify_sources();cfg=effective['config']\n    require(sha(plan['checkpoint'])==plan['checkpoint_sha256'],'Checkpoint SHA differs')\n    ck=torch.load(plan['checkpoint'],map_location='cpu',mmap=True,weights_only=False)\n    require(ck['step']==15100 and ck['effective_config']==effective,'Checkpoint identity differs')\n    tensor_digest=helper.model_tensor_digest(ck['model'])\n    require(tensor_digest==protocol['model_tensor_digest_before'],'Model tensor identity differs');del ck;gc.collect()\n    raw=(OUT/'rows.jsonl').read_bytes();require(raw.endswith(b'\\n'),'Partial row tail')\n    rows=[json.loads(x) for x in raw.splitlines()]\n    expected={(e['case'],r,a) for e in plan['entries'] for r in plan['regimes'] for a in plan['arms']}\n    by={(r['case'],r['regime'],r['arm']):r for r in rows}\n    require(len(rows)==len(by)==40 and set(by)==expected,'Coverage/duplicate/unplanned rows')\n    require(all(r['checkpoint_step']==15100 for r in rows),'Mixed checkpoint rows')\n    started=dt.datetime.fromisoformat(protocol['started_at'])\n    require(all(dt.datetime.fromisoformat(r['checked_at'])>=started for r in rows),'Rows predate recorded worker session')\n    io=module('independent_constraint_crc_reads',BASE/'runs/native30_final_review_oct16/io_recovery.py')\n    surfaces.np=io.NumpyProxy(surfaces.np,OUT/'INDEPENDENT_CPU_IO_READS.jsonl')\n    memory.np=io.NumpyProxy(memory.np,OUT/'INDEPENDENT_CPU_IO_READS.jsonl')\n    data=Native30Data(BASE/cfg['train_manifest'],'validation',cfg['seed']+1,frames=cfg['frames'],\n        memory_protocol=cfg['scene']['memory_protocol'],quality_config=cfg['gt_reliability'],\n        exo_max_empty_frames=cfg['exo_max_empty_frames'],**window_options(cfg))\n    data.runtime_cache_root=OUT/'native30_runtime_cache_v2'\n    old_path=data.scene_memory._cache_path\n    data.scene_memory._cache_path=lambda *args:(p if (p:=old_path(*args)) is not None and p.exists() else None)\n    data.surface_cache=CanonicalSurfaceCache(data,limit=1);data.scene_memory.cached_streams=1\n    builder=Native30ObservationBuilder(Native30SkinAnchorCache(device='cpu'),read(BASE/cfg['mount_defaults']),cfg['observation']['input_noise'])\n    noisy=Native30ObservationBuilder(builder.skin_cache,builder.mounts,dict(builder.noise_config,clean_probability=0.))\n    checked=[];evidences=[];maximum_delta=0.;empty_low=[];reference_reconstruction=[]\n    for entry in plan['entries']:\n        members=[i for i,(m,_) in enumerate(data.members[entry['group']]) if m['path']==entry['path']]\n        require(len(members)==1,'Nonunique source identity')\n        sample,identity=data.sample(entry['group'],'ego',member=members[0],start=entry['start'],yaw=0)\n        require(identity['sequence_id']==entry['sequence_id'] and identity['source_start_30fps']==entry['source_first'],'Source index differs')\n        for regime in plan['regimes']:\n            observed,scene,asset=(builder if regime=='clean' else noisy).build(data,sample,identity,'ego',(15,),\n                noise_rng=None if regime=='clean' else np.random.default_rng(entry['case_seed']))\n            batch=collate_observations([(observed,scene,asset,'ego')],device='cpu');known=model_inputs(cfg,batch)\n            baseline=npz(by[(entry['case'],regime,'baseline')]['artifact'])\n            cpu_reference=known['reference_motion'][0].numpy()\n            reference_delta=float(np.max(np.abs(cpu_reference-baseline['reference'])))\n            require(np.allclose(cpu_reference,baseline['reference'],atol=1e-5,rtol=1e-5),'Cross-device rebuilt reference differs')\n            reference_reconstruction.append(dict(case=entry['case'],regime=regime,\n                CPU_vs_saved_GPU_maximum_absolute_reference_delta=reference_delta,\n                CPU_vs_saved_GPU_reference_byte_identical=bool(np.array_equal(cpu_reference,baseline['reference'])),\n                allclose_absolute_tolerance=1e-5,allclose_relative_tolerance=1e-5))\n            h=hashlib.sha256()\n            for key in ('trajectory','observation_meta','observation_uncertainty','reference_motion','reference_confidence'):\n                value=baseline['reference'][None] if key=='reference_motion' else known[key].detach().cpu().contiguous().numpy()\n                h.update(value.tobytes())\n            input_sha=h.hexdigest();evidence=common_surface(sample['motion'],asset,scene)\n            ev=dict(case=entry['case'],regime=regime,count=evidence['count'],mask_sha256=evidence['mask_digest'],\n                    reliable_upward_static_points=evidence.get('reliable_upward_static_points',0),arms=[])\n            for arm in plan['arms']:\n                row=by[(entry['case'],regime,arm)];path=Path(row['artifact'])\n                require(sha(path)==row['artifact_sha256'],'Artifact SHA differs')\n                a=npz(path)\n                require(row['input_sha256']==str(a['input_sha256'])==input_sha,'Rebuilt input SHA differs')\n                require(str(a['arm'])==arm and int(a['step'])==15100,'Artifact arm/step differs')\n                require(json.loads(str(a['identity_json']))==identity,'Rebuilt artifact identity differs')\n                for key,expected_array in [('truth',sample['motion']),('rest',sample['rest']),('observations',observed['trajectory']),\n                        ('observation_meta',observed['observation_meta']),('reference',baseline['reference'])]:\n                    require(np.array_equal(a[key],expected_array),'Rebuilt source array differs '+key)\n                metrics=support_metrics(a['prediction'],a['truth'],a['rest'],a['observations'],a['observation_meta'],asset)\n                metrics.update(independently_surface_metrics(a['prediction'],asset,evidence))\n                delta=compare_metrics(metrics,row['metrics'],str((entry['case'],regime,arm)));maximum_delta=max(maximum_delta,delta)\n                require(metrics['support_evaluation_anchor_count']==evidence['count'],'Arm mask count differs')\n                if metrics['gt_low_speed_foot_joint_samples']==0:\n                    require(metrics['foot_joint_horizontal_speed_gt_low_m_s'] is None,'Empty GT-low proxy not None')\n                    empty_low.append(dict(case=entry['case'],regime=regime,arm=arm))\n                ev['arms'].append(arm)\n                checked.append(dict(case=entry['case'],regime=regime,arm=arm,artifact_sha256=row['artifact_sha256'],\n                    all_metric_keys_recomputed=len(metrics),maximum_absolute_metric_delta=delta,\n                    gt_low_speed_foot_joint_samples=metrics['gt_low_speed_foot_joint_samples'],\n                    common_surface_count=evidence['count'],common_surface_mask_sha256=evidence['mask_digest']))\n            evidences.append(ev)\n            print(json.dumps(dict(event='cpu_case_regime_verified',case=entry['case'],regime=regime,rows=len(checked)),ensure_ascii=False),flush=True)\n            del known,batch,observed,scene,asset\n            gc.collect()\n        data.arrays.clear()\n    require(not torch.cuda.is_initialized(),'CUDA initialized during CPU verification')\n    require(sha(OUT/'rows.jsonl')==hashlib.sha256(raw).hexdigest(),'Rows changed during complete verification')\n    helper.verify_sources()\n    result=dict(status='passed_complete',checkpoint_step=15100,plan_sha256=sha(OUT/'PLAN.json'),\n        checkpoint_sha256=plan['checkpoint_sha256'],independent_model_tensor_digest=tensor_digest,\n        rows_sha256=sha(OUT/'rows.jsonl'),expected_rows=40,verified_rows=len(checked),unique_cases=5,\n        regimes=plan['regimes'],arms=list(plan['arms']),CPU_only=True,CUDA_initialized=False,\n        input_reconstruction='truth,rest,trajectory,meta byte equality; stored references byte-identical across all arms and independently CPU rebuilt within 1e-5; uncertainty and reference confidence in rebuilt aggregate fingerprint using saved GPU reference',\n        all_saved_metric_keys_recomputed=True,surface_masks_shared_between_all_arms=True,\n        maximum_absolute_metric_delta=maximum_delta,numeric_tolerances=dict(relative=1e-6,absolute=3e-5),\n        rows_predating_worker_session=0,resumed_rows_compatible_with_session_timestamps=0,\n        resume_audit_limit='No row predates worker start; no explicit resumed counter existed in runner, so this is a timestamp/session audit, not proof of process history.',\n        empty_GT_low_speed_groups=empty_low,reference_reconstruction=reference_reconstruction,\n        common_surface_evidence=evidences,verified=checked,**provenance())\n    write(OUT/'INDEPENDENT_CPU_VERIFY.json',result)\n    print(json.dumps(dict(event='independent_cpu_verify_passed',rows=len(checked),maximum_absolute_metric_delta=maximum_delta)),flush=True)\n\ndef main():\n    import numpy\n    while not all((OUT/'motions'/f'case01_baseline_{r}.npz').exists() for r in ('clean','noisy')):\n        s=read(OUT/'STATUS.json');require(s['status']!='failed','GPU worker failed before baseline control')\n        time.sleep(15)\n    baseline_control()\n    while read(OUT/'STATUS.json')['status']!='completed':\n        s=read(OUT/'STATUS.json');require(s['status']!='failed','GPU worker failed before final CPU verification')\n        time.sleep(20)\n    final_verify()\n\nif __name__=='__main__':\n    try:main()\n    except BaseException as error:\n        write(OUT/'INDEPENDENT_CPU_VERIFY_FAILURE.json',dict(status='failed',error=repr(error),**provenance()))\n        raise\n",
+  "pid": 184723,
+  "checked_at": "2026-10-16T21:00:40.244375+08:00",
+  "CPU_threads": 2,
+  "CUDA_VISIBLE_DEVICES": ""
+}

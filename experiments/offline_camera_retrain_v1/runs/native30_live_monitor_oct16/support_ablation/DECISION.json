@@ -1,0 +1,229 @@
+{
+  "status": "complete",
+  "checked_at": "2026-10-16T21:06:17.530771+08:00",
+  "decision": "keep_training_baseline_do_not_enable_current_candidates",
+  "checkpoint_step": 15100,
+  "DDIM_predictions": 40,
+  "postprocessing_outputs": 4,
+  "updates": 0,
+  "aggregation": "Unweighted mean over preselected case/regime pairs, not full validation or contact ground truth.",
+  "aggregates": {
+    "walk_bend": {
+      "baseline": {
+        "windows": 6,
+        "metrics": {
+          "mpjpe_mm": 135.09868748982748,
+          "observed_head_position_error_mm": 0.85736657087823,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.3728706028287147,
+          "foot_joint_y_abs_error_gt_low_mm": 24.05401336891942,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 29.582361857096355,
+          "root_tilt_deg": 9.307914757661399,
+          "root_tilt_abs_error_deg": 7.820456573427873,
+          "support_calibrated_absolute_error_mm": 32.30007023861011
+        }
+      },
+      "ik_only": {
+        "windows": 6,
+        "metrics": {
+          "mpjpe_mm": 151.6641387939453,
+          "observed_head_position_error_mm": 4.193232626807122,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.4357082056979326,
+          "foot_joint_y_abs_error_gt_low_mm": 27.276427504199575,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 33.95986890792847,
+          "root_tilt_deg": 9.310349005568364,
+          "root_tilt_abs_error_deg": 8.062063304765134,
+          "support_calibrated_absolute_error_mm": 35.165984804431595
+        }
+      },
+      "gravity": {
+        "windows": 6,
+        "metrics": {
+          "mpjpe_mm": 132.7737948099772,
+          "observed_head_position_error_mm": 1.0609906852492201,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.3602416483000592,
+          "foot_joint_y_abs_error_gt_low_mm": 23.124827134413366,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 29.205231030782063,
+          "root_tilt_deg": 8.802234742806096,
+          "root_tilt_abs_error_deg": 7.455240129247343,
+          "support_calibrated_absolute_error_mm": 31.73638880252838
+        }
+      },
+      "ik_gravity": {
+        "windows": 6,
+        "metrics": {
+          "mpjpe_mm": 148.9064852396647,
+          "observed_head_position_error_mm": 3.9362699613010457,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.4290887408759978,
+          "foot_joint_y_abs_error_gt_low_mm": 26.34582052893877,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 33.58604335784912,
+          "root_tilt_deg": 8.544106237511528,
+          "root_tilt_abs_error_deg": 7.476129869712883,
+          "support_calibrated_absolute_error_mm": 34.68164180715879
+        }
+      }
+    },
+    "action_counterexamples": {
+      "baseline": {
+        "windows": 4,
+        "metrics": {
+          "mpjpe_mm": 199.0952033996582,
+          "observed_head_position_error_mm": 5.092561026696579,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.22500891555577385,
+          "foot_joint_y_abs_error_gt_low_mm": 27.750498598534296,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 26.489047288894653,
+          "root_tilt_deg": 7.2174966389531505,
+          "root_tilt_abs_error_deg": 11.134244970701095,
+          "support_calibrated_absolute_error_mm": 17.171718878671527
+        }
+      },
+      "ik_only": {
+        "windows": 4,
+        "metrics": {
+          "mpjpe_mm": 207.5732192993164,
+          "observed_head_position_error_mm": 11.196292748913399,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.3229489295369239,
+          "foot_joint_y_abs_error_gt_low_mm": 24.966221859133952,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 27.077942609786987,
+          "root_tilt_deg": 6.929044299190517,
+          "root_tilt_abs_error_deg": 10.947438332408995,
+          "support_calibrated_absolute_error_mm": 16.84562093578279
+        }
+      },
+      "gravity": {
+        "windows": 4,
+        "metrics": {
+          "mpjpe_mm": 198.50190353393555,
+          "observed_head_position_error_mm": 5.0107615651411965,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.2886917800375782,
+          "foot_joint_y_abs_error_gt_low_mm": 27.67254651927513,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 26.233364582061768,
+          "root_tilt_deg": 7.112529844559642,
+          "root_tilt_abs_error_deg": 11.105782049528642,
+          "support_calibrated_absolute_error_mm": 17.054561525583267
+        }
+      },
+      "ik_gravity": {
+        "windows": 4,
+        "metrics": {
+          "mpjpe_mm": 207.61456298828125,
+          "observed_head_position_error_mm": 11.475257007250695,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.32256020257197826,
+          "foot_joint_y_abs_error_gt_low_mm": 24.137330030314008,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 26.710885286331177,
+          "root_tilt_deg": 6.872670149462848,
+          "root_tilt_abs_error_deg": 10.907376375472294,
+          "support_calibrated_absolute_error_mm": 16.782020218670368
+        }
+      }
+    },
+    "all": {
+      "baseline": {
+        "windows": 10,
+        "metrics": {
+          "mpjpe_mm": 160.69729385375976,
+          "observed_head_position_error_mm": 2.5514443532055697,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.31372592791953835,
+          "foot_joint_y_abs_error_gt_low_mm": 25.532607460765373,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 28.345036029815674,
+          "root_tilt_deg": 8.4717475101781,
+          "root_tilt_abs_error_deg": 9.145971932337162,
+          "support_calibrated_absolute_error_mm": 26.248729694634676
+        }
+      },
+      "ik_only": {
+        "windows": 10,
+        "metrics": {
+          "mpjpe_mm": 174.02777099609375,
+          "observed_head_position_error_mm": 6.994456675649633,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.39060449523352914,
+          "foot_joint_y_abs_error_gt_low_mm": 26.35234524617333,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 31.207098388671874,
+          "root_tilt_deg": 8.357827123017225,
+          "root_tilt_abs_error_deg": 9.216213315822678,
+          "support_calibrated_absolute_error_mm": 27.837839256972075
+        }
+      },
+      "gravity": {
+        "windows": 10,
+        "metrics": {
+          "mpjpe_mm": 159.06503829956054,
+          "observed_head_position_error_mm": 2.640899037206011,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.3316217009950668,
+          "foot_joint_y_abs_error_gt_low_mm": 24.94391488835807,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 28.016484451293945,
+          "root_tilt_deg": 8.126352783507514,
+          "root_tilt_abs_error_deg": 8.915456897359864,
+          "support_calibrated_absolute_error_mm": 25.863657891750336
+        }
+      },
+      "ik_gravity": {
+        "windows": 10,
+        "metrics": {
+          "mpjpe_mm": 172.38971633911132,
+          "observed_head_position_error_mm": 6.951864779680905,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.38647732555438996,
+          "foot_joint_y_abs_error_gt_low_mm": 25.462424329488865,
+          "foot_skin_anchor_low_y_abs_error_gt_low_mm": 30.835980129241943,
+          "root_tilt_deg": 7.8755318022920555,
+          "root_tilt_abs_error_deg": 8.848628472016648,
+          "support_calibrated_absolute_error_mm": 27.52179317176342
+        }
+      }
+    }
+  },
+  "checks": {
+    "VERIFY.json": "passed_complete",
+    "INDEPENDENT_CPU_VERIFY.json": "passed_complete"
+  },
+  "source_sha256": {
+    "PLAN.json": "a78c4eb7539914ae9b6efdac946b554afb3172bc6f35a6c4f201f9ec92d316f6",
+    "rows.jsonl": "3228fc6116d4f4945ba5d838dfd2629cd1f2d3b2b14b68530eabbfd70072d5d8",
+    "VERIFY.json": "27fb12d213136c90052ab329b6dcc90701afba896d31241789c48ad30501b103",
+    "INDEPENDENT_CPU_VERIFY.json": "9df9e1e6785ed84f5e4eab4843edc19790627c864634b07f2a53c81d2a8667cf",
+    "BASELINE_CONTROL.json": "8800da657daccd8030dd339b9ef528ad87d7e175ab8998bb86701f4f24c17c76",
+    "postprocess_projection/PLAN.json": "bb9c986403fe1a5036565c89bf15116825758c82bc057ed8e80621479a0c759e",
+    "postprocess_projection/rows.jsonl": "20d62407275b915bbe2e4af88df87bfd2c1ef11f6f46b1e1b95203b1f4b0628f",
+    "postprocess_projection/CPU_CHECK.json": "80e0de078cc6fab4aab15be087e6d29dfcf8dc19c8119eab4265f75dcb35006b",
+    "visuals/ACCEPTANCE.json": "8529565994ebbd6a361ffcb47966499f35a9b34469c2c5a76d427f3f24b2c004"
+  },
+  "training_snapshot": {
+    "status": "training",
+    "pid": 106142,
+    "started_at": "2026-10-16T12:07:43.380030+08:00",
+    "goal_step": 55000,
+    "initial_step": 5200,
+    "automatic_ablation": false,
+    "optimizer_reset": false,
+    "stop_at_review_milestone": false,
+    "worker_pid": 106162,
+    "worker_started_at": "2026-10-16T12:07:43.391427+08:00",
+    "consecutive_io_restarts": 0,
+    "verified_resume_step": 5200,
+    "checked_at": "2026-10-16T21:06:13.588730+08:00",
+    "latest_trace_step": 18094,
+    "latest_committed_step": 18000,
+    "latest_loss": 0.19044707715511322,
+    "latest_gradient_norm": 7.978520393371582,
+    "latest_lr": 7.55896036580249e-05
+  },
+  "processes_alive": {
+    "106142": true,
+    "106162": true,
+    "166532": true,
+    "184664": true,
+    "180695": true
+  },
+  "viewer_http": {
+    "8800": 200,
+    "8801": 200
+  },
+  "new_inference_defaults_enabled": false,
+  "limitations": [
+    "5 selected windows, 2 input regimes; not full-validation improvement.",
+    "Root-upright proxy is not gravity dynamics.",
+    "Counterexample windows contain no root tilt above 60 degrees.",
+    "Sparse foot anchors are not complete mesh collision.",
+    "Low GT speed is an evaluation proxy, not contact truth.",
+    "No candidate retraining or architecture superiority demonstrated."
+  ]
+}

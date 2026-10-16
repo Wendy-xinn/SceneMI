@@ -35,6 +35,8 @@ EXO 小残差加旧扩散先验与 scene 的开发组合曾有额外几毫米收
 
 原始读数：[脚部测量](../runs/native30_live_monitor_oct16/visuals/viser/FOOT_DIAGNOSTICS.json)、[受控锚定复现](../runs/native30_live_monitor_oct16/visuals/viser/ANCHOR_MECHANISM.json)、[实际场景支持与门控](../runs/native30_live_monitor_oct16/visuals/viser/SUPPORT_DIAGNOSTICS.json)。
 
+**21:00后完成的真实配对实验更新：** 冻结15100步，5窗×clean/noisy×4组共40次DDIM20；独立CPU重算40/40通过，RICH baseline与原输出逐字节一致。去头部整身平移反而变差（10输入平均MPJPE160.70→174.03mm，低速期水平脚速0.314→0.391m/s）。弱root直立先验让MPJPE微降到159.07mm，但脚速升至0.332；另4次CPU可见支撑IK全部加剧垂直脚速。三种当前候选均不启用，主训练原样继续。不能再用受控机制测试替代真实采样结论，也不能把弱直立先验称为重力动力学。完整读数、反例覆盖限制及[决策记录](../runs/native30_live_monitor_oct16/support_ablation/DECISION_zh.md)、[同权重Viser](http://localhost:8801/)已经保存。
+
 ### 已登记的场景通路检验
 
 用本次全 RICH 的同一份 **15,100 步冻结权重**，每条合格录制取一个中位合法窗口，27 窗，clean/noisy 分开，同输入、同 seed：

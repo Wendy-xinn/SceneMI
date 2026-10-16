@@ -1,0 +1,103 @@
+{
+  "schema": "motion-viewer-native-mesh-v1",
+  "source_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/PREPARED_CASES.json",
+  "config": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+  "cases": [
+    {
+      "label": "TRUMANS · 原始贴头",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_baseline_clean.npz",
+      "step": 15100,
+      "dataset": "trumans",
+      "arm": "baseline",
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。",
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/0a526922dd2de7ef89da1b186531a5a55d25c58db86ce282285ba9cb0f9b8188/playback.npz",
+      "cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/0a526922dd2de7ef89da1b186531a5a55d25c58db86ce282285ba9cb0f9b8188/MANIFEST.json"
+    },
+    {
+      "label": "TRUMANS · 去整身平移 · IK",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_ik_only_clean.npz",
+      "step": 15100,
+      "dataset": "trumans",
+      "arm": "ik_only",
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。",
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/3de9ae926f5b75f722ab3f475d482df71ea3e5c26d51da512b85d2615f2e2615/playback.npz",
+      "cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/3de9ae926f5b75f722ab3f475d482df71ea3e5c26d51da512b85d2615f2e2615/MANIFEST.json"
+    },
+    {
+      "label": "TRUMANS · 原始贴头 + 弱重力",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_gravity_clean.npz",
+      "step": 15100,
+      "dataset": "trumans",
+      "arm": "gravity",
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。",
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/29e2278f542d8ed40d7446d3f95f79f15a483c0a30f44b1aee88f34965dc84fb/playback.npz",
+      "cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/29e2278f542d8ed40d7446d3f95f79f15a483c0a30f44b1aee88f34965dc84fb/MANIFEST.json"
+    },
+    {
+      "label": "TRUMANS · IK + 弱重力",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case00_ik_gravity_clean.npz",
+      "step": 15100,
+      "dataset": "trumans",
+      "arm": "ik_gravity",
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。",
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/a2c51cf29e9433186dc1c9ec88b465468ebd5679a4bd620a62f644ecc9f7fb18/playback.npz",
+      "cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/a2c51cf29e9433186dc1c9ec88b465468ebd5679a4bd620a62f644ecc9f7fb18/MANIFEST.json"
+    },
+    {
+      "label": "RICH · 原始贴头",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_baseline_clean.npz",
+      "step": 15100,
+      "dataset": "rich",
+      "arm": "baseline",
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。",
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/70d5cdaafc39acec2e6416986dd3c2cb0822646dc2e5bb9d9bf65fc7e97d50bc/playback.npz",
+      "cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/70d5cdaafc39acec2e6416986dd3c2cb0822646dc2e5bb9d9bf65fc7e97d50bc/MANIFEST.json"
+    },
+    {
+      "label": "RICH · 去整身平移 · IK",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_ik_only_clean.npz",
+      "step": 15100,
+      "dataset": "rich",
+      "arm": "ik_only",
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。",
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/7f1410c09b5351764626e6b8c7d5a34a32a7415db0bfb29fb2e5b6a18f9946ee/playback.npz",
+      "cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/7f1410c09b5351764626e6b8c7d5a34a32a7415db0bfb29fb2e5b6a18f9946ee/MANIFEST.json"
+    },
+    {
+      "label": "RICH · 原始贴头 + 弱重力",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_gravity_clean.npz",
+      "step": 15100,
+      "dataset": "rich",
+      "arm": "gravity",
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。",
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/1eaf7373c37f243f56b63d5edaee2ba2e59653a8bb23e94a4c189ae8e6c2f832/playback.npz",
+      "cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/1eaf7373c37f243f56b63d5edaee2ba2e59653a8bb23e94a4c189ae8e6c2f832/MANIFEST.json"
+    },
+    {
+      "label": "RICH · IK + 弱重力",
+      "archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/motions/case01_ik_gravity_clean.npz",
+      "step": 15100,
+      "dataset": "rich",
+      "arm": "ik_gravity",
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "selection_reason": "同一15100权重、同输入和随机种子的采样对照。蓝色GT，紫色预测；无显示贴地或坐标对齐。弱重力仅是根姿态俯仰/横滚先验，并非接触动力学。",
+      "cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/10340cc1881a4e202a6af6f5baa9056414b3c20bc2561e235e4cdc9d28b34920/playback.npz",
+      "cache_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/support_ablation/visuals/cache/10340cc1881a4e202a6af6f5baa9056414b3c20bc2561e235e4cdc9d28b34920/MANIFEST.json"
+    }
+  ]
+}

@@ -15,6 +15,7 @@ COMMANDS = {
     "best": ("checkpoint_guardian", "按固定验证指标保留一个最佳模型副本"),
     "scene-check": ("scene_causal_check", "运行已登记的冻结权重场景/物理修正配对检查"),
     "motion-check": ("motion_ablation", "运行冻结权重的头部锚定、重力方向和支撑配对实验"),
+    "support-check": ("contact_projection", "仅用 CPU 检查已有输出的可见支撑关节投影"),
 }
 
 
