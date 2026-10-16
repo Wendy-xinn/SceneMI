@@ -1,4 +1,6 @@
-# Ego/exo 模型与实验唯一总清单
+# Ego/exo 架构与历史实验记录
+
+**2026-10-16晚间：当前状态统一看 [实验入口](../INDEX_zh.md)，下文按时间保留历史记录。主线持续训练；已保存15,100步 [best元数据](../native30_gait_v2_ego55k_oct15/training/best.json)，选择口径暂为固定RICH单窗口，并非全验证集最优。完整RICH验证与独立复核进行中。已将44个退役目录、165份旧脚本移出runs，另删除6.411 GiB退役权重/可重建输出。[实际清理记录](../../ops/cleanup_oct16_evening/EXECUTED.json)。**
 
 **10月16日14:40复核：橙色EgoBody点云是另一位interactee的局部可见表面，同帧GT mesh核对未发现坐标/时序错位；[可旋转3D](http://localhost:8792/ROTATE_3D.html)。[曲线首屏](http://localhost:6006/#custom_scalars)已改为唯一总loss和三个可加总的已加权贡献，详见[真实损失说明](../native30_live_monitor_oct16/LOSS_GUIDE_zh.md)。训练loss仍降，但最新9k固定VAL clean/noisy MPJPE为210.8/205.6mm，较8k的193.7/193.4反弹；朝向/局部脚与世界位置/滑步趋势分歧，尚不能保证55k质量。完整[趋势复核](../native30_live_monitor_oct16/trend_review_current/TREND_REVIEW_zh.md)已包含9k，不仅选8k低点。当前连续主线保持。**
 

@@ -1,0 +1,2601 @@
+{
+  "audited_at": "2026-10-16T19:00:54.110930+08:00",
+  "active_processes": [
+    {
+      "pid": 3833,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u -m http.server 8789 --bind 127.0.0.1 --directory /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/visual_review_step8000",
+      "run_refs": [
+        "native30_fresh_ego_oct14"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/visual_review_step8000/replay_server.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 4558,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/view_visual_review.py --folder /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/visual_review_step8000 --port 8788",
+      "run_refs": [
+        "native30_fresh_ego_oct14"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_fresh_ego_oct14/visual_review_step8000/mesh_viewer.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 43435,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u -m http.server 8791 --bind 127.0.0.1 --directory /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/legacy55k_exo_long_oct15",
+      "run_refs": [
+        "legacy55k_exo_long_oct15"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/legacy55k_exo_long_oct15/http_server.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 106142,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/supervise.py",
+      "run_refs": [
+        "native30_gait_v2_ego55k_oct15"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/.supervise.lock",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/supervisor.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 106162,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/worker.py",
+      "run_refs": [
+        "native30_gait_v2_ego55k_oct15"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/worker.log",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl"
+      ],
+      "other_dependency_parent_counts": {
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_verified_read_cache_v1": 9491
+      }
+    },
+    {
+      "pid": 118368,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard_compat_server.py --logdir /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard --host 127.0.0.1 --port 6006 --reload_interval 10 --samples_per_plugin scalars=60000,images=100 --load_fast=false",
+      "run_refs": [
+        "native30_live_monitor_oct16"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard_server.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 121901,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard_bridge.py --poll-seconds 30",
+      "run_refs": [
+        "native30_live_monitor_oct16"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/.bridge.lock",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/bridge.log",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/bridge.sqlite3",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/bridge.sqlite3-shm",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/bridge.sqlite3-wal"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 122610,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visual_capture.py --watch --poll-seconds 30",
+      "run_refs": [
+        "native30_live_monitor_oct16"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/watch.log"
+      ],
+      "other_dependency_parent_counts": {
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_verified_read_cache_v1": 2
+      }
+    },
+    {
+      "pid": 122630,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u -m http.server 8792 --bind 127.0.0.1 --directory /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/step_00008000/egobody_owner101_audit",
+      "run_refs": [
+        "native30_live_monitor_oct16"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/step_00008000/egobody_owner101_audit/http_server.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 131867,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u -m http.server 8793 --bind 127.0.0.1 --directory /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/gait_review_current",
+      "run_refs": [
+        "native30_live_monitor_oct16"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/gait_review_current/http_server.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 143571,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u -m http.server 8794 --bind 127.0.0.1 --directory /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/balanced_validation_oct16",
+      "run_refs": [
+        "native30_live_monitor_oct16"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/balanced_validation_oct16/http_server.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 161550,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/runner.py",
+      "run_refs": [
+        "native30_live_monitor_oct16"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/runner.log"
+      ],
+      "other_dependency_parent_counts": {
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_verified_read_cache_v1": 10
+      }
+    },
+    {
+      "pid": 162007,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/verify_results.py --wait-complete",
+      "run_refs": [
+        "native30_live_monitor_oct16"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/verify_results.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 162313,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u -m http.server 8795 --bind 127.0.0.1 --directory /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16",
+      "run_refs": [
+        "native30_live_monitor_oct16"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/http_server.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 163002,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/compare_previous_subset.py --wait-complete",
+      "run_refs": [
+        "native30_live_monitor_oct16"
+      ],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/matched_comparison_watch.log"
+      ],
+      "other_dependency_parent_counts": {}
+    },
+    {
+      "pid": 165085,
+      "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/checkpoint_guardian.py",
+      "run_refs": [],
+      "open_run_files": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/.best_guardian.lock"
+      ],
+      "other_dependency_parent_counts": {
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/checkpoint_guardian_oct16": 2
+      }
+    }
+  ],
+  "protected_run_names": [
+    "ego_exo_surface_continue_oct11",
+    "exo_occlusion_review_oct12",
+    "legacy55k_exo_long_oct15",
+    "legacy55k_exo_residual_oct15",
+    "native30_final_review_oct16",
+    "native30_fresh_ego_oct14",
+    "native30_gait_restore_probe_oct15",
+    "native30_gait_v2_arch_review_oct15",
+    "native30_gait_v2_ego55k_oct15",
+    "native30_live_monitor_oct16",
+    "native30_physics_schedule_probe_oct15",
+    "native_dynamic_scene20_contact_55k_oct07"
+  ],
+  "sealed_source_count": 365,
+  "sealed_source_sha_mismatches": [],
+  "script_audit": [
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_audit_oct16/candidates.py",
+      "bytes": 2624,
+      "sha256": "0aa13ba905b324b3ebde9042a5f45b77fc422cd7e5dff47d33e8863780fb1cf2",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_audit_oct16/plot_saved.py",
+      "bytes": 2997,
+      "sha256": "97f671771ff48571530a99b145a9ec11480543f519217de7ad00e556b0a2d01c",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_audit_oct16/test_candidates.py",
+      "bytes": 3676,
+      "sha256": "501ffdfae2a7f79e1e7de1f78c01ff2b34b5fcc09325e66bc22a1e764da2d497",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_audit_oct16/audit.py",
+      "bytes": 9609,
+      "sha256": "bb0eff28ae196cfe0b5f8c2e431a842180a60d3ecf006a060499014f34ad586a",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/turn_recount_oct11/summarize_recount.py",
+      "bytes": 6896,
+      "sha256": "253342a9848616df2bcf59a89125e08d4c2b414ca0354f53240a4400bb084945",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_overnight_oct14/update_record.py",
+      "bytes": 10131,
+      "sha256": "4868ca8a7553121ccb17cbb41c021ce31ec2b13ea25425a6211ce0c80e89b9d3",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/typed_head_track_oct10/parallel_worker.py",
+      "bytes": 2061,
+      "sha256": "5c9b4479b69c43f5109ec0f53a2f53ec9fa747c80cdbe027a4758f87aca69e6f",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/typed_head_track_oct10/evaluation_worker.py",
+      "bytes": 1281,
+      "sha256": "c90110d57f5937c86705fa6a19da4df989c2e1ea8fcdf10b524f88bb3e968383",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/typed_head_track_oct10/worker.py",
+      "bytes": 1799,
+      "sha256": "0bb3ff0884036a487e68e7be3e730b010d402a7b18cc87b65b54fd64bc89285e",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/run_inventory_oct16/execute_archive.py",
+      "bytes": 2895,
+      "sha256": "fec354583975382b36c6e2b0cf9fc1471c747d82e1c94675ddefd543f56ee3ec",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/run_inventory_oct16/execute_redundant_cleanup.py",
+      "bytes": 4438,
+      "sha256": "19e1398a2567ea9ec4edac9b0b339a0ff8f4b7464373f9f00d7633e8150254a5",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/turn_repair_oct08/launch_v2.py",
+      "bytes": 1159,
+      "sha256": "c60a8dfe48e208e5b9f2d9260aee222fdf49184ddfbbc84ac0328dabdaacec26",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/turn_repair_oct08/launch.py",
+      "bytes": 1665,
+      "sha256": "ab4977b013cf904e5125acd2e451b8e3a9098b12825f9815ad980c8f88b7872e",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_overfit_diagnosis_oct13/run_overfit.py",
+      "bytes": 10951,
+      "sha256": "e504b6ea934dc1c48e9684e86637fea35c6e4dc1a938c4d62f3c6637f04e10bc",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_overfit_diagnosis_oct13/render_training_mesh.py",
+      "bytes": 8265,
+      "sha256": "5b24c4409752145ae5f9cda5be681c639dc01f630a3e5e76ce491b8dee421f57",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_overfit_diagnosis_oct13/geometry_module.py",
+      "bytes": 8372,
+      "sha256": "20eaa56c8c5f23fd4ae1250dd08ef8f34fa9e045e6e5fdd230ff1ec8dfde9cc5",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_overfit_diagnosis_oct13/audit_checkpoints.py",
+      "bytes": 2798,
+      "sha256": "e5181d8da5b5fd46322ff73e41253601a573efab05256ebf88ef9457c6d6ba29",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_overfit_diagnosis_oct13/audit_refinement.py",
+      "bytes": 7478,
+      "sha256": "931157ccf09a45d0bf606d64968c6d0a8c0259a3a741954b6f979fc551451b93",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/soft_coupled_contact_oct10/finish_worker.py",
+      "bytes": 2178,
+      "sha256": "72cf6963a6e48470cf85dbba49197398ead077e2f448f52bcce97fd9e39b3438",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/soft_coupled_contact_oct10/worker.py",
+      "bytes": 2066,
+      "sha256": "37f53cb64b44c566f745e29278bedd84d565a08c9dba705d6bdc0b984fc86e06",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/bounded_head_adaptation_oct10/worker.py"
+      ],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_overnight_ik_oct14/update_record.py",
+      "bytes": 10221,
+      "sha256": "81f8daf85bc99721a6b051daab3fa63a78c331a8afc7f31e2b75106e3de3fd7d",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/benchmark_runtime.py",
+      "bytes": 8118,
+      "sha256": "1f47f2e9302020abb52ecf39b1c0959ec179c1658572c983cb80af2ad028a963",
+      "status": "keep_referenced_path",
+      "path_references": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/RUNTIME_BENCHMARK.json"
+      ],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/native30_overnight_before.py",
+      "bytes": 34546,
+      "sha256": "0d1cb73d777a461a4195ff83a14f82b8dd0d10bc7c767d6613339e82601f4a64",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/native30_refinement_before.py",
+      "bytes": 13908,
+      "sha256": "d38b860bac194ce439a51c81290bc477682b9133004390994a41efdce82e5412",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/training_component_profile.py",
+      "bytes": 7253,
+      "sha256": "c4e499841bdda7ecd9b17830d5f33705f9ae1a2fa11b45bd7105497455e9b8c2",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/native30_model_before.py",
+      "bytes": 21382,
+      "sha256": "c48f2e39eac526ff4d6a3140d6cea1bb5cb2a9714b32a2bc3034eb8b4922c5d3",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/sampling_monitor_audit.py",
+      "bytes": 4216,
+      "sha256": "27f305050ee0a84cd6645b77c6078a68f115eae735fa5f454a411bec65deaca3",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/native30_geometry_before.py",
+      "bytes": 8372,
+      "sha256": "20eaa56c8c5f23fd4ae1250dd08ef8f34fa9e045e6e5fdd230ff1ec8dfde9cc5",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/native30_physical_guidance_before.py",
+      "bytes": 8908,
+      "sha256": "99b73f35d13e69319857976973b79d09f442da0f38efe969acdbf52324996123",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/check_training_equivalence.py",
+      "bytes": 8025,
+      "sha256": "fc29e5ffb82814269c79e802a0ba1634adca89e0930b546add9c73cad6453dd1",
+      "status": "keep_referenced_path",
+      "path_references": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/TRAIN_RUNTIME_EQUIVALENCE_FIRST.json"
+      ],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14/full_training_timing.py",
+      "bytes": 7120,
+      "sha256": "cd5687a8c172cdd1217c99dd732dda9d13cf26068a0ca0e40fe9fae03fee17ce",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/compare_feet.py",
+      "bytes": 7835,
+      "sha256": "a6117aa15f583440ce4b0c8316d12838307807db19000ec18297ea20cb64bae7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/compare_feet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/supervision.py",
+      "bytes": 10213,
+      "sha256": "f4da9dcfbc048f5db2142ce4e1d6d52a91821c36cc6fe9160278d762522976c4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/supervision.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/analyze_coordination.py",
+      "bytes": 4437,
+      "sha256": "062bdf371d79f1baba2b9105bb3633034bbb4ec9de1d7edae8ba567f85da29e5",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/analyze_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/analyze_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/analyze_coordination.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/control.py",
+      "bytes": 2794,
+      "sha256": "5c013a324cab1c3a1b061978ebcfb3fa605bc0b9a0f29abff7686a97f1115d7f",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/control.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/evaluate_sampling.py",
+      "bytes": 9864,
+      "sha256": "d8b606e8468813df423036854dcdd659c6eb9e3bdf0f4b27811cfd8fdc4ca51b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/evaluate_sampling.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/evaluate_sampling.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/evaluate_sampling.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_visible_trumans.py",
+      "bytes": 5626,
+      "sha256": "27a3c7b25d7ce848b57c48ba7b81b6974d12fbd27d7fa8f611789aa3b89a22f4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_visible_trumans.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_trumans_template.py",
+      "bytes": 3996,
+      "sha256": "127c3d35a3639065523d3ccfd8794464165dfe6c600497253e27b3a8075e38b6",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_trumans_template.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_gait.py",
+      "bytes": 4166,
+      "sha256": "46495d0076e9af7805f0f6abb129a544eb31e503fd4b0b7ecfd185fda90cb8da",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/test_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_gait.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_rest_joints.py",
+      "bytes": 4863,
+      "sha256": "cd6af72ed3294004a32dc9d5c62a1c48c5761ed64c299b91a2caffdf4e6b0a1d",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_rest_joints.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_pose_sequences.py",
+      "bytes": 7788,
+      "sha256": "32273360b747367533279ed934f363b536fa61174bcb24ec7a0bd76c60b29e43",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_pose_sequences.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/overfit_gait.py",
+      "bytes": 4352,
+      "sha256": "041f82a1941ec2ef795294053544e4e7429c51cdf0e5251b30668e54110ffa6c",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/overfit_gait.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_pipeline.py",
+      "bytes": 3326,
+      "sha256": "fdc8437bbba0e978edc0b6e047b1bf8bea6cef244d7082cee1cfdc8562669aaf",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_pipeline.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/diagnose_overfit.py",
+      "bytes": 4812,
+      "sha256": "64f2b465214876580ff7fd41242e13cadb249a510494c4a6c73f50a41479d709",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/diagnose_overfit.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/evaluate_full_validation.py",
+      "bytes": 13608,
+      "sha256": "0661b2ca3962144e3f49c84d7ec6620ed8f73db2097acce780e8e7c0e7bd8634",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/run_foot_trials.py",
+      "bytes": 4608,
+      "sha256": "3798ad020569ac1ac8cc4bb86d72de2d2d63a401a8ab93538bd616d263bb1cb7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/run_foot_trials.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/compare_full_validation.py",
+      "bytes": 6238,
+      "sha256": "f672dfe22201c1f4cdcf55203d83028970918198ae2bbce40aaaaa2208296aff",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/compare_full_validation.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/data.py",
+      "bytes": 10921,
+      "sha256": "1700d18dcf08e9e56264620649207de86508a61b86875666fc9844dbf91950ea",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/data.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/data.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_coordination.py",
+      "bytes": 3516,
+      "sha256": "3b84a333ad51030b21117b7beadff7944421a49ba393405b6aefa94ef38c9ba8",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_coordination.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/run_long.py",
+      "bytes": 2290,
+      "sha256": "82a03c219187cdd15cced6de5cd0eb04bc14351d2fa972bb3f1b252e6149eb69",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/run_long.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/scene_model.py",
+      "bytes": 4554,
+      "sha256": "cadab989c6f2a5d8edc1347365ed14e2ce33cd7c7fbff1690e3ee1014aebfbc4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/scene_model.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/compare_paired_runs.py",
+      "bytes": 6468,
+      "sha256": "eabcc8a9047b3d2d33f26c146a0008c77b2f7e7283fd0cac6b792ce79e2c968b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/compare_paired_runs.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_scene_ablation.py",
+      "bytes": 3120,
+      "sha256": "ddeebfc6110c49c1a065c2a4a216f0ee2a7e715db7c92befb781f5ecc2c2680c",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_pose_supervision.py",
+      "bytes": 6442,
+      "sha256": "92f875588bdf079ebfd7a0b854157cafd5d39b91466780024a3d76b4d5397560",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/audit_pose_supervision.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/plot_feet.py",
+      "bytes": 3102,
+      "sha256": "9c8dc8ceb282f3f46ed0b77bb7e6071c7d2ffaa5cb8f84a75da0595cdec9ef2b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/plot_feet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/train.py",
+      "bytes": 19485,
+      "sha256": "6c6e366384bc69d3575ac67aafeafa3a98af61bce4687163002f8c9e99d57c8e",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/train.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/train.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/train.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/coordination.py",
+      "bytes": 2807,
+      "sha256": "a1d279cef2ee1c4bb339790627210c56f06fb48f749f2f87900fcecc50b8d8fe",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/coordination.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_full_validation.py",
+      "bytes": 2043,
+      "sha256": "e647d2fad785c94ec8d959789f5f09b81e7529cd46d513131e8951c86bf82032",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_full_validation.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_full_validation.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_full_validation.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/mdm_scene_unet.py",
+      "bytes": 39258,
+      "sha256": "2fc7a7d96963b100d984d2c3bdfc631dd8abd55fa94fde0e82e127dd90fa06b7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/mdm_scene_unet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_visible_maps.py",
+      "bytes": 3677,
+      "sha256": "c78a8c61b96a4e5c99329103a5056c1321dd46361219dcf964c910132fa513d2",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/audit_visible_maps.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/gallery.py",
+      "bytes": 8796,
+      "sha256": "279e3f8ef2841d2f48a01c3cd4b5f5b4a160f257e4de3e9914f28df4c4972e98",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/gallery.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_visible_egobody.py",
+      "bytes": 5210,
+      "sha256": "470a14afb2a5864eba64f60078ab29f4f628bd322015e9dd93d23cce9b61d9d9",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_visible_egobody.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/restore_fixed_comparison.py",
+      "bytes": 9073,
+      "sha256": "9dfbb4016eb95c58364c2ba184309f24600bb86044ece4db246a861fcb338039",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/restore_fixed_comparison.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/restore_fixed_comparison.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/compare_feet.py",
+      "bytes": 7835,
+      "sha256": "a6117aa15f583440ce4b0c8316d12838307807db19000ec18297ea20cb64bae7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/compare_feet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/supervision.py",
+      "bytes": 10213,
+      "sha256": "f4da9dcfbc048f5db2142ce4e1d6d52a91821c36cc6fe9160278d762522976c4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/supervision.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/analyze_coordination.py",
+      "bytes": 4437,
+      "sha256": "062bdf371d79f1baba2b9105bb3633034bbb4ec9de1d7edae8ba567f85da29e5",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/analyze_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/analyze_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/analyze_coordination.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/control.py",
+      "bytes": 2794,
+      "sha256": "5c013a324cab1c3a1b061978ebcfb3fa605bc0b9a0f29abff7686a97f1115d7f",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/control.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/evaluate_sampling.py",
+      "bytes": 9864,
+      "sha256": "d8b606e8468813df423036854dcdd659c6eb9e3bdf0f4b27811cfd8fdc4ca51b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/evaluate_sampling.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/evaluate_sampling.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/evaluate_sampling.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_visible_trumans.py",
+      "bytes": 5626,
+      "sha256": "27a3c7b25d7ce848b57c48ba7b81b6974d12fbd27d7fa8f611789aa3b89a22f4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_visible_trumans.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_trumans_template.py",
+      "bytes": 3996,
+      "sha256": "127c3d35a3639065523d3ccfd8794464165dfe6c600497253e27b3a8075e38b6",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_trumans_template.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_gait.py",
+      "bytes": 4166,
+      "sha256": "46495d0076e9af7805f0f6abb129a544eb31e503fd4b0b7ecfd185fda90cb8da",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/test_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_gait.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_rest_joints.py",
+      "bytes": 4863,
+      "sha256": "cd6af72ed3294004a32dc9d5c62a1c48c5761ed64c299b91a2caffdf4e6b0a1d",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_rest_joints.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_pose_sequences.py",
+      "bytes": 7788,
+      "sha256": "32273360b747367533279ed934f363b536fa61174bcb24ec7a0bd76c60b29e43",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_pose_sequences.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/overfit_gait.py",
+      "bytes": 4352,
+      "sha256": "041f82a1941ec2ef795294053544e4e7429c51cdf0e5251b30668e54110ffa6c",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/overfit_gait.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_pipeline.py",
+      "bytes": 3326,
+      "sha256": "fdc8437bbba0e978edc0b6e047b1bf8bea6cef244d7082cee1cfdc8562669aaf",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_pipeline.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/diagnose_overfit.py",
+      "bytes": 4812,
+      "sha256": "64f2b465214876580ff7fd41242e13cadb249a510494c4a6c73f50a41479d709",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/diagnose_overfit.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/evaluate_full_validation.py",
+      "bytes": 12835,
+      "sha256": "c1a0d9175ebf92081382383cec50485f492c74122efc30f29a4dcf535f5b75f0",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/evaluate_full_validation.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/run_foot_trials.py",
+      "bytes": 4608,
+      "sha256": "3798ad020569ac1ac8cc4bb86d72de2d2d63a401a8ab93538bd616d263bb1cb7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/run_foot_trials.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/data.py",
+      "bytes": 10921,
+      "sha256": "1700d18dcf08e9e56264620649207de86508a61b86875666fc9844dbf91950ea",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/data.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/data.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_coordination.py",
+      "bytes": 3516,
+      "sha256": "3b84a333ad51030b21117b7beadff7944421a49ba393405b6aefa94ef38c9ba8",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_coordination.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/run_long.py",
+      "bytes": 2290,
+      "sha256": "82a03c219187cdd15cced6de5cd0eb04bc14351d2fa972bb3f1b252e6149eb69",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/run_long.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/scene_model.py",
+      "bytes": 4554,
+      "sha256": "cadab989c6f2a5d8edc1347365ed14e2ce33cd7c7fbff1690e3ee1014aebfbc4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/scene_model.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/compare_paired_runs.py",
+      "bytes": 6468,
+      "sha256": "eabcc8a9047b3d2d33f26c146a0008c77b2f7e7283fd0cac6b792ce79e2c968b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/compare_paired_runs.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_pose_supervision.py",
+      "bytes": 6442,
+      "sha256": "92f875588bdf079ebfd7a0b854157cafd5d39b91466780024a3d76b4d5397560",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/audit_pose_supervision.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/plot_feet.py",
+      "bytes": 3102,
+      "sha256": "9c8dc8ceb282f3f46ed0b77bb7e6071c7d2ffaa5cb8f84a75da0595cdec9ef2b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/plot_feet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/train.py",
+      "bytes": 19485,
+      "sha256": "6c6e366384bc69d3575ac67aafeafa3a98af61bce4687163002f8c9e99d57c8e",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/train.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/train.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/train.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/coordination.py",
+      "bytes": 2807,
+      "sha256": "a1d279cef2ee1c4bb339790627210c56f06fb48f749f2f87900fcecc50b8d8fe",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/coordination.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_full_validation.py",
+      "bytes": 2043,
+      "sha256": "e647d2fad785c94ec8d959789f5f09b81e7529cd46d513131e8951c86bf82032",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_full_validation.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_full_validation.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_full_validation.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/mdm_scene_unet.py",
+      "bytes": 39258,
+      "sha256": "2fc7a7d96963b100d984d2c3bdfc631dd8abd55fa94fde0e82e127dd90fa06b7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/mdm_scene_unet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_visible_maps.py",
+      "bytes": 3677,
+      "sha256": "c78a8c61b96a4e5c99329103a5056c1321dd46361219dcf964c910132fa513d2",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/audit_visible_maps.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/gallery.py",
+      "bytes": 8796,
+      "sha256": "279e3f8ef2841d2f48a01c3cd4b5f5b4a160f257e4de3e9914f28df4c4972e98",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/gallery.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_visible_egobody.py",
+      "bytes": 5210,
+      "sha256": "470a14afb2a5864eba64f60078ab29f4f628bd322015e9dd93d23cce9b61d9d9",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_visible_egobody.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/restore_fixed_comparison.py",
+      "bytes": 9073,
+      "sha256": "9dfbb4016eb95c58364c2ba184309f24600bb86044ece4db246a861fcb338039",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/restore_fixed_comparison.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/restore_fixed_comparison.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/compare_feet.py",
+      "bytes": 7835,
+      "sha256": "a6117aa15f583440ce4b0c8316d12838307807db19000ec18297ea20cb64bae7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/compare_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/compare_feet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/supervision.py",
+      "bytes": 10213,
+      "sha256": "f4da9dcfbc048f5db2142ce4e1d6d52a91821c36cc6fe9160278d762522976c4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/supervision.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/analyze_coordination.py",
+      "bytes": 4437,
+      "sha256": "062bdf371d79f1baba2b9105bb3633034bbb4ec9de1d7edae8ba567f85da29e5",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/analyze_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/analyze_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/analyze_coordination.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/control.py",
+      "bytes": 2794,
+      "sha256": "5c013a324cab1c3a1b061978ebcfb3fa605bc0b9a0f29abff7686a97f1115d7f",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/control.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/evaluate_sampling.py",
+      "bytes": 9864,
+      "sha256": "d8b606e8468813df423036854dcdd659c6eb9e3bdf0f4b27811cfd8fdc4ca51b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/evaluate_sampling.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/evaluate_sampling.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/evaluate_sampling.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_visible_trumans.py",
+      "bytes": 5626,
+      "sha256": "27a3c7b25d7ce848b57c48ba7b81b6974d12fbd27d7fa8f611789aa3b89a22f4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_visible_trumans.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_trumans_template.py",
+      "bytes": 3996,
+      "sha256": "127c3d35a3639065523d3ccfd8794464165dfe6c600497253e27b3a8075e38b6",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_trumans_template.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_trumans_template.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_gait.py",
+      "bytes": 4166,
+      "sha256": "46495d0076e9af7805f0f6abb129a544eb31e503fd4b0b7ecfd185fda90cb8da",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/test_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_gait.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_rest_joints.py",
+      "bytes": 4863,
+      "sha256": "cd6af72ed3294004a32dc9d5c62a1c48c5761ed64c299b91a2caffdf4e6b0a1d",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_rest_joints.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_pose_sequences.py",
+      "bytes": 7788,
+      "sha256": "32273360b747367533279ed934f363b536fa61174bcb24ec7a0bd76c60b29e43",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_pose_sequences.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/overfit_gait.py",
+      "bytes": 4352,
+      "sha256": "041f82a1941ec2ef795294053544e4e7429c51cdf0e5251b30668e54110ffa6c",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/overfit_gait.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/overfit_gait.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_pipeline.py",
+      "bytes": 3326,
+      "sha256": "fdc8437bbba0e978edc0b6e047b1bf8bea6cef244d7082cee1cfdc8562669aaf",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_pipeline.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_pipeline.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/diagnose_overfit.py",
+      "bytes": 4812,
+      "sha256": "64f2b465214876580ff7fd41242e13cadb249a510494c4a6c73f50a41479d709",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/diagnose_overfit.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/evaluate_full_validation.py",
+      "bytes": 12835,
+      "sha256": "c1a0d9175ebf92081382383cec50485f492c74122efc30f29a4dcf535f5b75f0",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/evaluate_full_validation.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/run_foot_trials.py",
+      "bytes": 4608,
+      "sha256": "3798ad020569ac1ac8cc4bb86d72de2d2d63a401a8ab93538bd616d263bb1cb7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/run_foot_trials.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/run_foot_trials.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/data.py",
+      "bytes": 10921,
+      "sha256": "1700d18dcf08e9e56264620649207de86508a61b86875666fc9844dbf91950ea",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/data.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/data.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_coordination.py",
+      "bytes": 3516,
+      "sha256": "3b84a333ad51030b21117b7beadff7944421a49ba393405b6aefa94ef38c9ba8",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_coordination.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/run_long.py",
+      "bytes": 2290,
+      "sha256": "82a03c219187cdd15cced6de5cd0eb04bc14351d2fa972bb3f1b252e6149eb69",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/run_long.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/scene_model.py",
+      "bytes": 4554,
+      "sha256": "cadab989c6f2a5d8edc1347365ed14e2ce33cd7c7fbff1690e3ee1014aebfbc4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/scene_model.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/compare_paired_runs.py",
+      "bytes": 6468,
+      "sha256": "eabcc8a9047b3d2d33f26c146a0008c77b2f7e7283fd0cac6b792ce79e2c968b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/compare_paired_runs.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_pose_supervision.py",
+      "bytes": 6442,
+      "sha256": "92f875588bdf079ebfd7a0b854157cafd5d39b91466780024a3d76b4d5397560",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/audit_pose_supervision.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/plot_feet.py",
+      "bytes": 3102,
+      "sha256": "9c8dc8ceb282f3f46ed0b77bb7e6071c7d2ffaa5cb8f84a75da0595cdec9ef2b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/plot_feet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/plot_feet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/train.py",
+      "bytes": 19485,
+      "sha256": "6c6e366384bc69d3575ac67aafeafa3a98af61bce4687163002f8c9e99d57c8e",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/train.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/train.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/train.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/coordination.py",
+      "bytes": 2807,
+      "sha256": "a1d279cef2ee1c4bb339790627210c56f06fb48f749f2f87900fcecc50b8d8fe",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/coordination.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/coordination.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/test_full_validation.py",
+      "bytes": 2043,
+      "sha256": "e647d2fad785c94ec8d959789f5f09b81e7529cd46d513131e8951c86bf82032",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/test_full_validation.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/test_full_validation.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/test_full_validation.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/mdm_scene_unet.py",
+      "bytes": 39258,
+      "sha256": "2fc7a7d96963b100d984d2c3bdfc631dd8abd55fa94fde0e82e127dd90fa06b7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/mdm_scene_unet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_visible_maps.py",
+      "bytes": 3677,
+      "sha256": "c78a8c61b96a4e5c99329103a5056c1321dd46361219dcf964c910132fa513d2",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/audit_visible_maps.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/gallery.py",
+      "bytes": 8796,
+      "sha256": "279e3f8ef2841d2f48a01c3cd4b5f5b4a160f257e4de3e9914f28df4c4972e98",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/gallery.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_visible_egobody.py",
+      "bytes": 5210,
+      "sha256": "470a14afb2a5864eba64f60078ab29f4f628bd322015e9dd93d23cce9b61d9d9",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_visible_egobody.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/restore_fixed_comparison.py",
+      "bytes": 9073,
+      "sha256": "9dfbb4016eb95c58364c2ba184309f24600bb86044ece4db246a861fcb338039",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/restore_fixed_comparison.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/restore_fixed_comparison.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/supervision.py",
+      "bytes": 7858,
+      "sha256": "ae8f17515d2ed553e5e44b981030a1eb37c05c0fde8905aeb482d30b3909d2a8",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/supervision.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/control.py",
+      "bytes": 2794,
+      "sha256": "5c013a324cab1c3a1b061978ebcfb3fa605bc0b9a0f29abff7686a97f1115d7f",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/control.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/evaluate_sampling.py",
+      "bytes": 9563,
+      "sha256": "d974f7a318706cf2d0d9d03c459a518d922f2ca59ee349c2e2c157193f0ddddc",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_visible_trumans.py",
+      "bytes": 5626,
+      "sha256": "27a3c7b25d7ce848b57c48ba7b81b6974d12fbd27d7fa8f611789aa3b89a22f4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_visible_trumans.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/test_gait.py",
+      "bytes": 2159,
+      "sha256": "9ebc6c7a4651fa07731a5b3b752a3e17f695c37ec792e5c59574bcd1416607f7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_rest_joints.py",
+      "bytes": 4863,
+      "sha256": "cd6af72ed3294004a32dc9d5c62a1c48c5761ed64c299b91a2caffdf4e6b0a1d",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_rest_joints.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_pose_sequences.py",
+      "bytes": 7788,
+      "sha256": "32273360b747367533279ed934f363b536fa61174bcb24ec7a0bd76c60b29e43",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_pose_sequences.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/test_pipeline.py",
+      "bytes": 2414,
+      "sha256": "7c0f411175802a1721780111fd9c18a5c9b2f9ccdcdc878dd2b9653534d51325",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/test_pipeline.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/diagnose_overfit.py",
+      "bytes": 4812,
+      "sha256": "64f2b465214876580ff7fd41242e13cadb249a510494c4a6c73f50a41479d709",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/diagnose_overfit.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/run_foot_trials.py",
+      "bytes": 2579,
+      "sha256": "3304fe26ae7511c6e27166d7ee6e14a3dee469f519625be49e54f4ba21ee043a",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/data.py",
+      "bytes": 9891,
+      "sha256": "36ba4ea48ad9ba153c558bf9a77048e01e3bad9da45079adbb5dd74b85606fd4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/data.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/run_long.py",
+      "bytes": 2290,
+      "sha256": "82a03c219187cdd15cced6de5cd0eb04bc14351d2fa972bb3f1b252e6149eb69",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/run_long.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/scene_model.py",
+      "bytes": 4554,
+      "sha256": "cadab989c6f2a5d8edc1347365ed14e2ce33cd7c7fbff1690e3ee1014aebfbc4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/scene_model.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/compare_paired_runs.py",
+      "bytes": 6468,
+      "sha256": "eabcc8a9047b3d2d33f26c146a0008c77b2f7e7283fd0cac6b792ce79e2c968b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/compare_paired_runs.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/audit_pose_supervision.py",
+      "bytes": 6442,
+      "sha256": "92f875588bdf079ebfd7a0b854157cafd5d39b91466780024a3d76b4d5397560",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/audit_pose_supervision.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/train.py",
+      "bytes": 17151,
+      "sha256": "147dde4c1986473fff2fa93a8ab892156b1325891bdee40d5f676d23efa94fd0",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/mdm_scene_unet.py",
+      "bytes": 39258,
+      "sha256": "2fc7a7d96963b100d984d2c3bdfc631dd8abd55fa94fde0e82e127dd90fa06b7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/mdm_scene_unet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/audit_visible_maps.py",
+      "bytes": 3677,
+      "sha256": "c78a8c61b96a4e5c99329103a5056c1321dd46361219dcf964c910132fa513d2",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/audit_visible_maps.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/gallery.py",
+      "bytes": 6866,
+      "sha256": "afc1f26f00b75647bb9a97fe02ce582e6c9ee361186e3c6f6da83362c03b9d97",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/gallery.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_visible_egobody.py",
+      "bytes": 5210,
+      "sha256": "470a14afb2a5864eba64f60078ab29f4f628bd322015e9dd93d23cce9b61d9d9",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_visible_egobody.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_scene_relations_oct14/experiment/batch_probe.py",
+      "bytes": 5765,
+      "sha256": "0c0552ab3d5f6d68603ed0351225f0f0696084193c6550f7e33c5463e339a621",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_scene_relations_oct14/experiment/finalize_results.py",
+      "bytes": 7468,
+      "sha256": "9b09617413721da3329add9702633a7b91503ec1075a1894ee1d15d6bf08d908",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/analysis_30k/analyze.py",
+      "bytes": 9290,
+      "sha256": "194344f56618295215c92f640f0840ac2870ea21ad9c6e394fd9b56a87b05f4a",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/supervision.py",
+      "bytes": 4571,
+      "sha256": "af953a2321061e64d7d524b5edf02bf67f068c8e2cec3ab98d80159c79ad1d75",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/control.py",
+      "bytes": 2794,
+      "sha256": "5c013a324cab1c3a1b061978ebcfb3fa605bc0b9a0f29abff7686a97f1115d7f",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/control.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/control.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/evaluate_sampling.py",
+      "bytes": 8239,
+      "sha256": "30edff92a401d5c9e0f2c4ddb815d50923d49ec39088e510e2bd59ec6010bad9",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_visible_trumans.py",
+      "bytes": 5626,
+      "sha256": "27a3c7b25d7ce848b57c48ba7b81b6974d12fbd27d7fa8f611789aa3b89a22f4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_visible_trumans.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_visible_trumans.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_rest_joints.py",
+      "bytes": 4863,
+      "sha256": "cd6af72ed3294004a32dc9d5c62a1c48c5761ed64c299b91a2caffdf4e6b0a1d",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_rest_joints.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_rest_joints.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_pose_sequences.py",
+      "bytes": 7788,
+      "sha256": "32273360b747367533279ed934f363b536fa61174bcb24ec7a0bd76c60b29e43",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_pose_sequences.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_pose_sequences.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/test_pipeline.py",
+      "bytes": 2414,
+      "sha256": "7c0f411175802a1721780111fd9c18a5c9b2f9ccdcdc878dd2b9653534d51325",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/test_pipeline.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/diagnose_overfit.py",
+      "bytes": 4812,
+      "sha256": "64f2b465214876580ff7fd41242e13cadb249a510494c4a6c73f50a41479d709",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/diagnose_overfit.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/diagnose_overfit.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/data.py",
+      "bytes": 9891,
+      "sha256": "36ba4ea48ad9ba153c558bf9a77048e01e3bad9da45079adbb5dd74b85606fd4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/data.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/run_long.py",
+      "bytes": 2290,
+      "sha256": "82a03c219187cdd15cced6de5cd0eb04bc14351d2fa972bb3f1b252e6149eb69",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/run_long.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/run_long.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/scene_model.py",
+      "bytes": 4554,
+      "sha256": "cadab989c6f2a5d8edc1347365ed14e2ce33cd7c7fbff1690e3ee1014aebfbc4",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/scene_model.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/scene_model.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/compare_paired_runs.py",
+      "bytes": 6468,
+      "sha256": "eabcc8a9047b3d2d33f26c146a0008c77b2f7e7283fd0cac6b792ce79e2c968b",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/compare_paired_runs.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/compare_paired_runs.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/audit_pose_supervision.py",
+      "bytes": 6442,
+      "sha256": "92f875588bdf079ebfd7a0b854157cafd5d39b91466780024a3d76b4d5397560",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_pose_supervision.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/audit_pose_supervision.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/train.py",
+      "bytes": 16060,
+      "sha256": "9b777c0a856a1b76faaebfe269b7091a7538ffe2ea17af9367ba4a4182c19696",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/mdm_scene_unet.py",
+      "bytes": 39258,
+      "sha256": "2fc7a7d96963b100d984d2c3bdfc631dd8abd55fa94fde0e82e127dd90fa06b7",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/report55k_fullval_oct07/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/mdm_scene_unet.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/mdm_scene_unet.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/audit_visible_maps.py",
+      "bytes": 3677,
+      "sha256": "c78a8c61b96a4e5c99329103a5056c1321dd46361219dcf964c910132fa513d2",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/audit_visible_maps.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/audit_visible_maps.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/gallery.py",
+      "bytes": 6866,
+      "sha256": "afc1f26f00b75647bb9a97fe02ce582e6c9ee361186e3c6f6da83362c03b9d97",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/gallery.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/gallery.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02/source_snapshot/export_visible_egobody.py",
+      "bytes": 5210,
+      "sha256": "470a14afb2a5864eba64f60078ab29f4f628bd322015e9dd93d23cce9b61d9d9",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_template_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_support_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/foot_fix_long20k_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/coordination_paired_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/source_snapshot/export_visible_egobody.py",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02/source_snapshot/export_visible_egobody.py"
+      ],
+      "git_tracked": false
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_overfit_diagnosis_oct13/mixed_reference_scene/refinement_module.py",
+      "bytes": 8897,
+      "sha256": "92abfe2579b4ea9f9176d687df3acdc98aba3c4710bbca8ee8b8516eff746791",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_overfit_diagnosis_oct13/mixed_reference_scene/run_script.py",
+      "bytes": 10951,
+      "sha256": "e504b6ea934dc1c48e9684e86637fea35c6e4dc1a938c4d62f3c6637f04e10bc",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_overfit_diagnosis_oct13/single_exo_baseline/run_script.py",
+      "bytes": 7907,
+      "sha256": "734abc0efbab82b37fc218b281077a9a908b2c74cfefad7d9871d0475d106823",
+      "status": "candidate_unreferenced_script",
+      "path_references": [],
+      "identical_copies": [],
+      "git_tracked": true
+    }
+  ]
+}

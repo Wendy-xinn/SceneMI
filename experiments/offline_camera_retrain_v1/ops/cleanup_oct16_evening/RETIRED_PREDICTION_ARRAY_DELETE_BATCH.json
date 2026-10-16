@@ -1,0 +1,116 @@
+{
+  "action": "proposed_only_root_executes",
+  "scope": "Generated motions NPZ from retired typed-head/soft-coupling/early5Hz control evaluations; not input datasets, not runtime cache, not correct native55k full validation",
+  "files_manifest": "experiments/offline_camera_retrain_v1/ops/cleanup_oct16_evening/RETIRED_PREDICTION_ARRAY_FILES.jsonl.gz",
+  "files_manifest_sha256": "bb6e3cdebf9c10000222836b4628362a294fc72ccee07cdd7f60f9e8c809e566",
+  "file_count": 14282,
+  "total_bytes": 2540629312,
+  "groups": [
+    {
+      "run": "typed_head_track_oct10",
+      "subdir": "motions",
+      "files": 1984,
+      "bytes": 969819542,
+      "retained_evidence": "Keep all metrics/rows/manifest/config/source/checkpoint, generated per-frame comparison arrays retired",
+      "active_execution_references": false
+    },
+    {
+      "run": "soft_coupled_contact_oct10",
+      "subdir": "motions",
+      "files": 2368,
+      "bytes": 934803375,
+      "retained_evidence": "Keep all metrics/rows/manifest/config/source/checkpoint, generated per-frame comparison arrays retired",
+      "active_execution_references": false
+    },
+    {
+      "run": "control55k_noscene_fullval_oct03",
+      "subdir": "motions",
+      "files": 3310,
+      "bytes": 212308449,
+      "retained_evidence": "Keep all metrics/rows/manifest/config/source/checkpoint, generated per-frame comparison arrays retired",
+      "active_execution_references": false
+    },
+    {
+      "run": "control55k_fullval_oct02",
+      "subdir": "motions",
+      "files": 3310,
+      "bytes": 211899052,
+      "retained_evidence": "Keep all metrics/rows/manifest/config/source/checkpoint, generated per-frame comparison arrays retired",
+      "active_execution_references": false
+    },
+    {
+      "run": "control30k_fullval_oct03",
+      "subdir": "motions",
+      "files": 3310,
+      "bytes": 211798894,
+      "retained_evidence": "Keep all metrics/rows/manifest/config/source/checkpoint, generated per-frame comparison arrays retired",
+      "active_execution_references": false
+    }
+  ],
+  "limitation": "Per-frame historical predictions removed; compact results/checkpoints/seeds retained. Restore retired recipe path and regenerate if needed. Do not apply this pattern recursively elsewhere.",
+  "npz_header_samples": [
+    {
+      "run": "typed_head_track_oct10",
+      "example": "experiments/offline_camera_retrain_v1/runs/typed_head_track_oct10/motions/0003_0_clean.npz",
+      "array_keys": [
+        "truth_motion.npy",
+        "rest.npy",
+        "camera.npy",
+        "input_head.npy",
+        "observation_meta.npy",
+        "input_head_mask.npy",
+        "camera_control.npy",
+        "joint_clean.npy",
+        "joint_noise.npy",
+        "joint_reliable.npy"
+      ]
+    },
+    {
+      "run": "soft_coupled_contact_oct10",
+      "example": "experiments/offline_camera_retrain_v1/runs/soft_coupled_contact_oct10/motions/0003_0_clean.npz",
+      "array_keys": [
+        "truth_motion.npy",
+        "rest.npy",
+        "camera.npy",
+        "input_head.npy",
+        "observation_meta.npy",
+        "input_head_mask.npy",
+        "baseline.npy",
+        "coupled.npy",
+        "coupled_contact.npy"
+      ]
+    },
+    {
+      "run": "control55k_noscene_fullval_oct03",
+      "example": "experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03/motions/002979.npz",
+      "array_keys": [
+        "prediction.npy",
+        "truth.npy",
+        "camera.npy"
+      ]
+    },
+    {
+      "run": "control55k_fullval_oct02",
+      "example": "experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02/motions/002979.npz",
+      "array_keys": [
+        "prediction.npy",
+        "truth.npy",
+        "camera.npy"
+      ]
+    },
+    {
+      "run": "control30k_fullval_oct03",
+      "example": "experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03/motions/002979.npz",
+      "array_keys": [
+        "prediction.npy",
+        "truth.npy",
+        "camera.npy"
+      ]
+    }
+  ],
+  "recorded_implementation_intent": {
+    "typed_head_track_oct10": "ASSESSMENT_zh.md: 四组500步与7936次配对预测均已完成。没有候选通过联合质量验收。",
+    "soft_coupled_contact_oct10": "ASSESSMENT_zh.md: 三组各1000步、7104次预测已完成，两组均未通过事先记录联合筛查。",
+    "control_oct02_oct03": "Historical earlier5Hz control evaluations completed before native_dynamic corrected55k; correct native_dynamic12913window full validation retained."
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "saved_at": "2026-10-16T19:04:23.306393+08:00",
+  "selection_status": "provisional_fixed_rich_window",
+  "selection_metric": "arithmetic mean of clean/noisy raw world MPJPE, one fixed RICH VAL window, scene ON, head-only ego",
+  "selection_scope": "Best among exactly matched checkpoints captured by this guardian; not full-RICH or historical global best",
+  "checkpoint_step": 15100,
+  "score": {
+    "step": 15100,
+    "score_mm": 150.2898941040039,
+    "regime_mpjpe_mm": {
+      "clean": 143.1271209716797,
+      "noisy": 157.45266723632812
+    },
+    "identity": {
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "group": "rich",
+      "mode": "ego",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "source_first": 389,
+      "start": 384,
+      "case_seed": 303671090,
+      "joints": [
+        15
+      ],
+      "panel": "fixed"
+    },
+    "validation_record_sha256": "04d054ccfa3d4323045648020c2b916b4d2fb8d0406067d5b96aa598af65165e"
+  },
+  "historical_best_metric": {
+    "step": 12000,
+    "score_mm": 142.61627960205078,
+    "regime_mpjpe_mm": {
+      "clean": 133.49110412597656,
+      "noisy": 151.741455078125
+    },
+    "identity": {
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "group": "rich",
+      "mode": "ego",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "source_first": 389,
+      "start": 384,
+      "case_seed": 303671090,
+      "joints": [
+        15
+      ],
+      "panel": "fixed"
+    },
+    "validation_record_sha256": "292dbdbf3b673846bf4e1c90cda60ae0d9875690b08a818441802d8f4c5b11d7"
+  },
+  "source_checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/checkpoint_eval.pt",
+  "source_checkpoint_sha256": "b91e61ec75bf8d6720b841bd249d3cdec6d7da80b7c9e273ed509b68e211e3d8",
+  "source_provenance": {
+    "type": "existing_frozen_evaluation_exact_fixed_window",
+    "evaluation_folder": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16",
+    "metadata_sha256": "148625bf48923be9f0d182438bce1c6570e24ffad023f2b03513aaa60a393edd",
+    "original_trainer_checkpoint_sha256": "d4c423213e4aa7a0272b7296a2b4063cd3fcfe725c31b744a87a9cf1f1aad1df",
+    "original_trainer_model_tensor_sha256": "ac096d31aede770e279382704ade73c19e4e480cc4e5b1cdc58b88db167d2357",
+    "plan_sha256": "c5de43f8ce071ebd7df6dd2b25e278119b4b584a1b669dd38d704392b5a2d038",
+    "protocol_sha256": "c9e1c5e6e518fa9efd562e19aee4eb8de0bbb4f2a3245ad4fac0dba4d5f865ec",
+    "artifact_proofs": [
+      {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/motions/case29_clean.npz",
+        "sha256": "7d4fb801abb0f4f596f0d05305420e7f875525c5785d3f3c939e7c238ae9aed0",
+        "regime": "clean",
+        "cpu_recomputed_mpjpe_mm": 143.1271209716797
+      },
+      {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/motions/case29_noisy.npz",
+        "sha256": "87c24409d006a42162964c36c7d76e03c0463ed4b682379fb43e27024f00546e",
+        "regime": "noisy",
+        "cpu_recomputed_mpjpe_mm": 157.45266723632812
+      }
+    ],
+    "metrics_independently_recomputed_on_CPU": true,
+    "monitor_input_archive_sha256": "8c807176c3706317fd4d8b909be1596f6c9973fddc7809b3a1220bdc446feedd",
+    "monitor_input_archive_step": 15000,
+    "trainer_monitor_inputs_GT_and_reference_exactly_equal": true,
+    "input_comparison_does_not_pair_monitor_step_metrics_with_seed_weights": true
+  },
+  "source_model_tensor_sha256": "ac096d31aede770e279382704ade73c19e4e480cc4e5b1cdc58b88db167d2357",
+  "source_inode": 2276612,
+  "guardian_source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/checkpoint_guardian.py",
+  "guardian_sha256": "a87b5329c45a0469e1980f9d05728fbff2223be1e66968b49a71ec23a64eb096",
+  "source_audit": {
+    "verified_at": "2026-10-16T19:04:22.926998+08:00",
+    "sealed_sources": 365,
+    "config_sha256": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad",
+    "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8"
+  },
+  "evaluation_only": true,
+  "optimizer_and_training_RNG_untouched": true,
+  "optimizer_removed_from_copy": true,
+  "storage_policy": "One best.pt plus original resumable last.pt; best is model-only",
+  "checkpoint_sha256": "a296e4c55bb1fe05c674820002d3adeb51b6b094294055b37a6126308fa2fb9c",
+  "checkpoint_bytes": 496202247,
+  "compact_model_tensor_sha256": "ac096d31aede770e279382704ade73c19e4e480cc4e5b1cdc58b88db167d2357",
+  "tensor_equality_verified": true
+}

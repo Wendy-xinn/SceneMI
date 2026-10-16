@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-10-16T19:05:54.510692+08:00",
+  "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -m unittest discover -s experiments/offline_camera_retrain_v1/ops -p test_checkpoint_guardian.py -v",
+  "tests_passed": 3,
+  "checks": [
+    "fixed RICH scene-ON clean/noisy only; duplicates and identity mismatch rejected",
+    "pending/mismatched checkpoint step rejected without best creation",
+    "model-only copy preserves exact tensors and original last SHA; restart verifies digest",
+    "unfinished validation line ignored; later fixed-identity change rejected"
+  ],
+  "files_sha256": {
+    "experiments/offline_camera_retrain_v1/ops/checkpoint_guardian.py": "a87b5329c45a0469e1980f9d05728fbff2223be1e66968b49a71ec23a64eb096",
+    "experiments/offline_camera_retrain_v1/ops/test_checkpoint_guardian.py": "96f6bde8d402f2cf62469e5f913c35a06c3bfd41c3a7dde2dd936677d6bf3099"
+  },
+  "existing_evaluation_seed_integration": "passed; actual 15100 checkpoint, exact monitor inputs/GT/reference, two CPU-recomputed MPJPE values, independent 317-tensor equality verification",
+  "integration_acceptance": "experiments/offline_camera_retrain_v1/ops/checkpoint_guardian_oct16/ACCEPTANCE.json"
+}

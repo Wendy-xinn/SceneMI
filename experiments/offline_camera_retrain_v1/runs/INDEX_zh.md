@@ -1,21 +1,22 @@
 # 当前实验入口
 
-当前重点是旧55k与新版持续训练的对比。目录名含55k只表示目标或历史命名；实际步数以checkpoint/训练状态为准。
+当前主线是 `native30_gait_v2_ego55k_oct15`；55k 是目标步数，实际进度看训练状态。保留原模型、输入、监督、Adam 和 RNG，持续训练，不因诊断或评估自动暂停、重启。
 
-| 用途 | 入口 | 说明 |
-|---|---|---|
-| 新版持续主线 | [训练状态](native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json) | 30Hz、参考残差扩散、官方划分；持续目标55000，保持原模型/输入/监督/Adam/RNG |
-| 曲线与验证截图 | [总loss看板](http://localhost:6006/#custom_scalars) · [损失说明](native30_live_monitor_oct16/LOSS_GUIDE_zh.md) | 唯一总loss、三个已加权贡献、步数/时长；固定验证截图保存于visuals |
-| 当前效果趋势 | [趋势图](native30_live_monitor_oct16/trend_review_current/TRAINING_TRENDS.png) · [复核报告](native30_live_monitor_oct16/trend_review_current/TREND_REVIEW_zh.md) | 纳入9k反弹；固定窗口与轮换窗口分开，不以train loss宣称泛化 |
-| 旧55k对照 | [结果](native_dynamic_scene20_contact_55k_oct07/RESULTS_zh.md) | 正确旧模型是此目录last.pt：55000步、20Hz绝对x0，保留可恢复状态和必要场景demo |
-| 旧55k＋独立EXO | [状态](legacy55k_exo_long_oct15/STATUS.json) | 7831步EXO残差修正，旧扩散冻结先验；与场景条件扩散须区分 |
-| 新版近期配对比较 | [阶段报告](native30_final_review_oct16/INTERIM_REPORT_zh.md) | control/精简/逐脚监督/IK-off，不覆盖持续主线；io_recovery.py仍被主线使用 |
-| 脚步监督/旧配方复核 | [复核目录](native30_gait_restore_probe_oct15/) | 旧55k复跑、10100步control及监督配对证据 |
-| 研究记录 | [架构和实验主文档](exo_occlusion_review_oct12/EXPERIMENT_AND_ARCHITECTURE_zh.md) | 历史结论与限制 |
-| 清理和恢复 | [清理计划](run_inventory_oct16/CLEANUP_PLAN_zh.md) | 原始占用、保留模型核验、实际删除记录及历史目录归档计划 |
+| 要看什么 | 入口 |
+|---|---|
+| 当前训练进度 | [STATUS.json](native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json) |
+| 已保存的 best、选择指标和步数 | [best.json](native30_gait_v2_ego55k_oct15/training/best.json) · [自动保存状态](native30_gait_v2_ego55k_oct15/training/BEST_GUARDIAN_STATUS.json) |
+| 总 loss、各监督贡献、训练时长 | [TensorBoard](http://localhost:6006/#custom_scalars) · [损失说明](native30_live_monitor_oct16/LOSS_GUIDE_zh.md) |
+| RICH 全部合法窗口验证 | [实时报告](native30_live_monitor_oct16/rich_full_validation_oct16/REPORT_zh.md) · [进度](native30_live_monitor_oct16/rich_full_validation_oct16/STATUS.json) · [网页](http://localhost:8795/) |
+| 方法有没有用、证据到哪一步 | [证据与比较方案](../ops/EVIDENCE_STATUS_zh.md) |
+| 正确的旧55k对照 | [结果](native_dynamic_scene20_contact_55k_oct07/RESULTS_zh.md) · `native_dynamic_scene20_contact_55k_oct07/last.pt` |
+| 固定/轮换验证截图与脚步检查 | [截图索引](native30_live_monitor_oct16/visuals/INDEX.html) · [脚步复核](http://localhost:8793/) |
+| EgoGVAE / EgoEgo / EgoAllo 比较协议 | [已核对的训练、划分与输入差异](native30_live_monitor_oct16/rich_full_validation_oct16/PROTOCOL_REVIEW_zh.md) |
 
-旧55k具有历史官方TEST重叠，旧/新还存在FPS、条件、样本预算等差别；历史表格可帮助诊断，正式胜负须同协议重评。两个更早canonical_smpl的55k目录不等同上述正确旧55k。
+`training/last.pt` 保留优化器用于续训；`training/best.pt` 为模型副本，用于评估。best 暂按同一固定 RICH VAL 窗口的 clean/noisy World MPJPE 均值选择，不是全 RICH 最优。2026-10-16 19:04 已用实际存在的15,100步权重和同一步真实评估初始化，分数150.290 mm。历史12,000步该指标更低，但权重已覆盖，不能补称已保存。[保存机制与限制](../ops/CHECKPOINT_SELECTION_zh.md)。
 
-主线依赖 `native30_physics_schedule_probe_oct15/run_probe.py` 的脚部监控函数及 `native30_final_review_oct16/io_recovery.py`，这些目录不能作为失败记录整删。部分准备来源与mount JSON也保留小证据。root/model源码已有359项SHA封存，训练中不泛删旧.py。
+当前 RICH 验证固定15,100步、206窗/27条录制、clean/noisy共412次预测；完成及独立复核前不把局部均值当最终结果。本轮是 VAL，不是外部论文使用的 RICH TEST。旧55k有历史官方TEST重叠，旧/新还存在FPS、输入和训练预算差别，不能直接拿历史表格宣布新版胜出。
 
-29个已完成/取消/拒绝的历史试验目录已移至 [historical_trials_oct16](../archive/historical_trials_oct16/)，实际路径与恢复映射见 [MOVED.json](../archive/historical_trials_oct16/MOVED.json)。归档不等同失败，配置、指标、身份、seed、代码和剩余模型保留。重跑历史绝对路径协议前，把对应目录恢复到原 `runs/<name>`，不改原配置/源码SHA。本轮删除85份冗余/损坏权重，释放50.06 GiB；没有再去除控制组或保留候选的Adam。源数据、人体资产和活跃场景缓存保留。
+2026-10-16晚间清理：44个退役目录、165份旧Python脚本移到 [retired_runs_oct16](../archive/retired_runs_oct16/README_zh.md)；删除3份退役版本中间权重和14,282份可重建预测数组，共6.411 GiB。44个目录归档本身不释放磁盘。当前训练的365份封存依赖清理前后SHA一致。[实际执行记录](../ops/cleanup_oct16_evening/EXECUTED.json)。此前29个历史试验的归档和50.06 GiB清理另见 [旧清理记录](run_inventory_oct16/CLEANUP_PLAN_zh.md)。
+
+其余保留目录是活跃监控、仍有比较价值的旧EXO/控制组或实际依赖。尤其 `native30_final_review_oct16/io_recovery.py`、`native30_physics_schedule_probe_oct15/run_probe.py`、`ego_exo_surface_continue_oct11/TRAIN_camera_mounts.json` 仍在使用。历史架构和推导见 [原研究记录](exo_occlusion_review_oct12/EXPERIMENT_AND_ARCHITECTURE_zh.md)。新增运维工具统一放在 `../ops/`，不再逐次散落到 runs。
