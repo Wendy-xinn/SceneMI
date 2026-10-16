@@ -1,0 +1,263 @@
+{
+  "checked_at": "2026-10-16T07:56:52.612072+00:00",
+  "step": 10000,
+  "snapshot": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/gait_review_current/FROZEN_VALIDATION.npz",
+  "snapshot_sha256": "bf8a44058af5d1f4377ba7d628feca540be6011ae77af4f98f7f0a8ab7cedb19",
+  "CPU_only": true,
+  "model_loaded": false,
+  "training_modified": false,
+  "GT_used_only_for_scoring": true,
+  "metrics": "Mean Euclidean head distance in millimeters over available/confident observed frames; joints recomputed by NumPy FK.",
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/gait_review_current/head_review.py": "a861396110367c11b3cd7fa29d4d2d7d7d4e972935569b6969c3176569096530",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_official_memory_v3/TRAIN_camera_mounts.json": "de235d77633936d395ecc929e920c1cfd64ffeb23378dc5f049f42dc34853b25",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/supervision.py": "dff0548ef3f4b8eb44198bde12367e746bd5a8646238bcbcf1666f67b2533e58",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_data.py": "effd42741d2638be22e1b9d79d801a83286a036615d5649db164a252060575a2",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observations.py": "a400b12f5bb8e52a4334f230dab2f9fdd1baa5f19141c07f1eb4d96222d589e5",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observation_ik.py": "468d525fbeba5e29a6a9b2c965f2447b74def1aa0a68447f6743c2fc29b1274f",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_physical_guidance.py": "0d329d77eb29361ecaaa62a62dd58c445d0a17a001feaae0ba74b4a51e1f6778",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/hard_head_coordination.py": "7017424eb79485dcff60a2700e2e32077f257c70082347e4819bcc85b510cd7e",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/hierarchical_constraint_oct11/ASSESSMENT_zh.md": "7838037f9ec89e08cbd8d6ee09f7a13c7d84070056c26854ea5dffa01c0b47db",
+    "/home/wenxin/projects/SceneMI/docs/local_dependencies/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data_loader.py": "65bb233dbe8853094ca16511798c711cee09ec378a47657fdf3b8edb8ffde0e5"
+  },
+  "refinement": {
+    "observation_anchor_gain": 0.9,
+    "placement": "predicted proposal and final x0 within diffusion",
+    "exo": "confidence/uncertainty weighted observed torso rigid pose",
+    "ego": "head position translation only; no camera-to-body heading constraint",
+    "joint_anchor_gain": 0.9,
+    "joint_anchor_iterations": 6,
+    "joint_anchor_damping_m2": 0.0025,
+    "joint_anchor_angle_limit_rad": 0.35,
+    "joint_anchor_schedule": "cosine alpha; skip alpha<0.05; predicted proposal and final x0; root excluded",
+    "joint_anchor_compact": false
+  },
+  "physical_guidance": {
+    "enabled": true,
+    "iterations": 2,
+    "minimum_alpha": 0.25,
+    "contact_threshold": 0.5,
+    "query_limit_m": 0.25,
+    "penetration_band_m": 0.06,
+    "contact_tolerance_m": 0.03,
+    "plane_tolerance_m": 0.02,
+    "plane_weight": 0.5,
+    "slip_weight": 0.02,
+    "observation_weight": 1.0,
+    "prior_weight": 0.5,
+    "temporal_weight": 0.1,
+    "translation_lr": 0.0003,
+    "rotation_lr": 0.003,
+    "translation_step_m": 0.01,
+    "rotation_step_rad": 0.035,
+    "root_total_limit_m": 0.02,
+    "trusted_tolerance_m": 0.002,
+    "acceptance": "joint physical/observation/prior energy decreases and trusted measurements protected",
+    "placement": "every clean x0 before next DDIM update; shallow observed support only",
+    "query_contact_regions_only": false
+  },
+  "coordinate_facts": {
+    "origin": "All three components of first camera world position are subtracted.",
+    "rotation": "Yaw only: gravity Y retained; no pitch/roll normalization.",
+    "retained": "Within-window head vertical changes and relative head-scene height.",
+    "removed": "Raw first-camera world Y; head alone does not encode a local floor height.",
+    "head_first_sample": "Camera first Y is zero, but inverse mount translation means anatomical head first Y need not be zero."
+  },
+  "mechanism_facts": {
+    "reference": "Observed-head-aligned kinematic initializer, not an exact final-body projection.",
+    "anchor": "Soft alpha/gain/confidence/uncertainty weighted root translation toward head position.",
+    "IK": "Six damped position-only articulated iterations; no scene or forced head orientation.",
+    "physics_guard": "Hard acceptance inequality limits worsening of trusted measurements to 2mm; it does not set head equal to observation. EgoBody mount sigma exceeds trusted threshold.",
+    "final_sampling": "No call to the legacy exact project_head_pose."
+  },
+  "historical_evidence": {
+    "review": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/hierarchical_constraint_oct11/ASSESSMENT_zh.md",
+    "review_lines": "11,20-24",
+    "exact_projection": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/hard_head_coordination.py:12-23",
+    "failure": "Legacy exact head position+orientation projection retained incorrect pelvis heading and produced neck twist/foot sliding; 850/906 head-to-neck p95 106.9/141.6 degrees.",
+    "boundary": "This joint intervention does not isolate the effect of exact head position alone."
+  },
+  "limitations": [
+    "No causal intermediate raw/IK/physics trajectory was logged in this snapshot.",
+    "Head and remote floor height do not uniquely specify sitting/crouching, knee flexion or unknown local terrain.",
+    "Legacy exact head position+orientation failure does not isolate or disprove every possible exact position constraint."
+  ],
+  "cases": [
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "sequence_id": "2023-02-18@22-11-49",
+      "regime": "clean",
+      "valid_head_frames": 192,
+      "total_frames": 192,
+      "observed_to_GT_head_mean_mm": 0.00010411648077024438,
+      "predicted_to_observed_head_mean_mm": 0.001026561449180008,
+      "predicted_to_GT_head_mean_mm": 0.0010331688145015505,
+      "reference_to_observed_head_mean_mm": 6.788712170191502e-05,
+      "max_FK_vs_saved_joint_channel_error_mm": {
+        "truth": 0.00035762786865234375,
+        "prediction": 0.0002384185791015625,
+        "reference": 0.0002384185791015625
+      },
+      "raw_world_first_camera_Y_m": 1.5329636335372925,
+      "window_camera_first_Y_m": 0.0,
+      "observed_head_first_window_Y_m": 0.01815020479261875,
+      "observed_head_valid_window_Y_range_m": [
+        -0.6680043935775757,
+        0.01815020479261875
+      ],
+      "mount_position_p90_m": 0.0,
+      "mount_rotation_p90_rad": 0.0,
+      "clean_full_confidence_head_translation_gain_at_alpha_1": 0.9000000000000001,
+      "clean_head_eligible_for_physics_trusted_guard": true,
+      "uncertainty_note": "Mount floor only; noisy per-frame uncertainty is not stored, so its actual gains are not reconstructed."
+    },
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "sequence_id": "2023-02-18@22-11-49",
+      "regime": "noisy",
+      "valid_head_frames": 174,
+      "total_frames": 192,
+      "observed_to_GT_head_mean_mm": 23.872671648859978,
+      "predicted_to_observed_head_mean_mm": 0.9221505024470389,
+      "predicted_to_GT_head_mean_mm": 23.53193610906601,
+      "reference_to_observed_head_mean_mm": 6.47709370582561e-05,
+      "max_FK_vs_saved_joint_channel_error_mm": {
+        "truth": 0.00035762786865234375,
+        "prediction": 0.0002384185791015625,
+        "reference": 0.0002384185791015625
+      },
+      "raw_world_first_camera_Y_m": 1.5329636335372925,
+      "window_camera_first_Y_m": 0.0,
+      "observed_head_first_window_Y_m": -0.0023484467528760433,
+      "observed_head_valid_window_Y_range_m": [
+        -0.6902896165847778,
+        -0.0023484467528760433
+      ],
+      "mount_position_p90_m": 0.0,
+      "mount_rotation_p90_rad": 0.0,
+      "clean_full_confidence_head_translation_gain_at_alpha_1": 0.9000000000000001,
+      "clean_head_eligible_for_physics_trusted_guard": true,
+      "uncertainty_note": "Mount floor only; noisy per-frame uncertainty is not stored, so its actual gains are not reconstructed."
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "regime": "clean",
+      "valid_head_frames": 192,
+      "total_frames": 192,
+      "observed_to_GT_head_mean_mm": 41.554730385541916,
+      "predicted_to_observed_head_mean_mm": 9.228186681866646,
+      "predicted_to_GT_head_mean_mm": 49.847859889268875,
+      "reference_to_observed_head_mean_mm": 3.43269128677548e-05,
+      "max_FK_vs_saved_joint_channel_error_mm": {
+        "truth": 0.0003725290298461914,
+        "prediction": 0.0002384185791015625,
+        "reference": 0.0002384185791015625
+      },
+      "raw_world_first_camera_Y_m": 0.5045379400253296,
+      "window_camera_first_Y_m": 0.0,
+      "observed_head_first_window_Y_m": -0.12953151762485504,
+      "observed_head_valid_window_Y_range_m": [
+        -0.12953151762485504,
+        -0.12186577171087265
+      ],
+      "mount_position_p90_m": 0.06948482495694257,
+      "mount_rotation_p90_rad": 0.3415390730147259,
+      "clean_full_confidence_head_translation_gain_at_alpha_1": 0.30703558118210617,
+      "clean_head_eligible_for_physics_trusted_guard": false,
+      "uncertainty_note": "Mount floor only; noisy per-frame uncertainty is not stored, so its actual gains are not reconstructed."
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "regime": "noisy",
+      "valid_head_frames": 192,
+      "total_frames": 192,
+      "observed_to_GT_head_mean_mm": 73.64480942487717,
+      "predicted_to_observed_head_mean_mm": 14.608986675739288,
+      "predicted_to_GT_head_mean_mm": 82.67770707607269,
+      "reference_to_observed_head_mean_mm": 3.298552897490481e-05,
+      "max_FK_vs_saved_joint_channel_error_mm": {
+        "truth": 0.0003725290298461914,
+        "prediction": 0.0002384185791015625,
+        "reference": 0.0002384185791015625
+      },
+      "raw_world_first_camera_Y_m": 0.5045379400253296,
+      "window_camera_first_Y_m": 0.0,
+      "observed_head_first_window_Y_m": -0.1082095056772232,
+      "observed_head_valid_window_Y_range_m": [
+        -0.1082095056772232,
+        -0.09536611288785934
+      ],
+      "mount_position_p90_m": 0.06948482495694257,
+      "mount_rotation_p90_rad": 0.3415390730147259,
+      "clean_full_confidence_head_translation_gain_at_alpha_1": 0.30703558118210617,
+      "clean_head_eligible_for_physics_trusted_guard": false,
+      "uncertainty_note": "Mount floor only; noisy per-frame uncertainty is not stored, so its actual gains are not reconstructed."
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "regime": "clean",
+      "valid_head_frames": 192,
+      "total_frames": 192,
+      "observed_to_GT_head_mean_mm": 0.00041034161313291406,
+      "predicted_to_observed_head_mean_mm": 0.0019002255839950521,
+      "predicted_to_GT_head_mean_mm": 0.0020506115561147453,
+      "reference_to_observed_head_mean_mm": 5.683715542659229e-05,
+      "max_FK_vs_saved_joint_channel_error_mm": {
+        "truth": 0.0012516975402832031,
+        "prediction": 0.00035762786865234375,
+        "reference": 0.0002384185791015625
+      },
+      "raw_world_first_camera_Y_m": -0.4811132252216339,
+      "window_camera_first_Y_m": 0.0,
+      "observed_head_first_window_Y_m": 0.07134589552879333,
+      "observed_head_valid_window_Y_range_m": [
+        -0.0937516838312149,
+        0.5665421485900879
+      ],
+      "mount_position_p90_m": 0.0,
+      "mount_rotation_p90_rad": 0.0,
+      "clean_full_confidence_head_translation_gain_at_alpha_1": 0.9000000000000001,
+      "clean_head_eligible_for_physics_trusted_guard": true,
+      "uncertainty_note": "Mount floor only; noisy per-frame uncertainty is not stored, so its actual gains are not reconstructed."
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "regime": "noisy",
+      "valid_head_frames": 192,
+      "total_frames": 192,
+      "observed_to_GT_head_mean_mm": 15.886085107922554,
+      "predicted_to_observed_head_mean_mm": 3.5563793499022722,
+      "predicted_to_GT_head_mean_mm": 17.8856011480093,
+      "reference_to_observed_head_mean_mm": 6.03358216721972e-05,
+      "max_FK_vs_saved_joint_channel_error_mm": {
+        "truth": 0.0012516975402832031,
+        "prediction": 0.0002384185791015625,
+        "reference": 0.0002384185791015625
+      },
+      "raw_world_first_camera_Y_m": -0.4811132252216339,
+      "window_camera_first_Y_m": 0.0,
+      "observed_head_first_window_Y_m": 0.0602438822388649,
+      "observed_head_valid_window_Y_range_m": [
+        -0.10330700874328613,
+        0.5615882277488708
+      ],
+      "mount_position_p90_m": 0.0,
+      "mount_rotation_p90_rad": 0.0,
+      "clean_full_confidence_head_translation_gain_at_alpha_1": 0.9000000000000001,
+      "clean_head_eligible_for_physics_trusted_guard": true,
+      "uncertainty_note": "Mount floor only; noisy per-frame uncertainty is not stored, so its actual gains are not reconstructed."
+    }
+  ]
+}
