@@ -1,0 +1,458 @@
+{
+  "created_at": "2026-10-16T13:35:13.610317+08:00",
+  "action": "proposed_only_not_executed",
+  "protected_runs": {
+    "native_dynamic_scene20_contact_55k_oct07": "用户所指旧55k：55000步，20Hz绝对x0；EXO冻结先验依赖其last.pt。历史含官方TEST重叠，仅开发对照，不能写成干净官方benchmark。",
+    "native30_gait_v2_ego55k_oct15": "唯一持续训练主线，30Hz参考残差，目标55000；last.pt、Adam/RNG、prepared、config与监控必须留原路径。",
+    "legacy55k_exo_long_oct15": "旧55k独立EXO7831步对照、可恢复模型和8791回放。",
+    "legacy55k_exo_residual_oct15": "EXO匹配scene/no-scene/参考保护对照与long起点，保留最小对照模型及协议。",
+    "native30_final_review_oct16": "当前主线仍导入io_recovery.py；本轮control/lean/foot/IK-off开发对照及结论。",
+    "native30_physics_schedule_probe_oct15": "当前主线run_control.foot_metrics_source严格SHA引用run_probe.py，不得删移该脚本。",
+    "native30_gait_v2_arch_review_oct15": "当前主线工程准备来源证据，prepared只作provenance。",
+    "ego_exo_surface_continue_oct11": "全量主线不读取该旧3k权重；config.diagnostic_mount_defaults仍指向TRAIN_camera_mounts.json，保留小JSON与来源。旧3k可作为历史对照归档。",
+    "native30_fresh_ego_oct14": "新版旧目标10000步对照；当前8788/8789两个可视化进程读取此目录，未停进程前不得移动回放。",
+    "native30_gait_restore_probe_oct15": "保存旧55k精确复跑/配方、100+100监督配对结果及control10100，有用的架构/监督比较。",
+    "exo_occlusion_review_oct12": "当前主文档与研究结论索引。"
+  },
+  "directories": [
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/foot_fix_long20k_oct02",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/foot_fix_long20k_oct02",
+      "logical_bytes_before_cleanup": 12728474443,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/turn_repair_oct08",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/turn_repair_oct08",
+      "logical_bytes_before_cleanup": 8954985165,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/canonical_smpl_3dataset_20hz_55k_oct07",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/canonical_smpl_3dataset_20hz_55k_oct07",
+      "logical_bytes_before_cleanup": 8444912603,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/canonical_smpl_3dataset_native20_faceout_55k_oct07",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/canonical_smpl_3dataset_native20_faceout_55k_oct07",
+      "logical_bytes_before_cleanup": 8444258546,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/foot_fix_paired_oct02",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/foot_fix_paired_oct02",
+      "logical_bytes_before_cleanup": 7275194472,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/coordination_paired_oct02",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/coordination_paired_oct02",
+      "logical_bytes_before_cleanup": 6830031787,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/scene5hz_long30k_b4_oct02",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/scene5hz_long30k_b4_oct02",
+      "logical_bytes_before_cleanup": 6235734537,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/soft_body_turn_robust_oct09",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/soft_body_turn_robust_oct09",
+      "logical_bytes_before_cleanup": 4525120713,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/bounded_head_adaptation_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/bounded_head_adaptation_oct10",
+      "logical_bytes_before_cleanup": 4109230402,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_gait_physics_fresh_pilot_oct15",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_gait_physics_fresh_pilot_oct15",
+      "logical_bytes_before_cleanup": 3964183564,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/foot_fix_template_oct02",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/foot_fix_template_oct02",
+      "logical_bytes_before_cleanup": 3921132640,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/foot_fix_support_oct02",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/foot_fix_support_oct02",
+      "logical_bytes_before_cleanup": 3914903033,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_overfit_diagnosis_oct13",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_overfit_diagnosis_oct13",
+      "logical_bytes_before_cleanup": 3498202148,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/report55k_fullval_oct07",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/report55k_fullval_oct07",
+      "logical_bytes_before_cleanup": 3373218605,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/report55k_native20_fullval_oct07",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/report55k_native20_fullval_oct07",
+      "logical_bytes_before_cleanup": 3353241993,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/turn_balance_oct09",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/turn_balance_oct09",
+      "logical_bytes_before_cleanup": 3137492254,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_overnight_ik_oct14",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_overnight_ik_oct14",
+      "logical_bytes_before_cleanup": 3027108763,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/typed_head_track_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/typed_head_track_oct10",
+      "logical_bytes_before_cleanup": 2952120037,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/canonical_smpl_3dataset_native20_negz_55k_oct07",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/canonical_smpl_3dataset_native20_negz_55k_oct07",
+      "logical_bytes_before_cleanup": 2896089004,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/canonical_smpl_three_dataset_55k_oct07_v2",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/canonical_smpl_three_dataset_55k_oct07_v2",
+      "logical_bytes_before_cleanup": 2894206851,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/body_history_replan_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/body_history_replan_oct10",
+      "logical_bytes_before_cleanup": 2444897993,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/soft_coupled_contact_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/soft_coupled_contact_oct10",
+      "logical_bytes_before_cleanup": 2443280900,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/control_scale_body_scene_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/control_scale_body_scene_oct11",
+      "logical_bytes_before_cleanup": 1959365816,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_cached_ego_oct14",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_cached_ego_oct14",
+      "logical_bytes_before_cleanup": 1505004473,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_overnight_oct14",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_overnight_oct14",
+      "logical_bytes_before_cleanup": 1502570955,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_short500_oct13",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_short500_oct13",
+      "logical_bytes_before_cleanup": 1501619797,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_scene_relations_oct14",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_scene_relations_oct14",
+      "logical_bytes_before_cleanup": 1104073279,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/replan_transition_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/replan_transition_oct10",
+      "logical_bytes_before_cleanup": 984636562,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/turn_path_training_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/turn_path_training_oct10",
+      "logical_bytes_before_cleanup": 978891281,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/fresh55k_replay_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/fresh55k_replay_oct11",
+      "logical_bytes_before_cleanup": 978033593,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/sole_support_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/sole_support_oct11",
+      "logical_bytes_before_cleanup": 977156140,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/position_adapter_head_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/position_adapter_head_oct10",
+      "logical_bytes_before_cleanup": 724157946,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/fresh55k_winding_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/fresh55k_winding_oct11",
+      "logical_bytes_before_cleanup": 490338385,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/fresh55k_support_coverage_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/fresh55k_support_coverage_oct11",
+      "logical_bytes_before_cleanup": 489616453,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/projected_replay_final_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/projected_replay_final_oct11",
+      "logical_bytes_before_cleanup": 489613755,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/fresh55k_scene_physics_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/fresh55k_scene_physics_oct11",
+      "logical_bytes_before_cleanup": 489481919,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/control55k_noscene_fullval_oct03",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/control55k_noscene_fullval_oct03",
+      "logical_bytes_before_cleanup": 228980502,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/control55k_fullval_oct02",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/control55k_fullval_oct02",
+      "logical_bytes_before_cleanup": 228595109,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/control30k_fullval_oct03",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/control30k_fullval_oct03",
+      "logical_bytes_before_cleanup": 228496229,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/scene20_visual_acceptance_oct07",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/scene20_visual_acceptance_oct07",
+      "logical_bytes_before_cleanup": 217133460,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/turn_generalization_oct09",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/turn_generalization_oct09",
+      "logical_bytes_before_cleanup": 112746991,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/state_relative_spline_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/state_relative_spline_oct10",
+      "logical_bytes_before_cleanup": 28069104,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_speed_gait_review_oct15",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_speed_gait_review_oct15",
+      "logical_bytes_before_cleanup": 22791512,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_runtime_oct14",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_runtime_oct14",
+      "logical_bytes_before_cleanup": 17546728,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/control55k_scene_ablation_oct03",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/control55k_scene_ablation_oct03",
+      "logical_bytes_before_cleanup": 14420371,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/ego_exo_official_offline_memory_v4",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/ego_exo_official_offline_memory_v4",
+      "logical_bytes_before_cleanup": 11658878,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_refinement_oct14",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_refinement_oct14",
+      "logical_bytes_before_cleanup": 11649630,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/ego_exo_native30_oct12",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/ego_exo_native30_oct12",
+      "logical_bytes_before_cleanup": 9198139,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/state_relative_refinement_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/state_relative_refinement_oct10",
+      "logical_bytes_before_cleanup": 7596269,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/contact_state_transition_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/contact_state_transition_oct10",
+      "logical_bytes_before_cleanup": 6986392,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/videomimic_terrain_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/videomimic_terrain_oct11",
+      "logical_bytes_before_cleanup": 6311680,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/turn_recount_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/turn_recount_oct11",
+      "logical_bytes_before_cleanup": 5065034,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/literature_turn_audit_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/literature_turn_audit_oct10",
+      "logical_bytes_before_cleanup": 4609979,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/state_anchored_forecast_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/state_anchored_forecast_oct10",
+      "logical_bytes_before_cleanup": 4315210,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_audit_oct16",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_gait_v2_audit_oct16",
+      "logical_bytes_before_cleanup": 4171509,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/long_history_rollout_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/long_history_rollout_oct10",
+      "logical_bytes_before_cleanup": 2023009,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/training_contract_audit_oct07",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/training_contract_audit_oct07",
+      "logical_bytes_before_cleanup": 1750015,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/report_mesh_visuals_oct04",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/report_mesh_visuals_oct04",
+      "logical_bytes_before_cleanup": 1315113,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/rich_training_input_review_oct07",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/rich_training_input_review_oct07",
+      "logical_bytes_before_cleanup": 808281,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/ego_exo_camera_config_oct12",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/ego_exo_camera_config_oct12",
+      "logical_bytes_before_cleanup": 706166,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/hierarchical_constraint_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/hierarchical_constraint_oct11",
+      "logical_bytes_before_cleanup": 685323,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/turn_foot_coordination_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/turn_foot_coordination_oct10",
+      "logical_bytes_before_cleanup": 405684,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_stride64_oct13",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_stride64_oct13",
+      "logical_bytes_before_cleanup": 171848,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/observed_surface_refine_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/observed_surface_refine_oct10",
+      "logical_bytes_before_cleanup": 168094,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/cleanup_oct07",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/cleanup_oct07",
+      "logical_bytes_before_cleanup": 92855,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/version_settings_review_oct15",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/version_settings_review_oct15",
+      "logical_bytes_before_cleanup": 82841,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/turn_manifold_sampling_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/turn_manifold_sampling_oct11",
+      "logical_bytes_before_cleanup": 75921,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/ego_exo_retrain_design_oct12",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/ego_exo_retrain_design_oct12",
+      "logical_bytes_before_cleanup": 23452,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/no_body_initialization_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/no_body_initialization_oct10",
+      "logical_bytes_before_cleanup": 19973,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/contact_coverage_audit_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/contact_coverage_audit_oct11",
+      "logical_bytes_before_cleanup": 18774,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/ego_exo_unified_v1_oct11",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/ego_exo_unified_v1_oct11",
+      "logical_bytes_before_cleanup": 5755,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/cleanup_head_trials_oct10",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/cleanup_head_trials_oct10",
+      "logical_bytes_before_cleanup": 5563,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    },
+    {
+      "from": "experiments/offline_camera_retrain_v1/runs/native30_full_ego_continue_oct15",
+      "to": "experiments/offline_camera_retrain_v1/archive/failed_trials_oct16/native30_full_ego_continue_oct15",
+      "logical_bytes_before_cleanup": 4724,
+      "reason": "历史试验非当前训练依赖；保留compact配置/指标/身份/seed/代码和结论，移至runs外归档。移动不等于失败：成功历史或未完成试验也应标注真实状态。"
+    }
+  ],
+  "restore": "Move archived directory back to original runs/<name> before executing historical absolute-path/SHA protocols; keep exact source content and original config unchanged."
+}
