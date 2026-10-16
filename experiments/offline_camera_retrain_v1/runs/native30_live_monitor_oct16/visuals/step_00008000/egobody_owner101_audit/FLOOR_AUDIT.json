@@ -1,0 +1,527 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-16T15:01:26.420381+08:00",
+  "audited_step": 8000,
+  "latest_npz_step": 9000,
+  "motion_source": "Existing step-8000 ROTATE_3D.html native mesh arrays, decoded losslessly from Plotly bdata; latest validation motion NOT used",
+  "archived_html_sha256": "66a5158b69ce957aa6e39b331f1e71f8f8ad06daab27ee471cecac727b7397d8",
+  "original_validation_archive_sha256": "087024f4e95c8a6848a5ffe55fd6557b29d59c4642d8252646b6411601169ac4",
+  "input_protocol": "observed-static-recording-union-v3",
+  "exact_model_surface_cache": "/mnt/e/Projects/SceneMI/cache/native30_runtime_cache_v2/surfaces/2ba990ba9ba8e676711efbe692f8fecbcbea3569dbcf986b4290cd85f9253e5e.npz",
+  "model_static_points": 8981,
+  "model_floor_points": 629,
+  "model_reliable_floor_points": 612,
+  "model_floor_point_bbox_window_m": {
+    "min": [
+      -2.1199283599853516,
+      -1.2436285018920898,
+      1.9702578783035278
+    ],
+    "max": [
+      0.7821819186210632,
+      -1.1586050987243652,
+      3.7005395889282227
+    ]
+  },
+  "GT_scan": {
+    "path": "/home/wenxin/projects/egobody/scene_mesh/cab_e/cab_e.obj",
+    "floor_triangles": 160766,
+    "floor_height_window_m": -1.2105379400253296,
+    "floor_height_world_Y_m": -0.706,
+    "reference_only": true,
+    "fed_to_model": false
+  },
+  "floor_classification": "GT-scan height within6cm and observed PCA normal Y>0.9; local support counts are horizontal disk counts, not an extrapolated plane",
+  "posture_estimate": "Knee flexion estimated from posed-mesh SMPL joint regression, not recovered exact denoiser FK joints; sufficient for visual pose comparison",
+  "frames": [
+    {
+      "frame": 48,
+      "raw_source_frame": 1479,
+      "current_frame_static_points": 256,
+      "current_frame_floor_band_points": 0,
+      "bodies": {
+        "truth": {
+          "feet": {
+            "left": {
+              "foot_bottom_window_m": [
+                0.4579398036003113,
+                -1.2318487167358398,
+                -0.2619255483150482
+              ],
+              "foot_bottom_world_m": [
+                1.3561755295704732,
+                -0.7273107767105103,
+                -0.3945029610732309
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": -1.2170217037200928,
+              "signed_clearance_to_GT_floor_m": -0.01482701301574707,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.8568124771118164,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 1.1566952921856624
+            },
+            "right": {
+              "foot_bottom_window_m": [
+                0.20514139533042908,
+                -1.2241237163543701,
+                0.07503797113895416
+              ],
+              "foot_bottom_world_m": [
+                0.9374832516256157,
+                -0.7195857763290405,
+                -0.3481540116469235
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": -1.2244610786437988,
+              "signed_clearance_to_GT_floor_m": 0.00033736228942871094,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.485839605331421,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 0.9628458461802296
+            }
+          },
+          "estimated_knee_flexion_deg": {
+            "left": 71.37765708633798,
+            "right": 103.56680738942833
+          },
+          "estimated_root_Y_window_m": -0.6515214443206787
+        },
+        "prediction": {
+          "feet": {
+            "left": {
+              "foot_bottom_window_m": [
+                0.23742729425430298,
+                -1.4941778182983398,
+                -0.2245773822069168
+              ],
+              "foot_bottom_world_m": [
+                1.1780104228926875,
+                -0.9896398782730103,
+                -0.5296985492714557
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": -1.2203550338745117,
+              "signed_clearance_to_GT_floor_m": -0.2738227844238281,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.787187337875366,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 1.1531559612471103
+            },
+            "right": {
+              "foot_bottom_window_m": [
+                -0.05781993269920349,
+                -1.531697392463684,
+                -0.22184090316295624
+              ],
+              "foot_bottom_world_m": [
+                0.973923501353597,
+                -1.0271594524383545,
+                -0.743068982616788
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": null,
+              "signed_clearance_to_GT_floor_m": null,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.7673633098602295,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 1.0030919913849399
+            }
+          },
+          "estimated_knee_flexion_deg": {
+            "left": 21.61393846303102,
+            "right": 23.017096556917238
+          },
+          "estimated_root_Y_window_m": -0.6559705138206482
+        }
+      }
+    },
+    {
+      "frame": 96,
+      "raw_source_frame": 1527,
+      "current_frame_static_points": 256,
+      "current_frame_floor_band_points": 0,
+      "bodies": {
+        "truth": {
+          "feet": {
+            "left": {
+              "foot_bottom_window_m": [
+                0.45913106203079224,
+                -1.216134786605835,
+                -0.2532939314842224
+              ],
+              "foot_bottom_world_m": [
+                1.350698235945785,
+                -0.7115968465805054,
+                -0.3877262981529057
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": -1.2175381183624268,
+              "signed_clearance_to_GT_floor_m": 0.0014033317565917969,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.8485519886016846,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 1.1542902165453972
+            },
+            "right": {
+              "foot_bottom_window_m": [
+                0.26317059993743896,
+                -1.2202036380767822,
+                0.09035436809062958
+              ],
+              "foot_bottom_world_m": [
+                0.9660372206806196,
+                -0.7156656980514526,
+                -0.29536526800525653
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": -1.2216622829437256,
+              "signed_clearance_to_GT_floor_m": 0.0014586448669433594,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.477775812149048,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 1.0034316741222467
+            }
+          },
+          "estimated_knee_flexion_deg": {
+            "left": 77.02007252201022,
+            "right": 105.10291501065325
+          },
+          "estimated_root_Y_window_m": -0.6438537240028381
+        },
+        "prediction": {
+          "feet": {
+            "left": {
+              "foot_bottom_window_m": [
+                0.23921997845172882,
+                -1.4798166751861572,
+                -0.25589418411254883
+              ],
+              "foot_bottom_world_m": [
+                1.2020683131355776,
+                -0.9752787351608276,
+                -0.5498274766051514
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": -1.2191681861877441,
+              "signed_clearance_to_GT_floor_m": -0.2606484889984131,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.8185105323791504,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 1.132440194761552
+            },
+            "right": {
+              "foot_bottom_window_m": [
+                -0.06773997843265533,
+                -1.5255329608917236,
+                -0.2293468862771988
+              ],
+              "foot_bottom_world_m": [
+                0.9726054626983469,
+                -1.020995020866394,
+                -0.7554386982165102
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": null,
+              "signed_clearance_to_GT_floor_m": null,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.7748398780822754,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 0.9936399948336658
+            }
+          },
+          "estimated_knee_flexion_deg": {
+            "left": 23.03523058630813,
+            "right": 24.741590098422478
+          },
+          "estimated_root_Y_window_m": -0.650908350944519
+        }
+      }
+    },
+    {
+      "frame": 144,
+      "raw_source_frame": 1575,
+      "current_frame_static_points": 256,
+      "current_frame_floor_band_points": 1,
+      "bodies": {
+        "truth": {
+          "feet": {
+            "left": {
+              "foot_bottom_window_m": [
+                0.45568758249282837,
+                -1.2165155410766602,
+                -0.2555907070636749
+              ],
+              "foot_bottom_world_m": [
+                1.3500156437094244,
+                -0.7119776010513306,
+                -0.39180879704881555
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": -1.2175381183624268,
+              "signed_clearance_to_GT_floor_m": 0.0010225772857666016,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.850170135498047,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 1.1507327641756409
+            },
+            "right": {
+              "foot_bottom_window_m": [
+                0.26089170575141907,
+                -1.2164956331253052,
+                0.08840398490428925
+              ],
+              "foot_bottom_world_m": [
+                0.9658992385123026,
+                -0.7119576930999756,
+                -0.2983616515268954
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": -1.2219345569610596,
+              "signed_clearance_to_GT_floor_m": 0.0054389238357543945,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.479402542114258,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 0.9994433646457171
+            }
+          },
+          "estimated_knee_flexion_deg": {
+            "left": 76.65001090909857,
+            "right": 105.66063380252146
+          },
+          "estimated_root_Y_window_m": -0.641383945941925
+        },
+        "prediction": {
+          "feet": {
+            "left": {
+              "foot_bottom_window_m": [
+                0.2378540188074112,
+                -1.5010367631912231,
+                -0.3090875744819641
+              ],
+              "foot_bottom_world_m": [
+                1.2399128092999598,
+                -0.9964988231658936,
+                -0.5872333148622451
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": -1.2175376415252686,
+              "signed_clearance_to_GT_floor_m": -0.2834991216659546,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.87123966217041,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 1.1263811244487003
+            },
+            "right": {
+              "foot_bottom_window_m": [
+                -0.027590779587626457,
+                -1.515133023262024,
+                -0.329302579164505
+              ],
+              "foot_bottom_world_m": [
+                1.0729574434263847,
+                -1.0105950832366943,
+                -0.7945868613428088
+              ],
+              "GT_scan_floor_under_foot_Y_window_m": -1.2226784229278564,
+              "signed_clearance_to_GT_floor_m": -0.2924546003341675,
+              "model_memory_nearest_floor_horizontal_distance_m": 2.8751213550567627,
+              "model_memory_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "model_memory_reliable_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "current_frame_floor_counts_horizontal_radius_m": {
+                "0.1": 0,
+                "0.25": 0,
+                "0.6": 0,
+                "1.25": 0
+              },
+              "nearest_model_static_surface_any_orientation_distance_m": 0.978537279641255
+            }
+          },
+          "estimated_knee_flexion_deg": {
+            "left": 17.317575419187648,
+            "right": 26.45607255369353
+          },
+          "estimated_root_Y_window_m": -0.6542128920555115
+        }
+      }
+    }
+  ],
+  "source_or_training_modified": false,
+  "cuda_used": false,
+  "caches_rebuilt": false
+}
