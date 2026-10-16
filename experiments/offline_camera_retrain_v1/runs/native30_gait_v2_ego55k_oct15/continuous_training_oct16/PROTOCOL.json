@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-10-16T12:07:42.644897+08:00",
+  "user_instruction": "保持改输入后的原版一直训练，原55k目标持续到55000，主线优先，消融暂停",
+  "baseline_directory": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15",
+  "start_checkpoint_step": 5200,
+  "target_step": 55000,
+  "io_adapter": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/io_recovery.py",
+  "expected_source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/worker.py": "959d04653c5251412044e77a3119d7b81577688780f0ce327467850aa72b7b08",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/supervise.py": "143161cb6c39e20a48b887820e9baefdd8df7d641b91f803806f8ff3293df9cc",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/test_worker.py": "afe60d2357c3553a7523075662abd21a5443862c40b6e5eac2516fb74fd6763d",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/test_supervise.py": "4e1f6d8188fd2c985e1a55244852a4dfaf002a0fd606f60ebc12f9fce1e075e7",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/run_training.py": "476b58acb78e6eb3448c41ea6e368b2610b5decf8477f073d3a9ba56126fff07",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/io_recovery.py": "6b398c210a36496c175a4e88077b73a5c038aea9dbaebc45f51f555ea283ef99"
+  },
+  "original_config_sha256": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad",
+  "original_effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+  "optimizer_reset": false,
+  "all_original_rng_restored": true,
+  "stop_at10000": false,
+  "quality_gate_before55000": false,
+  "automatic_ablation": false,
+  "restart_limit": 3,
+  "poll_seconds": 10,
+  "recovery_policy": "CRC-checked runtime caches rebuilt with unchanged original implementation; source SHA must still match original published value. At most3 consecutive recognized transient IO restarts. Numeric/integrity/unknown failures fail closed.",
+  "disk_free_before_bytes": {
+    "/": 16317296640,
+    "/mnt/e": 120932270080
+  }
+}

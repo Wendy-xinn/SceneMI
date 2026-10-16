@@ -34,3 +34,7 @@
 本次使用独立continue_review.py及recovered_worker.py/io_recovery.py续行原2453起点候选，保留5200 parent，不再fallback修改它；原六个封存扩展与各臂配置不改，新的扩展哈希记录在RECOVERY_PROTOCOL.json。所有原守卫保持不变，先补ik_off、再阶段2及10k门控。lean即使未胜出也保留Adam供后续审阅。CRC验证与读取重试可能影响准备耗时，比较新旧worker总耗时时需要计入这一差异。
 
 当前恢复命令：`/home/wenxin/miniconda3/envs/scenemi/bin/python -u /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/continue_review.py --phase1-updates 1000 --phase2-updates 2000 --decision-hours 8 --final-stop 10000 --expected-parent-step 5200`。仅在无活跃manager/worker时使用；PID守卫和进程锁拒绝重复启动。本次恢复重新计时，不声称原8小时任务已成功。
+
+## 12:03 用户要求原版主线持续训练：本审查暂停
+
+用户明确要求保持改输入后的原版一直训练至55000。已温和停止本目录manager及worker，IK-off完整保存在2979，其余候选3453均保留。本目录不自动恢复、不再占用主线训练预算。当前主线见[continuous_training_oct16](../native30_gait_v2_ego55k_oct15/continuous_training_oct16/README_zh.md)，原父目录会从5200持续推进；上述旧恢复命令对后续父checkpoint不再成立，不要同时运行。暂停证据见PAUSE_FOR_BASELINE.json。
