@@ -58,7 +58,8 @@ def publish_gallery(output_dir: Path) -> None:
         'h1,p{padding:0 16px}article{background:white;padding:12px;margin:16px;border-radius:8px}' \
         'img{width:100%;height:auto}h2{font-size:18px}</style><h1>Native30 验证截图</h1>' \
         '<p>蓝色 GT，洋红色预测；灰色 GT 静态扫描只用于显示，青色实际输入静态记忆，' \
-        '橙色当前可见动态表面。每张图同帧、同相机。新验证自动加入；刷新页面查看。</p>' \
+        '橙色是实际输入的局部可见动态表面；EgoBody 中是另一人的观测片段，' \
+        '不是预测目标，也不是完整人体 mesh。每张图同帧、同相机。新验证自动加入；刷新页面查看。</p>' \
         + ''.join(items) + '</html>'
     temporary = folder / "INDEX.html.tmp"
     temporary.write_text(page)
@@ -324,7 +325,8 @@ def render_case(folder: Path, step: int, case: dict, meshes: dict, faces: np.nda
         handles = [Patch(color="#2574cf", label="GT body"), Patch(color="#c32f8e", label="Predicted body"),
             Patch(color="#b8bdc4", label="GT static scan (display only)"),
             Patch(color="#0d9eaa", label="Visible static memory (input)"),
-            Patch(color="#eb8c25", label="Current visible dynamics (input)")]
+            Patch(color="#eb8c25", label="Other person's visible surface (partial)" if case["dataset"] == "egobody"
+                else "Current visible dynamics (input)")]
         fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=8, frameon=False)
         fig.text(.5, .055, "Fixed GT-window camera; no pose alignment or floor snap. Static scan is cropped, not a model input. Neutral hands/face.",
             ha="center", fontsize=8, color="#555b65")

@@ -1,25 +1,25 @@
 {
   "status": "monitoring",
-  "checked_at": "2026-10-16T14:08:35.240994+08:00",
-  "pid": 115092,
+  "checked_at": "2026-10-16T14:44:29.549315+08:00",
+  "pid": 121901,
   "sources": {
     "new_train": {
       "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl",
-      "offset": 119595141,
-      "previous_elapsed": 6356.678190018007,
+      "offset": 133558711,
+      "previous_elapsed": 8374.189142827003,
       "elapsed_base": 10749.242778011001,
-      "active_seconds": 17105.920968029008,
-      "update_seconds": 15887.920304259787,
-      "compute_seconds": 12805.106942507868,
-      "preparation_seconds": 3067.1718930750285,
+      "active_seconds": 19123.431920838004,
+      "update_seconds": 17742.32816336405,
+      "compute_seconds": 14354.029750545153,
+      "preparation_seconds": 3370.7866262459065,
       "validation_seconds": 0.0,
       "session": 3,
-      "rows": 8231,
-      "latest_step": 8231
+      "rows": 9191,
+      "latest_step": 9191
     },
     "new_validation": {
       "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/validation.jsonl",
-      "offset": 232636,
+      "offset": 258980,
       "previous_elapsed": null,
       "elapsed_base": 0.0,
       "active_seconds": 0.0,
@@ -28,22 +28,22 @@
       "preparation_seconds": 0.0,
       "validation_seconds": 0.0,
       "session": 0,
-      "rows": 9,
-      "latest_step": 8000
+      "rows": 10,
+      "latest_step": 9000
     },
     "new_feet": {
       "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/foot_monitor.jsonl",
-      "offset": 79022,
+      "offset": 88305,
       "previous_elapsed": null,
       "elapsed_base": 0.0,
       "active_seconds": 0.0,
       "update_seconds": 0.0,
       "compute_seconds": 0.0,
       "preparation_seconds": 0.0,
-      "validation_seconds": 1229.8588085260126,
+      "validation_seconds": 1379.1827574170165,
       "session": 0,
-      "rows": 9,
-      "latest_step": 8000
+      "rows": 10,
+      "latest_step": 9000
     },
     "old_train": {
       "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/training_log.jsonl",
@@ -58,11 +58,25 @@
       "session": 0,
       "rows": 2751,
       "latest_step": 55000
+    },
+    "new_loss_display_v1": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl",
+      "offset": 133558711,
+      "previous_elapsed": null,
+      "elapsed_base": 0.0,
+      "active_seconds": 0.0,
+      "update_seconds": 0.0,
+      "compute_seconds": 0.0,
+      "preparation_seconds": 0.0,
+      "validation_seconds": 0.0,
+      "session": 0,
+      "rows": 9191,
+      "latest_step": 9191
     }
   },
-  "event_batches": 263,
+  "event_batches": 458,
   "generation": 1792128852674884470,
-  "images": 12,
+  "images": 18,
   "event_root": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard",
   "historical_walltime": "source checked_at when present; otherwise event import time, not actual training walltime",
   "timing": "active_loop sums recorded elapsed sessions and is a lower bound: validation/save after the final trace row of a session may be absent; update/compute/preparation sum actual per-step source timers; validation is separately accumulated from foot_monitor; no pauses or setup time guessed"

@@ -1,0 +1,92 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-16T14:31:59.892997+08:00",
+  "scope": "Original logged rows only; display arithmetic, zero model forward/backward or optimizer changes.",
+  "native": {
+    "trace": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl",
+      "covered_bytes": 129325974,
+      "sha256": "deba3abcb897fc49603c6cf32c1fa67b3cd12f888c1bdf30ab768f35483de566"
+    },
+    "rows": 8900,
+    "first_step": 1,
+    "last_step": 8900,
+    "effective_config_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/prepared/effective_config.json",
+    "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+    "observation_coefficients": {
+      "position": 0.09597684428424401,
+      "rotation": 0.025,
+      "velocity": 0.00029011997255170386,
+      "acceleration": 3.16126911095216e-06,
+      "angular_velocity": 0.0023217302368079363,
+      "body_turn_rate": 0.0007816471124286364
+    },
+    "geometry_coefficients": {
+      "contact": 0.2,
+      "contact_distance_m2": 2.0,
+      "contact_relative_slip_m2_s2": 0.02,
+      "observed_plane_proxy_m2": 0.1,
+      "correspondence": 0.01,
+      "feedback_smoothness": 0.0001,
+      "support_relation_m2": 1.0
+    },
+    "gait_coefficients": {
+      "stance_velocity": 0.1,
+      "swing_velocity": 0.05,
+      "relative_position": 1.0,
+      "stride_displacement": 2.0,
+      "coordination_amplitude": 5.0,
+      "coordination_relation": 0.05,
+      "support_height": 2.0,
+      "swing_height": 0.5,
+      "support_envelope": 4.0,
+      "support_penetration": 2.0,
+      "phase_free_planting": 0.1,
+      "bilateral_stride": 1.0,
+      "bilateral_amplitude": 5.0,
+      "bilateral_relation": 0.05
+    },
+    "raw_gait_weight": 0.5,
+    "maximum_abs_sum_residual": 3.794302276816097e-07,
+    "max_error_step": 3,
+    "maximum_abs_gait_subtotal_residual": 3.691762686663935e-07,
+    "maximum_abs_raw_gait_subtotal_residual": 7.722526786935191e-07,
+    "example": {
+      "step": 8900,
+      "values": {
+        "loss/total": 0.9884637594223022,
+        "loss/weighted/base_body_and_gait": 0.6741958856582642,
+        "loss/weighted/observation": 0.017463655780716337,
+        "loss/weighted/scene_geometry": 0.29680415446646513,
+        "loss/details/weighted_observation/position": 0.00883674450132971,
+        "loss/details/weighted_observation/rotation": 0.006129419431090355,
+        "loss/details/weighted_observation/velocity": 5.43445668404781e-05,
+        "loss/details/weighted_observation/acceleration": 3.1575350665212046e-06,
+        "loss/details/weighted_observation/angular_velocity": 0.0010731050667633234,
+        "loss/details/weighted_observation/body_turn_rate": 0.0013668846796259513,
+        "loss/details/weighted_scene/contact": 0.14568306207656861,
+        "loss/details/weighted_scene/contact_distance_m2": 0.1233968511223793,
+        "loss/details/weighted_scene/contact_relative_slip_m2_s2": 0.00797005534172058,
+        "loss/details/weighted_scene/observed_plane_proxy_m2": 0.0002521930728107691,
+        "loss/details/weighted_scene/correspondence": 0.0042467907071113585,
+        "loss/details/weighted_scene/feedback_smoothness": 3.449225425720215e-06,
+        "loss/details/weighted_scene/support_relation_m2": 0.01525175292044878,
+        "loss/audit/weighted_sum_minus_total": -6.351685666317053e-08
+      }
+    }
+  },
+  "old55k": {
+    "trace": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/training_log.jsonl",
+      "covered_bytes": 8558219,
+      "sha256": "1317689e6eeb6ea8fa3878738baba9c90d632e17094ddecade75c5cc529cdd6b"
+    },
+    "rows": 2751,
+    "last_step": 55000,
+    "loss_profile": "coordination_v1",
+    "contact_coefficient": 0.1,
+    "maximum_abs_sum_residual": 2.9940856638432933e-07,
+    "max_error_step": 40
+  },
+  "tolerance": 1e-05
+}

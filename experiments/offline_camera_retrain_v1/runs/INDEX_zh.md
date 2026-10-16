@@ -5,7 +5,8 @@
 | 用途 | 入口 | 说明 |
 |---|---|---|
 | 新版持续主线 | [训练状态](native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json) | 30Hz、参考残差扩散、官方划分；持续目标55000，保持原模型/输入/监督/Adam/RNG |
-| 曲线与验证截图 | [监控目录](native30_live_monitor_oct16/) | TensorBoard、各监督项、训练步数/时长；固定验证截图保存于visuals |
+| 曲线与验证截图 | [总loss看板](http://localhost:6006/#custom_scalars) · [损失说明](native30_live_monitor_oct16/LOSS_GUIDE_zh.md) | 唯一总loss、三个已加权贡献、步数/时长；固定验证截图保存于visuals |
+| 当前效果趋势 | [趋势图](native30_live_monitor_oct16/trend_review_current/TRAINING_TRENDS.png) · [复核报告](native30_live_monitor_oct16/trend_review_current/TREND_REVIEW_zh.md) | 纳入9k反弹；固定窗口与轮换窗口分开，不以train loss宣称泛化 |
 | 旧55k对照 | [结果](native_dynamic_scene20_contact_55k_oct07/RESULTS_zh.md) | 正确旧模型是此目录last.pt：55000步、20Hz绝对x0，保留可恢复状态和必要场景demo |
 | 旧55k＋独立EXO | [状态](legacy55k_exo_long_oct15/STATUS.json) | 7831步EXO残差修正，旧扩散冻结先验；与场景条件扩散须区分 |
 | 新版近期配对比较 | [阶段报告](native30_final_review_oct16/INTERIM_REPORT_zh.md) | control/精简/逐脚监督/IK-off，不覆盖持续主线；io_recovery.py仍被主线使用 |

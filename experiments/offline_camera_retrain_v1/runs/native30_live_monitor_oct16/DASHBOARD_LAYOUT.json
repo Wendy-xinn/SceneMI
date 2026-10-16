@@ -1,110 +1,106 @@
 {
-  "00 Progress and optimizer": {
-    "Total training loss (source definitions differ)": [
-      "^train/loss$",
-      "^train/losses/total$"
-    ],
-    "Optimizer step": [
-      "^progress/optimizer_step$"
-    ],
-    "Learning rate": [
-      "^train/lr$"
-    ],
-    "Gradient norm": [
-      "^train/gradient_norm$"
+  "00 总损失": {
+    "Total loss：实际反传的唯一总损失": [
+      "^loss/total$"
     ]
   },
-  "01 Diffusion and body supervision": {
-    "Diffusion x0 and raw x0": [
-      "^train/terms/base/(x0|raw_x0)$"
-    ],
-    "FK joint position (m2)": [
-      "^train/terms/base/fk_position_m2$"
-    ],
-    "Root and head orientation (chordal)": [
-      "^train/terms/base/(root_absolute_chordal|head_absolute_chordal)$"
-    ],
-    "Gait totals (source weighting retained)": [
-      "^train/terms/base/(gait_total|gait_raw_total)$"
-    ],
-    "Foot and stance-swing velocity": [
-      "^train/terms/base/(foot_velocity_m2_s2|gait_stance_velocity|gait_swing_velocity)$"
-    ],
-    "Bilateral stride and amplitude": [
-      "^train/terms/base/gait_(raw_)?bilateral_(stride|amplitude)$"
-    ],
-    "Bilateral relation": [
-      "^train/terms/base/gait_(raw_)?bilateral_relation$"
+  "01 分项：已加权贡献，三项相加等于 Total loss": {
+    "基础身体与步态 / 观测一致性 / 场景几何": [
+      "^loss/weighted/(base_body_and_gait|observation|scene_geometry)$"
     ]
   },
-  "02 Observation and scene supervision": {
-    "Observed position": [
-      "^train/terms/observation/position$"
-    ],
-    "Observed rotation": [
-      "^train/terms/observation/rotation$"
-    ],
-    "Observed velocity": [
-      "^train/terms/observation/velocity$"
-    ],
-    "Scene contact and correspondence (source units)": [
-      "^train/terms/geometry/(contact|correspondence)$"
-    ],
-    "Scene distance and support (m2)": [
-      "^train/terms/geometry/(contact_distance_m2|support_relation_m2|observed_plane_proxy_m2)$"
-    ]
-  },
-  "03 Fixed validation (clean and noisy kept separate)": {
-    "All-joint MPJPE (mm)": [
+  "02 固定验证：clean 与 noisy 分开": {
+    "全身 MPJPE（mm）": [
       "^validation/fixed/ego/(clean|noisy)/scene_on/mpjpe_mm/value$"
     ],
-    "Conditioned head position (mm)": [
+    "头部位置误差（mm）": [
       "^validation/fixed/ego/(clean|noisy)/scene_on/conditioned_mpjpe_mm/value$"
     ],
-    "Root position (mm)": [
-      "^validation/fixed/ego/(clean|noisy)/scene_on/root_position_error_mm/value$"
-    ],
-    "Root and head orientation (deg)": [
-      "^validation/fixed/ego/(clean|noisy)/scene_on/(root_orientation_deg|head_orientation_deg)/value$"
-    ]
-  },
-  "04 Fixed feet diagnostics": {
-    "Body-local foot position (mm)": [
+    "身体坐标脚位误差（mm）": [
       "^feet/fixed/(clean|noisy)/body_local_foot_error_mm$"
     ],
-    "Foot velocity RMSE (m/s)": [
+    "脚速度 RMSE（m/s）": [
       "^feet/fixed/(clean|noisy)/foot_velocity_RMSE_m_s$"
     ],
-    "Articulation amplitude log ratio error": [
-      "^feet/fixed/(clean|noisy)/articulation_log_ratio_error$"
-    ],
-    "Bilateral sagittal correlation error": [
-      "^feet/fixed/(clean|noisy)/bilateral_sagittal_correlation_error$"
+    "步幅与左右脚关系误差": [
+      "^feet/fixed/(clean|noisy)/(articulation_log_ratio_error|bilateral_sagittal_correlation_error)$"
     ]
   },
-  "05 Rotating validation (coverage, different sequences)": {
-    "All-joint MPJPE (mm)": [
-      "^validation/rotating/ego/(clean|noisy)/scene_on/mpjpe_mm/value$"
+  "03 训练进度与真实计时": {
+    "已完成训练步数": [
+      "^progress/optimizer_step$"
     ],
-    "Body-local foot position (mm)": [
-      "^feet/rotating/(clean|noisy)/body_local_foot_error_mm$"
-    ]
-  },
-  "06 Speed and measured duration": {
-    "Per-update seconds": [
+    "学习率": [
+      "^train/lr$"
+    ],
+    "裁剪前梯度范数": [
+      "^train/gradient_norm$"
+    ],
+    "每步秒数：完整更新 / 计算 / 准备": [
       "^time/(update|compute|preparation)_seconds_per_step$"
     ],
-    "Accumulated update / compute / preparation (hours)": [
+    "累计小时：更新 / 计算 / 准备": [
       "^time/train_(update|compute|preparation)_hours$"
     ],
-    "Accumulated validation (hours)": [
+    "累计验证小时": [
       "^time/validation_hours$"
+    ]
+  },
+  "90 详细：基础项原始日志，不在此再次相加": {
+    "x0 与 raw_x0（raw 指未修正网络预测）": [
+      "^train/terms/base/(x0|raw_x0)$"
     ],
-    "Recorded loop elapsed (hours; boundary tail may be absent)": [
+    "FK位置误差（m2，尚未乘外层2）": [
+      "^train/terms/base/fk_position_m2$"
+    ],
+    "根与头朝向原始误差": [
+      "^train/terms/base/(root_absolute_chordal|head_absolute_chordal)$"
+    ],
+    "步态小计：final 与 raw（已含内部系数；raw另乘0.5）": [
+      "^train/terms/base/(gait_total|gait_raw_total)$"
+    ],
+    "双脚幅度与步幅原始误差": [
+      "^train/terms/base/gait_(raw_)?bilateral_(stride|amplitude)$"
+    ],
+    "诊断：旧脚速与planting，V2不直接加入total": [
+      "^train/terms/base/(foot_velocity_m2_s2|planting_m2_s2)$"
+    ]
+  },
+  "91 详细：观测各项已加权贡献，已包含于顶层观测分项": {
+    "位置 / 旋转 / 线速度 / 线加速度 / 角速度 / 身体转动": [
+      "^loss/details/weighted_observation/.*$"
+    ]
+  },
+  "92 详细：场景各项已加权贡献，已包含于顶层场景分项": {
+    "接触 / 距离 / 相对滑动 / 平面代理 / 对应 / 平滑 / 支撑": [
+      "^loss/details/weighted_scene/.*$"
+    ]
+  },
+  "93 详细：原始观测与几何，不是最终加权贡献": {
+    "观测原始项（内部已有mask、归一化和噪声门控）": [
+      "^train/terms/observation/.*$"
+    ],
+    "场景原始项（内部已有mask与门控）": [
+      "^train/terms/geometry/.*$"
+    ]
+  },
+  "94 详细：核对与轮换验证": {
+    "三项加总减total：仅应有浮点舍入误差": [
+      "^loss/audit/weighted_sum_minus_total$"
+    ],
+    "轮换全身误差（序列会变化，mm）": [
+      "^validation/rotating/ego/(clean|noisy)/scene_on/mpjpe_mm/value$"
+    ],
+    "已记录循环累计小时（会话末验证可能漏计，下界）": [
       "^time/active_loop_hours$"
+    ]
+  },
+  "95 旧55k：定义不同，不与新版总loss直接排名": {
+    "旧模型总loss": [
+      "^train/losses/total$"
     ],
-    "Seconds for each validation call": [
-      "^time/validation_seconds_this_call$"
+    "旧步态 / 支撑 / 协调已加权小计": [
+      "^train/losses/(gait_total|phase_free_support_total|coordination_total)$"
     ]
   }
 }

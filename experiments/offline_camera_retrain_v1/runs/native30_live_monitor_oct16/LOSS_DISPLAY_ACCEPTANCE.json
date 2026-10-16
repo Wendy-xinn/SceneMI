@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-16T14:36:02.002604+08:00",
+  "server_pid": 118368,
+  "bridge_pid": 121901,
+  "generation": 1792128852674884470,
+  "dashboard_categories": [
+    {
+      "title": "00 总损失",
+      "closed": false,
+      "charts": 1
+    },
+    {
+      "title": "01 分项：已加权贡献，三项相加等于 Total loss",
+      "closed": false,
+      "charts": 1
+    },
+    {
+      "title": "02 固定验证：clean 与 noisy 分开",
+      "closed": false,
+      "charts": 5
+    },
+    {
+      "title": "03 训练进度与真实计时",
+      "closed": false,
+      "charts": 6
+    },
+    {
+      "title": "90 详细：基础项原始日志，不在此再次相加",
+      "closed": true,
+      "charts": 6
+    },
+    {
+      "title": "91 详细：观测各项已加权贡献，已包含于顶层观测分项",
+      "closed": true,
+      "charts": 1
+    },
+    {
+      "title": "92 详细：场景各项已加权贡献，已包含于顶层场景分项",
+      "closed": true,
+      "charts": 1
+    },
+    {
+      "title": "93 详细：原始观测与几何，不是最终加权贡献",
+      "closed": true,
+      "charts": 2
+    },
+    {
+      "title": "94 详细：核对与轮换验证",
+      "closed": true,
+      "charts": 3
+    },
+    {
+      "title": "95 旧55k：定义不同，不与新版总loss直接排名",
+      "closed": true,
+      "charts": 2
+    }
+  ],
+  "only_one_total_chart": true,
+  "series": {
+    "loss/total": {
+      "count": 9000,
+      "first_step": 1,
+      "last_step": 9000,
+      "unique_steps": 9000
+    },
+    "loss/weighted/base_body_and_gait": {
+      "count": 9000,
+      "first_step": 1,
+      "last_step": 9000,
+      "unique_steps": 9000
+    },
+    "loss/weighted/observation": {
+      "count": 9000,
+      "first_step": 1,
+      "last_step": 9000,
+      "unique_steps": 9000
+    },
+    "loss/weighted/scene_geometry": {
+      "count": 9000,
+      "first_step": 1,
+      "last_step": 9000,
+      "unique_steps": 9000
+    }
+  },
+  "common_steps": 9000,
+  "maximum_abs_event_float32_sum_residual": 3.5762786865234375e-07,
+  "maximum_error_step": 3,
+  "native_accounting_audit": "LOSS_ACCOUNTING_AUDIT.json",
+  "note": "New display tags backfilled from original log; original event generation and all raw tags retained. No training changes."
+}

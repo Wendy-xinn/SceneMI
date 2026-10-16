@@ -1,5 +1,7 @@
 # Ego/exo 模型与实验唯一总清单
 
+**10月16日14:40复核：橙色EgoBody点云是另一位interactee的局部可见表面，同帧GT mesh核对未发现坐标/时序错位；[可旋转3D](http://localhost:8792/ROTATE_3D.html)。[曲线首屏](http://localhost:6006/#custom_scalars)已改为唯一总loss和三个可加总的已加权贡献，详见[真实损失说明](../native30_live_monitor_oct16/LOSS_GUIDE_zh.md)。训练loss仍降，但最新9k固定VAL clean/noisy MPJPE为210.8/205.6mm，较8k的193.7/193.4反弹；朝向/局部脚与世界位置/滑步趋势分歧，尚不能保证55k质量。完整[趋势复核](../native30_live_monitor_oct16/trend_review_current/TREND_REVIEW_zh.md)已包含9k，不仅选8k低点。当前连续主线保持。**
+
 **10月16日监控与整理：主线持续训练中。现已提供 [TensorBoard](http://localhost:6006)（主要看板、全部监督、训练步数和实际计时）及[固定验证截图](../native30_live_monitor_oct16/visuals/INDEX.html)。截图从7000步开始留存，8000步已由CPU守护自动捕获；每1000步验证后保存三数据集clean/noisy、GT/预测mesh及GT静态扫描/可见场景。当前实验请先看 [runs入口索引](../INDEX_zh.md)。已清理85份冗余或损坏权重，释放50.06 GiB；29个已结束历史目录移至[归档区](../../archive/historical_trials_oct16/README_zh.md)，保留结论和必要模型。原版主线、旧55k及依赖代码不动。**
 
 **当前安排（10月16日12:07，§4.26）：用户明确要求“改输入后的原版保持一直训练”。已安全暂停消融（IK-off保存在2979步），原版 `native30_gait_v2_ego55k_oct15` 从5200步完整状态恢复，目标持续到55000；不在10k套用消融选版门槛。原模型/输入/损失/Adam/RNG与55k学习率计划不改，增加严格源SHA核验、派生缓存CRC修复和有限IO重启监督。实际更新和已保存步数以[主线状态](../native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json)为准。此前承诺的8小时选版未完成，三臂阶段结果保留，不冒称原主线整夜持续运行。**

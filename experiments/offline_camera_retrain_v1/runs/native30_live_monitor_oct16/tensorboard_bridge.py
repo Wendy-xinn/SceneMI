@@ -31,57 +31,62 @@ from tensorboard.compat.proto.tensor_shape_pb2 import TensorShapeProto
 from tensorboard.plugins.custom_scalar import layout_pb2, metadata as custom_metadata
 from tensorboard.summary.writer.record_writer import RecordWriter
 
+from loss_accounting import native_contributions
+
 ROOT = Path(__file__).resolve().parent
 RUNS = ROOT.parent
 
 
 def dashboard_layout():
-    """A compact curated view over unchanged original scalar tags."""
+    """Show one total and three real weighted contributions before diagnostics."""
     return {
-        '00 Progress and optimizer': {
-            'Total training loss (source definitions differ)': [r'^train/loss$', r'^train/losses/total$'],
-            'Optimizer step': [r'^progress/optimizer_step$'],
-            'Learning rate': [r'^train/lr$'],
-            'Gradient norm': [r'^train/gradient_norm$'],
+        '00 总损失': {
+            'Total loss：实际反传的唯一总损失': [r'^loss/total$'],
         },
-        '01 Diffusion and body supervision': {
-            'Diffusion x0 and raw x0': [r'^train/terms/base/(x0|raw_x0)$'],
-            'FK joint position (m2)': [r'^train/terms/base/fk_position_m2$'],
-            'Root and head orientation (chordal)': [r'^train/terms/base/(root_absolute_chordal|head_absolute_chordal)$'],
-            'Gait totals (source weighting retained)': [r'^train/terms/base/(gait_total|gait_raw_total)$'],
-            'Foot and stance-swing velocity': [r'^train/terms/base/(foot_velocity_m2_s2|gait_stance_velocity|gait_swing_velocity)$'],
-            'Bilateral stride and amplitude': [r'^train/terms/base/gait_(raw_)?bilateral_(stride|amplitude)$'],
-            'Bilateral relation': [r'^train/terms/base/gait_(raw_)?bilateral_relation$'],
+        '01 分项：已加权贡献，三项相加等于 Total loss': {
+            '基础身体与步态 / 观测一致性 / 场景几何': [r'^loss/weighted/(base_body_and_gait|observation|scene_geometry)$'],
         },
-        '02 Observation and scene supervision': {
-            'Observed position': [r'^train/terms/observation/position$'],
-            'Observed rotation': [r'^train/terms/observation/rotation$'],
-            'Observed velocity': [r'^train/terms/observation/velocity$'],
-            'Scene contact and correspondence (source units)': [r'^train/terms/geometry/(contact|correspondence)$'],
-            'Scene distance and support (m2)': [r'^train/terms/geometry/(contact_distance_m2|support_relation_m2|observed_plane_proxy_m2)$'],
+        '02 固定验证：clean 与 noisy 分开': {
+            '全身 MPJPE（mm）': [r'^validation/fixed/ego/(clean|noisy)/scene_on/mpjpe_mm/value$'],
+            '头部位置误差（mm）': [r'^validation/fixed/ego/(clean|noisy)/scene_on/conditioned_mpjpe_mm/value$'],
+            '身体坐标脚位误差（mm）': [r'^feet/fixed/(clean|noisy)/body_local_foot_error_mm$'],
+            '脚速度 RMSE（m/s）': [r'^feet/fixed/(clean|noisy)/foot_velocity_RMSE_m_s$'],
+            '步幅与左右脚关系误差': [r'^feet/fixed/(clean|noisy)/(articulation_log_ratio_error|bilateral_sagittal_correlation_error)$'],
         },
-        '03 Fixed validation (clean and noisy kept separate)': {
-            'All-joint MPJPE (mm)': [r'^validation/fixed/ego/(clean|noisy)/scene_on/mpjpe_mm/value$'],
-            'Conditioned head position (mm)': [r'^validation/fixed/ego/(clean|noisy)/scene_on/conditioned_mpjpe_mm/value$'],
-            'Root position (mm)': [r'^validation/fixed/ego/(clean|noisy)/scene_on/root_position_error_mm/value$'],
-            'Root and head orientation (deg)': [r'^validation/fixed/ego/(clean|noisy)/scene_on/(root_orientation_deg|head_orientation_deg)/value$'],
+        '03 训练进度与真实计时': {
+            '已完成训练步数': [r'^progress/optimizer_step$'],
+            '学习率': [r'^train/lr$'],
+            '裁剪前梯度范数': [r'^train/gradient_norm$'],
+            '每步秒数：完整更新 / 计算 / 准备': [r'^time/(update|compute|preparation)_seconds_per_step$'],
+            '累计小时：更新 / 计算 / 准备': [r'^time/train_(update|compute|preparation)_hours$'],
+            '累计验证小时': [r'^time/validation_hours$'],
         },
-        '04 Fixed feet diagnostics': {
-            'Body-local foot position (mm)': [r'^feet/fixed/(clean|noisy)/body_local_foot_error_mm$'],
-            'Foot velocity RMSE (m/s)': [r'^feet/fixed/(clean|noisy)/foot_velocity_RMSE_m_s$'],
-            'Articulation amplitude log ratio error': [r'^feet/fixed/(clean|noisy)/articulation_log_ratio_error$'],
-            'Bilateral sagittal correlation error': [r'^feet/fixed/(clean|noisy)/bilateral_sagittal_correlation_error$'],
+        '90 详细：基础项原始日志，不在此再次相加': {
+            'x0 与 raw_x0（raw 指未修正网络预测）': [r'^train/terms/base/(x0|raw_x0)$'],
+            'FK位置误差（m2，尚未乘外层2）': [r'^train/terms/base/fk_position_m2$'],
+            '根与头朝向原始误差': [r'^train/terms/base/(root_absolute_chordal|head_absolute_chordal)$'],
+            '步态小计：final 与 raw（已含内部系数；raw另乘0.5）': [r'^train/terms/base/(gait_total|gait_raw_total)$'],
+            '双脚幅度与步幅原始误差': [r'^train/terms/base/gait_(raw_)?bilateral_(stride|amplitude)$'],
+            '诊断：旧脚速与planting，V2不直接加入total': [r'^train/terms/base/(foot_velocity_m2_s2|planting_m2_s2)$'],
         },
-        '05 Rotating validation (coverage, different sequences)': {
-            'All-joint MPJPE (mm)': [r'^validation/rotating/ego/(clean|noisy)/scene_on/mpjpe_mm/value$'],
-            'Body-local foot position (mm)': [r'^feet/rotating/(clean|noisy)/body_local_foot_error_mm$'],
+        '91 详细：观测各项已加权贡献，已包含于顶层观测分项': {
+            '位置 / 旋转 / 线速度 / 线加速度 / 角速度 / 身体转动': [r'^loss/details/weighted_observation/.*$'],
         },
-        '06 Speed and measured duration': {
-            'Per-update seconds': [r'^time/(update|compute|preparation)_seconds_per_step$'],
-            'Accumulated update / compute / preparation (hours)': [r'^time/train_(update|compute|preparation)_hours$'],
-            'Accumulated validation (hours)': [r'^time/validation_hours$'],
-            'Recorded loop elapsed (hours; boundary tail may be absent)': [r'^time/active_loop_hours$'],
-            'Seconds for each validation call': [r'^time/validation_seconds_this_call$'],
+        '92 详细：场景各项已加权贡献，已包含于顶层场景分项': {
+            '接触 / 距离 / 相对滑动 / 平面代理 / 对应 / 平滑 / 支撑': [r'^loss/details/weighted_scene/.*$'],
+        },
+        '93 详细：原始观测与几何，不是最终加权贡献': {
+            '观测原始项（内部已有mask、归一化和噪声门控）': [r'^train/terms/observation/.*$'],
+            '场景原始项（内部已有mask与门控）': [r'^train/terms/geometry/.*$'],
+        },
+        '94 详细：核对与轮换验证': {
+            '三项加总减total：仅应有浮点舍入误差': [r'^loss/audit/weighted_sum_minus_total$'],
+            '轮换全身误差（序列会变化，mm）': [r'^validation/rotating/ego/(clean|noisy)/scene_on/mpjpe_mm/value$'],
+            '已记录循环累计小时（会话末验证可能漏计，下界）': [r'^time/active_loop_hours$'],
+        },
+        '95 旧55k：定义不同，不与新版总loss直接排名': {
+            '旧模型总loss': [r'^train/losses/total$'],
+            '旧步态 / 支撑 / 协调已加权小计': [r'^train/losses/(gait_total|phase_free_support_total|coordination_total)$'],
         },
     }
 
@@ -89,7 +94,7 @@ def dashboard_layout():
 def dashboard_event():
     categories = []
     for title, charts in dashboard_layout().items():
-        categories.append(layout_pb2.Category(title=title, chart=[
+        categories.append(layout_pb2.Category(title=title, closed=int(title[:2]) >= 90, chart=[
             layout_pb2.Chart(title=name, multiline=layout_pb2.MultilineChartContent(tag=tags))
             for name, tags in charts.items()]))
     layout = layout_pb2.Layout(category=categories)
@@ -239,6 +244,7 @@ class Bridge:
         self.directory = Path(directory).resolve()
         self.directory.mkdir(parents=True, exist_ok=True)
         self.config = config
+        self.loss_coefficients = {}
         self.event_root = self.directory / 'tensorboard'
         self.event_root.mkdir(exist_ok=True)
         self.lock = (self.directory / '.bridge.lock').open('a+')
@@ -330,6 +336,18 @@ class Bridge:
                     continue
                 if role in ('native_trace', 'legacy_train'):
                     result = train_events(record, state, time.time(), role == 'legacy_train')
+                elif role == 'native_loss_display':
+                    effective_path = Path(source['effective_config']).resolve()
+                    if str(effective_path) not in self.loss_coefficients:
+                        effective = json.loads(effective_path.read_text())
+                        self.loss_coefficients[str(effective_path)] = (
+                            effective['observation_coefficients'],
+                            effective['config']['geometry']['coefficients'])
+                    obs, geom = self.loss_coefficients[str(effective_path)]
+                    values = native_contributions(record, obs, geom)
+                    result = [('step', scalar_event(record['step'], timestamp(record, time.time())[0], values))]
+                    state['rows'] += 1
+                    state['latest_step'] = max(state['latest_step'], record['step'])
                 elif role in ('native_validation', 'native_feet'):
                     result = validation_events(record, state, time.time(), role == 'native_feet')
                 else:
@@ -451,7 +469,7 @@ class Bridge:
         return result
 
     def ensure_dashboard(self):
-        key, version = 'dashboard_version', '1'
+        key, version = 'dashboard_version', '2'
         stored = self.db.execute('SELECT value FROM metadata WHERE key=?', (key,)).fetchone()
         if stored and stored[0] == version:
             return
@@ -484,6 +502,9 @@ def default_config():
         dict(key='new_validation', run='new_native30', role='native_validation', path=str(native / 'validation.jsonl')),
         dict(key='new_feet', run='new_native30', role='native_feet', path=str(native / 'foot_monitor.jsonl')),
         dict(key='old_train', run='old55k', role='legacy_train', path=str(legacy / 'training_log.jsonl')),
+        dict(key='new_loss_display_v1', run='new_native30', role='native_loss_display',
+             path=str(native / 'trace.jsonl'),
+             effective_config=str(native.parent / 'prepared' / 'effective_config.json')),
     ])
 
 

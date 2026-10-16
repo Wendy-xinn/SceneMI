@@ -39,3 +39,7 @@ OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=
 10 项测试覆盖：权威步数和源 SHA、较新日志不重标旧数组、缺 step 等待、步数不匹配、身份不匹配、clean/noisy 配对缺失、native body 缺失拒绝伪装骨架、半行 JSON、scene-OFF 不混入及正交相机。
 
 已启动后台 PID **114842**（2026-10-16T13:40:12.375972+08:00）；实际启动命令及环境完整保存在 `visuals/LAUNCH.json`。`visuals/STATUS.json` 每轮更新心跳和最近截图步数。
+
+8000 步场景核验后，未来 EgoBody 橙色图例明确为 `Other person's visible surface (partial)`；图库正文说明该颜色代表另一人的局部可见片段。原 7000/8000 共12张PNG均保持修改前mtime，重复捕获后SHA256与mtime保持不变，详见`visuals/DISPLAY_CLARIFICATION_8000.json`。当前截图守护PID **122610**。
+
+8000步原始另一人GT几何核验：`visuals/step_00008000/egobody_owner101_audit/AUDIT.json`、俯视/正侧视`TOP_FRONT_SIDE.png`；可旋转网页 http://localhost:8792/ROTATE_3D.html，HTTP PID **122630**，仅绑定127.0.0.1且仅服务audit目录，实取验证HTTP 200。服务记录为该目录`HTTP_SERVER.json`。

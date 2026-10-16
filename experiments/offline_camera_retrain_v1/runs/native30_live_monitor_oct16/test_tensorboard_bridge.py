@@ -148,9 +148,11 @@ class BridgeIntegrationTests(unittest.TestCase):
         events = accumulator.Tensors('custom_scalars__config__')
         self.assertEqual(len(events), 1)
         layout = bridge.layout_pb2.Layout.FromString(events[0].tensor_proto.string_val[0])
-        self.assertEqual(len(layout.category), 7)
+        self.assertEqual(len(layout.category), 10)
+        self.assertFalse(layout.category[0].closed)
+        self.assertTrue(layout.category[4].closed)
         chart_patterns = [pattern for category in layout.category for chart in category.chart for pattern in chart.multiline.tag]
-        self.assertIn(r'^train/loss$', chart_patterns)
+        self.assertIn(r'^loss/total$', chart_patterns)
         self.assertIn(r'^time/train_(update|compute|preparation)_hours$', chart_patterns)
 
 

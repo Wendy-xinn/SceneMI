@@ -9,9 +9,10 @@
 - `old55k`：`native_dynamic_scene20_contact_55k_oct07`，原始记录到 55000 步。
 - 对应 `__active_seconds` run：总 loss 的横轴改为累计训练循环秒数。整数秒内有多个真实更新时可以出现相同横轴秒数；原始 optimizer step 不变。
 
-建议先打开 **Custom Scalars**：预设看板按进度、扩散与身体监督、观测与场景、固定验证、脚步、轮换验证、速度与时长排列，避开大量逐序列明细标签。看板只引用原曲线，不改变其数值或权重。Scalars 中可按以下标签筛选：
+推荐先打开 **Custom Scalars**：首屏只有一个实际 **Total loss**，然后是三个可以加总到 Total loss 的**已加权贡献**：基础身体与步态、观测一致性、场景几何。固定验证与进度/计时在下面；原始子项、raw 与步态小计、重复诊断和旧55k默认折叠。见 [LOSS_GUIDE_zh.md](LOSS_GUIDE_zh.md) 的公式、实际系数及历史日志加总核对。只是显示换算，不改变训练或监督。Scalars 中可按以下标签筛选：
 
-- `train/loss`、`train/gradient_norm`、`train/lr`。
+- `loss/total`、`loss/weighted/*`：一个实际总损失与三个已经加权的顶层贡献。
+- `train/loss`、`train/gradient_norm`、`train/lr`：保留的原始字段。
 - `train/terms/base/*`、`train/terms/observation/*`、`train/terms/geometry/*`：新版全部已记录监督项。
 - `train/losses/*`：旧版原始 loss 字段。
 - `validation/fixed/*`、`validation/rotating/*`：固定窗口趋势和轮换覆盖分开。
@@ -21,7 +22,7 @@
 - `time/validation_hours`：原 `foot_monitor.jsonl` 的真实验证调用耗时累计值，只记一次。
 - `time/active_loop_hours`、`time/active_loop_minutes`：原 `elapsed_s` 按恢复会话累计，是已记录循环计时的下界。trace 在每步验证前写入；若某会话在最后一次验证后退出，该次验证及后续保存不进入最后一条 trace，因此不能把跨会话相加视为完整训练墙钟。`__active_seconds` 镜像有相同限制。精确耗时优先查看逐步 update/compute/preparation 累计与独立 validation 累计；不猜测离线暂停或完整数据校验等启动耗时。
 
-loss 数值和层级完全来自原 JSON。`raw_x0`、`gait_raw_*` 等名称照原样保留；部分 total 已包含原实现的权重，因此桥不会再乘系数。名字中的 raw 可能指修正前的预测，不能一律解释成“未乘权重”。不同架构的 loss 定义、采样和 batch 不同，不能用总 loss 大小判断哪个模型更好。旧版没有逐步 update/compute/preparation 秒数日志，因此不会补造这些曲线。
+原始 `train/terms/*` 数值和层级完全保留。新增 `loss/weighted/*` 对原观察/场景项各乘一次实际外层系数；基础小计已有内部权重，因此直接使用 `base.total`，不会再叠加其子项。`raw_x0`、`gait_raw_*` 等名称中的 raw 指修正前的预测，不能一律解释成“未乘权重”。不同架构的 loss 定义、采样和 batch 不同，不能用总 loss 大小判断哪个模型更好。旧版没有逐步 update/compute/preparation 秒数日志，因此不会补造这些曲线。
 
 历史 trace 没有逐步绝对时间戳。TensorBoard event 的 wall_time 在有原始 `checked_at` 时保留原值，其他事件使用明确标记的导入时间；不要把 TensorBoard 内置 WALL/RELATIVE 横轴当成历史训练时长。真正耗时应看 `time/*` 或 `__active_seconds` run。`provenance/walltime_is_source_absolute` 显示这个区别。
 
