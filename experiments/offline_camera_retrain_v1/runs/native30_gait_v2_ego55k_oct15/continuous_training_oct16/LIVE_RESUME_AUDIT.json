@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-10-16T12:19:59.603165+08:00",
+  "status": "passed",
+  "baseline_resumed_from": 5200,
+  "latest_trace_step": 5322,
+  "new_checkpoint_step": 5300,
+  "planned_steps": 55000,
+  "optimizer_entries": 315,
+  "all_resume_fields_present": [
+    "model",
+    "optimizer",
+    "counts",
+    "data_rng",
+    "condition_rng",
+    "torch_rng",
+    "cuda_rng",
+    "numpy_rng"
+  ],
+  "effective_config_unchanged": true,
+  "all_new_recorded_loss_and_gradient_finite": true,
+  "prior_uncommitted_updates_replayed": 57,
+  "prior_samples_t_scene_identical": true,
+  "prior_loss_and_gradient_exactly_equal": true,
+  "passed_prior_failure_step5258": true,
+  "supervisor": {
+    "status": "training",
+    "pid": 106142,
+    "started_at": "2026-10-16T12:07:43.380030+08:00",
+    "goal_step": 55000,
+    "initial_step": 5200,
+    "automatic_ablation": false,
+    "optimizer_reset": false,
+    "stop_at_review_milestone": false,
+    "worker_pid": 106162,
+    "worker_started_at": "2026-10-16T12:07:43.391427+08:00",
+    "consecutive_io_restarts": 0,
+    "verified_resume_step": 5200,
+    "checked_at": "2026-10-16T12:19:54.499005+08:00",
+    "latest_trace_step": 5319,
+    "latest_committed_step": 5300,
+    "latest_loss": 0.41323941946029663,
+    "latest_gradient_norm": 7.064685821533203,
+    "latest_lr": 9.77100231988746e-05
+  },
+  "data_fingerprints": {
+    "status": "passed",
+    "checked_at": "2026-10-16T12:15:03.491498+08:00",
+    "splits": [
+      "train",
+      "validation"
+    ],
+    "TEST_used": false,
+    "durations_s": {
+      "train": 313.4882682160096,
+      "validation": 42.888458972010994
+    },
+    "unchanged_from": "runs/native30_gait_v2_arch_review_oct15/prepared",
+    "files": 1032
+  },
+  "disk_free_after_bytes": {
+    "/": 16314171392,
+    "/mnt/e": 120932270080
+  },
+  "tests_passed": 15,
+  "ablation_paused": true
+}
