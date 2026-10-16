@@ -1,0 +1,67 @@
+{
+  "status": "running",
+  "started_at": "2026-10-16T18:29:27.100142+08:00",
+  "pid": 161550,
+  "checkpoint_step": 15100,
+  "checkpoint_sha256": "b91e61ec75bf8d6720b841bd249d3cdec6d7da80b7c9e273ed509b68e211e3d8",
+  "plan_sha256": "c5de43f8ce071ebd7df6dd2b25e278119b4b584a1b669dd38d704392b5a2d038",
+  "runner_sha256": "7ea4516973c2d72e4d5a370cfc0fd78d839b9dd12199f793e2348d74dbab51a4",
+  "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+  "planned_windows": 206,
+  "planned_predictions": 412,
+  "regimes": [
+    "clean",
+    "noisy"
+  ],
+  "frames": 192,
+  "fps": 30,
+  "ddim_steps": 20,
+  "scene": "on",
+  "mode": "ego",
+  "resources_before": {
+    "MemTotal_bytes": 32389103616,
+    "MemAvailable_bytes": 22133309440,
+    "main_training": {
+      "status": "training",
+      "pid": 106142,
+      "started_at": "2026-10-16T12:07:43.380030+08:00",
+      "goal_step": 55000,
+      "initial_step": 5200,
+      "automatic_ablation": false,
+      "optimizer_reset": false,
+      "stop_at_review_milestone": false,
+      "worker_pid": 106162,
+      "worker_started_at": "2026-10-16T12:07:43.391427+08:00",
+      "consecutive_io_restarts": 0,
+      "verified_resume_step": 5200,
+      "checked_at": "2026-10-16T18:29:23.817721+08:00",
+      "latest_trace_step": 15131,
+      "latest_committed_step": 15100,
+      "latest_loss": 0.37691909074783325,
+      "latest_gradient_norm": 6.0551862716674805,
+      "latest_lr": 8.24593702235617e-05
+    },
+    "disk_free_bytes": {
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16": 68237340672,
+      "/mnt/e": 120842092544
+    }
+  },
+  "memory_fraction": 0.25,
+  "cpu_threads": 2,
+  "training_unchanged": true,
+  "optimizer_updates": 0,
+  "test_used": false,
+  "scope": "Every RICH validation/ego index window: 206 windows from 27 eligible sequences; 28 source sequences include one short excluded source. Not TEST or an assumed external-paper protocol.",
+  "metric_protocol": {
+    "joints": "22 common native SMPL/SMPL-X body joints, including pelvis; not a dataset official 14/17-joint regressor",
+    "w_mpjpe_mm": "World coordinates, no alignment; existing mpjpe_cm times 10",
+    "root_relative_mpjpe_mm": "Subtract each frame pelvis separately from prediction and GT; no rotation or scale alignment",
+    "pa_mpjpe_mm": "Per-frame proper rotation (no reflection), positive similarity scale and translation; all 22 joints",
+    "root_position_error_mm": "World pelvis translation error",
+    "mpjve_mm_s": "World joint first-difference velocity error at explicit 30Hz, mm/s; no alignment",
+    "acceleration_error_mm_s2": "World joint second-difference acceleration error at explicit 30Hz, mm/s^2; no alignment",
+    "temporal_boundaries": "Only within each saved window, no differences across window boundaries; overlapping windows retained",
+    "fps": 30
+  },
+  "timing_scope": "Concurrent single GPU: evaluation and training throughput can differ from isolated measurements."
+}

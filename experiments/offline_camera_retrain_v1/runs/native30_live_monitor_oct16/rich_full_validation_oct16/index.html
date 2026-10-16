@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RICH 全验证集</title>
+<style>
+body{font:16px/1.7 system-ui,sans-serif;color:#182536;background:#f4f6f8;max-width:1150px;margin:30px auto;padding:0 18px}
+main{background:white;padding:25px;border-radius:12px;box-shadow:0 3px 18px #152a4010}h1{font-size:27px;margin:0 0 12px}
+a{color:#1759a2}table{border-collapse:collapse;width:100%;font-size:14px;margin:18px 0}th,td{text-align:right;border-bottom:1px solid #dce3e9;padding:8px}th:first-child,td:first-child{text-align:left}
+.muted{color:#586777}.progress{background:#dce5ed;height:15px;border-radius:8px;overflow:hidden}.bar{background:#287da6;height:100%;width:0;transition:width .3s}.warning{color:#8c4d12}pre{white-space:pre-wrap}footer{font-size:13px;color:#586777}
+</style>
+<main>
+<h1>RICH 全验证集</h1>
+<p id="status">正在读取评估状态…</p>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<p id="scope" class="muted"></p>
+<p id="notice" class="warning">评估进行中时，部分结果只代表已完成窗口。</p>
+<p><a href="REPORT_zh.md">完整报告</a> · <a href="SUMMARY.json">指标 JSON</a> · <a href="PLAN.json">全窗口清单</a> · <a href="PROTOCOL.json">冻结协议</a> · <a href="LOSS_TREND_zh.md">监督趋势</a></p>
+<table><thead><tr><th>输入</th><th>已完成窗口</th><th>全局 MPJPE (mm)</th><th>Root-relative (mm)</th><th>PA-MPJPE (mm)</th><th>速度误差 (mm/s)</th><th>加速度误差 (mm/s²)</th><th>GT低速期足速 (m/s)</th></tr></thead><tbody id="metrics"></tbody></table>
+<p class="muted">表格优先采用显式有效计数加权。相邻 192 帧窗口步长 64 帧，有重叠；报告另列等窗口、等录制宏平均与移动/近静态分层。跨方法比较需要匹配输入、划分、关节定义、帧率、场景范围和对齐方式。</p>
+<footer id="time"></footer>
+</main>
+<script>
+'use strict';
+const el=id=>document.getElementById(id);
+const labels={complete:'全部完成',in_progress:'评估进行中',integrity_issue:'需要核对完整性',all_rows_collected_waiting_final_checks:'窗口完成，等待最终核对',prepared_no_results:'计划已就绪'};
+const fmt=value=>Number.isFinite(value)?value.toFixed(2):'—';
+const metric=(data,names)=>{for(const key of names){const m=data.metrics?.[key];if(m)return m.count_weighted_mean??m.equal_window_mean;}return null;};
+async function get(name){try{const response=await fetch(name+'?t='+Date.now(),{cache:'no-store'});return response.ok?await response.json():null;}catch{return null;}}
+async function update(){
+ const [summary,status,plan]=await Promise.all([get('SUMMARY.json'),get('STATUS.json'),get('PLAN.json')]);
+ const coverage=summary?.coverage??{};
+ const expected=coverage.expected_calls??(plan?.plan?.length??plan?.cases?.length??0)*2;
+ const completed=coverage.completed_calls??status?.completed??status?.completed_calls??0;
+ const state=summary?.status??status?.status??'preparing';
+ el('status').textContent=(labels[state]??state)+' · '+completed+' / '+expected+' 次预测';
+ el('bar').style.width=(expected?100*completed/expected:0)+'%';
+ const checkpoint=summary?.checkpoint_protocol?.checkpoint_step??status?.checkpoint_step;
+ el('scope').textContent=(coverage.expected_windows??expected/2)+' 个窗口 · '+(coverage.expected_recordings??'—')+' 个录制 · clean / noisy 分开 · 冻结权重 '+(checkpoint??'待确定')+' 步';
+ el('notice').textContent=summary?.is_final_complete?'所有计划条目齐全，最终协议核对已完成。':'评估尚未完整结束；当前汇总只代表已完成窗口，不是全量最终结果。';
+ if(summary?.read_audit?.integrity_issues?.length)el('notice').textContent+=' '+summary.read_audit.integrity_issues.join('；');
+ el('metrics').replaceChildren();
+ for(const regime of ['clean','noisy']){
+   const data=summary?.aggregates?.[regime]?.all?.overall;
+   if(!data)continue;
+   const row=document.createElement('tr');
+   const values=[regime,data.sampling_calls,
+     fmt(metric(data,['w_mpjpe_mm','mpjpe_mm'])),fmt(metric(data,['root_relative_mpjpe_mm'])),fmt(metric(data,['pa_mpjpe_mm'])),
+     fmt(metric(data,['mpjve_mm_s','joint_velocity_error_mm_s','velocity_error_mm_s'])),
+     fmt(metric(data,['acceleration_error_mm_s2','joint_acceleration_error_mm_s2'])),
+     fmt(metric(data,['foot_speed_during_GT_stance_m_s']))];
+   for(const value of values){const cell=document.createElement('td');cell.textContent=String(value);row.append(cell);}
+   el('metrics').append(row);
+ }
+ el('time').textContent='本页每 15 秒更新 · 指标更新时间 '+(summary?.generated_at??'等待首个结果');
+}
+update();setInterval(update,15000);
+</script>
+</html>

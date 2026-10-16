@@ -1,0 +1,16 @@
+{
+  "pid": 163002,
+  "started_at": "2026-10-16T18:45:32.431600+08:00",
+  "command": [
+    "nice",
+    "-n",
+    "15",
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/compare_previous_subset.py",
+    "--wait-complete"
+  ],
+  "CPU_only": true,
+  "cpu_threads_after_completion": 1,
+  "purpose": "Wait using stdlib only until full RICH eval and final SUMMARY complete, then CPU-recompute both checkpoints on exactly the old 10 matched RICH windows."
+}

@@ -1,0 +1,241 @@
+{
+  "protocol": "rich-ego-baseline-comparison-audit-v1",
+  "checked_at": "2026-10-16T18:40:39.547545+08:00",
+  "status": "protocol_review_only_no_baseline_inference",
+  "gpu_used": false,
+  "main_training_modified": false,
+  "comparison_anchor": {
+    "paper": "EgoGVAE: Ego-body Mesh Reconstruction via Guided Variational Autoencoder",
+    "version": "arXiv:2607.27755v1",
+    "url": "https://arxiv.org/html/2607.27755v1",
+    "pdf_url": "https://jaehun00.github.io/EgoGVAE/static/pdf/EgoGVAE.pdf",
+    "table": "Table 2, PDF page 9; sections 4.2 and 4.3",
+    "training": "AMASS only for all methods in this table",
+    "evaluation_split": "RICH TEST; explicitly specified in section 4.2",
+    "frames": 128,
+    "input": "synthetic head/CPF poses; no hand observations",
+    "published_RICH_values": [
+      {
+        "method": "EgoEgo",
+        "mpjpe_mm": 210.7,
+        "pa_mpjpe_mm": 180.1
+      },
+      {
+        "method": "EgoAllo",
+        "mpjpe_mm": 193.1,
+        "pa_mpjpe_mm": 172.9
+      },
+      {
+        "method": "EgoGVAE",
+        "mpjpe_mm": 179.9,
+        "pa_mpjpe_mm": 165.9
+      }
+    ],
+    "comparability": "Reference values only. Not directly comparable to current mixed-training RICH VAL experiment."
+  },
+  "methods": [
+    {
+      "method": "EgoGVAE",
+      "official_repo": "https://github.com/DCVL-3D/EgoGVAE_release",
+      "paper": "https://arxiv.org/abs/2607.27755",
+      "training_data": "AMASS",
+      "RICH_split_for_anchor_table": "TEST",
+      "head_observation": "CPF transform deltas, floor-relative height, yaw-canonical orientation; 16D",
+      "hands_input": false,
+      "scene_input": false,
+      "shape": "16 SMPL-H betas predicted, averaged across time for evaluation; no target-GT shape fed to network",
+      "fps_evidence": "Public evaluation MPJVE explicitly fps=30; preprocessing directory processed_30fps_no_skating",
+      "frames": 128,
+      "joints": "pelvis plus 21 SMPL-H body joints = 22",
+      "alignment": "World MPJPE; per-frame similarity PA intended; root recovered by CPF alignment",
+      "metrics_in_anchor_table": [
+        "MPJPE",
+        "PA-MPJPE",
+        "Ground",
+        "T_head",
+        "Jitter",
+        "Foot sliding"
+      ],
+      "public_eval_default_scope": "Released config/dataloader selects AMASS TEST; exact RICH preprocessing/manifest not provided in inspected entry",
+      "sources": [
+        "egogvae_config",
+        "egogvae_eval",
+        "egogvae_metric_entry",
+        "egogvae_metric_helper",
+        "egogvae_shape_cpf_alignment",
+        "egogvae_head_inputs",
+        "egogvae_dataloader"
+      ]
+    },
+    {
+      "method": "EgoEgo",
+      "official_repo": "https://github.com/lijiaman/egoego_release",
+      "paper": "https://openaccess.thecvf.com/content/CVPR2023/papers/Li_Ego-Body_Pose_Estimation_via_Ego-Head_Pose_Estimation_CVPR_2023_paper.pdf",
+      "training_data_for_body_prior": "AMASS",
+      "RICH_split_for_anchor_table": "TEST (later EgoGVAE reproduction); original repository has no released RICH evaluation entry",
+      "head_observation": "For fair body-prior comparison use GT/synthetic head position+orientation; original full pipeline adds monocular-video head estimation",
+      "hands_input_for_body_prior": false,
+      "scene_input_for_body_prior": false,
+      "shape": "Public rest skeleton from zero 16D betas, male SMPL-H",
+      "fps": 30,
+      "original_public_window": 120,
+      "anchor_table_window": 128,
+      "joints": 22,
+      "alignment": "Original compute_metrics_for_smpl subtracts pelvis per-frame for its MPJPE; later paper RICH table re-evaluates under common world protocol. Do not mix these outputs.",
+      "sampling_in_inspected_original_eval": "sample_bs=1, num_try=1 despite code supporting best-sample selection",
+      "sources": [
+        "egoego_eval",
+        "egoego_metric_helper",
+        "egoego_eval_shell",
+        "egoego_dataset"
+      ]
+    },
+    {
+      "method": "EgoAllo",
+      "official_repo": "https://github.com/brentyi/egoallo",
+      "paper_inspected": "https://arxiv.org/html/2410.03665v2",
+      "training_data": "AMASS",
+      "RICH_split_for_anchor_table": "TEST (EgoGVAE Table 2); exact original EgoAllo RICH sequence manifest not independently matched",
+      "head_observation": "CPF transform deltas and floor-relative invariant representation",
+      "hands_input_for_body_metrics": false,
+      "scene_input_for_body_metrics": "No learned scene encoder in head-only table; ground height is supplied/estimated",
+      "shape": "16D SMPL-H shape predicted",
+      "fps_evidence": "Official preprocessing downsample to 30fps",
+      "original_paper_frames": [
+        32,
+        128
+      ],
+      "anchor_table_frames": 128,
+      "joints": "root plus 21 SMPL-H body joints = 22",
+      "alignment": "World MPJPE; per-frame similarity PA intended; global root recovered from predicted body and input CPF",
+      "public_eval_default": "AMASS TEST, subseq_len+1 then first CPF step consumed as delta context, guidance_post=True, no_hands, floor_z=0",
+      "original_paper_RICH_Table2_128": {
+        "mpjpe_mm": 176.2,
+        "pa_mpjpe_mm": 160.1,
+        "source": "https://arxiv.org/html/2410.03665v2#S4.T2",
+        "note": "Different report from EgoGVAE reproduction; must label source/version, do not merge columns."
+      },
+      "sources": [
+        "egoallo_eval",
+        "egoallo_metric_helper"
+      ]
+    }
+  ],
+  "current_project": {
+    "checkpoint_step": 15100,
+    "split": "RICH released VAL",
+    "source_sequences": 28,
+    "eligible_sequences": 27,
+    "windows": 206,
+    "frames": 192,
+    "fps": 30,
+    "stride": 64,
+    "regimes": [
+      "clean",
+      "noisy"
+    ],
+    "sampling_calls": 412,
+    "training": "TRUMANS/EgoBody/RICH mixed; RICH TRAIN 62 sequences",
+    "observations": "synthetic head + observed scene + GT native body profile",
+    "coordinate": "First camera XYZ and initial yaw reanchored, no explicit head height above ground",
+    "train_val_sequence_intersection": [],
+    "all_13_VAL_subjects_appear_in_TRAIN": true,
+    "all_4_VAL_scenes_appear_in_TRAIN": true,
+    "RICH_TEST_available": false
+  },
+  "required_before_paper_ranking": [
+    "Obtain matching RICH TEST data and freeze exact sequence/frame manifest.",
+    "Match training-data regime: mixed-training adaptation separate from AMASS-only generalization.",
+    "Match CPF vs anatomical-head transform, floor-height source, available body-shape and scene information.",
+    "Match 30Hz, 128-frame length, temporal slicing, body-model conversion and 22-joint/root definition.",
+    "Run all three models on same manifest using common independently verified metric evaluator.",
+    "Report raw and allowed guidance/post-processing variants separately; one-sample and best-of-N must be distinguished."
+  ],
+  "implementation_audit_notes": [
+    "Current public EgoAllo/EgoGVAE PA wrappers pass prediction as points_y, label as points_x and output aligned_x, then subtract original label. A pure translation sanity check is required before reusing these wrappers; this observation does not establish how published paper numbers were produced.",
+    "EgoGVAE ground metric is lowest-joint height error in mm; original EgoAllo GND is binary ever-touching-ground. They are different metrics.",
+    "EgoGVAE GT-contact sliding helper uses four ankle/toe joints, GT displacement <=0.01m/frame and zero-masked mean over all time-feet; this differs from our conditional mean speed on two foot joints at <0.2m/s.",
+    "Public helper head translation return uses metres while print label says mm; numeric unit check needed before direct reuse.",
+    "Published-table values and public current release are separate evidence sources; no inference that code differences invalidate reported paper results."
+  ],
+  "raw_source_checksums": {
+    "egogvae_config": {
+      "url": "https://raw.githubusercontent.com/DCVL-3D/EgoGVAE_release/main/config/config.py",
+      "sha256": "e1d925af02bd1ea9bb0adf9cfa0b86643bf16e71f51c7e548c19993422744c3a",
+      "bytes": 1443,
+      "status": "retrieved"
+    },
+    "egogvae_eval": {
+      "url": "https://raw.githubusercontent.com/DCVL-3D/EgoGVAE_release/main/eval.py",
+      "sha256": "0a5130b2d6e34f086e39201f39b36a697cadba4bdc76df6c3fec3a1865158e05",
+      "bytes": 12746,
+      "status": "retrieved"
+    },
+    "egogvae_metric_entry": {
+      "url": "https://raw.githubusercontent.com/DCVL-3D/EgoGVAE_release/main/model/metric.py",
+      "sha256": "24dd7ee1f9a753ae999bebe171191c8eda6e5d869f59e4f67377b79b876ce8cb",
+      "bytes": 3945,
+      "status": "retrieved"
+    },
+    "egogvae_metric_helper": {
+      "url": "https://raw.githubusercontent.com/DCVL-3D/EgoGVAE_release/main/utils/from_egoallo/metrics_helpers.py",
+      "sha256": "77537eae86aae98b252abf4c8f7e8688f0106b049eef4da39a7ba1d29703711e",
+      "bytes": 12790,
+      "status": "retrieved"
+    },
+    "egogvae_shape_cpf_alignment": {
+      "url": "https://raw.githubusercontent.com/DCVL-3D/EgoGVAE_release/main/utils/smplh_utils.py",
+      "sha256": "bfc69a34a928d01f12d29dd6d81581b306d612d256abe31049e997cb35647d89",
+      "bytes": 7983,
+      "status": "retrieved"
+    },
+    "egogvae_head_inputs": {
+      "url": "https://raw.githubusercontent.com/DCVL-3D/EgoGVAE_release/main/model/utils.py",
+      "sha256": "1f4af4ca1958bf4161179893138ff730b2006ce5096ef2a9c2a1e624fce70db0",
+      "bytes": 5477,
+      "status": "retrieved"
+    },
+    "egogvae_dataloader": {
+      "url": "https://raw.githubusercontent.com/DCVL-3D/EgoGVAE_release/main/data/amass.py",
+      "sha256": "be198655ce5e38047e8cf7c5671fa016bcb3eb9847cabb3772a4dfe2ac47620b",
+      "bytes": 6525,
+      "status": "retrieved"
+    },
+    "egoallo_eval": {
+      "url": "https://raw.githubusercontent.com/brentyi/egoallo/main/5_eval_body_metrics.py",
+      "sha256": "80d763654bbd8e280a59afc2828f8b4a4efef5e30dc67e0b0880a30efeee2ceb",
+      "bytes": 6336,
+      "status": "retrieved"
+    },
+    "egoallo_metric_helper": {
+      "url": "https://raw.githubusercontent.com/brentyi/egoallo/main/src/egoallo/metrics_helpers.py",
+      "sha256": "ff257218369bba66685a537497bdf022fbef6bd0621e0d982da9b6415b22c72a",
+      "bytes": 8009,
+      "status": "retrieved"
+    },
+    "egoego_eval": {
+      "url": "https://raw.githubusercontent.com/lijiaman/egoego_release/main/eval_stage2.py",
+      "sha256": "7dab66b4b2c213435ecacec9ef3928dc1eb0e603ba971f63259a102e387b7e32",
+      "bytes": 19264,
+      "status": "retrieved"
+    },
+    "egoego_metric_helper": {
+      "url": "https://raw.githubusercontent.com/lijiaman/egoego_release/main/kinpoly/scripts/eval_metrics_imu_rec.py",
+      "sha256": "396ec80875fe935f0019d97ee82df63c7859b0b12253cca374964790c2050dfd",
+      "bytes": 16163,
+      "status": "retrieved"
+    },
+    "egoego_eval_shell": {
+      "url": "https://raw.githubusercontent.com/lijiaman/egoego_release/main/scripts/eval_stage2.sh",
+      "sha256": "98457c05fd51cbffe6a295e99e420585db653e2f0942b8bfbfbe118d5b9ccf48",
+      "bytes": 279,
+      "status": "retrieved"
+    },
+    "egoego_dataset": {
+      "url": "https://raw.githubusercontent.com/lijiaman/egoego_release/main/egoego/data/amass_diffusion_dataset.py",
+      "sha256": "c17ce9cf2c80f5553a0c772e794200b6c96e715091faff09de697ebadfc3c2eb",
+      "bytes": 23651,
+      "status": "retrieved"
+    }
+  }
+}

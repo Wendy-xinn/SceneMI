@@ -1,0 +1,1992 @@
+{
+  "status": "passed_partial",
+  "checked_at": "2026-10-16T18:32:30.456916+08:00",
+  "started_at": "2026-10-16T18:32:29.256239+08:00",
+  "verification_seconds": 1.2007058409944875,
+  "verifier_pid": 161796,
+  "verifier_sha256": "a169557860532b511a277c3cfc1f05e423bdf38ea548101b2c6abd73fa6e69c9",
+  "CPU_only": true,
+  "CPU_threads": 1,
+  "CUDA_initialized": false,
+  "training_or_runner_files_written": false,
+  "checkpoint_step": 15100,
+  "checkpoint": {
+    "compact_checkpoint_sha256": "b91e61ec75bf8d6720b841bd249d3cdec6d7da80b7c9e273ed509b68e211e3d8",
+    "source_full_checkpoint_sha256_recorded_at_freeze": "d4c423213e4aa7a0272b7296a2b4063cd3fcfe725c31b744a87a9cf1f1aad1df",
+    "model_tensor_sha256_sorted_names_dtypes_shapes_and_bytes": "ac096d31aede770e279382704ade73c19e4e480cc4e5b1cdc58b88db167d2357",
+    "tensor_count": 317,
+    "tensor_values": 125227536,
+    "tensor_bytes": 500910144,
+    "tensor_dtypes": {
+      "torch.float32": 317
+    },
+    "all_finite": true,
+    "no_optimizer_or_RNG_in_compact": true,
+    "source_to_compact_evidence": "Runner recorded a model tensor digest of the atomically pinned full checkpoint and compared it with a newly loaded compact checkpoint before unlinking the source inode. This verifier independently recomputes the retained compact model digest.",
+    "source_and_compact_recorded_model_digests_equal": true,
+    "independently_recomputed_compact_model_digest": true,
+    "direct_source_tensor_comparison_in_verifier": false,
+    "boundary": "The original full pinned inode was unlinked after publication. The verifier independently validates the retained compact checkpoint against the source-model digest recorded at freeze; it does not reopen the original pinned source or substitute the changing trainer last.pt."
+  },
+  "sealed_training_sources_verified": 365,
+  "sealed_original_sources": 359,
+  "sealed_continuation_sources": 6,
+  "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+  "plan_sha256": "c5de43f8ce071ebd7df6dd2b25e278119b4b584a1b669dd38d704392b5a2d038",
+  "runner_sha256": "7ea4516973c2d72e4d5a370cfc0fd78d839b9dd12199f793e2348d74dbab51a4",
+  "committed_rows_verified": 7,
+  "rows_committed_prefix_bytes": 18862,
+  "rows_committed_prefix_sha256": "4e932db5b101679fd7166019fcb9e022a038979e38c934523291c175a6751a2a",
+  "uncommitted_trailing_bytes": 0,
+  "artifacts_SHA_identity_shapes_finite_checked": 7,
+  "expected_predictions": 412,
+  "expected_windows": 206,
+  "official_RICH_grid": {
+    "expected_windows": 206,
+    "expected_predictions": 412,
+    "official_source_sequences": 28,
+    "evaluated_sequences": 27,
+    "evaluated_recordings": 27,
+    "full_index_exactly_covered": true,
+    "source_coverage": [
+      {
+        "sequence_id": "LectureHall_003_wipingchairs1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_003_wipingchairs1",
+        "frames": 700,
+        "legal_windows": 8,
+        "covered_unique_frames": 640,
+        "uncovered_frames": 60,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "LectureHall_018_wipingtable1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_018_wipingtable1",
+        "frames": 1150,
+        "legal_windows": 15,
+        "covered_unique_frames": 1088,
+        "uncovered_frames": 62,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "LectureHall_020_wipingchairs1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_020_wipingchairs1",
+        "frames": 1000,
+        "legal_windows": 13,
+        "covered_unique_frames": 960,
+        "uncovered_frames": 40,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_002_burpee1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_002_burpee1",
+        "frames": 250,
+        "legal_windows": 1,
+        "covered_unique_frames": 192,
+        "uncovered_frames": 58,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_002_burpee2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_002_burpee2",
+        "frames": 200,
+        "legal_windows": 1,
+        "covered_unique_frames": 192,
+        "uncovered_frames": 8,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_002_stretching2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_002_stretching2",
+        "frames": 165,
+        "legal_windows": 0,
+        "covered_unique_frames": 0,
+        "uncovered_frames": 165,
+        "reason_if_empty": "source_shorter_than_192_frames"
+      },
+      {
+        "sequence_id": "ParkingLot1_004_eating2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_eating2",
+        "frames": 450,
+        "legal_windows": 5,
+        "covered_unique_frames": 448,
+        "uncovered_frames": 2,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_004_phonetalk2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_phonetalk2",
+        "frames": 850,
+        "legal_windows": 11,
+        "covered_unique_frames": 832,
+        "uncovered_frames": 18,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_004_pushup1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_pushup1",
+        "frames": 300,
+        "legal_windows": 2,
+        "covered_unique_frames": 256,
+        "uncovered_frames": 44,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_004_stretching2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_stretching2",
+        "frames": 396,
+        "legal_windows": 4,
+        "covered_unique_frames": 384,
+        "uncovered_frames": 12,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_004_takingphotos2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_takingphotos2",
+        "frames": 500,
+        "legal_windows": 5,
+        "covered_unique_frames": 448,
+        "uncovered_frames": 52,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_005_burpeejump1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_burpeejump1",
+        "frames": 201,
+        "legal_windows": 1,
+        "covered_unique_frames": 192,
+        "uncovered_frames": 9,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_005_overfence2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_overfence2",
+        "frames": 250,
+        "legal_windows": 1,
+        "covered_unique_frames": 192,
+        "uncovered_frames": 58,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_005_pushup1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_pushup1",
+        "frames": 450,
+        "legal_windows": 5,
+        "covered_unique_frames": 448,
+        "uncovered_frames": 2,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot1_007_burpee2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_007_burpee2",
+        "frames": 304,
+        "legal_windows": 2,
+        "covered_unique_frames": 256,
+        "uncovered_frames": 48,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot2_008_burpeejump2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_008_burpeejump2",
+        "frames": 300,
+        "legal_windows": 2,
+        "covered_unique_frames": 256,
+        "uncovered_frames": 44,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot2_008_eating2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_008_eating2",
+        "frames": 800,
+        "legal_windows": 10,
+        "covered_unique_frames": 768,
+        "uncovered_frames": 32,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot2_014_eating2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_014_eating2",
+        "frames": 790,
+        "legal_windows": 10,
+        "covered_unique_frames": 768,
+        "uncovered_frames": 22,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot2_014_overfence1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_014_overfence1",
+        "frames": 400,
+        "legal_windows": 4,
+        "covered_unique_frames": 384,
+        "uncovered_frames": 16,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "ParkingLot2_016_phonetalk5",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_016_phonetalk5",
+        "frames": 1059,
+        "legal_windows": 14,
+        "covered_unique_frames": 1024,
+        "uncovered_frames": 35,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "Pavallion_000_yoga1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_000_yoga1",
+        "frames": 1750,
+        "legal_windows": 25,
+        "covered_unique_frames": 1728,
+        "uncovered_frames": 22,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "Pavallion_002_sidebalancerun",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_002_sidebalancerun",
+        "frames": 650,
+        "legal_windows": 8,
+        "covered_unique_frames": 640,
+        "uncovered_frames": 10,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "Pavallion_002_yoga1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_002_yoga1",
+        "frames": 600,
+        "legal_windows": 7,
+        "covered_unique_frames": 576,
+        "uncovered_frames": 24,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "Pavallion_003_yoga1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_003_yoga1",
+        "frames": 700,
+        "legal_windows": 8,
+        "covered_unique_frames": 640,
+        "uncovered_frames": 60,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "Pavallion_006_yoga1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_006_yoga1",
+        "frames": 923,
+        "legal_windows": 12,
+        "covered_unique_frames": 896,
+        "uncovered_frames": 27,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "Pavallion_013_sidebalancerun",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_013_sidebalancerun",
+        "frames": 800,
+        "legal_windows": 10,
+        "covered_unique_frames": 768,
+        "uncovered_frames": 32,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "Pavallion_018_sidebalancerun",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_018_sidebalancerun",
+        "frames": 850,
+        "legal_windows": 11,
+        "covered_unique_frames": 832,
+        "uncovered_frames": 18,
+        "reason_if_empty": null
+      },
+      {
+        "sequence_id": "Pavallion_018_yoga1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_018_yoga1",
+        "frames": 873,
+        "legal_windows": 11,
+        "covered_unique_frames": 832,
+        "uncovered_frames": 41,
+        "reason_if_empty": null
+      }
+    ],
+    "scene_window_counts": {
+      "LectureHall": 36,
+      "ParkingLot1": 38,
+      "ParkingLot2": 40,
+      "Pavallion": 92
+    },
+    "covered_unique_frames": 16640,
+    "window_frame_occurrences": 39552,
+    "overlapping_windows": true,
+    "window_stride": 64,
+    "independent_sample_warning": "Stride-64 windows have up to 128 of 192 frames in common. Window count is not an independent recording count; clean/noisy are paired predictions, not extra windows."
+  },
+  "planned_dataset_counts": {
+    "rich": 206
+  },
+  "committed_dataset_regime_counts": {
+    "rich/clean": 4,
+    "rich/noisy": 3
+  },
+  "missing_case_regime_pairs": [
+    [
+      3,
+      "noisy"
+    ],
+    [
+      4,
+      "clean"
+    ],
+    [
+      4,
+      "noisy"
+    ],
+    [
+      5,
+      "clean"
+    ],
+    [
+      5,
+      "noisy"
+    ],
+    [
+      6,
+      "clean"
+    ],
+    [
+      6,
+      "noisy"
+    ],
+    [
+      7,
+      "clean"
+    ],
+    [
+      7,
+      "noisy"
+    ],
+    [
+      8,
+      "clean"
+    ],
+    [
+      8,
+      "noisy"
+    ],
+    [
+      9,
+      "clean"
+    ],
+    [
+      9,
+      "noisy"
+    ],
+    [
+      10,
+      "clean"
+    ],
+    [
+      10,
+      "noisy"
+    ],
+    [
+      11,
+      "clean"
+    ],
+    [
+      11,
+      "noisy"
+    ],
+    [
+      12,
+      "clean"
+    ],
+    [
+      12,
+      "noisy"
+    ],
+    [
+      13,
+      "clean"
+    ],
+    [
+      13,
+      "noisy"
+    ],
+    [
+      14,
+      "clean"
+    ],
+    [
+      14,
+      "noisy"
+    ],
+    [
+      15,
+      "clean"
+    ],
+    [
+      15,
+      "noisy"
+    ],
+    [
+      16,
+      "clean"
+    ],
+    [
+      16,
+      "noisy"
+    ],
+    [
+      17,
+      "clean"
+    ],
+    [
+      17,
+      "noisy"
+    ],
+    [
+      18,
+      "clean"
+    ],
+    [
+      18,
+      "noisy"
+    ],
+    [
+      19,
+      "clean"
+    ],
+    [
+      19,
+      "noisy"
+    ],
+    [
+      20,
+      "clean"
+    ],
+    [
+      20,
+      "noisy"
+    ],
+    [
+      21,
+      "clean"
+    ],
+    [
+      21,
+      "noisy"
+    ],
+    [
+      22,
+      "clean"
+    ],
+    [
+      22,
+      "noisy"
+    ],
+    [
+      23,
+      "clean"
+    ],
+    [
+      23,
+      "noisy"
+    ],
+    [
+      24,
+      "clean"
+    ],
+    [
+      24,
+      "noisy"
+    ],
+    [
+      25,
+      "clean"
+    ],
+    [
+      25,
+      "noisy"
+    ],
+    [
+      26,
+      "clean"
+    ],
+    [
+      26,
+      "noisy"
+    ],
+    [
+      27,
+      "clean"
+    ],
+    [
+      27,
+      "noisy"
+    ],
+    [
+      28,
+      "clean"
+    ],
+    [
+      28,
+      "noisy"
+    ],
+    [
+      29,
+      "clean"
+    ],
+    [
+      29,
+      "noisy"
+    ],
+    [
+      30,
+      "clean"
+    ],
+    [
+      30,
+      "noisy"
+    ],
+    [
+      31,
+      "clean"
+    ],
+    [
+      31,
+      "noisy"
+    ],
+    [
+      32,
+      "clean"
+    ],
+    [
+      32,
+      "noisy"
+    ],
+    [
+      33,
+      "clean"
+    ],
+    [
+      33,
+      "noisy"
+    ],
+    [
+      34,
+      "clean"
+    ],
+    [
+      34,
+      "noisy"
+    ],
+    [
+      35,
+      "clean"
+    ],
+    [
+      35,
+      "noisy"
+    ],
+    [
+      36,
+      "clean"
+    ],
+    [
+      36,
+      "noisy"
+    ],
+    [
+      37,
+      "clean"
+    ],
+    [
+      37,
+      "noisy"
+    ],
+    [
+      38,
+      "clean"
+    ],
+    [
+      38,
+      "noisy"
+    ],
+    [
+      39,
+      "clean"
+    ],
+    [
+      39,
+      "noisy"
+    ],
+    [
+      40,
+      "clean"
+    ],
+    [
+      40,
+      "noisy"
+    ],
+    [
+      41,
+      "clean"
+    ],
+    [
+      41,
+      "noisy"
+    ],
+    [
+      42,
+      "clean"
+    ],
+    [
+      42,
+      "noisy"
+    ],
+    [
+      43,
+      "clean"
+    ],
+    [
+      43,
+      "noisy"
+    ],
+    [
+      44,
+      "clean"
+    ],
+    [
+      44,
+      "noisy"
+    ],
+    [
+      45,
+      "clean"
+    ],
+    [
+      45,
+      "noisy"
+    ],
+    [
+      46,
+      "clean"
+    ],
+    [
+      46,
+      "noisy"
+    ],
+    [
+      47,
+      "clean"
+    ],
+    [
+      47,
+      "noisy"
+    ],
+    [
+      48,
+      "clean"
+    ],
+    [
+      48,
+      "noisy"
+    ],
+    [
+      49,
+      "clean"
+    ],
+    [
+      49,
+      "noisy"
+    ],
+    [
+      50,
+      "clean"
+    ],
+    [
+      50,
+      "noisy"
+    ],
+    [
+      51,
+      "clean"
+    ],
+    [
+      51,
+      "noisy"
+    ],
+    [
+      52,
+      "clean"
+    ],
+    [
+      52,
+      "noisy"
+    ],
+    [
+      53,
+      "clean"
+    ],
+    [
+      53,
+      "noisy"
+    ],
+    [
+      54,
+      "clean"
+    ],
+    [
+      54,
+      "noisy"
+    ],
+    [
+      55,
+      "clean"
+    ],
+    [
+      55,
+      "noisy"
+    ],
+    [
+      56,
+      "clean"
+    ],
+    [
+      56,
+      "noisy"
+    ],
+    [
+      57,
+      "clean"
+    ],
+    [
+      57,
+      "noisy"
+    ],
+    [
+      58,
+      "clean"
+    ],
+    [
+      58,
+      "noisy"
+    ],
+    [
+      59,
+      "clean"
+    ],
+    [
+      59,
+      "noisy"
+    ],
+    [
+      60,
+      "clean"
+    ],
+    [
+      60,
+      "noisy"
+    ],
+    [
+      61,
+      "clean"
+    ],
+    [
+      61,
+      "noisy"
+    ],
+    [
+      62,
+      "clean"
+    ],
+    [
+      62,
+      "noisy"
+    ],
+    [
+      63,
+      "clean"
+    ],
+    [
+      63,
+      "noisy"
+    ],
+    [
+      64,
+      "clean"
+    ],
+    [
+      64,
+      "noisy"
+    ],
+    [
+      65,
+      "clean"
+    ],
+    [
+      65,
+      "noisy"
+    ],
+    [
+      66,
+      "clean"
+    ],
+    [
+      66,
+      "noisy"
+    ],
+    [
+      67,
+      "clean"
+    ],
+    [
+      67,
+      "noisy"
+    ],
+    [
+      68,
+      "clean"
+    ],
+    [
+      68,
+      "noisy"
+    ],
+    [
+      69,
+      "clean"
+    ],
+    [
+      69,
+      "noisy"
+    ],
+    [
+      70,
+      "clean"
+    ],
+    [
+      70,
+      "noisy"
+    ],
+    [
+      71,
+      "clean"
+    ],
+    [
+      71,
+      "noisy"
+    ],
+    [
+      72,
+      "clean"
+    ],
+    [
+      72,
+      "noisy"
+    ],
+    [
+      73,
+      "clean"
+    ],
+    [
+      73,
+      "noisy"
+    ],
+    [
+      74,
+      "clean"
+    ],
+    [
+      74,
+      "noisy"
+    ],
+    [
+      75,
+      "clean"
+    ],
+    [
+      75,
+      "noisy"
+    ],
+    [
+      76,
+      "clean"
+    ],
+    [
+      76,
+      "noisy"
+    ],
+    [
+      77,
+      "clean"
+    ],
+    [
+      77,
+      "noisy"
+    ],
+    [
+      78,
+      "clean"
+    ],
+    [
+      78,
+      "noisy"
+    ],
+    [
+      79,
+      "clean"
+    ],
+    [
+      79,
+      "noisy"
+    ],
+    [
+      80,
+      "clean"
+    ],
+    [
+      80,
+      "noisy"
+    ],
+    [
+      81,
+      "clean"
+    ],
+    [
+      81,
+      "noisy"
+    ],
+    [
+      82,
+      "clean"
+    ],
+    [
+      82,
+      "noisy"
+    ],
+    [
+      83,
+      "clean"
+    ],
+    [
+      83,
+      "noisy"
+    ],
+    [
+      84,
+      "clean"
+    ],
+    [
+      84,
+      "noisy"
+    ],
+    [
+      85,
+      "clean"
+    ],
+    [
+      85,
+      "noisy"
+    ],
+    [
+      86,
+      "clean"
+    ],
+    [
+      86,
+      "noisy"
+    ],
+    [
+      87,
+      "clean"
+    ],
+    [
+      87,
+      "noisy"
+    ],
+    [
+      88,
+      "clean"
+    ],
+    [
+      88,
+      "noisy"
+    ],
+    [
+      89,
+      "clean"
+    ],
+    [
+      89,
+      "noisy"
+    ],
+    [
+      90,
+      "clean"
+    ],
+    [
+      90,
+      "noisy"
+    ],
+    [
+      91,
+      "clean"
+    ],
+    [
+      91,
+      "noisy"
+    ],
+    [
+      92,
+      "clean"
+    ],
+    [
+      92,
+      "noisy"
+    ],
+    [
+      93,
+      "clean"
+    ],
+    [
+      93,
+      "noisy"
+    ],
+    [
+      94,
+      "clean"
+    ],
+    [
+      94,
+      "noisy"
+    ],
+    [
+      95,
+      "clean"
+    ],
+    [
+      95,
+      "noisy"
+    ],
+    [
+      96,
+      "clean"
+    ],
+    [
+      96,
+      "noisy"
+    ],
+    [
+      97,
+      "clean"
+    ],
+    [
+      97,
+      "noisy"
+    ],
+    [
+      98,
+      "clean"
+    ],
+    [
+      98,
+      "noisy"
+    ],
+    [
+      99,
+      "clean"
+    ],
+    [
+      99,
+      "noisy"
+    ],
+    [
+      100,
+      "clean"
+    ],
+    [
+      100,
+      "noisy"
+    ],
+    [
+      101,
+      "clean"
+    ],
+    [
+      101,
+      "noisy"
+    ],
+    [
+      102,
+      "clean"
+    ],
+    [
+      102,
+      "noisy"
+    ],
+    [
+      103,
+      "clean"
+    ],
+    [
+      103,
+      "noisy"
+    ],
+    [
+      104,
+      "clean"
+    ],
+    [
+      104,
+      "noisy"
+    ],
+    [
+      105,
+      "clean"
+    ],
+    [
+      105,
+      "noisy"
+    ],
+    [
+      106,
+      "clean"
+    ],
+    [
+      106,
+      "noisy"
+    ],
+    [
+      107,
+      "clean"
+    ],
+    [
+      107,
+      "noisy"
+    ],
+    [
+      108,
+      "clean"
+    ],
+    [
+      108,
+      "noisy"
+    ],
+    [
+      109,
+      "clean"
+    ],
+    [
+      109,
+      "noisy"
+    ],
+    [
+      110,
+      "clean"
+    ],
+    [
+      110,
+      "noisy"
+    ],
+    [
+      111,
+      "clean"
+    ],
+    [
+      111,
+      "noisy"
+    ],
+    [
+      112,
+      "clean"
+    ],
+    [
+      112,
+      "noisy"
+    ],
+    [
+      113,
+      "clean"
+    ],
+    [
+      113,
+      "noisy"
+    ],
+    [
+      114,
+      "clean"
+    ],
+    [
+      114,
+      "noisy"
+    ],
+    [
+      115,
+      "clean"
+    ],
+    [
+      115,
+      "noisy"
+    ],
+    [
+      116,
+      "clean"
+    ],
+    [
+      116,
+      "noisy"
+    ],
+    [
+      117,
+      "clean"
+    ],
+    [
+      117,
+      "noisy"
+    ],
+    [
+      118,
+      "clean"
+    ],
+    [
+      118,
+      "noisy"
+    ],
+    [
+      119,
+      "clean"
+    ],
+    [
+      119,
+      "noisy"
+    ],
+    [
+      120,
+      "clean"
+    ],
+    [
+      120,
+      "noisy"
+    ],
+    [
+      121,
+      "clean"
+    ],
+    [
+      121,
+      "noisy"
+    ],
+    [
+      122,
+      "clean"
+    ],
+    [
+      122,
+      "noisy"
+    ],
+    [
+      123,
+      "clean"
+    ],
+    [
+      123,
+      "noisy"
+    ],
+    [
+      124,
+      "clean"
+    ],
+    [
+      124,
+      "noisy"
+    ],
+    [
+      125,
+      "clean"
+    ],
+    [
+      125,
+      "noisy"
+    ],
+    [
+      126,
+      "clean"
+    ],
+    [
+      126,
+      "noisy"
+    ],
+    [
+      127,
+      "clean"
+    ],
+    [
+      127,
+      "noisy"
+    ],
+    [
+      128,
+      "clean"
+    ],
+    [
+      128,
+      "noisy"
+    ],
+    [
+      129,
+      "clean"
+    ],
+    [
+      129,
+      "noisy"
+    ],
+    [
+      130,
+      "clean"
+    ],
+    [
+      130,
+      "noisy"
+    ],
+    [
+      131,
+      "clean"
+    ],
+    [
+      131,
+      "noisy"
+    ],
+    [
+      132,
+      "clean"
+    ],
+    [
+      132,
+      "noisy"
+    ],
+    [
+      133,
+      "clean"
+    ],
+    [
+      133,
+      "noisy"
+    ],
+    [
+      134,
+      "clean"
+    ],
+    [
+      134,
+      "noisy"
+    ],
+    [
+      135,
+      "clean"
+    ],
+    [
+      135,
+      "noisy"
+    ],
+    [
+      136,
+      "clean"
+    ],
+    [
+      136,
+      "noisy"
+    ],
+    [
+      137,
+      "clean"
+    ],
+    [
+      137,
+      "noisy"
+    ],
+    [
+      138,
+      "clean"
+    ],
+    [
+      138,
+      "noisy"
+    ],
+    [
+      139,
+      "clean"
+    ],
+    [
+      139,
+      "noisy"
+    ],
+    [
+      140,
+      "clean"
+    ],
+    [
+      140,
+      "noisy"
+    ],
+    [
+      141,
+      "clean"
+    ],
+    [
+      141,
+      "noisy"
+    ],
+    [
+      142,
+      "clean"
+    ],
+    [
+      142,
+      "noisy"
+    ],
+    [
+      143,
+      "clean"
+    ],
+    [
+      143,
+      "noisy"
+    ],
+    [
+      144,
+      "clean"
+    ],
+    [
+      144,
+      "noisy"
+    ],
+    [
+      145,
+      "clean"
+    ],
+    [
+      145,
+      "noisy"
+    ],
+    [
+      146,
+      "clean"
+    ],
+    [
+      146,
+      "noisy"
+    ],
+    [
+      147,
+      "clean"
+    ],
+    [
+      147,
+      "noisy"
+    ],
+    [
+      148,
+      "clean"
+    ],
+    [
+      148,
+      "noisy"
+    ],
+    [
+      149,
+      "clean"
+    ],
+    [
+      149,
+      "noisy"
+    ],
+    [
+      150,
+      "clean"
+    ],
+    [
+      150,
+      "noisy"
+    ],
+    [
+      151,
+      "clean"
+    ],
+    [
+      151,
+      "noisy"
+    ],
+    [
+      152,
+      "clean"
+    ],
+    [
+      152,
+      "noisy"
+    ],
+    [
+      153,
+      "clean"
+    ],
+    [
+      153,
+      "noisy"
+    ],
+    [
+      154,
+      "clean"
+    ],
+    [
+      154,
+      "noisy"
+    ],
+    [
+      155,
+      "clean"
+    ],
+    [
+      155,
+      "noisy"
+    ],
+    [
+      156,
+      "clean"
+    ],
+    [
+      156,
+      "noisy"
+    ],
+    [
+      157,
+      "clean"
+    ],
+    [
+      157,
+      "noisy"
+    ],
+    [
+      158,
+      "clean"
+    ],
+    [
+      158,
+      "noisy"
+    ],
+    [
+      159,
+      "clean"
+    ],
+    [
+      159,
+      "noisy"
+    ],
+    [
+      160,
+      "clean"
+    ],
+    [
+      160,
+      "noisy"
+    ],
+    [
+      161,
+      "clean"
+    ],
+    [
+      161,
+      "noisy"
+    ],
+    [
+      162,
+      "clean"
+    ],
+    [
+      162,
+      "noisy"
+    ],
+    [
+      163,
+      "clean"
+    ],
+    [
+      163,
+      "noisy"
+    ],
+    [
+      164,
+      "clean"
+    ],
+    [
+      164,
+      "noisy"
+    ],
+    [
+      165,
+      "clean"
+    ],
+    [
+      165,
+      "noisy"
+    ],
+    [
+      166,
+      "clean"
+    ],
+    [
+      166,
+      "noisy"
+    ],
+    [
+      167,
+      "clean"
+    ],
+    [
+      167,
+      "noisy"
+    ],
+    [
+      168,
+      "clean"
+    ],
+    [
+      168,
+      "noisy"
+    ],
+    [
+      169,
+      "clean"
+    ],
+    [
+      169,
+      "noisy"
+    ],
+    [
+      170,
+      "clean"
+    ],
+    [
+      170,
+      "noisy"
+    ],
+    [
+      171,
+      "clean"
+    ],
+    [
+      171,
+      "noisy"
+    ],
+    [
+      172,
+      "clean"
+    ],
+    [
+      172,
+      "noisy"
+    ],
+    [
+      173,
+      "clean"
+    ],
+    [
+      173,
+      "noisy"
+    ],
+    [
+      174,
+      "clean"
+    ],
+    [
+      174,
+      "noisy"
+    ],
+    [
+      175,
+      "clean"
+    ],
+    [
+      175,
+      "noisy"
+    ],
+    [
+      176,
+      "clean"
+    ],
+    [
+      176,
+      "noisy"
+    ],
+    [
+      177,
+      "clean"
+    ],
+    [
+      177,
+      "noisy"
+    ],
+    [
+      178,
+      "clean"
+    ],
+    [
+      178,
+      "noisy"
+    ],
+    [
+      179,
+      "clean"
+    ],
+    [
+      179,
+      "noisy"
+    ],
+    [
+      180,
+      "clean"
+    ],
+    [
+      180,
+      "noisy"
+    ],
+    [
+      181,
+      "clean"
+    ],
+    [
+      181,
+      "noisy"
+    ],
+    [
+      182,
+      "clean"
+    ],
+    [
+      182,
+      "noisy"
+    ],
+    [
+      183,
+      "clean"
+    ],
+    [
+      183,
+      "noisy"
+    ],
+    [
+      184,
+      "clean"
+    ],
+    [
+      184,
+      "noisy"
+    ],
+    [
+      185,
+      "clean"
+    ],
+    [
+      185,
+      "noisy"
+    ],
+    [
+      186,
+      "clean"
+    ],
+    [
+      186,
+      "noisy"
+    ],
+    [
+      187,
+      "clean"
+    ],
+    [
+      187,
+      "noisy"
+    ],
+    [
+      188,
+      "clean"
+    ],
+    [
+      188,
+      "noisy"
+    ],
+    [
+      189,
+      "clean"
+    ],
+    [
+      189,
+      "noisy"
+    ],
+    [
+      190,
+      "clean"
+    ],
+    [
+      190,
+      "noisy"
+    ],
+    [
+      191,
+      "clean"
+    ],
+    [
+      191,
+      "noisy"
+    ],
+    [
+      192,
+      "clean"
+    ],
+    [
+      192,
+      "noisy"
+    ],
+    [
+      193,
+      "clean"
+    ],
+    [
+      193,
+      "noisy"
+    ],
+    [
+      194,
+      "clean"
+    ],
+    [
+      194,
+      "noisy"
+    ],
+    [
+      195,
+      "clean"
+    ],
+    [
+      195,
+      "noisy"
+    ],
+    [
+      196,
+      "clean"
+    ],
+    [
+      196,
+      "noisy"
+    ],
+    [
+      197,
+      "clean"
+    ],
+    [
+      197,
+      "noisy"
+    ],
+    [
+      198,
+      "clean"
+    ],
+    [
+      198,
+      "noisy"
+    ],
+    [
+      199,
+      "clean"
+    ],
+    [
+      199,
+      "noisy"
+    ],
+    [
+      200,
+      "clean"
+    ],
+    [
+      200,
+      "noisy"
+    ],
+    [
+      201,
+      "clean"
+    ],
+    [
+      201,
+      "noisy"
+    ],
+    [
+      202,
+      "clean"
+    ],
+    [
+      202,
+      "noisy"
+    ],
+    [
+      203,
+      "clean"
+    ],
+    [
+      203,
+      "noisy"
+    ],
+    [
+      204,
+      "clean"
+    ],
+    [
+      204,
+      "noisy"
+    ],
+    [
+      205,
+      "clean"
+    ],
+    [
+      205,
+      "noisy"
+    ]
+  ],
+  "CPU_metric_recomputations": [
+    {
+      "case": 0,
+      "regime": "clean",
+      "motion_sha256": "c4d1beac3941ca512bbd5763baffe5cc6175a10742d53820aa43d24d960510f8",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "motion_sha256": "237553f4a925603a6e522413ad1aa8f0c23d26f6cea8fba2fc66f200e9224ccf",
+      "max_absolute_float_difference": 0.0
+    },
+    {
+      "case": 1,
+      "regime": "clean",
+      "motion_sha256": "d337090e430fb4e331264a3f24b521cfb32296a8eca75b8787a0ec2c02aedb3c",
+      "max_absolute_float_difference": 0.0
+    }
+  ],
+  "maximum_absolute_float_difference": 0.0,
+  "metric_tolerance": {
+    "relative": 1e-06,
+    "absolute": 3e-05
+  },
+  "all_final_predictions_recomputed": false,
+  "metric_recomputation_groups": [
+    "raw_metrics",
+    "extra_metrics",
+    "benchmark_metrics_fps30",
+    "activity"
+  ],
+  "main_training": {
+    "before_step": 15191,
+    "after_step": 15191,
+    "evaluation_start_step": 15131,
+    "latest_committed_step": 15100,
+    "worker_pid": 106162,
+    "worker_PID_present": true,
+    "goal_step": 55000,
+    "status": "training",
+    "checked_at": "2026-10-16T18:32:27.039655+08:00",
+    "advancement_observed": true
+  },
+  "source_array_scope": "Published source metadata SHA and declared per-array/input hashes checked; large raw arrays were not rehashed or rebuilt. Saved GT is the reference for independent CPU metric recomputation.",
+  "scope": "All persisted official RICH development VAL ego-grid windows; overlapping windows, not an independent TEST or an assumed external-paper benchmark protocol. No model forward, no CUDA, no training update."
+}
