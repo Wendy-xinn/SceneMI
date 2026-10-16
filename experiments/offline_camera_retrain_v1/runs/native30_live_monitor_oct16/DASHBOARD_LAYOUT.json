@@ -1,0 +1,110 @@
+{
+  "00 Progress and optimizer": {
+    "Total training loss (source definitions differ)": [
+      "^train/loss$",
+      "^train/losses/total$"
+    ],
+    "Optimizer step": [
+      "^progress/optimizer_step$"
+    ],
+    "Learning rate": [
+      "^train/lr$"
+    ],
+    "Gradient norm": [
+      "^train/gradient_norm$"
+    ]
+  },
+  "01 Diffusion and body supervision": {
+    "Diffusion x0 and raw x0": [
+      "^train/terms/base/(x0|raw_x0)$"
+    ],
+    "FK joint position (m2)": [
+      "^train/terms/base/fk_position_m2$"
+    ],
+    "Root and head orientation (chordal)": [
+      "^train/terms/base/(root_absolute_chordal|head_absolute_chordal)$"
+    ],
+    "Gait totals (source weighting retained)": [
+      "^train/terms/base/(gait_total|gait_raw_total)$"
+    ],
+    "Foot and stance-swing velocity": [
+      "^train/terms/base/(foot_velocity_m2_s2|gait_stance_velocity|gait_swing_velocity)$"
+    ],
+    "Bilateral stride and amplitude": [
+      "^train/terms/base/gait_(raw_)?bilateral_(stride|amplitude)$"
+    ],
+    "Bilateral relation": [
+      "^train/terms/base/gait_(raw_)?bilateral_relation$"
+    ]
+  },
+  "02 Observation and scene supervision": {
+    "Observed position": [
+      "^train/terms/observation/position$"
+    ],
+    "Observed rotation": [
+      "^train/terms/observation/rotation$"
+    ],
+    "Observed velocity": [
+      "^train/terms/observation/velocity$"
+    ],
+    "Scene contact and correspondence (source units)": [
+      "^train/terms/geometry/(contact|correspondence)$"
+    ],
+    "Scene distance and support (m2)": [
+      "^train/terms/geometry/(contact_distance_m2|support_relation_m2|observed_plane_proxy_m2)$"
+    ]
+  },
+  "03 Fixed validation (clean and noisy kept separate)": {
+    "All-joint MPJPE (mm)": [
+      "^validation/fixed/ego/(clean|noisy)/scene_on/mpjpe_mm/value$"
+    ],
+    "Conditioned head position (mm)": [
+      "^validation/fixed/ego/(clean|noisy)/scene_on/conditioned_mpjpe_mm/value$"
+    ],
+    "Root position (mm)": [
+      "^validation/fixed/ego/(clean|noisy)/scene_on/root_position_error_mm/value$"
+    ],
+    "Root and head orientation (deg)": [
+      "^validation/fixed/ego/(clean|noisy)/scene_on/(root_orientation_deg|head_orientation_deg)/value$"
+    ]
+  },
+  "04 Fixed feet diagnostics": {
+    "Body-local foot position (mm)": [
+      "^feet/fixed/(clean|noisy)/body_local_foot_error_mm$"
+    ],
+    "Foot velocity RMSE (m/s)": [
+      "^feet/fixed/(clean|noisy)/foot_velocity_RMSE_m_s$"
+    ],
+    "Articulation amplitude log ratio error": [
+      "^feet/fixed/(clean|noisy)/articulation_log_ratio_error$"
+    ],
+    "Bilateral sagittal correlation error": [
+      "^feet/fixed/(clean|noisy)/bilateral_sagittal_correlation_error$"
+    ]
+  },
+  "05 Rotating validation (coverage, different sequences)": {
+    "All-joint MPJPE (mm)": [
+      "^validation/rotating/ego/(clean|noisy)/scene_on/mpjpe_mm/value$"
+    ],
+    "Body-local foot position (mm)": [
+      "^feet/rotating/(clean|noisy)/body_local_foot_error_mm$"
+    ]
+  },
+  "06 Speed and measured duration": {
+    "Per-update seconds": [
+      "^time/(update|compute|preparation)_seconds_per_step$"
+    ],
+    "Accumulated update / compute / preparation (hours)": [
+      "^time/train_(update|compute|preparation)_hours$"
+    ],
+    "Accumulated validation (hours)": [
+      "^time/validation_hours$"
+    ],
+    "Recorded loop elapsed (hours; boundary tail may be absent)": [
+      "^time/active_loop_hours$"
+    ],
+    "Seconds for each validation call": [
+      "^time/validation_seconds_this_call$"
+    ]
+  }
+}

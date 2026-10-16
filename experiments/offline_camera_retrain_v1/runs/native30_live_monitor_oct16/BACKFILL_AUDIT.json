@@ -1,0 +1,189 @@
+{
+  "checked_at": "2026-10-16T13:34:17.381895+08:00",
+  "status": {
+    "status": "monitoring",
+    "checked_at": "2026-10-16T13:34:17.381895+08:00",
+    "pid": 114280,
+    "sources": {
+      "new_train": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl",
+        "offset": 106179579,
+        "previous_elapsed": 4434.684284385003,
+        "elapsed_base": 10749.242778011001,
+        "active_seconds": 15183.927062396004,
+        "update_seconds": 14118.401479172673,
+        "compute_seconds": 11325.063186253705,
+        "preparation_seconds": 2779.4834952149904,
+        "validation_seconds": 0.0,
+        "session": 3,
+        "rows": 7308,
+        "latest_step": 7308
+      },
+      "new_validation": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/validation.jsonl",
+        "offset": 206297,
+        "previous_elapsed": null,
+        "elapsed_base": 0.0,
+        "active_seconds": 0.0,
+        "update_seconds": 0.0,
+        "compute_seconds": 0.0,
+        "preparation_seconds": 0.0,
+        "validation_seconds": 0.0,
+        "session": 0,
+        "rows": 8,
+        "latest_step": 7000
+      },
+      "new_feet": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/foot_monitor.jsonl",
+        "offset": 69703,
+        "previous_elapsed": null,
+        "elapsed_base": 0.0,
+        "active_seconds": 0.0,
+        "update_seconds": 0.0,
+        "compute_seconds": 0.0,
+        "preparation_seconds": 0.0,
+        "validation_seconds": 1089.8981709350046,
+        "session": 0,
+        "rows": 8,
+        "latest_step": 7000
+      },
+      "old_train": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/training_log.jsonl",
+        "offset": 8558219,
+        "previous_elapsed": 12692.40989613533,
+        "elapsed_base": 0.0,
+        "active_seconds": 12692.40989613533,
+        "update_seconds": 0.0,
+        "compute_seconds": 0.0,
+        "preparation_seconds": 0.0,
+        "validation_seconds": 0.0,
+        "session": 0,
+        "rows": 2751,
+        "latest_step": 55000
+      }
+    },
+    "event_batches": 92,
+    "generation": 1792128852674884470,
+    "images": 6,
+    "event_root": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard",
+    "historical_walltime": "source checked_at when present; otherwise event import time, not actual training walltime",
+    "timing": "active_loop sums measured elapsed sessions; update/compute/preparation sum actual per-step source timers; no offline pauses or setup time guessed"
+  },
+  "event_reader": {
+    "new_native30": {
+      "scalar_tag_count": 1698,
+      "image_tags": [
+        "visual/fixed/trumans/clean",
+        "visual/fixed/trumans/noisy",
+        "visual/fixed/egobody/clean",
+        "visual/fixed/egobody/noisy",
+        "visual/fixed/rich/clean",
+        "visual/fixed/rich/noisy"
+      ],
+      "train/loss": {
+        "count": 7308,
+        "first_step": 1,
+        "last_step": 7308,
+        "last_value": 0.7314740419387817,
+        "unique_steps": 7308
+      },
+      "time/train_update_hours": {
+        "count": 7308,
+        "first_step": 1,
+        "last_step": 7308,
+        "last_value": 3.9217782020568848,
+        "unique_steps": 7308
+      },
+      "time/active_loop_hours": {
+        "count": 7308,
+        "first_step": 1,
+        "last_step": 7308,
+        "last_value": 4.217757701873779,
+        "unique_steps": 7308
+      },
+      "time/validation_hours": {
+        "count": 8,
+        "first_step": 1,
+        "last_step": 7000,
+        "last_value": 0.30274948477745056,
+        "unique_steps": 8
+      },
+      "visual/fixed/trumans/clean": {
+        "count": 1,
+        "last_step": 7000,
+        "width": 1485,
+        "height": 1100
+      },
+      "visual/fixed/trumans/noisy": {
+        "count": 1,
+        "last_step": 7000,
+        "width": 1485,
+        "height": 1100
+      },
+      "visual/fixed/egobody/clean": {
+        "count": 1,
+        "last_step": 7000,
+        "width": 1485,
+        "height": 1100
+      },
+      "visual/fixed/egobody/noisy": {
+        "count": 1,
+        "last_step": 7000,
+        "width": 1485,
+        "height": 1100
+      },
+      "visual/fixed/rich/clean": {
+        "count": 1,
+        "last_step": 7000,
+        "width": 1485,
+        "height": 1100
+      },
+      "visual/fixed/rich/noisy": {
+        "count": 1,
+        "last_step": 7000,
+        "width": 1485,
+        "height": 1100
+      }
+    },
+    "old55k": {
+      "scalar_tag_count": 86,
+      "image_tags": [],
+      "train/losses/total": {
+        "count": 2751,
+        "first_step": 1,
+        "last_step": 55000,
+        "last_value": 0.13720948994159698,
+        "unique_steps": 2751
+      },
+      "time/active_loop_hours": {
+        "count": 2751,
+        "first_step": 1,
+        "last_step": 55000,
+        "last_value": 3.5256693363189697,
+        "unique_steps": 2751
+      }
+    },
+    "new_native30__active_seconds": {
+      "scalar_tag_count": 2,
+      "image_tags": [],
+      "train/loss": {
+        "count": 7308,
+        "first_step": 6,
+        "last_step": 15183,
+        "last_value": 0.7314740419387817,
+        "unique_steps": 7182
+      }
+    },
+    "old55k__active_seconds": {
+      "scalar_tag_count": 2,
+      "image_tags": [],
+      "train/loss": {
+        "count": 2751,
+        "first_step": 5,
+        "last_step": 12692,
+        "last_value": 0.13720948994159698,
+        "unique_steps": 2750
+      }
+    }
+  }
+}

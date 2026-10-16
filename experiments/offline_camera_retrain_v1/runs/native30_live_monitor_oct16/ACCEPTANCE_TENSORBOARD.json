@@ -1,0 +1,272 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-16T14:10:44.596763+08:00",
+  "tests": {
+    "plugins": {
+      "url": "http://127.0.0.1:6006/data/plugins_listing",
+      "status": 200,
+      "seconds": 0.004907231996185146,
+      "bytes": 3188,
+      "enabled": {
+        "custom_scalars": true,
+        "scalars": true,
+        "images": true
+      }
+    },
+    "custom_layout": {
+      "url": "http://127.0.0.1:6006/data/plugin/custom_scalars/layout",
+      "status": 200,
+      "seconds": 0.0026044469996122643,
+      "bytes": 7366,
+      "categories": [
+        {
+          "title": "00 Progress and optimizer",
+          "charts": 4
+        },
+        {
+          "title": "01 Diffusion and body supervision",
+          "charts": 7
+        },
+        {
+          "title": "02 Observation and scene supervision",
+          "charts": 5
+        },
+        {
+          "title": "03 Fixed validation (clean and noisy kept separate)",
+          "charts": 4
+        },
+        {
+          "title": "04 Fixed feet diagnostics",
+          "charts": 4
+        },
+        {
+          "title": "05 Rotating validation (coverage, different sequences)",
+          "charts": 2
+        },
+        {
+          "title": "06 Speed and measured duration",
+          "charts": 5
+        }
+      ]
+    },
+    "new_training_loss": {
+      "url": "http://127.0.0.1:6006/data/plugin/scalars/scalars?run=new_native30&tag=train%2Floss",
+      "status": 200,
+      "seconds": 0.05626123100228142,
+      "bytes": 394532,
+      "count": 8279,
+      "first_step": 1,
+      "latest_step": 8279,
+      "unique_steps": 8279
+    },
+    "old_training_loss": {
+      "url": "http://127.0.0.1:6006/data/plugin/scalars/scalars?run=old55k&tag=train%2Flosses%2Ftotal",
+      "status": 200,
+      "seconds": 0.018053678999422118,
+      "bytes": 135835,
+      "count": 2751,
+      "first_step": 1,
+      "latest_step": 55000,
+      "unique_steps": 2751
+    },
+    "custom_validation_chart": {
+      "url": "http://127.0.0.1:6006/data/plugin/custom_scalars/scalars?run=new_native30&tag=%5Evalidation%2Ffixed%2Fego%2F%28clean%7Cnoisy%29%2Fscene_on%2Fmpjpe_mm%2Fvalue%24",
+      "status": 200,
+      "seconds": 0.13409277799655683,
+      "bytes": 998,
+      "tags": {
+        "validation/fixed/ego/clean/scene_on/mpjpe_mm/value": {
+          "count": 9,
+          "latest_step": 8000
+        },
+        "validation/fixed/ego/noisy/scene_on/mpjpe_mm/value": {
+          "count": 9,
+          "latest_step": 8000
+        }
+      }
+    },
+    "image_tags": {
+      "url": "http://127.0.0.1:6006/data/plugin/images/tags",
+      "status": 200,
+      "seconds": 0.00226230600674171,
+      "bytes": 666,
+      "tags": [
+        "visual/fixed/trumans/clean",
+        "visual/fixed/trumans/noisy",
+        "visual/fixed/egobody/clean",
+        "visual/fixed/egobody/noisy",
+        "visual/fixed/rich/clean",
+        "visual/fixed/rich/noisy"
+      ]
+    },
+    "image_series_0": {
+      "url": "http://127.0.0.1:6006/data/plugin/images/images?run=new_native30&tag=visual%2Ffixed%2Ftrumans%2Fclean&sample=0",
+      "status": 200,
+      "seconds": 0.0013356760027818382,
+      "bytes": 312,
+      "tag": "visual/fixed/trumans/clean",
+      "steps": [
+        7000,
+        8000
+      ]
+    },
+    "image_series_1": {
+      "url": "http://127.0.0.1:6006/data/plugin/images/images?run=new_native30&tag=visual%2Ffixed%2Ftrumans%2Fnoisy&sample=0",
+      "status": 200,
+      "seconds": 0.0011064900027122349,
+      "bytes": 312,
+      "tag": "visual/fixed/trumans/noisy",
+      "steps": [
+        7000,
+        8000
+      ]
+    },
+    "image_series_2": {
+      "url": "http://127.0.0.1:6006/data/plugin/images/images?run=new_native30&tag=visual%2Ffixed%2Fegobody%2Fclean&sample=0",
+      "status": 200,
+      "seconds": 0.001150702009908855,
+      "bytes": 312,
+      "tag": "visual/fixed/egobody/clean",
+      "steps": [
+        7000,
+        8000
+      ]
+    },
+    "image_series_3": {
+      "url": "http://127.0.0.1:6006/data/plugin/images/images?run=new_native30&tag=visual%2Ffixed%2Fegobody%2Fnoisy&sample=0",
+      "status": 200,
+      "seconds": 0.0009855130047071725,
+      "bytes": 312,
+      "tag": "visual/fixed/egobody/noisy",
+      "steps": [
+        7000,
+        8000
+      ]
+    },
+    "image_series_4": {
+      "url": "http://127.0.0.1:6006/data/plugin/images/images?run=new_native30&tag=visual%2Ffixed%2Frich%2Fclean&sample=0",
+      "status": 200,
+      "seconds": 0.00151043500227388,
+      "bytes": 304,
+      "tag": "visual/fixed/rich/clean",
+      "steps": [
+        7000,
+        8000
+      ]
+    },
+    "image_series_5": {
+      "url": "http://127.0.0.1:6006/data/plugin/images/images?run=new_native30&tag=visual%2Ffixed%2Frich%2Fnoisy&sample=0",
+      "status": 200,
+      "seconds": 0.001084757997887209,
+      "bytes": 304,
+      "tag": "visual/fixed/rich/noisy",
+      "steps": [
+        7000,
+        8000
+      ]
+    },
+    "image_step8000_png": {
+      "url": "http://127.0.0.1:6006/data/plugin/images/individualImage?blob_key=WyIiLCJpbWFnZXMiLCJuZXdfbmF0aXZlMzAiLCJ2aXN1YWwvZml4ZWQvdHJ1bWFucy9jbGVhbiIsODAwMCwyXQ",
+      "status": 200,
+      "seconds": 0.002612191005027853,
+      "bytes": 687716,
+      "step": 8000,
+      "width": 1485,
+      "height": 1100,
+      "format": "PNG",
+      "sha256": "1fb7e31eacff98e9aa58efeae67ad715358c799b873538617664b050baa03a83"
+    }
+  },
+  "bridge_status": {
+    "status": "monitoring",
+    "checked_at": "2026-10-16T14:10:12.498677+08:00",
+    "pid": 115092,
+    "sources": {
+      "new_train": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl",
+        "offset": 120294989,
+        "previous_elapsed": 6446.013969038002,
+        "elapsed_base": 10749.242778011001,
+        "active_seconds": 17195.256747049003,
+        "update_seconds": 15977.245155015778,
+        "compute_seconds": 12879.621406728904,
+        "preparation_seconds": 3081.8891737450103,
+        "validation_seconds": 0.0,
+        "session": 3,
+        "rows": 8279,
+        "latest_step": 8279
+      },
+      "new_validation": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/validation.jsonl",
+        "offset": 232636,
+        "previous_elapsed": null,
+        "elapsed_base": 0.0,
+        "active_seconds": 0.0,
+        "update_seconds": 0.0,
+        "compute_seconds": 0.0,
+        "preparation_seconds": 0.0,
+        "validation_seconds": 0.0,
+        "session": 0,
+        "rows": 9,
+        "latest_step": 8000
+      },
+      "new_feet": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/foot_monitor.jsonl",
+        "offset": 79022,
+        "previous_elapsed": null,
+        "elapsed_base": 0.0,
+        "active_seconds": 0.0,
+        "update_seconds": 0.0,
+        "compute_seconds": 0.0,
+        "preparation_seconds": 0.0,
+        "validation_seconds": 1229.8588085260126,
+        "session": 0,
+        "rows": 9,
+        "latest_step": 8000
+      },
+      "old_train": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native_dynamic_scene20_contact_55k_oct07/training_log.jsonl",
+        "offset": 8558219,
+        "previous_elapsed": 12692.40989613533,
+        "elapsed_base": 0.0,
+        "active_seconds": 12692.40989613533,
+        "update_seconds": 0.0,
+        "compute_seconds": 0.0,
+        "preparation_seconds": 0.0,
+        "validation_seconds": 0.0,
+        "session": 0,
+        "rows": 2751,
+        "latest_step": 55000
+      }
+    },
+    "event_batches": 269,
+    "generation": 1792128852674884470,
+    "images": 12,
+    "event_root": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard",
+    "historical_walltime": "source checked_at when present; otherwise event import time, not actual training walltime",
+    "timing": "active_loop sums recorded elapsed sessions and is a lower bound: validation/save after the final trace row of a session may be absent; update/compute/preparation sum actual per-step source timers; validation is separately accumulated from foot_monitor; no pauses or setup time guessed"
+  },
+  "server": {
+    "pid": 118368,
+    "previous_pid": 114600,
+    "command": [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard_compat_server.py",
+      "--logdir",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard",
+      "--host",
+      "127.0.0.1",
+      "--port",
+      "6006",
+      "--reload_interval",
+      "10",
+      "--samples_per_plugin",
+      "scalars=60000,images=100",
+      "--load_fast=false"
+    ],
+    "started_at": "2026-10-16T14:04:38.873315+08:00",
+    "url": "http://localhost:6006",
+    "log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard_server.log",
+    "compatibility": "Process-local protobuf JSON parameter adapter; no installed package changes."
+  }
+}

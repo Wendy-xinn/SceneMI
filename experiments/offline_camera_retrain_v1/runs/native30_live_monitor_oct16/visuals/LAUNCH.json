@@ -1,0 +1,26 @@
+{
+  "pid": 114842,
+  "started_at": "2026-10-16T13:40:12.375972+08:00",
+  "command": [
+    "nohup",
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visual_capture.py",
+    "--watch",
+    "--poll-seconds",
+    "30"
+  ],
+  "environment": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "stdout": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/watch.log",
+  "niceness_increment": 10,
+  "restart_idempotence_verified": true,
+  "restart_verification": "{\"event\": \"captured\", \"step\": 7000, \"cases\": 3}",
+  "image_count": 6,
+  "images_unchanged_on_restart": true,
+  "previous_watch_pid": 114530
+}

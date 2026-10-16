@@ -1,0 +1,572 @@
+{
+  "schema": "native30-readonly-validation-mesh-capture-v1",
+  "step": 8000,
+  "checked_at": "2026-10-16T14:00:56.981316+08:00",
+  "run_dir": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15",
+  "source_archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/validation_latest.npz",
+  "source_archive_sha256": "087024f4e95c8a6848a5ffe55fd6557b29d59c4642d8252646b6411601169ac4",
+  "source_archive_mtime": "2026-10-16T14:00:28.066435+08:00",
+  "source_archive_size_bytes": 3412147,
+  "source_record_sha256": "013ce125b22de3901d01974c0cde3ca0433889474285fd44d9aad51729a3c1f5",
+  "cases": [
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "panel": "fixed",
+      "mode": "ego",
+      "sequence_id": "2023-02-18@22-11-49",
+      "start": 1024,
+      "source_start_30fps": 1024,
+      "case_seed": 3294300373,
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "mesh_fk_max_error_m": 3.5762786865234375e-07,
+      "metrics": {
+        "clean": {
+          "mpjpe_mm": {
+            "value": 223.32839965820312,
+            "count": 4224
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 0.002366121858358383,
+            "count": 192
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 233.9629669189453,
+            "count": 4032
+          },
+          "candidate_position_mpjpe_mm": {
+            "value": null,
+            "count": 0
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 223.32839965820312,
+            "count": 4224
+          },
+          "root_position_error_mm": {
+            "value": 244.2879638671875,
+            "count": 192
+          },
+          "root_orientation_deg": {
+            "value": 36.438926696777344,
+            "count": 192
+          },
+          "head_orientation_deg": {
+            "value": 10.910223007202148,
+            "count": 192
+          },
+          "candidate_rotation_deg": {
+            "value": null,
+            "count": 0
+          },
+          "regular_rotation_deg": {
+            "value": 37.916683197021484,
+            "count": 4224
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 0.34461089968681335,
+            "count": 254
+          }
+        },
+        "noisy": {
+          "mpjpe_mm": {
+            "value": 215.8348846435547,
+            "count": 4224
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 23.0278377532959,
+            "count": 174
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 224.11842346191406,
+            "count": 4050
+          },
+          "candidate_position_mpjpe_mm": {
+            "value": null,
+            "count": 0
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 215.8348846435547,
+            "count": 4224
+          },
+          "root_position_error_mm": {
+            "value": 216.32968139648438,
+            "count": 192
+          },
+          "root_orientation_deg": {
+            "value": 37.678924560546875,
+            "count": 192
+          },
+          "head_orientation_deg": {
+            "value": 11.234842300415039,
+            "count": 192
+          },
+          "candidate_rotation_deg": {
+            "value": null,
+            "count": 0
+          },
+          "regular_rotation_deg": {
+            "value": 38.21878433227539,
+            "count": 4224
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 0.36776548624038696,
+            "count": 254
+          }
+        }
+      },
+      "gt_scene": {
+        "status": "available",
+        "source_mesh": "/home/wenxin/projects/TRUMANS/Scene_mesh/4abcb667-c57f-4d8f-940a-d964152329d5.obj",
+        "static_scan_only": true,
+        "gt_dynamic_objects_or_other_people_displayed": false,
+        "reference_only": true,
+        "fed_to_model": false,
+        "display_crop_lower_m": [
+          -1.4329137712717057,
+          -2.083580183982849,
+          -1.044482684135437
+        ],
+        "display_crop_upper_m": [
+          1.7670862287282945,
+          0.3664198160171508,
+          2.155517315864563
+        ],
+        "rendered_triangles": 45000,
+        "source_stat": {
+          "size_bytes": 64855136,
+          "mtime_ns": 1787157698858287291
+        }
+      },
+      "visible_scene": {
+        "status": "available",
+        "protocol": "observed-static-recording-union-v3",
+        "static_cache": "/mnt/e/Projects/SceneMI/cache/native30_runtime_cache_v2/static_maps/cb93d94462063370325e8fd7f0a126410f8357ab07f00a6631a4dc321d88afc8.npz",
+        "static_recording_memory_points": 120174,
+        "current_frame_static_points": [
+          512,
+          512,
+          512
+        ],
+        "current_frame_dynamic_points": [
+          0,
+          0,
+          0
+        ],
+        "display": "Cyan: supplied-recording observed static memory; orange: current-frame observed dynamic surfaces",
+        "no_free_space_inference": true,
+        "target_owner_100_excluded": true
+      },
+      "scene_errors": [],
+      "camera": {
+        "center_m": [
+          0.16708622872829437,
+          -0.7835801839828491,
+          0.555517315864563
+        ],
+        "radius_m": 1.6,
+        "elevation": 18,
+        "azimuth": -65,
+        "projection": "orthographic",
+        "frozen_from": "GT window joints only"
+      },
+      "images": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/step_00008000/trumans_case0_clean.png",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/step_00008000/trumans_case0_noisy.png"
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "panel": "fixed",
+      "mode": "ego",
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "start": 320,
+      "source_start_30fps": 1431,
+      "case_seed": 416274632,
+      "native_body": {
+        "model": "smpl",
+        "gender": "female",
+        "betas": [
+          -0.33319610357284546,
+          -0.6586880683898926,
+          0.875758945941925,
+          0.36836743354797363,
+          -0.9263509511947632,
+          0.7501618266105652,
+          1.9141901731491089,
+          0.2695528268814087,
+          -2.3677313327789307,
+          0.7503785490989685
+        ],
+        "scale": 1.0
+      },
+      "mesh_fk_max_error_m": 3.5762786865234375e-07,
+      "metrics": {
+        "clean": {
+          "mpjpe_mm": {
+            "value": 212.1070098876953,
+            "count": 4224
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 37.95513916015625,
+            "count": 192
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 220.39996337890625,
+            "count": 4032
+          },
+          "candidate_position_mpjpe_mm": {
+            "value": null,
+            "count": 0
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 212.1070098876953,
+            "count": 4224
+          },
+          "root_position_error_mm": {
+            "value": 117.6004867553711,
+            "count": 192
+          },
+          "root_orientation_deg": {
+            "value": 48.074806213378906,
+            "count": 192
+          },
+          "head_orientation_deg": {
+            "value": 25.097652435302734,
+            "count": 192
+          },
+          "candidate_rotation_deg": {
+            "value": null,
+            "count": 0
+          },
+          "regular_rotation_deg": {
+            "value": 58.313812255859375,
+            "count": 4224
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 0.09019686281681061,
+            "count": 382
+          }
+        },
+        "noisy": {
+          "mpjpe_mm": {
+            "value": 216.79898071289062,
+            "count": 4224
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 71.55083465576172,
+            "count": 192
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 223.715576171875,
+            "count": 4032
+          },
+          "candidate_position_mpjpe_mm": {
+            "value": null,
+            "count": 0
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 216.79898071289062,
+            "count": 4224
+          },
+          "root_position_error_mm": {
+            "value": 51.64695739746094,
+            "count": 192
+          },
+          "root_orientation_deg": {
+            "value": 48.63228988647461,
+            "count": 192
+          },
+          "head_orientation_deg": {
+            "value": 23.308696746826172,
+            "count": 192
+          },
+          "candidate_rotation_deg": {
+            "value": null,
+            "count": 0
+          },
+          "regular_rotation_deg": {
+            "value": 57.49986267089844,
+            "count": 4224
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 0.14413857460021973,
+            "count": 382
+          }
+        }
+      },
+      "gt_scene": {
+        "status": "available",
+        "source_mesh": "/home/wenxin/projects/egobody/scene_mesh/cab_e/cab_e.obj",
+        "static_scan_only": true,
+        "gt_dynamic_objects_or_other_people_displayed": false,
+        "reference_only": true,
+        "fed_to_model": false,
+        "display_crop_lower_m": [
+          -1.4041360676288606,
+          -1.9792665123939515,
+          -1.701130172610283
+        ],
+        "display_crop_upper_m": [
+          1.7958639323711396,
+          0.4707334876060485,
+          1.4988698273897172
+        ],
+        "rendered_triangles": 45000,
+        "source_stat": {
+          "size_bytes": 30837635,
+          "mtime_ns": 1636922195000000000
+        }
+      },
+      "visible_scene": {
+        "status": "available",
+        "protocol": "observed-static-recording-union-v3",
+        "static_cache": "/mnt/e/Projects/SceneMI/cache/native30_runtime_cache_v2/static_maps/a9dec8b7003eb6bb3665ce5875fdf258edd9fe1864b65bbe3db90ae9ded6680a.npz",
+        "static_recording_memory_points": 11634,
+        "current_frame_static_points": [
+          256,
+          256,
+          256
+        ],
+        "current_frame_dynamic_points": [
+          256,
+          256,
+          256
+        ],
+        "display": "Cyan: supplied-recording observed static memory; orange: current-frame observed dynamic surfaces",
+        "no_free_space_inference": true,
+        "target_owner_100_excluded": true
+      },
+      "scene_errors": [],
+      "camera": {
+        "center_m": [
+          0.19586393237113953,
+          -0.6792665123939514,
+          -0.1011301726102829
+        ],
+        "radius_m": 1.6,
+        "elevation": 18,
+        "azimuth": -65,
+        "projection": "orthographic",
+        "frozen_from": "GT window joints only"
+      },
+      "images": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/step_00008000/egobody_case2_clean.png",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/step_00008000/egobody_case2_noisy.png"
+      }
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "panel": "fixed",
+      "mode": "ego",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "start": 384,
+      "source_start_30fps": 389,
+      "case_seed": 303671090,
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          -0.16652725636959076,
+          -1.112358808517456,
+          -1.4243460893630981,
+          0.4896526038646698,
+          -0.7783043384552002,
+          -0.6628745198249817,
+          1.6186789274215698,
+          0.26335644721984863,
+          0.4888407588005066,
+          -0.6510182023048401
+        ],
+        "scale": 1.006566842415469
+      },
+      "mesh_fk_max_error_m": 2.980232238769531e-07,
+      "metrics": {
+        "clean": {
+          "mpjpe_mm": {
+            "value": 145.5580596923828,
+            "count": 4224
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 0.16702823340892792,
+            "count": 192
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 152.48147583007812,
+            "count": 4032
+          },
+          "candidate_position_mpjpe_mm": {
+            "value": null,
+            "count": 0
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 145.5580596923828,
+            "count": 4224
+          },
+          "root_position_error_mm": {
+            "value": 163.4136962890625,
+            "count": 192
+          },
+          "root_orientation_deg": {
+            "value": 26.03693962097168,
+            "count": 192
+          },
+          "head_orientation_deg": {
+            "value": 5.243556976318359,
+            "count": 192
+          },
+          "candidate_rotation_deg": {
+            "value": null,
+            "count": 0
+          },
+          "regular_rotation_deg": {
+            "value": 33.080970764160156,
+            "count": 4224
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 0.5021948218345642,
+            "count": 295
+          }
+        },
+        "noisy": {
+          "mpjpe_mm": {
+            "value": 147.5619659423828,
+            "count": 4224
+          },
+          "conditioned_mpjpe_mm": {
+            "value": 19.353940963745117,
+            "count": 192
+          },
+          "unconditioned_mpjpe_mm": {
+            "value": 153.66712951660156,
+            "count": 4032
+          },
+          "candidate_position_mpjpe_mm": {
+            "value": null,
+            "count": 0
+          },
+          "regular_position_mpjpe_mm": {
+            "value": 147.5619659423828,
+            "count": 4224
+          },
+          "root_position_error_mm": {
+            "value": 167.1318359375,
+            "count": 192
+          },
+          "root_orientation_deg": {
+            "value": 24.60080337524414,
+            "count": 192
+          },
+          "head_orientation_deg": {
+            "value": 6.419563293457031,
+            "count": 192
+          },
+          "candidate_rotation_deg": {
+            "value": null,
+            "count": 0
+          },
+          "regular_rotation_deg": {
+            "value": 32.0062255859375,
+            "count": 4224
+          },
+          "foot_speed_during_GT_stance_m_s": {
+            "value": 0.5132384896278381,
+            "count": 295
+          }
+        }
+      },
+      "gt_scene": {
+        "status": "available",
+        "source_mesh": "/home/wenxin/projects/RICH/extracted/scan_calibration/LectureHall/scan_chair_scene_camcoord.ply",
+        "static_scan_only": true,
+        "gt_dynamic_objects_or_other_people_displayed": false,
+        "reference_only": true,
+        "fed_to_model": false,
+        "display_crop_lower_m": [
+          -2.7792849779129027,
+          -1.5548360526561738,
+          -1.392609143257141
+        ],
+        "display_crop_upper_m": [
+          0.6504373788833617,
+          0.8951639473438262,
+          2.0371132135391234
+        ],
+        "rendered_triangles": 45000,
+        "source_stat": {
+          "size_bytes": 114381844,
+          "mtime_ns": 1635084489000000000
+        }
+      },
+      "visible_scene": {
+        "status": "available",
+        "protocol": "observed-static-recording-union-v3",
+        "static_cache": "/mnt/e/Projects/SceneMI/cache/native30_runtime_cache_v2/static_maps/b84f77708354f57a1b065185a87e27f665916bdbf71b2292f182c28f635283e7.npz",
+        "static_recording_memory_points": 51862,
+        "current_frame_static_points": [
+          512,
+          512,
+          512
+        ],
+        "current_frame_dynamic_points": [
+          0,
+          0,
+          0
+        ],
+        "display": "Cyan: supplied-recording observed static memory; orange: current-frame observed dynamic surfaces",
+        "no_free_space_inference": true,
+        "target_owner_100_excluded": true
+      },
+      "scene_errors": [],
+      "camera": {
+        "center_m": [
+          -1.0644237995147705,
+          -0.2548360526561737,
+          0.3222520351409912
+        ],
+        "radius_m": 1.7148611783981322,
+        "elevation": 18,
+        "azimuth": -65,
+        "projection": "orthographic",
+        "frozen_from": "GT window joints only"
+      },
+      "images": {
+        "clean": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/step_00008000/rich_case4_clean.png",
+        "noisy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/visuals/step_00008000/rich_case4_noisy.png"
+      }
+    }
+  ],
+  "frames": [
+    48,
+    96,
+    144
+  ],
+  "fps": 30,
+  "renderer": "CPU Matplotlib Agg; deterministic shaded native mesh triangles",
+  "optimizer_steps": 0,
+  "model_forward_calls": 0,
+  "cuda_used": false,
+  "GT_alignment": false,
+  "floor_snap": false,
+  "hands_face": "Neutral display convention for the 22-joint motion representation",
+  "large_array_policy": "Only six compressed PNGs and compact JSON retained; copied validation arrays remain in RAM only",
+  "coverage": "Three preregistered fixed official validation windows; both clean/noisy, scene ON; no outcome-based selection",
+  "source_code_sha256": "030f9d278fa24e82be38e79d354f0e5703ae40f16f7ecd6ca4712bd236c7b475"
+}

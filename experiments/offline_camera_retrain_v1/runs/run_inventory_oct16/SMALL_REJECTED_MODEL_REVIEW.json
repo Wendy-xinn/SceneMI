@@ -1,0 +1,49 @@
+{
+  "audited_at": "2026-10-16T14:05:36.148636+08:00",
+  "scope": "Only29 archived runs; conservative screen; no file modified",
+  "candidates": [
+    {
+      "path": "experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/native30_gait_physics_fresh_pilot_oct15/late_four/last.pt",
+      "original_path": "experiments/offline_camera_retrain_v1/runs/native30_gait_physics_fresh_pilot_oct15/late_four/last.pt",
+      "step": 128,
+      "checkpoint_bytes": 1477815528,
+      "model_sha256": "e4e11583538f69e368b544bac484444bf97cd3bf712d26452fcdad7628495e7f",
+      "all_model_tensors_finite": true,
+      "optimizer_tensor_bytes": 981341548,
+      "optimizer_tensor_count": 945,
+      "estimated_reclaim_GiB": 0.9139455370604992,
+      "completion_evidence": "experiments/offline_camera_retrain_v1/archive/historical_trials_oct16/native30_gait_physics_fresh_pilot_oct15/FINAL_AUDIT.json",
+      "rejection_evidence": "All4 failed absolute body-local foot-position gate; no change to preregistered gates.",
+      "resume_intent_basis": "Completed 128-update bounded pilot; no registered continuation or active process; formal55k from scratch did not load this model. current128 control excluded.",
+      "action": "deferred"
+    }
+  ],
+  "deferred": [
+    {
+      "run": "native30_gait_physics_fresh_pilot_oct15/current",
+      "reason": "Retain control checkpoint resumable"
+    },
+    {
+      "run": "soft_body_turn_robust_oct09/neck_parent",
+      "reason": "ASSESSMENT explicitly recommends retaining as useful future candidate"
+    },
+    {
+      "run": "bounded_head_adaptation_oct10/joint_all",
+      "reason": "Retained full-input baseline/parent for position adapter; no explicit abandonment"
+    },
+    {
+      "run": "native30_short500_oct13",
+      "reason": "Completed generator quality failed, but sealed checkpoint explicitly resumable; no sufficiently explicit abandonment, retain"
+    },
+    {
+      "run": "native30_cached_ego_oct14",
+      "reason": "stopped_by_user not completed/fully rejected; retain"
+    },
+    {
+      "run": "foot_fix_long20k/coordination_paired/foot_fix_template/foot_fix_support",
+      "reason": "Completed historical useful models/control; missing explicit rejection or abandonment evidence, retain"
+    }
+  ],
+  "action": "deferred",
+  "decision": "Root chose no further optimizer compaction; preserve all reviewed checkpoint states and prioritize active main training."
+}

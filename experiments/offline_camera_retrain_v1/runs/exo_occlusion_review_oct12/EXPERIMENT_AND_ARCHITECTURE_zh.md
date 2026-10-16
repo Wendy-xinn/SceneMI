@@ -1,12 +1,14 @@
 # Ego/exo 模型与实验唯一总清单
 
+**10月16日监控与整理：主线持续训练中。现已提供 [TensorBoard](http://localhost:6006)（主要看板、全部监督、训练步数和实际计时）及[固定验证截图](../native30_live_monitor_oct16/visuals/INDEX.html)。截图从7000步开始留存，8000步已由CPU守护自动捕获；每1000步验证后保存三数据集clean/noisy、GT/预测mesh及GT静态扫描/可见场景。当前实验请先看 [runs入口索引](../INDEX_zh.md)。已清理85份冗余或损坏权重，释放50.06 GiB；29个已结束历史目录移至[归档区](../../archive/historical_trials_oct16/README_zh.md)，保留结论和必要模型。原版主线、旧55k及依赖代码不动。**
+
 **当前安排（10月16日12:07，§4.26）：用户明确要求“改输入后的原版保持一直训练”。已安全暂停消融（IK-off保存在2979步），原版 `native30_gait_v2_ego55k_oct15` 从5200步完整状态恢复，目标持续到55000；不在10k套用消融选版门槛。原模型/输入/损失/Adam/RNG与55k学习率计划不改，增加严格源SHA核验、派生缓存CRC修复和有限IO重启监督。实际更新和已保存步数以[主线状态](../native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json)为准。此前承诺的8小时选版未完成，三臂阶段结果保留，不冒称原主线整夜持续运行。**
 
 **此前小试（10月15日，§4.17）：按用户要求完成旧55k冻结先验＋exo残差小试。保留观测参考并加遮挡分支保护后，遮挡MPJPE clean/noisy-mixture 156.90/162.82→125.14/133.55mm；相对同预算无场景版本，scene额外改善3.43%/3.71%，输入可见关节位置最大变化不足1μm。但脚步交替指标退化，当前仅为有初步收益的开发候选，不作论文验收通过。32个VAL特征窗来自16源窗；旧聚类标记问题见4.19。保护为posthoc、VAL被复用，旧55k又有历史官方TEST重叠。骨架回放：[8790 遮挡保护版](http://127.0.0.1:8790/PROTECTED_REPLAY.html)。原55k未改，候选与最小对照保留Adam。**
 
 更新：2026-10-15。**10000步ego首段已完成；随后100＋100步配对监督小试也已结束，全部采样／RNG核对一致。原目标control固定ego误差203.40/216.55mm，补脚步监督202.38/212.53mm；步行幅度误差对control仅改善1.65%，未达预设5%门槛，左右交替仍有问题，因此没有自动长训或接exo。旧55k四窗三项指标复跑完全一致，旧候选池也一致，严格旧续训仍需刷新来源恢复审计。另已实际跑通旧式轻量主干＋当前30Hz数据的零更新计算链，核心前后向0.18–0.22秒，当前重模型3.39–6.53秒（不含准备／Adam，不是质量对比或整轮提速承诺）。完整结论见4.16末。** 原始10000和control10100保留Adam／RNG；未通过小试的监督候选保留原模型与全部审计，去掉optimizer并标注evaluation-only。现有8788/8789回放仍为8000步。
 
-历史500步基线：E盘30Hz缓存及重新挂载后的完整审计已通过；原始发布量、选定范围和未接入部分见3.1。历史短训使用[500步短训配置](../../native30_short500_config.json)。首轮原始exo观测最多连续18帧完全无关节输入，保留关节局部遮挡；原始缓存、整段静态记忆和六例压力可视化保留。71项旧回归通过。**500/500步及第1/250/500步固定验证已完成，进程正常退出；最终可恢复last.pt已核验。这个基线的训练链路通过，生成效果未通过。** 原55k/3k模型保留。证据：[SHORT500_PROGRESS.json](../native30_short500_oct13/SHORT500_PROGRESS.json)、[CHECKPOINT_AUDIT.json](../native30_short500_oct13/training/CHECKPOINT_AUDIT.json)、[500步mesh对比](../native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)。
+历史500步基线：E盘30Hz缓存及重新挂载后的完整审计已通过；原始发布量、选定范围和未接入部分见3.1。历史短训使用[500步短训配置](../../native30_short500_config.json)。首轮原始exo观测最多连续18帧完全无关节输入，保留关节局部遮挡；原始缓存、整段静态记忆和六例压力可视化保留。71项旧回归通过。**500/500步及第1/250/500步固定验证已完成，进程正常退出；最终可恢复last.pt已核验。这个基线的训练链路通过，生成效果未通过。** 原55k/3k模型保留。证据：[SHORT500_PROGRESS.json](../../archive/historical_trials_oct16/native30_short500_oct13/SHORT500_PROGRESS.json)、[CHECKPOINT_AUDIT.json](../../archive/historical_trials_oct16/native30_short500_oct13/training/CHECKPOINT_AUDIT.json)、[500步mesh对比](../../archive/historical_trials_oct16/native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)。
 
 当前正式数据入口为30Hz、192帧窗口、64帧起点间隔，E盘六个split/mode索引共43,709窗。绝对x0基线保留[stride64配置](../../native30_stride64_config.json)；本轮新增[置信度参考动作＋残差配置](../../native30_stride64_refinement_config.json)，正式三语料零步准备已通过，`training_ready=true`，优化器步数为0。真实视频前端尚未接入缓存；当前参考动作从可信输入及已提供rest骨架估计，未读完整GT动作。小集训练／消融见4.2，全语料效果尚未验证。
 
@@ -24,7 +26,7 @@
 |D5|GT 质量与观测扰动|**受控profile与局部候选软权重已接入**|50%观测干净；其余head相机位姿扰动后反算head，已选两腕加小平滑位置/旋转误差；exo仅位置误差。原GT不改；仅孤立反跳候选相应部位监督×0.25，穿过候选的差分跳过，普通快速动作不处理。可关闭对照；36项检查及真实缓存完整反传通过。参数是首轮起点，效果归E2。|
 |S1|监督尺度与配置入口|**正式TRAIN面板标定和最终指纹已保存**|[TRAIN_gradient_scales.json](../ego_exo_official_offline_memory_v4/TRAIN_gradient_scales.json)含8窗×3噪声桶梯度及系数；物理单位和22关节权重已接通。这是有限TRAIN面板的初始标定，不是总体最优系数。正式反传和条件/位置/旋转反馈梯度均有限且非零。|
 |D6|选定源全量 native30 与输入验收|**原始缓存、S64索引及残差配置准备完成**|1280来源、2,097,866缓存帧沿用已验收raw30文件；E盘S64索引6个数组，本地软链接。新配置三语料／两模式数值检查、完整反传及数据／代码指纹已封存；未进行全语料优化器训练。|
-|E1|正式 validation 和训练运行闭环|**历史固定监控已完成；v5固定＋轮换监控已接入并测试**|[当前validation_plan.json](../native30_short500_oct13/training/validation_plan.json)固定12窗、clean/noisy共24例；保留一份latest输出。原GT指标不加质量mask，另报候选/普通区。历史四个exo监控窗关节时间覆盖88.71–97.09%，不能替代强遮挡分层；v5每1000步6固定＋6轮换窗×clean/noisy=24次DDIM20，首步及每5000步追加固定面板同种子scene-OFF；完整recording与跨窗拼接仍为正式benchmark前工作。|
+|E1|正式 validation 和训练运行闭环|**历史固定监控已完成；v5固定＋轮换监控已接入并测试**|[当前validation_plan.json](../../archive/historical_trials_oct16/native30_short500_oct13/training/validation_plan.json)固定12窗、clean/noisy共24例；保留一份latest输出。原GT指标不加质量mask，另报候选/普通区。历史四个exo监控窗关节时间覆盖88.71–97.09%，不能替代强遮挡分层；v5每1000步6固定＋6轮换窗×clean/noisy=24次DDIM20，首步及每5000步追加固定面板同种子scene-OFF；完整recording与跨窗拼接仍为正式benchmark前工作。|
 |E2|效果实验与验收|**容量诊断完成；独立VAL场景验收未通过**|旧500步exo3283.90mm失败保留。固定TRAIN两条件窗7:3残差混训1000步的容量诊断见4.2，不能用TRAIN记忆代替VAL／TEST；58窗训练4000步后的独立VAL结果见4.3。|
 |E3|今晚训练与场景验收|**已完成4000步；场景验收未通过，未扩全池**|v2从零训练到1000后，v3候选和无场景对照从同一权重／Adam／RNG继续，新增扩散内部软位置IK。58个TRAIN条件窗／16个独立目标流，7:3、50%扰动、世界yaw。exo clean缺失部位场景73.28mm／同权重无场景80.21mm；ego与exo noisy场景收益不稳定。凌晨06:51完成；指标、mesh与实际耗时见4.3。|
 |E4|场景输入／接触监督审计与改进|**三项已接入；200步匹配实验完成，场景门槛未通过**|修正区域接触监督、补TRAIN弱标签；新增每关节已见表面关系cross-attention；每次x0内联合修正root位置和关节旋转。由4000步共同权重开始，58个TRAIN窗／16个VAL窗，7:3；正确／关闭／错配场景及关闭物理引导分别验证。尚未宣称新模型有场景收益，未启动全量训练。见4.5。|
@@ -253,7 +255,7 @@ EgoBody master不依赖PV有效帧范围，整段覆盖源同步索引的`first:
 
 原stride1窗口是在运行时枚举，没有单独物化的数据集文件可删除。本次已替换正式默认入口：prepare和train默认采用[stride64配置](../../native30_stride64_config.json)，读已存窗口索引并校验config／源manifest／索引SHA及完整有效起点。192帧内仍逐帧保持30Hz，**64是窗口起点间隔，不是每64帧下采样动作**。原缓存是当前依赖，旧500步权重、配置与完整审计保留。
 
-证据：[DATASET_SWITCH_AUDIT.json](../native30_stride64_oct13/DATASET_SWITCH_AUDIT.json)，[WINDOW_DATASET.json](../native30_stride64_oct13/WINDOW_DATASET.json)；重建入口：[native30_window_index.py](../../native30_window_index.py)。旧S1／32／64比较仍见[历史审计](../native30_short500_oct13/DATASET_RELEASE_AND_STRIDE_AUDIT.json)。
+证据：[DATASET_SWITCH_AUDIT.json](../../archive/historical_trials_oct16/native30_stride64_oct13/DATASET_SWITCH_AUDIT.json)，[WINDOW_DATASET.json](../../archive/historical_trials_oct16/native30_stride64_oct13/WINDOW_DATASET.json)；重建入口：[native30_window_index.py](../../native30_window_index.py)。旧S1／32／64比较仍见[历史审计](../../archive/historical_trials_oct16/native30_short500_oct13/DATASET_RELEASE_AND_STRIDE_AUDIT.json)。
 
 ### 原始发布量和本地实际接入量
 
@@ -367,7 +369,7 @@ ego与exo共享部分原始身体GT，不能把两表“接入源帧／实际覆
 
 ## 3.2 TRUMANS增广下载状态与ego/exo共享动作（Q38/Q39）
 
-证据：[SHARED_MOTION_AND_AUGMENTATION_AUDIT.json](../native30_short500_oct13/SHARED_MOTION_AND_AUGMENTATION_AUDIT.json)，可复算脚本：[audit_shared_motion_scope.py](../native30_short500_oct13/audit_shared_motion_scope.py)。增广／共享比例来自此前只读审计；本次新增S64窗口索引和入口配置，未接入增广，不改原身体／场景数组或旧500步权重。
+证据：[SHARED_MOTION_AND_AUGMENTATION_AUDIT.json](../../archive/historical_trials_oct16/native30_short500_oct13/SHARED_MOTION_AND_AUGMENTATION_AUDIT.json)，可复算脚本：[audit_shared_motion_scope.py](../../archive/historical_trials_oct16/native30_short500_oct13/audit_shared_motion_scope.py)。增广／共享比例来自此前只读审计；本次新增S64窗口索引和入口配置，未接入增广，不改原身体／场景数组或旧500步权重。
 
 TRUMANS本地原始发布数组包含688原录制段、1,335,540帧及1,136增广段、2,456,528帧。十二个motion/scene/object数组均有3,792,068个时间项，文件实际长度与数组头一致；逐段seg_name变化及_augment后缀核对了段数／帧数，所有增广段均能映射回一个原录制。示例为2023-01-15@00-11-55_augment1。此次是文件结构／分段审计，不是所有增广值及其几何一致性的完整数值验收。
 
@@ -547,7 +549,7 @@ ego相机通常跟随头的方向，exo相机可能面对目标：**同一个相
 
 ### 10月13日：500步结果与超时范围（Q33/Q34）
 
-[SHORT500_PROGRESS.json](../native30_short500_oct13/SHORT500_PROGRESS.json)保存实际trace步数、checkpoint步数、八组采样数及固定val汇总。最终500步，优化及三次固定验证共4667.47秒（77.79分钟，不含准备/启动指纹读取），进程退出码0。[CHECKPOINT_AUDIT.json](../native30_short500_oct13/training/CHECKPOINT_AUDIT.json)复读最终last.pt：500步、1000次取样、模型/优化器所有张量有限、RNG/采样状态齐全、有效配置和代码指纹与本轮prepared一致。只保留一份原子last.pt（1,476,085,308字节）；Linux余约64.64GiB、E盘余271.44GiB。原55k/3k权重未改，没有因界面超时重复启动。
+[SHORT500_PROGRESS.json](../../archive/historical_trials_oct16/native30_short500_oct13/SHORT500_PROGRESS.json)保存实际trace步数、checkpoint步数、八组采样数及固定val汇总。最终500步，优化及三次固定验证共4667.47秒（77.79分钟，不含准备/启动指纹读取），进程退出码0。[CHECKPOINT_AUDIT.json](../../archive/historical_trials_oct16/native30_short500_oct13/training/CHECKPOINT_AUDIT.json)复读最终last.pt：500步、1000次取样、模型/优化器所有张量有限、RNG/采样状态齐全、有效配置和代码指纹与本轮prepared一致。只保留一份原子last.pt（1,476,085,308字节）；Linux余约64.64GiB、E盘余271.44GiB。原55k/3k权重未改，没有因界面超时重复启动。
 
 |固定条件|第1步MPJPE mm|第250步MPJPE mm|第500步MPJPE mm|第500步root误差 mm|
 |---|---:|---:|---:|---:|
@@ -558,9 +560,9 @@ ego相机通常跟随头的方向，exo相机可能面对目标：**同一个相
 
 上表按对应关节/帧计数汇总，不作Procrustes或root对齐，也不mask GT候选。只有12个固定窗口、24种条件，不是正式全量benchmark；exo四窗关节时间覆盖88.71–97.09%，强遮挡收益不能由此判断。数值尚不合格；500步从零初始化只能作链路和早期诊断，不能说已经充分收敛。
 
-[500步mesh对比](../native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)显示四个exo监控窗的第96帧：蓝色共享22关节GT姿态、紫色生成姿态、橙色可信输入、灰色同观察者整段已见静态点云。两侧均使用各自native SMPL/SMPL-X和body shape，手/脸为模型默认中性形态；不是完整源拟合手/脸回放。没有用GT对齐生成位置。mesh的共享22关节与训练FK最大误差<0.5微米。四窗原始MPJPE为2395–4234mm，root相对诊断误差124–282mm，表明当前误差主要落在全局位移，同时局部姿态也需改善。诊断不能代替原始世界系指标。
+[500步mesh对比](../../archive/historical_trials_oct16/native30_short500_oct13/training/VALIDATION_MESH_STEP500.png)显示四个exo监控窗的第96帧：蓝色共享22关节GT姿态、紫色生成姿态、橙色可信输入、灰色同观察者整段已见静态点云。两侧均使用各自native SMPL/SMPL-X和body shape，手/脸为模型默认中性形态；不是完整源拟合手/脸回放。没有用GT对齐生成位置。mesh的共享22关节与训练FK最大误差<0.5微米。四窗原始MPJPE为2395–4234mm，root相对诊断误差124–282mm，表明当前误差主要落在全局位移，同时局部姿态也需改善。诊断不能代替原始世界系指标。
 
-性能证据：[BENCH_TREE_REUSE.json](../native30_short500_oct13/BENCH_TREE_REUSE.json)。40,000静态点、192帧、67锚点、三查询尺度的独立合成基准：每帧重建树1.4436秒，复用同一静态树0.2167秒，邻域有序列表完全一致，约6.66倍。这只是静态建树/半径查询，不含动态合并、FPS、法向、地图构建或GPU，不能宣称整训提速6.66倍。本轮生产查询保持原实现，优化接入后需另做完整查询等价检查并更新准备指纹。
+性能证据：[BENCH_TREE_REUSE.json](../../archive/historical_trials_oct16/native30_short500_oct13/BENCH_TREE_REUSE.json)。40,000静态点、192帧、67锚点、三查询尺度的独立合成基准：每帧重建树1.4436秒，复用同一静态树0.2167秒，邻域有序列表完全一致，约6.66倍。这只是静态建树/半径查询，不含动态合并、FPS、法向、地图构建或GPU，不能宣称整训提速6.66倍。本轮生产查询保持原实现，优化接入后需另做完整查询等价检查并更新准备指纹。
 
 此前GitHub推送报`GnuTLS recv error (-110)`，证明远端备份连接曾中断；不证明本地训练或全部界面超时由网络导致。一次重试被自动审批拒绝（远端外传授权证据不足），额外只读进程采样也被审批策略拒绝。用户随后明确授权推送到Wendy-xinn/SceneMI；提交时又出现一次自动权限审批等待超时，动作未执行，按工具允许重试一次后成功。**代码、配置、500步指标、checkpoint审计及mesh对比图已成功推送：[7ccb439](https://github.com/Wendy-xinn/SceneMI/commit/7ccb439)，分支backup/native-scene-contact-head-oct09。** 权重与大数组保留本地；远端推进4594666→7ccb439同时包含本轮启动配置提交9005919。
 
@@ -1375,9 +1377,9 @@ WSL互操作此次可用，直接用非管理员PowerShell读取System事件1001
 
 ### 精确GPU查询候选与检查结果
 
-[exact_gpu_query.py](../native30_speed_gait_review_oct15/exact_gpu_query.py)仅为本次预检候选，**尚未接入正式训练入口**。对整个输入窗口做保守包围盒剔除后，在GPU以float64计算原KD-tree半径成员关系，以原探针精度执行原先nearest-first／FPS及ID次序平局规则；保持三尺度、8邻居、静态／逐帧动态owner／法线／速度及mask。包围盒不是采样预算，未截断任何合法球内点。临时距离矩阵按块限内存；没有改模型权重、loss、IK／物理迭代数。原CPU标签查询及已预计算支持缓存未改，避免把33k标签缓存全部作废。
+[exact_gpu_query.py](../../archive/historical_trials_oct16/native30_speed_gait_review_oct15/exact_gpu_query.py)仅为本次预检候选，**尚未接入正式训练入口**。对整个输入窗口做保守包围盒剔除后，在GPU以float64计算原KD-tree半径成员关系，以原探针精度执行原先nearest-first／FPS及ID次序平局规则；保持三尺度、8邻居、静态／逐帧动态owner／法线／速度及mask。包围盒不是采样预算，未截断任何合法球内点。临时距离矩阵按块限内存；没有改模型权重、loss、IK／物理迭代数。原CPU标签查询及已预计算支持缓存未改，避免把33k标签缓存全部作废。
 
-实际三组预选TRAIN的B2／FP32／L192完整前向＋loss＋反向均值见[CULLED_EXACT_QUERY_COMPARISON.json](../native30_speed_gait_review_oct15/CULLED_EXACT_QUERY_COMPARISON.json)：
+实际三组预选TRAIN的B2／FP32／L192完整前向＋loss＋反向均值见[CULLED_EXACT_QUERY_COMPARISON.json](../../archive/historical_trials_oct16/native30_speed_gait_review_oct15/CULLED_EXACT_QUERY_COMPARISON.json)：
 
 |样例组合|原查询 秒|候选 秒|前反传提速|
 |---|---:|---:|---:|
@@ -1385,9 +1387,9 @@ WSL互操作此次可用，直接用非管理员PowerShell读取System事件1001
 |TRUMANS＋RICH|3.291|1.366|2.41×|
 |camera_wearer＋RICH|1.488|0.988|1.51×|
 
-每组捕获4次真实局部／物理查询，共12次，全部返回字段逐位相同；完整输出和loss相同，最大梯度误差约1.36e-7，在既定容差内，且不大于原实现自身重复运行的波动。另用原封存随机初始SHA `9d14dbbb...`从零构造同一模型，**没有加载10k权重初始化**；三组确定性复测的完整输出、loss及每个参数梯度均逐位相同，见[DETERMINISTIC_FRESH_EXACT_QUERY_COMPARISON.json](../native30_speed_gait_review_oct15/DETERMINISTIC_FRESH_EXACT_QUERY_COMPARISON.json)。相同确定性后端下提速分别1.61／1.58／1.18×；不能把它与默认非确定性计时混成一个数。此前从零默认后端曾有6.73e-5梯度容差失败，原始结果保留；[NONDETERMINISTIC_REPEAT_AUDIT.json](../native30_speed_gait_review_oct15/NONDETERMINISTIC_REPEAT_AUDIT.json)实测原实现自身重复也有同样6.73e-5波动，优化前后反而仅7.45e-9，确定性检查已排除本次查询改变梯度这一疑点。
+每组捕获4次真实局部／物理查询，共12次，全部返回字段逐位相同；完整输出和loss相同，最大梯度误差约1.36e-7，在既定容差内，且不大于原实现自身重复运行的波动。另用原封存随机初始SHA `9d14dbbb...`从零构造同一模型，**没有加载10k权重初始化**；三组确定性复测的完整输出、loss及每个参数梯度均逐位相同，见[DETERMINISTIC_FRESH_EXACT_QUERY_COMPARISON.json](../../archive/historical_trials_oct16/native30_speed_gait_review_oct15/DETERMINISTIC_FRESH_EXACT_QUERY_COMPARISON.json)。相同确定性后端下提速分别1.61／1.58／1.18×；不能把它与默认非确定性计时混成一个数。此前从零默认后端曾有6.73e-5梯度容差失败，原始结果保留；[NONDETERMINISTIC_REPEAT_AUDIT.json](../../archive/historical_trials_oct16/native30_speed_gait_review_oct15/NONDETERMINISTIC_REPEAT_AUDIT.json)实测原实现自身重复也有同样6.73e-5波动，优化前后反而仅7.45e-9，确定性检查已排除本次查询改变梯度这一疑点。
 
-[BATCH_THROUGHPUT.json](../native30_speed_gait_review_oct15/BATCH_THROUGHPUT.json)另用同一TRUMANS／camera_wearer时序输入做B2／4／8，留驻完整Adam双moment等尺寸零buffer，**未执行Adam.step**。前反传均值约0.925／1.846／3.277秒，每秒样本约2.16／2.17／2.44，GPU峰值allocated约3.51／4.64／7.16GiB（不是nvidia-smi总占用）；B8仅多约13%吞吐，B4基本无收益。重复窗口仅用于硬件计时，不代表训练样本多样性。较大batch还改变每55k步的样本预算，不能仅凭显存变满当作提速或质量改善。
+[BATCH_THROUGHPUT.json](../../archive/historical_trials_oct16/native30_speed_gait_review_oct15/BATCH_THROUGHPUT.json)另用同一TRUMANS／camera_wearer时序输入做B2／4／8，留驻完整Adam双moment等尺寸零buffer，**未执行Adam.step**。前反传均值约0.925／1.846／3.277秒，每秒样本约2.16／2.17／2.44，GPU峰值allocated约3.51／4.64／7.16GiB（不是nvidia-smi总占用）；B8仅多约13%吞吐，B4基本无收益。重复窗口仅用于硬件计时，不代表训练样本多样性。较大batch还改变每55k步的样本预算，不能仅凭显存变满当作提速或质量改善。
 
 以上计时均**不含随机数据准备、实际Adam计算、checkpoint和DDIM验证**，只有三组样例／两个测量重复，不能宣称全池、所有几何密度或所有噪声步都是同一倍速，更不能声称已经最快。候选只保留于隔离预检目录，旧正式模型、源码和缓存依赖保持。
 
@@ -1395,11 +1397,11 @@ WSL互操作此次可用，直接用非管理员PowerShell读取System事件1001
 
 本轮所有计算均为**0次optimizer更新**，没有续训10k，也没有启动从零长训。下一轮应将旧55k脚步目标拆清楚：支撑／摆动分别匹配、pelvis／body-local脚轨迹、0.2／0.4秒步幅、左右腿协调／幅度；脚高／phase-free支撑代理是否保留，应与已有观察场景物理项单独核对，不直接抄20Hz帧数或假定新增系数即可解决。此前gait_restore并未移植整套旧监督，100步小试也未达到对control的5%门槛。
 
-[PRETRAIN_REVIEW.json](../native30_speed_gait_review_oct15/PRETRAIN_REVIEW.json)记录未通过的质量门槛：先以同一从零初始化做有界步行小池可学习性检查，再做固定＋独立确认VAL的短程对照，看相对骨盆的双脚摆动、交替、滑步、全身误差与scene消融，clean/noisy分开。不能只用整体loss下降代替验收。当前不自动启动55k；确定速度与监督后，按用户最新要求从0开始ego，而非从10k或旧55k继续。
+[PRETRAIN_REVIEW.json](../../archive/historical_trials_oct16/native30_speed_gait_review_oct15/PRETRAIN_REVIEW.json)记录未通过的质量门槛：先以同一从零初始化做有界步行小池可学习性检查，再做固定＋独立确认VAL的短程对照，看相对骨盆的双脚摆动、交替、滑步、全身误差与scene消融，clean/noisy分开。不能只用整体loss下降代替验收。当前不自动启动55k；确定速度与监督后，按用户最新要求从0开始ego，而非从10k或旧55k继续。
 
 完整旧55k还包含head／pelvis／wrists等多条件任务且B4，55k共220000样本槽；完整新版10k是head-only／B2、20000槽，时间采样和官方划分也不同。因此“同样55k步”并非相同任务／曝光量，不能把步数或相同loss名字当作脚步可复现保证。原55k仍用于现象与训练目标核对，不作为新正式模型的初始化。
 
-查询边界检查通过：沿用8项既有回归，再加10项float32/64全字段核对，覆盖半径边界／平局、稀疏邻点、全部候选剔除及十万个窗外无关静态点，见[QUERY_EDGE_TESTS.json](../native30_speed_gait_review_oct15/QUERY_EDGE_TESTS.json)。数据原文件、body与scene缓存均保留；本预检目录约22MiB（含可重建计时输入，不是模型权重），Linux约26.6GiB、E约112.6GiB空闲。所有计时与检查进程均已结束，无后台训练。代码及小记录备份授权仓库，大数组留本地。
+查询边界检查通过：沿用8项既有回归，再加10项float32/64全字段核对，覆盖半径边界／平局、稀疏邻点、全部候选剔除及十万个窗外无关静态点，见[QUERY_EDGE_TESTS.json](../../archive/historical_trials_oct16/native30_speed_gait_review_oct15/QUERY_EDGE_TESTS.json)。数据原文件、body与scene缓存均保留；本预检目录约22MiB（含可重建计时输入，不是模型权重），Linux约26.6GiB、E约112.6GiB空闲。所有计时与检查进程均已结束，无后台训练。代码及小记录备份授权仓库，大数组留本地。
 
 ## 4.21 完善脚步监督、接入加速与逐模块依据审查
 
@@ -1510,14 +1512,14 @@ flowchart LR
 
 ### 从零V2步行小池（四组均已完成，非55k长训）
 
-[run_pilot.py](../native30_gait_physics_fresh_pilot_oct15/run_pilot.py)固定每组128次更新，对照current／physics-OFF／后期4／后期2；各组都使用同一V2监督和同一新标定观察系数。初始模型SHA必须复现9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69，Adam空状态，不加载任何已训练模型。正式preflight-only长训开关没有解除。
+[run_pilot.py](../../archive/historical_trials_oct16/native30_gait_physics_fresh_pilot_oct15/run_pilot.py)固定每组128次更新，对照current／physics-OFF／后期4／后期2；各组都使用同一V2监督和同一新标定观察系数。初始模型SHA必须复现9d14dbbb56e6c092ca2c0f784e4f3935ad0a0cf6365cc35bf3894fe07dc90d69，Adam空状态，不加载任何已训练模型。正式preflight-only长训开关没有解除。
 
 六个官方TRAIN步行窗按GT规则预先选择，三语料各2窗，固定共同yaw=0.6；各窗clean／强制noisy共12个输入，在相同随机无放回循环中形成B2。所有TRAIN弱支撑缓存必须hit，在线预测人体查询仍每次计算，不能缓存学习得到的几何。为了做小池可学习性诊断，明确采用8步warmup后固定1e-4，而非伪装成原500步warmup／55k cosine。
 
 预先指定的TRAIN门槛为完整DDIM预测的身体相对脚误差降20%、脚速度向量误差降10%、幅度log-ratio误差降20%；不以teacher-forced loss下降代替。每组还报告固定三VAL窗clean/noisy。这些小池门槛仅用于排除明显不能学的候选，不能替代全池配对、独立录制覆盖与最终论文benchmark，也不自动授权延长。
 
 
-四组已全部完成各128更新，共512次optimizer更新；初始化、batch索引、timestep、scene dropout、LR逐步核对一致。每组原始脚步目标对腿部旋转的梯度有限且非零，没有读取旧模型权重。结果见[RESULTS.json](../native30_gait_physics_fresh_pilot_oct15/RESULTS.json)：
+四组已全部完成各128更新，共512次optimizer更新；初始化、batch索引、timestep、scene dropout、LR逐步核对一致。每组原始脚步目标对腿部旋转的梯度有限且非零，没有读取旧模型权重。结果见[RESULTS.json](../../archive/historical_trials_oct16/native30_gait_physics_fresh_pilot_oct15/RESULTS.json)：
 
 |从零V2小池组|TRAIN MPJPE mm|身体坐标脚位误差 mm|脚速度RMSE m/s|幅度log-ratio误差|固定VAL MPJPE clean／noisy mm|
 |---|---:|---:|---:|---:|---:|
@@ -1528,9 +1530,9 @@ flowchart LR
 
 当前物理组初始TRAIN为311.18／207.49mm（全身／身体坐标脚位）、速度1.181m/s、幅度误差3.258。训练后全身、脚速度、幅度有改善，**身体坐标逐帧脚位反而变差**；四组都未通过预设三项TRAIN门槛中的脚位项，故没有开启长训。初始输出也受各自物理配置影响，所有门槛均逐组对自己的初始值计算。128更新不能证明长期一定失败，128小池与完整10k也不能直接比较来判定监督优劣。
 
-[TRAIN_GAIT_LEARNING.png](../native30_gait_physics_fresh_pilot_oct15/TRAIN_GAIT_LEARNING.png)显示幅度增大仍伴有身体局部偏置与时序不匹配。[GAIT_DECOMPOSITION.json](../native30_gait_physics_fresh_pilot_oct15/GAIT_DECOMPOSITION.json)为事后诊断，不改原门槛：当前物理组身体局部脚位静态偏差RMS均值约148→354mm，去均值动态轨迹误差约179→187mm。幅度／双脚互相关的改善不能代替逐帧轨迹正确。应优先继续检查root与腿姿态之间的代偿、身体坐标逐脚位置／时序目标及预算，而不是因overall loss下降就上55k；这里尚未用匹配监督消融证实具体因果。
+[TRAIN_GAIT_LEARNING.png](../../archive/historical_trials_oct16/native30_gait_physics_fresh_pilot_oct15/TRAIN_GAIT_LEARNING.png)显示幅度增大仍伴有身体局部偏置与时序不匹配。[GAIT_DECOMPOSITION.json](../../archive/historical_trials_oct16/native30_gait_physics_fresh_pilot_oct15/GAIT_DECOMPOSITION.json)为事后诊断，不改原门槛：当前物理组身体局部脚位静态偏差RMS均值约148→354mm，去均值动态轨迹误差约179→187mm。幅度／双脚互相关的改善不能代替逐帧轨迹正确。应优先继续检查root与腿姿态之间的代偿、身体坐标逐脚位置／时序目标及预算，而不是因overall loss下降就上55k；这里尚未用匹配监督消融证实具体因果。
 
-所有小池输入已预先构造并复用，不能用其update秒数给全语料ETA。另有短暂的有限patch审计与首组早期计算重叠，详见[TIMING_SCOPE.json](../native30_gait_physics_fresh_pilot_oct15/TIMING_SCOPE.json)，因此本轮不按这些TRAIN秒数给四种结构排名。原90次DDIM时机测试发生在从零小试之前，没有训练并行干扰。小池图与原10k图明确分开，不把原模型可视化当作V2效果。
+所有小池输入已预先构造并复用，不能用其update秒数给全语料ETA。另有短暂的有限patch审计与首组早期计算重叠，详见[TIMING_SCOPE.json](../../archive/historical_trials_oct16/native30_gait_physics_fresh_pilot_oct15/TIMING_SCOPE.json)，因此本轮不按这些TRAIN秒数给四种结构排名。原90次DDIM时机测试发生在从零小试之前，没有训练并行干扰。小池图与原10k图明确分开，不把原模型可视化当作V2效果。
 
 
 ### 求解器内部5帧增量平滑（已完成，隔离候选）
@@ -1556,7 +1558,7 @@ flowchart LR
 
 所有试验已退出，无后台训练。正式V2配置仍preflight-only，未启动55k；本轮额外optimizer更新恰为4×128，不接exo或旧55k续训。原55k、原完整10000及独立EXO7831均未写入。
 
-每个从零诊断组只有一份原子last.pt；current／late_four保留Adam和RNG作为有用诊断对照，不自动延长。完成且未过门槛的physics_off／late_two去掉Adam，保留模型、配置、RNG与审计并明确evaluation-only；移除前后模型SHA一致，回收约1.83GiB，见[CHECKPOINT_RETENTION_AUDIT.json](../native30_gait_physics_fresh_pilot_oct15/CHECKPOINT_RETENTION_AUDIT.json)。从零目录约3.7GiB、推理目录约33MiB；结束Linux约22.8GiB、E约112.6GiB空闲。大权重与预测数组留本地，代码、小记录和图备份授权仓库；未清理任何原始数据、body或场景依赖。
+每个从零诊断组只有一份原子last.pt；current／late_four保留Adam和RNG作为有用诊断对照，不自动延长。完成且未过门槛的physics_off／late_two去掉Adam，保留模型、配置、RNG与审计并明确evaluation-only；移除前后模型SHA一致，回收约1.83GiB，见[CHECKPOINT_RETENTION_AUDIT.json](../../archive/historical_trials_oct16/native30_gait_physics_fresh_pilot_oct15/CHECKPOINT_RETENTION_AUDIT.json)。从零目录约3.7GiB、推理目录约33MiB；结束Linux约22.8GiB、E约112.6GiB空闲。大权重与预测数组留本地，代码、小记录和图备份授权仓库；未清理任何原始数据、body或场景依赖。
 
 
 ## 4.23 冻结设置并启动正式ego训练
