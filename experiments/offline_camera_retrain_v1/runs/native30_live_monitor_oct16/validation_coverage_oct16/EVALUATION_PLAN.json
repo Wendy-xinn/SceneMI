@@ -1,0 +1,2881 @@
+{
+  "prepared_at": "2026-10-16T16:35:43.817623+08:00",
+  "status": "plans_prepared_not_evaluated",
+  "model_forward_calls": 0,
+  "cuda_used": false,
+  "training_changed": false,
+  "test_used": false,
+  "source_manifest_sha256": "0ad36607e705a6480368486e98d3b5dd4de69f2ec916a45b73f2f0d9f2c9c9cc",
+  "index_sha256": "63c29a65e1c8bf83128a84c885d56b2ce56ccae4f661d6401e47334ea3e50f0e",
+  "frames": 192,
+  "fps": 30,
+  "stride": 64,
+  "full_ego_windows": 1806,
+  "eligible_bundles": 101,
+  "eligible_recordings": 76,
+  "windows_by_dataset": {
+    "trumans": 962,
+    "rich": 206,
+    "egobody": 638
+  },
+  "bundles_by_dataset": {
+    "trumans": 33,
+    "rich": 27,
+    "egobody": 41
+  },
+  "recordings_by_dataset": {
+    "egobody": 16,
+    "rich": 27,
+    "trumans": 33
+  },
+  "latest_completed_validation": 12000,
+  "cumulative_different_model_windows": 39,
+  "current_monitoring_unique_windows": 6,
+  "fixed_windows_used_for_trend": 3,
+  "observed_seconds_per_window_clean_noisy_pair": 23.631784050666585,
+  "warm_timing_estimates_seconds": {
+    "full_pool": 42679.00199550385,
+    "one_per_bundle": 2386.810189117325,
+    "one_per_recording": 1796.0155878506605
+  },
+  "timing_limitations": "Linear estimate from current six-window DDIM20 monitoring; new-window cache preparation and same-GPU contention may increase time. No throughput benchmark launched.",
+  "aggregation": "Report dataset macro, recording macro within dataset, source/window means and percentiles; clean/noisy separate. Do not treat overlapping windows as independent recordings.",
+  "interpretation": "Plans cover every eligible recording or bundle, not every legal window. Median starts are selected without reading predictions or selecting favourable outcomes.",
+  "checkpoint_policy": "Execution must freeze one committed checkpoint and its SHA256 for all cases; no evaluation has started, no checkpoint copy made.",
+  "one_per_recording": [
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210921_S11_S10_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "source_bundle_ordinal": 1193,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "start": 320,
+      "source_first": 1431,
+      "case_seed": 416274632,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210921_S11_S10_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210921_S11_S10_02_camera_wearer_2091-3801",
+      "source_bundle_ordinal": 1197,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210921_S11_S10_02_camera_wearer_2091-3801",
+      "start": 768,
+      "source_first": 2859,
+      "case_seed": 3433745362,
+      "eligible_windows": 24,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210923_S03_S14_01_camera_wearer_1211-1751",
+      "source_bundle_ordinal": 1201,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210923_S03_S14_01_camera_wearer_1211-1751",
+      "start": 192,
+      "source_first": 1403,
+      "case_seed": 3757530018,
+      "eligible_windows": 6,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20211002_S03_S18_01_camera_wearer_2301-2571",
+      "source_bundle_ordinal": 1210,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_01_camera_wearer_2301-2571",
+      "start": 64,
+      "source_first": 2365,
+      "case_seed": 2192405144,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20211002_S03_S18_02_camera_wearer_3811-5071",
+      "source_bundle_ordinal": 1216,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_02_camera_wearer_3811-5071",
+      "start": 512,
+      "source_first": 4323,
+      "case_seed": 2078898061,
+      "eligible_windows": 17,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_03",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20211002_S03_S18_03_camera_wearer_1941-3471",
+      "source_bundle_ordinal": 1221,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_03_camera_wearer_1941-3471",
+      "start": 640,
+      "source_first": 2581,
+      "case_seed": 4268525347,
+      "eligible_windows": 21,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_04",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+      "source_bundle_ordinal": 1224,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+      "start": 832,
+      "source_first": 4433,
+      "case_seed": 2572796281,
+      "eligible_windows": 26,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220215_S21_S22_01_camera_wearer_1901-2171",
+      "source_bundle_ordinal": 1228,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220215_S21_S22_01_camera_wearer_1901-2171",
+      "start": 64,
+      "source_first": 1965,
+      "case_seed": 642279433,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4661",
+      "source_bundle_ordinal": 1234,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220215_S21_S22_02_camera_wearer_1511-4661",
+      "start": 1472,
+      "source_first": 2983,
+      "case_seed": 423167185,
+      "eligible_windows": 47,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220218_S23_S02_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220218_S23_S02_01_camera_wearer_2361-2631",
+      "source_bundle_ordinal": 1241,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220218_S23_S02_01_camera_wearer_2361-2631",
+      "start": 64,
+      "source_first": 2425,
+      "case_seed": 3176081473,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220218_S23_S02_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220218_S23_S02_02_camera_wearer_1301-3101",
+      "source_bundle_ordinal": 1246,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220218_S23_S02_02_camera_wearer_1301-3101",
+      "start": 832,
+      "source_first": 2133,
+      "case_seed": 319190893,
+      "eligible_windows": 26,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_01_camera_wearer_2571-4641",
+      "source_bundle_ordinal": 1252,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_01_camera_wearer_2571-4641",
+      "start": 960,
+      "source_first": 3531,
+      "case_seed": 3825397828,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_02_camera_wearer_1501-2851",
+      "source_bundle_ordinal": 1256,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_02_camera_wearer_1501-2851",
+      "start": 576,
+      "source_first": 2077,
+      "case_seed": 1497386067,
+      "eligible_windows": 19,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_03_camera_wearer_3251-4061",
+      "source_bundle_ordinal": 1261,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_03_camera_wearer_3251-4061",
+      "start": 320,
+      "source_first": 3571,
+      "case_seed": 2680535068,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_04_camera_wearer_4131-4581",
+      "source_bundle_ordinal": 1264,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_04_camera_wearer_4131-4581",
+      "start": 128,
+      "source_first": 4259,
+      "case_seed": 1086386778,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_05",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_05_camera_wearer_1391-2201",
+      "source_bundle_ordinal": 1269,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_05_camera_wearer_1391-2201",
+      "start": 320,
+      "source_first": 1711,
+      "case_seed": 2694974984,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "group": "rich",
+      "sequence_id": "LectureHall_003_wipingchairs1",
+      "source_bundle_ordinal": 1165,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_003_wipingchairs1",
+      "start": 256,
+      "source_first": 261,
+      "case_seed": 2221172036,
+      "eligible_windows": 8,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "group": "rich",
+      "sequence_id": "LectureHall_018_wipingtable1",
+      "source_bundle_ordinal": 1166,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_018_wipingtable1",
+      "start": 448,
+      "source_first": 453,
+      "case_seed": 1415825046,
+      "eligible_windows": 15,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "group": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "source_bundle_ordinal": 1167,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_020_wipingchairs1",
+      "start": 384,
+      "source_first": 389,
+      "case_seed": 303671090,
+      "eligible_windows": 13,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_002_burpee1",
+      "source_bundle_ordinal": 1168,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_002_burpee1",
+      "start": 0,
+      "source_first": 5,
+      "case_seed": 2615064706,
+      "eligible_windows": 1,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_002_burpee2",
+      "source_bundle_ordinal": 1169,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_002_burpee2",
+      "start": 0,
+      "source_first": 5,
+      "case_seed": 4145549141,
+      "eligible_windows": 1,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_004_eating2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_004_eating2",
+      "source_bundle_ordinal": 1171,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_eating2",
+      "start": 128,
+      "source_first": 133,
+      "case_seed": 3344694146,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_004_phonetalk2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_004_phonetalk2",
+      "source_bundle_ordinal": 1172,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_phonetalk2",
+      "start": 320,
+      "source_first": 325,
+      "case_seed": 1904445410,
+      "eligible_windows": 11,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_004_pushup1",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_004_pushup1",
+      "source_bundle_ordinal": 1173,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_pushup1",
+      "start": 64,
+      "source_first": 69,
+      "case_seed": 2887977217,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_004_stretching2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_004_stretching2",
+      "source_bundle_ordinal": 1174,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_stretching2",
+      "start": 128,
+      "source_first": 133,
+      "case_seed": 2051518892,
+      "eligible_windows": 4,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_004_takingphotos2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_004_takingphotos2",
+      "source_bundle_ordinal": 1175,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_takingphotos2",
+      "start": 128,
+      "source_first": 133,
+      "case_seed": 1473632702,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_005_burpeejump1",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_005_burpeejump1",
+      "source_bundle_ordinal": 1176,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_burpeejump1",
+      "start": 0,
+      "source_first": 5,
+      "case_seed": 1904121401,
+      "eligible_windows": 1,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_005_overfence2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_005_overfence2",
+      "source_bundle_ordinal": 1177,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_overfence2",
+      "start": 0,
+      "source_first": 5,
+      "case_seed": 3554933392,
+      "eligible_windows": 1,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_005_pushup1",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_005_pushup1",
+      "source_bundle_ordinal": 1178,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_pushup1",
+      "start": 128,
+      "source_first": 133,
+      "case_seed": 1456111947,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_007_burpee2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_007_burpee2",
+      "source_bundle_ordinal": 1179,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_007_burpee2",
+      "start": 64,
+      "source_first": 69,
+      "case_seed": 2871893680,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot2_008_burpeejump2",
+      "group": "rich",
+      "sequence_id": "ParkingLot2_008_burpeejump2",
+      "source_bundle_ordinal": 1180,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_008_burpeejump2",
+      "start": 64,
+      "source_first": 193,
+      "case_seed": 97176074,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot2_008_eating2",
+      "group": "rich",
+      "sequence_id": "ParkingLot2_008_eating2",
+      "source_bundle_ordinal": 1181,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_008_eating2",
+      "start": 320,
+      "source_first": 480,
+      "case_seed": 3964257155,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot2_014_eating2",
+      "group": "rich",
+      "sequence_id": "ParkingLot2_014_eating2",
+      "source_bundle_ordinal": 1182,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_014_eating2",
+      "start": 320,
+      "source_first": 431,
+      "case_seed": 1222555720,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot2_014_overfence1",
+      "group": "rich",
+      "sequence_id": "ParkingLot2_014_overfence1",
+      "source_bundle_ordinal": 1183,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_014_overfence1",
+      "start": 128,
+      "source_first": 223,
+      "case_seed": 2694354639,
+      "eligible_windows": 4,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot2_016_phonetalk5",
+      "group": "rich",
+      "sequence_id": "ParkingLot2_016_phonetalk5",
+      "source_bundle_ordinal": 1184,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_016_phonetalk5",
+      "start": 448,
+      "source_first": 618,
+      "case_seed": 2318998719,
+      "eligible_windows": 14,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_000_yoga1",
+      "group": "rich",
+      "sequence_id": "Pavallion_000_yoga1",
+      "source_bundle_ordinal": 1185,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_000_yoga1",
+      "start": 768,
+      "source_first": 773,
+      "case_seed": 139562536,
+      "eligible_windows": 25,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_002_sidebalancerun",
+      "group": "rich",
+      "sequence_id": "Pavallion_002_sidebalancerun",
+      "source_bundle_ordinal": 1186,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_002_sidebalancerun",
+      "start": 256,
+      "source_first": 261,
+      "case_seed": 3818037825,
+      "eligible_windows": 8,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_002_yoga1",
+      "group": "rich",
+      "sequence_id": "Pavallion_002_yoga1",
+      "source_bundle_ordinal": 1187,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_002_yoga1",
+      "start": 192,
+      "source_first": 197,
+      "case_seed": 3466203398,
+      "eligible_windows": 7,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_003_yoga1",
+      "group": "rich",
+      "sequence_id": "Pavallion_003_yoga1",
+      "source_bundle_ordinal": 1188,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_003_yoga1",
+      "start": 256,
+      "source_first": 261,
+      "case_seed": 2219976454,
+      "eligible_windows": 8,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_006_yoga1",
+      "group": "rich",
+      "sequence_id": "Pavallion_006_yoga1",
+      "source_bundle_ordinal": 1189,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_006_yoga1",
+      "start": 384,
+      "source_first": 389,
+      "case_seed": 4158827830,
+      "eligible_windows": 12,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_013_sidebalancerun",
+      "group": "rich",
+      "sequence_id": "Pavallion_013_sidebalancerun",
+      "source_bundle_ordinal": 1190,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_013_sidebalancerun",
+      "start": 320,
+      "source_first": 325,
+      "case_seed": 3538204020,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_018_sidebalancerun",
+      "group": "rich",
+      "sequence_id": "Pavallion_018_sidebalancerun",
+      "source_bundle_ordinal": 1191,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_018_sidebalancerun",
+      "start": 320,
+      "source_first": 325,
+      "case_seed": 926795912,
+      "eligible_windows": 11,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_018_yoga1",
+      "group": "rich",
+      "sequence_id": "Pavallion_018_yoga1",
+      "source_bundle_ordinal": 1192,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_018_yoga1",
+      "start": 320,
+      "source_first": 325,
+      "case_seed": 1538346805,
+      "eligible_windows": 11,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-13@22-31-47",
+      "group": "trumans",
+      "sequence_id": "2023-02-13@22-31-47",
+      "source_bundle_ordinal": 1132,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-13@22-31-47",
+      "start": 512,
+      "source_first": 512,
+      "case_seed": 1564206972,
+      "eligible_windows": 16,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-13@22-32-46",
+      "group": "trumans",
+      "sequence_id": "2023-02-13@22-32-46",
+      "source_bundle_ordinal": 1133,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-13@22-32-46",
+      "start": 576,
+      "source_first": 576,
+      "case_seed": 2471668864,
+      "eligible_windows": 18,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-13@22-33-50",
+      "group": "trumans",
+      "sequence_id": "2023-02-13@22-33-50",
+      "source_bundle_ordinal": 1134,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-13@22-33-50",
+      "start": 576,
+      "source_first": 576,
+      "case_seed": 167589302,
+      "eligible_windows": 19,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@10-52-40",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-52-40",
+      "source_bundle_ordinal": 1135,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-52-40",
+      "start": 960,
+      "source_first": 960,
+      "case_seed": 462010766,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@10-53-45",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-53-45",
+      "source_bundle_ordinal": 1136,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-53-45",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 2916409010,
+      "eligible_windows": 25,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@10-55-17",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-55-17",
+      "source_bundle_ordinal": 1137,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-55-17",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 1118614296,
+      "eligible_windows": 24,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@10-58-16",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-58-16",
+      "source_bundle_ordinal": 1138,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-58-16",
+      "start": 896,
+      "source_first": 896,
+      "case_seed": 3429908800,
+      "eligible_windows": 28,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@10-59-19",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-59-19",
+      "source_bundle_ordinal": 1139,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-59-19",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 935141026,
+      "eligible_windows": 25,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@11-00-27",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-00-27",
+      "source_bundle_ordinal": 1140,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@11-00-27",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 1314111209,
+      "eligible_windows": 25,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@11-01-52",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-01-52",
+      "source_bundle_ordinal": 1141,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@11-01-52",
+      "start": 1024,
+      "source_first": 1024,
+      "case_seed": 2596716679,
+      "eligible_windows": 33,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@11-03-54",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-03-54",
+      "source_bundle_ordinal": 1142,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@11-03-54",
+      "start": 832,
+      "source_first": 832,
+      "case_seed": 2509327289,
+      "eligible_windows": 26,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@11-05-08",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-05-08",
+      "source_bundle_ordinal": 1143,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@11-05-08",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 945783618,
+      "eligible_windows": 24,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@11-06-09",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-06-09",
+      "source_bundle_ordinal": 1144,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@11-06-09",
+      "start": 640,
+      "source_first": 640,
+      "case_seed": 2405725630,
+      "eligible_windows": 20,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-37-46",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-37-46",
+      "source_bundle_ordinal": 1145,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-37-46",
+      "start": 1600,
+      "source_first": 1600,
+      "case_seed": 4176486467,
+      "eligible_windows": 50,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-39-58",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-39-58",
+      "source_bundle_ordinal": 1146,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-39-58",
+      "start": 1344,
+      "source_first": 1344,
+      "case_seed": 553527525,
+      "eligible_windows": 42,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-44-19",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-44-19",
+      "source_bundle_ordinal": 1147,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-44-19",
+      "start": 960,
+      "source_first": 960,
+      "case_seed": 605641382,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-46-38",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-46-38",
+      "source_bundle_ordinal": 1148,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-46-38",
+      "start": 960,
+      "source_first": 960,
+      "case_seed": 791294386,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-48-17",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-48-17",
+      "source_bundle_ordinal": 1149,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-48-17",
+      "start": 1280,
+      "source_first": 1280,
+      "case_seed": 728312806,
+      "eligible_windows": 40,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-50-03",
+      "source_bundle_ordinal": 1150,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-50-03",
+      "start": 1152,
+      "source_first": 1152,
+      "case_seed": 4041551886,
+      "eligible_windows": 37,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-51-13",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-51-13",
+      "source_bundle_ordinal": 1151,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-51-13",
+      "start": 832,
+      "source_first": 832,
+      "case_seed": 2291026722,
+      "eligible_windows": 26,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-52-11",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-52-11",
+      "source_bundle_ordinal": 1152,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-52-11",
+      "start": 704,
+      "source_first": 704,
+      "case_seed": 3259664755,
+      "eligible_windows": 23,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-55-22",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-55-22",
+      "source_bundle_ordinal": 1153,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-55-22",
+      "start": 448,
+      "source_first": 448,
+      "case_seed": 3994698191,
+      "eligible_windows": 15,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-56-45",
+      "source_bundle_ordinal": 1154,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-56-45",
+      "start": 960,
+      "source_first": 960,
+      "case_seed": 1707761959,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-06-51",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-06-51",
+      "source_bundle_ordinal": 1155,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-06-51",
+      "start": 1024,
+      "source_first": 1024,
+      "case_seed": 1543346579,
+      "eligible_windows": 32,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-08-43",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-08-43",
+      "source_bundle_ordinal": 1156,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-08-43",
+      "start": 1024,
+      "source_first": 1024,
+      "case_seed": 2347555072,
+      "eligible_windows": 32,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-10-27",
+      "source_bundle_ordinal": 1157,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-10-27",
+      "start": 1216,
+      "source_first": 1216,
+      "case_seed": 1980406034,
+      "eligible_windows": 39,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-11-49",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-11-49",
+      "source_bundle_ordinal": 1158,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-11-49",
+      "start": 1024,
+      "source_first": 1024,
+      "case_seed": 3294300373,
+      "eligible_windows": 33,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-13-25",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-13-25",
+      "source_bundle_ordinal": 1159,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-13-25",
+      "start": 1088,
+      "source_first": 1088,
+      "case_seed": 1294956301,
+      "eligible_windows": 35,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-16-27",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-16-27",
+      "source_bundle_ordinal": 1160,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-16-27",
+      "start": 1280,
+      "source_first": 1280,
+      "case_seed": 1103427617,
+      "eligible_windows": 40,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-17-40",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-17-40",
+      "source_bundle_ordinal": 1161,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-17-40",
+      "start": 896,
+      "source_first": 896,
+      "case_seed": 1666168696,
+      "eligible_windows": 29,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-18-35",
+      "source_bundle_ordinal": 1162,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-18-35",
+      "start": 640,
+      "source_first": 640,
+      "case_seed": 704918923,
+      "eligible_windows": 21,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-20-22",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-20-22",
+      "source_bundle_ordinal": 1163,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-20-22",
+      "start": 1152,
+      "source_first": 1152,
+      "case_seed": 1437274333,
+      "eligible_windows": 36,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-22-08",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-22-08",
+      "source_bundle_ordinal": 1164,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-22-08",
+      "start": 896,
+      "source_first": 896,
+      "case_seed": 1270018885,
+      "eligible_windows": 29,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    }
+  ],
+  "one_per_bundle": [
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-13@22-31-47",
+      "group": "trumans",
+      "sequence_id": "2023-02-13@22-31-47",
+      "source_bundle_ordinal": 1132,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-13@22-31-47",
+      "start": 512,
+      "source_first": 512,
+      "case_seed": 1564206972,
+      "eligible_windows": 16,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-13@22-32-46",
+      "group": "trumans",
+      "sequence_id": "2023-02-13@22-32-46",
+      "source_bundle_ordinal": 1133,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-13@22-32-46",
+      "start": 576,
+      "source_first": 576,
+      "case_seed": 2471668864,
+      "eligible_windows": 18,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-13@22-33-50",
+      "group": "trumans",
+      "sequence_id": "2023-02-13@22-33-50",
+      "source_bundle_ordinal": 1134,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-13@22-33-50",
+      "start": 576,
+      "source_first": 576,
+      "case_seed": 167589302,
+      "eligible_windows": 19,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@10-52-40",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-52-40",
+      "source_bundle_ordinal": 1135,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-52-40",
+      "start": 960,
+      "source_first": 960,
+      "case_seed": 462010766,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@10-53-45",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-53-45",
+      "source_bundle_ordinal": 1136,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-53-45",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 2916409010,
+      "eligible_windows": 25,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@10-55-17",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-55-17",
+      "source_bundle_ordinal": 1137,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-55-17",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 1118614296,
+      "eligible_windows": 24,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@10-58-16",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-58-16",
+      "source_bundle_ordinal": 1138,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-58-16",
+      "start": 896,
+      "source_first": 896,
+      "case_seed": 3429908800,
+      "eligible_windows": 28,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@10-59-19",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@10-59-19",
+      "source_bundle_ordinal": 1139,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@10-59-19",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 935141026,
+      "eligible_windows": 25,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@11-00-27",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-00-27",
+      "source_bundle_ordinal": 1140,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@11-00-27",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 1314111209,
+      "eligible_windows": 25,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@11-01-52",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-01-52",
+      "source_bundle_ordinal": 1141,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@11-01-52",
+      "start": 1024,
+      "source_first": 1024,
+      "case_seed": 2596716679,
+      "eligible_windows": 33,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@11-03-54",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-03-54",
+      "source_bundle_ordinal": 1142,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@11-03-54",
+      "start": 832,
+      "source_first": 832,
+      "case_seed": 2509327289,
+      "eligible_windows": 26,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@11-05-08",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-05-08",
+      "source_bundle_ordinal": 1143,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@11-05-08",
+      "start": 768,
+      "source_first": 768,
+      "case_seed": 945783618,
+      "eligible_windows": 24,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-17@11-06-09",
+      "group": "trumans",
+      "sequence_id": "2023-02-17@11-06-09",
+      "source_bundle_ordinal": 1144,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-17@11-06-09",
+      "start": 640,
+      "source_first": 640,
+      "case_seed": 2405725630,
+      "eligible_windows": 20,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-37-46",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-37-46",
+      "source_bundle_ordinal": 1145,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-37-46",
+      "start": 1600,
+      "source_first": 1600,
+      "case_seed": 4176486467,
+      "eligible_windows": 50,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-39-58",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-39-58",
+      "source_bundle_ordinal": 1146,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-39-58",
+      "start": 1344,
+      "source_first": 1344,
+      "case_seed": 553527525,
+      "eligible_windows": 42,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-44-19",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-44-19",
+      "source_bundle_ordinal": 1147,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-44-19",
+      "start": 960,
+      "source_first": 960,
+      "case_seed": 605641382,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-46-38",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-46-38",
+      "source_bundle_ordinal": 1148,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-46-38",
+      "start": 960,
+      "source_first": 960,
+      "case_seed": 791294386,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-48-17",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-48-17",
+      "source_bundle_ordinal": 1149,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-48-17",
+      "start": 1280,
+      "source_first": 1280,
+      "case_seed": 728312806,
+      "eligible_windows": 40,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-50-03",
+      "source_bundle_ordinal": 1150,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-50-03",
+      "start": 1152,
+      "source_first": 1152,
+      "case_seed": 4041551886,
+      "eligible_windows": 37,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-51-13",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-51-13",
+      "source_bundle_ordinal": 1151,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-51-13",
+      "start": 832,
+      "source_first": 832,
+      "case_seed": 2291026722,
+      "eligible_windows": 26,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-52-11",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-52-11",
+      "source_bundle_ordinal": 1152,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-52-11",
+      "start": 704,
+      "source_first": 704,
+      "case_seed": 3259664755,
+      "eligible_windows": 23,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-55-22",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-55-22",
+      "source_bundle_ordinal": 1153,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-55-22",
+      "start": 448,
+      "source_first": 448,
+      "case_seed": 3994698191,
+      "eligible_windows": 15,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@16-56-45",
+      "source_bundle_ordinal": 1154,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-56-45",
+      "start": 960,
+      "source_first": 960,
+      "case_seed": 1707761959,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-06-51",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-06-51",
+      "source_bundle_ordinal": 1155,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-06-51",
+      "start": 1024,
+      "source_first": 1024,
+      "case_seed": 1543346579,
+      "eligible_windows": 32,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-08-43",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-08-43",
+      "source_bundle_ordinal": 1156,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-08-43",
+      "start": 1024,
+      "source_first": 1024,
+      "case_seed": 2347555072,
+      "eligible_windows": 32,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-10-27",
+      "source_bundle_ordinal": 1157,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-10-27",
+      "start": 1216,
+      "source_first": 1216,
+      "case_seed": 1980406034,
+      "eligible_windows": 39,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-11-49",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-11-49",
+      "source_bundle_ordinal": 1158,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-11-49",
+      "start": 1024,
+      "source_first": 1024,
+      "case_seed": 3294300373,
+      "eligible_windows": 33,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-13-25",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-13-25",
+      "source_bundle_ordinal": 1159,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-13-25",
+      "start": 1088,
+      "source_first": 1088,
+      "case_seed": 1294956301,
+      "eligible_windows": 35,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-16-27",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-16-27",
+      "source_bundle_ordinal": 1160,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-16-27",
+      "start": 1280,
+      "source_first": 1280,
+      "case_seed": 1103427617,
+      "eligible_windows": 40,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-17-40",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-17-40",
+      "source_bundle_ordinal": 1161,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-17-40",
+      "start": 896,
+      "source_first": 896,
+      "case_seed": 1666168696,
+      "eligible_windows": 29,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-18-35",
+      "source_bundle_ordinal": 1162,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-18-35",
+      "start": 640,
+      "source_first": 640,
+      "case_seed": 704918923,
+      "eligible_windows": 21,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-20-22",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-20-22",
+      "source_bundle_ordinal": 1163,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-20-22",
+      "start": 1152,
+      "source_first": 1152,
+      "case_seed": 1437274333,
+      "eligible_windows": 36,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-22-08",
+      "group": "trumans",
+      "sequence_id": "2023-02-18@22-22-08",
+      "source_bundle_ordinal": 1164,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-22-08",
+      "start": 896,
+      "source_first": 896,
+      "case_seed": 1270018885,
+      "eligible_windows": 29,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "group": "rich",
+      "sequence_id": "LectureHall_003_wipingchairs1",
+      "source_bundle_ordinal": 1165,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_003_wipingchairs1",
+      "start": 256,
+      "source_first": 261,
+      "case_seed": 2221172036,
+      "eligible_windows": 8,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "group": "rich",
+      "sequence_id": "LectureHall_018_wipingtable1",
+      "source_bundle_ordinal": 1166,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_018_wipingtable1",
+      "start": 448,
+      "source_first": 453,
+      "case_seed": 1415825046,
+      "eligible_windows": 15,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "group": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "source_bundle_ordinal": 1167,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_020_wipingchairs1",
+      "start": 384,
+      "source_first": 389,
+      "case_seed": 303671090,
+      "eligible_windows": 13,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_002_burpee1",
+      "source_bundle_ordinal": 1168,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_002_burpee1",
+      "start": 0,
+      "source_first": 5,
+      "case_seed": 2615064706,
+      "eligible_windows": 1,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_002_burpee2",
+      "source_bundle_ordinal": 1169,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_002_burpee2",
+      "start": 0,
+      "source_first": 5,
+      "case_seed": 4145549141,
+      "eligible_windows": 1,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_004_eating2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_004_eating2",
+      "source_bundle_ordinal": 1171,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_eating2",
+      "start": 128,
+      "source_first": 133,
+      "case_seed": 3344694146,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_004_phonetalk2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_004_phonetalk2",
+      "source_bundle_ordinal": 1172,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_phonetalk2",
+      "start": 320,
+      "source_first": 325,
+      "case_seed": 1904445410,
+      "eligible_windows": 11,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_004_pushup1",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_004_pushup1",
+      "source_bundle_ordinal": 1173,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_pushup1",
+      "start": 64,
+      "source_first": 69,
+      "case_seed": 2887977217,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_004_stretching2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_004_stretching2",
+      "source_bundle_ordinal": 1174,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_stretching2",
+      "start": 128,
+      "source_first": 133,
+      "case_seed": 2051518892,
+      "eligible_windows": 4,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_004_takingphotos2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_004_takingphotos2",
+      "source_bundle_ordinal": 1175,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_takingphotos2",
+      "start": 128,
+      "source_first": 133,
+      "case_seed": 1473632702,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_005_burpeejump1",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_005_burpeejump1",
+      "source_bundle_ordinal": 1176,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_burpeejump1",
+      "start": 0,
+      "source_first": 5,
+      "case_seed": 1904121401,
+      "eligible_windows": 1,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_005_overfence2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_005_overfence2",
+      "source_bundle_ordinal": 1177,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_overfence2",
+      "start": 0,
+      "source_first": 5,
+      "case_seed": 3554933392,
+      "eligible_windows": 1,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_005_pushup1",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_005_pushup1",
+      "source_bundle_ordinal": 1178,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_pushup1",
+      "start": 128,
+      "source_first": 133,
+      "case_seed": 1456111947,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot1_007_burpee2",
+      "group": "rich",
+      "sequence_id": "ParkingLot1_007_burpee2",
+      "source_bundle_ordinal": 1179,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_007_burpee2",
+      "start": 64,
+      "source_first": 69,
+      "case_seed": 2871893680,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot2_008_burpeejump2",
+      "group": "rich",
+      "sequence_id": "ParkingLot2_008_burpeejump2",
+      "source_bundle_ordinal": 1180,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_008_burpeejump2",
+      "start": 64,
+      "source_first": 193,
+      "case_seed": 97176074,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot2_008_eating2",
+      "group": "rich",
+      "sequence_id": "ParkingLot2_008_eating2",
+      "source_bundle_ordinal": 1181,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_008_eating2",
+      "start": 320,
+      "source_first": 480,
+      "case_seed": 3964257155,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot2_014_eating2",
+      "group": "rich",
+      "sequence_id": "ParkingLot2_014_eating2",
+      "source_bundle_ordinal": 1182,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_014_eating2",
+      "start": 320,
+      "source_first": 431,
+      "case_seed": 1222555720,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot2_014_overfence1",
+      "group": "rich",
+      "sequence_id": "ParkingLot2_014_overfence1",
+      "source_bundle_ordinal": 1183,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_014_overfence1",
+      "start": 128,
+      "source_first": 223,
+      "case_seed": 2694354639,
+      "eligible_windows": 4,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "ParkingLot2_016_phonetalk5",
+      "group": "rich",
+      "sequence_id": "ParkingLot2_016_phonetalk5",
+      "source_bundle_ordinal": 1184,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_016_phonetalk5",
+      "start": 448,
+      "source_first": 618,
+      "case_seed": 2318998719,
+      "eligible_windows": 14,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_000_yoga1",
+      "group": "rich",
+      "sequence_id": "Pavallion_000_yoga1",
+      "source_bundle_ordinal": 1185,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_000_yoga1",
+      "start": 768,
+      "source_first": 773,
+      "case_seed": 139562536,
+      "eligible_windows": 25,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_002_sidebalancerun",
+      "group": "rich",
+      "sequence_id": "Pavallion_002_sidebalancerun",
+      "source_bundle_ordinal": 1186,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_002_sidebalancerun",
+      "start": 256,
+      "source_first": 261,
+      "case_seed": 3818037825,
+      "eligible_windows": 8,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_002_yoga1",
+      "group": "rich",
+      "sequence_id": "Pavallion_002_yoga1",
+      "source_bundle_ordinal": 1187,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_002_yoga1",
+      "start": 192,
+      "source_first": 197,
+      "case_seed": 3466203398,
+      "eligible_windows": 7,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_003_yoga1",
+      "group": "rich",
+      "sequence_id": "Pavallion_003_yoga1",
+      "source_bundle_ordinal": 1188,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_003_yoga1",
+      "start": 256,
+      "source_first": 261,
+      "case_seed": 2219976454,
+      "eligible_windows": 8,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_006_yoga1",
+      "group": "rich",
+      "sequence_id": "Pavallion_006_yoga1",
+      "source_bundle_ordinal": 1189,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_006_yoga1",
+      "start": 384,
+      "source_first": 389,
+      "case_seed": 4158827830,
+      "eligible_windows": 12,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_013_sidebalancerun",
+      "group": "rich",
+      "sequence_id": "Pavallion_013_sidebalancerun",
+      "source_bundle_ordinal": 1190,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_013_sidebalancerun",
+      "start": 320,
+      "source_first": 325,
+      "case_seed": 3538204020,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_018_sidebalancerun",
+      "group": "rich",
+      "sequence_id": "Pavallion_018_sidebalancerun",
+      "source_bundle_ordinal": 1191,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_018_sidebalancerun",
+      "start": 320,
+      "source_first": 325,
+      "case_seed": 926795912,
+      "eligible_windows": 11,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "rich",
+      "recording": "Pavallion_018_yoga1",
+      "group": "rich",
+      "sequence_id": "Pavallion_018_yoga1",
+      "source_bundle_ordinal": 1192,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_018_yoga1",
+      "start": 320,
+      "source_first": 325,
+      "case_seed": 1538346805,
+      "eligible_windows": 11,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210921_S11_S10_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "source_bundle_ordinal": 1193,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+      "start": 320,
+      "source_first": 1431,
+      "case_seed": 416274632,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210921_S11_S10_01",
+      "group": "interactee",
+      "sequence_id": "recording_20210921_S11_S10_01_interactee_1111-1921",
+      "source_bundle_ordinal": 1195,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210921_S11_S10_01_interactee_1111-1921",
+      "start": 320,
+      "source_first": 1431,
+      "case_seed": 3786389539,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210921_S11_S10_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210921_S11_S10_02_camera_wearer_2091-3801",
+      "source_bundle_ordinal": 1197,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210921_S11_S10_02_camera_wearer_2091-3801",
+      "start": 768,
+      "source_first": 2859,
+      "case_seed": 3433745362,
+      "eligible_windows": 24,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210921_S11_S10_02",
+      "group": "interactee",
+      "sequence_id": "recording_20210921_S11_S10_02_interactee_2091-3801",
+      "source_bundle_ordinal": 1199,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210921_S11_S10_02_interactee_2091-3801",
+      "start": 768,
+      "source_first": 2859,
+      "case_seed": 1832650238,
+      "eligible_windows": 24,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210923_S03_S14_01_camera_wearer_1211-1751",
+      "source_bundle_ordinal": 1201,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210923_S03_S14_01_camera_wearer_1211-1751",
+      "start": 192,
+      "source_first": 1403,
+      "case_seed": 3757530018,
+      "eligible_windows": 6,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20210923_S03_S14_01_camera_wearer_1841-3191",
+      "source_bundle_ordinal": 1203,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210923_S03_S14_01_camera_wearer_1841-3191",
+      "start": 576,
+      "source_first": 2417,
+      "case_seed": 1097054839,
+      "eligible_windows": 19,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "group": "interactee",
+      "sequence_id": "recording_20210923_S03_S14_01_interactee_1481-1751",
+      "source_bundle_ordinal": 1206,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210923_S03_S14_01_interactee_1481-1751",
+      "start": 64,
+      "source_first": 1545,
+      "case_seed": 3735426507,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "group": "interactee",
+      "sequence_id": "recording_20210923_S03_S14_01_interactee_1931-2201",
+      "source_bundle_ordinal": 1207,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210923_S03_S14_01_interactee_1931-2201",
+      "start": 64,
+      "source_first": 1995,
+      "case_seed": 1997196050,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "group": "interactee",
+      "sequence_id": "recording_20210923_S03_S14_01_interactee_2561-3191",
+      "source_bundle_ordinal": 1209,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20210923_S03_S14_01_interactee_2561-3191",
+      "start": 192,
+      "source_first": 2753,
+      "case_seed": 4218547444,
+      "eligible_windows": 7,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20211002_S03_S18_01_camera_wearer_2301-2571",
+      "source_bundle_ordinal": 1210,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_01_camera_wearer_2301-2571",
+      "start": 64,
+      "source_first": 2365,
+      "case_seed": 2192405144,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20211002_S03_S18_01_camera_wearer_2751-3381",
+      "source_bundle_ordinal": 1212,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_01_camera_wearer_2751-3381",
+      "start": 192,
+      "source_first": 2943,
+      "case_seed": 3275191827,
+      "eligible_windows": 7,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_01",
+      "group": "interactee",
+      "sequence_id": "recording_20211002_S03_S18_01_interactee_2301-2571",
+      "source_bundle_ordinal": 1213,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_01_interactee_2301-2571",
+      "start": 64,
+      "source_first": 2365,
+      "case_seed": 2012363667,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_01",
+      "group": "interactee",
+      "sequence_id": "recording_20211002_S03_S18_01_interactee_2751-3381",
+      "source_bundle_ordinal": 1215,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_01_interactee_2751-3381",
+      "start": 192,
+      "source_first": 2943,
+      "case_seed": 3119401862,
+      "eligible_windows": 7,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20211002_S03_S18_02_camera_wearer_3811-5071",
+      "source_bundle_ordinal": 1216,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_02_camera_wearer_3811-5071",
+      "start": 512,
+      "source_first": 4323,
+      "case_seed": 2078898061,
+      "eligible_windows": 17,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_02",
+      "group": "interactee",
+      "sequence_id": "recording_20211002_S03_S18_02_interactee_3811-5071",
+      "source_bundle_ordinal": 1218,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_02_interactee_3811-5071",
+      "start": 512,
+      "source_first": 4323,
+      "case_seed": 2189171633,
+      "eligible_windows": 17,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_03",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20211002_S03_S18_03_camera_wearer_1941-3471",
+      "source_bundle_ordinal": 1221,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_03_camera_wearer_1941-3471",
+      "start": 640,
+      "source_first": 2581,
+      "case_seed": 4268525347,
+      "eligible_windows": 21,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_03",
+      "group": "interactee",
+      "sequence_id": "recording_20211002_S03_S18_03_interactee_1941-3471",
+      "source_bundle_ordinal": 1223,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_03_interactee_1941-3471",
+      "start": 640,
+      "source_first": 2581,
+      "case_seed": 1183047653,
+      "eligible_windows": 21,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_04",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+      "source_bundle_ordinal": 1224,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_04_camera_wearer_3601-5401",
+      "start": 832,
+      "source_first": 4433,
+      "case_seed": 2572796281,
+      "eligible_windows": 26,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_04",
+      "group": "interactee",
+      "sequence_id": "recording_20211002_S03_S18_04_interactee_3601-5401",
+      "source_bundle_ordinal": 1226,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_04_interactee_3601-5401",
+      "start": 832,
+      "source_first": 4433,
+      "case_seed": 359609689,
+      "eligible_windows": 26,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220215_S21_S22_01_camera_wearer_1901-2171",
+      "source_bundle_ordinal": 1228,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220215_S21_S22_01_camera_wearer_1901-2171",
+      "start": 64,
+      "source_first": 1965,
+      "case_seed": 642279433,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220215_S21_S22_01_camera_wearer_2261-4871",
+      "source_bundle_ordinal": 1230,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220215_S21_S22_01_camera_wearer_2261-4871",
+      "start": 1216,
+      "source_first": 3477,
+      "case_seed": 2178156093,
+      "eligible_windows": 38,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_01",
+      "group": "interactee",
+      "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-2171",
+      "source_bundle_ordinal": 1231,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220215_S21_S22_01_interactee_1901-2171",
+      "start": 64,
+      "source_first": 1965,
+      "case_seed": 1119131123,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_01",
+      "group": "interactee",
+      "sequence_id": "recording_20220215_S21_S22_01_interactee_2261-4871",
+      "source_bundle_ordinal": 1233,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220215_S21_S22_01_interactee_2261-4871",
+      "start": 1216,
+      "source_first": 3477,
+      "case_seed": 2969516626,
+      "eligible_windows": 38,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4661",
+      "source_bundle_ordinal": 1234,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220215_S21_S22_02_camera_wearer_1511-4661",
+      "start": 1472,
+      "source_first": 2983,
+      "case_seed": 423167185,
+      "eligible_windows": 47,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "group": "interactee",
+      "sequence_id": "recording_20220215_S21_S22_02_interactee_1511-4661",
+      "source_bundle_ordinal": 1236,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220215_S21_S22_02_interactee_1511-4661",
+      "start": 1472,
+      "source_first": 2983,
+      "case_seed": 1809847704,
+      "eligible_windows": 47,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220218_S23_S02_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220218_S23_S02_01_camera_wearer_2361-2631",
+      "source_bundle_ordinal": 1241,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220218_S23_S02_01_camera_wearer_2361-2631",
+      "start": 64,
+      "source_first": 2425,
+      "case_seed": 3176081473,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220218_S23_S02_01",
+      "group": "interactee",
+      "sequence_id": "recording_20220218_S23_S02_01_interactee_2361-2631",
+      "source_bundle_ordinal": 1245,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220218_S23_S02_01_interactee_2361-2631",
+      "start": 64,
+      "source_first": 2425,
+      "case_seed": 2903946475,
+      "eligible_windows": 2,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220218_S23_S02_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220218_S23_S02_02_camera_wearer_1301-3101",
+      "source_bundle_ordinal": 1246,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220218_S23_S02_02_camera_wearer_1301-3101",
+      "start": 832,
+      "source_first": 2133,
+      "case_seed": 319190893,
+      "eligible_windows": 26,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220218_S23_S02_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220218_S23_S02_02_camera_wearer_3191-3641",
+      "source_bundle_ordinal": 1248,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220218_S23_S02_02_camera_wearer_3191-3641",
+      "start": 128,
+      "source_first": 3319,
+      "case_seed": 1182690017,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220218_S23_S02_02",
+      "group": "interactee",
+      "sequence_id": "recording_20220218_S23_S02_02_interactee_1301-3101",
+      "source_bundle_ordinal": 1249,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220218_S23_S02_02_interactee_1301-3101",
+      "start": 832,
+      "source_first": 2133,
+      "case_seed": 1724415308,
+      "eligible_windows": 26,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220218_S23_S02_02",
+      "group": "interactee",
+      "sequence_id": "recording_20220218_S23_S02_02_interactee_3191-3641",
+      "source_bundle_ordinal": 1251,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220218_S23_S02_02_interactee_3191-3641",
+      "start": 128,
+      "source_first": 3319,
+      "case_seed": 451573834,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_01",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_01_camera_wearer_2571-4641",
+      "source_bundle_ordinal": 1252,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_01_camera_wearer_2571-4641",
+      "start": 960,
+      "source_first": 3531,
+      "case_seed": 3825397828,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_01",
+      "group": "interactee",
+      "sequence_id": "recording_20220315_S21_S30_01_interactee_2571-4641",
+      "source_bundle_ordinal": 1254,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_01_interactee_2571-4641",
+      "start": 960,
+      "source_first": 3531,
+      "case_seed": 72459517,
+      "eligible_windows": 30,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_02",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_02_camera_wearer_1501-2851",
+      "source_bundle_ordinal": 1256,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_02_camera_wearer_1501-2851",
+      "start": 576,
+      "source_first": 2077,
+      "case_seed": 1497386067,
+      "eligible_windows": 19,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_02",
+      "group": "interactee",
+      "sequence_id": "recording_20220315_S21_S30_02_interactee_1501-2851",
+      "source_bundle_ordinal": 1258,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_02_interactee_1501-2851",
+      "start": 576,
+      "source_first": 2077,
+      "case_seed": 3416678544,
+      "eligible_windows": 19,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_03_camera_wearer_3251-4061",
+      "source_bundle_ordinal": 1261,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_03_camera_wearer_3251-4061",
+      "start": 320,
+      "source_first": 3571,
+      "case_seed": 2680535068,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "group": "interactee",
+      "sequence_id": "recording_20220315_S21_S30_03_interactee_3251-4061",
+      "source_bundle_ordinal": 1263,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_03_interactee_3251-4061",
+      "start": 320,
+      "source_first": 3571,
+      "case_seed": 871589391,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_04_camera_wearer_4131-4581",
+      "source_bundle_ordinal": 1264,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_04_camera_wearer_4131-4581",
+      "start": 128,
+      "source_first": 4259,
+      "case_seed": 1086386778,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "group": "interactee",
+      "sequence_id": "recording_20220315_S21_S30_04_interactee_4131-4581",
+      "source_bundle_ordinal": 1266,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_04_interactee_4131-4581",
+      "start": 128,
+      "source_first": 4259,
+      "case_seed": 1471732580,
+      "eligible_windows": 5,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_05",
+      "group": "camera_wearer",
+      "sequence_id": "recording_20220315_S21_S30_05_camera_wearer_1391-2201",
+      "source_bundle_ordinal": 1269,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_05_camera_wearer_1391-2201",
+      "start": 320,
+      "source_first": 1711,
+      "case_seed": 2694974984,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    },
+    {
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_05",
+      "group": "interactee",
+      "sequence_id": "recording_20220315_S21_S30_05_interactee_1391-2201",
+      "source_bundle_ordinal": 1272,
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_05_interactee_1391-2201",
+      "start": 320,
+      "source_first": 1711,
+      "case_seed": 2083094087,
+      "eligible_windows": 10,
+      "mode": "ego",
+      "joints": [
+        15
+      ]
+    }
+  ]
+}
