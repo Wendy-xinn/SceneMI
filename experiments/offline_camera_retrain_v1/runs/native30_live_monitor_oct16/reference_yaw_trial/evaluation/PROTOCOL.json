@@ -1,0 +1,82 @@
+{
+  "status": "completed",
+  "pid": 264013,
+  "started_at": "2026-10-17T14:20:16.182800+08:00",
+  "plan_sha256": "e233a2453d48869d0dbf1be1163930c4c1ed9ba3dfa8fa511fe70a0535d2b372",
+  "optimizer_updates": 0,
+  "resumed_rows": 0,
+  "phase_models": [
+    "control",
+    "yaw_only"
+  ],
+  "models": {
+    "control": {
+      "predictions_reused": true,
+      "checkpoint_sha256": "8e1007aef38a14735f2e93d1efec4cbcb86f23fc369702ca7a29ec61b67782ca",
+      "model_forward_passes": 0
+    },
+    "yaw_only": {
+      "model_tensor_digest_before": "747ac9a6808ee0da2a18d1ec9579783ea6590fbb54e8de0a3de17050b5e312a5",
+      "model_tensor_digest_after": "747ac9a6808ee0da2a18d1ec9579783ea6590fbb54e8de0a3de17050b5e312a5"
+    }
+  },
+  "input_hash_scope": "SHA256 of sorted inference tensor keys, dtypes, shapes and bytes, excluding reference_motion/reference_confidence/observation_anchor_reference. Non-tensor scene/skin objects are not part of this digest; source identities and common evaluation assets are checked separately.",
+  "resources_before": {
+    "MemTotal_bytes": 32389103616,
+    "MemAvailable_bytes": 23239864320,
+    "main_training": {
+      "status": "training",
+      "pid": 106142,
+      "started_at": "2026-10-16T12:07:43.380030+08:00",
+      "goal_step": 55000,
+      "initial_step": 5200,
+      "automatic_ablation": false,
+      "optimizer_reset": false,
+      "stop_at_review_milestone": false,
+      "worker_pid": 106162,
+      "worker_started_at": "2026-10-16T12:07:43.391427+08:00",
+      "consecutive_io_restarts": 0,
+      "verified_resume_step": 5200,
+      "checked_at": "2026-10-17T14:20:09.047656+08:00",
+      "latest_trace_step": 44625,
+      "latest_committed_step": 44600,
+      "latest_loss": 0.10494863241910934,
+      "latest_gradient_norm": 3.4734277725219727,
+      "latest_lr": 2e-05
+    },
+    "disk_free_bytes": {
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16": 67071266816,
+      "/mnt/e": 120450973696
+    }
+  },
+  "control_forward_passes": 0,
+  "finished_at": "2026-10-17T14:29:29.053990+08:00",
+  "resources_after": {
+    "MemTotal_bytes": 32389103616,
+    "MemAvailable_bytes": 22062571520,
+    "main_training": {
+      "status": "training",
+      "pid": 106142,
+      "started_at": "2026-10-16T12:07:43.380030+08:00",
+      "goal_step": 55000,
+      "initial_step": 5200,
+      "automatic_ablation": false,
+      "optimizer_reset": false,
+      "stop_at_review_milestone": false,
+      "worker_pid": 106162,
+      "worker_started_at": "2026-10-16T12:07:43.391427+08:00",
+      "consecutive_io_restarts": 0,
+      "verified_resume_step": 5200,
+      "checked_at": "2026-10-17T14:29:28.251975+08:00",
+      "latest_trace_step": 44819,
+      "latest_committed_step": 44800,
+      "latest_loss": 0.12952136993408203,
+      "latest_gradient_norm": 2.391545534133911,
+      "latest_lr": 2e-05
+    },
+    "disk_free_bytes": {
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16": 67001819136,
+      "/mnt/e": 120450973696
+    }
+  }
+}
