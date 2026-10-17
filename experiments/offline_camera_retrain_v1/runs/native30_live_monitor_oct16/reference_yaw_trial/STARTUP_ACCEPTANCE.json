@@ -1,6 +1,6 @@
 {
-  "status": "real_updates_verified_waiting_for_first_resumable_candidate",
-  "at": "2026-10-17T13:31:41.149593+08:00",
+  "status": "passed_first100_real_updates_and_resumable_checkpoint",
+  "at": "2026-10-17T13:36:00.033389+08:00",
   "cpu_invariant_tests": 10,
   "cpu_invariant_tests_passed": true,
   "initial_components_equal": true,
@@ -25,19 +25,24 @@
   "evaluation_plan_sha256": "e233a2453d48869d0dbf1be1163930c4c1ed9ba3dfa8fa511fe70a0535d2b372",
   "user_directed_cleanup_record": "experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/CLEANUP.json",
   "main_training_modified": false,
-  "caveat": "These are real optimizer updates and matched raw-data/noise checks, not final motion quality or final1000-update acceptance.",
-  "matched_real_updates": 30,
-  "latest_verified_step": 24530,
+  "caveat": "First100 matched updates and one resumable candidate are verified; final1000 updates and motion-quality comparison are still pending.",
+  "matched_real_updates": 100,
+  "latest_verified_step": 24600,
   "raw_batch_scene_noiseRNG_timestep_dropout_lr_match": true,
   "changed_derived_input_updates": {
-    "target_sha256": 30,
-    "known_sha256": 30,
-    "noisy_sha256": 30
+    "noisy_sha256": 100,
+    "known_sha256": 100,
+    "target_sha256": 100
   },
   "loss_range": [
-    0.1681273728609085,
+    0.1164202094078064,
     5.958136081695557
   ],
   "max_gradient_norm": 637.855224609375,
-  "actual_reference_cpu_check_sha256": "7fd98b140ad9e884a1a6d641f1f8fab14f705f48dde7b9470dd6e32c71873be5"
+  "actual_reference_cpu_check_sha256": "7fd98b140ad9e884a1a6d641f1f8fab14f705f48dde7b9470dd6e32c71873be5",
+  "committed_candidate_step": 24600,
+  "committed_candidate_model_sha256": "3329fea42e241899330eb2a87760e8b27e7bd5b30f8a0d5e830756299e7ee061",
+  "optimizer_preserved": true,
+  "reference_variant": "yaw_only",
+  "reference_trial_plan_sha256": "c3207a39bbcfea1ad0d30c5ef2600b293ae46a145504c7c9049b0d1eb0685bd1"
 }
