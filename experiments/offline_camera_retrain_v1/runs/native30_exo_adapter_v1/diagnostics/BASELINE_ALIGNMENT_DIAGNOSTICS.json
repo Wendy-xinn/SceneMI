@@ -1,0 +1,1745 @@
+{
+  "created_at": "2026-10-18T02:17:48.352962+08:00",
+  "status": "baseline_only_read_only_CPU_diagnostic",
+  "scope": "Current formal third-attempt step0 baseline.9EXO fixed development VAL windows,3perdataset;clean/noisy each. Not final, not candidate benefit, not TEST.",
+  "GPU_used": false,
+  "TEST_used": false,
+  "optimizer_updates_represented": 0,
+  "array_sha256": "7271852bb1b690610cacce840d99159b982293ca99d877ed8b2e002a56f57b7f",
+  "validation_log_sha256": "128272ac10e790b269ff386703bdb7aa1c4a7e40606be8c976a716b5d97c1d34",
+  "LAUNCH": {
+    "launched_at": "2026-10-18T02:08:04.903207+08:00",
+    "supervisor_pid": 34486,
+    "command": [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops.adapter_trial",
+      "run",
+      "--prepared",
+      "--run",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1"
+    ],
+    "supervisor_source": "import datetime,json,os,subprocess,sys\nfrom pathlib import Path\nrun=Path(sys.argv[1]);command=json.loads(sys.argv[2]);viewer=json.loads(sys.argv[3]);root=Path(sys.argv[4])\ndef write(name,value):\n    path=run/name;tmp=path.with_suffix(path.suffix+'.tmp');tmp.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\\n');os.replace(tmp,path)\ndef now(): return datetime.datetime.now().astimezone().isoformat()\njob=dict(supervisor_pid=os.getpid(),launched_at=now(),command=command,status='running',bounded_updates=1000)\nwith (run/'run.log').open('a',buffering=1) as log:\n    child=subprocess.Popen(command,cwd=root,stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,close_fds=True)\n    job['child_pid']=child.pid;write('JOB.json',job)\n    result=child.wait();job.update(returncode=result,finished_at=now(),status='completed' if result==0 else 'failed');write('JOB.json',job)\nif result==0:\n    (run/'visuals/viser').mkdir(parents=True,exist_ok=True)\n    with (run/'visuals/viser/server.log').open('a',buffering=1) as log:\n        process=subprocess.Popen(viewer,cwd=root,stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,start_new_session=True,close_fds=True)\n    write('VIEWER_LAUNCH.json',dict(launched_at=now(),pid=process.pid,command=viewer,url='http://localhost:8802/',status='preparing_after_trial',not_yet_verified_listening=True))\nsys.exit(result)\n",
+    "git_commit": "79a0a0192edbdde6b499ad29ca7e38f98a675054",
+    "config_sha256": "0029fedcd3c5e3a3ae73d7e14603936836e47f9b677e8d7e8eeecc26ab76f976",
+    "parent_step": 41000,
+    "planned_updates": 1000,
+    "GPU_policy": "bounded parallel with frozen TEST if admitted; otherwise global exclusive queue",
+    "post_trial_viewer_command": [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops.motion_viewer",
+      "--manifest",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/VIEWER_CASES.json",
+      "--config",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/config.json",
+      "--cache-root",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/visuals/viser/cache",
+      "--port",
+      "8802"
+    ],
+    "attempt_index": 2,
+    "previous_attempt_record": "ATTEMPTS.json",
+    "restart_policy": "Full fresh CPU preparation/source seal, real GPU preflight, baseline, then1000updates. Sameconfig/panel/seed; no prior optimizer updates.",
+    "explicit_zero_update_source_reseal": "SOURCE_RESEAL.json",
+    "CPU_tests_passed": 51
+  },
+  "definitions": [
+    "Official visible/hidden metrics use the validation availability mask and aggregate each dataset by valid-joint count.",
+    "Alignment fits use only finite available observations with confidence>=0.05; scale is diagnostic only and never applied.",
+    "GT rigid/similarity fits are one constant transform perwholewindow; RMS is square-root mean squared Euclidean distance, not MPJPE.",
+    "Movement numbers are GT geometry; knee flexion+height change alone cannot distinguish crouching,sitting,yoga or stairs.",
+    "Fixed rest already includes native_body.scale; FK translation is motion[:3]*2, observations are trajectory[:3]*2."
+  ],
+  "groups": [
+    {
+      "dataset": "trumans",
+      "regime": "clean",
+      "windows": 3,
+      "mpjpe_mm": {
+        "value": 85.29755846659343,
+        "count": 12672
+      },
+      "conditioned_mpjpe_mm": {
+        "value": 11.069668583019906,
+        "count": 7545
+      },
+      "unconditioned_mpjpe_mm": {
+        "value": 194.53285168773695,
+        "count": 5127
+      },
+      "root_position_error_mm": {
+        "value": 22.303685506184895,
+        "count": 576
+      },
+      "foot_speed_during_GT_stance_m_s": {
+        "value": 0.7502044763897119,
+        "count": 937
+      },
+      "diagnostic_window_means": {
+        "observed_bone_to_rest_ratio_median": 1.0000000289564028,
+        "observed_bone_to_rest_ratio_abs_deviation": 2.0043285486881501e-07,
+        "prediction_bone_rest_abs_error_mm": 4.8715670313129106e-14,
+        "observed_window_robust_similarity_fit_scale": 0.9994278025432831,
+        "observed_window_robust_similarity_fit_scale_minus_one": -0.000572197456716883,
+        "raw_gt_world_mpjpe_mm": 85.29754504626645,
+        "raw_gt_world_rms_mm": 151.99773761647603,
+        "raw_gt_root_translation_error_mm": 22.30368520606957,
+        "diagnostic_gt_root_relative_mpjpe_mm": 92.72822097263513,
+        "diagnostic_gt_root_orientation_error_deg": 5.23110253633856,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 138.37023544504396,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 138.1696159150266
+      }
+    },
+    {
+      "dataset": "trumans",
+      "regime": "noisy",
+      "windows": 3,
+      "mpjpe_mm": {
+        "value": 118.8245137532552,
+        "count": 12672
+      },
+      "conditioned_mpjpe_mm": {
+        "value": 51.542889204380636,
+        "count": 7541
+      },
+      "unconditioned_mpjpe_mm": {
+        "value": 217.7079127357615,
+        "count": 5131
+      },
+      "root_position_error_mm": {
+        "value": 63.543252309163414,
+        "count": 576
+      },
+      "foot_speed_during_GT_stance_m_s": {
+        "value": 0.7002657397770449,
+        "count": 937
+      },
+      "diagnostic_window_means": {
+        "observed_bone_to_rest_ratio_median": 1.007704157608164,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.06411678371345952,
+        "prediction_bone_rest_abs_error_mm": 4.7699159069931056e-14,
+        "observed_window_robust_similarity_fit_scale": 1.0098308484532525,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.00983084845325255,
+        "raw_gt_world_mpjpe_mm": 118.82451135726517,
+        "raw_gt_world_rms_mm": 178.8559971257605,
+        "raw_gt_root_translation_error_mm": 63.54325284364498,
+        "diagnostic_gt_root_relative_mpjpe_mm": 123.408704772608,
+        "diagnostic_gt_root_orientation_error_deg": 18.35637963836815,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 148.28433894346293,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 147.15780970780196
+      }
+    },
+    {
+      "dataset": "egobody",
+      "regime": "clean",
+      "windows": 3,
+      "mpjpe_mm": {
+        "value": 14.269687016805014,
+        "count": 12672
+      },
+      "conditioned_mpjpe_mm": {
+        "value": 9.072697317627068,
+        "count": 11558
+      },
+      "unconditioned_mpjpe_mm": {
+        "value": 68.18961559549054,
+        "count": 1114
+      },
+      "root_position_error_mm": {
+        "value": 11.282251358032227,
+        "count": 576
+      },
+      "foot_speed_during_GT_stance_m_s": {
+        "value": 0.2310947812136325,
+        "count": 895
+      },
+      "diagnostic_window_means": {
+        "observed_bone_to_rest_ratio_median": 1.000000012613884,
+        "observed_bone_to_rest_ratio_abs_deviation": 3.212888127028061e-07,
+        "prediction_bone_rest_abs_error_mm": 6.926101465575786e-14,
+        "observed_window_robust_similarity_fit_scale": 1.0013468337312823,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.0013468337312823413,
+        "raw_gt_world_mpjpe_mm": 14.269680019374794,
+        "raw_gt_world_rms_mm": 36.411555866200224,
+        "raw_gt_root_translation_error_mm": 11.282249113985749,
+        "diagnostic_gt_root_relative_mpjpe_mm": 18.852402408881925,
+        "diagnostic_gt_root_orientation_error_deg": 2.9580545765181188,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 35.930742221739,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 35.777289306423455
+      }
+    },
+    {
+      "dataset": "egobody",
+      "regime": "noisy",
+      "windows": 3,
+      "mpjpe_mm": {
+        "value": 38.10161145528158,
+        "count": 12672
+      },
+      "conditioned_mpjpe_mm": {
+        "value": 34.014359858399814,
+        "count": 11522
+      },
+      "unconditioned_mpjpe_mm": {
+        "value": 79.05230018947435,
+        "count": 1150
+      },
+      "root_position_error_mm": {
+        "value": 30.265166600545246,
+        "count": 576
+      },
+      "foot_speed_during_GT_stance_m_s": {
+        "value": 0.2859055723641172,
+        "count": 895
+      },
+      "diagnostic_window_means": {
+        "observed_bone_to_rest_ratio_median": 1.005096355424644,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.07027326207081615,
+        "prediction_bone_rest_abs_error_mm": 7.318364664277155e-14,
+        "observed_window_robust_similarity_fit_scale": 1.0108848806223019,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.01088488062230164,
+        "raw_gt_world_mpjpe_mm": 38.10160603503531,
+        "raw_gt_world_rms_mm": 50.631612990586554,
+        "raw_gt_root_translation_error_mm": 30.265164651124934,
+        "diagnostic_gt_root_relative_mpjpe_mm": 44.37316952385526,
+        "diagnostic_gt_root_orientation_error_deg": 10.368547415067303,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 47.73962766925015,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 47.608684938424744
+      }
+    },
+    {
+      "dataset": "rich",
+      "regime": "clean",
+      "windows": 3,
+      "mpjpe_mm": {
+        "value": 17.630135854085285,
+        "count": 12672
+      },
+      "conditioned_mpjpe_mm": {
+        "value": 7.670306356666643,
+        "count": 10948
+      },
+      "unconditioned_mpjpe_mm": {
+        "value": 80.87851845637275,
+        "count": 1724
+      },
+      "root_position_error_mm": {
+        "value": 13.235032240549723,
+        "count": 576
+      },
+      "foot_speed_during_GT_stance_m_s": {
+        "value": 0.3012787540514306,
+        "count": 996
+      },
+      "diagnostic_window_means": {
+        "observed_bone_to_rest_ratio_median": 0.9999999530284184,
+        "observed_bone_to_rest_ratio_abs_deviation": 5.454170893444873e-07,
+        "prediction_bone_rest_abs_error_mm": 1.1456460321124476e-13,
+        "observed_window_robust_similarity_fit_scale": 1.003657533898164,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.0036575338981639227,
+        "raw_gt_world_mpjpe_mm": 17.630141744672667,
+        "raw_gt_world_rms_mm": 43.45679717870522,
+        "raw_gt_root_translation_error_mm": 13.235048758225814,
+        "diagnostic_gt_root_relative_mpjpe_mm": 22.617022166418582,
+        "diagnostic_gt_root_orientation_error_deg": 4.241726155972542,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 41.55894432652097,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 41.39867768631544
+      }
+    },
+    {
+      "dataset": "rich",
+      "regime": "noisy",
+      "windows": 3,
+      "mpjpe_mm": {
+        "value": 48.90449905395508,
+        "count": 12672
+      },
+      "conditioned_mpjpe_mm": {
+        "value": 39.29336450219285,
+        "count": 10948
+      },
+      "unconditioned_mpjpe_mm": {
+        "value": 109.93854359850253,
+        "count": 1724
+      },
+      "root_position_error_mm": {
+        "value": 50.625068028767906,
+        "count": 576
+      },
+      "foot_speed_during_GT_stance_m_s": {
+        "value": 0.31003862879721517,
+        "count": 996
+      },
+      "diagnostic_window_means": {
+        "observed_bone_to_rest_ratio_median": 0.9971552728870915,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.08890567248729238,
+        "prediction_bone_rest_abs_error_mm": 1.1522143468611032e-13,
+        "observed_window_robust_similarity_fit_scale": 1.0114813297865608,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.011481329786560726,
+        "raw_gt_world_mpjpe_mm": 48.90450781077527,
+        "raw_gt_world_rms_mm": 70.17059019893968,
+        "raw_gt_root_translation_error_mm": 50.62508960784216,
+        "diagnostic_gt_root_relative_mpjpe_mm": 58.840464854720004,
+        "diagnostic_gt_root_orientation_error_deg": 17.82296421747016,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 65.22259821602161,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 64.59184721477398
+      }
+    }
+  ],
+  "motions": [
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "sequence_id": "2023-02-17@11-01-52",
+      "start": 256,
+      "GT_movement": {
+        "root_horizontal_bbox_diagonal_m": 1.77282296393028,
+        "root_horizontal_path_m": 2.150357072711849,
+        "root_horizontal_endpoint_displacement_m": 1.6390653678804608,
+        "head_y_p95_p05_m": 0.3455601724071153,
+        "pelvis_y_p95_p05_m": 0.024936234951019265,
+        "knee_flexion_p95_deg": 63.86512051172893,
+        "knee_flexion_max_deg": 74.70632813798636,
+        "moving_span_over_0_5m": true,
+        "flexed_knee_with_height_change_candidate": true
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4751_master_full",
+      "start": 1536,
+      "GT_movement": {
+        "root_horizontal_bbox_diagonal_m": 0.22020066982550987,
+        "root_horizontal_path_m": 0.5227964274995207,
+        "root_horizontal_endpoint_displacement_m": 0.07355208581501431,
+        "head_y_p95_p05_m": 0.2443801652572908,
+        "pelvis_y_p95_p05_m": 0.2290336549282074,
+        "knee_flexion_p95_deg": 90.42926836773566,
+        "knee_flexion_max_deg": 92.93432595527744,
+        "moving_span_over_0_5m": false,
+        "flexed_knee_with_height_change_candidate": true
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "sequence_id": "ParkingLot1_004_phonetalk2",
+      "start": 320,
+      "GT_movement": {
+        "root_horizontal_bbox_diagonal_m": 0.014013377097357916,
+        "root_horizontal_path_m": 0.1901299760405605,
+        "root_horizontal_endpoint_displacement_m": 0.004580431746546111,
+        "head_y_p95_p05_m": 0.009244428950333061,
+        "pelvis_y_p95_p05_m": 0.00407539606094387,
+        "knee_flexion_p95_deg": 14.631015777531157,
+        "knee_flexion_max_deg": 15.601288600287774,
+        "moving_span_over_0_5m": false,
+        "flexed_knee_with_height_change_candidate": false
+      }
+    },
+    {
+      "case": 6,
+      "dataset": "trumans",
+      "sequence_id": "2023-02-18@16-55-22",
+      "start": 320,
+      "GT_movement": {
+        "root_horizontal_bbox_diagonal_m": 1.0383949475883025,
+        "root_horizontal_path_m": 1.1996381679703283,
+        "root_horizontal_endpoint_displacement_m": 0.9325359476097717,
+        "head_y_p95_p05_m": 0.021720415240594843,
+        "pelvis_y_p95_p05_m": 0.022439420223236084,
+        "knee_flexion_p95_deg": 33.36200035406746,
+        "knee_flexion_max_deg": 55.97566378139349,
+        "moving_span_over_0_5m": true,
+        "flexed_knee_with_height_change_candidate": false
+      }
+    },
+    {
+      "case": 7,
+      "dataset": "trumans",
+      "sequence_id": "2023-02-18@22-17-40",
+      "start": 1792,
+      "GT_movement": {
+        "root_horizontal_bbox_diagonal_m": 1.2762702417301164,
+        "root_horizontal_path_m": 1.679449119734855,
+        "root_horizontal_endpoint_displacement_m": 1.1753412302687833,
+        "head_y_p95_p05_m": 0.2677458342077141,
+        "pelvis_y_p95_p05_m": 0.018989503383636475,
+        "knee_flexion_p95_deg": 39.40993648474241,
+        "knee_flexion_max_deg": 57.35192118391528,
+        "moving_span_over_0_5m": true,
+        "flexed_knee_with_height_change_candidate": false
+      }
+    },
+    {
+      "case": 8,
+      "dataset": "egobody",
+      "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-4901_master_full",
+      "start": 1984,
+      "GT_movement": {
+        "root_horizontal_bbox_diagonal_m": 0.981410431657175,
+        "root_horizontal_path_m": 1.4136130378564358,
+        "root_horizontal_endpoint_displacement_m": 0.8225978676387918,
+        "head_y_p95_p05_m": 0.06216299593736352,
+        "pelvis_y_p95_p05_m": 0.03271777033805845,
+        "knee_flexion_p95_deg": 37.722851165709194,
+        "knee_flexion_max_deg": 46.5411446217652,
+        "moving_span_over_0_5m": true,
+        "flexed_knee_with_height_change_candidate": false
+      }
+    },
+    {
+      "case": 9,
+      "dataset": "egobody",
+      "sequence_id": "recording_20211002_S03_S18_01_interactee_2301-3441_master_full",
+      "start": 64,
+      "GT_movement": {
+        "root_horizontal_bbox_diagonal_m": 0.9638094737649684,
+        "root_horizontal_path_m": 1.5208154427412763,
+        "root_horizontal_endpoint_displacement_m": 0.6905245935857114,
+        "head_y_p95_p05_m": 0.4746119566727121,
+        "pelvis_y_p95_p05_m": 0.48095456659793856,
+        "knee_flexion_p95_deg": 142.79536348942446,
+        "knee_flexion_max_deg": 144.27902707854795,
+        "moving_span_over_0_5m": true,
+        "flexed_knee_with_height_change_candidate": true
+      }
+    },
+    {
+      "case": 10,
+      "dataset": "rich",
+      "sequence_id": "Pavallion_006_yoga1",
+      "start": 0,
+      "GT_movement": {
+        "root_horizontal_bbox_diagonal_m": 0.9419935216959989,
+        "root_horizontal_path_m": 1.3013777241508822,
+        "root_horizontal_endpoint_displacement_m": 0.812537456323852,
+        "head_y_p95_p05_m": 0.2748758323851084,
+        "pelvis_y_p95_p05_m": 0.24639993906021118,
+        "knee_flexion_p95_deg": 56.04186938166951,
+        "knee_flexion_max_deg": 69.38540355314676,
+        "moving_span_over_0_5m": true,
+        "flexed_knee_with_height_change_candidate": false
+      }
+    },
+    {
+      "case": 11,
+      "dataset": "rich",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "start": 640,
+      "GT_movement": {
+        "root_horizontal_bbox_diagonal_m": 0.8842860893258772,
+        "root_horizontal_path_m": 1.343557922293836,
+        "root_horizontal_endpoint_displacement_m": 0.8437012859547488,
+        "head_y_p95_p05_m": 0.5593230297371641,
+        "pelvis_y_p95_p05_m": 0.0817325592041016,
+        "knee_flexion_p95_deg": 45.28074179428895,
+        "knee_flexion_max_deg": 56.62611958092309,
+        "moving_span_over_0_5m": true,
+        "flexed_knee_with_height_change_candidate": false
+      }
+    }
+  ],
+  "rows": [
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "regime": "clean",
+      "sequence_id": "2023-02-17@11-01-52",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 100.2782974243164,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 25.08230972290039,
+          "count": 1560
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 144.31198120117188,
+          "count": 2664
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 100.2782974243164,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 41.473731994628906,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 9.859029769897461,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 59.35199737548828,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 35.775856018066406,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 1.0657434463500977,
+          "count": 284
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.3693181818181818,
+        "mean_position_confidence": 0.9149940013885498
+      },
+      "alignment": {
+        "observed_valid_samples": 1558,
+        "observed_bone_valid_pairs": 1120,
+        "observed_bone_to_rest_ratio_median": 1.0000000550558308,
+        "observed_bone_to_rest_ratio_abs_deviation": 1.718090747448997e-07,
+        "prediction_bone_rest_abs_error_mm": 4.1557641366952317e-14,
+        "observed_window_robust_similarity_fit_scale": 0.9942605523339157,
+        "observed_window_robust_similarity_fit_scale_minus_one": -0.005739447666084252,
+        "raw_gt_world_mpjpe_mm": 100.27828498237206,
+        "raw_gt_world_rms_mm": 156.17797630814582,
+        "raw_gt_root_translation_error_mm": 41.47373206188879,
+        "diagnostic_gt_root_relative_mpjpe_mm": 114.24122637804327,
+        "diagnostic_gt_root_orientation_error_deg": 9.8591191158048,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 154.45259872163894,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 154.2043315533975
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "regime": "noisy",
+      "sequence_id": "2023-02-17@11-01-52",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 125.24609375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 69.9399642944336,
+          "count": 1560
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 157.632568359375,
+          "count": 2664
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 125.24609375,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 84.3885498046875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 28.986602783203125,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 52.112789154052734,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 39.171607971191406,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.9279516339302063,
+          "count": 284
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.3693181818181818,
+        "mean_position_confidence": 0.5159741640090942
+      },
+      "alignment": {
+        "observed_valid_samples": 1551,
+        "observed_bone_valid_pairs": 1113,
+        "observed_bone_to_rest_ratio_median": 0.9957063862959272,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.09089752930505757,
+        "prediction_bone_rest_abs_error_mm": 4.0807304625359175e-14,
+        "observed_window_robust_similarity_fit_scale": 1.0022806532849389,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.0022806532849388716,
+        "raw_gt_world_mpjpe_mm": 125.24608663561594,
+        "raw_gt_world_rms_mm": 167.05640433512235,
+        "raw_gt_root_translation_error_mm": 84.3885514432988,
+        "diagnostic_gt_root_relative_mpjpe_mm": 130.06832550221097,
+        "diagnostic_gt_root_orientation_error_deg": 28.98661783685054,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 156.98451892431177,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 156.4757141299615
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "regime": "clean",
+      "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4751_master_full",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 11.550293922424316,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 10.014386177062988,
+          "count": 4164
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 118.14229583740234,
+          "count": 60
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 11.550293922424316,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 8.7060546875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 1.8258178234100342,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 22.80816650390625,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 13.381241798400879,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.31713369488716125,
+          "count": 368
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.9857954545454546,
+        "mean_position_confidence": 0.6349063515663147
+      },
+      "alignment": {
+        "observed_valid_samples": 4164,
+        "observed_bone_valid_pairs": 3944,
+        "observed_bone_to_rest_ratio_median": 1.000000084436275,
+        "observed_bone_to_rest_ratio_abs_deviation": 3.2305404207289e-07,
+        "prediction_bone_rest_abs_error_mm": 7.951160122726235e-14,
+        "observed_window_robust_similarity_fit_scale": 1.001567494960909,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.0015674949609090216,
+        "raw_gt_world_mpjpe_mm": 11.550287730060727,
+        "raw_gt_world_rms_mm": 27.396716892028756,
+        "raw_gt_root_translation_error_mm": 8.706054673794085,
+        "diagnostic_gt_root_relative_mpjpe_mm": 15.369345392465371,
+        "diagnostic_gt_root_orientation_error_deg": 1.8259772669563443,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 27.10616729112923,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 27.00710039746187
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "regime": "noisy",
+      "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4751_master_full",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 30.23143196105957,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 28.976411819458008,
+          "count": 4146
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 96.94058990478516,
+          "count": 78
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 30.23143196105957,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 20.428335189819336,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 8.237386703491211,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 28.757362365722656,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 18.123023986816406,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.35555243492126465,
+          "count": 368
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.9815340909090909,
+        "mean_position_confidence": 0.4071243107318878
+      },
+      "alignment": {
+        "observed_valid_samples": 4146,
+        "observed_bone_valid_pairs": 3908,
+        "observed_bone_to_rest_ratio_median": 1.0235366021177221,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.07378462078202053,
+        "prediction_bone_rest_abs_error_mm": 8.633519109060366e-14,
+        "observed_window_robust_similarity_fit_scale": 1.013780770104499,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.013780770104498963,
+        "raw_gt_world_mpjpe_mm": 30.231428077335465,
+        "raw_gt_world_rms_mm": 41.88621913481298,
+        "raw_gt_root_translation_error_mm": 20.42833324514294,
+        "diagnostic_gt_root_relative_mpjpe_mm": 37.82302809926902,
+        "diagnostic_gt_root_orientation_error_deg": 8.23742722638036,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 40.14689073822728,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 40.13866484536747
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "regime": "clean",
+      "sequence_id": "ParkingLot1_004_phonetalk2",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 18.79913902282715,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 12.911108016967773,
+          "count": 3802
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 71.84722900390625,
+          "count": 422
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 18.79913902282715,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 25.279373168945312,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 8.69237232208252,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 35.56830978393555,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 33.27043533325195,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.35595762729644775,
+          "count": 359
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.900094696969697,
+        "mean_position_confidence": 0.8820902705192566
+      },
+      "alignment": {
+        "observed_valid_samples": 3802,
+        "observed_bone_valid_pairs": 3418,
+        "observed_bone_to_rest_ratio_median": 0.9999999942271586,
+        "observed_bone_to_rest_ratio_abs_deviation": 5.84929823688185e-07,
+        "prediction_bone_rest_abs_error_mm": 1.147911957287748e-13,
+        "observed_window_robust_similarity_fit_scale": 1.0081141398674933,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.00811413986749332,
+        "raw_gt_world_mpjpe_mm": 18.7991756193704,
+        "raw_gt_world_rms_mm": 33.878810081717425,
+        "raw_gt_root_translation_error_mm": 25.279431716943993,
+        "diagnostic_gt_root_relative_mpjpe_mm": 27.720046637269146,
+        "diagnostic_gt_root_orientation_error_deg": 8.692408717785609,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 30.12428612534835,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 29.891512530024954
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "regime": "noisy",
+      "sequence_id": "ParkingLot1_004_phonetalk2",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 46.53392791748047,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 44.13188934326172,
+          "count": 3802
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 68.175048828125,
+          "count": 422
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 46.53392791748047,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 62.47612762451172,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 21.177112579345703,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 30.715667724609375,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 33.07296371459961,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.22081753611564636,
+          "count": 359
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.900094696969697,
+        "mean_position_confidence": 0.552900493144989
+      },
+      "alignment": {
+        "observed_valid_samples": 3802,
+        "observed_bone_valid_pairs": 3418,
+        "observed_bone_to_rest_ratio_median": 0.9655439836623781,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.0959796741802752,
+        "prediction_bone_rest_abs_error_mm": 1.1760495850974907e-13,
+        "observed_window_robust_similarity_fit_scale": 1.0147115850698947,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.014711585069894673,
+        "raw_gt_world_mpjpe_mm": 46.533952916530176,
+        "raw_gt_world_rms_mm": 54.75678041446059,
+        "raw_gt_root_translation_error_mm": 62.476178571973236,
+        "diagnostic_gt_root_relative_mpjpe_mm": 60.15784042133856,
+        "diagnostic_gt_root_orientation_error_deg": 21.177127057603187,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 46.2890325356572,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 45.165332514121275
+      }
+    },
+    {
+      "case": 6,
+      "dataset": "trumans",
+      "regime": "clean",
+      "sequence_id": "2023-02-18@16-55-22",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 137.84011840820312,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 7.275593280792236,
+          "count": 2314
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 296.0213928222656,
+          "count": 1910
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 137.84011840820312,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 16.200733184814453,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 2.656893253326416,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 33.830169677734375,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 33.640682220458984,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.9609754085540771,
+          "count": 342
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.5478219696969697,
+        "mean_position_confidence": 0.9487659335136414
+      },
+      "alignment": {
+        "observed_valid_samples": 2314,
+        "observed_bone_valid_pairs": 2082,
+        "observed_bone_to_rest_ratio_median": 1.0000000118044512,
+        "observed_bone_to_rest_ratio_abs_deviation": 1.958144771885273e-07,
+        "prediction_bone_rest_abs_error_mm": 4.1306381815868377e-14,
+        "observed_window_robust_similarity_fit_scale": 1.002001190064632,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.0020011900646319525,
+        "raw_gt_world_mpjpe_mm": 137.8400969461835,
+        "raw_gt_world_rms_mm": 253.98412780115686,
+        "raw_gt_root_translation_error_mm": 16.20073258262231,
+        "diagnostic_gt_root_relative_mpjpe_mm": 143.04163931040435,
+        "diagnostic_gt_root_orientation_error_deg": 2.6570449063954293,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 216.6120254504812,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 216.28176530192127
+      }
+    },
+    {
+      "case": 6,
+      "dataset": "trumans",
+      "regime": "noisy",
+      "sequence_id": "2023-02-18@16-55-22",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 177.9757080078125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 53.28612518310547,
+          "count": 2310
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 328.463134765625,
+          "count": 1914
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 177.9757080078125,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 45.87302780151367,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 11.513381958007812,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 39.6744270324707,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 36.392539978027344,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.8209894299507141,
+          "count": 342
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.546875,
+        "mean_position_confidence": 0.5780439376831055
+      },
+      "alignment": {
+        "observed_valid_samples": 2302,
+        "observed_bone_valid_pairs": 2064,
+        "observed_bone_to_rest_ratio_median": 1.0084164151732677,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.050333694280326524,
+        "prediction_bone_rest_abs_error_mm": 4.105168035312575e-14,
+        "observed_window_robust_similarity_fit_scale": 1.0157394981663632,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.01573949816636322,
+        "raw_gt_world_mpjpe_mm": 177.9757052347397,
+        "raw_gt_world_rms_mm": 292.5048273059723,
+        "raw_gt_root_translation_error_mm": 45.87302799358207,
+        "diagnostic_gt_root_relative_mpjpe_mm": 182.8140489200981,
+        "diagnostic_gt_root_orientation_error_deg": 11.51341250796331,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 222.24856062108438,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 221.9015545914682
+      }
+    },
+    {
+      "case": 7,
+      "dataset": "trumans",
+      "regime": "clean",
+      "sequence_id": "2023-02-18@22-17-40",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 17.774259567260742,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 7.50654411315918,
+          "count": 3671
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 85.934814453125,
+          "count": 553
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 17.774259567260742,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 9.236591339111328,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 3.1770408153533936,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 30.327857971191406,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 23.43341636657715,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.23027931153774261,
+          "count": 311
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.8690814393939394,
+        "mean_position_confidence": 0.8731464147567749
+      },
+      "alignment": {
+        "observed_valid_samples": 3663,
+        "observed_bone_valid_pairs": 3441,
+        "observed_bone_to_rest_ratio_median": 1.0000000200089267,
+        "observed_bone_to_rest_ratio_abs_deviation": 2.3367501267301805e-07,
+        "prediction_bone_rest_abs_error_mm": 6.328298775656661e-14,
+        "observed_window_robust_similarity_fit_scale": 1.0020216652313017,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.0020216652313016503,
+        "raw_gt_world_mpjpe_mm": 17.77425321024381,
+        "raw_gt_world_rms_mm": 45.83110874012538,
+        "raw_gt_root_translation_error_mm": 9.23659097369761,
+        "diagnostic_gt_root_relative_mpjpe_mm": 20.90179722945775,
+        "diagnostic_gt_root_orientation_error_deg": 3.1771435868154505,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 44.04608216301169,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 44.02275088976102
+      }
+    },
+    {
+      "case": 7,
+      "dataset": "trumans",
+      "regime": "noisy",
+      "sequence_id": "2023-02-18@22-17-40",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 53.251739501953125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 42.62806701660156,
+          "count": 3671
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 123.77522277832031,
+          "count": 553
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 53.251739501953125,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 60.36817932128906,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 14.569083213806152,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 28.04631805419922,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 27.315460205078125,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.359589546918869,
+          "count": 311
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.8690814393939394,
+        "mean_position_confidence": 0.5374968647956848
+      },
+      "alignment": {
+        "observed_valid_samples": 3602,
+        "observed_bone_valid_pairs": 3380,
+        "observed_bone_to_rest_ratio_median": 1.0189896713552975,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.05111912755499448,
+        "prediction_bone_rest_abs_error_mm": 6.123849223130824e-14,
+        "observed_window_robust_similarity_fit_scale": 1.0114723939084556,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.011472393908455558,
+        "raw_gt_world_mpjpe_mm": 53.25174220143978,
+        "raw_gt_world_rms_mm": 77.0067597361868,
+        "raw_gt_root_translation_error_mm": 60.36817909405405,
+        "diagnostic_gt_root_relative_mpjpe_mm": 57.34373989551496,
+        "diagnostic_gt_root_orientation_error_deg": 14.569108570290597,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 65.61993728499267,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 63.0961604019762
+      }
+    },
+    {
+      "case": 8,
+      "dataset": "egobody",
+      "regime": "clean",
+      "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-4901_master_full",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 12.296378135681152,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 7.620522975921631,
+          "count": 3683
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 44.12849426269531,
+          "count": 541
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 12.296378135681152,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 12.734502792358398,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 4.012992858886719,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 32.940521240234375,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 14.938611030578613,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.05585315823554993,
+          "count": 291
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.8719223484848485,
+        "mean_position_confidence": 0.8797176480293274
+      },
+      "alignment": {
+        "observed_valid_samples": 3683,
+        "observed_bone_valid_pairs": 3273,
+        "observed_bone_to_rest_ratio_median": 0.9999999731217183,
+        "observed_bone_to_rest_ratio_abs_deviation": 2.9095600284634315e-07,
+        "prediction_bone_rest_abs_error_mm": 6.169626648191323e-14,
+        "observed_window_robust_similarity_fit_scale": 0.9998689336961811,
+        "observed_window_robust_similarity_fit_scale_minus_one": -0.00013106630381887197,
+        "raw_gt_world_mpjpe_mm": 12.29637207045332,
+        "raw_gt_world_rms_mm": 34.95313730040839,
+        "raw_gt_root_translation_error_mm": 12.73450151272597,
+        "diagnostic_gt_root_relative_mpjpe_mm": 17.761000811950957,
+        "diagnostic_gt_root_orientation_error_deg": 4.01308449664537,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 34.57327376170071,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 34.38888171850575
+      }
+    },
+    {
+      "case": 8,
+      "dataset": "egobody",
+      "regime": "noisy",
+      "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-4901_master_full",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 34.35382080078125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 31.42840576171875,
+          "count": 3683
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 54.26933288574219,
+          "count": 541
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 34.35382080078125,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 35.02126693725586,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 6.115994930267334,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 41.59504318237305,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 18.367448806762695,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.0776914581656456,
+          "count": 291
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.8719223484848485,
+        "mean_position_confidence": 0.49982142448425293
+      },
+      "alignment": {
+        "observed_valid_samples": 3683,
+        "observed_bone_valid_pairs": 3273,
+        "observed_bone_to_rest_ratio_median": 1.0104028096370314,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.04767606386136669,
+        "prediction_bone_rest_abs_error_mm": 6.254297674994953e-14,
+        "observed_window_robust_similarity_fit_scale": 1.0023244271975018,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.0023244271975018105,
+        "raw_gt_world_mpjpe_mm": 34.35381711120784,
+        "raw_gt_world_rms_mm": 39.592887030370804,
+        "raw_gt_root_translation_error_mm": 35.0212663850968,
+        "diagnostic_gt_root_relative_mpjpe_mm": 34.818147463318745,
+        "diagnostic_gt_root_orientation_error_deg": 6.1160530006308305,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 34.922177974128566,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 34.691036303123425
+      }
+    },
+    {
+      "case": 9,
+      "dataset": "egobody",
+      "regime": "clean",
+      "sequence_id": "recording_20211002_S03_S18_01_interactee_2301-3441_master_full",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 18.96238899230957,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 9.457274436950684,
+          "count": 3711
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 87.72159576416016,
+          "count": 513
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 18.96238899230957,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 12.406196594238281,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 3.034971237182617,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 20.572179794311523,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 15.062228202819824,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.3130142390727997,
+          "count": 236
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.8785511363636364,
+        "mean_position_confidence": 0.7135363817214966
+      },
+      "alignment": {
+        "observed_valid_samples": 3710,
+        "observed_bone_valid_pairs": 3460,
+        "observed_bone_to_rest_ratio_median": 0.9999999802836584,
+        "observed_bone_to_rest_ratio_abs_deviation": 3.4985639318918516e-07,
+        "prediction_bone_rest_abs_error_mm": 6.6575176258098e-14,
+        "observed_window_robust_similarity_fit_scale": 1.0026040725367569,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.002604072536756874,
+        "raw_gt_world_mpjpe_mm": 18.962380257610338,
+        "raw_gt_world_rms_mm": 46.88481340616352,
+        "raw_gt_root_translation_error_mm": 12.40619115543719,
+        "diagnostic_gt_root_relative_mpjpe_mm": 23.426861022229442,
+        "diagnostic_gt_root_orientation_error_deg": 3.0351019659526415,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 46.11278561238707,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 45.935885803302746
+      }
+    },
+    {
+      "case": 9,
+      "dataset": "egobody",
+      "regime": "noisy",
+      "sequence_id": "recording_20211002_S03_S18_01_interactee_2301-3441_master_full",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 49.719581604003906,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 42.249237060546875,
+          "count": 3693
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 101.67433166503906,
+          "count": 531
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 49.719581604003906,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 35.34589767456055,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 16.75212860107422,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 27.18010711669922,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 24.212665557861328,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.4340422749519348,
+          "count": 236
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.8742897727272727,
+        "mean_position_confidence": 0.4254613518714905
+      },
+      "alignment": {
+        "observed_valid_samples": 3692,
+        "observed_bone_valid_pairs": 3424,
+        "observed_bone_to_rest_ratio_median": 0.9813496545191782,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.08935910156906124,
+        "prediction_bone_rest_abs_error_mm": 7.067277208776147e-14,
+        "observed_window_robust_similarity_fit_scale": 1.0165494445649041,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.016549444564904148,
+        "raw_gt_world_mpjpe_mm": 49.719572916562626,
+        "raw_gt_world_rms_mm": 70.41573280657586,
+        "raw_gt_root_translation_error_mm": 35.345894323135056,
+        "diagnostic_gt_root_relative_mpjpe_mm": 60.47833300897802,
+        "diagnostic_gt_root_orientation_error_deg": 16.752162018190717,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 68.1498142953946,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 67.99635366678335
+      }
+    },
+    {
+      "case": 10,
+      "dataset": "rich",
+      "regime": "clean",
+      "sequence_id": "Pavallion_006_yoga1",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 17.787324905395508,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 7.415865421295166,
+          "count": 3781
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 106.3076171875,
+          "count": 443
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 17.787324905395508,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 13.365458488464355,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 3.616893768310547,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 17.910995483398438,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 20.852067947387695,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.28467604517936707,
+          "count": 306
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.8951231060606061,
+        "mean_position_confidence": 0.943908154964447
+      },
+      "alignment": {
+        "observed_valid_samples": 3781,
+        "observed_bone_valid_pairs": 3463,
+        "observed_bone_to_rest_ratio_median": 0.9999999332141755,
+        "observed_bone_to_rest_ratio_abs_deviation": 4.5705415763208634e-07,
+        "prediction_bone_rest_abs_error_mm": 1.1397890457732532e-13,
+        "observed_window_robust_similarity_fit_scale": 1.0029068368523577,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.002906836852357708,
+        "raw_gt_world_mpjpe_mm": 17.787312803372075,
+        "raw_gt_world_rms_mm": 50.69415231441766,
+        "raw_gt_root_translation_error_mm": 13.365447996486028,
+        "diagnostic_gt_root_relative_mpjpe_mm": 22.792648205636333,
+        "diagnostic_gt_root_orientation_error_deg": 3.616988845698114,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 49.44207827893249,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 49.194056488408854
+      }
+    },
+    {
+      "case": 10,
+      "dataset": "rich",
+      "regime": "noisy",
+      "sequence_id": "Pavallion_006_yoga1",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 56.80671691894531,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 40.561153411865234,
+          "count": 3781
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 195.46241760253906,
+          "count": 443
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 56.80671691894531,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 60.128013610839844,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 20.812732696533203,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 18.331592559814453,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 31.024677276611328,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.43075013160705566,
+          "count": 306
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.8951231060606061,
+        "mean_position_confidence": 0.5381021499633789
+      },
+      "alignment": {
+        "observed_valid_samples": 3781,
+        "observed_bone_valid_pairs": 3463,
+        "observed_bone_to_rest_ratio_median": 1.0162506737252734,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.09235674652113834,
+        "prediction_bone_rest_abs_error_mm": 1.122923678645701e-13,
+        "observed_window_robust_similarity_fit_scale": 1.011087335066837,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.011087335066837012,
+        "raw_gt_world_mpjpe_mm": 56.80672240123021,
+        "raw_gt_world_rms_mm": 94.82392176659468,
+        "raw_gt_root_translation_error_mm": 60.12802405476583,
+        "diagnostic_gt_root_relative_mpjpe_mm": 70.96234708122412,
+        "diagnostic_gt_root_orientation_error_deg": 20.81274882846144,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 90.09520960263403,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 89.85976900900937
+      }
+    },
+    {
+      "case": 11,
+      "dataset": "rich",
+      "regime": "clean",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 16.303943634033203,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2.0347976684570312,
+          "count": 3365
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 72.20111846923828,
+          "count": 859
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 16.303943634033203,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 1.060265064239502,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.41483211517333984,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 23.90460777282715,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 18.11214828491211,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.2573232054710388,
+          "count": 331
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.7966382575757576,
+        "mean_position_confidence": 0.872472882270813
+      },
+      "alignment": {
+        "observed_valid_samples": 3362,
+        "observed_bone_valid_pairs": 2945,
+        "observed_bone_to_rest_ratio_median": 0.9999999316439212,
+        "observed_bone_to_rest_ratio_abs_deviation": 5.942672867131904e-07,
+        "prediction_bone_rest_abs_error_mm": 1.1492370932763414e-13,
+        "observed_window_robust_similarity_fit_scale": 0.9999516249746407,
+        "observed_window_robust_similarity_fit_scale_minus_one": -4.837502535925964e-05,
+        "raw_gt_world_mpjpe_mm": 16.303936811275523,
+        "raw_gt_world_rms_mm": 45.79742913998061,
+        "raw_gt_root_translation_error_mm": 1.0602665612474196,
+        "diagnostic_gt_root_relative_mpjpe_mm": 17.33837165635027,
+        "diagnostic_gt_root_orientation_error_deg": 0.4157809044339047,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 45.11046857528207,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 45.110464040512504
+      }
+    },
+    {
+      "case": 11,
+      "dataset": "rich",
+      "regime": "noisy",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "official_metrics": {
+        "mpjpe_mm": {
+          "value": 43.37285232543945,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 32.40195846557617,
+          "count": 3365
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 86.34962463378906,
+          "count": 859
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 43.37285232543945,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 29.27106285095215,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 11.478981018066406,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 33.11704635620117,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 24.91022300720215,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.2952128052711487,
+          "count": 331
+        }
+      },
+      "input_stats": {
+        "available_joint_fraction": 0.7966382575757576,
+        "mean_position_confidence": 0.5319575071334839
+      },
+      "alignment": {
+        "observed_valid_samples": 3295,
+        "observed_bone_valid_pairs": 2878,
+        "observed_bone_to_rest_ratio_median": 1.0096711612736227,
+        "observed_bone_to_rest_ratio_abs_deviation": 0.0783805967604636,
+        "prediction_bone_rest_abs_error_mm": 1.1576697768401175e-13,
+        "observed_window_robust_similarity_fit_scale": 1.0086450692229505,
+        "observed_window_robust_similarity_fit_scale_minus_one": 0.008645069222950497,
+        "raw_gt_world_mpjpe_mm": 43.37284811456544,
+        "raw_gt_world_rms_mm": 60.93106841576375,
+        "raw_gt_root_translation_error_mm": 29.271066196787412,
+        "diagnostic_gt_root_relative_mpjpe_mm": 45.40120706159732,
+        "diagnostic_gt_root_orientation_error_deg": 11.479016766345856,
+        "diagnostic_gt_window_rigid_fit_weighted_rms_residual_mm": 59.28355250977363,
+        "diagnostic_gt_window_similarity_fit_weighted_rms_residual_mm": 58.75044012119129
+      }
+    }
+  ]
+}
