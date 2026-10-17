@@ -6,5 +6,22 @@
   "original_55k_run": "completed before this incident",
   "test_failure": "Open3D SIGSEGV then ld.so relocation assertion exit127 before later WSL restarts",
   "wsl_evidence": "Kernel/journal show distro filesystem unmount/remount and systemd shutdown; caller not established. No observed OOM-kill evidence.",
-  "recovery_policy": "Retain previous logs and all hash-verified completed data. Serial EXO preparation, then one TEST export worker. No blindly broad native-error retries."
+  "recovery_policy": "Retain previous logs and all hash-verified completed data. Serial EXO preparation, then one TEST export worker. No blindly broad native-error retries.",
+  "recovery_verified_at": "2026-10-17T23:25:34.816254+08:00",
+  "recovery_outcome": {
+    "TRAIN_VAL_metadata_original_SHA_passed": 1009,
+    "TRAIN_VAL_arrays_original_SHA_passed": 20341,
+    "TEST_export_streams_completed": 53,
+    "TEST_windows": 335,
+    "TEST_partial_predictions_CPU_verified": 2,
+    "EXO_actual_updates_audited": 75,
+    "EXO_shared_unet_tensors_changed_at_first_checkpoint": 148,
+    "full_TEST_queued_after_EXO": true,
+    "retained_41k_55k_full_SHA_passed": true
+  },
+  "free_disk_after_bytes": {
+    "/": 122844446720,
+    "/mnt/d": 562365149184,
+    "/mnt/e": 120327241728
+  }
 }
