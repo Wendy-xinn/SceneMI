@@ -1,0 +1,2608 @@
+{
+  "protocol": "native30-shared-diffusion-exo-adaptation-v1",
+  "status": "matched_primary_metrics_CPU_verified",
+  "checked_at": "2026-10-17T23:58:25.616053+08:00",
+  "cases": [
+    {
+      "identity": {
+        "dataset": "trumans",
+        "mode": "ego",
+        "sequence_id": "2023-02-18@22-11-49",
+        "source_first": 1024,
+        "case_seed": 3294300373,
+        "regime": "clean",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 112.05839538574219,
+            "count": 4224
+          },
+          "final": {
+            "value": 140.00762939453125,
+            "count": 4224
+          },
+          "reference": {
+            "value": 497.9351501464844,
+            "count": 4224
+          },
+          "delta": 27.949234008789062
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 0.002472315914928913,
+            "count": 192
+          },
+          "final": {
+            "value": 0.01066613756120205,
+            "count": 192
+          },
+          "reference": {
+            "value": 0.00012030425568809733,
+            "count": 192
+          },
+          "delta": 0.008193821646273136
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 117.39440155029297,
+            "count": 4032
+          },
+          "final": {
+            "value": 146.6741485595703,
+            "count": 4032
+          },
+          "reference": {
+            "value": 521.6463623046875,
+            "count": 4032
+          },
+          "delta": 29.279747009277344
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 112.05839538574219,
+            "count": 4224
+          },
+          "final": {
+            "value": 140.00762939453125,
+            "count": 4224
+          },
+          "reference": {
+            "value": 497.9351501464844,
+            "count": 4224
+          },
+          "delta": 27.949234008789062
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 108.94931030273438,
+            "count": 192
+          },
+          "final": {
+            "value": 130.5621795654297,
+            "count": 192
+          },
+          "reference": {
+            "value": 339.65045166015625,
+            "count": 192
+          },
+          "delta": 21.612869262695312
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 12.272655487060547,
+            "count": 192
+          },
+          "final": {
+            "value": 17.465383529663086,
+            "count": 192
+          },
+          "reference": {
+            "value": 72.04423522949219,
+            "count": 192
+          },
+          "delta": 5.192728042602539
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 2.5622899532318115,
+            "count": 192
+          },
+          "final": {
+            "value": 6.468310356140137,
+            "count": 192
+          },
+          "reference": {
+            "value": 0.00014571071369573474,
+            "count": 192
+          },
+          "delta": 3.906020402908325
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 21.101696014404297,
+            "count": 4224
+          },
+          "final": {
+            "value": 27.507917404174805,
+            "count": 4224
+          },
+          "reference": {
+            "value": 65.29825592041016,
+            "count": 4224
+          },
+          "delta": 6.406221389770508
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.25930196046829224,
+            "count": 254
+          },
+          "final": {
+            "value": 0.35505422949790955,
+            "count": 254
+          },
+          "reference": {
+            "value": 1.3991669416427612,
+            "count": 254
+          },
+          "delta": 0.09575226902961731
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.14792414732162348,
+          "gt_bilateral_motion_rms_m": 0.16515234339540835,
+          "bilateral_motion_rms_error_mm": 17.22819607378487,
+          "bilateral_motion_rms_ratio": 0.8956830056444488,
+          "bilateral_stride_change_mean_m": 0.11290717181714237,
+          "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+          "bilateral_stride_change_abs_error_mm": 54.539974676845866
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 1.0728477005006724e-07,
+          "gt_bilateral_motion_rms_m": 0.16515234339540835,
+          "bilateral_motion_rms_error_mm": 165.1522361106383,
+          "bilateral_motion_rms_ratio": 6.496109461384126e-07,
+          "bilateral_stride_change_mean_m": 1.2972656434105262e-07,
+          "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+          "bilateral_stride_change_abs_error_mm": 122.31608358620264
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.18171424780660397,
+          "gt_bilateral_motion_rms_m": 0.16515234339540835,
+          "bilateral_motion_rms_error_mm": 16.56190441119562,
+          "bilateral_motion_rms_ratio": 1.1002825880075044,
+          "bilateral_stride_change_mean_m": 0.12660174087011458,
+          "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+          "bilateral_stride_change_abs_error_mm": 48.53537455770775
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 1.0728477005006724e-07,
+          "gt_bilateral_motion_rms_m": 0.16515234339540835,
+          "bilateral_motion_rms_error_mm": 165.1522361106383,
+          "bilateral_motion_rms_ratio": 6.496109461384126e-07,
+          "bilateral_stride_change_mean_m": 1.2972656434105262e-07,
+          "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+          "bilateral_stride_change_abs_error_mm": 122.31608358620264
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "trumans",
+        "mode": "ego",
+        "sequence_id": "2023-02-18@22-11-49",
+        "source_first": 1024,
+        "case_seed": 3294300373,
+        "regime": "noisy",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 123.55487060546875,
+            "count": 4224
+          },
+          "final": {
+            "value": 147.01025390625,
+            "count": 4224
+          },
+          "reference": {
+            "value": 495.4589538574219,
+            "count": 4224
+          },
+          "delta": 23.45538330078125
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 22.492433547973633,
+            "count": 174
+          },
+          "final": {
+            "value": 25.081989288330078,
+            "count": 174
+          },
+          "reference": {
+            "value": 23.87265968322754,
+            "count": 174
+          },
+          "delta": 2.5895557403564453
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 127.89680480957031,
+            "count": 4050
+          },
+          "final": {
+            "value": 152.24864196777344,
+            "count": 4050
+          },
+          "reference": {
+            "value": 515.7196655273438,
+            "count": 4050
+          },
+          "delta": 24.351837158203125
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 123.55487060546875,
+            "count": 4224
+          },
+          "final": {
+            "value": 147.01025390625,
+            "count": 4224
+          },
+          "reference": {
+            "value": 495.4589538574219,
+            "count": 4224
+          },
+          "delta": 23.45538330078125
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 124.46855926513672,
+            "count": 192
+          },
+          "final": {
+            "value": 142.95114135742188,
+            "count": 192
+          },
+          "reference": {
+            "value": 334.5263366699219,
+            "count": 192
+          },
+          "delta": 18.482582092285156
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 16.367385864257812,
+            "count": 192
+          },
+          "final": {
+            "value": 20.209861755371094,
+            "count": 192
+          },
+          "reference": {
+            "value": 73.25039672851562,
+            "count": 192
+          },
+          "delta": 3.8424758911132812
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 8.21450424194336,
+            "count": 192
+          },
+          "final": {
+            "value": 7.650277137756348,
+            "count": 192
+          },
+          "reference": {
+            "value": 5.782440185546875,
+            "count": 192
+          },
+          "delta": -0.5642271041870117
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 23.328327178955078,
+            "count": 4224
+          },
+          "final": {
+            "value": 29.208105087280273,
+            "count": 4224
+          },
+          "reference": {
+            "value": 66.47107696533203,
+            "count": 4224
+          },
+          "delta": 5.879777908325195
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.31911444664001465,
+            "count": 254
+          },
+          "final": {
+            "value": 0.3517763018608093,
+            "count": 254
+          },
+          "reference": {
+            "value": 1.397855281829834,
+            "count": 254
+          },
+          "delta": 0.03266185522079468
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.18403378718364097,
+          "gt_bilateral_motion_rms_m": 0.16515234339540835,
+          "bilateral_motion_rms_error_mm": 18.881443788232616,
+          "bilateral_motion_rms_ratio": 1.114327434900676,
+          "bilateral_stride_change_mean_m": 0.11682915131086317,
+          "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+          "bilateral_stride_change_abs_error_mm": 65.14256016871576
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 1.027393097989223e-07,
+          "gt_bilateral_motion_rms_m": 0.16515234339540835,
+          "bilateral_motion_rms_error_mm": 165.15224065609854,
+          "bilateral_motion_rms_ratio": 6.220881138388903e-07,
+          "bilateral_stride_change_mean_m": 1.2715662883411144e-07,
+          "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+          "bilateral_stride_change_abs_error_mm": 122.31608615613814
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.18921405222618054,
+          "gt_bilateral_motion_rms_m": 0.16515234339540835,
+          "bilateral_motion_rms_error_mm": 24.06170883077219,
+          "bilateral_motion_rms_ratio": 1.1456940200549475,
+          "bilateral_stride_change_mean_m": 0.12072953791164157,
+          "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+          "bilateral_stride_change_abs_error_mm": 63.38550554415175
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 1.027393097989223e-07,
+          "gt_bilateral_motion_rms_m": 0.16515234339540835,
+          "bilateral_motion_rms_error_mm": 165.15224065609854,
+          "bilateral_motion_rms_ratio": 6.220881138388903e-07,
+          "bilateral_stride_change_mean_m": 1.2715662883411144e-07,
+          "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+          "bilateral_stride_change_abs_error_mm": 122.31608615613814
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "trumans",
+        "mode": "exo",
+        "sequence_id": "2023-02-17@11-01-52",
+        "source_first": 256,
+        "case_seed": 2773881778,
+        "regime": "clean",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 100.2782974243164,
+            "count": 4224
+          },
+          "final": {
+            "value": 86.93025970458984,
+            "count": 4224
+          },
+          "reference": {
+            "value": 140.44082641601562,
+            "count": 4224
+          },
+          "delta": -13.348037719726562
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 25.08230972290039,
+            "count": 1560
+          },
+          "final": {
+            "value": 22.54463768005371,
+            "count": 1560
+          },
+          "reference": {
+            "value": 73.44638061523438,
+            "count": 1560
+          },
+          "delta": -2.5376720428466797
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 144.31198120117188,
+            "count": 2664
+          },
+          "final": {
+            "value": 124.633544921875,
+            "count": 2664
+          },
+          "reference": {
+            "value": 179.67181396484375,
+            "count": 2664
+          },
+          "delta": -19.678436279296875
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 100.2782974243164,
+            "count": 4224
+          },
+          "final": {
+            "value": 86.93025970458984,
+            "count": 4224
+          },
+          "reference": {
+            "value": 140.44082641601562,
+            "count": 4224
+          },
+          "delta": -13.348037719726562
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 41.473731994628906,
+            "count": 192
+          },
+          "final": {
+            "value": 39.75385284423828,
+            "count": 192
+          },
+          "reference": {
+            "value": 37.31508255004883,
+            "count": 192
+          },
+          "delta": -1.719879150390625
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 9.859029769897461,
+            "count": 192
+          },
+          "final": {
+            "value": 5.737782955169678,
+            "count": 192
+          },
+          "reference": {
+            "value": 4.579254150390625,
+            "count": 192
+          },
+          "delta": -4.121246814727783
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 59.35199737548828,
+            "count": 192
+          },
+          "final": {
+            "value": 30.445219039916992,
+            "count": 192
+          },
+          "reference": {
+            "value": 58.258331298828125,
+            "count": 192
+          },
+          "delta": -28.90677833557129
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 35.775856018066406,
+            "count": 4224
+          },
+          "final": {
+            "value": 25.57827377319336,
+            "count": 4224
+          },
+          "reference": {
+            "value": 39.90259552001953,
+            "count": 4224
+          },
+          "delta": -10.197582244873047
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 1.0657434463500977,
+            "count": 284
+          },
+          "final": {
+            "value": 0.74836266040802,
+            "count": 284
+          },
+          "reference": {
+            "value": 0.9134275317192078,
+            "count": 284
+          },
+          "delta": -0.31738078594207764
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.312026306461633,
+          "gt_bilateral_motion_rms_m": 0.22403810009029743,
+          "bilateral_motion_rms_error_mm": 87.98820637133556,
+          "bilateral_motion_rms_ratio": 1.3927376920973369,
+          "bilateral_stride_change_mean_m": 0.2491972050177729,
+          "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+          "bilateral_stride_change_abs_error_mm": 129.29994107458796
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 0.24338392387208763,
+          "gt_bilateral_motion_rms_m": 0.22403810009029743,
+          "bilateral_motion_rms_error_mm": 19.3458237817902,
+          "bilateral_motion_rms_ratio": 1.086350597393894,
+          "bilateral_stride_change_mean_m": 0.2223441332502264,
+          "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+          "bilateral_stride_change_abs_error_mm": 99.8591345652372
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.249310762186014,
+          "gt_bilateral_motion_rms_m": 0.22403810009029743,
+          "bilateral_motion_rms_error_mm": 25.272662095716576,
+          "bilateral_motion_rms_ratio": 1.1128051973549613,
+          "bilateral_stride_change_mean_m": 0.22188354246099268,
+          "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+          "bilateral_stride_change_abs_error_mm": 78.19330368085423
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 0.24338392387208763,
+          "gt_bilateral_motion_rms_m": 0.22403810009029743,
+          "bilateral_motion_rms_error_mm": 19.3458237817902,
+          "bilateral_motion_rms_ratio": 1.086350597393894,
+          "bilateral_stride_change_mean_m": 0.2223441332502264,
+          "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+          "bilateral_stride_change_abs_error_mm": 99.8591345652372
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "trumans",
+        "mode": "exo",
+        "sequence_id": "2023-02-17@11-01-52",
+        "source_first": 256,
+        "case_seed": 2773881778,
+        "regime": "noisy",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 125.24609375,
+            "count": 4224
+          },
+          "final": {
+            "value": 141.60476684570312,
+            "count": 4224
+          },
+          "reference": {
+            "value": 165.1852264404297,
+            "count": 4224
+          },
+          "delta": 16.358673095703125
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 69.9399642944336,
+            "count": 1560
+          },
+          "final": {
+            "value": 68.48995971679688,
+            "count": 1560
+          },
+          "reference": {
+            "value": 97.30653381347656,
+            "count": 1560
+          },
+          "delta": -1.4500045776367188
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 157.632568359375,
+            "count": 2664
+          },
+          "final": {
+            "value": 184.41973876953125,
+            "count": 2664
+          },
+          "reference": {
+            "value": 204.93399047851562,
+            "count": 2664
+          },
+          "delta": 26.78717041015625
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 125.24609375,
+            "count": 4224
+          },
+          "final": {
+            "value": 141.60476684570312,
+            "count": 4224
+          },
+          "reference": {
+            "value": 165.1852264404297,
+            "count": 4224
+          },
+          "delta": 16.358673095703125
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 84.3885498046875,
+            "count": 192
+          },
+          "final": {
+            "value": 68.48536682128906,
+            "count": 192
+          },
+          "reference": {
+            "value": 61.558868408203125,
+            "count": 192
+          },
+          "delta": -15.903182983398438
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 28.986602783203125,
+            "count": 192
+          },
+          "final": {
+            "value": 19.80228042602539,
+            "count": 192
+          },
+          "reference": {
+            "value": 16.724409103393555,
+            "count": 192
+          },
+          "delta": -9.184322357177734
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 52.112789154052734,
+            "count": 192
+          },
+          "final": {
+            "value": 28.638023376464844,
+            "count": 192
+          },
+          "reference": {
+            "value": 61.51496887207031,
+            "count": 192
+          },
+          "delta": -23.47476577758789
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 39.171607971191406,
+            "count": 4224
+          },
+          "final": {
+            "value": 36.63560104370117,
+            "count": 4224
+          },
+          "reference": {
+            "value": 43.50617980957031,
+            "count": 4224
+          },
+          "delta": -2.5360069274902344
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.9279516339302063,
+            "count": 284
+          },
+          "final": {
+            "value": 0.706111490726471,
+            "count": 284
+          },
+          "reference": {
+            "value": 0.8355327248573303,
+            "count": 284
+          },
+          "delta": -0.22184014320373535
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.30053875797568247,
+          "gt_bilateral_motion_rms_m": 0.22403810009029743,
+          "bilateral_motion_rms_error_mm": 76.50065788538504,
+          "bilateral_motion_rms_ratio": 1.341462714844269,
+          "bilateral_stride_change_mean_m": 0.22991040850001182,
+          "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+          "bilateral_stride_change_abs_error_mm": 125.53286438167663
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 0.2468543770796546,
+          "gt_bilateral_motion_rms_m": 0.22403810009029743,
+          "bilateral_motion_rms_error_mm": 22.816276989357178,
+          "bilateral_motion_rms_ratio": 1.1018410573030266,
+          "bilateral_stride_change_mean_m": 0.20569298970434352,
+          "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+          "bilateral_stride_change_abs_error_mm": 90.02923841057492
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.21673483063006968,
+          "gt_bilateral_motion_rms_m": 0.22403810009029743,
+          "bilateral_motion_rms_error_mm": 7.303269460227746,
+          "bilateral_motion_rms_ratio": 0.967401663122102,
+          "bilateral_stride_change_mean_m": 0.20374062673129723,
+          "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+          "bilateral_stride_change_abs_error_mm": 111.67121961590085
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 0.2468543770796546,
+          "gt_bilateral_motion_rms_m": 0.22403810009029743,
+          "bilateral_motion_rms_error_mm": 22.816276989357178,
+          "bilateral_motion_rms_ratio": 1.1018410573030266,
+          "bilateral_stride_change_mean_m": 0.20569298970434352,
+          "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+          "bilateral_stride_change_abs_error_mm": 90.02923841057492
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "mode": "ego",
+        "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+        "source_first": 1431,
+        "case_seed": 416274632,
+        "regime": "clean",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 225.74920654296875,
+            "count": 4224
+          },
+          "final": {
+            "value": 247.8359375,
+            "count": 4224
+          },
+          "reference": {
+            "value": 291.2385559082031,
+            "count": 4224
+          },
+          "delta": 22.08673095703125
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 49.07843017578125,
+            "count": 192
+          },
+          "final": {
+            "value": 39.80874252319336,
+            "count": 192
+          },
+          "reference": {
+            "value": 41.55473709106445,
+            "count": 192
+          },
+          "delta": -9.26968765258789
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 234.16212463378906,
+            "count": 4032
+          },
+          "final": {
+            "value": 257.74200439453125,
+            "count": 4032
+          },
+          "reference": {
+            "value": 303.1282653808594,
+            "count": 4032
+          },
+          "delta": 23.579879760742188
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 225.74920654296875,
+            "count": 4224
+          },
+          "final": {
+            "value": 247.8359375,
+            "count": 4224
+          },
+          "reference": {
+            "value": 291.2385559082031,
+            "count": 4224
+          },
+          "delta": 22.08673095703125
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 80.01467895507812,
+            "count": 192
+          },
+          "final": {
+            "value": 109.75346374511719,
+            "count": 192
+          },
+          "reference": {
+            "value": 144.354248046875,
+            "count": 192
+          },
+          "delta": 29.738784790039062
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 48.13077926635742,
+            "count": 192
+          },
+          "final": {
+            "value": 56.02337646484375,
+            "count": 192
+          },
+          "reference": {
+            "value": 49.80198287963867,
+            "count": 192
+          },
+          "delta": 7.892597198486328
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 25.144689559936523,
+            "count": 192
+          },
+          "final": {
+            "value": 28.554195404052734,
+            "count": 192
+          },
+          "reference": {
+            "value": 24.18001365661621,
+            "count": 192
+          },
+          "delta": 3.409505844116211
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 60.1805534362793,
+            "count": 4224
+          },
+          "final": {
+            "value": 65.18865966796875,
+            "count": 4224
+          },
+          "reference": {
+            "value": 76.0056381225586,
+            "count": 4224
+          },
+          "delta": 5.008106231689453
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.047212153673172,
+            "count": 382
+          },
+          "final": {
+            "value": 0.05842117592692375,
+            "count": 382
+          },
+          "reference": {
+            "value": 0.066984623670578,
+            "count": 382
+          },
+          "delta": 0.011209022253751755
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.024353581673411045,
+          "gt_bilateral_motion_rms_m": 0.017607656728589275,
+          "bilateral_motion_rms_error_mm": 6.74592494482177,
+          "bilateral_motion_rms_ratio": 1.383124515022406,
+          "bilateral_stride_change_mean_m": 0.008278043760251253,
+          "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+          "bilateral_stride_change_abs_error_mm": 6.3409632245376235
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 1.0098265337196144e-07,
+          "gt_bilateral_motion_rms_m": 0.017607656728589275,
+          "bilateral_motion_rms_error_mm": 17.607555745935905,
+          "bilateral_motion_rms_ratio": 5.735155729609238e-06,
+          "bilateral_stride_change_mean_m": 1.1616312716395785e-07,
+          "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+          "bilateral_stride_change_abs_error_mm": 9.724917510655287
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.0230740451106723,
+          "gt_bilateral_motion_rms_m": 0.017607656728589275,
+          "bilateral_motion_rms_error_mm": 5.466388382083024,
+          "bilateral_motion_rms_ratio": 1.3104551881232065,
+          "bilateral_stride_change_mean_m": 0.010546732664697946,
+          "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+          "bilateral_stride_change_abs_error_mm": 5.36142582191482
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 1.0098265337196144e-07,
+          "gt_bilateral_motion_rms_m": 0.017607656728589275,
+          "bilateral_motion_rms_error_mm": 17.607555745935905,
+          "bilateral_motion_rms_ratio": 5.735155729609238e-06,
+          "bilateral_stride_change_mean_m": 1.1616312716395785e-07,
+          "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+          "bilateral_stride_change_abs_error_mm": 9.724917510655287
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "mode": "ego",
+        "sequence_id": "recording_20210921_S11_S10_01_camera_wearer_1111-1921",
+        "source_first": 1431,
+        "case_seed": 416274632,
+        "regime": "noisy",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 227.06687927246094,
+            "count": 4224
+          },
+          "final": {
+            "value": 255.6471405029297,
+            "count": 4224
+          },
+          "reference": {
+            "value": 297.05291748046875,
+            "count": 4224
+          },
+          "delta": 28.58026123046875
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 75.17556762695312,
+            "count": 192
+          },
+          "final": {
+            "value": 66.53376770019531,
+            "count": 192
+          },
+          "reference": {
+            "value": 73.64482116699219,
+            "count": 192
+          },
+          "delta": -8.641799926757812
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 234.2998046875,
+            "count": 4032
+          },
+          "final": {
+            "value": 264.6525573730469,
+            "count": 4032
+          },
+          "reference": {
+            "value": 307.6914367675781,
+            "count": 4032
+          },
+          "delta": 30.352752685546875
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 227.06687927246094,
+            "count": 4224
+          },
+          "final": {
+            "value": 255.6471405029297,
+            "count": 4224
+          },
+          "reference": {
+            "value": 297.05291748046875,
+            "count": 4224
+          },
+          "delta": 28.58026123046875
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 78.86273193359375,
+            "count": 192
+          },
+          "final": {
+            "value": 73.14643859863281,
+            "count": 192
+          },
+          "reference": {
+            "value": 77.0589599609375,
+            "count": 192
+          },
+          "delta": -5.7162933349609375
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 45.27538299560547,
+            "count": 192
+          },
+          "final": {
+            "value": 59.40821838378906,
+            "count": 192
+          },
+          "reference": {
+            "value": 52.26597213745117,
+            "count": 192
+          },
+          "delta": 14.132835388183594
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 21.88741683959961,
+            "count": 192
+          },
+          "final": {
+            "value": 25.74102020263672,
+            "count": 192
+          },
+          "reference": {
+            "value": 21.94063377380371,
+            "count": 192
+          },
+          "delta": 3.8536033630371094
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 59.601322174072266,
+            "count": 4224
+          },
+          "final": {
+            "value": 68.01960754394531,
+            "count": 4224
+          },
+          "reference": {
+            "value": 75.92085266113281,
+            "count": 4224
+          },
+          "delta": 8.418285369873047
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.07485412061214447,
+            "count": 382
+          },
+          "final": {
+            "value": 0.13365988433361053,
+            "count": 382
+          },
+          "reference": {
+            "value": 0.07463278621435165,
+            "count": 382
+          },
+          "delta": 0.058805763721466064
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.038917394042334276,
+          "gt_bilateral_motion_rms_m": 0.017607656728589275,
+          "bilateral_motion_rms_error_mm": 21.309737313745,
+          "bilateral_motion_rms_ratio": 2.2102540185909416,
+          "bilateral_stride_change_mean_m": 0.011806404844972595,
+          "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+          "bilateral_stride_change_abs_error_mm": 7.944266749579964
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 9.72533105641313e-08,
+          "gt_bilateral_motion_rms_m": 0.017607656728589275,
+          "bilateral_motion_rms_error_mm": 17.60755947527871,
+          "bilateral_motion_rms_ratio": 5.5233533946753195e-06,
+          "bilateral_stride_change_mean_m": 1.1928936218802707e-07,
+          "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+          "bilateral_stride_change_abs_error_mm": 9.724914384420263
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.032490862693795655,
+          "gt_bilateral_motion_rms_m": 0.017607656728589275,
+          "bilateral_motion_rms_error_mm": 14.88320596520638,
+          "bilateral_motion_rms_ratio": 1.845268975572471,
+          "bilateral_stride_change_mean_m": 0.013869646260206604,
+          "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+          "bilateral_stride_change_abs_error_mm": 6.641288970168807
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 9.72533105641313e-08,
+          "gt_bilateral_motion_rms_m": 0.017607656728589275,
+          "bilateral_motion_rms_error_mm": 17.60755947527871,
+          "bilateral_motion_rms_ratio": 5.5233533946753195e-06,
+          "bilateral_stride_change_mean_m": 1.1928936218802707e-07,
+          "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+          "bilateral_stride_change_abs_error_mm": 9.724914384420263
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "mode": "exo",
+        "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4751_master_full",
+        "source_first": 3047,
+        "case_seed": 1835557011,
+        "regime": "clean",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 11.550293922424316,
+            "count": 4224
+          },
+          "final": {
+            "value": 7.272367000579834,
+            "count": 4224
+          },
+          "reference": {
+            "value": 5.312300205230713,
+            "count": 4224
+          },
+          "delta": -4.277926921844482
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 10.014386177062988,
+            "count": 4164
+          },
+          "final": {
+            "value": 6.085634231567383,
+            "count": 4164
+          },
+          "reference": {
+            "value": 2.61798095703125,
+            "count": 4164
+          },
+          "delta": -3.9287519454956055
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 118.14229583740234,
+            "count": 60
+          },
+          "final": {
+            "value": 89.63155364990234,
+            "count": 60
+          },
+          "reference": {
+            "value": 192.2980499267578,
+            "count": 60
+          },
+          "delta": -28.5107421875
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 11.550293922424316,
+            "count": 4224
+          },
+          "final": {
+            "value": 7.272367000579834,
+            "count": 4224
+          },
+          "reference": {
+            "value": 5.312300205230713,
+            "count": 4224
+          },
+          "delta": -4.277926921844482
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 8.7060546875,
+            "count": 192
+          },
+          "final": {
+            "value": 3.7728793621063232,
+            "count": 192
+          },
+          "reference": {
+            "value": 0.0004109912260901183,
+            "count": 192
+          },
+          "delta": -4.933175325393677
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 1.8258178234100342,
+            "count": 192
+          },
+          "final": {
+            "value": 0.5787953734397888,
+            "count": 192
+          },
+          "reference": {
+            "value": 0.0,
+            "count": 192
+          },
+          "delta": -1.2470224499702454
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 22.80816650390625,
+            "count": 192
+          },
+          "final": {
+            "value": 24.21833038330078,
+            "count": 192
+          },
+          "reference": {
+            "value": 16.415775299072266,
+            "count": 192
+          },
+          "delta": 1.4101638793945312
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 13.381241798400879,
+            "count": 4224
+          },
+          "final": {
+            "value": 9.305841445922852,
+            "count": 4224
+          },
+          "reference": {
+            "value": 13.062310218811035,
+            "count": 4224
+          },
+          "delta": -4.075400352478027
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.31713369488716125,
+            "count": 368
+          },
+          "final": {
+            "value": 0.2636961042881012,
+            "count": 368
+          },
+          "reference": {
+            "value": 0.4928596317768097,
+            "count": 368
+          },
+          "delta": -0.05343759059906006
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.11846584986277728,
+          "gt_bilateral_motion_rms_m": 0.06796159605289487,
+          "bilateral_motion_rms_error_mm": 50.50425380988241,
+          "bilateral_motion_rms_ratio": 1.7431293074779275,
+          "bilateral_stride_change_mean_m": 0.07450341494289853,
+          "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+          "bilateral_stride_change_abs_error_mm": 52.64951645349432
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 0.17560183375991514,
+          "gt_bilateral_motion_rms_m": 0.06796159605289487,
+          "bilateral_motion_rms_error_mm": 107.64023770702028,
+          "bilateral_motion_rms_ratio": 2.5838391673915857,
+          "bilateral_stride_change_mean_m": 0.11441193004178724,
+          "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+          "bilateral_stride_change_abs_error_mm": 92.06130229589674
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.10665784005705391,
+          "gt_bilateral_motion_rms_m": 0.06796159605289487,
+          "bilateral_motion_rms_error_mm": 38.69624400415904,
+          "bilateral_motion_rms_ratio": 1.5693839793586006,
+          "bilateral_stride_change_mean_m": 0.062115027461365345,
+          "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+          "bilateral_stride_change_abs_error_mm": 40.01524831995114
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 0.17560183375991514,
+          "gt_bilateral_motion_rms_m": 0.06796159605289487,
+          "bilateral_motion_rms_error_mm": 107.64023770702028,
+          "bilateral_motion_rms_ratio": 2.5838391673915857,
+          "bilateral_stride_change_mean_m": 0.11441193004178724,
+          "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+          "bilateral_stride_change_abs_error_mm": 92.06130229589674
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "egobody",
+        "mode": "exo",
+        "sequence_id": "recording_20220215_S21_S22_02_camera_wearer_1511-4751_master_full",
+        "source_first": 3047,
+        "case_seed": 1835557011,
+        "regime": "noisy",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 30.23143196105957,
+            "count": 4224
+          },
+          "final": {
+            "value": 27.771108627319336,
+            "count": 4224
+          },
+          "reference": {
+            "value": 33.82081604003906,
+            "count": 4224
+          },
+          "delta": -2.4603233337402344
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 28.976411819458008,
+            "count": 4146
+          },
+          "final": {
+            "value": 26.822694778442383,
+            "count": 4146
+          },
+          "reference": {
+            "value": 30.967065811157227,
+            "count": 4146
+          },
+          "delta": -2.153717041015625
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 96.94058990478516,
+            "count": 78
+          },
+          "final": {
+            "value": 78.18296813964844,
+            "count": 78
+          },
+          "reference": {
+            "value": 185.50880432128906,
+            "count": 78
+          },
+          "delta": -18.75762176513672
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 30.23143196105957,
+            "count": 4224
+          },
+          "final": {
+            "value": 27.771108627319336,
+            "count": 4224
+          },
+          "reference": {
+            "value": 33.82081604003906,
+            "count": 4224
+          },
+          "delta": -2.4603233337402344
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 20.428335189819336,
+            "count": 192
+          },
+          "final": {
+            "value": 26.884166717529297,
+            "count": 192
+          },
+          "reference": {
+            "value": 11.010492324829102,
+            "count": 192
+          },
+          "delta": 6.455831527709961
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 8.237386703491211,
+            "count": 192
+          },
+          "final": {
+            "value": 6.654335021972656,
+            "count": 192
+          },
+          "reference": {
+            "value": 7.000125408172607,
+            "count": 192
+          },
+          "delta": -1.5830516815185547
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 28.757362365722656,
+            "count": 192
+          },
+          "final": {
+            "value": 21.881826400756836,
+            "count": 192
+          },
+          "reference": {
+            "value": 19.27716827392578,
+            "count": 192
+          },
+          "delta": -6.87553596496582
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 18.123023986816406,
+            "count": 4224
+          },
+          "final": {
+            "value": 14.433609008789062,
+            "count": 4224
+          },
+          "reference": {
+            "value": 17.08495330810547,
+            "count": 4224
+          },
+          "delta": -3.6894149780273438
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.35555243492126465,
+            "count": 368
+          },
+          "final": {
+            "value": 0.2762931287288666,
+            "count": 368
+          },
+          "reference": {
+            "value": 0.5696908235549927,
+            "count": 368
+          },
+          "delta": -0.07925930619239807
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.13644070882435358,
+          "gt_bilateral_motion_rms_m": 0.06796159605289487,
+          "bilateral_motion_rms_error_mm": 68.47911277145872,
+          "bilateral_motion_rms_ratio": 2.0076148405661494,
+          "bilateral_stride_change_mean_m": 0.09783482177637144,
+          "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+          "bilateral_stride_change_abs_error_mm": 75.93899581902825
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 0.1968584591705785,
+          "gt_bilateral_motion_rms_m": 0.06796159605289487,
+          "bilateral_motion_rms_error_mm": 128.89686311768364,
+          "bilateral_motion_rms_ratio": 2.896613243417099,
+          "bilateral_stride_change_mean_m": 0.1276001224859985,
+          "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+          "bilateral_stride_change_abs_error_mm": 105.53670098683183
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.12504320725239265,
+          "gt_bilateral_motion_rms_m": 0.06796159605289487,
+          "bilateral_motion_rms_error_mm": 57.081611199497786,
+          "bilateral_motion_rms_ratio": 1.8399098095793815,
+          "bilateral_stride_change_mean_m": 0.08642881458389642,
+          "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+          "bilateral_stride_change_abs_error_mm": 64.14949776604762
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 0.1968584591705785,
+          "gt_bilateral_motion_rms_m": 0.06796159605289487,
+          "bilateral_motion_rms_error_mm": 128.89686311768364,
+          "bilateral_motion_rms_ratio": 2.896613243417099,
+          "bilateral_stride_change_mean_m": 0.1276001224859985,
+          "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+          "bilateral_stride_change_abs_error_mm": 105.53670098683183
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "mode": "ego",
+        "sequence_id": "LectureHall_020_wipingchairs1",
+        "source_first": 389,
+        "case_seed": 303671090,
+        "regime": "clean",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 109.09467315673828,
+            "count": 4224
+          },
+          "final": {
+            "value": 119.22315979003906,
+            "count": 4224
+          },
+          "reference": {
+            "value": 463.83270263671875,
+            "count": 4224
+          },
+          "delta": 10.128486633300781
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 0.0031704693101346493,
+            "count": 192
+          },
+          "final": {
+            "value": 0.008412815630435944,
+            "count": 192
+          },
+          "reference": {
+            "value": 0.0004130466259084642,
+            "count": 192
+          },
+          "delta": 0.005242346320301294
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 114.28951263427734,
+            "count": 4032
+          },
+          "final": {
+            "value": 124.90005493164062,
+            "count": 4032
+          },
+          "reference": {
+            "value": 485.91998291015625,
+            "count": 4032
+          },
+          "delta": 10.610542297363281
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 109.09467315673828,
+            "count": 4224
+          },
+          "final": {
+            "value": 119.22315979003906,
+            "count": 4224
+          },
+          "reference": {
+            "value": 463.83270263671875,
+            "count": 4224
+          },
+          "delta": 10.128486633300781
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 100.55342864990234,
+            "count": 192
+          },
+          "final": {
+            "value": 117.72689056396484,
+            "count": 192
+          },
+          "reference": {
+            "value": 229.04513549804688,
+            "count": 192
+          },
+          "delta": 17.1734619140625
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 16.722232818603516,
+            "count": 192
+          },
+          "final": {
+            "value": 22.73458480834961,
+            "count": 192
+          },
+          "reference": {
+            "value": 46.42571258544922,
+            "count": 192
+          },
+          "delta": 6.012351989746094
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 3.618382215499878,
+            "count": 192
+          },
+          "final": {
+            "value": 3.7759337425231934,
+            "count": 192
+          },
+          "reference": {
+            "value": 0.00014571071369573474,
+            "count": 192
+          },
+          "delta": 0.15755152702331543
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 26.195323944091797,
+            "count": 4224
+          },
+          "final": {
+            "value": 28.489425659179688,
+            "count": 4224
+          },
+          "reference": {
+            "value": 66.8781967163086,
+            "count": 4224
+          },
+          "delta": 2.2941017150878906
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.29690295457839966,
+            "count": 295
+          },
+          "final": {
+            "value": 0.30068153142929077,
+            "count": 295
+          },
+          "reference": {
+            "value": 2.045480251312256,
+            "count": 295
+          },
+          "delta": 0.0037785768508911133
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.23813208760533017,
+          "gt_bilateral_motion_rms_m": 0.22186151582864305,
+          "bilateral_motion_rms_error_mm": 16.270571776687113,
+          "bilateral_motion_rms_ratio": 1.0733366114259033,
+          "bilateral_stride_change_mean_m": 0.19195764383850522,
+          "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+          "bilateral_stride_change_abs_error_mm": 66.88712072304583
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 1.0361543140244815e-07,
+          "gt_bilateral_motion_rms_m": 0.22186151582864305,
+          "bilateral_motion_rms_error_mm": 221.86141221321165,
+          "bilateral_motion_rms_ratio": 4.670275104515042e-07,
+          "bilateral_stride_change_mean_m": 1.291219490541241e-07,
+          "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+          "bilateral_stride_change_abs_error_mm": 176.8018777992572
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.21949852396249422,
+          "gt_bilateral_motion_rms_m": 0.22186151582864305,
+          "bilateral_motion_rms_error_mm": 2.3629918661488283,
+          "bilateral_motion_rms_ratio": 0.9893492485286457,
+          "bilateral_stride_change_mean_m": 0.17986522588648227,
+          "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+          "bilateral_stride_change_abs_error_mm": 63.43810209532792
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 1.0361543140244815e-07,
+          "gt_bilateral_motion_rms_m": 0.22186151582864305,
+          "bilateral_motion_rms_error_mm": 221.86141221321165,
+          "bilateral_motion_rms_ratio": 4.670275104515042e-07,
+          "bilateral_stride_change_mean_m": 1.291219490541241e-07,
+          "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+          "bilateral_stride_change_abs_error_mm": 176.8018777992572
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "mode": "ego",
+        "sequence_id": "LectureHall_020_wipingchairs1",
+        "source_first": 389,
+        "case_seed": 303671090,
+        "regime": "noisy",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 118.29007720947266,
+            "count": 4224
+          },
+          "final": {
+            "value": 164.71978759765625,
+            "count": 4224
+          },
+          "reference": {
+            "value": 462.8799133300781,
+            "count": 4224
+          },
+          "delta": 46.429710388183594
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 15.172760009765625,
+            "count": 192
+          },
+          "final": {
+            "value": 19.375391006469727,
+            "count": 192
+          },
+          "reference": {
+            "value": 15.886093139648438,
+            "count": 192
+          },
+          "delta": 4.202630996704102
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 123.20042419433594,
+            "count": 4032
+          },
+          "final": {
+            "value": 171.64096069335938,
+            "count": 4032
+          },
+          "reference": {
+            "value": 484.1654357910156,
+            "count": 4032
+          },
+          "delta": 48.44053649902344
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 118.29007720947266,
+            "count": 4224
+          },
+          "final": {
+            "value": 164.71978759765625,
+            "count": 4224
+          },
+          "reference": {
+            "value": 462.8799133300781,
+            "count": 4224
+          },
+          "delta": 46.429710388183594
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 107.62728118896484,
+            "count": 192
+          },
+          "final": {
+            "value": 166.552001953125,
+            "count": 192
+          },
+          "reference": {
+            "value": 237.57852172851562,
+            "count": 192
+          },
+          "delta": 58.924720764160156
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 16.234872817993164,
+            "count": 192
+          },
+          "final": {
+            "value": 25.950687408447266,
+            "count": 192
+          },
+          "reference": {
+            "value": 45.10978317260742,
+            "count": 192
+          },
+          "delta": 9.715814590454102
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 5.799771308898926,
+            "count": 192
+          },
+          "final": {
+            "value": 9.542093276977539,
+            "count": 192
+          },
+          "reference": {
+            "value": 6.020689964294434,
+            "count": 192
+          },
+          "delta": 3.7423219680786133
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 26.169872283935547,
+            "count": 4224
+          },
+          "final": {
+            "value": 30.759000778198242,
+            "count": 4224
+          },
+          "reference": {
+            "value": 66.52046966552734,
+            "count": 4224
+          },
+          "delta": 4.589128494262695
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.3297906816005707,
+            "count": 295
+          },
+          "final": {
+            "value": 0.43931642174720764,
+            "count": 295
+          },
+          "reference": {
+            "value": 2.05584716796875,
+            "count": 295
+          },
+          "delta": 0.10952574014663696
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.23367716969186994,
+          "gt_bilateral_motion_rms_m": 0.22186151582864305,
+          "bilateral_motion_rms_error_mm": 11.815653863226888,
+          "bilateral_motion_rms_ratio": 1.0532568878342687,
+          "bilateral_stride_change_mean_m": 0.19426160422789074,
+          "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+          "bilateral_stride_change_abs_error_mm": 82.23256176043937
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 1.143744910206067e-07,
+          "gt_bilateral_motion_rms_m": 0.22186151582864305,
+          "bilateral_motion_rms_error_mm": 221.86140145415203,
+          "bilateral_motion_rms_ratio": 5.15521993949347e-07,
+          "bilateral_stride_change_mean_m": 1.3795055026107215e-07,
+          "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+          "bilateral_stride_change_abs_error_mm": 176.80186897065602
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.22745943148027978,
+          "gt_bilateral_motion_rms_m": 0.22186151582864305,
+          "bilateral_motion_rms_error_mm": 5.597915651636725,
+          "bilateral_motion_rms_ratio": 1.0252315757905501,
+          "bilateral_stride_change_mean_m": 0.1794794038466217,
+          "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+          "bilateral_stride_change_abs_error_mm": 63.29910574703659
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 1.143744910206067e-07,
+          "gt_bilateral_motion_rms_m": 0.22186151582864305,
+          "bilateral_motion_rms_error_mm": 221.86140145415203,
+          "bilateral_motion_rms_ratio": 5.15521993949347e-07,
+          "bilateral_stride_change_mean_m": 1.3795055026107215e-07,
+          "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+          "bilateral_stride_change_abs_error_mm": 176.80186897065602
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "mode": "exo",
+        "sequence_id": "ParkingLot1_004_phonetalk2",
+        "source_first": 325,
+        "case_seed": 2524542219,
+        "regime": "clean",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 18.79913902282715,
+            "count": 4224
+          },
+          "final": {
+            "value": 3.998598575592041,
+            "count": 4224
+          },
+          "reference": {
+            "value": 32.96124267578125,
+            "count": 4224
+          },
+          "delta": -14.800540447235107
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 12.911108016967773,
+            "count": 3802
+          },
+          "final": {
+            "value": 0.707971453666687,
+            "count": 3802
+          },
+          "reference": {
+            "value": 34.92344665527344,
+            "count": 3802
+          },
+          "delta": -12.203136563301086
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 71.84722900390625,
+            "count": 422
+          },
+          "final": {
+            "value": 33.64543151855469,
+            "count": 422
+          },
+          "reference": {
+            "value": 15.282821655273438,
+            "count": 422
+          },
+          "delta": -38.20179748535156
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 18.79913902282715,
+            "count": 4224
+          },
+          "final": {
+            "value": 3.998598575592041,
+            "count": 4224
+          },
+          "reference": {
+            "value": 32.96124267578125,
+            "count": 4224
+          },
+          "delta": -14.800540447235107
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 25.279373168945312,
+            "count": 192
+          },
+          "final": {
+            "value": 1.035207748413086,
+            "count": 192
+          },
+          "reference": {
+            "value": 0.0004111715534236282,
+            "count": 192
+          },
+          "delta": -24.244165420532227
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 8.69237232208252,
+            "count": 192
+          },
+          "final": {
+            "value": 0.17988038063049316,
+            "count": 192
+          },
+          "reference": {
+            "value": 0.0,
+            "count": 192
+          },
+          "delta": -8.512491941452026
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 35.56830978393555,
+            "count": 192
+          },
+          "final": {
+            "value": 36.30195236206055,
+            "count": 192
+          },
+          "reference": {
+            "value": 24.811859130859375,
+            "count": 192
+          },
+          "delta": 0.733642578125
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 33.27043533325195,
+            "count": 4224
+          },
+          "final": {
+            "value": 27.267391204833984,
+            "count": 4224
+          },
+          "reference": {
+            "value": 37.623958587646484,
+            "count": 4224
+          },
+          "delta": -6.003044128417969
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.35595762729644775,
+            "count": 359
+          },
+          "final": {
+            "value": 0.32434624433517456,
+            "count": 359
+          },
+          "reference": {
+            "value": 0.3003354072570801,
+            "count": 359
+          },
+          "delta": -0.03161138296127319
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.02714654443464618,
+          "gt_bilateral_motion_rms_m": 0.009476066723400576,
+          "bilateral_motion_rms_error_mm": 17.6704777112456,
+          "bilateral_motion_rms_ratio": null,
+          "bilateral_stride_change_mean_m": 0.028022866717770985,
+          "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+          "bilateral_stride_change_abs_error_mm": 18.91071568563908
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 0.023228847268021352,
+          "gt_bilateral_motion_rms_m": 0.009476066723400576,
+          "bilateral_motion_rms_error_mm": 13.752780544620776,
+          "bilateral_motion_rms_ratio": null,
+          "bilateral_stride_change_mean_m": 0.02449176480361153,
+          "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+          "bilateral_stride_change_abs_error_mm": 14.066478419133373
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.025551323540537962,
+          "gt_bilateral_motion_rms_m": 0.009476066723400576,
+          "bilateral_motion_rms_error_mm": 16.07525681713739,
+          "bilateral_motion_rms_ratio": null,
+          "bilateral_stride_change_mean_m": 0.02622579288479831,
+          "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+          "bilateral_stride_change_abs_error_mm": 16.163154166498536
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 0.023228847268021352,
+          "gt_bilateral_motion_rms_m": 0.009476066723400576,
+          "bilateral_motion_rms_error_mm": 13.752780544620776,
+          "bilateral_motion_rms_ratio": null,
+          "bilateral_stride_change_mean_m": 0.02449176480361153,
+          "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+          "bilateral_stride_change_abs_error_mm": 14.066478419133373
+        }
+      }
+    },
+    {
+      "identity": {
+        "dataset": "rich",
+        "mode": "exo",
+        "sequence_id": "ParkingLot1_004_phonetalk2",
+        "source_first": 325,
+        "case_seed": 2524542219,
+        "regime": "noisy",
+        "scene_variant": "scene_on"
+      },
+      "metrics": {
+        "mpjpe_mm": {
+          "baseline": {
+            "value": 46.53392791748047,
+            "count": 4224
+          },
+          "final": {
+            "value": 18.927886962890625,
+            "count": 4224
+          },
+          "reference": {
+            "value": 57.53575134277344,
+            "count": 4224
+          },
+          "delta": -27.606040954589844
+        },
+        "conditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 44.13188934326172,
+            "count": 3802
+          },
+          "final": {
+            "value": 18.926610946655273,
+            "count": 3802
+          },
+          "reference": {
+            "value": 57.66050720214844,
+            "count": 3802
+          },
+          "delta": -25.205278396606445
+        },
+        "unconditioned_mpjpe_mm": {
+          "baseline": {
+            "value": 68.175048828125,
+            "count": 422
+          },
+          "final": {
+            "value": 18.939382553100586,
+            "count": 422
+          },
+          "reference": {
+            "value": 56.4117546081543,
+            "count": 422
+          },
+          "delta": -49.235666275024414
+        },
+        "candidate_position_mpjpe_mm": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_position_mpjpe_mm": {
+          "baseline": {
+            "value": 46.53392791748047,
+            "count": 4224
+          },
+          "final": {
+            "value": 18.927886962890625,
+            "count": 4224
+          },
+          "reference": {
+            "value": 57.53575134277344,
+            "count": 4224
+          },
+          "delta": -27.606040954589844
+        },
+        "root_position_error_mm": {
+          "baseline": {
+            "value": 62.47612762451172,
+            "count": 192
+          },
+          "final": {
+            "value": 12.890029907226562,
+            "count": 192
+          },
+          "reference": {
+            "value": 7.8851165771484375,
+            "count": 192
+          },
+          "delta": -49.586097717285156
+        },
+        "root_orientation_deg": {
+          "baseline": {
+            "value": 21.177112579345703,
+            "count": 192
+          },
+          "final": {
+            "value": 11.73707103729248,
+            "count": 192
+          },
+          "reference": {
+            "value": 12.505149841308594,
+            "count": 192
+          },
+          "delta": -9.440041542053223
+        },
+        "head_orientation_deg": {
+          "baseline": {
+            "value": 30.715667724609375,
+            "count": 192
+          },
+          "final": {
+            "value": 33.91744613647461,
+            "count": 192
+          },
+          "reference": {
+            "value": 29.846908569335938,
+            "count": 192
+          },
+          "delta": 3.2017784118652344
+        },
+        "candidate_rotation_deg": {
+          "baseline": {
+            "value": null,
+            "count": 0
+          },
+          "final": {
+            "value": null,
+            "count": 0
+          },
+          "reference": {
+            "value": null,
+            "count": 0
+          },
+          "delta": null
+        },
+        "regular_rotation_deg": {
+          "baseline": {
+            "value": 33.07296371459961,
+            "count": 4224
+          },
+          "final": {
+            "value": 28.14004135131836,
+            "count": 4224
+          },
+          "reference": {
+            "value": 42.73239517211914,
+            "count": 4224
+          },
+          "delta": -4.93292236328125
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "baseline": {
+            "value": 0.22081753611564636,
+            "count": 359
+          },
+          "final": {
+            "value": 0.15073230862617493,
+            "count": 359
+          },
+          "reference": {
+            "value": 0.1931912750005722,
+            "count": 359
+          },
+          "delta": -0.07008522748947144
+        }
+      },
+      "foot_motion": {
+        "baseline/metrics": {
+          "bilateral_motion_rms_m": 0.030773009971898347,
+          "gt_bilateral_motion_rms_m": 0.009476066723400576,
+          "bilateral_motion_rms_error_mm": 21.29694324849777,
+          "bilateral_motion_rms_ratio": null,
+          "bilateral_stride_change_mean_m": 0.02038065654213482,
+          "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+          "bilateral_stride_change_abs_error_mm": 11.391341272344542
+        },
+        "baseline/reference_metrics": {
+          "bilateral_motion_rms_m": 0.03122472430089812,
+          "gt_bilateral_motion_rms_m": 0.009476066723400576,
+          "bilateral_motion_rms_error_mm": 21.748657577497546,
+          "bilateral_motion_rms_ratio": null,
+          "bilateral_stride_change_mean_m": 0.018364048678257777,
+          "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+          "bilateral_stride_change_abs_error_mm": 8.443475631600007
+        },
+        "final/metrics": {
+          "bilateral_motion_rms_m": 0.025499219292742084,
+          "gt_bilateral_motion_rms_m": 0.009476066723400576,
+          "bilateral_motion_rms_error_mm": 16.02315256934151,
+          "bilateral_motion_rms_ratio": null,
+          "bilateral_stride_change_mean_m": 0.015377983055647457,
+          "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+          "bilateral_stride_change_abs_error_mm": 5.9962416483070315
+        },
+        "final/reference_metrics": {
+          "bilateral_motion_rms_m": 0.03122472430089812,
+          "gt_bilateral_motion_rms_m": 0.009476066723400576,
+          "bilateral_motion_rms_error_mm": 21.748657577497546,
+          "bilateral_motion_rms_ratio": null,
+          "bilateral_stride_change_mean_m": 0.018364048678257777,
+          "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+          "bilateral_stride_change_abs_error_mm": 8.443475631600007
+        }
+      }
+    }
+  ],
+  "per_window_rows": 12,
+  "TEST_used": false,
+  "baseline_sha256": "eabaf47c8a0a82543711ed88929dae57bbed3d3cf353d9bbadb79351b4996f1b",
+  "final_sha256": "b708603bf4841fbc108e08bd6f947144cebc4051856b22853407b33dac324b91",
+  "scope": "One fixed window per dataset/mode, clean/noisy. Development VAL; not full-corpus or TEST.",
+  "automatic_promotion": false,
+  "independent_CPU_metric_recheck_pending": false,
+  "CPU_recheck_sha256": "f7713984e6a22583c97989928bb4a81fbed4fe91b7458a24bcad3cb32e69f647",
+  "foot_motion_scope": "Temporal RMS and6/12-frame stride of left-right foot separation in own root orientation. Ratio null when GT RMS<=1cm; low speed alone is not success."
+}

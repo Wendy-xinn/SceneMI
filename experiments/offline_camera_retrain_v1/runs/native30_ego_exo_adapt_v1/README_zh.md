@@ -1,6 +1,6 @@
 # Native30 EGO/EXO 初版适配
 
-2026-10-17已完成CPU准备、完整TRAIN/VAL源校验和实际父模型GPU预检（EXO/mixed反传、隐藏GT隔离、无标签EXO接口等价与12次固定VAL基线）。1000更新的新阶段已启动，实际更新记录在training/trace.jsonl；实时状态以STATUS.json及prepared/input_checks.json为准。父模型为已选定的41k EGO扩散权重，保留55k完整状态。
+2026-10-17 23:58:29已完成1000步适配、最终12次固定VAL预测及独立CPU复算。EXO误差改善，但EGO六个配对均退化，因此保留为EXO专项候选，不推广为通用模型、不自动延长。完整结论见[RESULTS_zh.md](RESULTS_zh.md)，逐窗见[RESULTS_SUMMARY.json](RESULTS_SUMMARY.json)。父模型为已选定的41k EGO扩散权重，保留55k完整状态；41k继续承担EGO评估。
 
 本阶段沿用同一个Native30共享扩散生成器，预测相对观测参考动作的扩散残差，通过20步DDIM生成动作；没有接回旧版独立EXO残差小网。EGO仅头部；EXO输入为22关节中自然可见位置、mask、置信度与观测场景，不补GT旋转，也不宣称原始RGB端到端。
 

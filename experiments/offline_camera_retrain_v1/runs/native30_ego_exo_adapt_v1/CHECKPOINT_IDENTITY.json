@@ -1,0 +1,103 @@
+{
+  "status": "completed_stage_checkpoint_CPU_identity_and_state_audit_passed",
+  "checked_at": "2026-10-18T00:05:11.365666+08:00",
+  "checkpoint": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1/training/last.pt",
+    "bytes": 1477976872,
+    "sha256": "18b10f55b4630f3f76ba37628b496918fccc2771474c0b5e4b2301b1a8c04e21",
+    "torch_zip_members": 1269,
+    "zip_CRC_all_members_passed": true,
+    "step": 1000,
+    "planned_steps": 1000,
+    "unchanged_during_audit": true
+  },
+  "parent": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/best.pt",
+    "step": 41000,
+    "sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+    "retained_unchanged": true,
+    "identity": "Parent41000 plus1000 new-stage updates; not resumed step42000 of the original optimizer/schedule"
+  },
+  "retention": {
+    "intended_use": "EXO-specialist candidate for further coverage evaluation",
+    "approved_shared_ego_exo_model": false,
+    "reason": "Matched small development VAL shows EXO gains but EGO retention failure; retain original41k for EGO",
+    "automatic_extension": false,
+    "checkpoint_policy": "one full resumable last.pt; no extra checkpoint copy"
+  },
+  "model": {
+    "strict_CPU_load_passed": true,
+    "state_tensors": 317,
+    "parameter_tensors": 315,
+    "parameters": 122667536,
+    "all_state_finite": true,
+    "model_sha256": "5132a8b2b749c22e3b892111ae17890135887494996296ae3e89ba6d9c4f4881",
+    "changed_state_tensors_vs_parent": 315,
+    "changed_shared_unet_tensors": 148
+  },
+  "optimizer": {
+    "type": "AdamW",
+    "state_entries": 315,
+    "all_parameter_states_present": true,
+    "step_counts": {
+      "1000": 182,
+      "892": 133
+    },
+    "step_count_explanation": "182 always-active parameters updated1000 times;133 scene-dependent parameters updated892 times, exactly matching scene-on trace;108 scene-dropout updates skip their gradients.",
+    "all_moments_finite_and_shapes_match": true,
+    "second_moment_nonnegative": true,
+    "CPU_optimizer_state_load_passed": true,
+    "final_lr": 4.000000000000001e-06,
+    "expected_final_lr": 4.000000000000001e-06,
+    "new_stage_initial_state_entries": 0
+  },
+  "RNG_and_sampler": {
+    "required_fields_present": true,
+    "numpy_global_state_restoration_passed": true,
+    "condition_data_and_sampler_numpy_generator_state_restoration_passed": true,
+    "torch_CPU_generator_state_restoration_passed": true,
+    "CUDA_RNG_state_present_as_CPU_bytes": true,
+    "CUDA_RNG_state_restoration_not_executed": "CPU-only audit deliberately does not initialize GPU",
+    "data_sampler_protocol": "data-plus-recording-sampler-v1",
+    "recording_sampler_protocol": "native30-recording-cycles-v1",
+    "recording_sampler_fingerprint": "5030a6c09d41ec18a4206f321f15a2e5bdfdc614bbf506769de05ec645a401e7",
+    "draws": 2000,
+    "pending_mode_queue_length": 0,
+    "sampler_options_and_plan_match_config": true,
+    "dataset_resampling_not_executed": true
+  },
+  "configuration": {
+    "effective_config_exactly_matches_prepared": true,
+    "run_config_exactly_matches_embedded": true,
+    "source_dependency_seal_verified": true,
+    "prepared_effective_config_sha256": "9f969540335d1547d29757a6ea7560611c44c3dd3c2d4d29cc386b898882ec23"
+  },
+  "trace": {
+    "updates": 1000,
+    "contiguous_unique_steps_1_to_1000": true,
+    "all_1000_losses_and_gradients_finite": true,
+    "total_sample_counts": {
+      "trumans/exo": 931,
+      "camera_wearer/exo": 249,
+      "interactee/exo": 249,
+      "trumans/ego": 251,
+      "rich/exo": 171,
+      "camera_wearer/ego": 55,
+      "interactee/ego": 52,
+      "rich/ego": 42
+    },
+    "EXO_samples": 1600,
+    "EGO_samples": 400,
+    "scene_on_updates": 892,
+    "scene_off_updates": 108,
+    "update_seconds": 1978.6328188290026,
+    "elapsed_to_last_update_seconds": 1994.5466681899998,
+    "first100_mean_loss": 0.6345363406836987,
+    "last100_mean_loss": 0.3730367973446846,
+    "loss_caution": "Different sampled observations and diffusion noise per update; training mean decline is not an effectiveness verdict"
+  },
+  "CUDA_initialized": false,
+  "GPU_used": false,
+  "TEST_arrays_opened": false,
+  "optimizer_updates": 0
+}

@@ -1,0 +1,837 @@
+{
+  "status": "independent_CPU_primary_metrics_passed",
+  "checked_at": "2026-10-17T23:58:28.937420+08:00",
+  "prediction_and_reference_windows": 48,
+  "metric_values_checked": 240,
+  "maximum_absolute_recompute_difference": 6.103515625e-05,
+  "matched_input_arrays": true,
+  "CUDA_initialized": false,
+  "optimizer_updates": 0,
+  "files_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1/baseline_validation/validation.jsonl": "eabaf47c8a0a82543711ed88929dae57bbed3d3cf353d9bbadb79351b4996f1b",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1/baseline_validation/validation_latest.npz": "f54ad45dbcb3977fa8259a06f704747af7a21a8f277a9181eaae19203b18c632",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1/training/validation.jsonl": "b708603bf4841fbc108e08bd6f947144cebc4051856b22853407b33dac324b91",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1/training/validation_latest.npz": "7e4c806e6d481282343eb63964d1ffd4b94b71147eec538bb0aa59cbcdf81430"
+  },
+  "GPU_used_for_recheck": false,
+  "foot_motion": [
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.14792414732162348,
+        "gt_bilateral_motion_rms_m": 0.16515234339540835,
+        "bilateral_motion_rms_error_mm": 17.22819607378487,
+        "bilateral_motion_rms_ratio": 0.8956830056444488,
+        "bilateral_stride_change_mean_m": 0.11290717181714237,
+        "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+        "bilateral_stride_change_abs_error_mm": 54.539974676845866
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 1.0728477005006724e-07,
+        "gt_bilateral_motion_rms_m": 0.16515234339540835,
+        "bilateral_motion_rms_error_mm": 165.1522361106383,
+        "bilateral_motion_rms_ratio": 6.496109461384126e-07,
+        "bilateral_stride_change_mean_m": 1.2972656434105262e-07,
+        "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+        "bilateral_stride_change_abs_error_mm": 122.31608358620264
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.18171424780660397,
+        "gt_bilateral_motion_rms_m": 0.16515234339540835,
+        "bilateral_motion_rms_error_mm": 16.56190441119562,
+        "bilateral_motion_rms_ratio": 1.1002825880075044,
+        "bilateral_stride_change_mean_m": 0.12660174087011458,
+        "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+        "bilateral_stride_change_abs_error_mm": 48.53537455770775
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 1.0728477005006724e-07,
+        "gt_bilateral_motion_rms_m": 0.16515234339540835,
+        "bilateral_motion_rms_error_mm": 165.1522361106383,
+        "bilateral_motion_rms_ratio": 6.496109461384126e-07,
+        "bilateral_stride_change_mean_m": 1.2972656434105262e-07,
+        "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+        "bilateral_stride_change_abs_error_mm": 122.31608358620264
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.18403378718364097,
+        "gt_bilateral_motion_rms_m": 0.16515234339540835,
+        "bilateral_motion_rms_error_mm": 18.881443788232616,
+        "bilateral_motion_rms_ratio": 1.114327434900676,
+        "bilateral_stride_change_mean_m": 0.11682915131086317,
+        "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+        "bilateral_stride_change_abs_error_mm": 65.14256016871576
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 1.027393097989223e-07,
+        "gt_bilateral_motion_rms_m": 0.16515234339540835,
+        "bilateral_motion_rms_error_mm": 165.15224065609854,
+        "bilateral_motion_rms_ratio": 6.220881138388903e-07,
+        "bilateral_stride_change_mean_m": 1.2715662883411144e-07,
+        "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+        "bilateral_stride_change_abs_error_mm": 122.31608615613814
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.18921405222618054,
+        "gt_bilateral_motion_rms_m": 0.16515234339540835,
+        "bilateral_motion_rms_error_mm": 24.06170883077219,
+        "bilateral_motion_rms_ratio": 1.1456940200549475,
+        "bilateral_stride_change_mean_m": 0.12072953791164157,
+        "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+        "bilateral_stride_change_abs_error_mm": 63.38550554415175
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "trumans",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 1.027393097989223e-07,
+        "gt_bilateral_motion_rms_m": 0.16515234339540835,
+        "bilateral_motion_rms_error_mm": 165.15224065609854,
+        "bilateral_motion_rms_ratio": 6.220881138388903e-07,
+        "bilateral_stride_change_mean_m": 1.2715662883411144e-07,
+        "gt_bilateral_stride_change_mean_m": 0.12231621331276699,
+        "bilateral_stride_change_abs_error_mm": 122.31608615613814
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.312026306461633,
+        "gt_bilateral_motion_rms_m": 0.22403810009029743,
+        "bilateral_motion_rms_error_mm": 87.98820637133556,
+        "bilateral_motion_rms_ratio": 1.3927376920973369,
+        "bilateral_stride_change_mean_m": 0.2491972050177729,
+        "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+        "bilateral_stride_change_abs_error_mm": 129.29994107458796
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.24338392387208763,
+        "gt_bilateral_motion_rms_m": 0.22403810009029743,
+        "bilateral_motion_rms_error_mm": 19.3458237817902,
+        "bilateral_motion_rms_ratio": 1.086350597393894,
+        "bilateral_stride_change_mean_m": 0.2223441332502264,
+        "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+        "bilateral_stride_change_abs_error_mm": 99.8591345652372
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.249310762186014,
+        "gt_bilateral_motion_rms_m": 0.22403810009029743,
+        "bilateral_motion_rms_error_mm": 25.272662095716576,
+        "bilateral_motion_rms_ratio": 1.1128051973549613,
+        "bilateral_stride_change_mean_m": 0.22188354246099268,
+        "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+        "bilateral_stride_change_abs_error_mm": 78.19330368085423
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.24338392387208763,
+        "gt_bilateral_motion_rms_m": 0.22403810009029743,
+        "bilateral_motion_rms_error_mm": 19.3458237817902,
+        "bilateral_motion_rms_ratio": 1.086350597393894,
+        "bilateral_stride_change_mean_m": 0.2223441332502264,
+        "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+        "bilateral_stride_change_abs_error_mm": 99.8591345652372
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.30053875797568247,
+        "gt_bilateral_motion_rms_m": 0.22403810009029743,
+        "bilateral_motion_rms_error_mm": 76.50065788538504,
+        "bilateral_motion_rms_ratio": 1.341462714844269,
+        "bilateral_stride_change_mean_m": 0.22991040850001182,
+        "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+        "bilateral_stride_change_abs_error_mm": 125.53286438167663
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.2468543770796546,
+        "gt_bilateral_motion_rms_m": 0.22403810009029743,
+        "bilateral_motion_rms_error_mm": 22.816276989357178,
+        "bilateral_motion_rms_ratio": 1.1018410573030266,
+        "bilateral_stride_change_mean_m": 0.20569298970434352,
+        "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+        "bilateral_stride_change_abs_error_mm": 90.02923841057492
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.21673483063006968,
+        "gt_bilateral_motion_rms_m": 0.22403810009029743,
+        "bilateral_motion_rms_error_mm": 7.303269460227746,
+        "bilateral_motion_rms_ratio": 0.967401663122102,
+        "bilateral_stride_change_mean_m": 0.20374062673129723,
+        "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+        "bilateral_stride_change_abs_error_mm": 111.67121961590085
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "trumans",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.2468543770796546,
+        "gt_bilateral_motion_rms_m": 0.22403810009029743,
+        "bilateral_motion_rms_error_mm": 22.816276989357178,
+        "bilateral_motion_rms_ratio": 1.1018410573030266,
+        "bilateral_stride_change_mean_m": 0.20569298970434352,
+        "gt_bilateral_stride_change_mean_m": 0.19446215346137757,
+        "bilateral_stride_change_abs_error_mm": 90.02923841057492
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.024353581673411045,
+        "gt_bilateral_motion_rms_m": 0.017607656728589275,
+        "bilateral_motion_rms_error_mm": 6.74592494482177,
+        "bilateral_motion_rms_ratio": 1.383124515022406,
+        "bilateral_stride_change_mean_m": 0.008278043760251253,
+        "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+        "bilateral_stride_change_abs_error_mm": 6.3409632245376235
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 1.0098265337196144e-07,
+        "gt_bilateral_motion_rms_m": 0.017607656728589275,
+        "bilateral_motion_rms_error_mm": 17.607555745935905,
+        "bilateral_motion_rms_ratio": 5.735155729609238e-06,
+        "bilateral_stride_change_mean_m": 1.1616312716395785e-07,
+        "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+        "bilateral_stride_change_abs_error_mm": 9.724917510655287
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.0230740451106723,
+        "gt_bilateral_motion_rms_m": 0.017607656728589275,
+        "bilateral_motion_rms_error_mm": 5.466388382083024,
+        "bilateral_motion_rms_ratio": 1.3104551881232065,
+        "bilateral_stride_change_mean_m": 0.010546732664697946,
+        "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+        "bilateral_stride_change_abs_error_mm": 5.36142582191482
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 1.0098265337196144e-07,
+        "gt_bilateral_motion_rms_m": 0.017607656728589275,
+        "bilateral_motion_rms_error_mm": 17.607555745935905,
+        "bilateral_motion_rms_ratio": 5.735155729609238e-06,
+        "bilateral_stride_change_mean_m": 1.1616312716395785e-07,
+        "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+        "bilateral_stride_change_abs_error_mm": 9.724917510655287
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.038917394042334276,
+        "gt_bilateral_motion_rms_m": 0.017607656728589275,
+        "bilateral_motion_rms_error_mm": 21.309737313745,
+        "bilateral_motion_rms_ratio": 2.2102540185909416,
+        "bilateral_stride_change_mean_m": 0.011806404844972595,
+        "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+        "bilateral_stride_change_abs_error_mm": 7.944266749579964
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 9.72533105641313e-08,
+        "gt_bilateral_motion_rms_m": 0.017607656728589275,
+        "bilateral_motion_rms_error_mm": 17.60755947527871,
+        "bilateral_motion_rms_ratio": 5.5233533946753195e-06,
+        "bilateral_stride_change_mean_m": 1.1928936218802707e-07,
+        "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+        "bilateral_stride_change_abs_error_mm": 9.724914384420263
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.032490862693795655,
+        "gt_bilateral_motion_rms_m": 0.017607656728589275,
+        "bilateral_motion_rms_error_mm": 14.88320596520638,
+        "bilateral_motion_rms_ratio": 1.845268975572471,
+        "bilateral_stride_change_mean_m": 0.013869646260206604,
+        "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+        "bilateral_stride_change_abs_error_mm": 6.641288970168807
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "egobody",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 9.72533105641313e-08,
+        "gt_bilateral_motion_rms_m": 0.017607656728589275,
+        "bilateral_motion_rms_error_mm": 17.60755947527871,
+        "bilateral_motion_rms_ratio": 5.5233533946753195e-06,
+        "bilateral_stride_change_mean_m": 1.1928936218802707e-07,
+        "gt_bilateral_stride_change_mean_m": 0.009725033673782451,
+        "bilateral_stride_change_abs_error_mm": 9.724914384420263
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.11846584986277728,
+        "gt_bilateral_motion_rms_m": 0.06796159605289487,
+        "bilateral_motion_rms_error_mm": 50.50425380988241,
+        "bilateral_motion_rms_ratio": 1.7431293074779275,
+        "bilateral_stride_change_mean_m": 0.07450341494289853,
+        "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+        "bilateral_stride_change_abs_error_mm": 52.64951645349432
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.17560183375991514,
+        "gt_bilateral_motion_rms_m": 0.06796159605289487,
+        "bilateral_motion_rms_error_mm": 107.64023770702028,
+        "bilateral_motion_rms_ratio": 2.5838391673915857,
+        "bilateral_stride_change_mean_m": 0.11441193004178724,
+        "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+        "bilateral_stride_change_abs_error_mm": 92.06130229589674
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.10665784005705391,
+        "gt_bilateral_motion_rms_m": 0.06796159605289487,
+        "bilateral_motion_rms_error_mm": 38.69624400415904,
+        "bilateral_motion_rms_ratio": 1.5693839793586006,
+        "bilateral_stride_change_mean_m": 0.062115027461365345,
+        "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+        "bilateral_stride_change_abs_error_mm": 40.01524831995114
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.17560183375991514,
+        "gt_bilateral_motion_rms_m": 0.06796159605289487,
+        "bilateral_motion_rms_error_mm": 107.64023770702028,
+        "bilateral_motion_rms_ratio": 2.5838391673915857,
+        "bilateral_stride_change_mean_m": 0.11441193004178724,
+        "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+        "bilateral_stride_change_abs_error_mm": 92.06130229589674
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.13644070882435358,
+        "gt_bilateral_motion_rms_m": 0.06796159605289487,
+        "bilateral_motion_rms_error_mm": 68.47911277145872,
+        "bilateral_motion_rms_ratio": 2.0076148405661494,
+        "bilateral_stride_change_mean_m": 0.09783482177637144,
+        "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+        "bilateral_stride_change_abs_error_mm": 75.93899581902825
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.1968584591705785,
+        "gt_bilateral_motion_rms_m": 0.06796159605289487,
+        "bilateral_motion_rms_error_mm": 128.89686311768364,
+        "bilateral_motion_rms_ratio": 2.896613243417099,
+        "bilateral_stride_change_mean_m": 0.1276001224859985,
+        "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+        "bilateral_stride_change_abs_error_mm": 105.53670098683183
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.12504320725239265,
+        "gt_bilateral_motion_rms_m": 0.06796159605289487,
+        "bilateral_motion_rms_error_mm": 57.081611199497786,
+        "bilateral_motion_rms_ratio": 1.8399098095793815,
+        "bilateral_stride_change_mean_m": 0.08642881458389642,
+        "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+        "bilateral_stride_change_abs_error_mm": 64.14949776604762
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "egobody",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.1968584591705785,
+        "gt_bilateral_motion_rms_m": 0.06796159605289487,
+        "bilateral_motion_rms_error_mm": 128.89686311768364,
+        "bilateral_motion_rms_ratio": 2.896613243417099,
+        "bilateral_stride_change_mean_m": 0.1276001224859985,
+        "gt_bilateral_stride_change_mean_m": 0.02257749944694947,
+        "bilateral_stride_change_abs_error_mm": 105.53670098683183
+      }
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.23813208760533017,
+        "gt_bilateral_motion_rms_m": 0.22186151582864305,
+        "bilateral_motion_rms_error_mm": 16.270571776687113,
+        "bilateral_motion_rms_ratio": 1.0733366114259033,
+        "bilateral_stride_change_mean_m": 0.19195764383850522,
+        "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+        "bilateral_stride_change_abs_error_mm": 66.88712072304583
+      }
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 1.0361543140244815e-07,
+        "gt_bilateral_motion_rms_m": 0.22186151582864305,
+        "bilateral_motion_rms_error_mm": 221.86141221321165,
+        "bilateral_motion_rms_ratio": 4.670275104515042e-07,
+        "bilateral_stride_change_mean_m": 1.291219490541241e-07,
+        "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+        "bilateral_stride_change_abs_error_mm": 176.8018777992572
+      }
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.21949852396249422,
+        "gt_bilateral_motion_rms_m": 0.22186151582864305,
+        "bilateral_motion_rms_error_mm": 2.3629918661488283,
+        "bilateral_motion_rms_ratio": 0.9893492485286457,
+        "bilateral_stride_change_mean_m": 0.17986522588648227,
+        "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+        "bilateral_stride_change_abs_error_mm": 63.43810209532792
+      }
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "mode": "ego",
+      "regime": "clean",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 1.0361543140244815e-07,
+        "gt_bilateral_motion_rms_m": 0.22186151582864305,
+        "bilateral_motion_rms_error_mm": 221.86141221321165,
+        "bilateral_motion_rms_ratio": 4.670275104515042e-07,
+        "bilateral_stride_change_mean_m": 1.291219490541241e-07,
+        "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+        "bilateral_stride_change_abs_error_mm": 176.8018777992572
+      }
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.23367716969186994,
+        "gt_bilateral_motion_rms_m": 0.22186151582864305,
+        "bilateral_motion_rms_error_mm": 11.815653863226888,
+        "bilateral_motion_rms_ratio": 1.0532568878342687,
+        "bilateral_stride_change_mean_m": 0.19426160422789074,
+        "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+        "bilateral_stride_change_abs_error_mm": 82.23256176043937
+      }
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 1.143744910206067e-07,
+        "gt_bilateral_motion_rms_m": 0.22186151582864305,
+        "bilateral_motion_rms_error_mm": 221.86140145415203,
+        "bilateral_motion_rms_ratio": 5.15521993949347e-07,
+        "bilateral_stride_change_mean_m": 1.3795055026107215e-07,
+        "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+        "bilateral_stride_change_abs_error_mm": 176.80186897065602
+      }
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.22745943148027978,
+        "gt_bilateral_motion_rms_m": 0.22186151582864305,
+        "bilateral_motion_rms_error_mm": 5.597915651636725,
+        "bilateral_motion_rms_ratio": 1.0252315757905501,
+        "bilateral_stride_change_mean_m": 0.1794794038466217,
+        "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+        "bilateral_stride_change_abs_error_mm": 63.29910574703659
+      }
+    },
+    {
+      "case": 4,
+      "dataset": "rich",
+      "mode": "ego",
+      "regime": "noisy",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 1.143744910206067e-07,
+        "gt_bilateral_motion_rms_m": 0.22186151582864305,
+        "bilateral_motion_rms_error_mm": 221.86140145415203,
+        "bilateral_motion_rms_ratio": 5.15521993949347e-07,
+        "bilateral_stride_change_mean_m": 1.3795055026107215e-07,
+        "gt_bilateral_stride_change_mean_m": 0.17680200692120623,
+        "bilateral_stride_change_abs_error_mm": 176.80186897065602
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.02714654443464618,
+        "gt_bilateral_motion_rms_m": 0.009476066723400576,
+        "bilateral_motion_rms_error_mm": 17.6704777112456,
+        "bilateral_motion_rms_ratio": null,
+        "bilateral_stride_change_mean_m": 0.028022866717770985,
+        "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+        "bilateral_stride_change_abs_error_mm": 18.91071568563908
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.023228847268021352,
+        "gt_bilateral_motion_rms_m": 0.009476066723400576,
+        "bilateral_motion_rms_error_mm": 13.752780544620776,
+        "bilateral_motion_rms_ratio": null,
+        "bilateral_stride_change_mean_m": 0.02449176480361153,
+        "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+        "bilateral_stride_change_abs_error_mm": 14.066478419133373
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.025551323540537962,
+        "gt_bilateral_motion_rms_m": 0.009476066723400576,
+        "bilateral_motion_rms_error_mm": 16.07525681713739,
+        "bilateral_motion_rms_ratio": null,
+        "bilateral_stride_change_mean_m": 0.02622579288479831,
+        "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+        "bilateral_stride_change_abs_error_mm": 16.163154166498536
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "mode": "exo",
+      "regime": "clean",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.023228847268021352,
+        "gt_bilateral_motion_rms_m": 0.009476066723400576,
+        "bilateral_motion_rms_error_mm": 13.752780544620776,
+        "bilateral_motion_rms_ratio": null,
+        "bilateral_stride_change_mean_m": 0.02449176480361153,
+        "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+        "bilateral_stride_change_abs_error_mm": 14.066478419133373
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.030773009971898347,
+        "gt_bilateral_motion_rms_m": 0.009476066723400576,
+        "bilateral_motion_rms_error_mm": 21.29694324849777,
+        "bilateral_motion_rms_ratio": null,
+        "bilateral_stride_change_mean_m": 0.02038065654213482,
+        "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+        "bilateral_stride_change_abs_error_mm": 11.391341272344542
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "baseline",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.03122472430089812,
+        "gt_bilateral_motion_rms_m": 0.009476066723400576,
+        "bilateral_motion_rms_error_mm": 21.748657577497546,
+        "bilateral_motion_rms_ratio": null,
+        "bilateral_stride_change_mean_m": 0.018364048678257777,
+        "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+        "bilateral_stride_change_abs_error_mm": 8.443475631600007
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "final",
+      "source": "metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.025499219292742084,
+        "gt_bilateral_motion_rms_m": 0.009476066723400576,
+        "bilateral_motion_rms_error_mm": 16.02315256934151,
+        "bilateral_motion_rms_ratio": null,
+        "bilateral_stride_change_mean_m": 0.015377983055647457,
+        "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+        "bilateral_stride_change_abs_error_mm": 5.9962416483070315
+      }
+    },
+    {
+      "case": 5,
+      "dataset": "rich",
+      "mode": "exo",
+      "regime": "noisy",
+      "model": "final",
+      "source": "reference_metrics",
+      "metrics": {
+        "bilateral_motion_rms_m": 0.03122472430089812,
+        "gt_bilateral_motion_rms_m": 0.009476066723400576,
+        "bilateral_motion_rms_error_mm": 21.748657577497546,
+        "bilateral_motion_rms_ratio": null,
+        "bilateral_stride_change_mean_m": 0.018364048678257777,
+        "gt_bilateral_stride_change_mean_m": 0.010437007440667402,
+        "bilateral_stride_change_abs_error_mm": 8.443475631600007
+      }
+    }
+  ],
+  "formula": "CPU FK then NumPy norms/masks; no call to native30_validation.raw_metrics",
+  "scope": "World/conditioned/unconditioned/root MPJPE and 3D GT-low-speed foot speed; no collision guarantee"
+}

@@ -1,12 +1,22 @@
 {
   "protocol": "native30-shared-diffusion-exo-adaptation-v1",
-  "status": "training",
-  "updated_at": "2026-10-17T23:15:44.122973+08:00",
+  "status": "completed",
+  "updated_at": "2026-10-17T23:58:26.363429+08:00",
   "pid": 13628,
   "automatic_extension": false,
+  "completed_stage_updates": 1000,
   "parent_step": 41000,
-  "planned_stage_updates": 1000,
-  "resume": false,
-  "optimizer_reset_on_initial_start": true,
+  "sample_counts": {
+    "trumans/exo": 931,
+    "camera_wearer/exo": 249,
+    "interactee/exo": 249,
+    "trumans/ego": 251,
+    "rich/exo": 171,
+    "camera_wearer/ego": 55,
+    "interactee/ego": 52,
+    "rich/ego": 42
+  },
+  "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1/training/last.pt",
+  "full_resumable_checkpoint": true,
   "TEST_used": false
 }

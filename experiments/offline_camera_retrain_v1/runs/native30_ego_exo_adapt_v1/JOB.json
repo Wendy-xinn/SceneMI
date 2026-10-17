@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "pid": 13627,
+  "updated_at": "2026-10-17T23:58:29.101482+08:00",
+  "commands": [
+    [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops",
+      "adapt",
+      "train",
+      "--run",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1"
+    ],
+    [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops",
+      "adapt",
+      "recheck",
+      "--run",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1"
+    ]
+  ]
+}
