@@ -28,7 +28,7 @@ control的核心5窗推理重新开启物理修正后，水平脚速反而增加
 
 24,500步父模型到control的RICH脚高误差改善，但水平脚速与World误差没有同步改善。因此本实验既没有找到脚步修复，也不代表所有身体指标都无学习收益。它仅检验一个开关及1000步续训，不排除其他物理建模或更长预算的效果。
 
-完整数据：[REPORT_zh.md](evaluation/REPORT_zh.md)、[SUMMARY.json](evaluation/SUMMARY.json)、[CPU_RECHECK_all.json](evaluation/CPU_RECHECK_all.json)。[Viser](http://localhost:8802/)提供TRUMANS走动、RICH椅子、EgoBody走动三个案例的parent/control/no_physics菜单，每例均可切clean/noisy。
+完整记录：[REPORT_zh.md](evaluation/REPORT_zh.md)、[SUMMARY.json](evaluation/SUMMARY.json)、[CPU_RECHECK_all.json](evaluation/CPU_RECHECK_all.json)。原8802曾提供三案例三模型菜单，按用户后续清理要求已下线；失败候选数组删除后不能直接重开该菜单。
 
 ## 主线现状与后续判断
 
@@ -40,4 +40,6 @@ control的核心5窗推理重新开启物理修正后，水平脚速反而增加
 
 ## 存储与保留
 
-实验末记录空闲66,422,988,800 bytes，复核时约65.8 GB。未新增编号权重或复制best；评估权重与训练末态使用硬链接。父状态和control保留可续训。no_physics作为已核验的负对照保留原始文件身份，供CPU核验与Viser重现；其模型未被晋升。没有删除数据、场景缓存或主线依赖。
+用户在结果汇报后明确要求失败实验只留记录、其他无用产物删除，此要求覆盖AGENTS默认保留失败模型的规则。已删除no_physics权重的两个硬链接、38份预测数组、原8802的9份mesh播放缓存，以及本次评价目录专属的14份派生表面缓存；共释放2,139,009,024 bytes。没有删除原始数据、共享场景缓存、主线依赖或旧55k。
+
+父状态和control保留可续训，76份parent/control预测SHA复核不变，用于新yaw-only对照复用。配置、逐窗指标、数据身份、seed、源码SHA、1000步匹配审计和历史114份CPU复算记录均保留。失败候选权重与数组现已不存在，历史核验记录不能当作当前仍能直接重算或播放；需要从父状态重训才能重建失败候选。[逐文件清理清单与保留核验](CLEANUP.json)。

@@ -1,0 +1,350 @@
+{
+  "status": "passed_cpu_reference_reproduction",
+  "checked_at": "2026-10-17T13:31:23.072994+08:00",
+  "python": "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+  "torch_threads": 2,
+  "CUDA_initialized": false,
+  "optimizer_updates": 0,
+  "model_inference_calls": 0,
+  "scope": "Untrained observation-derived initializer/reference only. Four previously saved 24.5k-parent EGO input windows; no denoiser, checkpoint or scene cache loaded. GT is excluded from reference inputs and used only for reporting errors after constructing the reference.",
+  "definitions": {
+    "root_up": "Root global rotation column +Y, in the existing camera-origin anchored Y-up coordinates.",
+    "root_tilt_deg": "acos(root_up.Y), degrees; zero is upright and does not restrict learned output.",
+    "foot_y": "Foot joints 10 and 11, metres in that anchored frame; not mesh sole height, floor clearance or penetration.",
+    "foot_y_minus_gt": "Signed mean(reference joint Y minus GT joint Y), millimetres; positive above GT, negative below GT.",
+    "aggregation": "Unweighted over all frames and both foot joints; head preservation checked only on valid observed head frames."
+  },
+  "input_fields_for_both_references": [
+    "trajectory",
+    "observation_meta",
+    "rest",
+    "mode=ego"
+  ],
+  "rows": [
+    {
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "regime": "clean",
+      "input_npz": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case00_clean_physical_off.npz",
+      "input_npz_sha256": "363a935cc9d13e7e39c4bb0179013937b9a00bae64496f992ae092526dcd8da4",
+      "frame_count": 192,
+      "old_reference_root": {
+        "up_vector_mean": [
+          -0.44993071648059413,
+          0.6785274104525646,
+          0.16301989806258158
+        ],
+        "up_y": {
+          "mean": 0.6785274104525646,
+          "min": 0.2694435119628906,
+          "max": 0.9856812357902527
+        },
+        "tilt_deg": {
+          "mean": 44.64576524992784,
+          "min": 9.707557678222656,
+          "max": 74.36885070800781
+        }
+      },
+      "yaw_only_reference_root": {
+        "up_vector_mean": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "up_y": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "tilt_deg": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "gt_root": {
+        "up_vector_mean": [
+          0.06337295545805925,
+          0.99120809789747,
+          0.00145440789492568
+        ],
+        "up_y": {
+          "mean": 0.99120809789747,
+          "min": 0.9805207252502441,
+          "max": 0.9998906254768372
+        },
+        "tilt_deg": {
+          "mean": 7.2630509768302245,
+          "min": 0.8474218845367432,
+          "max": 11.327434539794922
+        }
+      },
+      "gt_foot_joint_y_mean_m": -1.5185290109366179,
+      "root_confidence_unchanged": true,
+      "root_rotation_confidence": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "root_position_confidence": {
+        "mean": 0.05000000074505806,
+        "min": 0.05000000074505806,
+        "max": 0.05000000074505806
+      },
+      "full_measured_head_rotation_max_abs_error": 1.4901161193847656e-07,
+      "measured_head_position_max_error_m": 1.2143317462687264e-07,
+      "old_reference_foot_joint_y_mean_m": -1.2001723220261435,
+      "old_reference_foot_joint_y_minus_gt_signed_mm": 318.35668891047436,
+      "old_reference_foot_joint_y_minus_gt_absolute_mm": 320.84491026277345,
+      "yaw_only_reference_foot_joint_y_mean_m": -1.6813064211358626,
+      "yaw_only_reference_foot_joint_y_minus_gt_signed_mm": -162.77741019924483,
+      "yaw_only_reference_foot_joint_y_minus_gt_absolute_mm": 162.77741019924483
+    },
+    {
+      "case": 0,
+      "sequence_id": "2023-02-17@10-53-45",
+      "regime": "noisy",
+      "input_npz": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case00_noisy_physical_off.npz",
+      "input_npz_sha256": "86175677de0c4755ead4491c684b006106cd36df6f42b73402c9034c87bb0fea",
+      "frame_count": 192,
+      "old_reference_root": {
+        "up_vector_mean": [
+          -0.5066279579962915,
+          0.656131242091457,
+          0.09279451618688957
+        ],
+        "up_y": {
+          "mean": 0.656131242091457,
+          "min": 0.27983373403549194,
+          "max": 0.96322101354599
+        },
+        "tilt_deg": {
+          "mean": 46.96132981777191,
+          "min": 15.587543487548828,
+          "max": 73.74971771240234
+        }
+      },
+      "yaw_only_reference_root": {
+        "up_vector_mean": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "up_y": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "tilt_deg": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "gt_root": {
+        "up_vector_mean": [
+          0.06337295545805925,
+          0.99120809789747,
+          0.00145440789492568
+        ],
+        "up_y": {
+          "mean": 0.99120809789747,
+          "min": 0.9805207252502441,
+          "max": 0.9998906254768372
+        },
+        "tilt_deg": {
+          "mean": 7.2630509768302245,
+          "min": 0.8474218845367432,
+          "max": 11.327434539794922
+        }
+      },
+      "gt_foot_joint_y_mean_m": -1.5185290109366179,
+      "root_confidence_unchanged": true,
+      "root_rotation_confidence": {
+        "mean": 0.5124891294787327,
+        "min": 0.491496741771698,
+        "max": 0.5218207836151123
+      },
+      "root_position_confidence": {
+        "mean": 0.05000000074505806,
+        "min": 0.05000000074505806,
+        "max": 0.05000000074505806
+      },
+      "full_measured_head_rotation_max_abs_error": 1.1920928955078125e-07,
+      "measured_head_position_max_error_m": 1.2084247202892584e-07,
+      "old_reference_foot_joint_y_mean_m": -1.1543952164550622,
+      "old_reference_foot_joint_y_minus_gt_signed_mm": 364.13379448155564,
+      "old_reference_foot_joint_y_minus_gt_absolute_mm": 364.6012656390667,
+      "yaw_only_reference_foot_joint_y_mean_m": -1.6714467437316973,
+      "yaw_only_reference_foot_joint_y_minus_gt_signed_mm": -152.91773279507956,
+      "yaw_only_reference_foot_joint_y_minus_gt_absolute_mm": 152.91773279507956
+    },
+    {
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "regime": "clean",
+      "input_npz": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case01_clean_physical_off.npz",
+      "input_npz_sha256": "7c1023207ee4ae33421e03ad505915be895c3d234e337e0b25c77fa7efc02981",
+      "frame_count": 192,
+      "old_reference_root": {
+        "up_vector_mean": [
+          0.1890404028526973,
+          0.47497463436351,
+          0.25321539384215913
+        ],
+        "up_y": {
+          "mean": 0.47497463436351,
+          "min": -0.19246721267700195,
+          "max": 0.9343886375427246
+        },
+        "tilt_deg": {
+          "mean": 58.96685702602068,
+          "min": 20.87040138244629,
+          "max": 101.09680938720703
+        }
+      },
+      "yaw_only_reference_root": {
+        "up_vector_mean": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "up_y": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "tilt_deg": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "gt_root": {
+        "up_vector_mean": [
+          0.268157229887341,
+          0.9119519622375568,
+          0.06324487869035995
+        ],
+        "up_y": {
+          "mean": 0.9119519622375568,
+          "min": 0.7977432608604431,
+          "max": 0.9991669058799744
+        },
+        "tilt_deg": {
+          "mean": 21.258550831427176,
+          "min": 2.3389170169830322,
+          "max": 37.08486557006836
+        }
+      },
+      "gt_foot_joint_y_mean_m": -1.0481190799425046,
+      "root_confidence_unchanged": true,
+      "root_rotation_confidence": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "root_position_confidence": {
+        "mean": 0.05000000074505806,
+        "min": 0.05000000074505806,
+        "max": 0.05000000074505806
+      },
+      "full_measured_head_rotation_max_abs_error": 1.7881393432617188e-07,
+      "measured_head_position_max_error_m": 2.4620757699267415e-07,
+      "old_reference_foot_joint_y_mean_m": -0.6239907358928273,
+      "old_reference_foot_joint_y_minus_gt_signed_mm": 424.12834459294874,
+      "old_reference_foot_joint_y_minus_gt_absolute_mm": 429.72659940520924,
+      "yaw_only_reference_foot_joint_y_mean_m": -1.4454413500304024,
+      "yaw_only_reference_foot_joint_y_minus_gt_signed_mm": -397.3222700878978,
+      "yaw_only_reference_foot_joint_y_minus_gt_absolute_mm": 397.3222700878978
+    },
+    {
+      "case": 1,
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "regime": "noisy",
+      "input_npz": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/motions/parent_case01_noisy_physical_off.npz",
+      "input_npz_sha256": "70ea27c237d01750d742166cefdb76714197b36b5db432042dfee1868c8d665a",
+      "frame_count": 192,
+      "old_reference_root": {
+        "up_vector_mean": [
+          0.18903176900736676,
+          0.4862106838263571,
+          0.19729115120935603
+        ],
+        "up_y": {
+          "mean": 0.4862106838263571,
+          "min": -0.1317281723022461,
+          "max": 0.961898922920227
+        },
+        "tilt_deg": {
+          "mean": 58.14813313881556,
+          "min": 15.86700439453125,
+          "max": 97.56947326660156
+        }
+      },
+      "yaw_only_reference_root": {
+        "up_vector_mean": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "up_y": {
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "tilt_deg": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      },
+      "gt_root": {
+        "up_vector_mean": [
+          0.268157229887341,
+          0.9119519622375568,
+          0.06324487869035995
+        ],
+        "up_y": {
+          "mean": 0.9119519622375568,
+          "min": 0.7977432608604431,
+          "max": 0.9991669058799744
+        },
+        "tilt_deg": {
+          "mean": 21.258550831427176,
+          "min": 2.3389170169830322,
+          "max": 37.08486557006836
+        }
+      },
+      "gt_foot_joint_y_mean_m": -1.0481190799425046,
+      "root_confidence_unchanged": true,
+      "root_rotation_confidence": {
+        "mean": 0.5515841227024794,
+        "min": 0.43992966413497925,
+        "max": 0.6598731875419617
+      },
+      "root_position_confidence": {
+        "mean": 0.05000000074505806,
+        "min": 0.05000000074505806,
+        "max": 0.05000000074505806
+      },
+      "full_measured_head_rotation_max_abs_error": 1.7881393432617188e-07,
+      "measured_head_position_max_error_m": 2.4620757699267415e-07,
+      "old_reference_foot_joint_y_mean_m": -0.6472983144534131,
+      "old_reference_foot_joint_y_minus_gt_signed_mm": 400.8207645577689,
+      "old_reference_foot_joint_y_minus_gt_absolute_mm": 411.00774907196563,
+      "yaw_only_reference_foot_joint_y_mean_m": -1.451941158932944,
+      "yaw_only_reference_foot_joint_y_minus_gt_signed_mm": -403.8220789904396,
+      "yaw_only_reference_foot_joint_y_minus_gt_absolute_mm": 403.8220789904396
+    }
+  ],
+  "interpretation": "The yaw-only initializer removes inherited head pitch/roll from the root while preserving full measured head pose and original confidences. It is an initializer convention, not a hard learned-root constraint. Its straight/rest body under a lowered head can put foot joints substantially below GT: this does not establish floor penetration or improved contact, and the denoiser must learn the crouch/bend residual. Changing the reference also changes residual targets and scene queries; only the matched training/evaluation can establish final-output benefit. Earlier physical-guidance negative ablations do not establish architecture failure.",
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/reference_prior.py": "5cad242e4ff268fb7e107a1ca9513c12194ce143842dc488b1e5fc3acf811a8e",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/test_reference_prior.py": "4e12e40615952ffe12da8c4314096bf4ebe151f579c205320af7a74383acb236",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6"
+  },
+  "source_files_unchanged": true,
+  "verifier_script_sha256": "0c2d4e74c1f92afc53ec6cd4e1667472d9315de11cd04434e19df69952c76791",
+  "verifier_script_source": "from pathlib import Path\nimport datetime\nimport hashlib\nimport json\nimport sys\n\nREPO = Path('/home/wenxin/projects/SceneMI')\nsys.path.insert(0, str(REPO))\nimport numpy as np\nimport torch\ntorch.set_num_threads(2)\ntorch.set_num_interop_threads(1)\nfrom experiments.offline_camera_retrain_v1.ops import reference_prior as prior\nfrom experiments.offline_camera_retrain_v1.supervision import forward_kinematics, rotation_from_6d, IDENTITY_6D\nfrom experiments.offline_camera_retrain_v1.orientation_supervision import global_rotations\n\nBASE = REPO / 'experiments/offline_camera_retrain_v1'\nPREVIOUS = BASE / 'runs/native30_live_monitor_oct16/paired_foot_trial'\nOUT = BASE / 'runs/native30_live_monitor_oct16/reference_yaw_trial'\nSOURCES = [BASE / 'ops/reference_prior.py', BASE / 'ops/test_reference_prior.py', BASE / 'native30_refinement.py']\n\ndef sha(path):\n    return hashlib.sha256(Path(path).read_bytes()).hexdigest()\n\ndef stats(value):\n    value = value.double()\n    return dict(mean=float(value.mean()), min=float(value.min()), max=float(value.max()))\n\ndef mean(value):\n    return float(value.double().mean())\n\ndef tensor(value):\n    return torch.from_numpy(np.array(value, dtype=np.float32, copy=True))\n\ndef root_record(rotations):\n    up = rotations[..., :, 1]\n    return dict(up_vector_mean=up.double().mean(0).tolist(),\n                up_y=stats(up[..., 1]),\n                tilt_deg=stats(torch.rad2deg(torch.acos(up[..., 1].clamp(-1, 1)))))\n\nsource_before = {str(path): sha(path) for path in SOURCES}\nprevious_review = json.loads((PREVIOUS / 'REFERENCE_PRIOR_REVIEW.json').read_text())\ncohort = json.loads((PREVIOUS / 'evaluation/COHORT.json').read_text())\nrows = []\nwith torch.no_grad():\n    for case in (0, 1):\n        for regime in ('clean', 'noisy'):\n            path = PREVIOUS / 'evaluation/motions' / f'parent_case{case:02d}_{regime}_physical_off.npz'\n            input_sha = sha(path)\n            assert input_sha == previous_review['artifact_sha256'][str(path)]\n            with np.load(path, allow_pickle=False) as saved:\n                # Deliberately no truth/prediction/model/scene in reference input.\n                batch = dict(trajectory=tensor(saved['observations'])[None],\n                             observation_meta=tensor(saved['observation_meta'])[None],\n                             rest=tensor(saved['rest'])[None], mode=['ego'])\n                truth = tensor(saved['truth'])[None]\n            old, old_conf = prior._ORIGINAL_REFERENCE(batch)\n            new, new_conf = prior.yaw_only_reference_from_observations(batch)\n            assert torch.equal(old_conf, new_conf)\n            old_r, new_r = global_rotations(old)[0], global_rotations(new)[0]\n            old_j = forward_kinematics(old, batch['rest'])[0]\n            new_j = forward_kinematics(new, batch['rest'])[0]\n            gt_j = forward_kinematics(truth, batch['rest'])[0]\n            valid = batch['observation_meta'][0, :, 15, 1] * batch['observation_meta'][0, :, 15, 3] > 0\n            observed_r = rotation_from_6d(batch['trajectory'][..., 3:] - batch['trajectory'].new_tensor(IDENTITY_6D))[0, :, 15]\n            observed_p = batch['trajectory'][0, :, 15, :3] * 2\n            rotation_error = float((new_r[valid, 15] - observed_r[valid]).abs().max())\n            position_error = float((new_j[valid, 15] - observed_p[valid]).norm(dim=-1).max())\n            assert rotation_error < 1e-5 and position_error < 1e-5\n            assert float(new_r[:, 0, 1, 1].min()) > .99999\n            foot_gt = gt_j[:, (10, 11), 1]\n            entry = cohort['entries'][case]\n            result = dict(case=case, sequence_id=entry['sequence_id'], regime=regime,\n                          input_npz=str(path), input_npz_sha256=input_sha,\n                          frame_count=int(truth.shape[1]),\n                          old_reference_root=root_record(old_r[:, 0]),\n                          yaw_only_reference_root=root_record(new_r[:, 0]),\n                          gt_root=root_record(global_rotations(truth)[0, :, 0]),\n                          gt_foot_joint_y_mean_m=mean(foot_gt),\n                          root_confidence_unchanged=True,\n                          root_rotation_confidence=stats(new_conf[0, :, 0, 1]),\n                          root_position_confidence=stats(new_conf[0, :, 0, 0]),\n                          full_measured_head_rotation_max_abs_error=rotation_error,\n                          measured_head_position_max_error_m=position_error)\n            for name, joints in (('old_reference', old_j), ('yaw_only_reference', new_j)):\n                y = joints[:, (10, 11), 1]\n                result[name + '_foot_joint_y_mean_m'] = mean(y)\n                result[name + '_foot_joint_y_minus_gt_signed_mm'] = mean(y - foot_gt) * 1000\n                result[name + '_foot_joint_y_minus_gt_absolute_mm'] = mean((y - foot_gt).abs()) * 1000\n            rows.append(result)\n\nassert not torch.cuda.is_initialized()\nassert source_before == {str(path): sha(path) for path in SOURCES}\nresult = dict(status='passed_cpu_reference_reproduction',\n              checked_at=datetime.datetime.now().astimezone().isoformat(),\n              python=sys.executable, torch_threads=torch.get_num_threads(), CUDA_initialized=False,\n              optimizer_updates=0, model_inference_calls=0,\n              scope='Untrained observation-derived initializer/reference only. Four previously saved 24.5k-parent EGO input windows; no denoiser, checkpoint or scene cache loaded. GT is excluded from reference inputs and used only for reporting errors after constructing the reference.',\n              definitions=dict(root_up='Root global rotation column +Y, in the existing camera-origin anchored Y-up coordinates.',\n                               root_tilt_deg='acos(root_up.Y), degrees; zero is upright and does not restrict learned output.',\n                               foot_y='Foot joints 10 and 11, metres in that anchored frame; not mesh sole height, floor clearance or penetration.',\n                               foot_y_minus_gt='Signed mean(reference joint Y minus GT joint Y), millimetres; positive above GT, negative below GT.',\n                               aggregation='Unweighted over all frames and both foot joints; head preservation checked only on valid observed head frames.'),\n              input_fields_for_both_references=['trajectory', 'observation_meta', 'rest', 'mode=ego'],\n              rows=rows,\n              interpretation='The yaw-only initializer removes inherited head pitch/roll from the root while preserving full measured head pose and original confidences. It is an initializer convention, not a hard learned-root constraint. Its straight/rest body under a lowered head can put foot joints substantially below GT: this does not establish floor penetration or improved contact, and the denoiser must learn the crouch/bend residual. Changing the reference also changes residual targets and scene queries; only the matched training/evaluation can establish final-output benefit. Earlier physical-guidance negative ablations do not establish architecture failure.',\n              source_sha256=source_before, source_files_unchanged=True,\n              verifier_script_sha256=sha(__file__), verifier_script_source=Path(__file__).read_text())\nOUT.mkdir(parents=True, exist_ok=True)\ndestination = OUT / 'REFERENCE_CPU_CHECK.json'\ntemporary = destination.with_suffix('.json.tmp')\ntemporary.write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + '\\n')\ntemporary.replace(destination)\nprint(json.dumps(dict(output=str(destination), sha256=sha(destination), status=result['status'], CUDA_initialized=False,\n                      rows=[dict(case=r['case'], regime=r['regime'], old_root_tilt_deg=r['old_reference_root']['tilt_deg']['mean'],\n                                 new_root_tilt_deg=r['yaw_only_reference_root']['tilt_deg']['mean'],\n                                 old_foot_y_minus_gt_mm=r['old_reference_foot_joint_y_minus_gt_signed_mm'],\n                                 new_foot_y_minus_gt_mm=r['yaw_only_reference_foot_joint_y_minus_gt_signed_mm']) for r in rows]), indent=2))\n"
+}

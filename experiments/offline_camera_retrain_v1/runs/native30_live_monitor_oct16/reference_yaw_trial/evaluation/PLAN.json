@@ -1,0 +1,57 @@
+{
+  "protocol": "frozen-yaw-reference-trial-evaluation-v1",
+  "cohort_sha256": "bbadc5772b835a7f3aa46fa54416b54f16b97ae6236b599b99450a81ac77cb99",
+  "models": {
+    "control": {
+      "source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/control/training/last.pt",
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/reference_yaw_trial/evaluation/checkpoints/control.pt",
+      "expected_step": 25500,
+      "metadata": {
+        "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/control/training/last.pt",
+        "expected_step": 25500,
+        "checkpoint_sha256": "8e1007aef38a14735f2e93d1efec4cbcb86f23fc369702ca7a29ec61b67782ca",
+        "reference_variant": "original"
+      },
+      "evaluation_config": "Original sealed architecture/config; declared reference policy installed only in this evaluation process; physical guidance crossed identically at inference."
+    },
+    "yaw_only": {
+      "source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/reference_yaw_trial/yaw_only/training/last.pt",
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/reference_yaw_trial/evaluation/checkpoints/yaw_only.pt",
+      "expected_step": 25500,
+      "metadata": {
+        "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/reference_yaw_trial/yaw_only/training/last.pt",
+        "expected_step": 25500,
+        "reference_variant": "yaw_only",
+        "reference_trial_plan_sha256": "c3207a39bbcfea1ad0d30c5ef2600b293ae46a145504c7c9049b0d1eb0685bd1"
+      },
+      "evaluation_config": "Original sealed architecture/config; declared reference policy installed only in this evaluation process; physical guidance crossed identically at inference."
+    }
+  },
+  "inference_config": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/prepared/effective_config.json",
+  "inference_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+  "primary": "All 14 registered VAL windows × clean/noisy; independent physical guidance OFF for both models.",
+  "secondary": "Same five registered core windows × clean/noisy; independent physical guidance ON for both models.",
+  "planned_predictions": 76,
+  "reuse_control": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/paired_foot_trial/evaluation",
+  "dependency_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/reference_trial_evaluation.py": "831e9baf48d2613b7fb55a37df3347cbba1aa8e54b73f1184cc731874d662aee",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/reference_prior.py": "5cad242e4ff268fb7e107a1ca9513c12194ce143842dc488b1e5fc3acf811a8e",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/foot_trial_evaluation.py": "dd7eef5980701c9a5012d11e1273ae55a84bc0683ee7dfa75c7d08754196f033",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/foot_trial_recheck.py": "a3b0c9f71dea933fe215b77131745a248f3b6915af3006fccfb8c86a50cb25e9",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_ablation.py": "6bb80474d6d7ebd376913e2b16cf8039c2a3b8a600f6bd0fa8efac1b209ef134",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/support_metrics.py": "adfad2b422188e4bdd29abd6f79fb9f4b58e9914503cfef8d38ae346011fcecd",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/rich_full_validation_oct16/runner.py": "7ea4516973c2d72e4d5a370cfc0fd78d839b9dd12199f793e2348d74dbab51a4",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/prepared/effective_config.json": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_review_oct16/io_recovery.py": "6b398c210a36496c175a4e88077b73a5c038aea9dbaebc45f51f555ea283ef99"
+  },
+  "input_hash_scope": "SHA256 of sorted inference tensor keys, dtypes, shapes and bytes, excluding reference_motion/reference_confidence/observation_anchor_reference. Non-tensor scene/skin objects are not part of this digest; source identities and common evaluation assets are checked separately.",
+  "reference_tensor_keys_excluded": [
+    "reference_motion",
+    "reference_confidence",
+    "observation_anchor_reference"
+  ],
+  "reference_policy": "Control uses original observation reference; candidate uses reference_prior.installed(). The measured trajectory/meta are unchanged. Derived motion/anchor references may differ; scalar reference confidence is held fixed.",
+  "targets": "GT/contact/reliability targets are excluded from inference; GT is used only for CPU metrics and common evaluation masks.",
+  "metric_scope": "Reuse unchanged foot_trial_evaluation/support_metrics/surface_metrics. Pose joint extent is not mesh stature; sparse GT-associated visible support proxies are not full-mesh collision.",
+  "scope": "Paired short-training development comparison; no TEST or final long-training quality claim."
+}
