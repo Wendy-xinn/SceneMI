@@ -4,11 +4,14 @@
 
 用户随后授权的新阶段分开记录：[共享扩散EXO适配结果](native30_ego_exo_adapt_v1/RESULTS_zh.md) 已于2026-10-17 23:58完成1000步及独立CPU复算；固定开发VAL的EXO clean/noisy World误差下降24.8%/6.8%，但EGO分别上升13.5%/21.0%，因此只保留EXO专项候选，未通过通用版目标，不自动延长。[冻结41k的RICH TEST](rich_test_ego41k/README_zh.md) 已接续全量采样（335窗/670次预测），尚无完整TEST结论。实时进度看下表；两个任务串行使用GPU。
 
+2026-10-18用户授权的[冻结主干EXO内部适配器实验](native30_exo_adapter_v1/README_zh.md)从原41k独立开始，保护EGO原路径，注册12窗/24次预测面板，同时检查遮挡、可见、脚步和尺度诊断。当前进度看STATUS；实现或CPU检查通过不代表本轮训练收益成立。GPU资源策略及实际准入另行记录，41k RICH TEST保持原封印协议。
+
 | 要看什么 | 入口 |
 |---|---|
 | 55k 完成状态 | [STATUS.json](native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json) |
 | RICH TEST实时进度 | [STATUS.json](rich_test_ego41k/STATUS.json) · [逐窗与汇总](rich_test_ego41k/SUMMARY.json) |
 | EXO适配完成结果 | [结果与取舍](native30_ego_exo_adapt_v1/RESULTS_zh.md) · [逐窗指标](native30_ego_exo_adapt_v1/RESULTS_SUMMARY.json) · [CPU验收](native30_ego_exo_adapt_v1/CPU_RECHECK.json) |
+| EGO/EXO共存新实验 | [方案与验收](native30_exo_adapter_v1/README_zh.md) · [当前状态](native30_exo_adapter_v1/STATUS.json) · [固定案例](native30_exo_adapter_v1/validation_cases.json) |
 | 55k实际训练时长 | [31小时06分更新 / 46小时24分总跨度](native30_gait_v2_ego55k_oct15/final_review/TRAINING_DURATION.json) |
 | 41k实际训练时长 | [23小时16分更新 / 37小时28分至快照可用](native30_gait_v2_ego55k_oct15/final_review/TRAINING_DURATION_41K.json) |
 | Viser同步动作回放 | [打开六个案例](http://localhost:8800/) · [案例身份与步数](native30_live_monitor_oct16/visuals/viser/CASES.json)；GT/预测、脚轨迹、完整扫描/可见场景可分别切换 |
