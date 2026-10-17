@@ -17,6 +17,7 @@ import copy
 import hashlib
 import math
 from pathlib import Path
+from threading import RLock
 from types import MethodType
 
 import torch
@@ -96,11 +97,13 @@ class _LowRankUpdate(nn.Module):
 
 
 class _Routing:
-    def __init__(self, original_forward, original_train, spec, paths):
+    def __init__(self, original_forward, original_train, spec, paths, original_parameters):
         self.original_forward = original_forward
         self.original_train = original_train
         self.spec = spec
         self.paths = paths
+        self.original_parameters = original_parameters
+        self.lock = RLock()
         self.active = ContextVar("native30_exo_adapter_forward", default=None)
         self.disabled = ContextVar("native30_exo_adapter_disabled", default=False)
         self.handles = []
@@ -128,11 +131,28 @@ def _forward(self, *args, **kwargs):
     # also prevents an outer EXO context from leaking into a nested EGO call.
     selected = tuple(i for i, mode in enumerate(modes) if mode == "exo")
     context = None if not selected or routing.disabled.get() else (len(modes), selected)
-    token = routing.active.set(context)
-    try:
-        return routing.original_forward(*args, **kwargs)
-    finally:
-        routing.active.reset(token)
+    # native30 already requires serial forwards (scene hooks/query caches).
+    # Serialize this model explicitly while temporarily restoring inference
+    # metadata.  CUDA cross-attention numerics can depend on weight
+    # requires_grad flags even under no_grad; changing the global MHA fastpath
+    # switch does not remove that difference.  Restore the original flags only
+    # when no graph can be built, so inference retains the original 41k path.
+    # Gradient-enabled adapter training keeps every original parameter frozen.
+    # Its internal no_grad proposal also stays frozen; only top-level no_grad
+    # inference restores metadata, avoiding parameter mutation mid-backprop.
+    with routing.lock:
+        restore_flags = not torch.is_grad_enabled()
+        token = routing.active.set(context)
+        try:
+            if restore_flags:
+                for parameter, original_flag in routing.original_parameters:
+                    parameter.requires_grad_(original_flag)
+            return routing.original_forward(*args, **kwargs)
+        finally:
+            if restore_flags:
+                for parameter, _ in routing.original_parameters:
+                    parameter.requires_grad_(False)
+            routing.active.reset(token)
 
 
 def _train(self, mode=True):
@@ -164,7 +184,14 @@ def _hook(routing, adapter):
         # Select only EXO rows, rather than multiply an all-row update by zero:
         # even arbitrary nonfinite adapter values cannot alter an EGO row.
         updated = output.index_select(0, indices) + delta
-        return output.index_copy(0, indices, updated)
+        # Out-of-place index_copy always materializes a contiguous result.
+        # Keep dense noncontiguous layouts too: changing a downstream kernel's
+        # input strides can change its floating-point reduction, including on
+        # EGO rows that were not updated.  Clone remains differentiable and
+        # prevents the selected-row write from mutating the original output.
+        result = output.clone(memory_format=torch.preserve_format)
+        result.index_copy_(0, indices, updated)
+        return result
     return apply
 
 
@@ -193,11 +220,12 @@ def install_adapters(model, spec=None):
     adapters = nn.ModuleDict({f"a{i:04d}": _LowRankUpdate(target, spec["rank"], spec["alpha"])
                               for i, target in enumerate(targets)})
     original_forward, original_train = model.forward, model.train
-    for parameter in model.parameters():
+    original_parameters = tuple((parameter, parameter.requires_grad) for parameter in model.parameters())
+    for parameter, _ in original_parameters:
         parameter.requires_grad_(False)
     original_train(False)
     model.add_module("exo_adapters", adapters)
-    routing = _Routing(original_forward, original_train, spec, list(spec["targets"]))
+    routing = _Routing(original_forward, original_train, spec, list(spec["targets"]), original_parameters)
     model._exo_adapter_routing = routing
     for target, adapter in zip(targets, adapters.values()):
         routing.handles.append(target.register_forward_hook(_hook(routing, adapter)))
@@ -280,6 +308,8 @@ def adapter_manifest(model):
                                              if name != "exo_adapters" and not name.startswith(STATE_PREFIX)),
                 mode_source="explicit batch['mode']; no visibility-count inference",
                 gate="EGO path bypass; EXO-only row selection; ContextVar-scoped restoration",
+                inference_parameter_metadata="original requires_grad flags only during serialized no_grad forward; finally frozen",
+                training_parameter_metadata="all original parameters frozen, including internal no_grad proposal",
                 deployment="one state_dict containing frozen parent and internal adapters; save spec for strict reload")
 
 

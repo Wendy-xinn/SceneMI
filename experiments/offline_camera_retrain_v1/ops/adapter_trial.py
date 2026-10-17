@@ -77,6 +77,27 @@ def memory_admission(free_bytes,total_bytes,fraction,reserve_gib):
                 reserved_bytes=int(reserve_gib*2**30),required_free_bytes=int(required))
 
 
+def parse_global_gpu_memory(output):
+    """Parse the explicit device-zero nvidia-smi CSV, never a guessed total."""
+    rows=[row.strip() for row in output.splitlines() if row.strip()]
+    if len(rows)!=1:
+        raise ValueError("Expected exactly one device-zero global GPU memory row")
+    fields=[field.strip() for field in rows[0].split(",")]
+    if len(fields)!=3 or fields[0]!="0":
+        raise ValueError("Global GPU memory query did not identify device zero")
+    free_mib,total_mib=(int(value) for value in fields[1:])
+    if not 0<=free_mib<=total_mib or total_mib<=0:
+        raise ValueError("Invalid global GPU memory measurements")
+    return dict(device_index=0,free_bytes=free_mib*2**20,total_bytes=total_mib*2**20)
+
+
+def global_gpu_memory():
+    result=subprocess.run(["nvidia-smi","--id=0","--query-gpu=index,memory.free,memory.total",
+                           "--format=csv,noheader,nounits"],check=True,capture_output=True,text=True,timeout=10)
+    return dict(parse_global_gpu_memory(result.stdout),measured_at=adapt.now(),
+                source="nvidia-smi explicit device0 global memory")
+
+
 def global_lock_owner():
     """Read the Linux flock owner; fail closed when this cannot be identified."""
     try:
@@ -124,7 +145,18 @@ def resource_admission(config):
     os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG",":4096:8")
     import torch
     free,total=torch.cuda.mem_get_info()
-    measurement=memory_admission(free,total,options["memory_fraction"],options["parallel_gpu_reserve_gib"])
+    report["torch_memory"]=dict(free_bytes=int(free),total_bytes=int(total),measured_at=adapt.now())
+    try:
+        global_memory=global_gpu_memory()
+    except (OSError,ValueError,subprocess.SubprocessError) as exc:
+        return dict(report,reason="Global GPU memory unavailable; use shared exclusive queue",error=repr(exc))
+    report["global_memory"]=global_memory
+    # WSL can report process-scoped CUDA free memory. Both independent global
+    # and CUDA observations must leave enough room, with the larger total used
+    # to conservatively size the configured fraction.
+    measurement=memory_admission(min(free,global_memory["free_bytes"]),max(total,global_memory["total_bytes"]),
+                                 options["memory_fraction"],options["parallel_gpu_reserve_gib"])
+    report["free_memory_policy"]="minimum of CUDA and explicit device0 global free bytes"
     report.update(measurement)
     report["reason"]="Preregistered bounded overlap; frozen TEST untouched" if measurement["admitted_parallel"] else "Insufficient headroom; use shared exclusive queue"
     return report
@@ -372,6 +404,27 @@ def inference_probe_items(items):
     return result
 
 
+def output_equivalence(original,observed,modes):
+    """Record exact equality and real per-row error without weakening a gate."""
+    import torch
+    if original.shape!=observed.shape or len(modes)!=len(original):
+        raise ValueError("Equivalence probe output shape or mode count differs")
+    delta=observed.detach().to(torch.float64)-original.detach().to(torch.float64)
+    rows=[]
+    for index,mode in enumerate(modes):
+        difference=delta[index]
+        rows.append(dict(row=index,mode=mode,exact_equal=bool(torch.equal(original[index],observed[index])),
+                         maximum_absolute_error=float(difference.abs().max()),
+                         mean_squared_error=float(difference.square().mean()),
+                         nonzero_count=int(torch.count_nonzero(difference))))
+    return dict(exact_equal=bool(torch.equal(original,observed)),rows=rows,
+                maximum_absolute_error=float(delta.abs().max()),
+                original=dict(shape=list(original.shape),stride=list(original.stride()),dtype=str(original.dtype),
+                              contiguous=original.is_contiguous()),
+                observed=dict(shape=list(observed.shape),stride=list(observed.stride()),dtype=str(observed.dtype),
+                              contiguous=observed.is_contiguous()))
+
+
 def preflight(run):
     import numpy as np
     import torch
@@ -404,6 +457,9 @@ def preflight(run):
     ego_item = (clean, scene, asset, "ego")
     selected = {"exo": exo_item, "ego": ego_item}
     probes = {}
+    probe_evidence=dict(checked_at=adapt.now(),optimizer_updates=0,seed=config["seed"],
+                        observation_rng_seed=config["seed"]+991,timestep=300,
+                        selected_cases=dict(exo=exo_identity,ego=ego_entry),comparisons={})
     with torch.no_grad():
         for label, modes in (("exo", ("exo",)), ("ego", ("ego",)), ("mixed", ("exo", "ego"))):
             items=[selected[mode] for mode in modes]
@@ -429,9 +485,13 @@ def preflight(run):
     with torch.no_grad():
         for label, (_, known, t, noise, original) in probes.items():
             observed = model(noise, t, known)
-            if not torch.equal(original, observed):
+            measurement=output_equivalence(original,observed,known["mode"])
+            measurement["noise_sha256"]=hashlib.sha256(noise.detach().cpu().contiguous().numpy().tobytes()).hexdigest()
+            probe_evidence["comparisons"][label]=measurement
+            adapt.write(run/"prepared/EQUIVALENCE_PROBES.json",probe_evidence)
+            if not measurement["exact_equal"]:
                 raise AssertionError("Zero-init adapter changes parent output: " + label)
-            equivalence[label] = dict(exact_equal=True, maximum_absolute_error=0.)
+            equivalence[label] = measurement
         _, known, t, noise, original = probes["ego"]
         # Structural retention must hold even after adapters contain nonzero values.
         saved = [parameter.detach().clone() for parameter in adapter_parameters(model)]
@@ -907,7 +967,11 @@ def main():
     parser.add_argument("command",choices=("prepare","preflight","train","run","status","recheck"))
     parser.add_argument("--run",type=Path,default=DEFAULT_RUN)
     parser.add_argument("--resume",action="store_true")
+    parser.add_argument("--prepared",action="store_true",
+                        help="run only: reuse explicitly sealed CPU preparation; still run preflight and full train data SHA")
     args=parser.parse_args()
+    if args.prepared and (args.command!="run" or args.resume):
+        parser.error("--prepared is valid only for run and cannot be combined with --resume")
     run=args.run.resolve()
     if args.command=="status":
         print(json.dumps(adapt.read(run/"STATUS.json") if (run/"STATUS.json").exists() else
@@ -923,7 +987,7 @@ def main():
             with gpu_lock(run):
                 train(run,args.resume)
         elif args.command=="run":
-            if not args.resume:
+            if not args.resume and not args.prepared:
                 prepare(run)
             with gpu_lock(run):
                 if not args.resume:

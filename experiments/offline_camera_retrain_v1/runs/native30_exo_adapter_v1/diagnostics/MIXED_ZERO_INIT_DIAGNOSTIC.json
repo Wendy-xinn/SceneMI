@@ -1,0 +1,2767 @@
+{
+  "status": "completed_no_optimizer_diagnostic",
+  "started_at": "2026-10-18T01:51:17.478315+08:00",
+  "pid": 31880,
+  "unsealed_diagnostic": true,
+  "formal_preflight_pass": false,
+  "optimizer_updates": 0,
+  "full_dataset_sha_rerun": false,
+  "comparisons": {
+    "bare_repeat_exo": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "exo",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "bare_repeat_ego": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "ego",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "bare_repeat_mixed": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "exo",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        },
+        {
+          "row": 1,
+          "mode": "ego",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          2,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          2,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "same_bare_frozen_exo": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "exo",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "same_bare_frozen_ego": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "ego",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "same_bare_frozen_mixed": {
+      "exact_equal": false,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "exo",
+          "exact_equal": false,
+          "maximum_absolute_error": 0.0005297064781188965,
+          "mean_squared_error": 9.176369783492968e-10,
+          "nonzero_count": 38440
+        },
+        {
+          "row": 1,
+          "mode": "ego",
+          "exact_equal": false,
+          "maximum_absolute_error": 0.008105263113975525,
+          "mean_squared_error": 1.6244527672773847e-08,
+          "nonzero_count": 38430
+        }
+      ],
+      "maximum_absolute_error": 0.008105263113975525,
+      "original": {
+        "shape": [
+          2,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          2,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "same_instance_disabled_exo": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "exo",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "same_instance_enabled_exo": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "exo",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "same_instance_disabled_ego": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "ego",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "same_instance_enabled_ego": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "ego",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "same_instance_disabled_mixed": {
+      "exact_equal": false,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "exo",
+          "exact_equal": false,
+          "maximum_absolute_error": 0.0005297064781188965,
+          "mean_squared_error": 9.176369783492968e-10,
+          "nonzero_count": 38440
+        },
+        {
+          "row": 1,
+          "mode": "ego",
+          "exact_equal": false,
+          "maximum_absolute_error": 0.008105263113975525,
+          "mean_squared_error": 1.6244527672773847e-08,
+          "nonzero_count": 38430
+        }
+      ],
+      "maximum_absolute_error": 0.008105263113975525,
+      "original": {
+        "shape": [
+          2,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          2,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "same_instance_enabled_mixed": {
+      "exact_equal": false,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "exo",
+          "exact_equal": false,
+          "maximum_absolute_error": 0.0005297064781188965,
+          "mean_squared_error": 9.176369783492968e-10,
+          "nonzero_count": 38440
+        },
+        {
+          "row": 1,
+          "mode": "ego",
+          "exact_equal": false,
+          "maximum_absolute_error": 0.008105263113975525,
+          "mean_squared_error": 1.6244527672773847e-08,
+          "nonzero_count": 38430
+        }
+      ],
+      "maximum_absolute_error": 0.008105263113975525,
+      "original": {
+        "shape": [
+          2,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          2,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "fresh_reconstruction_exo": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "exo",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "fresh_reconstruction_ego": {
+      "exact_equal": true,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "ego",
+          "exact_equal": true,
+          "maximum_absolute_error": 0.0,
+          "mean_squared_error": 0.0,
+          "nonzero_count": 0
+        }
+      ],
+      "maximum_absolute_error": 0.0,
+      "original": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          1,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    },
+    "fresh_reconstruction_mixed": {
+      "exact_equal": false,
+      "rows": [
+        {
+          "row": 0,
+          "mode": "exo",
+          "exact_equal": false,
+          "maximum_absolute_error": 0.0005297064781188965,
+          "mean_squared_error": 9.176369783492968e-10,
+          "nonzero_count": 38440
+        },
+        {
+          "row": 1,
+          "mode": "ego",
+          "exact_equal": false,
+          "maximum_absolute_error": 0.008105263113975525,
+          "mean_squared_error": 1.6244527672773847e-08,
+          "nonzero_count": 38430
+        }
+      ],
+      "maximum_absolute_error": 0.008105263113975525,
+      "original": {
+        "shape": [
+          2,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      },
+      "observed": {
+        "shape": [
+          2,
+          192,
+          201
+        ],
+        "stride": [
+          38592,
+          201,
+          1
+        ],
+        "dtype": "torch.float32",
+        "contiguous": true
+      }
+    }
+  },
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/adapter_trial.py": "db86273879b066099a5fdcadb64c4aed9aced052034fa513278a2cf569d46e7a",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/adapter_model.py": "cd26f52f759c8445e2ef3585b86efd1a8f086c90c0727769b930aab306b6c872"
+  },
+  "seed": 2026101801,
+  "observation_seed": 2026102792,
+  "admission": {
+    "checked_at": "2026-10-18T01:51:17.479949+08:00",
+    "admitted_parallel": true,
+    "policy": "bounded_parallel_with_frozen_test",
+    "process_metadata_only": true,
+    "TEST_predictions_or_metrics_opened": false,
+    "frozen_test_run": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/rich_test_ego41k",
+    "test_pid": 13744,
+    "test_status": "sampling",
+    "test_status_age_seconds": 2.954421,
+    "global_lock_owner_pid": 13744,
+    "test_checkpoint_step": 41000,
+    "test_checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+    "torch_memory": {
+      "free_bytes": 23881318400,
+      "total_bytes": 25642467328,
+      "measured_at": "2026-10-18T01:51:17.848166+08:00"
+    },
+    "global_memory": {
+      "device_index": 0,
+      "free_bytes": 15904800768,
+      "total_bytes": 25642926080,
+      "measured_at": "2026-10-18T01:51:17.906948+08:00",
+      "source": "nvidia-smi explicit device0 global memory"
+    },
+    "free_memory_policy": "minimum of CUDA and explicit device0 global free bytes",
+    "free_bytes": 15904800768,
+    "total_bytes": 25642926080,
+    "adapter_fraction": 0.25,
+    "adapter_budget_bytes": 6410731520,
+    "reserved_bytes": 4294967296,
+    "required_free_bytes": 10705698816,
+    "reason": "Preregistered bounded overlap; frozen TEST untouched"
+  },
+  "updated_at": "2026-10-18T01:52:57.792162+08:00",
+  "parent_identity": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/best.pt",
+    "checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+    "parent_step": 41000,
+    "changed_config_fields": [
+      "adaptation",
+      "adapters",
+      "initialization",
+      "optimizer.warmup_steps",
+      "phase_plan.budget_status",
+      "phase_plan.mixed_control",
+      "phase_plan.next_phase",
+      "phase_plan.planned_updates",
+      "phase_plan.review_milestones",
+      "prepared_output",
+      "sampler.training_mode",
+      "seed",
+      "source_seal",
+      "training_mode",
+      "training_status",
+      "validation.monitor_modes",
+      "validation.scene_ablation_interval_steps",
+      "validation.scope",
+      "version",
+      "warm_start"
+    ],
+    "optimizer_reset": true,
+    "stage_step_origin": 0
+  },
+  "selected_cases": {
+    "exo": {
+      "protocol": "native30-observer-target-v1-raw-firsthit",
+      "export_fingerprint": {
+        "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+        "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+        "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+        "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+        "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+        "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+        "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+      },
+      "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+      "sequence_id": "2023-01-15@21-18-12",
+      "bundle_id": "2023-01-15@21-18-12",
+      "split": "train",
+      "group": "trumans",
+      "dataset": "trumans",
+      "fps": 30,
+      "frames": 2050,
+      "source_first": 0,
+      "source_last": 2049,
+      "native_body": {
+        "model": "smplx",
+        "gender": "male",
+        "betas": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": 1.0
+      },
+      "actual_virtual_mount": {
+        "rotation": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "translation_m": [
+          -0.013430627645141843,
+          0.04611855486427483,
+          0.09878170773069515
+        ],
+        "position_p90_m": 0.0,
+        "rotation_p90_rad": 0.0,
+        "source": "actual fixed raw30 virtual mount"
+      },
+      "diagnostic_only": false,
+      "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+      "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+      "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+      "input_sha256": "e05883dbfe9c254412ae7d6b475bf0bf48e1df8a1cffffc4c8135a63969a22a2",
+      "elapsed_s": 61.8389872230473,
+      "split_protocol": "egobody-official-recording-v2",
+      "recording": null,
+      "scene_id": "0ab72fdf-ba1b-4df5-8df2-6efcfa7bb53a",
+      "pose_profile_split": "train",
+      "allowed_modes": [
+        "ego",
+        "exo"
+      ],
+      "exo_protocol": "three-corpus-calibrated-or-explicit-synthetic-firsthit-v1",
+      "exo_camera": {
+        "kind": "synthetic_training_observer",
+        "view_id": "synthetic_at_first_release_camera",
+        "selection": "fixed first released camera centre; synthetic look-at recording centre; no visibility selection",
+        "position": [
+          0.9760573676264704,
+          1.4000018504479081,
+          1.571829902562238
+        ],
+        "rotation": [
+          [
+            0.6896133786816615,
+            0.16079867137493942,
+            -0.7060999753769416
+          ],
+          [
+            0.0,
+            -0.9750368506154774,
+            -0.22204310379259934
+          ],
+          [
+            -0.724177732289017,
+            0.1531238950193773,
+            -0.6723984568920659
+          ]
+        ],
+        "K": [
+          [
+            146.25726438668818,
+            0.0,
+            96.0
+          ],
+          [
+            0.0,
+            146.25726438668818,
+            54.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "distortion": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_size": [
+          192,
+          108
+        ],
+        "size": [
+          192,
+          108
+        ],
+        "calibration": null,
+        "near": 0.1,
+        "far": 12.0,
+        "benchmark_camera_verified": false,
+        "release_camera_status": "paired extrinsics recovered with native rest pivot; K and optical axes unverified",
+        "release_camera_sources": [
+          "/home/wenxin/projects/TRUMANS/smplx_result/2023-01-15@21-18-12_smplx_results.pkl",
+          "/home/wenxin/projects/TRUMANS/smplx_result_in_cam/2023-01-15@21-18-12_smplx_results.pkl"
+        ]
+      },
+      "exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence",
+      "exo_visibility_statistics": {
+        "reference": 5302378,
+        "visible": 4433536,
+        "person": 0,
+        "static": 745,
+        "rigid": 868097
+      },
+      "exo_mean_available_joints": 13.914146341463415,
+      "world_frame_id": "34b31e626f6fba4a87f179e9a43432f1f8cacfb6d6f43634481d023c9aa8c3b9",
+      "output_sha256": {
+        "camera_intrinsics_128x96.npy": "bea646a976d8c90bb0633a75f7884a4a0e24d91d04c3d87f7c9421f554d215e2",
+        "camera_position_scenemi_yup.npy": "ec6c4d531382dfd04143cc9a4beeaeb00cb74260482139692b9754c72094f262",
+        "camera_rotation_scenemi_yup.npy": "3371dc695b5062ccf8724e8d4603f4485b5f3dc5576fb254b30c91a752f3acbe",
+        "exo_frame_owner.npy": "43c759d0f5239829e17d02b38226ad2e9748ba2231e4cd53ad3b16ca8c1f841a",
+        "exo_frame_points_world.npy": "7fae315361dd9689a34da37e3a5da4f63b4de1aef4062deb9705c6d300aa8827",
+        "exo_intrinsics.npy": "94dd0a431eec652e583a75ef4e1101368df3b67b909a445eb6340adfab960dce",
+        "exo_person_counts.npy": "2f43a837bde527b8fe8fc508f087cc50f564352949ccde2b3f869b5ad185c077",
+        "exo_position_available.npy": "77b72fbf1c1393f2fb6780b743757d761f4cffb8ec90fc72e690f9e96ee05ad9",
+        "exo_position_confidence.npy": "3b18e30ad139eadaa2b50f2e435caa7a3ea41276cb215851b0e7c1d2ba4db38f",
+        "exo_reference_counts.npy": "14521d663442c4470ffeed4683b25b1eca25da589e346cef945e99244768cdea",
+        "exo_rigid_counts.npy": "7247d7d874e5da1b7f7d417bcdbeb1601c92b88b12b1d54aed9b4a0eff6839ea",
+        "exo_sensor_to_world.npy": "6f912e865389b546db86f64ace9c3a823fe9a5ca5a9a58a9f0b89267a9a2431a",
+        "exo_static_counts.npy": "ffd7bbd32e82c78014a55fe1299ef53426639ae99ee800efcfe29419633ebe70",
+        "exo_trajectory_world.npy": "504e207a8a024e5a979e6211e6d10aca96afe0f80d1174f1f6acf1b6138a338d",
+        "exo_visible_counts.npy": "4a8b465029a65c5adec00ac7d26b2a146f594c199a733232c909a9f447a99da5",
+        "motion_world.npy": "0d626184a30a5cc0655b0e6b17d53c064691b12591f891ff7ce3f4874c7ecd22",
+        "object_positions.npy": "c5034a4c71d35c8f1bb364ec3deb535abd681c9a6b3e3335b54515caa8d8acfe",
+        "object_rotations.npy": "916cdf170ac357b80b9df9c74334e20d7693b16fd9e39b1e030d8c1b0d8ec385",
+        "object_valid.npy": "f8cf8243c81cd78a50818a76ddefdb35456acbd250572c6abe95c78f6acf5de6",
+        "observation_valid.npy": "36ac5c2870831e1d75ed4f6180e487c5a1810421654351ea31387e81592dbc92",
+        "rest.npy": "91b1839a3b5e71c13223d744b6cad262e3c401414d5b10ae0186d35b13755066",
+        "source_frame_ids.npy": "d902ab26a531f82189fad7a5a93107393c4e890b8b817431c374b69fb3dc06c1",
+        "trumans_released_camera_to_world_reference.npy": "b17860530404b34ccb0376a12ed16d5d07017bbfdd1604da846d3b1ce65cec06",
+        "visible_frame_owner.npy": "bed8bea656187f52996113ad880812a278249f636deac5f843036de2b725b452",
+        "visible_frame_points_scenemi_yup.npy": "ef4292037bbf51139cb749b35a9d6068e6a3d1aeb38dabe1ebe511cceef5f749"
+      },
+      "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/2023-01-15@21-18-12",
+      "start": 256,
+      "source_start_30fps": 256,
+      "origin": [
+        0.9760573506355286,
+        1.400001883506775,
+        1.571829915046692
+      ],
+      "anchor": [
+        [
+          0.5522215894040079,
+          0.0,
+          0.8336973837941644
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          -0.8336973837941642,
+          0.0,
+          0.552221589404008
+        ]
+      ],
+      "yaw_augmentation_rad": -1.345981699997807,
+      "mode": "exo",
+      "window_stride": 64,
+      "sampling": {
+        "protocol": "native30-recording-cycles-v1",
+        "recording_key": "trumans/2023-01-15@21-18-12",
+        "cooldown_fallback": false,
+        "overlap_fallback": false
+      }
+    },
+    "ego": {
+      "group": "trumans",
+      "mode": "ego",
+      "member": 26,
+      "start": 1024,
+      "joints": [
+        15
+      ],
+      "sequence_id": "2023-02-18@22-11-49",
+      "source_first": 1024,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-11-49",
+      "panel": "fixed",
+      "monitor_round": 0,
+      "case_seed": 3294300373
+    }
+  },
+  "same_instance_base_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+  "intermediate_differences": {
+    "exo": [],
+    "ego": [],
+    "mixed": [
+      {
+        "target": "patch_condition",
+        "original_live_stride": [
+          12288,
+          64,
+          1
+        ],
+        "enabled_live_stride": [
+          12288,
+          64,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 6.245356053113937e-05,
+              "mean_squared_error": 4.752953521377744e-11,
+              "nonzero_count": 12284
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.00018916279077529907,
+              "mean_squared_error": 1.791162420915719e-10,
+              "nonzero_count": 12284
+            }
+          ],
+          "maximum_absolute_error": 0.00018916279077529907,
+          "original": {
+            "shape": [
+              2,
+              192,
+              64
+            ],
+            "stride": [
+              12288,
+              64,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              192,
+              64
+            ],
+            "stride": [
+              12288,
+              64,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "dynamic_condition",
+        "original_live_stride": [
+          12288,
+          64,
+          1
+        ],
+        "enabled_live_stride": [
+          12288,
+          64,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 3.1888484954833984e-06,
+              "mean_squared_error": 7.353736019752021e-14,
+              "nonzero_count": 11815
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 2.6226043701171875e-06,
+              "mean_squared_error": 3.4712296852150794e-14,
+              "nonzero_count": 7080
+            }
+          ],
+          "maximum_absolute_error": 3.1888484954833984e-06,
+          "original": {
+            "shape": [
+              2,
+              192,
+              64
+            ],
+            "stride": [
+              12288,
+              64,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              192,
+              64
+            ],
+            "stride": [
+              12288,
+              64,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.0.0.blocks.0.block1.0",
+        "original_live_stride": [
+          49152,
+          192,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          192,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.008516788482666016,
+              "mean_squared_error": 8.830774393582698e-08,
+              "nonzero_count": 49144
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.006333827972412109,
+              "mean_squared_error": 1.574317124313861e-07,
+              "nonzero_count": 49139
+            }
+          ],
+          "maximum_absolute_error": 0.008516788482666016,
+          "original": {
+            "shape": [
+              2,
+              256,
+              192
+            ],
+            "stride": [
+              49152,
+              192,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              256,
+              192
+            ],
+            "stride": [
+              49152,
+              192,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.0.0.blocks.1.block.0",
+        "original_live_stride": [
+          49152,
+          192,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          192,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.001278996467590332,
+              "mean_squared_error": 1.7568614530563263e-08,
+              "nonzero_count": 49143
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0007895231246948242,
+              "mean_squared_error": 1.9279346079822404e-08,
+              "nonzero_count": 49142
+            }
+          ],
+          "maximum_absolute_error": 0.001278996467590332,
+          "original": {
+            "shape": [
+              2,
+              256,
+              192
+            ],
+            "stride": [
+              49152,
+              192,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              256,
+              192
+            ],
+            "stride": [
+              49152,
+              192,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.0.1.blocks.0.block1.0",
+        "original_live_stride": [
+          49152,
+          192,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          192,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.010935544967651367,
+              "mean_squared_error": 2.3035584788625825e-07,
+              "nonzero_count": 49148
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.005278110504150391,
+              "mean_squared_error": 3.395346611704374e-07,
+              "nonzero_count": 49147
+            }
+          ],
+          "maximum_absolute_error": 0.010935544967651367,
+          "original": {
+            "shape": [
+              2,
+              256,
+              192
+            ],
+            "stride": [
+              49152,
+              192,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              256,
+              192
+            ],
+            "stride": [
+              49152,
+              192,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.0.1.blocks.1.block.0",
+        "original_live_stride": [
+          49152,
+          192,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          192,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.011468887329101562,
+              "mean_squared_error": 3.4619923483277197e-07,
+              "nonzero_count": 49142
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.009423255920410156,
+              "mean_squared_error": 2.6683896348342195e-07,
+              "nonzero_count": 49143
+            }
+          ],
+          "maximum_absolute_error": 0.011468887329101562,
+          "original": {
+            "shape": [
+              2,
+              256,
+              192
+            ],
+            "stride": [
+              49152,
+              192,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              256,
+              192
+            ],
+            "stride": [
+              49152,
+              192,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.1.0.blocks.0.block1.0",
+        "original_live_stride": [
+          49152,
+          96,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          96,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.006690859794616699,
+              "mean_squared_error": 6.283103919477223e-07,
+              "nonzero_count": 49148
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.005782604217529297,
+              "mean_squared_error": 9.375475525761365e-07,
+              "nonzero_count": 49148
+            }
+          ],
+          "maximum_absolute_error": 0.006690859794616699,
+          "original": {
+            "shape": [
+              2,
+              512,
+              96
+            ],
+            "stride": [
+              49152,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              512,
+              96
+            ],
+            "stride": [
+              49152,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.1.0.blocks.1.block.0",
+        "original_live_stride": [
+          49152,
+          96,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          96,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0060901641845703125,
+              "mean_squared_error": 4.72551368140755e-07,
+              "nonzero_count": 49145
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0047931671142578125,
+              "mean_squared_error": 5.32006063128822e-07,
+              "nonzero_count": 49145
+            }
+          ],
+          "maximum_absolute_error": 0.0060901641845703125,
+          "original": {
+            "shape": [
+              2,
+              512,
+              96
+            ],
+            "stride": [
+              49152,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              512,
+              96
+            ],
+            "stride": [
+              49152,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.1.1.blocks.0.block1.0",
+        "original_live_stride": [
+          49152,
+          96,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          96,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.009604930877685547,
+              "mean_squared_error": 1.1926624060203316e-06,
+              "nonzero_count": 49145
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.008137702941894531,
+              "mean_squared_error": 1.90912818747356e-06,
+              "nonzero_count": 49145
+            }
+          ],
+          "maximum_absolute_error": 0.009604930877685547,
+          "original": {
+            "shape": [
+              2,
+              512,
+              96
+            ],
+            "stride": [
+              49152,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              512,
+              96
+            ],
+            "stride": [
+              49152,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.1.1.blocks.1.block.0",
+        "original_live_stride": [
+          49152,
+          96,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          96,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0034894943237304688,
+              "mean_squared_error": 2.0484382192105809e-07,
+              "nonzero_count": 49129
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0038433074951171875,
+              "mean_squared_error": 2.955729124197893e-07,
+              "nonzero_count": 49134
+            }
+          ],
+          "maximum_absolute_error": 0.0038433074951171875,
+          "original": {
+            "shape": [
+              2,
+              512,
+              96
+            ],
+            "stride": [
+              49152,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              512,
+              96
+            ],
+            "stride": [
+              49152,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.2.0.blocks.0.block1.0",
+        "original_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.013194561004638672,
+              "mean_squared_error": 3.3180198240223826e-06,
+              "nonzero_count": 49146
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.010861396789550781,
+              "mean_squared_error": 4.419459767752704e-06,
+              "nonzero_count": 49144
+            }
+          ],
+          "maximum_absolute_error": 0.013194561004638672,
+          "original": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.2.0.blocks.1.block.0",
+        "original_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0026819705963134766,
+              "mean_squared_error": 1.632425640286003e-07,
+              "nonzero_count": 49143
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.003638029098510742,
+              "mean_squared_error": 3.5344642031791853e-07,
+              "nonzero_count": 49144
+            }
+          ],
+          "maximum_absolute_error": 0.003638029098510742,
+          "original": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.2.1.blocks.0.block1.0",
+        "original_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.009026527404785156,
+              "mean_squared_error": 2.0421569281484202e-06,
+              "nonzero_count": 49146
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.007805585861206055,
+              "mean_squared_error": 2.5995780630564456e-06,
+              "nonzero_count": 49147
+            }
+          ],
+          "maximum_absolute_error": 0.009026527404785156,
+          "original": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.downs.2.1.blocks.1.block.0",
+        "original_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0046863555908203125,
+              "mean_squared_error": 3.5002080444780357e-07,
+              "nonzero_count": 49144
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0050945281982421875,
+              "mean_squared_error": 5.752452886059253e-07,
+              "nonzero_count": 49148
+            }
+          ],
+          "maximum_absolute_error": 0.0050945281982421875,
+          "original": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.mid_block1.blocks.0.block1.0",
+        "original_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.010296106338500977,
+              "mean_squared_error": 1.927771196659992e-06,
+              "nonzero_count": 49143
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.010151505470275879,
+              "mean_squared_error": 2.9222235817125064e-06,
+              "nonzero_count": 49145
+            }
+          ],
+          "maximum_absolute_error": 0.010296106338500977,
+          "original": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.mid_block1.blocks.1.block.0",
+        "original_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0036940574645996094,
+              "mean_squared_error": 3.051761032443098e-07,
+              "nonzero_count": 49151
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.003445863723754883,
+              "mean_squared_error": 3.130683976923011e-07,
+              "nonzero_count": 49146
+            }
+          ],
+          "maximum_absolute_error": 0.0036940574645996094,
+          "original": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.mid_block2.blocks.0.block1.0",
+        "original_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.009954452514648438,
+              "mean_squared_error": 2.0996247087624644e-06,
+              "nonzero_count": 49139
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.009835243225097656,
+              "mean_squared_error": 3.118204576562487e-06,
+              "nonzero_count": 49146
+            }
+          ],
+          "maximum_absolute_error": 0.009954452514648438,
+          "original": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.mid_block2.blocks.1.block.0",
+        "original_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.002829253673553467,
+              "mean_squared_error": 1.494263516468033e-07,
+              "nonzero_count": 49147
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.002384170889854431,
+              "mean_squared_error": 1.6379446396627573e-07,
+              "nonzero_count": 49147
+            }
+          ],
+          "maximum_absolute_error": 0.002829253673553467,
+          "original": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              1024,
+              48
+            ],
+            "stride": [
+              49152,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.ups.0.0.blocks.0.block1.0",
+        "original_live_stride": [
+          24576,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          24576,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.01584625244140625,
+              "mean_squared_error": 7.2665547072656915e-06,
+              "nonzero_count": 24571
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.020206451416015625,
+              "mean_squared_error": 1.0305780081597244e-05,
+              "nonzero_count": 24574
+            }
+          ],
+          "maximum_absolute_error": 0.020206451416015625,
+          "original": {
+            "shape": [
+              2,
+              512,
+              48
+            ],
+            "stride": [
+              24576,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              512,
+              48
+            ],
+            "stride": [
+              24576,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.ups.0.0.blocks.1.block.0",
+        "original_live_stride": [
+          24576,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          24576,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.001310110092163086,
+              "mean_squared_error": 3.314369713435983e-08,
+              "nonzero_count": 24575
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0013741254806518555,
+              "mean_squared_error": 4.038350124779268e-08,
+              "nonzero_count": 24574
+            }
+          ],
+          "maximum_absolute_error": 0.0013741254806518555,
+          "original": {
+            "shape": [
+              2,
+              512,
+              48
+            ],
+            "stride": [
+              24576,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              512,
+              48
+            ],
+            "stride": [
+              24576,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.ups.0.1.blocks.0.block1.0",
+        "original_live_stride": [
+          24576,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          24576,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.008030891418457031,
+              "mean_squared_error": 2.6088517040666884e-06,
+              "nonzero_count": 24573
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.008958816528320312,
+              "mean_squared_error": 3.38053374636512e-06,
+              "nonzero_count": 24573
+            }
+          ],
+          "maximum_absolute_error": 0.008958816528320312,
+          "original": {
+            "shape": [
+              2,
+              512,
+              48
+            ],
+            "stride": [
+              24576,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              512,
+              48
+            ],
+            "stride": [
+              24576,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.ups.0.1.blocks.1.block.0",
+        "original_live_stride": [
+          24576,
+          48,
+          1
+        ],
+        "enabled_live_stride": [
+          24576,
+          48,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0017009973526000977,
+              "mean_squared_error": 1.0312531386834951e-07,
+              "nonzero_count": 24574
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0022981762886047363,
+              "mean_squared_error": 1.4679192364014202e-07,
+              "nonzero_count": 24572
+            }
+          ],
+          "maximum_absolute_error": 0.0022981762886047363,
+          "original": {
+            "shape": [
+              2,
+              512,
+              48
+            ],
+            "stride": [
+              24576,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              512,
+              48
+            ],
+            "stride": [
+              24576,
+              48,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.ups.1.0.blocks.0.block1.0",
+        "original_live_stride": [
+          24576,
+          96,
+          1
+        ],
+        "enabled_live_stride": [
+          24576,
+          96,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.016139984130859375,
+              "mean_squared_error": 6.508510015683613e-06,
+              "nonzero_count": 24573
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.015807151794433594,
+              "mean_squared_error": 9.386652007072793e-06,
+              "nonzero_count": 24573
+            }
+          ],
+          "maximum_absolute_error": 0.016139984130859375,
+          "original": {
+            "shape": [
+              2,
+              256,
+              96
+            ],
+            "stride": [
+              24576,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              256,
+              96
+            ],
+            "stride": [
+              24576,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.ups.1.0.blocks.1.block.0",
+        "original_live_stride": [
+          24576,
+          96,
+          1
+        ],
+        "enabled_live_stride": [
+          24576,
+          96,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0009252429008483887,
+              "mean_squared_error": 3.185382272048903e-08,
+              "nonzero_count": 24574
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0009784698486328125,
+              "mean_squared_error": 3.835215126330534e-08,
+              "nonzero_count": 24571
+            }
+          ],
+          "maximum_absolute_error": 0.0009784698486328125,
+          "original": {
+            "shape": [
+              2,
+              256,
+              96
+            ],
+            "stride": [
+              24576,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              256,
+              96
+            ],
+            "stride": [
+              24576,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.ups.1.1.blocks.0.block1.0",
+        "original_live_stride": [
+          24576,
+          96,
+          1
+        ],
+        "enabled_live_stride": [
+          24576,
+          96,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0118560791015625,
+              "mean_squared_error": 2.390360324115582e-06,
+              "nonzero_count": 24574
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.008965253829956055,
+              "mean_squared_error": 3.2243240569836088e-06,
+              "nonzero_count": 24574
+            }
+          ],
+          "maximum_absolute_error": 0.0118560791015625,
+          "original": {
+            "shape": [
+              2,
+              256,
+              96
+            ],
+            "stride": [
+              24576,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              256,
+              96
+            ],
+            "stride": [
+              24576,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.ups.1.1.blocks.1.block.0",
+        "original_live_stride": [
+          24576,
+          96,
+          1
+        ],
+        "enabled_live_stride": [
+          24576,
+          96,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0020408034324645996,
+              "mean_squared_error": 6.848132257183306e-08,
+              "nonzero_count": 24573
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0015987753868103027,
+              "mean_squared_error": 8.635931321888987e-08,
+              "nonzero_count": 24574
+            }
+          ],
+          "maximum_absolute_error": 0.0020408034324645996,
+          "original": {
+            "shape": [
+              2,
+              256,
+              96
+            ],
+            "stride": [
+              24576,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              256,
+              96
+            ],
+            "stride": [
+              24576,
+              96,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "core.unet.final_conv.0.block.0",
+        "original_live_stride": [
+          49152,
+          192,
+          1
+        ],
+        "enabled_live_stride": [
+          49152,
+          192,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0253753662109375,
+              "mean_squared_error": 7.5058647938944415e-06,
+              "nonzero_count": 49136
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.0251007080078125,
+              "mean_squared_error": 1.0602445988353032e-05,
+              "nonzero_count": 49141
+            }
+          ],
+          "maximum_absolute_error": 0.0253753662109375,
+          "original": {
+            "shape": [
+              2,
+              256,
+              192
+            ],
+            "stride": [
+              49152,
+              192,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              256,
+              192
+            ],
+            "stride": [
+              49152,
+              192,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      },
+      {
+        "target": "region_condition",
+        "original_live_stride": [
+          6144,
+          32,
+          1
+        ],
+        "enabled_live_stride": [
+          6144,
+          32,
+          1
+        ],
+        "comparison": {
+          "exact_equal": false,
+          "rows": [
+            {
+              "row": 0,
+              "mode": "exo",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.009455204010009766,
+              "mean_squared_error": 1.0461890308870015e-06,
+              "nonzero_count": 6144
+            },
+            {
+              "row": 1,
+              "mode": "ego",
+              "exact_equal": false,
+              "maximum_absolute_error": 0.015571117401123047,
+              "mean_squared_error": 2.3810767043520296e-06,
+              "nonzero_count": 6144
+            }
+          ],
+          "maximum_absolute_error": 0.015571117401123047,
+          "original": {
+            "shape": [
+              2,
+              192,
+              32
+            ],
+            "stride": [
+              6144,
+              32,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          },
+          "observed": {
+            "shape": [
+              2,
+              192,
+              32
+            ],
+            "stride": [
+              6144,
+              32,
+              1
+            ],
+            "dtype": "torch.float32",
+            "contiguous": true
+          }
+        }
+      }
+    ]
+  },
+  "fresh_base_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+  "fresh_adapter_sha256": "c5c346ca3f94d494deac64f44e3a5a0cdc13b42c51d86518a95cfd60da70f6d3",
+  "cuda_peak_allocated_bytes": 1793419776,
+  "finished_at": "2026-10-18T01:52:57.792151+08:00"
+}

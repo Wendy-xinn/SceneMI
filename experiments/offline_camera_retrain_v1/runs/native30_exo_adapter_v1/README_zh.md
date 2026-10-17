@@ -1,6 +1,6 @@
 # 冻结41k的EGO/EXO共存实验
 
-目标是在一个完整模型中接受EGO与EXO输入，保留41k的EGO计算路径，同时改善EXO遮挡部位且保护可见部位。当前处于实现与CPU准备阶段，训练与验收进度以[STATUS.json](STATUS.json)为准；尚无本轮收益结论。
+目标是在一个完整模型中接受EGO与EXO输入，保留41k的EGO计算路径，同时改善EXO遮挡部位且保护可见部位。训练与验收进度以[STATUS.json](STATUS.json)为准；未完成验收前不宣称收益。
 
 原41k约1.23亿参数全部冻结，保持eval；45个内部层增加rank16、alpha16的EXO门控低秩适配器，共1,955,616个可训练参数。适配器进入观测/参考/场景条件投影及U-Net内部卷积和时间条件，每一步扩散去噪仍通过共享主干。最后的201维动作输出层不加适配器。EGO按明确的输入模式绕过新增参数；EXO即使只剩头部可见也不会被误判成EGO。
 
@@ -11,6 +11,8 @@
 从VAL选定41k权重独立开始1000步EXO-only适配，B2、192帧、30Hz，新Adam及随机状态，LR最高1e-4，50步warmup、1000步cosine、最低0.2倍。只优化适配器；原损失、观察噪声、场景与物理/IK配置保持父协议。每100步覆盖一个完整可恢复last.pt；不产生编号或best副本，不自动延长、不自动推广。
 
 GPU预检实际比较裸41k与零初始化适配器的EGO/EXO/混合前向，检查EXO反传只到适配器；检查隐藏GT污染不影响生成、无动作标签的EXO接口等价。训练后再次检查冻结基础权重摘要和EGO整段DDIM预测数组逐值一致。
+
+前两次启动均在零更新预检中退出，见[ATTEMPTS.json](ATTEMPTS.json)。第二次发现仅改变基础参数的requires_grad标志就会改变CUDA混合批次数值，未安装适配器亦可复现；全局MHA fastpath开关不能消除差异。当前包装仅在串行no_grad推理期间恢复原始标志，退出时强制重新冻结；不修改参数值，梯度训练始终冻结主干。实际预检仍要求逐值一致，不放宽门槛。训练内部的no_grad proposal仍使用冻结标志，这个计算路径差别已在模型清单记录。
 
 ## 开发验证与验收
 
@@ -38,9 +40,12 @@ GPU预检实际比较裸41k与零初始化适配器的EGO/EXO/混合前向，检
 ```bash
 python -m experiments.offline_camera_retrain_v1.ops.adapter_trial run --run experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1
 python -m experiments.offline_camera_retrain_v1.ops.adapter_trial status --run experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1
+python -m experiments.offline_camera_retrain_v1.ops.adapter_report --run experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1 --watch
 ```
 
 run先完成CPU源与数据复核，依次执行实际预检、1000步适配、固定验证与独立CPU复算。resume只恢复本阶段完整状态。当前TEST的封印源码保持不变。
+
+报告进程只读取本轮文件，完成后生成RESULTS_zh.md；失败则明确记录错误，不把预检或首步结果当作最终结论。零更新排障若复用已核验CPU准备，会另存SOURCE_RESEAL.json，保留原完整数据复核时间；训练仍在第一次Adam更新前重新执行完整数据摘要核验。
 
 独立推理使用`ops.adapter_model.load_inference_model(checkpoint_path, device="cuda", expected_sha256=...)`，返回模型与身份信息。它从一个完整checkpoint恢复基础模型和适配器，不打开原41k checkpoint或训练数据。调用方仍需通过现有推理接口提供观测、人体rest与场景；模式由输入中的`mode`明确指定。
 

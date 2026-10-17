@@ -1,5 +1,7 @@
 """CPU checks for bounded EXO adapter identity, freeze, resume and acceptance."""
 import copy
+from contextlib import nullcontext
+import datetime as dt
 import json
 import os
 from pathlib import Path
@@ -50,6 +52,33 @@ class ConfigurationTests(unittest.TestCase):
 
 
 class ResourceAdmissionTests(unittest.TestCase):
+    def test_global_memory_parser_requires_actual_device_zero_measurement(self):
+        measured=trial.parse_global_gpu_memory("0, 17400, 24456\n")
+        self.assertEqual(measured["free_bytes"],17400*2**20)
+        for invalid in ("", "1, 10, 20", "0, N/A, 20", "0, 21, 20", "0, 1, 20\n0, 2, 20"):
+            with self.assertRaises(ValueError):
+                trial.parse_global_gpu_memory(invalid)
+
+    def test_global_memory_limits_process_scoped_cuda_and_unavailable_fails_closed(self):
+        config=dict(adaptation=dict(gpu_policy="bounded_parallel_with_frozen_test",frozen_test_run="runs/fake",
+                                   memory_fraction=.25,parallel_gpu_reserve_gib=4),warm_start=dict(sha256="parent"))
+        current=dict(pid=123,status="sampling",checked_at=dt.datetime.now(dt.timezone.utc).isoformat())
+        plan=dict(checkpoint_step=41000,checkpoint_sha256="parent",checkpoint="parent.pt")
+        with mock.patch.object(trial.adapt,"read",side_effect=lambda path:current if path.name=="STATUS.json" else plan), \
+             mock.patch.object(Path,"read_bytes",return_value=b"python rich-test evaluate"), \
+             mock.patch.object(trial,"global_lock_owner",return_value=123), \
+             mock.patch.object(trial,"sha256",return_value="parent"), \
+             mock.patch.object(torch.cuda,"mem_get_info",return_value=(23*2**30,24*2**30)):
+            with mock.patch.object(trial,"global_gpu_memory",return_value=dict(free_bytes=9*2**30,total_bytes=24*2**30)):
+                measured=trial.resource_admission(config)
+                self.assertFalse(measured["admitted_parallel"])
+                self.assertEqual(measured["free_bytes"],9*2**30)
+                self.assertEqual(measured["torch_memory"]["free_bytes"],23*2**30)
+            with mock.patch.object(trial,"global_gpu_memory",side_effect=OSError("unavailable")):
+                measured=trial.resource_admission(config)
+                self.assertFalse(measured["admitted_parallel"])
+                self.assertIn("Global GPU memory unavailable",measured["reason"])
+
     def test_preregistered_memory_cap_and_reserve_are_enforced(self):
         total=24*2**30
         report=trial.memory_admission(11*2**30,total,.25,4.)
@@ -78,6 +107,17 @@ class ResourceAdmissionTests(unittest.TestCase):
 
 
 class MixedInferenceProbeTests(unittest.TestCase):
+    def test_equivalence_evidence_keeps_per_row_exactness_and_layout(self):
+        original=torch.arange(24,dtype=torch.float32).reshape(3,2,4).transpose(0,1)
+        observed=original.clone()
+        observed[0,0,0]+=1
+        result=trial.output_equivalence(original,observed,["exo","ego"])
+        self.assertFalse(result["exact_equal"])
+        self.assertEqual(result["rows"][0]["nonzero_count"],1)
+        self.assertEqual(result["rows"][0]["maximum_absolute_error"],1.)
+        self.assertTrue(result["rows"][1]["exact_equal"])
+        self.assertEqual(result["original"]["stride"],list(original.stride()))
+
     def test_train_contact_supervision_is_not_stacked_with_val_inference(self):
         import numpy as np
         from experiments.offline_camera_retrain_v1.native30_observations import INPUT_KEYS,inference_payload
@@ -108,6 +148,26 @@ class MixedInferenceProbeTests(unittest.TestCase):
         sample={key:np.zeros((2,),np.float32) for key in INPUT_KEYS if key!="rest"}
         with self.assertRaisesRegex(ValueError,"Missing inference probe fields: rest"):
             trial.inference_probe_items([(sample,None,None,"ego")])
+
+
+class PreparedCliTests(unittest.TestCase):
+    def test_prepared_run_skips_only_prepare(self):
+        with mock.patch("sys.argv",["adapter_trial","run","--prepared"]), \
+             mock.patch.object(trial,"prepare") as prepare, \
+             mock.patch.object(trial,"preflight") as preflight, \
+             mock.patch.object(trial,"train") as train, \
+             mock.patch.object(trial,"gpu_lock",return_value=nullcontext()):
+            trial.main()
+            prepare.assert_not_called()
+            preflight.assert_called_once_with(trial.DEFAULT_RUN.resolve())
+            train.assert_called_once_with(trial.DEFAULT_RUN.resolve(),False)
+
+    def test_prepared_is_run_only_and_incompatible_with_resume(self):
+        for args in (["train","--prepared"],["run","--prepared","--resume"]):
+            with mock.patch("sys.argv",["adapter_trial",*args]),mock.patch("sys.stderr"):
+                with self.assertRaises(SystemExit) as error:
+                    trial.main()
+                self.assertEqual(error.exception.code,2)
 
 
 class TinyModel(nn.Module):

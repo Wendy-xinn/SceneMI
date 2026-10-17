@@ -25,8 +25,6 @@ class TinyDenoiser(nn.Module):
         self.dropout = nn.Dropout(.8)
 
     def forward(self, noisy_motion, timestep, batch, *, return_details=False):
-        if batch.get("barrier") is not None:
-            batch["barrier"].wait(timeout=5)
         with torch.no_grad():
             proposal = self.projection(noisy_motion)
         if batch.get("fail"):
@@ -34,6 +32,33 @@ class TinyDenoiser(nn.Module):
         raw = self.projection(noisy_motion)
         result = self.temporal(self.dropout(raw).transpose(1, 2)).transpose(1, 2) + .1 * proposal
         return (result, dict(raw_motion=raw, proposal=proposal.detach())) if return_details else result
+
+
+class NoncontiguousLinear(nn.Linear):
+    def forward(self, value):
+        output = super().forward(value)
+        return output.transpose(0, 1).contiguous().transpose(0, 1)
+
+
+class LayoutDenoiser(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.projection = NoncontiguousLinear(4, 4)
+        self.temporal = nn.Conv1d(4, 4, 3, padding=1)
+
+    def forward(self, noisy_motion, timestep, batch):
+        encoded = self.projection(noisy_motion)
+        self.observed_stride = encoded.stride()
+        return self.temporal(encoded.transpose(1, 2)).transpose(1, 2)
+
+
+class FlagSensitiveDenoiser(TinyDenoiser):
+    def forward(self, noisy_motion, timestep, batch, **kwargs):
+        self.observed_flags = tuple(parameter.requires_grad for module in (self.projection, self.temporal)
+                                    for parameter in module.parameters())
+        self.observed_grad_enabled = torch.is_grad_enabled()
+        result = super().forward(noisy_motion, timestep, batch, **kwargs)
+        return result * (2 if self.projection.weight.requires_grad else 3)
 
 
 SPEC = dict(rank=2, alpha=2, targets=["projection", "temporal"])
@@ -79,6 +104,30 @@ class AdapterModelTests(unittest.TestCase):
         with adapters_disabled(model):
             self.assertTrue(torch.equal(expected, model(self.x, self.t, dict(mode=["exo", "exo"]))))
         self.assertTrue(torch.equal(exo, model(self.x, self.t, dict(mode=["exo", "exo"]))))
+
+    def test_dense_noncontiguous_target_layout_is_preserved_with_gradients(self):
+        base = LayoutDenoiser().eval()
+        model = install_adapters(copy.deepcopy(base), dict(SPEC, targets=["projection"]))
+        modes = ["ego", "exo"]
+        expected = base(self.x, self.t, dict(mode=modes))
+        stride = base.observed_stride
+        self.assertEqual(stride, (4, 8, 1))
+        for selected in (["exo", "exo"], ["ego", "exo"], ["exo", "ego"], ["ego", "ego"]):
+            observed = model(self.x, self.t, dict(mode=selected))
+            self.assertEqual(model.observed_stride, stride)
+            self.assertTrue(torch.equal(expected, observed))
+        self.perturb(model)
+        observed = model(self.x, self.t, dict(mode=modes))
+        self.assertEqual(model.observed_stride, stride)
+        self.assertTrue(torch.equal(expected[0], observed[0]))
+        self.assertFalse(torch.equal(expected[1], observed[1]))
+        observed[1].square().mean().backward()
+        gradients = [parameter.grad for parameter in adapter_parameters(model)]
+        self.assertTrue(all(gradient is not None and torch.isfinite(gradient).all()
+                            for gradient in gradients))
+        self.assertTrue(all(gradient.abs().sum() > 0 for gradient in gradients))
+        self.assertTrue(all(parameter.grad is None for name, parameter in model.named_parameters()
+                            if not name.startswith("exo_adapters.")))
 
     def test_only_adapters_receive_gradients_and_base_stays_eval_and_unchanged(self):
         model = self.model()
@@ -138,14 +187,49 @@ class AdapterModelTests(unittest.TestCase):
     def test_routing_is_isolated_between_concurrent_forward_contexts(self):
         model = self.model()
         self.perturb(model)
-        expected_ego = model(self.x, self.t, dict(mode=["ego", "ego"]))
-        expected_exo = model(self.x, self.t, dict(mode=["exo", "exo"]))
+        with torch.no_grad():
+            expected_ego = model(self.x, self.t, dict(mode=["ego", "ego"]))
+            expected_exo = model(self.x, self.t, dict(mode=["exo", "exo"]))
         barrier = Barrier(2)
+        def predict(modes):
+            # Simultaneous callers wait outside the serialized model forward.
+            barrier.wait(timeout=5)
+            with torch.no_grad():
+                return model(self.x, self.t, dict(mode=modes))
         with ThreadPoolExecutor(max_workers=2) as pool:
-            ego = pool.submit(model, self.x, self.t, dict(mode=["ego", "ego"], barrier=barrier))
-            exo = pool.submit(model, self.x, self.t, dict(mode=["exo", "exo"], barrier=barrier))
+            ego = pool.submit(predict, ["ego", "ego"])
+            exo = pool.submit(predict, ["exo", "exo"])
             self.assertTrue(torch.equal(expected_ego, ego.result(timeout=10)))
             self.assertTrue(torch.equal(expected_exo, exo.result(timeout=10)))
+        self.assertTrue(adapter_manifest(model)["all_base_parameters_frozen"])
+
+    def test_no_grad_restores_original_parameter_flags_without_unfreezing_training(self):
+        base = FlagSensitiveDenoiser().eval()
+        base.temporal.bias.requires_grad_(False)
+        original_flags = tuple(parameter.requires_grad for parameter in base.parameters())
+        model = install_adapters(copy.deepcopy(base), SPEC)
+        modes = ["ego", "exo"]
+        with torch.no_grad():
+            expected = base(self.x, self.t, dict(mode=modes))
+            actual = model(self.x, self.t, dict(mode=modes))
+        self.assertTrue(torch.equal(expected, actual))
+        self.assertEqual(model.observed_flags, original_flags)
+        self.assertFalse(model.observed_grad_enabled)
+        self.assertTrue(adapter_manifest(model)["all_base_parameters_frozen"])
+        self.perturb(model)
+        with torch.no_grad():
+            actual = model(self.x, self.t, dict(mode=modes))
+        self.assertTrue(torch.equal(expected[0], actual[0]))
+        actual = model(self.x, self.t, dict(mode=modes))
+        self.assertEqual(model.observed_flags, (False,) * len(original_flags))
+        self.assertTrue(model.observed_grad_enabled)
+        actual[1].square().mean().backward()
+        self.assertTrue(any(parameter.grad is not None for parameter in adapter_parameters(model)))
+        self.assertTrue(all(parameter.grad is None for name, parameter in model.named_parameters()
+                            if not name.startswith("exo_adapters.")))
+        with torch.no_grad(), self.assertRaisesRegex(RuntimeError, "deliberate"):
+            model(self.x, self.t, dict(mode=modes, fail=True))
+        self.assertTrue(adapter_manifest(model)["all_base_parameters_frozen"])
 
     def test_target_validation_happens_before_base_is_frozen(self):
         for spec in (dict(SPEC, targets=["missing"]), dict(SPEC, targets=["dropout"]),
