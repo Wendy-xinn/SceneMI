@@ -1,5 +1,17 @@
 # 当前方法的证据与最短检验路径
 
+## 10月17日21:20最终复核：55k正常完成，验证平台与轻微回退，保留41k开发候选
+
+主线已于 **2026-10-17 20:49:24** 正常完成 55,000 步，worker 返回码 0。真实 `last.pt` 为 55k，模型/Adam 有限、全部 RNG 与 sampler/counts 完整；`best.pt` 为 41k 模型副本，无 Adam/RNG。365 份源封印及配置核验一致。best 的保存规则仍只依赖一个固定 RICH VAL 窗口，不是全 RICH 最优。[最终统一报告](../runs/native30_gait_v2_ego55k_oct15/final_review/REPORT_zh.md)、[训练与固定验证曲线](../runs/native30_gait_v2_ego55k_oct15/final_review/TRAINING_CURVES.png)、[checkpoint 审计](../runs/native30_gait_v2_ego55k_oct15/final_review/CHECKPOINT_AUDIT.json)。
+
+最后两个完整 5k 段总 loss 为 0.154302→0.150938（−2.18%），加权 stance 项为 0.00930831→0.00929848（−0.11%）。拟合仍缓慢改善，支撑相关监督接近平台；不能仅由总 loss 宣称脚部支撑已经学好。
+
+已完成 41k/55k 同输入、同 seed 配对：14 条不同录制 VAL 窗口＝12 RICH＋1 TRUMANS＋1 EgoBody，主比较统一关闭推理物理修正，5 个核心窗补报物理开启；76/76 份预测与独立 CPU 重算均通过。RICH 12 窗的 clean/noisy World MPJPE 从 41k 的 152.890/178.002 增至 55k 的 156.934/182.672 mm；GT 低速期水平脚速为 0.23434/0.28637→0.22884/0.26239 m/s，同帧 GT 为 0.06385 m/s；脚高误差从 45.424/61.994 增至 48.358/69.799 mm。即滑步略改善，但姿态和高度误差回退，可靠支撑仍未解决。[配对报告](../runs/native30_gait_v2_ego55k_oct15/final_review/checkpoint_comparison/REPORT_zh.md)、[76 份 CPU 重算](../runs/native30_gait_v2_ego55k_oct15/final_review/checkpoint_comparison/CPU_RECHECK_all.json)。
+
+**当前保留 41k 为主要开发候选，55k 保留完整续训状态；不延长训练、不自动接 EXO。** 结论限于开发验证：最新比较不是最终权重的全 RICH、正式 TEST、旧55k或外部论文同口径胜出证据。此前冻结 15,100 步的 206 窗/27 录制、412 次全 RICH VAL 预测已完成并通过独立 CPU 重算，不能把它标成 55k 全量结果。[旧全量报告](../runs/native30_live_monitor_oct16/rich_full_validation_oct16/REPORT_zh.md)、[412 份验收](../runs/native30_live_monitor_oct16/rich_full_validation_oct16/VERIFY_COMPLETE.json)。
+
+以下保留 15:20 及更早的历史检查记录，其中“正在训练”“当前 best”等状态只适用于各自记录时间。
+
 2026-10-17 15:20 复核，依据既有模型、日志与评估产物更新记录；不修改正在训练的源代码或配置。
 
 **判断：网络在学习；关闭独立物理修正后，学习式场景通路仍有配对推理收益。新版在 RICH 上已达到可用质量、比旧版更好、或者优于公开方法，这三件事目前都没有证实。** Loss 下降是拟合证据，不能替代固定验证集的进步。用户要求的是场景条件扩散主线，当前保留的是从零训练的 head-only Native30 reference-residual 扩散，脚步监督已恢复，目标 55k；独立小 EXO 残差支线没有继续训练，tracker 也未接入。

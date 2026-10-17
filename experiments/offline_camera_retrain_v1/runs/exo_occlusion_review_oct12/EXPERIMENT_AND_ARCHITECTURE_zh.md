@@ -1634,3 +1634,12 @@ ego阶段监控只保留3个固定＋3个轮换ego窗口，clean/noisy分开；�
 10月16日用户核对后指出“保留原版”应包括持续后台训练，而非仅保留checkpoint，并明确要求现在保持一条一直训练。此前02:14主动暂停2453做串行消融、06:21 fallback因CRC停止的记录不改写。现将消融manager与worker温和停止，IK-off2979步完整保存，其余三臂3453步结果与所有checkpoint保留；不再自动恢复候选调度。
 
 新的[持续训练入口](../native30_gait_v2_ego55k_oct15/continuous_training_oct16/README_zh.md)严格续接原版5200步模型/Adam/sampler/全部RNG，以原run_training.py --resume --review-step55000持续训练。10k照常监测后继续，目标55000；原配置、模型、输入、监督和LR计划未更换。5201–5257未提交的旧trace隔离留证后从5201重放，避免进度重复。源SHA不放宽；坏派生缓存有CRC重试/隔离/原方法重建；监督器对识别的暂态IO有限重启，对来源/数值/未知错误明确失败。15项针对性检查通过。实际训练进展以后续STATUS/trace/checkpoint为证，不以进程启动等同于完成更新。
+
+
+## 4.27 10月17日：主线55k正常完成与最终开发复核
+
+§4.26恢复的原主线已于 **2026-10-17 20:49:24 正常完成55,000步**，worker返回码0。实际`last.pt`为55k，完整模型/Adam/采样计数/全部RNG保留且有限；`best.pt`为41k的评估模型副本，无Adam/RNG。365份源封印与配置重新核验一致，原模型、输入、V2脚步监督和物理/IK设置未换成候选。统一入口：[最终报告](../native30_gait_v2_ego55k_oct15/final_review/REPORT_zh.md)、[训练与固定验证曲线](../native30_gait_v2_ego55k_oct15/final_review/TRAINING_CURVES.png)、[权重身份审计](../native30_gait_v2_ego55k_oct15/final_review/CHECKPOINT_AUDIT.json)。
+
+末两个完整5k段总loss为0.154302→0.150938（−2.18%），加权stance项仅0.00930831→0.00929848（−0.11%）。新增41k/55k同窗配对覆盖14条不同VAL录制（12 RICH＋1 TRUMANS＋1 EgoBody），主比较关闭推理物理修正，5个核心窗补充物理开启，共76份预测，独立CPU重算通过。RICH12窗clean/noisy World误差由152.890/178.002升至156.934/182.672mm；低速期水平脚速略改善而脚高误差增大，支持“验证平台或轻微回退”，不支持“脚部支撑已解决”。[配对结果与口径](../native30_gait_v2_ego55k_oct15/final_review/checkpoint_comparison/REPORT_zh.md)、[CPU验收](../native30_gait_v2_ego55k_oct15/final_review/checkpoint_comparison/CPU_RECHECK_all.json)。
+
+当前保留41k为主要开发候选，55k保留完整续训状态，不自动延长或接EXO。41k的best保存依据仍是一个固定RICH窗，不等于全RICH最优；最新14窗比较不是全RICH最终验证、正式TEST或旧55k/公开方法胜出证据。此前冻结15,100步的206窗/27录制、412次全RICH VAL预测已完成且独立CPU重算通过，它属于旧步数的完整结果，不能转称55k全量结果。[全RICH历史报告与验收](../native30_live_monitor_oct16/rich_full_validation_oct16/REPORT_zh.md)。

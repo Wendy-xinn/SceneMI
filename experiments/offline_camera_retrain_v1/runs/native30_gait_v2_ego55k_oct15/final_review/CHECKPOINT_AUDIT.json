@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "run": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15",
+  "record_written_at": "2026-10-17T21:09:07.240713+08:00",
+  "verification_method": {
+    "initial_checkpoint_audit": "Read both actual checkpoint files using torch.load(map_location=cpu, mmap=True, weights_only=False); model finite checks and tensor digests, optimizer finite checks, and the unchanged baseline resume validator were executed.",
+    "initial_cpu_audit_local_minute": "2026-10-17T21:04+08:00",
+    "initial_source_verified_at": "2026-10-17T21:04:08.873965+08:00",
+    "exact_initial_checkpoint_finish_timestamp_recorded": false,
+    "recording_recheck_started_at": "2026-10-17T21:09:06.452854+08:00",
+    "recording_recheck_finished_at": "2026-10-17T21:09:07.240727+08:00",
+    "recording_recheck_scope": "Rehashed both full checkpoint files, all sealed sources, config/effective config; reread supervisor completion and best metadata. Reused the immediately preceding CPU tensor/optimizer audit, without another tensor load.",
+    "cuda_initialized_during_initial_cpu_audit": false,
+    "gpu_used": false,
+    "checkpoint_files_modified": false
+  },
+  "completion": {
+    "supervisor_status": "completed",
+    "worker_status": "completed55000",
+    "goal_step": 55000,
+    "completed_step": 55000,
+    "worker_finished_at": "2026-10-17T20:49:12.963398+08:00",
+    "worker_returncode": 0,
+    "worker_exited_at": "2026-10-17T20:49:24.446139+08:00",
+    "supervisor_completed_at": "2026-10-17T20:49:24.653604+08:00",
+    "source_status_file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json",
+    "source_worker_state_file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/WORKER_STATE.json"
+  },
+  "source_and_configuration_audit": {
+    "passed": true,
+    "prepared_source_count": 359,
+    "continuous_source_count": 6,
+    "combined_unique_source_count": 365,
+    "source_sets_overlap_count": 0,
+    "count_note": "365 is the combined total: 359 prepared sources plus 6 continuous sources, not 365 plus 6.",
+    "config_sha256": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad",
+    "effective_config_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8",
+    "config_matches_immutable_protocol": true,
+    "effective_config_matches_immutable_protocol": true,
+    "both_checkpoint_effective_configs_equal_prepared": true
+  },
+  "architecture_identity": {
+    "fps": 30,
+    "frames": 192,
+    "batch_size": 2,
+    "initialization": "from_scratch",
+    "initialization_note": "Original initialization identity; later stages restored full state without resetting optimizer.",
+    "training_mode": "ego",
+    "diffusion_target": "reference_residual",
+    "reference_input": "Observed-track kinematic initializer with supplied rest bones; no GT motion. Real video frontend predictions are not yet in the current dataset cache.",
+    "physical_guidance_enabled": true,
+    "physical_guidance_iterations": 2,
+    "physical_guidance_minimum_alpha": 0.25,
+    "joint_anchor_iterations": 6,
+    "joint_anchor_gain": 0.9,
+    "gait_supervision_protocol": "native30-gait-bilateral-v2",
+    "candidate_extension_used": false
+  },
+  "last_checkpoint": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/last.pt",
+    "bytes": 1477967912,
+    "file_sha256": "4ac6fb138f0dd600ba6a3171aca57bbe1bbfab95391c66ec1a454e9402e42784",
+    "model_tensor_sha256": "9d4d0338890817a3c12b60ff4fb78b8d99fe980d536128ab0105631c64817f65",
+    "step": 55000,
+    "planned_steps": 55000,
+    "effective_config_equal_prepared": true,
+    "model_all_finite": true,
+    "optimizer_present": true,
+    "optimizer_state_count": 315,
+    "optimizer_tensor_count": 945,
+    "optimizer_all_finite": true,
+    "optimizer_step_histogram": {
+      "55000": 182,
+      "49468": 133
+    },
+    "optimizer_step_histogram_note": "Exact per-parameter Adam state distribution; scene-on update count was not independently recomputed in this audit.",
+    "optimizer_lr": 2e-05,
+    "rng_fields_present": {
+      "data_rng": true,
+      "condition_rng": true,
+      "torch_rng": true,
+      "cuda_rng": true,
+      "numpy_rng": true
+    },
+    "counts": {
+      "trumans/ego": 69005,
+      "camera_wearer/ego": 15273,
+      "interactee/ego": 14292,
+      "rich/ego": 11430
+    },
+    "count_total": 110000,
+    "count_total_equals_batch_times_step": true,
+    "resume_validator": "continuous_training_oct16/supervise.py:validate_checkpoint",
+    "resume_validator_passed": true,
+    "resume_validator_returned_step": 55000,
+    "full_training_state_retained": true
+  },
+  "best_checkpoint": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/best.pt",
+    "bytes": 496200071,
+    "file_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+    "model_tensor_sha256": "cd23bcc03260203a06c2abbcc6e756dea974e2238f7027524199ba021e8f4648",
+    "step": 41000,
+    "planned_steps": 55000,
+    "effective_config_equal_prepared": true,
+    "model_all_finite": true,
+    "optimizer_present": false,
+    "training_rng_present": false,
+    "evaluation_only": true,
+    "full_training_state_retained": false,
+    "file_sha_matches_best_json": true,
+    "model_tensor_sha_matches_best_json": true,
+    "selection_status": "provisional_fixed_rich_window",
+    "selection_metric": "arithmetic mean of clean/noisy raw world MPJPE, one fixed RICH VAL window, scene ON, head-only ego",
+    "selection_scope": "Best among exactly matched checkpoints captured by this guardian; not full-RICH or historical global best",
+    "selection_score_mm": 113.69237518310547,
+    "selection_regime_mpjpe_mm": {
+      "clean": 109.09467315673828,
+      "noisy": 118.29007720947266
+    },
+    "selection_identity": {
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "group": "rich",
+      "mode": "ego",
+      "sequence_id": "LectureHall_020_wipingchairs1",
+      "source_first": 389,
+      "start": 384,
+      "case_seed": 303671090,
+      "joints": [
+        15
+      ],
+      "panel": "fixed"
+    },
+    "original_full_41000_source_checkpoint_sha256": "60d3813c3d6aa7aed5048dcaebd95fc9ebaf6ad736d9542084db3ccaafe3e304",
+    "limitation": "Best selection uses one preregistered fixed RICH development-validation window; this is not a full-RICH or cross-dataset global-best claim."
+  },
+  "limits": [
+    "Checkpoint identity, numerical finiteness, immutable source/config matching, and normal completion do not by themselves establish convergence or final motion quality.",
+    "This audit did not run inference, touch the active evaluation process, or rehash the full raw training dataset."
+  ]
+}
