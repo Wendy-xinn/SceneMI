@@ -77,6 +77,39 @@ class ResourceAdmissionTests(unittest.TestCase):
                 self.assertIsNone(trial.global_lock_owner())
 
 
+class MixedInferenceProbeTests(unittest.TestCase):
+    def test_train_contact_supervision_is_not_stacked_with_val_inference(self):
+        import numpy as np
+        from experiments.offline_camera_retrain_v1.native30_observations import INPUT_KEYS,inference_payload
+        from experiments.offline_camera_retrain_v1.unified_observations import collate_observations
+        exo={key:np.zeros((2,),np.float32) for key in INPUT_KEYS}
+        exo.update(motion=np.zeros((2,201),np.float32),contact_weight=np.ones((2,22),np.float32))
+        ego={key:value.copy() for key,value in exo.items() if key!="contact_weight"}
+        items=[(exo,"exo_scene","exo_asset","exo"),(ego,"ego_scene","ego_asset","ego")]
+        # Reproduce the actual failure through the real collator, then check
+        # the repaired path and all fields consumed by inference_payload.
+        with self.assertRaisesRegex(KeyError,"contact_weight"):
+            collate_observations(items,device="cpu")
+        aligned=trial.inference_probe_items(items)
+        batch=collate_observations(aligned,device="cpu")
+        payload=inference_payload(batch)
+        self.assertEqual(set(payload),set(INPUT_KEYS)|{"surface_windows","skin_assets","mode"})
+        self.assertEqual(payload["mode"],["exo","ego"])
+        self.assertNotIn("motion",batch)
+        self.assertNotIn("contact_weight",batch)
+        self.assertIn("contact_weight",exo)
+        self.assertEqual(exo["contact_weight"].sum(),44.)
+        for key in INPUT_KEYS:
+            self.assertEqual(tuple(batch[key].shape),(2,2))
+
+    def test_a_required_input_cannot_silently_disappear(self):
+        import numpy as np
+        from experiments.offline_camera_retrain_v1.native30_observations import INPUT_KEYS
+        sample={key:np.zeros((2,),np.float32) for key in INPUT_KEYS if key!="rest"}
+        with self.assertRaisesRegex(ValueError,"Missing inference probe fields: rest"):
+            trial.inference_probe_items([(sample,None,None,"ego")])
+
+
 class TinyModel(nn.Module):
     def __init__(self):
         super().__init__()

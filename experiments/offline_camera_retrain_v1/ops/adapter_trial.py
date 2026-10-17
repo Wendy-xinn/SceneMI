@@ -348,6 +348,30 @@ def run_validation(run, model, val, builder, config, folder, step):
     return rows
 
 
+def inference_probe_items(items):
+    """Use the inference schema when probing mixed TRAIN/VAL observations.
+
+    TRAIN support supervision is intentionally retained in the separate EXO
+    objective batch. Forward-equivalence probes need only the input whitelist;
+    stacking TRAIN-only contact labels with a VAL example is invalid.
+    """
+    from experiments.offline_camera_retrain_v1.native30_observations import INPUT_KEYS
+    keys=list(INPUT_KEYS)
+    for optional in ("reference_motion","reference_confidence"):
+        present=[optional in item[0] for item in items]
+        if any(present) and not all(present):
+            raise ValueError("Mixed inference probes need consistent optional reference inputs")
+        if all(present):
+            keys.append(optional)
+    result=[]
+    for sample,scene,asset,mode in items:
+        missing=set(keys)-set(sample)
+        if missing:
+            raise ValueError("Missing inference probe fields: " + ", ".join(sorted(missing)))
+        result.append(({key:sample[key] for key in keys},scene,asset,mode))
+    return result
+
+
 def preflight(run):
     import numpy as np
     import torch
@@ -382,7 +406,10 @@ def preflight(run):
     probes = {}
     with torch.no_grad():
         for label, modes in (("exo", ("exo",)), ("ego", ("ego",)), ("mixed", ("exo", "ego"))):
-            batch = collate_observations([selected[mode] for mode in modes])
+            items=[selected[mode] for mode in modes]
+            if label=="mixed":
+                items=inference_probe_items(items)
+            batch = collate_observations(items)
             known = model_inputs(config, batch)
             t = torch.full((len(modes),), 300, device="cuda", dtype=torch.long)
             noise = torch.randn_like(known["reference_motion"])
