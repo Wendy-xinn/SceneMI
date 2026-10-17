@@ -1,0 +1,28 @@
+{
+  "status": "waiting_for_actual_checkpoint",
+  "pid": 36347,
+  "launched_at": "2026-10-18T02:11:58+0800",
+  "CPU_only": true,
+  "CUDA_VISIBLE_DEVICES": "",
+  "source_edits": false,
+  "checkpoint_edits": false,
+  "training_launches": false,
+  "phases": [
+    "first atomic available checkpoint",
+    "final stage_step1000 in separate fresh CPU process"
+  ],
+  "log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/deployment_observer.log",
+  "observer_source_sha256": "738f9ee49ec72ac44208f935330255f8865aae12481ab8dc62ac7bd01427a79b",
+  "final_acceptance_requires": {
+    "status": "passed",
+    "step": 1000,
+    "checkpoint_sha256": "must equal final CPU_RECHECK.final_checkpoint_sha256"
+  },
+  "replaces_observer_pid": 36243,
+  "training_supervisor_pid": 34486,
+  "training_child_pid": 34488,
+  "training_launched_at": "2026-10-18T02:08:04.918367+08:00",
+  "source_commit": "79a0a01",
+  "report_rerender_after_final_CPU_recheck": true,
+  "python_executable": "/home/wenxin/miniconda3/envs/scenemi/bin/python"
+}

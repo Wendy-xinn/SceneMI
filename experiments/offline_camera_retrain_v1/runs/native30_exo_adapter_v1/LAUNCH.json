@@ -1,17 +1,18 @@
 {
-  "launched_at": "2026-10-18T01:13:17.165645+08:00",
-  "supervisor_pid": 27556,
+  "launched_at": "2026-10-18T02:08:04.903207+08:00",
+  "supervisor_pid": 34486,
   "command": [
     "/home/wenxin/miniconda3/envs/scenemi/bin/python",
     "-u",
     "-m",
     "experiments.offline_camera_retrain_v1.ops.adapter_trial",
     "run",
+    "--prepared",
     "--run",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1"
   ],
   "supervisor_source": "import datetime,json,os,subprocess,sys\nfrom pathlib import Path\nrun=Path(sys.argv[1]);command=json.loads(sys.argv[2]);viewer=json.loads(sys.argv[3]);root=Path(sys.argv[4])\ndef write(name,value):\n    path=run/name;tmp=path.with_suffix(path.suffix+'.tmp');tmp.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\\n');os.replace(tmp,path)\ndef now(): return datetime.datetime.now().astimezone().isoformat()\njob=dict(supervisor_pid=os.getpid(),launched_at=now(),command=command,status='running',bounded_updates=1000)\nwith (run/'run.log').open('a',buffering=1) as log:\n    child=subprocess.Popen(command,cwd=root,stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,close_fds=True)\n    job['child_pid']=child.pid;write('JOB.json',job)\n    result=child.wait();job.update(returncode=result,finished_at=now(),status='completed' if result==0 else 'failed');write('JOB.json',job)\nif result==0:\n    (run/'visuals/viser').mkdir(parents=True,exist_ok=True)\n    with (run/'visuals/viser/server.log').open('a',buffering=1) as log:\n        process=subprocess.Popen(viewer,cwd=root,stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,start_new_session=True,close_fds=True)\n    write('VIEWER_LAUNCH.json',dict(launched_at=now(),pid=process.pid,command=viewer,url='http://localhost:8802/',status='preparing_after_trial',not_yet_verified_listening=True))\nsys.exit(result)\n",
-  "git_commit": "07ad1252be644ccc9f7f4dae827176a0099c4f96",
+  "git_commit": "79a0a0192edbdde6b499ad29ca7e38f98a675054",
   "config_sha256": "0029fedcd3c5e3a3ae73d7e14603936836e47f9b677e8d7e8eeecc26ab76f976",
   "parent_step": 41000,
   "planned_updates": 1000,
@@ -29,5 +30,10 @@
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/visuals/viser/cache",
     "--port",
     "8802"
-  ]
+  ],
+  "attempt_index": 2,
+  "previous_attempt_record": "ATTEMPTS.json",
+  "restart_policy": "Full fresh CPU preparation/source seal, real GPU preflight, baseline, then1000updates. Sameconfig/panel/seed; no prior optimizer updates.",
+  "explicit_zero_update_source_reseal": "SOURCE_RESEAL.json",
+  "CPU_tests_passed": 51
 }
