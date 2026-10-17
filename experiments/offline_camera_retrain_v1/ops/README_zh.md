@@ -13,6 +13,8 @@
 
 工具放在本目录；权重和预测仍留本地实验目录。已退役工具随其完整实验移到 archive，保留历史重现信息。
 
+2026-10-17进一步实际删除106个已退役根入口及1份完全重复的历史审计脚本，根目录Python文件352→246；其余模块没有宣称全部重构完成。[执行记录](ROOT_SCRIPT_RETIREMENT_EXECUTED.json)包含逐文件身份及清理前后活动EXO98项/TEST95项封印复验。[单个源码恢复包](../archive/source_bundles/README_zh.md)保留原55k的365项源码；当前仍封存使用的`runs/native30_final_review_oct16/io_recovery.py`保留原路径，迁移须在后续新阶段准备时完成。
+
 # 冻结权重的动作约束实验
 
 使用 `python -m experiments.offline_camera_retrain_v1.ops motion-check` 运行同权重、同输入和同 seed 的头部锚定/弱重力方向先验配对检查；`--prepare-only` 先登记清单。`motion_ablation.py` 负责实验、`support_constraints.py` 负责无GT的候选约束、`support_metrics.py` 负责只在评价阶段读取GT的指标。案例与结果放 `runs/native30_live_monitor_oct16/support_ablation/`，不往runs复制Python脚本。

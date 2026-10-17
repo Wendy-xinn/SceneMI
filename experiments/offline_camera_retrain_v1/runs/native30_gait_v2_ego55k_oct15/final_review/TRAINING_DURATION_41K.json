@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-17T23:43:54.581625+08:00",
+  "run_root": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15",
+  "device": "CPU-only line-by-line aggregation; no checkpoint, dataset, or trainer state modified",
+  "scope": "New native30 gait-v2 ego-only main branch, unique committed optimizer updates 1..41000. No old55k, candidate, EXO, or TEST inference included.",
+  "audit": {
+    "trace_rows": 55000,
+    "selected_unique_steps": 41000,
+    "first_step": 1,
+    "last_step": 41000,
+    "duplicate_steps": [],
+    "missing_steps": [],
+    "invalid_timing_fields": [],
+    "trace_full_sha256_matches_prior_55k_audit": true,
+    "excluded_uncommitted_trace": "training/trace.jsonl.uncommitted.20261016_120744_400743"
+  },
+  "sources": {
+    "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl": "d28efa786e45b529a05b0516cea56c9a80478adaf668a5d44e87ceb69d17d087",
+    "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/launcher.json": "f2d09b10a2e4255414d9935c2a2f0e500230d05492975a65173344f4788418c9",
+    "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/best.json": "35250a07ced13b5b59fb0a39589b74f1ea90cd64f280fe61f9d22b01d64d5c0e",
+    "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/final_review/TRAINING_DURATION.json": "2380522cdabbef0b2142f19f6016e336b6ad309654e60bc67fd6f2b97a7ea73b",
+    "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/worker.log": "300cf6069ba58d43f87007671c3a8402f74f9ba0da743b9abb331c694356c187"
+  },
+  "durations": {
+    "unique_committed_optimizer_updates": {
+      "seconds": 83768.00230947093,
+      "hours": 23.268889530408593,
+      "display_zh": "23小时16分08.00秒"
+    },
+    "preparation_inside_updates": {
+      "seconds": 13790.749197807403,
+      "hours": 3.830763666057612,
+      "display_zh": "3小时49分50.75秒"
+    },
+    "forward_objective_backward_clip_optimizer_inside_updates": {
+      "seconds": 69888.02361865982,
+      "hours": 19.413339894072173,
+      "display_zh": "19小时24分48.02秒"
+    },
+    "other_inside_updates": {
+      "seconds": 89.22949300371693,
+      "hours": 0.024785970278810257,
+      "display_zh": "0小时01分29.23秒"
+    },
+    "first_launch_to_41k_best_snapshot_available": {
+      "start": "2026-10-15T22:25:06.948049+08:00",
+      "end": "2026-10-17T11:53:22.021982+08:00",
+      "endpoint_source": "training/best.json saved_at (41k model-only snapshot availability, after 41k validation and guardian copy/hash); not exact optimizer-step finish timestamp",
+      "seconds": 134895.073933,
+      "hours": 37.47085387027778,
+      "display_zh": "37小时28分15.07秒"
+    },
+    "per_step_mean_update_seconds": 2.0431220075480714
+  },
+  "step_41000_trace_timing": {
+    "step": 41000,
+    "elapsed_s": 80017.818160782,
+    "update_s": 1.9095556920219678,
+    "preparation_s": 0.28082431299844757,
+    "compute_s": 1.6267656550044194
+  },
+  "interpretation_zh": [
+    "截至41k，已提交的41000次参数更新累计23小时16分08秒；其中训练计算19小时24分48秒、数据/场景准备3小时49分51秒。这些是CUDA同步的墙钟计时，非GPU kernel纯占用。",
+    "首次启动2026-10-15 22:25:06至41k最佳快照可用2026-10-17 11:53:22，日历跨度37小时28分15秒，含暂停、启动复核、验证、checkpoint与guardian复制校验。末端是快照可用时间，并非41000次更新恰好完成的精确时刻。",
+    "41k是同一55k训练轨迹上的保留权重，不是另起一遍训练。",
+    "trace elapsed_s在恢复后归零，不能把41000步的80017.818秒当成从头41k训练总耗时；本次逐行累计独立update_s，只计唯一已提交步骤，排除uncommitted尾部。"
+  ]
+}
