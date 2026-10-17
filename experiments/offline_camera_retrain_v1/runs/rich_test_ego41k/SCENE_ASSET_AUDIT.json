@@ -1,0 +1,172 @@
+{
+  "status": "passed_asset_identity_audit",
+  "created_at": "2026-10-17T21:53:52.682450+08:00",
+  "scope": "Released HSC closest-triangle coordinates are used only to identify the recorded scan asset. No HSC contact/surface labels enter model inference, training, TEST motion metrics or window selection.",
+  "selection": "First lexically sorted released HSC frame per all Gym cooking recordings, plus existing pushup/projector/chair calibration checks; independent of model outputs.",
+  "scan_mapping": {
+    "Gym_cooking": "scan_table_camcoord.ply",
+    "Gym_other": "scan_camcoord.ply",
+    "LectureHall_chair": "scan_chair_scene_camcoord.ply",
+    "LectureHall_other": "scan_yoga_scene_camcoord.ply"
+  },
+  "scans": {
+    "/home/wenxin/projects/RICH/extracted/scan_calibration/Gym/scan_camcoord.ply": {
+      "sha256": "4a6b40f551a3b03fffad9484bde45fd2830e9b67fd52fc898d648bdfa9199816",
+      "bytes": 186809049
+    },
+    "/home/wenxin/projects/RICH/extracted/scan_calibration/Gym/scan_table_camcoord.ply": {
+      "sha256": "7c94a54645dce44f1f7e3d701205987d576b090f9d8fe558dfb050bb138e42ce",
+      "bytes": 187973462
+    },
+    "/home/wenxin/projects/RICH/extracted/scan_calibration/LectureHall/scan_chair_scene_camcoord.ply": {
+      "sha256": "e3ab1aa3349e88a038f7b37171fe837147988bfd7463e4c501b4d1cb7204267c",
+      "bytes": 114381844
+    },
+    "/home/wenxin/projects/RICH/extracted/scan_calibration/LectureHall/scan_yoga_scene_camcoord.ply": {
+      "sha256": "b730c91a5e27bcd7357e57a0a6d59f0661d8660ff7976cccf21fac8a738e6551",
+      "bytes": 201542348
+    }
+  },
+  "records": [
+    {
+      "sequence": "Gym_010_cooking1",
+      "hsc_member": "test/Gym_010_cooking1/00005/010.pkl",
+      "hsc_member_crc32": 1364478011,
+      "hsc_member_sha256": "6b6ad445c6e2ad2fed92ede3def91e9a23c34c5702931c859f1dee687b96f64e",
+      "matches": {
+        "scan_camcoord.ply": {
+          "median_m": 0.6520421583200379,
+          "p95_m": 0.7868363566528237,
+          "fraction_within_1e4_m": 0.19095477386934673,
+          "points": 398
+        },
+        "scan_table_camcoord.ply": {
+          "median_m": 0.0,
+          "p95_m": 0.0,
+          "fraction_within_1e4_m": 1.0,
+          "points": 398
+        }
+      }
+    },
+    {
+      "sequence": "Gym_011_cooking1",
+      "hsc_member": "test/Gym_011_cooking1/00005/011.pkl",
+      "hsc_member_crc32": 824504796,
+      "hsc_member_sha256": "3c3b5958a87a6b242db52e3854127c94abffb6bfdaaf6f9f543920b4949ef466",
+      "matches": {
+        "scan_camcoord.ply": {
+          "median_m": 0.6520421583200379,
+          "p95_m": 0.7916998320318459,
+          "fraction_within_1e4_m": 0.12562814070351758,
+          "points": 398
+        },
+        "scan_table_camcoord.ply": {
+          "median_m": 0.0,
+          "p95_m": 0.0,
+          "fraction_within_1e4_m": 1.0,
+          "points": 398
+        }
+      }
+    },
+    {
+      "sequence": "Gym_011_cooking2",
+      "hsc_member": "test/Gym_011_cooking2/00005/011.pkl",
+      "hsc_member_crc32": 3833366131,
+      "hsc_member_sha256": "6b347151b865b488a320619f7df2354f4d0ae5a8632ee3409483df0a9cc3757a",
+      "matches": {
+        "scan_camcoord.ply": {
+          "median_m": 0.6520421583200379,
+          "p95_m": 0.7842290532791867,
+          "fraction_within_1e4_m": 0.19095477386934673,
+          "points": 398
+        },
+        "scan_table_camcoord.ply": {
+          "median_m": 0.0,
+          "p95_m": 0.0,
+          "fraction_within_1e4_m": 1.0,
+          "points": 398
+        }
+      }
+    },
+    {
+      "sequence": "Gym_012_cooking2",
+      "hsc_member": "test/Gym_012_cooking2/00005/012.pkl",
+      "hsc_member_crc32": 3421608799,
+      "hsc_member_sha256": "028c42bb11e5a62521f03b1c5580806e909380ea7748503b8fad8ee517c34041",
+      "matches": {
+        "scan_camcoord.ply": {
+          "median_m": 0.6520421583200379,
+          "p95_m": 0.782216175057519,
+          "fraction_within_1e4_m": 0.271356783919598,
+          "points": 398
+        },
+        "scan_table_camcoord.ply": {
+          "median_m": 0.0,
+          "p95_m": 0.0,
+          "fraction_within_1e4_m": 1.0,
+          "points": 398
+        }
+      }
+    },
+    {
+      "sequence": "Gym_010_pushup2",
+      "hsc_member": "test/Gym_010_pushup2/00005/010.pkl",
+      "hsc_member_crc32": 882018397,
+      "hsc_member_sha256": "8c965db350a17555baaca208dd3fa521b70fe8e8dbb391777bfef6ea53b85198",
+      "matches": {
+        "scan_camcoord.ply": {
+          "median_m": 0.0,
+          "p95_m": 0.0,
+          "fraction_within_1e4_m": 1.0,
+          "points": 398
+        },
+        "scan_table_camcoord.ply": {
+          "median_m": 0.0,
+          "p95_m": 0.0,
+          "fraction_within_1e4_m": 1.0,
+          "points": 398
+        }
+      }
+    },
+    {
+      "sequence": "LectureHall_009_021_reparingprojector1",
+      "hsc_member": "test/LectureHall_009_021_reparingprojector1/00005/009.pkl",
+      "hsc_member_crc32": 4050358004,
+      "hsc_member_sha256": "2128e232c5fb218e74f9611979fe706755b8e7c81f405a47643aa641605241cf",
+      "matches": {
+        "scan_chair_scene_camcoord.ply": {
+          "median_m": 0.006335067301622203,
+          "p95_m": 0.015011496749701985,
+          "fraction_within_1e4_m": 0.0,
+          "points": 398
+        },
+        "scan_yoga_scene_camcoord.ply": {
+          "median_m": 0.0,
+          "p95_m": 0.0,
+          "fraction_within_1e4_m": 1.0,
+          "points": 398
+        }
+      }
+    },
+    {
+      "sequence": "LectureHall_019_wipingchairs1",
+      "hsc_member": "test/LectureHall_019_wipingchairs1/00005/019.pkl",
+      "hsc_member_crc32": 1228743564,
+      "hsc_member_sha256": "375ac448860c8e037211253aa4f223b2496b604a92ab42b85f89b8c17102828c",
+      "matches": {
+        "scan_chair_scene_camcoord.ply": {
+          "median_m": 0.0,
+          "p95_m": 0.0,
+          "fraction_within_1e4_m": 1.0,
+          "points": 398
+        },
+        "scan_yoga_scene_camcoord.ply": {
+          "median_m": 0.786900141602767,
+          "p95_m": 0.7914126722108136,
+          "fraction_within_1e4_m": 0.0,
+          "points": 398
+        }
+      }
+    }
+  ]
+}

@@ -33,7 +33,10 @@ def write_json(path,value):
     atomic_text(path,json.dumps(value,indent=2,ensure_ascii=False,allow_nan=False)+'\n')
 
 
-def code_hashes():
+def code_hashes(config=None):
+    if config is not None and config.get('source_seal'):
+        from experiments.offline_camera_retrain_v1.ops.dependencies import configured_sources
+        return configured_sources(config['source_seal'])
     # Record the actual imported repository dependencies, plus the trainer
     # which preparation must never import/execute as a side effect.
     paths=set(HERE.glob('*.py'))|set((HERE.parents[1]/'model').rglob('*.py'))
@@ -469,7 +472,7 @@ def run(config_path=CONFIG_PATH,*,full_data=False,export_inputs=False):
         raise
     effective=dict(config=config,data_mode=report['data_mode'],sampling_plan=training_plan(data,config),
         observation_coefficients=weights,mount_defaults_sha256=sha256(mount_path),
-        data_sha256=fingerprints,code_sha256=code_hashes(),torch_version=torch.__version__,
+        data_sha256=fingerprints,code_sha256=code_hashes(config),torch_version=torch.__version__,
         normalization='motion positions m/2; physical derivatives SI',optimizer_steps=0)
     write_json(folder/'effective_config.json',effective);write_json(folder/'input_checks.json',report)
     print(json.dumps(report,ensure_ascii=False,indent=2),flush=True)

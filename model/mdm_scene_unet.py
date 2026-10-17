@@ -642,7 +642,7 @@ class MDM_Scene_UNET(nn.Module):
         
         #self.masked_attention = False
         #if self.masked_attention:
-        self.single_mask = torch.ones((1, 1), dtype=torch.bool).to('cuda')
+        self.register_buffer('single_mask', torch.ones((1, 1), dtype=torch.bool), persistent=False)
 
         self.train_keypoint_mask = train_keypoint_mask
 

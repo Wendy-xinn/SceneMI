@@ -34,6 +34,17 @@ def model_digest(model):
     return digest.hexdigest()
 
 
+def checkpoint_config(state):
+    """Read both historical and prepared native30 checkpoint schemas."""
+    direct=state.get('config')
+    effective=state.get('effective_config',{}).get('config')
+    if direct is not None and effective is not None and direct!=effective:
+        raise ValueError('Checkpoint config schemas disagree')
+    config=direct if direct is not None else effective
+    if not isinstance(config,dict):raise ValueError('Checkpoint has no native30 configuration')
+    return config
+
+
 class StopAtUpdateBoundary:
     """Finish the current update, then atomically preserve optimizer and RNG."""
     def __enter__(self):
@@ -54,7 +65,7 @@ def train(config_path,steps,output=None,resume=False):
     effective=json.loads((prepared/'effective_config.json').read_text())
     if checks['status']!='passed' or effective['config']!=config or effective['data_mode']!='full' or not checks['training_ready']:
         raise ValueError('Full raw30 corpus and its zero-step preparation are required; review clips cannot train')
-    hashes=code_hashes()
+    hashes=code_hashes(config)
     if hashes!=effective['code_sha256'] or sha256(HERE/config['mount_defaults'])!=effective['mount_defaults_sha256']:
         raise ValueError('Code/calibration changed since zero-step preparation')
     folder=Path(output or prepared/'training')
@@ -78,7 +89,8 @@ def train(config_path,steps,output=None,resume=False):
         warm_path=HERE/config['warm_start']['checkpoint']
         if sha256(warm_path)!=config['warm_start']['sha256']:raise ValueError('Warm-start checkpoint changed')
         warm=torch.load(warm_path,map_location='cpu',weights_only=False)
-        if warm['config']['fps']!=30 or warm['config']['split_protocol']!=config['split_protocol'] or warm['step']!=config['warm_start']['step']:
+        warm_config=checkpoint_config(warm)
+        if warm_config['fps']!=30 or warm_config['split_protocol']!=config['split_protocol'] or warm['step']!=config['warm_start']['step']:
             raise ValueError('Only the declared official30 checkpoint may initialize this stage')
         model.load_state_dict(warm['model'],strict=True)
         initialization.update(config['warm_start'],source_checkpoint=str(warm_path.resolve()))

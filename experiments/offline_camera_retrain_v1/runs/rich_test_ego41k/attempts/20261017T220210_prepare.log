@@ -1,0 +1,23 @@
+Retrying isolated native-library crash Gym_010_mountainclimber1__subject_010 -11 1
+Traceback (most recent call last):
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/__main__.py", line 64, in <module>
+    main()
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/__main__.py", line 58, in main
+    module.main()
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/rich_test.py", line 458, in main
+    {'prepare':prepare,'evaluate':evaluate,'recheck':recheck}[args.command](args)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/rich_test.py", line 196, in prepare
+    row = future.result()
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/export_native30_all.py", line 154, in isolated_worker
+    raise RuntimeError(f'Isolated source export exited {returncode}: {row["sequence_id"]}; see {log}')
+RuntimeError: Isolated source export exited 127: Gym_010_mountainclimber2__subject_010; see /mnt/d/Projects/SceneMI/cache/rich_test_native30_v1/logs/test/Gym_010_mountainclimber2__subject_010.launcher.log

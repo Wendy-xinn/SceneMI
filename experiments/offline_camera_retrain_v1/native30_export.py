@@ -67,9 +67,10 @@ def inventory(split, *, split_protocol=SPLIT_PROTOCOL):
                 row['raw_last_exclusive']=clips[row['sequence_id']]['num_frames']
                 row['allowed_modes']=['ego','exo']
             result.append(row)
-    # RICH test was not downloaded; never silently substitute val for test.
+    # TEST uses an independent raw-PKL identity index, never VAL metadata.
     if split == 'test':
-        return result
+        from experiments.offline_camera_retrain_v1.ops.rich_test import source_inventory
+        return result + source_inventory()
     root = HERE / f"data/scene_visibility_v2_oct05/rich_{'train' if split == 'train' else 'val'}_smpl_native20_faceout_oct07"
     for folder in sorted(root.iterdir()):
         if not (folder / 'metadata.json').exists():
@@ -175,24 +176,32 @@ def raw_scene(row, q, digest):
                 intr = np.broadcast_to(np.median(intr[:20], 0), intr.shape).copy()
         kind = 'smpl'; gender = info[f"body_idx_{int(Path(sources[f'{record}/{group}']['body_fits']).name.rsplit('_',1)[1])}"].split()[-1].lower()
     elif group == 'rich':
-        root = PROJECTS / 'RICH/extracted'; original = 'train' if split == 'train' else 'val'
-        source = root / f'{original}_body' / name; subject = str(row['subject_id'])
+        root = PROJECTS / 'RICH/extracted'; original = {'train':'train','validation':'val','test':'test'}[split]
+        source_name = row.get('source_sequence_id', name)
+        source = root / f'{original}_body' / source_name; subject = str(row['subject_id'])
         subjects = sorted(p.stem for p in (source / f'{int(q[0]):05d}').glob('*.pkl'))
         if not subjects:  # Some releases use unpadded integer directory names.
             folders = {int(p.name): p for p in source.iterdir() if p.is_dir()}
         else:
             folders = {int(p.name): p for p in source.iterdir() if p.is_dir()}
-        subjects = sorted(p.stem for p in folders[int(q[0])].glob('*.pkl'))
+        subjects = row.get('subject_ids') or sorted(p.stem for p in folders[int(q[0])].glob('*.pkl'))
+        subjects = list(subjects)
         subjects.remove(subject); subjects.insert(0, subject); people = []
         for person in subjects:
-            fits = read_fits([folders[int(f)] / f'{person}.pkl' for f in q], digest)
+            paths = [folders.get(int(f), source/f'{int(f):05d}') / f'{person}.pkl' for f in q]
+            if row.get('rich_test_protocol'):
+                from experiments.offline_camera_retrain_v1.ops.rich_test import read_test_fits
+                fits, present = read_test_fits(paths, digest)
+                observation_valid &= present
+            else:
+                fits = read_fits(paths, digest)
             model = _load_smplx_model(RICH_GENDER[int(person)])
             params = native_fits(fits,'smplx')
             if not np.allclose(params['betas'], params['betas'][:1], atol=1e-4):
                 raise ValueError('RICH shape changes')
             people.append((model, params))
-        scene = row['scene']; variant = 'chair' if 'chair' in name else 'yoga'
-        scan = root / 'scan_calibration' / scene / (f'scan_{variant}_scene_camcoord.ply' if scene == 'LectureHall' else 'scan_camcoord.ply')
+        scene = row['scene']; variant = 'chair' if 'chair' in source_name else 'yoga'
+        scan = root / 'scan_calibration' / scene / row.get('scan_filename', f'scan_{variant}_scene_camcoord.ply' if scene == 'LectureHall' else 'scan_camcoord.ply')
         tf = root / 'multicam2world' / (f'LectureHall_{variant}_multicam2world.json' if scene == 'LectureHall' else f'{scene}_multicam2world.json')
         scale, r, t = _read_transform(tf); digest.update(tf.read_bytes())
         transform = (scale, RICH_TO_SCENEMI @ r.T, t @ RICH_TO_SCENEMI.T)
@@ -342,7 +351,7 @@ def export(row, output=DEFAULT_OUTPUT, start=None, frames=None):
         arrays['object_rotations'] = np.stack([o[1] for o in objects], 1).astype(np.float32)
         arrays['object_positions'] = np.stack([o[2] for o in objects], 1).astype(np.float32)
         arrays['object_valid'] = np.stack([o[4] for o in objects], 1)
-    if row['group'] == 'rich':
+    if row['group'] == 'rich' and not row.get('skip_contact_labels', False):
         from experiments.offline_camera_retrain_v1.export_rich_contact_native20 import read_smplx
         from experiments.offline_camera_retrain_v1.contact_supervision import vertex_regions
         regions = vertex_regions(people[0][0]); target = np.zeros((n,22),np.float32); mask = np.zeros((n,22),bool)
@@ -373,6 +382,11 @@ def export(row, output=DEFAULT_OUTPUT, start=None, frames=None):
         recording=row.get('recording'), scene_id=row.get('scene_id',row.get('scene')),
         pose_profile_split=row.get('pose_profile_split', row['split']),
         allowed_modes=row.get('allowed_modes',['ego','exo']))
+    if row.get('rich_test_protocol'):
+        meta.update({key:row[key] for key in ('rich_test_protocol','source_sequence_id','subject_id',
+            'subject_ids','missing_any_subject_frame_ids','scan_filename')})
+        meta.update(contact_labels='absent; no HSC labels loaded or invented',
+            invalid_fit_policy='Missing-person frames have masked sentinel parameters; no window crosses any missing person. No interpolation or source-clock compression.')
     if exo:
         meta.update(exo_protocol=EXO_PROTOCOL,exo_camera=serial_camera(observer),
             exo_input_kind='ideal_GT_position_tracker_simulation_with_firsthit_confidence',

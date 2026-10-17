@@ -1,0 +1,32 @@
+{
+  "launched_at": "2026-10-17T23:15:39.606476+08:00",
+  "supervisor_pid": 13627,
+  "commands": [
+    [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops",
+      "adapt",
+      "train",
+      "--run",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1"
+    ],
+    [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops",
+      "adapt",
+      "recheck",
+      "--run",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1"
+    ]
+  ],
+  "log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_exo_adapt_v1/train_job.log",
+  "preflight_sha256": "a1b3aff79d70a392c238e36af9da56a30d319557ba1297bb55b4fde2205becf8",
+  "supervisor_source": "import json, subprocess, sys, os, datetime\nfrom pathlib import Path\ncommands=json.loads(sys.argv[1]); run=Path(sys.argv[2])\ndef stamp(): return datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat()\ndef record(value):\n p=run/'JOB.json'; t=p.with_suffix('.tmp'); t.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\\n'); t.replace(p)\nrecord(dict(status='starting',pid=os.getpid(),started_at=stamp(),commands=commands))\nfor command in commands:\n child=subprocess.Popen(command,stdin=subprocess.DEVNULL)\n record(dict(status='running',pid=os.getpid(),child_pid=child.pid,operation=command[6],updated_at=stamp(),commands=commands))\n result=child.wait()\n if result:\n  record(dict(status='failed',pid=os.getpid(),operation=command[6],returncode=result,updated_at=stamp(),commands=commands)); raise SystemExit(result)\nrecord(dict(status='completed',pid=os.getpid(),updated_at=stamp(),commands=commands))\n",
+  "planned_stage_updates": 1000,
+  "automatic_extension": false,
+  "TEST_used": false
+}

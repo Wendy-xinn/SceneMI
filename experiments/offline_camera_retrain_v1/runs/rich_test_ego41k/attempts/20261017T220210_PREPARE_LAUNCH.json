@@ -1,0 +1,26 @@
+{
+  "pid": 319473,
+  "started_at": "2026-10-17T22:02:10+0800",
+  "command": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops",
+    "rich-test",
+    "prepare",
+    "--out",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/rich_test_ego41k",
+    "--data-output",
+    "/mnt/d/Projects/SceneMI/cache/rich_test_native30_v1",
+    "--workers",
+    "2",
+    "--checkpoint",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/best.pt",
+    "--checkpoint-sha256",
+    "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+    "--expected-step",
+    "41000"
+  ],
+  "scope": "CPU source/data preparation only; no optimizer updates",
+  "authorization": "User requested TEST metrics and an initial shared-diffusion EXO model."
+}

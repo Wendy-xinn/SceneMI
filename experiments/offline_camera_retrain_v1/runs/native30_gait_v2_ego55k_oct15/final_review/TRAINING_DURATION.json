@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-17T21:35:55.511958+08:00",
+  "run_root": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15",
+  "device": "CPU-only aggregation; no model or training state changed",
+  "scope": "New native30 gait-v2 ego-only main branch, complete unique committed optimizer updates 1..55000. Old55k and all candidate/EXO/probe training excluded.",
+  "audit": {
+    "trace_rows": 55000,
+    "unique_steps": 55000,
+    "first_step": 1,
+    "last_step": 55000,
+    "duplicate_steps": [],
+    "missing_steps": [],
+    "invalid_timing_fields": [],
+    "excluded_uncommitted_trace": "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl.uncommitted.20261016_120744_400743"
+  },
+  "sources": {
+    "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl": "d28efa786e45b529a05b0516cea56c9a80478adaf668a5d44e87ceb69d17d087",
+    "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json": "3d68b40c3b9cc74a24ae07e3998e0eda7c8086f9f46ec3575691ddd0b9abe1c5",
+    "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/launcher.json": "f2d09b10a2e4255414d9935c2a2f0e500230d05492975a65173344f4788418c9",
+    "experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/protocol.json": "104171856168b49d18abe6ce7fd44dfdbaa7216fa4398c7ce70b9b4351417238",
+    "experiments/offline_camera_retrain_v1/train_native30.py": "b83f31e8515660271cced725f415e5a294102bcb1086237830c8a2548072fafc"
+  },
+  "durations": {
+    "unique_committed_optimizer_updates": {
+      "seconds": 111945.15618029248,
+      "hours": 31.095876716747913,
+      "display_zh": "31小时05分45.16秒"
+    },
+    "preparation_inside_updates": {
+      "seconds": 18292.42972425957,
+      "hours": 5.081230478960992,
+      "display_zh": "5小时04分52.43秒"
+    },
+    "forward_objective_backward_clip_optimizer_inside_updates": {
+      "seconds": 93533.65712651025,
+      "hours": 25.981571424030626,
+      "display_zh": "25小时58分53.66秒"
+    },
+    "other_inside_updates": {
+      "seconds": 119.06932952266652,
+      "hours": 0.033074813756296256,
+      "display_zh": "0小时01分59.07秒"
+    },
+    "first_launch_to_final_supervisor_completion": {
+      "start": "2026-10-15T22:25:06.948049+08:00",
+      "end": "2026-10-17T20:49:24.653604+08:00",
+      "seconds": 167057.705555,
+      "hours": 46.40491820972222,
+      "display_zh": "46小时24分17.71秒"
+    },
+    "uninterrupted_5200_resume_to_completion": {
+      "start": "2026-10-16T12:07:43.380030+08:00",
+      "end": "2026-10-17T20:49:24.653604+08:00",
+      "initial_step": 5200,
+      "final_step": 55000,
+      "updates": 49800,
+      "seconds": 117701.273574,
+      "hours": 32.694798215,
+      "display_zh": "32小时41分41.27秒"
+    },
+    "final_training_loop_protocol_elapsed": {
+      "updates": 49800,
+      "seconds": 110736.75375180201,
+      "hours": 30.76020937550056,
+      "display_zh": "30小时45分36.75秒"
+    },
+    "per_step_mean_update_seconds": 2.035366476005318
+  },
+  "sums_by_committed_update_segment": {
+    "steps_1_5200": {
+      "preparation_s": {
+        "seconds": 1997.4546658469408,
+        "hours": 0.5548485182908168,
+        "display_zh": "0小时33分17.45秒"
+      },
+      "compute_s": {
+        "seconds": 7993.200996366933,
+        "hours": 2.220333610101926,
+        "display_zh": "2小时13分13.20秒"
+      },
+      "update_s": {
+        "seconds": 10000.467952365834,
+        "hours": 2.777907764546065,
+        "display_zh": "2小时46分40.47秒"
+      }
+    },
+    "steps_5201_55000": {
+      "preparation_s": {
+        "seconds": 16294.97505841263,
+        "hours": 4.526381960670175,
+        "display_zh": "4小时31分34.98秒"
+      },
+      "compute_s": {
+        "seconds": 85540.45613014333,
+        "hours": 23.7612378139287,
+        "display_zh": "23小时45分40.46秒"
+      },
+      "update_s": {
+        "seconds": 101944.68822792664,
+        "hours": 28.317968952201845,
+        "display_zh": "28小时19分04.69秒"
+      }
+    }
+  },
+  "elapsed_clock_reset_segments": [
+    {
+      "first_step": 1,
+      "first_elapsed_s": 6.601637020998169,
+      "last_step": 1000,
+      "last_elapsed_s": 2076.756671021998
+    },
+    {
+      "first_step": 1001,
+      "first_elapsed_s": 5.358041153995146,
+      "last_step": 2453,
+      "last_elapsed_s": 2998.440986103
+    },
+    {
+      "first_step": 2454,
+      "first_elapsed_s": 5.2669868459997815,
+      "last_step": 5200,
+      "last_elapsed_s": 5674.045120886003
+    },
+    {
+      "first_step": 5201,
+      "first_elapsed_s": 4.579569677007385,
+      "last_step": 55000,
+      "last_elapsed_s": 110568.019612744
+    }
+  ],
+  "interpretation_zh": [
+    "完整55k实际优化更新累计31小时05分45秒，其中训练计算25小时58分54秒、数据/场景准备5小时04分52秒；这些是有CUDA同步的墙钟计时，不是GPU kernel纯占用时间。",
+    "从首次启动2026-10-15 22:25:06到最终完成2026-10-17 20:49:24，日历跨度46小时24分18秒，包含验证、checkpoint、启动与数据指纹复核、暂停及期间其他实验；不能全部称为55k训练计算时间。",
+    "2026-10-16 12:07起32小时41分41秒只覆盖5200→55000的49800步续训，不能当成从头55k总时长。",
+    "trace里的elapsed_s在恢复后归零，不能直接拿最后值作为完整55k时长，也不能相加逐行elapsed_s。",
+    "排除uncommitted尾部；55000条已提交记录步号1..55000唯一完整，没有重放重复计入。",
+    "本记录不把候选消融或后续VAL/TEST评估时间计入实际优化更新累计。"
+  ]
+}

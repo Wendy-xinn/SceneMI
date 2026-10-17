@@ -1,0 +1,23 @@
+MDM latent dim:  256
+Using UNET with lantent dim:  256  and mults:  (1, 2, 4)
+dims:  [201, 256, 512, 1024] mults:  (1, 2, 4)
+[ models/temporal ] Channel dimensions: [(201, 256), (256, 512), (512, 1024)]
+[ models/temporal ] added_input_channels: 97
+Traceback (most recent call last):
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/__main__.py", line 64, in <module>
+    main()
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/__main__.py", line 58, in main
+    module.main()
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/adapt.py", line 596, in main
+    prepare(run)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/adapt.py", line 192, in prepare
+    fingerprints = dataset_digest(data) | dataset_digest(val)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/prepare_native30.py", line 188, in dataset_digest
+    verified_sha256(folder/filename,digest)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_cache_io.py", line 75, in verified_sha256
+    raise ValueError(f'Cache SHA256 mismatch: {path}; expected {expected}, read {actual}')
+ValueError: Cache SHA256 mismatch: /mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/2023-01-15@00-11-55/visible_frame_owner.npy; expected c270a17cf90d19caf187656d8f018bd3dd5124fab25ac962382481430aff8c73, read 096da24e5552e95705b5572c4002f77a5c30d571291357899e04e9a1f6867f6a

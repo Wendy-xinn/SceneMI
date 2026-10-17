@@ -7,6 +7,8 @@
 - `motion_viewer.py`：同步回放已有预测、GT和场景，案例来自数据清单；以后换例子复用同一入口。[Viser](http://localhost:8800)。
 - `checkpoint_guardian.py`：独立保存一个按验证指标选择的模型副本；[选择口径](CHECKPOINT_SELECTION_zh.md)。
 - `scene_causal_check.py`：完整RICH验证及独立复核通过后，配对区分学习式场景条件与物理修正的贡献；[证据说明](EVIDENCE_STATUS_zh.md)。
+- `rich_test.py`：`ops rich-test prepare/evaluate/recheck` 使用VAL事先选定的冻结权重评估官方RICH TEST，逐窗保存、可恢复、独立CPU复算；[本轮协议](../runs/rich_test_ego41k/README_zh.md)。
+- `adapt.py`：`ops adapt prepare/preflight/train/status/recheck` 在同一共享扩散模型上做有限预算的EGO/EXO适配；准备与实际反传预检分开，验证前后使用相同清单；[本轮配置与边界](../runs/native30_ego_exo_adapt_v1/README_zh.md)。
 - `cleanup_oct16_evening/`：此次清理的精确文件清单、依赖核验和实际执行记录。
 
 工具放在本目录；权重和预测仍留本地实验目录。已退役工具随其完整实验移到 archive，保留历史重现信息。

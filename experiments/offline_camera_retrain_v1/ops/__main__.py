@@ -11,6 +11,8 @@ import sys
 BASE = Path(__file__).resolve().parents[1]
 DEFAULT_RUN = BASE / "runs/native30_gait_v2_ego55k_oct15"
 COMMANDS = {
+    "rich-test": ("rich_test", "准备独立 RICH TEST、冻结模型评估和 CPU 复算"),
+    "adapt": ("adapt", "从选定EGO扩散权重进行有预算的EXO适配并保留EGO replay"),
     "view": ("motion_viewer", "查看已有预测、GT 和场景，不运行模型推理"),
     "best": ("checkpoint_guardian", "按固定验证指标保留一个最佳模型副本"),
     "scene-check": ("scene_causal_check", "运行已登记的冻结权重场景/物理修正配对检查"),

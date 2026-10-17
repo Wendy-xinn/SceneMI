@@ -1,0 +1,753 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-17T23:13:33.763510+08:00",
+  "data_mode": "full",
+  "training_ready": true,
+  "optimizer_steps": 0,
+  "actual_parent": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/best.pt",
+    "checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+    "parent_step": 41000,
+    "config_schema": "effective_config.config",
+    "changed_config_fields": [
+      "adaptation",
+      "ego_probability",
+      "initialization",
+      "optimizer.lr",
+      "optimizer.warmup_steps",
+      "phase_plan.budget_status",
+      "phase_plan.mixed_control",
+      "phase_plan.next_phase",
+      "phase_plan.planned_updates",
+      "phase_plan.review_milestones",
+      "prepared_output",
+      "run_control",
+      "sampler.training_mode",
+      "seed",
+      "source_seal",
+      "training_mode",
+      "training_status",
+      "validation.monitor_modes",
+      "validation.scene_ablation_interval_steps",
+      "validation.scope",
+      "version",
+      "warm_start"
+    ],
+    "optimizer_reset": true,
+    "stage_step_origin": 0
+  },
+  "model_sha256_before": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+  "model_sha256_after": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+  "checks": {
+    "EXO": {
+      "batch_size": 1,
+      "frames": 192,
+      "finite": true,
+      "loss": 1.8373072147369385,
+      "shared_unet_gradient_norm_max": 20.604482650756836,
+      "gradient_tensors": 315,
+      "sources": [
+        {
+          "protocol": "native30-observer-target-v1-raw-firsthit",
+          "export_fingerprint": {
+            "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+            "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+            "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+            "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+            "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+            "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+            "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+          },
+          "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "sequence_id": "2023-02-14@12-02-47",
+          "bundle_id": "2023-02-14@12-02-47",
+          "split": "train",
+          "group": "trumans",
+          "dataset": "trumans",
+          "fps": 30,
+          "frames": 2107,
+          "source_first": 0,
+          "source_last": 2106,
+          "native_body": {
+            "model": "smplx",
+            "gender": "male",
+            "betas": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": 1.0
+          },
+          "actual_virtual_mount": {
+            "rotation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "translation_m": [
+              -0.013005297114468253,
+              0.04618030880950705,
+              0.09884699617121252
+            ],
+            "position_p90_m": 0.0,
+            "rotation_p90_rad": 0.0,
+            "source": "actual fixed raw30 virtual mount"
+          },
+          "diagnostic_only": false,
+          "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+          "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+          "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+          "input_sha256": "3690d12cbf27a851c4b74daa94d161f12a9caabb89ad3f183fb349322aefd194",
+          "elapsed_s": 59.521554813021794,
+          "split_protocol": "egobody-official-recording-v2",
+          "recording": null,
+          "scene_id": "2d38c33c-6311-4497-b68e-018b544912a2",
+          "pose_profile_split": "train",
+          "allowed_modes": [
+            "ego",
+            "exo"
+          ],
+          "exo_protocol": "three-corpus-calibrated-or-explicit-synthetic-firsthit-v1",
+          "exo_camera": {
+            "kind": "synthetic_training_observer",
+            "view_id": "synthetic_at_first_release_camera",
+            "selection": "fixed first released camera centre; synthetic look-at recording centre; no visibility selection",
+            "position": [
+              1.2536571195601436,
+              1.4000018296104604,
+              -1.8074515385992092
+            ],
+            "rotation": [
+              [
+                -0.8091072252334103,
+                0.10194559598517634,
+                -0.5787508907417065
+              ],
+              [
+                0.0,
+                -0.9848379443758641,
+                -0.17347686680800525
+              ],
+              [
+                -0.5876610401201456,
+                -0.14036138634521103,
+                0.7968394964785311
+              ]
+            ],
+            "K": [
+              [
+                146.25726438668818,
+                0.0,
+                96.0
+              ],
+              [
+                0.0,
+                146.25726438668818,
+                54.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "distortion": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_size": [
+              192,
+              108
+            ],
+            "size": [
+              192,
+              108
+            ],
+            "calibration": null,
+            "near": 0.1,
+            "far": 12.0,
+            "benchmark_camera_verified": false,
+            "release_camera_status": "paired extrinsics recovered with native rest pivot; K and optical axes unverified",
+            "release_camera_sources": [
+              "/home/wenxin/projects/TRUMANS/smplx_result/2023-02-14@12-02-47_smplx_results.pkl",
+              "/home/wenxin/projects/TRUMANS/smplx_result_in_cam/2023-02-14@12-02-47_smplx_results.pkl"
+            ]
+          },
+          "exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence",
+          "exo_visibility_statistics": {
+            "reference": 3645067,
+            "visible": 3308957,
+            "person": 0,
+            "static": 14894,
+            "rigid": 321216
+          },
+          "exo_mean_available_joints": 15.986236355007119,
+          "world_frame_id": "34b31e626f6fba4a87f179e9a43432f1f8cacfb6d6f43634481d023c9aa8c3b9",
+          "output_sha256": {
+            "camera_intrinsics_128x96.npy": "79c73246d1e97b6a4dae173e8744de878d1868203fbb96e094104e65cec85f66",
+            "camera_position_scenemi_yup.npy": "c7c1bd20cc07b3fc7010a89de03c45cc483ade8fc005015f46dc28912f51dd34",
+            "camera_rotation_scenemi_yup.npy": "95d0edf1ce1be088d92f381ff6d4f3968865c52224eddfabdfaade4ec1e940fc",
+            "exo_frame_owner.npy": "b85056e23ff399a0798f61439bdc35e72d0196c6c8e7c0c7df2336db7a75aade",
+            "exo_frame_points_world.npy": "c0684d8df78cd5e2735b7d4309a503019430326f8cbaa5f9ec390ae780dfadc9",
+            "exo_intrinsics.npy": "94dd0a431eec652e583a75ef4e1101368df3b67b909a445eb6340adfab960dce",
+            "exo_person_counts.npy": "1d68c5186b2f272f0ecd4a1b46be5fdb1457a49b436534bf2341075ff2eb5706",
+            "exo_position_available.npy": "945db2f8603f7806a0066dad3556e8e59ca65c673a1e3f9f3af73ca5520a406a",
+            "exo_position_confidence.npy": "9507672d30aab644d6b38387846edd995022ce594812a44de729d35bd4c6bee6",
+            "exo_reference_counts.npy": "3d3d072a73a630916524902fae7bc1a9248d8b955344a79d88b313f829798019",
+            "exo_rigid_counts.npy": "48cdec33a1df76de04aec5c2a6949677391cd7715f0b578ac091ba14a5173c3b",
+            "exo_sensor_to_world.npy": "3bb207d9776c1caf8146da4940e9a41944bd4b119e9385aa74bb7595d1ffc87d",
+            "exo_static_counts.npy": "f50623fce339091cf7a9186e241d67829d1c1c31e931bd0c60f09766b7db4fed",
+            "exo_trajectory_world.npy": "9de92c165e5262d3626adf274b839cb3bc72a25ff18514080ed1e12e1fc4daf4",
+            "exo_visible_counts.npy": "2ad5e7e027ad3b8b8fcbc8825acf6e5ddba149baf6959240d6bdfcf1357f4f3a",
+            "motion_world.npy": "e62ade6f1029f971ce73aed13a0966d28d41494c019c907d04a5c32f6b00a8a5",
+            "object_positions.npy": "7e54bec2d273378e29312521557f120daf473e351053e54c656529f755b06723",
+            "object_rotations.npy": "53e7f3bf22433a9b2d0f737be0a0dfd9edfff813f6503249a02424c50bf3195a",
+            "object_valid.npy": "25eafdffcfb9b6a0e82fd184734639514db7f7d8b9c80332519c733e21dc27e7",
+            "observation_valid.npy": "c14318b9e958be422dc1d3474db45b57b6873a2503b750e4409742e50bca7c4c",
+            "rest.npy": "91b1839a3b5e71c13223d744b6cad262e3c401414d5b10ae0186d35b13755066",
+            "source_frame_ids.npy": "1b680169e396a59e614e234a8184c2db68270cdc1794beb6dffeb0a2fe14d6ab",
+            "trumans_released_camera_to_world_reference.npy": "3bf76edeae167afd23b5b30e44cd2c6a09cb69e4aaac1e4a6836a7e5bb394020",
+            "visible_frame_owner.npy": "6ff6ea7cc90b7fc7d27c39178d58ec9d61a2a86df90e316419676f96bbf2fbd3",
+            "visible_frame_points_scenemi_yup.npy": "986d018e90d65cfc28d2bfaf57485dd764f745f708dd901a87fd2ec04563a582"
+          },
+          "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/2023-02-14@12-02-47",
+          "start": 320,
+          "source_start_30fps": 320,
+          "origin": [
+            1.2536571025848389,
+            1.400001883506775,
+            -1.8074514865875244
+          ],
+          "anchor": [
+            [
+              -0.9981633724710794,
+              0.0,
+              -0.06057946432677636
+            ],
+            [
+              0.0,
+              0.9999999999999998,
+              0.0
+            ],
+            [
+              0.06057946432677637,
+              0.0,
+              -0.9981633724710794
+            ]
+          ],
+          "yaw_augmentation_rad": 2.574044165770351,
+          "mode": "exo",
+          "window_stride": 64,
+          "sampling": {
+            "protocol": "native30-recording-cycles-v1",
+            "recording_key": "trumans/2023-02-14@12-02-47",
+            "cooldown_fallback": false,
+            "overlap_fallback": false
+          }
+        }
+      ],
+      "optimizer_updates": 0
+    },
+    "mixed": {
+      "batch_size": 2,
+      "frames": 192,
+      "finite": true,
+      "loss": 0.9225916862487793,
+      "shared_unet_gradient_norm_max": 11.321017265319824,
+      "gradient_tensors": 315,
+      "sources": [
+        {
+          "protocol": "native30-observer-target-v1-raw-firsthit",
+          "export_fingerprint": {
+            "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+            "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+            "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+            "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+            "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+            "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+            "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+          },
+          "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "sequence_id": "2023-02-14@12-02-47",
+          "bundle_id": "2023-02-14@12-02-47",
+          "split": "train",
+          "group": "trumans",
+          "dataset": "trumans",
+          "fps": 30,
+          "frames": 2107,
+          "source_first": 0,
+          "source_last": 2106,
+          "native_body": {
+            "model": "smplx",
+            "gender": "male",
+            "betas": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": 1.0
+          },
+          "actual_virtual_mount": {
+            "rotation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "translation_m": [
+              -0.013005297114468253,
+              0.04618030880950705,
+              0.09884699617121252
+            ],
+            "position_p90_m": 0.0,
+            "rotation_p90_rad": 0.0,
+            "source": "actual fixed raw30 virtual mount"
+          },
+          "diagnostic_only": false,
+          "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+          "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+          "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+          "input_sha256": "3690d12cbf27a851c4b74daa94d161f12a9caabb89ad3f183fb349322aefd194",
+          "elapsed_s": 59.521554813021794,
+          "split_protocol": "egobody-official-recording-v2",
+          "recording": null,
+          "scene_id": "2d38c33c-6311-4497-b68e-018b544912a2",
+          "pose_profile_split": "train",
+          "allowed_modes": [
+            "ego",
+            "exo"
+          ],
+          "exo_protocol": "three-corpus-calibrated-or-explicit-synthetic-firsthit-v1",
+          "exo_camera": {
+            "kind": "synthetic_training_observer",
+            "view_id": "synthetic_at_first_release_camera",
+            "selection": "fixed first released camera centre; synthetic look-at recording centre; no visibility selection",
+            "position": [
+              1.2536571195601436,
+              1.4000018296104604,
+              -1.8074515385992092
+            ],
+            "rotation": [
+              [
+                -0.8091072252334103,
+                0.10194559598517634,
+                -0.5787508907417065
+              ],
+              [
+                0.0,
+                -0.9848379443758641,
+                -0.17347686680800525
+              ],
+              [
+                -0.5876610401201456,
+                -0.14036138634521103,
+                0.7968394964785311
+              ]
+            ],
+            "K": [
+              [
+                146.25726438668818,
+                0.0,
+                96.0
+              ],
+              [
+                0.0,
+                146.25726438668818,
+                54.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "distortion": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_size": [
+              192,
+              108
+            ],
+            "size": [
+              192,
+              108
+            ],
+            "calibration": null,
+            "near": 0.1,
+            "far": 12.0,
+            "benchmark_camera_verified": false,
+            "release_camera_status": "paired extrinsics recovered with native rest pivot; K and optical axes unverified",
+            "release_camera_sources": [
+              "/home/wenxin/projects/TRUMANS/smplx_result/2023-02-14@12-02-47_smplx_results.pkl",
+              "/home/wenxin/projects/TRUMANS/smplx_result_in_cam/2023-02-14@12-02-47_smplx_results.pkl"
+            ]
+          },
+          "exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence",
+          "exo_visibility_statistics": {
+            "reference": 3645067,
+            "visible": 3308957,
+            "person": 0,
+            "static": 14894,
+            "rigid": 321216
+          },
+          "exo_mean_available_joints": 15.986236355007119,
+          "world_frame_id": "34b31e626f6fba4a87f179e9a43432f1f8cacfb6d6f43634481d023c9aa8c3b9",
+          "output_sha256": {
+            "camera_intrinsics_128x96.npy": "79c73246d1e97b6a4dae173e8744de878d1868203fbb96e094104e65cec85f66",
+            "camera_position_scenemi_yup.npy": "c7c1bd20cc07b3fc7010a89de03c45cc483ade8fc005015f46dc28912f51dd34",
+            "camera_rotation_scenemi_yup.npy": "95d0edf1ce1be088d92f381ff6d4f3968865c52224eddfabdfaade4ec1e940fc",
+            "exo_frame_owner.npy": "b85056e23ff399a0798f61439bdc35e72d0196c6c8e7c0c7df2336db7a75aade",
+            "exo_frame_points_world.npy": "c0684d8df78cd5e2735b7d4309a503019430326f8cbaa5f9ec390ae780dfadc9",
+            "exo_intrinsics.npy": "94dd0a431eec652e583a75ef4e1101368df3b67b909a445eb6340adfab960dce",
+            "exo_person_counts.npy": "1d68c5186b2f272f0ecd4a1b46be5fdb1457a49b436534bf2341075ff2eb5706",
+            "exo_position_available.npy": "945db2f8603f7806a0066dad3556e8e59ca65c673a1e3f9f3af73ca5520a406a",
+            "exo_position_confidence.npy": "9507672d30aab644d6b38387846edd995022ce594812a44de729d35bd4c6bee6",
+            "exo_reference_counts.npy": "3d3d072a73a630916524902fae7bc1a9248d8b955344a79d88b313f829798019",
+            "exo_rigid_counts.npy": "48cdec33a1df76de04aec5c2a6949677391cd7715f0b578ac091ba14a5173c3b",
+            "exo_sensor_to_world.npy": "3bb207d9776c1caf8146da4940e9a41944bd4b119e9385aa74bb7595d1ffc87d",
+            "exo_static_counts.npy": "f50623fce339091cf7a9186e241d67829d1c1c31e931bd0c60f09766b7db4fed",
+            "exo_trajectory_world.npy": "9de92c165e5262d3626adf274b839cb3bc72a25ff18514080ed1e12e1fc4daf4",
+            "exo_visible_counts.npy": "2ad5e7e027ad3b8b8fcbc8825acf6e5ddba149baf6959240d6bdfcf1357f4f3a",
+            "motion_world.npy": "e62ade6f1029f971ce73aed13a0966d28d41494c019c907d04a5c32f6b00a8a5",
+            "object_positions.npy": "7e54bec2d273378e29312521557f120daf473e351053e54c656529f755b06723",
+            "object_rotations.npy": "53e7f3bf22433a9b2d0f737be0a0dfd9edfff813f6503249a02424c50bf3195a",
+            "object_valid.npy": "25eafdffcfb9b6a0e82fd184734639514db7f7d8b9c80332519c733e21dc27e7",
+            "observation_valid.npy": "c14318b9e958be422dc1d3474db45b57b6873a2503b750e4409742e50bca7c4c",
+            "rest.npy": "91b1839a3b5e71c13223d744b6cad262e3c401414d5b10ae0186d35b13755066",
+            "source_frame_ids.npy": "1b680169e396a59e614e234a8184c2db68270cdc1794beb6dffeb0a2fe14d6ab",
+            "trumans_released_camera_to_world_reference.npy": "3bf76edeae167afd23b5b30e44cd2c6a09cb69e4aaac1e4a6836a7e5bb394020",
+            "visible_frame_owner.npy": "6ff6ea7cc90b7fc7d27c39178d58ec9d61a2a86df90e316419676f96bbf2fbd3",
+            "visible_frame_points_scenemi_yup.npy": "986d018e90d65cfc28d2bfaf57485dd764f745f708dd901a87fd2ec04563a582"
+          },
+          "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/2023-02-14@12-02-47",
+          "start": 320,
+          "source_start_30fps": 320,
+          "origin": [
+            1.2536571025848389,
+            1.400001883506775,
+            -1.8074514865875244
+          ],
+          "anchor": [
+            [
+              -0.9981633724710794,
+              0.0,
+              -0.06057946432677636
+            ],
+            [
+              0.0,
+              0.9999999999999998,
+              0.0
+            ],
+            [
+              0.06057946432677637,
+              0.0,
+              -0.9981633724710794
+            ]
+          ],
+          "yaw_augmentation_rad": 2.574044165770351,
+          "mode": "exo",
+          "window_stride": 64,
+          "sampling": {
+            "protocol": "native30-recording-cycles-v1",
+            "recording_key": "trumans/2023-02-14@12-02-47",
+            "cooldown_fallback": false,
+            "overlap_fallback": false
+          }
+        },
+        {
+          "protocol": "native30-observer-target-v1-raw-firsthit",
+          "export_fingerprint": {
+            "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+            "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+            "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+            "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+            "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+            "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+            "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+          },
+          "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "sequence_id": "2023-02-12@12-16-04",
+          "bundle_id": "2023-02-12@12-16-04",
+          "split": "train",
+          "group": "trumans",
+          "dataset": "trumans",
+          "fps": 30,
+          "frames": 2420,
+          "source_first": 0,
+          "source_last": 2419,
+          "native_body": {
+            "model": "smplx",
+            "gender": "male",
+            "betas": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "scale": 1.0
+          },
+          "actual_virtual_mount": {
+            "rotation": [
+              [
+                1.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "translation_m": [
+              -0.012978138916868082,
+              0.04624453245517174,
+              0.09892917269562995
+            ],
+            "position_p90_m": 0.0,
+            "rotation_p90_rad": 0.0,
+            "source": "actual fixed raw30 virtual mount"
+          },
+          "diagnostic_only": false,
+          "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+          "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+          "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+          "input_sha256": "9c7ac9e7e7d084bd7b7250cb0060a32975ee2749ace3a492dc0e7417416b99da",
+          "elapsed_s": 55.14532378299987,
+          "split_protocol": "egobody-official-recording-v2",
+          "recording": null,
+          "scene_id": "1a8dbd8d-0025-4373-8b94-ee9dd9fa7295",
+          "pose_profile_split": "train",
+          "allowed_modes": [
+            "ego",
+            "exo"
+          ],
+          "exo_protocol": "three-corpus-calibrated-or-explicit-synthetic-firsthit-v1",
+          "exo_camera": {
+            "kind": "synthetic_training_observer",
+            "view_id": "synthetic_at_first_release_camera",
+            "selection": "fixed first released camera centre; synthetic look-at recording centre; no visibility selection",
+            "position": [
+              -1.4080242092544528,
+              1.4000018626475303,
+              3.2374444631604353
+            ],
+            "rotation": [
+              [
+                0.9598212375826932,
+                -0.04106636366939744,
+                0.27759096826121693
+              ],
+              [
+                -0.0,
+                -0.9892335206054518,
+                -0.14634562415919058
+              ],
+              [
+                0.28061217344446615,
+                0.140465638095286,
+                -0.9494873420058094
+              ]
+            ],
+            "K": [
+              [
+                146.25726438668818,
+                0.0,
+                96.0
+              ],
+              [
+                0.0,
+                146.25726438668818,
+                54.0
+              ],
+              [
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "distortion": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "source_size": [
+              192,
+              108
+            ],
+            "size": [
+              192,
+              108
+            ],
+            "calibration": null,
+            "near": 0.1,
+            "far": 12.0,
+            "benchmark_camera_verified": false,
+            "release_camera_status": "paired extrinsics recovered with native rest pivot; K and optical axes unverified",
+            "release_camera_sources": [
+              "/home/wenxin/projects/TRUMANS/smplx_result/2023-02-12@12-16-04_smplx_results.pkl",
+              "/home/wenxin/projects/TRUMANS/smplx_result_in_cam/2023-02-12@12-16-04_smplx_results.pkl"
+            ]
+          },
+          "exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence",
+          "exo_visibility_statistics": {
+            "reference": 3086618,
+            "visible": 2885916,
+            "person": 0,
+            "static": 134648,
+            "rigid": 66054
+          },
+          "exo_mean_available_joints": 16.70495867768595,
+          "world_frame_id": "34b31e626f6fba4a87f179e9a43432f1f8cacfb6d6f43634481d023c9aa8c3b9",
+          "output_sha256": {
+            "camera_intrinsics_128x96.npy": "daf04fccb322e17150ca3e8e5255db5818b675afe49090efa1de3302b4420510",
+            "camera_position_scenemi_yup.npy": "d04302f7bfc22fc580e5969037dd0cc6c1cf67795016d11febd967648f5865bc",
+            "camera_rotation_scenemi_yup.npy": "e4782fae839bf9f93f5cc29b809807e44a41e586edc35ad78ed5a0f02daf5454",
+            "exo_frame_owner.npy": "7588ae076e1bcaaea896f561b2f7177e1e12477f364a728a3e8640b4b38589a5",
+            "exo_frame_points_world.npy": "adf89cb638c5a48b0cf5c7291d73fba79138bf688f69653ad107a0968dbe95e8",
+            "exo_intrinsics.npy": "94dd0a431eec652e583a75ef4e1101368df3b67b909a445eb6340adfab960dce",
+            "exo_person_counts.npy": "27a71ca66af5dee902e79f40cdad97a6a3a3f3b14698059a2ab7b716597667e4",
+            "exo_position_available.npy": "cfaf64c8e7bd2a932ddad191a0e098c9ecb5f387020ce480c7cd25dc20967d0f",
+            "exo_position_confidence.npy": "75020de20905c7547b09410f269980febd3dbbe9788f9c66123d9b723ae1e140",
+            "exo_reference_counts.npy": "b5b14981a91dd6fbfa211c3c0db9dc51735c1c19581fa246cc98a43996ea3664",
+            "exo_rigid_counts.npy": "9df073bbc894ded97e005e508a02ef8aa32b5dbc426903526f1c92ae09eb8407",
+            "exo_sensor_to_world.npy": "08207cbca8099357665ef2bf29265013d6358244f6971a01798e45fdfb3c9e40",
+            "exo_static_counts.npy": "3dccd9597d389dddbff1d00fdd6f39cf86dee3a6edfc2b37ea92adb9d4d1aae6",
+            "exo_trajectory_world.npy": "fcf9f16953d69484621a1824a4a508db1fe430c94a4fea91305d9c6020e265a4",
+            "exo_visible_counts.npy": "a4b0414e2da3856be631f7854af599a49489e728a3da113e4e1ee1944bb372ea",
+            "motion_world.npy": "c6aa5fe367bb346255e6672de6e0a669f1e6d35582a3ae8a94c7609d1b184924",
+            "object_positions.npy": "9c9d7495a59f49ea962606e740407ddb3a504acc25b15e3a85815926f17317e6",
+            "object_rotations.npy": "65dac9056b00709eb2694f34b18ddf9fd341035d08f00d67f2e1f275b46c39f7",
+            "object_valid.npy": "4ee2892412e90ba249801530cdc8f8fa3d3ad97bbae24fa6591de5e30c310ab1",
+            "observation_valid.npy": "c107d615074aba7750bf46e60f1b734564816c7e02d7510596668b90df3c85ba",
+            "rest.npy": "91b1839a3b5e71c13223d744b6cad262e3c401414d5b10ae0186d35b13755066",
+            "source_frame_ids.npy": "ba15b50b8bc37d5e6edc03b7aeb50bca333b8a58e4b4da4b2a44cf54752e206d",
+            "trumans_released_camera_to_world_reference.npy": "50dad2524e24fb5ce3d10e0a2f3e6159ee4130c462d904f025c736787457496a",
+            "visible_frame_owner.npy": "0a7b33c591ef268264ac1b48c5cbf9691c4df050660afe238cda96308337221e",
+            "visible_frame_points_scenemi_yup.npy": "fe268fc82daa634248940819b7e19c1372439e76537f6f44247889802df9ff6f"
+          },
+          "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/train/2023-02-12@12-16-04",
+          "start": 1728,
+          "source_start_30fps": 1728,
+          "origin": [
+            -0.7925211787223816,
+            1.553022027015686,
+            1.1546136140823364
+          ],
+          "anchor": [
+            [
+              -0.7157505563792292,
+              0.0,
+              0.6983560360141929
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              -0.6983560360141928,
+              0.0,
+              -0.7157505563792292
+            ]
+          ],
+          "yaw_augmentation_rad": 2.997280944259148,
+          "mode": "ego",
+          "window_stride": 64,
+          "sampling": {
+            "protocol": "native30-recording-cycles-v1",
+            "recording_key": "trumans/2023-02-12@12-16-04",
+            "cooldown_fallback": false,
+            "overlap_fallback": false
+          }
+        }
+      ],
+      "optimizer_updates": 0
+    },
+    "hidden_truth_poison": true,
+    "frozen_EXO_without_body_labels": true
+  },
+  "baseline_validation_rows": 12,
+  "baseline_validation_sha256": "eabaf47c8a0a82543711ed88929dae57bbed3d3cf353d9bbadb79351b4996f1b",
+  "baseline_arrays_sha256": "f54ad45dbcb3977fa8259a06f704747af7a21a8f277a9181eaae19203b18c632",
+  "baseline_primary_metrics": "Unconditioned EXO/world/conditioned/root/feet plus EGO retention; clean/noisy separate",
+  "peak_cuda_gib": 2.722519874572754,
+  "coefficient_policy": {
+    "policy": "Reuse unchanged parent TRAIN gradient calibration; no refit claimed",
+    "parent_checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+    "coefficients": {
+      "position": 0.09597684428424401,
+      "rotation": 0.025,
+      "velocity": 0.00029011997255170386,
+      "acceleration": 3.16126911095216e-06,
+      "angular_velocity": 0.0023217302368079363,
+      "body_turn_rate": 0.0007816471124286364
+    }
+  }
+}

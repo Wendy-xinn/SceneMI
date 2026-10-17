@@ -1,0 +1,31 @@
+{
+  "protocol": "native30-test-prepare-incident-log-evidence-v1",
+  "archived_at": "2026-10-17T23:08:18.264875+08:00",
+  "scope": "Read-only source logs copied as compact failure evidence; no source, PLAN, seal, checkpoint or dataset change",
+  "log_time_policy": "These logs have no per-line timestamps. Filesystem mtimes record the last write and may include subsequent recovery progress; they do not establish the original fault time.",
+  "original_launch": "2026-10-17T22:02:10+08:00",
+  "original_launch_record": "20261017T220210_PREPARE_LAUNCH.json",
+  "cause_limits": "Open3D/native-library SIGSEGV and dynamic-loader assertion are directly recorded. These files do not establish who initiated subsequent WSL shutdown.",
+  "evidence": [
+    {
+      "original_path": "/mnt/d/Projects/SceneMI/cache/rich_test_native30_v1/logs/test/Gym_010_mountainclimber1__subject_010.log",
+      "archived_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/rich_test_ego41k/attempts/20261017T220210_Open3D_worker.log",
+      "bytes": 1818,
+      "sha256": "9416757adb60c1606e70cca5bf46dbceece81c5346988906db9b1c8e0df0a415",
+      "original_filesystem_mtime": "2026-10-17T22:40:48.335378+08:00",
+      "exception_marker": "Fatal Python error: Segmentation fault",
+      "copied_verbatim": true,
+      "secret_markers_detected": false
+    },
+    {
+      "original_path": "/mnt/d/Projects/SceneMI/cache/rich_test_native30_v1/logs/test/Gym_010_mountainclimber2__subject_010.launcher.log",
+      "archived_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/rich_test_ego41k/attempts/20261017T220210_ldso_launcher.log",
+      "bytes": 167,
+      "sha256": "048bb0d9f0d2123a884bf370f126322ddb2d87385aa3b86b6953d64c6f6f3b06",
+      "original_filesystem_mtime": "2026-10-17T22:02:51.854127+08:00",
+      "exception_marker": "elf_machine_rela_relative",
+      "copied_verbatim": true,
+      "secret_markers_detected": false
+    }
+  ]
+}

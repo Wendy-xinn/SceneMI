@@ -2,9 +2,14 @@
 
 当前主线 `native30_gait_v2_ego55k_oct15` 已于 **2026-10-17 20:49:24 正常完成 55,000 步**，worker 返回码 0。最终判断是训练拟合接近平台、验证轻微回退，脚部支撑问题仍未解决；保留 41k 作为主要开发候选、55k 作为完整续训状态，暂不延长、不自动接 EXO。统一入口：[完成报告](native30_gait_v2_ego55k_oct15/final_review/REPORT_zh.md) · [训练与固定验证曲线](native30_gait_v2_ego55k_oct15/final_review/TRAINING_CURVES.png)。
 
+用户随后授权的新阶段分开记录：[冻结41k的RICH TEST](rich_test_ego41k/README_zh.md) 已准备335窗/670次预测，前2次通过独立CPU复算，全量任务等待GPU，尚非全TEST结论；[共享扩散EXO适配](native30_ego_exo_adapt_v1/README_zh.md) 已通过实际EXO/mixed反传、隐藏GT隔离及12次固定VAL基线，开始1000更新、EXO80%/EGO20%的新阶段。实时进度看下表，实际更新记录在该阶段training/trace.jsonl。两个任务串行使用GPU。
+
 | 要看什么 | 入口 |
 |---|---|
 | 55k 完成状态 | [STATUS.json](native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json) |
+| RICH TEST实时进度 | [STATUS.json](rich_test_ego41k/STATUS.json) · [逐窗与汇总](rich_test_ego41k/SUMMARY.json) |
+| EXO适配实时进度 | [STATUS.json](native30_ego_exo_adapt_v1/STATUS.json) · [实际预检](native30_ego_exo_adapt_v1/prepared/input_checks.json) |
+| 55k实际训练时长 | [31小时06分更新 / 46小时24分总跨度](native30_gait_v2_ego55k_oct15/final_review/TRAINING_DURATION.json) |
 | Viser同步动作回放 | [打开六个案例](http://localhost:8800/) · [案例身份与步数](native30_live_monitor_oct16/visuals/viser/CASES.json)；GT/预测、脚轨迹、完整扫描/可见场景可分别切换 |
 | 已保存的 best、选择指标和步数 | [best.json](native30_gait_v2_ego55k_oct15/training/best.json) · [自动保存状态](native30_gait_v2_ego55k_oct15/training/BEST_GUARDIAN_STATUS.json) |
 | 总 loss、各监督贡献、训练时长 | [TensorBoard](http://localhost:6006/#custom_scalars) · [损失说明](native30_live_monitor_oct16/LOSS_GUIDE_zh.md) |
