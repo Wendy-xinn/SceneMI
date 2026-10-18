@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-18T11:57:49+0800",
+  "command": "CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 /home/wenxin/miniconda3/envs/scenemi/bin/python -m unittest experiments.offline_camera_retrain_v1.ops.test_adapter_model experiments.offline_camera_retrain_v1.ops.test_adapter_trial experiments.offline_camera_retrain_v1.ops.test_adapter_stage -q",
+  "tests": 42,
+  "elapsed_s": 3.746,
+  "exit_code": 0,
+  "CPU_only": true,
+  "CUDA_VISIBLE_DEVICES": "",
+  "scope": "Adapter invariance/freeze/no-GT inference whitelist, trial guards/resource policy, corpus quota real sampler distribution+resume, CLI and exception-safe binding restoration, source closure",
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/adapter_model.py": "444c737cfcbf6f847ac749982b1db03a7f92b9bfa2671006dc7c021669a5de04",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/adapter_trial.py": "db86273879b066099a5fdcadb64c4aed9aced052034fa513278a2cf569d46e7a",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/adapter_stage.py": "ece91ca6e43f1b50f903c501804a66e8e89ca0424baabe9f9a8508f61fb4e608",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/test_adapter_stage.py": "76439e91b18c41697a653b3c4cd18aab6ae01245279a42a35356b20a6fd74bff"
+  },
+  "actual_full_CPU_initialization_evidence": "SAME_INITIALIZATION_CPU.json",
+  "actual_GPU_preflight_pending": true
+}
