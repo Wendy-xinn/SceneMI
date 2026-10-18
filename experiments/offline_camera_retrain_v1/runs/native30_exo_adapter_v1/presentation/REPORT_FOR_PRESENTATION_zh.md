@@ -28,7 +28,9 @@ EXO前后对照（开发VAL，每数据集3个不同录制窗口）：
 
 改善率=(前−后)/前，负值为退化。可见/隐藏按输入位置可用掩码划分关节帧（conditioned/unconditioned），不等于整个人的语义遮挡分类。可见/隐藏误差在数据集内按有效关节帧数加权，EXO脚速按GT低速脚区间数加权；双足RMS/stride误差为等窗口平均，CSV已分别标明。双足RMS衡量各自骨盆朝向下、左右脚相对运动的去均值幅值；stride比较6/12帧间隔的变化量，不能当成真实步长或接触率。三数据集等权隐藏宏均值clean改善24.05%，noisy改善4.82%，后者未达预注册5%门槛。RICH可见关节贴合虽改善，隐藏姿态与双足幅值仍退化。
 
-范围：9个EXO窗仅为工程筛查，未完成EXO全验证/TEST或显著性检验。每阶段另有3个固定EGO窗，12窗×clean/noisy=24次生成，前后共48次，其中EXO36次。EGO TEST来自原冻结41k；EXO结果来自其内部adapter适配，两任务不混成总分。
+范围：EXO输入当前为GT关节位置结合first-hit可见性/置信度，并按既定noisy协议加入扰动（ideal_GT_position_tracker_simulation_with_firsthit_confidence），并非真实人体tracker输出。实验使用已知body profile，尚未验证未知体型或真实尺度漂移的修正；隐藏补全的改善不能据此表述为已解决真实tracker误差或尺度问题。
+
+9个EXO窗仅为工程筛查，未完成EXO全验证/TEST或显著性检验。每阶段另有3个固定EGO窗，12窗×clean/noisy=24次生成，前后共48次，其中EXO36次。EGO TEST来自原冻结41k；EXO结果来自其内部adapter适配，两任务不混成总分。
 
 文件与证据：
 

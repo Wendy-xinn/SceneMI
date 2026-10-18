@@ -1,4 +1,4 @@
-<!doctype html><meta charset="utf-8"><title>SceneMI汇报材料</title><style>body{font-family:sans-serif;max-width:1160px;margin:32px auto;line-height:1.7;color:#24323d}img{max-width:100%}pre{white-space:pre-wrap}</style><h1>SceneMI：EGO结果与EXO内部适配</h1><p>可独立离线打开；数值来自已完成CPU复核记录。v1验收失败；v2尚无完成结果。</p><p><a href="TALK_zh.md">五句口播</a> · <a href="REPORT_FOR_PRESENTATION_zh.md">完整口径与表格</a> · <a href="visuals/index.html">前后对照视频与图片</a></p><p><a href="RICH_TEST_MAIN.csv">RICH TEST CSV</a> · <a href="EXO_VAL_BY_DATASET.csv">EXO分数据集CSV</a> · <a href="EXO_HIDDEN_MACRO.csv">EXO宏均值CSV</a></p><img src="visuals/EXO_hidden_metrics.png" alt="9个EXO VAL窗隐藏关节误差"><img src="visuals/EXO_examples.png" alt="两个改善例和一个失败例"><h2>核验口径</h2><pre>今晚可直接汇报的三句话：
+<!doctype html><meta charset="utf-8"><title>SceneMI汇报材料</title><style>body{font-family:sans-serif;max-width:1160px;margin:32px auto;line-height:1.7;color:#24323d}img{max-width:100%}pre{white-space:pre-wrap}</style><h1>SceneMI：EGO结果与EXO内部适配</h1><p>可独立离线打开；数值来自已完成CPU复核记录。v1验收失败；v2尚无完成结果。</p><p>EXO输入为GT位置加first-hit可见性/置信度及既定噪声，使用已知体型；并非真实tracker输出，尚未验证未知体型与真实尺度漂移。</p><p><a href="TALK_zh.md">五句口播</a> · <a href="REPORT_FOR_PRESENTATION_zh.md">完整口径与表格</a> · <a href="visuals/index.html">前后对照视频与图片</a></p><p><a href="RICH_TEST_MAIN.csv">RICH TEST CSV</a> · <a href="EXO_VAL_BY_DATASET.csv">EXO分数据集CSV</a> · <a href="EXO_HIDDEN_MACRO.csv">EXO宏均值CSV</a></p><img src="visuals/EXO_hidden_metrics.png" alt="9个EXO VAL窗隐藏关节误差"><img src="visuals/EXO_examples.png" alt="两个改善例和一个失败例"><h2>核验口径</h2><pre>今晚可直接汇报的三句话：
 
 1. 冻结41k EGO扩散模型已完成RICH TEST评估，覆盖335个合法窗口、52个录制、53条目标人体序列，clean/noisy的World MPJPE为155.7/169.5 mm，结果已独立CPU复核。
 2. EXO采用扩散网络内部的专用adapter，冻结原主干、更新1000步；9个开发验证窗中，TRUMANS隐藏关节误差降低30.2%/17.5%，EgoBody降低46.9%/16.7%，3个固定EGO验证窗的保存输出逐值保持不变。
@@ -28,7 +28,9 @@ EXO前后对照（开发VAL，每数据集3个不同录制窗口）：
 
 改善率=(前−后)/前，负值为退化。可见/隐藏按输入位置可用掩码划分关节帧（conditioned/unconditioned），不等于整个人的语义遮挡分类。可见/隐藏误差在数据集内按有效关节帧数加权，EXO脚速按GT低速脚区间数加权；双足RMS/stride误差为等窗口平均，CSV已分别标明。双足RMS衡量各自骨盆朝向下、左右脚相对运动的去均值幅值；stride比较6/12帧间隔的变化量，不能当成真实步长或接触率。三数据集等权隐藏宏均值clean改善24.05%，noisy改善4.82%，后者未达预注册5%门槛。RICH可见关节贴合虽改善，隐藏姿态与双足幅值仍退化。
 
-范围：9个EXO窗仅为工程筛查，未完成EXO全验证/TEST或显著性检验。每阶段另有3个固定EGO窗，12窗×clean/noisy=24次生成，前后共48次，其中EXO36次。EGO TEST来自原冻结41k；EXO结果来自其内部adapter适配，两任务不混成总分。
+范围：EXO输入当前为GT关节位置结合first-hit可见性/置信度，并按既定noisy协议加入扰动（ideal_GT_position_tracker_simulation_with_firsthit_confidence），并非真实人体tracker输出。实验使用已知body profile，尚未验证未知体型或真实尺度漂移的修正；隐藏补全的改善不能据此表述为已解决真实tracker误差或尺度问题。
+
+9个EXO窗仅为工程筛查，未完成EXO全验证/TEST或显著性检验。每阶段另有3个固定EGO窗，12窗×clean/noisy=24次生成，前后共48次，其中EXO36次。EGO TEST来自原冻结41k；EXO结果来自其内部adapter适配，两任务不混成总分。
 
 文件与证据：
 
