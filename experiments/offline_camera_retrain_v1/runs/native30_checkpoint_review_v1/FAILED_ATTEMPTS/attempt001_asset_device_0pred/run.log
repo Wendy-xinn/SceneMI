@@ -1,0 +1,44 @@
+MDM latent dim:  256
+Using UNET with lantent dim:  256  and mults:  (1, 2, 4)
+dims:  [201, 256, 512, 1024] mults:  (1, 2, 4)
+[ models/temporal ] Channel dimensions: [(201, 256), (256, 512), (512, 1024)]
+[ models/temporal ] added_input_channels: 97
+MDM latent dim:  256
+Using UNET with lantent dim:  256  and mults:  (1, 2, 4)
+dims:  [201, 256, 512, 1024] mults:  (1, 2, 4)
+[ models/temporal ] Channel dimensions: [(201, 256), (256, 512), (512, 1024)]
+[ models/temporal ] added_input_channels: 97
+Traceback (most recent call last):
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/validation_review.py", line 661, in <module>
+    main()
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/validation_review.py", line 650, in main
+    complete=evaluate(out,resume=args.command in ('resume','run'),max_predictions=args.max_predictions,memory_fraction=args.memory_fraction)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/validation_review.py", line 528, in evaluate
+    with torch.no_grad():prediction=sample_motion(models[label],known,config,steps=20,seed=entry['case_seed'],use_scene=True)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py", line 182, in sample_motion
+    return sampling(model,batch,**kwargs)
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py", line 248, in sample_refinement
+    absolute=model(state,times,batch,use_scene=use_scene)
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_backend.py", line 29, in forward
+    try:return self._reference_query_forward(*args,**kwargs)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_scene_relations.py", line 136, in forward
+    result, details = super().forward(noisy_motion, timestep, batch, use_scene=use_scene, return_details=True, **kwargs)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py", line 252, in forward
+    context,bps,valid,geometry=self.local_geometry(proposal.detach(),timestep,batch)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_scene_relations.py", line 92, in local_geometry
+    context, bps, valid, geometry = super().local_geometry(proposal, timestep, batch)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py", line 197, in local_geometry
+    vertices=skin_points(proposal[b],asset);labels=asset['labels'];r=rotations[b,:,labels]
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/unified_geometry.py", line 97, in skin_points
+    rotations = torch.cat((local, asset['extra_rotations'][None].expand(t, -1, -1, -1)), 1)
+RuntimeError: Expected all tensors to be on the same device, but got tensors is on cpu, different from other tensors on cuda:0 (when checking argument in method wrapper_CUDA_cat)

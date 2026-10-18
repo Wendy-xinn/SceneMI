@@ -113,10 +113,10 @@ def validation_data(config):
     return data
 
 
-def observation_builder(config):
+def observation_builder(config,device='cpu'):
     from experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAnchorCache
     from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder
-    return Native30ObservationBuilder(Native30SkinAnchorCache(device='cpu',limit=4),read(BASE/config['mount_defaults']),
+    return Native30ObservationBuilder(Native30SkinAnchorCache(device=device,limit=4),read(BASE/config['mount_defaults']),
                                       config['observation']['input_noise'])
 
 
@@ -275,14 +275,39 @@ def committed_rows(out,plan,entries):
 
 
 def tensor_fingerprint(known):
-    import torch
     digest=hashlib.sha256()
-    for key,value in sorted(known.items()):
-        if isinstance(value,torch.Tensor):
-            array=value.detach().cpu().contiguous().numpy()
-            digest.update(json.dumps([key,str(array.dtype),list(array.shape)],separators=(',',':')).encode())
-            digest.update(memoryview(array).cast('B'))
+    for key,value in tensor_leaves(known):
+        array=value.detach().cpu().contiguous().numpy()
+        digest.update(json.dumps([key,str(array.dtype),list(array.shape)],separators=(',',':')).encode())
+        digest.update(memoryview(array).cast('B'))
     return digest.hexdigest()
+
+
+def tensor_leaves(value,path=''):
+    import torch
+    if isinstance(value,torch.Tensor):yield path,value
+    elif isinstance(value,dict):
+        for key in sorted(value):yield from tensor_leaves(value[key],path+'.'+str(key))
+    elif isinstance(value,(tuple,list)):
+        for index,item in enumerate(value):yield from tensor_leaves(item,path+f'[{index}]')
+
+
+def assert_input_device(known,device):
+    import torch
+    expected=torch.device(device)
+    if expected.type=='cuda' and expected.index is None:expected=torch.device('cuda',torch.cuda.current_device())
+    for path,value in tensor_leaves(known):
+        require(value.device==expected,'Inference tensor device differs: '+path)
+
+
+def collated_inputs(config,observed,scene,asset,device):
+    from experiments.offline_camera_retrain_v1.unified_observations import collate_observations
+    # The original collator moves sample tensors but deliberately passes native
+    # skin-assets through. The builder uses the requested device, and this
+    # assertion also checks nested skinning tensors before any model call.
+    batch=collate_observations([(observed,scene,asset,'ego')],device=device)
+    known=inference_inputs(config,batch);assert_input_device(known,device)
+    return batch,known
 
 
 def inference_inputs(config,batch):
@@ -297,7 +322,6 @@ def inference_inputs(config,batch):
 def probe_inputs(data,builder,entry,config):
     import numpy as np
     import torch
-    from experiments.offline_camera_retrain_v1.unified_observations import collate_observations
     result={}
     for regime in ('clean','noisy'):
         sample,observed,scene,asset=source_observation(data,builder,entry,regime)
@@ -305,8 +329,8 @@ def probe_inputs(data,builder,entry,config):
                 'Observation builder retained GT-only labels')
         available=observed['observation_meta'][...,:2]>0
         require(not available[:,[j for j in range(22) if j!=15]].any(),'Non-head joint sensor in EGO review')
-        known=inference_inputs(config,collate_observations([(observed,scene,asset,'ego')],device='cpu'))
-        require(all(bool(torch.isfinite(value).all()) for value in known.values() if isinstance(value,torch.Tensor)),
+        batch,known=collated_inputs(config,observed,scene,asset,'cpu')
+        require(all(bool(torch.isfinite(value).all()) for _,value in tensor_leaves(known)),
                 'Nonfinite CPU inference input')
         result[regime]=dict(case=entry['case'],source_first=entry['source_first'],CPU_input_sha256=tensor_fingerprint(known),
             tensor_keys=sorted(k for k,v in known.items() if isinstance(v,torch.Tensor)),
@@ -490,7 +514,6 @@ def evaluate(out,resume=False,max_predictions=0,memory_fraction=.5):
     from experiments.offline_camera_retrain_v1.prepare_native30 import make_model
     from experiments.offline_camera_retrain_v1.train_native30 import model_digest
     from experiments.offline_camera_retrain_v1.native30_refinement import sample_motion
-    from experiments.offline_camera_retrain_v1.unified_observations import collate_observations
     plan=read(out/'PLAN.json');verify_plan(out,plan);entries=read(out/'COHORT.json')['entries']
     require(0<memory_fraction<=.5,'Review GPU memory fraction must be at most one half')
     require(resume or not (out/'rows.jsonl').exists(),'Existing results require explicit resume')
@@ -503,7 +526,7 @@ def evaluate(out,resume=False,max_predictions=0,memory_fraction=.5):
             os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG',':4096:8')
             torch.set_num_threads(2);torch.cuda.set_per_process_memory_fraction(memory_fraction)
             torch.use_deterministic_algorithms(True);torch.backends.cudnn.deterministic=True;torch.backends.cudnn.benchmark=False
-            config=plan['config'];data=validation_data(config);verify_plan(out,plan,data=data);builder=observation_builder(config)
+            config=plan['config'];data=validation_data(config);verify_plan(out,plan,data=data);builder=observation_builder(config,device='cuda')
             models={}
             for label in plan['model_order']:
                 declaration=plan['models'][label];state=torch.load(declaration['checkpoint'],map_location='cpu',mmap=True,weights_only=False)
@@ -515,7 +538,7 @@ def evaluate(out,resume=False,max_predictions=0,memory_fraction=.5):
                 for regime in plan['regimes']:
                     if all((entry['case'],regime,label) in done for label in plan['model_order']):continue
                     prepare_started=time.monotonic();sample,observed,scene,asset=source_observation(data,builder,entry,regime)
-                    batch=collate_observations([(observed,scene,asset,'ego')]);known=inference_inputs(config,batch)
+                    batch,known=collated_inputs(config,observed,scene,asset,'cuda')
                     input_sha=tensor_fingerprint(known);prep_share=(time.monotonic()-prepare_started)/len(plan['model_order'])
                     paired=[row for key,row in done.items() if key[:2]==(entry['case'],regime)]
                     require(all(row['input_sha256']==input_sha for row in paired),'Resumed matched input tensors differ')

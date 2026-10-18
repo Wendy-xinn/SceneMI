@@ -1,0 +1,31 @@
+{
+  "launched_at": "2026-10-18T11:33:08.827859+08:00",
+  "supervisor_pid": 58117,
+  "command": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops.validation_review",
+    "run",
+    "--out",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_checkpoint_review_v1",
+    "--memory-fraction",
+    "0.5"
+  ],
+  "source_commit": "c2f82da35215c78f9552dd94c62b8114b554fd70",
+  "supervisor_source": "import datetime,json,os,shutil,subprocess,sys\nfrom pathlib import Path\nrun=Path(sys.argv[1]);command=json.loads(sys.argv[2]);root=Path(sys.argv[3]);commit=sys.argv[4]\ndef now(): return datetime.datetime.now().astimezone().isoformat()\ndef write(path,value):\n    temporary=path.with_suffix(path.suffix+'.tmp')\n    with temporary.open('w') as stream:\n        json.dump(value,stream,ensure_ascii=False,indent=2);stream.write('\\n');stream.flush();os.fsync(stream.fileno())\n    os.replace(temporary,path)\njob=dict(supervisor_pid=os.getpid(),launched_at=now(),command=command,source_commit=commit,status='running',planned_predictions=1224,optimizer_updates=0)\nwith (run/'run.log').open('a',buffering=1) as log:\n    child=subprocess.Popen(command,cwd=root,stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,close_fds=True)\n    job['child_pid']=child.pid;write(run/'JOB.json',job)\n    result=child.wait()\n    verified=False\n    if result==0:\n        try:\n            check=json.loads((run/'CPU_RECHECK.json').read_text());state=json.loads((run/'STATUS.json').read_text())\n            verified=check.get('status')=='independent_cpu_passed' and check.get('predictions')==1224 and state.get('status')=='completed'\n        except Exception as error: job['completion_check_error']=repr(error)\n    job.update(returncode=result,finished_at=now(),status='completed' if result==0 and verified else 'failed',independent_cpu_verified=verified)\n    write(run/'JOB.json',job)\nusage=shutil.disk_usage(run)\nstorage=json.loads((run/'STORAGE.json').read_text())\nstorage['after']=dict(checked_at=now(),total_bytes=usage.total,used_bytes=usage.used,free_bytes=usage.free,job_status=job['status'])\nwrite(run/'STORAGE.json',storage)\nsys.exit(0 if result==0 and verified else result or 1)\n",
+  "PLAN_sha256": "3c91242ef9bdd5d9676746f6ab7e72c97aecdd5c62a31c2df3ab7c818fc9eff9",
+  "resume_command": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops.validation_review",
+    "resume",
+    "--out",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_checkpoint_review_v1",
+    "--memory-fraction",
+    "0.5"
+  ],
+  "completion": "GPU sampling, then fresh independent CPU recheck automatically. No best promotion or optimizer updates.",
+  "session_detached": true
+}

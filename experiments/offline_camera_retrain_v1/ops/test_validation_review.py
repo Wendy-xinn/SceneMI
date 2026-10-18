@@ -129,6 +129,29 @@ class FormulaTests(unittest.TestCase):
         self.assertIsNone(metrics['visible_mpjpe_mm']);self.assertEqual(counts['visible_mpjpe_mm'],0)
 
 
+class InputDeviceTests(unittest.TestCase):
+    def test_recursive_native_skin_assets_are_checked_before_inference(self):
+        known=dict(trajectory=torch.ones(2),skin_assets=[dict(extra_rotations=torch.ones(3),nested=(torch.zeros(1),))],
+                   surface_windows=[object()])
+        review.assert_input_device(known,'cpu')
+        known['skin_assets'][0]['extra_rotations']=torch.empty(3,device='meta')
+        with self.assertRaisesRegex(ValueError,'skin_assets.*extra_rotations'):
+            review.assert_input_device(known,'cpu')
+        self.assertFalse(torch.cuda.is_initialized())
+
+    def test_fingerprint_includes_nested_skinning_tensors(self):
+        known=dict(trajectory=torch.ones(2),skin_assets=[dict(extra_rotations=torch.ones(3))])
+        first=review.tensor_fingerprint(known)
+        known['skin_assets'][0]['extra_rotations'][0]=2
+        self.assertNotEqual(first,review.tensor_fingerprint(known))
+
+    def test_builder_device_is_explicit_without_initializing_cuda(self):
+        config=review.configurations(review.DEFAULT_OUT)
+        self.assertEqual(review.observation_builder(config).skin_cache.device,'cpu')
+        self.assertEqual(review.observation_builder(config,device='cuda').skin_cache.device,'cuda')
+        self.assertFalse(torch.cuda.is_initialized())
+
+
 class AggregationTests(unittest.TestCase):
     def row(self,model,case,recording,value,count=1,dataset='rich',regime='clean'):
         return dict(model=model,case=case,recording=recording,dataset=dataset,regime=regime,
