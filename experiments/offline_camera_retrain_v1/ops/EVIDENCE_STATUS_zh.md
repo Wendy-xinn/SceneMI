@@ -2,6 +2,8 @@
 
 ## 10月18日中午：优先EXO与今晚汇报
 
+14:10环境恢复更新：14:00左右WSL/Linux整体重启，原训练、流水线和Viser全部退出，旧running状态只是残留记录。900步checkpoint经CPU重新验证完整、科学配置相同、102个训练源封印一致；已将此前尝试归档为interrupted_environment_restart（退出码未知），14:06启动新supervisor2027/child2028与pipeline2048，从900续至原1000步预算。当前仍为1032个来源的SHA校验，尚不能称为梯度训练已恢复。Viser8802重新启动，PID2341，本机GET返回200，复用原12个缓存。RICH TEST全部670次结果、完整61项导出包及EGO输入审计的哈希/ZIP校验全部通过。重启导致9个Git对象损坏，现已从授权远端精确恢复，工作树和暂存内容保留，fsck通过，10个审计/结果文件已在331e9a9备份。[重启诊断](../runs/native30_exo_adapter_balanced_v2/diagnostics/REBOOT_20261018_1400.md)只证实环境重启，尚无充分证据确定发起者或归因于CUDA OOM。
+
 13:56核查更新：新版55k主训的110,000个实际样本全部为EGO（真实PV15,273、伪EGO94,727），EXO为0；41k前缀82,000个样本同样EXO为0。人体运动观测为head-only，同时有静态身体信息和EGO可见场景；后续冻结主干EXO adapter是单独阶段。详见[输入审计](../runs/native30_gait_v2_ego55k_oct15/TRAINING_INPUT_AUDIT_zh.md)。RICH TEST完整61项有效指标、52录制/53人体流/335窗的clean-noisy全部670次结果已导出：[完整报告](../runs/rich_test_ego41k/results/FULL_RESULTS_zh.md)、[完整结果包](../runs/rich_test_ego41k/rich_test_ego41k_all_results.zip)。原始CPU复核与95个源码封印不变，导出逐字段复验通过；HSC接触、mesh碰撞和PVE尚未计算。
 
 新EXO v2在12:51第954步场景CUDA查询时OOM，953步trace已落盘、最后原子checkpoint为900。13:45本次核查发现后，已审计保留失败attempt并清理其卡住的退出进程；13:52启动相同科学配置从900恢复至1000，新child75357、新pipeline75359。当前完整来源SHA读取中，尚未越过954；扩大EXO验证尚未启动。此前13:00–13:10初筛/15点扩大结果的预估已失效，新时间须以恢复实际进度为准。[恢复状态](../runs/native30_exo_adapter_balanced_v2/STATUS.json)、[OOM证据](../runs/native30_exo_adapter_balanced_v2/diagnostics/OOM_20261018_125110.json)。旧进程显存仅约4.7GiB、配置上限0.25，但OOM日志没有分配细节，不能断言只由进程限额引起。

@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-10-18T13:51:33.891685+08:00",
+  "target_identity": {
+    "pid": 62429,
+    "state": "R",
+    "start_ticks": 4858453
+  },
+  "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -u -m experiments.offline_camera_retrain_v1.ops.adapter_stage run --prepared --run /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2 ",
+  "already_failed_status": {
+    "protocol": "native30-frozen-base-exo-adapters-v1",
+    "status": "failed",
+    "updated_at": "2026-10-18T12:51:10.923115+08:00",
+    "pid": 62429,
+    "automatic_extension": false,
+    "TEST_used": false,
+    "operation": "run",
+    "error": "AcceleratorError('CUDA error: out of memory\\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1\\nCompile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\\n')"
+  },
+  "reason": "Only failed v2 child cleanup is hung; original953trace/900checkpoint independently verified. Authorized SIGTERM then SIGKILL after10s only if identical process persists.",
+  "actions": [
+    {
+      "signal": "SIGTERM",
+      "sent_at": "2026-10-18T13:51:33.891886+08:00"
+    }
+  ],
+  "finished_at": "2026-10-18T13:51:42.903495+08:00",
+  "original_JOB": {
+    "supervisor_pid": 62428,
+    "launched_at": "2026-10-18T12:07:42.755378+08:00",
+    "command": [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops.adapter_stage",
+      "run",
+      "--prepared",
+      "--run",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2"
+    ],
+    "source_commit": "8c3eb049636e4f39a31c6586f9f7ec0eceb99ca9",
+    "status": "failed",
+    "planned_stage_updates": 1000,
+    "child_pid": 62429,
+    "returncode": -15,
+    "finished_at": "2026-10-18T13:51:34.122129+08:00",
+    "independent_cpu_verified": false
+  },
+  "original_pipeline_status": "failed",
+  "original_pipeline_error": "ValueError('Stage child command failed: returncode=-15')",
+  "failed_child_dead": true,
+  "supervisor_dead": true,
+  "pipeline_dead": true
+}

@@ -1,0 +1,80 @@
+{
+  "status": "failed_stage_resumable_checkpoint_verified_CPU",
+  "checked_at": "2026-10-18T13:48:57.383174+08:00",
+  "incident_at": "2026-10-18T12:51:10.923115+08:00",
+  "failed_operation": "training update954 forward local scene exact CUDA query/FPS; asynchronous error may identify a later reporting call",
+  "last_successful_trace_step": 953,
+  "last_atomic_checkpoint_step": 900,
+  "planned_steps": 1000,
+  "checkpoint_sha256": "8ebef5c00367a68ab7cdb6f6322d1211f6e3f115553c225b5cd33573d754a348",
+  "checkpoint_bytes": 519903475,
+  "actual_base_tensor_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+  "actual_adapter_tensor_sha256": "c30a7c40b77110aaec8e7c68ca31ce980c20d9b18c8da8386e97ebf7ee6e8c03",
+  "all_state_tensors_finite": true,
+  "optimizer_state_tensors": 90,
+  "counts": {
+    "trumans/exo": 600,
+    "rich/exo": 600,
+    "interactee/exo": 300,
+    "camera_wearer/exo": 300
+  },
+  "saved_recovery_fields": [
+    "optimizer",
+    "data_rng",
+    "condition_rng",
+    "torch_rng",
+    "cuda_rng",
+    "numpy_rng",
+    "python_rng"
+  ],
+  "effective_config_exact": true,
+  "sealed_sources_checked": 102,
+  "sealed_sources_all_match": true,
+  "configured_per_process_fraction": 0.25,
+  "allocator_environment": "No PYTORCH_CUDA_ALLOC_CONF/PYTORCH_ALLOC_CONF inherited by failed process",
+  "OOM_peak_allocated_reserved_unavailable": true,
+  "cap_only_cause_proven": false,
+  "cause_limit": "Generic asynchronous AcceleratorError; no requested bytes/allocated/reserved/peak were recorded at failure. Later global headroom does not prove failure-time headroom.",
+  "original_supervisor": {
+    "pid": 62428,
+    "state": "S",
+    "start_ticks": 4858451
+  },
+  "failed_child": {
+    "pid": 62429,
+    "state": "R",
+    "start_ticks": 4858453
+  },
+  "pipeline": {
+    "pid": 66203,
+    "state": "S",
+    "start_ticks": 4976230
+  },
+  "failed_child_has_traceback_but_not_exited": true,
+  "original_JOB_still_running": true,
+  "GPU_global_observation": "memory.total [MiB], memory.used [MiB], memory.free [MiB], utilization.gpu [%]\n24455 MiB, 4788 MiB, 19248 MiB, 1 %",
+  "GPU_compute_observation": "pid, process_name, used_gpu_memory [MiB]\n62429, [Not Found], [N/A]",
+  "recommendation": "After explicit termination of only failed child cleanup and preservation of original attempt: existing sealed adapter_stage train --resume restores step900/Adam/allRNG; archives uncommitted901..953 trace; replays901..1000 with same scientific configuration. Do not relabel original failure as success. Any resource-policy change requires explicit audit.",
+  "proposed_recovery_command": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops.adapter_stage",
+    "train",
+    "--resume",
+    "--run",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2"
+  ],
+  "recovery_started": false,
+  "CUDA_initialized": false,
+  "GPU_work_started": false,
+  "source_artifact_sha256": {
+    "JOB.json": "acb5f3df076814965bd75182bc861a25aa82f5800b52ba9e4e84c4f75fb3e962",
+    "STATUS.json": "f490839547b95f695f71b2ad0d802d7276fe8b7cc8ffe9ceebdeb94497d67782",
+    "run.log": "b7fb490d8d7879198c68cc524909913e90c29fc09f5f61123d0541094285608b",
+    "training/protocol.json": "94ab604a61a4f12784a257553995356422b86d0231bb36bc14e8899a0001d292",
+    "training/trace.jsonl": "5d4f538fff23682456011f1e90e1c41d56f7756dc2b792eb5a107e874858d2a6",
+    "config.json": "b6190d331e634d6029c67b5ae182a2accfdfe21399c18963d434e2845520cfae",
+    "GPU_ADMISSION.json": "bc59374e30f4a7c761e9b58e198d567c1689979a2a4f9c5b9fdb0eaf0f0a7c56"
+  }
+}

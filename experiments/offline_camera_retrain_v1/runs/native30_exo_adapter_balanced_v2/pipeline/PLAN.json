@@ -1,34 +1,34 @@
 {
   "protocol": "sealed-adapter-completion-pipeline-v1",
-  "prepared_at": "2026-10-18T12:27:58.295092+08:00",
+  "prepared_at": "2026-10-18T14:06:03.791668+08:00",
   "stage": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2",
   "expanded_out": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_expanded_review_v1",
   "stage_job_identity": {
-    "supervisor_pid": 62428,
-    "child_pid": 62429,
-    "launched_at": "2026-10-18T12:07:42.755378+08:00",
+    "supervisor_pid": 2027,
+    "child_pid": 2028,
+    "launched_at": "2026-10-18T14:06:03.678077+08:00",
     "command": [
       "/home/wenxin/miniconda3/envs/scenemi/bin/python",
       "-u",
       "-m",
       "experiments.offline_camera_retrain_v1.ops.adapter_stage",
-      "run",
-      "--prepared",
+      "train",
+      "--resume",
       "--run",
       "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2"
     ],
-    "source_commit": "8c3eb049636e4f39a31c6586f9f7ec0eceb99ca9"
+    "source_commit": "f0da6140c6f88bb1b318fa26970cc7c6a173e70a"
   },
   "processes": {
     "supervisor": {
-      "pid": 62428,
+      "pid": 2027,
       "state": "S",
-      "start_ticks": 4858451
+      "start_ticks": 33702
     },
     "child": {
-      "pid": 62429,
-      "state": "S",
-      "start_ticks": 4858453
+      "pid": 2028,
+      "state": "R",
+      "start_ticks": 33704
     }
   },
   "source_sha256": {
@@ -144,7 +144,7 @@
   },
   "fixed_files_sha256": {
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/config.json": "b6190d331e634d6029c67b5ae182a2accfdfe21399c18963d434e2845520cfae",
-    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/LAUNCH.json": "a2941b8c1a9b96c9921d7942a79843893575736e8f847edc7a2257a864fceec7",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/LAUNCH.json": "ccf4cb2b1f775ced406cf0871122082ba1bd52288f4a77fd6400751621052aae",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/prepared/effective_config.json": "5646a043bef53bea56d5f7546a584ab432af324209e83b908d8bd62c653caddd",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/prepared/input_checks.json": "21a1557313a0446e207f525a31522f2fdd99855d550b0acd56c056eeaa42188e",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/prepared/validation_plan.json": "f9b22a3a665cc1d04b9656b27cd3fd031d835b714687cb1dd2e0c20b64784481",

@@ -1,18 +1,20 @@
 {
-  "supervisor_pid": 62428,
-  "launched_at": "2026-10-18T12:07:42.755378+08:00",
+  "supervisor_pid": 2027,
+  "launched_at": "2026-10-18T14:06:03.678077+08:00",
   "command": [
     "/home/wenxin/miniconda3/envs/scenemi/bin/python",
     "-u",
     "-m",
     "experiments.offline_camera_retrain_v1.ops.adapter_stage",
-    "run",
-    "--prepared",
+    "train",
+    "--resume",
     "--run",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2"
   ],
-  "source_commit": "8c3eb049636e4f39a31c6586f9f7ec0eceb99ca9",
+  "source_commit": "f0da6140c6f88bb1b318fa26970cc7c6a173e70a",
   "status": "running",
   "planned_stage_updates": 1000,
-  "child_pid": 62429
+  "resume_from_step": 900,
+  "attempt": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/attempts/attempt02_environment_restart_20261018_1400",
+  "child_pid": 2028
 }
