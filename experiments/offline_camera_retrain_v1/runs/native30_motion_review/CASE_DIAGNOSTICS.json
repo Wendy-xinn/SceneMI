@@ -1,0 +1,193 @@
+{
+  "cases": {
+    "exo_egobody_8": {
+      "case_key": "exo_egobody_8",
+      "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-4901_master_full",
+      "start": 1984,
+      "checked_at": "2026-10-18T17:06:43.919594+08:00",
+      "new_generation_or_training": false,
+      "window_frames": 192,
+      "fps": 30,
+      "ddim_steps": 20,
+      "temporally_joint_diffusion": true,
+      "finding": "Left-elbow availability switches coincide with reference forearm/wrist orientation discontinuities; both original and adapted predictions retain spikes. Wrist-local orientation is comparatively stable, with motion inherited from forearm.",
+      "measurements": [
+        {
+          "model": "base41k",
+          "regime": "clean",
+          "elbow_position_available_frames": 66,
+          "elbow_availability_switches": 30,
+          "metrics": {
+            "gt": {
+              "left_wrist_global_step_deg_p95": 14.738516495510115,
+              "left_wrist_local_step_deg_p95": 9.508549331163833,
+              "left_elbow_local_step_deg_p95": 7.396425919305665,
+              "left_wrist_jumps_over_30deg": 0,
+              "jump_overlaps_elbow_switch": 0,
+              "left_wrist_step_displacement_mm_max": 62.122732400894165
+            },
+            "reference": {
+              "left_wrist_global_step_deg_p95": 118.70110244979098,
+              "left_wrist_local_step_deg_p95": 5.454125168785952e-05,
+              "left_elbow_local_step_deg_p95": 118.66689993786011,
+              "left_wrist_jumps_over_30deg": 30,
+              "jump_overlaps_elbow_switch": 30,
+              "left_wrist_step_displacement_mm_max": 512.875497341156
+            },
+            "prediction": {
+              "left_wrist_global_step_deg_p95": 46.775362084192544,
+              "left_wrist_local_step_deg_p95": 0.9132194989097702,
+              "left_elbow_local_step_deg_p95": 51.83870639581825,
+              "left_wrist_jumps_over_30deg": 26,
+              "jump_overlaps_elbow_switch": 24,
+              "left_wrist_step_displacement_mm_max": 464.1074240207672
+            }
+          },
+          "sources": {
+            "clean": {
+              "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/baseline_validation/validation_latest.npz",
+              "sha256": "7271852bb1b690610cacce840d99159b982293ca99d877ed8b2e002a56f57b7f"
+            },
+            "noisy": {
+              "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/baseline_validation/validation_latest.npz",
+              "sha256": "7271852bb1b690610cacce840d99159b982293ca99d877ed8b2e002a56f57b7f"
+            }
+          }
+        },
+        {
+          "model": "base41k",
+          "regime": "noisy",
+          "elbow_position_available_frames": 66,
+          "elbow_availability_switches": 30,
+          "metrics": {
+            "gt": {
+              "left_wrist_global_step_deg_p95": 14.738516495510115,
+              "left_wrist_local_step_deg_p95": 9.508549331163833,
+              "left_elbow_local_step_deg_p95": 7.396425919305665,
+              "left_wrist_jumps_over_30deg": 0,
+              "jump_overlaps_elbow_switch": 0,
+              "left_wrist_step_displacement_mm_max": 62.122732400894165
+            },
+            "reference": {
+              "left_wrist_global_step_deg_p95": 104.96380568218984,
+              "left_wrist_local_step_deg_p95": 5.532426837386942e-05,
+              "left_elbow_local_step_deg_p95": 105.0913992436871,
+              "left_wrist_jumps_over_30deg": 30,
+              "jump_overlaps_elbow_switch": 30,
+              "left_wrist_step_displacement_mm_max": 471.00114822387695
+            },
+            "prediction": {
+              "left_wrist_global_step_deg_p95": 53.49172785528467,
+              "left_wrist_local_step_deg_p95": 0.9633356276773276,
+              "left_elbow_local_step_deg_p95": 57.707405196817106,
+              "left_wrist_jumps_over_30deg": 25,
+              "jump_overlaps_elbow_switch": 24,
+              "left_wrist_step_displacement_mm_max": 289.23824429512024
+            }
+          },
+          "sources": {
+            "clean": {
+              "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/baseline_validation/validation_latest.npz",
+              "sha256": "7271852bb1b690610cacce840d99159b982293ca99d877ed8b2e002a56f57b7f"
+            },
+            "noisy": {
+              "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/baseline_validation/validation_latest.npz",
+              "sha256": "7271852bb1b690610cacce840d99159b982293ca99d877ed8b2e002a56f57b7f"
+            }
+          }
+        },
+        {
+          "model": "adapter_v2",
+          "regime": "clean",
+          "elbow_position_available_frames": 66,
+          "elbow_availability_switches": 30,
+          "metrics": {
+            "gt": {
+              "left_wrist_global_step_deg_p95": 14.738516495510115,
+              "left_wrist_local_step_deg_p95": 9.508549331163833,
+              "left_elbow_local_step_deg_p95": 7.396425919305665,
+              "left_wrist_jumps_over_30deg": 0,
+              "jump_overlaps_elbow_switch": 0,
+              "left_wrist_step_displacement_mm_max": 62.122732400894165
+            },
+            "reference": {
+              "left_wrist_global_step_deg_p95": 118.70110244979098,
+              "left_wrist_local_step_deg_p95": 5.454125168785952e-05,
+              "left_elbow_local_step_deg_p95": 118.66689993786011,
+              "left_wrist_jumps_over_30deg": 30,
+              "jump_overlaps_elbow_switch": 30,
+              "left_wrist_step_displacement_mm_max": 512.875497341156
+            },
+            "prediction": {
+              "left_wrist_global_step_deg_p95": 45.670986231532666,
+              "left_wrist_local_step_deg_p95": 0.6887169609955334,
+              "left_elbow_local_step_deg_p95": 44.827394955628584,
+              "left_wrist_jumps_over_30deg": 25,
+              "jump_overlaps_elbow_switch": 23,
+              "left_wrist_step_displacement_mm_max": 373.5511302947998
+            }
+          },
+          "sources": {
+            "clean": {
+              "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/training/validation_latest.npz",
+              "sha256": "d61c2fbc8b9f1e6b48ac22a41e24fcee5daed01f13092efa1c47df17c1a5c33b"
+            },
+            "noisy": {
+              "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/training/validation_latest.npz",
+              "sha256": "d61c2fbc8b9f1e6b48ac22a41e24fcee5daed01f13092efa1c47df17c1a5c33b"
+            }
+          }
+        },
+        {
+          "model": "adapter_v2",
+          "regime": "noisy",
+          "elbow_position_available_frames": 66,
+          "elbow_availability_switches": 30,
+          "metrics": {
+            "gt": {
+              "left_wrist_global_step_deg_p95": 14.738516495510115,
+              "left_wrist_local_step_deg_p95": 9.508549331163833,
+              "left_elbow_local_step_deg_p95": 7.396425919305665,
+              "left_wrist_jumps_over_30deg": 0,
+              "jump_overlaps_elbow_switch": 0,
+              "left_wrist_step_displacement_mm_max": 62.122732400894165
+            },
+            "reference": {
+              "left_wrist_global_step_deg_p95": 104.96380568218984,
+              "left_wrist_local_step_deg_p95": 5.532426837386942e-05,
+              "left_elbow_local_step_deg_p95": 105.0913992436871,
+              "left_wrist_jumps_over_30deg": 30,
+              "jump_overlaps_elbow_switch": 30,
+              "left_wrist_step_displacement_mm_max": 471.00114822387695
+            },
+            "prediction": {
+              "left_wrist_global_step_deg_p95": 42.16919334416264,
+              "left_wrist_local_step_deg_p95": 0.7685355799438678,
+              "left_elbow_local_step_deg_p95": 41.443979886109965,
+              "left_wrist_jumps_over_30deg": 24,
+              "jump_overlaps_elbow_switch": 23,
+              "left_wrist_step_displacement_mm_max": 175.2929985523224
+            }
+          },
+          "sources": {
+            "clean": {
+              "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/training/validation_latest.npz",
+              "sha256": "d61c2fbc8b9f1e6b48ac22a41e24fcee5daed01f13092efa1c47df17c1a5c33b"
+            },
+            "noisy": {
+              "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/training/validation_latest.npz",
+              "sha256": "d61c2fbc8b9f1e6b48ac22a41e24fcee5daed01f13092efa1c47df17c1a5c33b"
+            }
+          }
+        }
+      ],
+      "likely_fix": "Make reference upper-limb rotations continuous across missing observations; separately assess arm angular-velocity supervision. No fix or new experiment applied.",
+      "source_sha256": {
+        "native30_refinement.py": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6",
+        "native30_losses.py": "88621f45a809d756cc7af01dd8559c8f57d9522b2d2440a3b1fe186b4a4f09ac",
+        "native30_observation_ik.py": "468d525fbeba5e29a6a9b2c965f2447b74def1aa0a68447f6743c2fc29b1274f",
+        "native_body_mesh.py": "ab6b70c1684785e8b1d8ee5f171a7f567d0e9fcf89ce84d01f21dc00f09a6d2a"
+      }
+    }
+  }
+}
