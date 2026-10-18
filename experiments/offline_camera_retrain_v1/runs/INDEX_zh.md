@@ -1,5 +1,7 @@
 # 当前实验入口
 
+2026-10-19 新增主干内的 22 身体区域场景融合配对实验：[结构、验证与采纳标准](native30_ego_scene_fusion_v2/DESIGN_zh.md) · [后台流水线](native30_ego_scene_fusion_v2/PIPELINE.json)。从原 41k 独立开始，训练关闭迭代物理修正；先检查 1000 更新，再依据配对验证决定是否推进固定 3000 更新预算。该实验未替换正式权重，收益以完成后的独立验证为准。
+
 2026-10-18 晚间主线调整为先验证 EGO 与场景、EXO 后置：[场景通路与主干 cross-attention 对照](native30_ego_scene_attention_trial/REPORT_zh.md) 汇总同 41k 权重的场景/反馈消融，以及同输入、同噪声的原结构与 attention 配对短训。原正式 41k/55k 不替换；短程结果不代替完整 TEST。
 
 当前主线 `native30_gait_v2_ego55k_oct15` 已于 **2026-10-17 20:49:24 正常完成 55,000 步**，worker 返回码 0。最终判断是训练拟合接近平台、验证轻微回退，脚部支撑问题仍未解决；保留 41k 作为主要开发候选、55k 作为完整续训状态，暂不延长、不自动接 EXO。统一入口：[完成报告](native30_gait_v2_ego55k_oct15/final_review/REPORT_zh.md) · [训练与固定验证曲线](native30_gait_v2_ego55k_oct15/final_review/TRAINING_CURVES.png)。
@@ -10,6 +12,7 @@
 
 | 要看什么 | 入口 |
 |---|---|
+| 身体区域主干融合 v2 | [设计](native30_ego_scene_fusion_v2/DESIGN_zh.md) · [固定训练配置](native30_ego_scene_fusion_v2/PLAN.json) · [进程与阶段](native30_ego_scene_fusion_v2/PIPELINE.json) · [原模型保护](native30_ego_scene_fusion_v2/PROTECTED_MODELS.json) |
 | EGO 场景/attention 当前实验 | [统一报告](native30_ego_scene_attention_trial/REPORT_zh.md) · [配对训练审计](native30_ego_scene_attention_trial/MATCHED_AUDIT.json) · [场景 CPU 复核](native30_ego_scene_review/CPU_RECHECK.json) · [反馈策略审计](native30_ego_scene_feedback_review/AUDIT_FINDINGS_zh.md) |
 | 55k 完成状态 | [STATUS.json](native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json) |
 | RICH TEST实时进度 | [STATUS.json](rich_test_ego41k/STATUS.json) · [逐窗与汇总](rich_test_ego41k/SUMMARY.json) |

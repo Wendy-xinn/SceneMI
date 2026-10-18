@@ -4,6 +4,8 @@
 
 EGO 场景与主干融合实验复用以下模块入口，案例身份放在不可覆盖的 PLAN 中，不在 runs 复制训练或评估脚本：
 
+- 当前区域融合入口：`python -m experiments.offline_camera_retrain_v1.ops.ego_scene_trial {prepare,run,preflight,train,audit,status}`。`run --stop-step 1000` 在独立子进程中执行真实输入预检、两步配对检查及指定训练边界；后续 `run --stop-step 3000` 沿原日程恢复，不自动开始验证或替换正式模型。每臂仅保留一个可恢复 `last.pt`；TensorBoard 和 JSON 记录总 loss、各监督、参数组学习率与耗时。
+- 区域融合验证：`python -m experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation {cohort,prepare,evaluate,recheck,report,combine,decision}`。固定录制身份、开发/确认面板和两套 DDIM 种子，观测误差种子保持不变；阶段 checkpoint 固定后才能续训覆盖 `last.pt`。[本轮设计](../runs/native30_ego_scene_fusion_v2/DESIGN_zh.md) 说明采纳标准。
 - `python -m experiments.offline_camera_retrain_v1.ops.scene_attention_trial {prepare,preflight,train,audit}`：同一 warm-start 的原结构/场景 cross-attention 配对训练，`train --arm control|attention --stop-step 500 --resume` 恢复包含优化器和 RNG 的单个 `last.pt`。
 - `python -m experiments.offline_camera_retrain_v1.ops.ego_scene_review {prepare,evaluate,recheck,report} --out <目录>`：同观测/参考/噪声的场景消融；新候选用新目录和显式 `--models <JSON清单>`，声明 checkpoint 路径、SHA256、步数、架构和场景 arms。`evaluate --resume` 恢复已保存的逐窗结果，`recheck` 在独立 CPU 进程重读原数据复算。
 - `python -m experiments.offline_camera_retrain_v1.ops.scene_feedback_policy {prepare,evaluate,recheck,compare} --out <目录>`：复用上项评估，只改变学习式反馈的许可或开关，保留场景条件；与已完成原策略做精确输入配对。
