@@ -1,0 +1,49 @@
+{
+  "status": "CPU_ready_for_formal_GPU_preflight",
+  "checked_at": "2026-10-18T12:05:59+0800",
+  "optimizer_updates": 0,
+  "GPU_used": false,
+  "prepare_exit_code": 0,
+  "source_files": 102,
+  "data_fingerprints": 1032,
+  "all_existing_v1_source_hashes_identical": true,
+  "added_sources": [
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/adapter_stage.py"
+  ],
+  "all_TRAIN_VAL_and_asset_fingerprints_identical_to_v1": true,
+  "actual_sampling_plan": [
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "probability": 0.3333333333333333
+    },
+    {
+      "group": "camera_wearer",
+      "mode": "exo",
+      "probability": 0.16666666666666666
+    },
+    {
+      "group": "interactee",
+      "mode": "exo",
+      "probability": 0.16666666666666666
+    },
+    {
+      "group": "rich",
+      "mode": "exo",
+      "probability": 0.3333333333333333
+    }
+  ],
+  "initial_adapter_sha256": "c5c346ca3f94d494deac64f44e3a5a0cdc13b42c51d86518a95cfd60da70f6d3",
+  "frozen_base_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+  "artifacts_sha256": {
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/config.json": "b6190d331e634d6029c67b5ae182a2accfdfe21399c18963d434e2845520cfae",
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/validation_cases.json": "4ba52bddb316ae5f91cd4939d68d428c98c29c7bd472731c9fcf2c0df8225c3d",
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/prepared/effective_config.json": "5646a043bef53bea56d5f7546a584ab432af324209e83b908d8bd62c653caddd",
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/prepared/validation_plan.json": "f9b22a3a665cc1d04b9656b27cd3fd031d835b714687cb1dd2e0c20b64784481",
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/SAME_INITIALIZATION_CPU.json": "f7f8940093a3986be65f87321d6cbf9e856c20231a87a08caa0ae105e445cdf1",
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/CPU_TESTS.json": "73755190e997e1ca2c143cdcbab44ac8bc0340bc34435ab6f39fe01dd3a21146"
+  },
+  "launch_module": "experiments.offline_camera_retrain_v1.ops.adapter_stage",
+  "command": "run --prepared --run /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2",
+  "scope": "Only actual EXO corpus quota changes scientifically; GPU equivalence/gradient/no-GT/baseline preflight still required."
+}

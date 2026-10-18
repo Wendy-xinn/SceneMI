@@ -1,0 +1,54 @@
+{
+  "requested_at": "2026-10-18T11:50:41.311645+08:00",
+  "reason": "User deprioritized41k/55k checkpoint comparison; tonight EXO improvement, metrics and visualizations take priority.",
+  "previous_job": {
+    "supervisor_pid": 59340,
+    "launched_at": "2026-10-18T11:40:23.504494+08:00",
+    "command": [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops.validation_review",
+      "run",
+      "--out",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_checkpoint_review_v1",
+      "--memory-fraction",
+      "0.5"
+    ],
+    "source_commit": "3e372069360eaa8ce6c34506262972820e8942f8",
+    "status": "running",
+    "planned_predictions": 1224,
+    "optimizer_updates": 0,
+    "child_pid": 59341
+  },
+  "previous_status": {
+    "protocol": "native30-paired-expanded-validation-review-v1",
+    "status": "sampling",
+    "checked_at": "2026-10-18T11:50:29.351244+08:00",
+    "pid": 59341,
+    "optimizer_updates": 0,
+    "TEST_used": false,
+    "automatic_checkpoint_promotion": false,
+    "completed_predictions": 51,
+    "planned_predictions": 1224,
+    "current_case": 12,
+    "dataset": "rich",
+    "regime": "noisy",
+    "model": "final55k"
+  },
+  "previous_progress": {
+    "checked_at": "2026-10-18T11:50:29.349809+08:00",
+    "completed_predictions": 51,
+    "planned_predictions": 1224,
+    "elapsed_this_process_s": 556.1990182000009,
+    "timing_predictions": 12,
+    "recent_seconds_per_prediction": 12.256954344374813,
+    "estimated_remaining_sampling_s": 14377.407445951656,
+    "estimate_scope": "Measured recent DDIM+metric+shared input prep; CPU final recheck and queue/startup excluded. Throughput can change.",
+    "unique_windows_started": 13,
+    "RICH_recordings_started": 13
+  },
+  "signal": "SIGINT to exact evaluation child only",
+  "resumable": true,
+  "source_model_updates": 0
+}

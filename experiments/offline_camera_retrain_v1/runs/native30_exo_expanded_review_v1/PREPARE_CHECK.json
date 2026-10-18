@@ -1,0 +1,79 @@
+{
+  "status": "prepared_CPU_verified",
+  "checked_at": "2026-10-18T12:11:57.017186+08:00",
+  "windows": 64,
+  "new_recordings": 55,
+  "regression_recordings": 9,
+  "planned_predictions": 384,
+  "source_files": 100,
+  "metadata_assets": 157,
+  "cohort_sources": 154,
+  "CUDA_initialized": false,
+  "source_checkpoint_SHA_matches": true,
+  "registered": {
+    "base41k": {
+      "kind": "bare",
+      "expected_step": 41000,
+      "checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+      "model_tensor_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+      "CPU_strict_finite": true
+    },
+    "v1adapter1000": {
+      "kind": "adapter",
+      "expected_step": 1000,
+      "checkpoint_sha256": "d410954559d4d9c4847aad295dab7f51f9ce24348de43c1e8d97d4998a8586bd",
+      "model_tensor_sha256": "674e6109c454d6ba389206c70197e3f96ddc587520b84b6c583664af3df1e140",
+      "CPU_strict_finite": true
+    }
+  },
+  "future": {
+    "kind": "adapter",
+    "run": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2",
+    "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/training/last.pt",
+    "expected_step": 1000,
+    "declared_config_sha256": "b6190d331e634d6029c67b5ae182a2accfdfe21399c18963d434e2845520cfae",
+    "future_candidate": true
+  },
+  "CPU_input_probe": {
+    "clean": {
+      "case": 0,
+      "recursive_CPU_input_sha256": "b8831edce20cda9fbae61cdbcef9e57ba2bdd67f4891f58fd6869f589e7b8c86",
+      "label_free": true,
+      "explicit_mode": "exo"
+    },
+    "noisy": {
+      "case": 0,
+      "recursive_CPU_input_sha256": "4f5e03833b636e86b67322a94eb1e3abf5db93de37a8faa7fdbdc1f81369e240",
+      "label_free": true,
+      "explicit_mode": "exo"
+    }
+  },
+  "coverage": {
+    "windows": {
+      "rich": 27,
+      "trumans": 20,
+      "egobody": 17
+    },
+    "recordings": {
+      "rich": 27,
+      "trumans": 20,
+      "egobody": 17
+    },
+    "panels": {
+      "new55": 55,
+      "old9": 9
+    },
+    "roles": {
+      "rich": {
+        "rich": 27
+      },
+      "trumans": {
+        "trumans": 20
+      },
+      "egobody": {
+        "camera_wearer": 9,
+        "interactee": 8
+      }
+    }
+  }
+}

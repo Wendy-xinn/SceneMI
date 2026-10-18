@@ -1,16 +1,16 @@
 # 扩大 VAL 双 checkpoint 配对复核
 
-状态：partial，12/1224 次预测。没有训练或自动替换 best。
+状态：partial，48/1224 次预测。没有训练或自动替换 best。
 
 RICH 为全部206窗/27个录制；TRUMANS、EgoBody各50窗，实际独立录制数另列。每窗 clean/noisy、原41k/最终55k成对评价。
 输入固定头部观测、可见场景、已知体型；30Hz/192帧/DDIM20，原物理修正开启。TEST不参与。
 
 | 模型 | 数据 | 输入 | 窗数 | 录制数 | World录制宏均值mm | PA录制宏均值mm | GT低速3D脚速m/s |
 |---|---|---|---:|---:|---:|---:|---:|
-| candidate41k | rich | clean | 3 | 3 | 119.067 | 88.869 | 0.328 |
-| candidate41k | rich | noisy | 3 | 3 | 125.799 | 89.773 | 0.367 |
-| final55k | rich | clean | 3 | 3 | 127.859 | 91.366 | 0.332 |
-| final55k | rich | noisy | 3 | 3 | 144.975 | 94.650 | 0.346 |
+| candidate41k | rich | clean | 12 | 12 | 136.507 | 114.475 | 0.257 |
+| candidate41k | rich | noisy | 12 | 12 | 155.076 | 118.868 | 0.309 |
+| final55k | rich | clean | 12 | 12 | 140.047 | 115.442 | 0.242 |
+| final55k | rich | noisy | 12 | 12 | 160.751 | 121.080 | 0.283 |
 
 主判断是RICH27录制WorldMPJPE宏均值的clean/noisy平均；同时检查脚速、双足运动RMS误差和stride误差。
 部分结果不用于选checkpoint；GT低速只是运动学代理，不能作为真实接触或全mesh穿模率。完整输出须CPU_RECHECK通过。

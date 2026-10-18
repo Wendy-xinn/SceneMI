@@ -110,12 +110,20 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run',type=Path,required=True)
     parser.add_argument('--cases',default='6:clean,9:clean,10:noisy')
+    parser.add_argument('--viewer-url',default='http://localhost:8802/')
     args = parser.parse_args(); run=args.run.resolve();out=run/'presentation/visuals';out.mkdir(parents=True,exist_ok=True)
     prepared=run/'visuals/viser/PREPARED_CASES.json'; cases=json.loads(prepared.read_text())['cases']
     entries=json.loads((run/'prepared/validation_plan.json').read_text())['plan']
     comparisons=json.loads((run/'COMPARISON.json').read_text())['cases']
     report=dict(scope='VAL demonstration examples selected after known results; not overall or TEST evidence',
         GPU_used=False,inference_rerun=False,source_sha256={str(prepared):sha(prepared),str(run/'COMPARISON.json'):sha(run/'COMPARISON.json')},cases=[])
+    acceptance_path=run/'ACCEPTANCE.json'
+    acceptance=json.loads(acceptance_path.read_text())
+    if acceptance.get('status') not in ('passed','failed'):
+        raise ValueError('Presentation requires a completed development acceptance report')
+    report['source_sha256'][str(acceptance_path)]=sha(acceptance_path)
+    report['development_acceptance_status']=acceptance['status']
+    report['viewer_url']=args.viewer_url
     covers=[]
     for specification in args.cases.split(','):
         index,text=specification.split(':');index=int(index);entry=entries[index];regime=text
@@ -151,7 +159,10 @@ def main():
     cover.save(out/'EXO_examples.png')
     (out/'EXPORT_MANIFEST.json').write_text(json.dumps(report,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
     body=''.join(f'<h2>{html.escape(c["dataset"])} · case {c["case_index"]} · {c["regime"]}</h2><p>隐藏关节MPJPE：{c["hidden_mpjpe_before_mm"]:.1f} → {c["hidden_mpjpe_after_mm"]:.1f} mm</p><video controls loop width="100%" src="{c["artifacts"][0]}"></video><p><a href="{c["artifacts"][1]}">GIF</a> · <a href="{c["artifacts"][2]}">四时刻对比PNG</a></p>' for c in report['cases'])
-    (out/'index.html').write_text('<!doctype html><meta charset="utf-8"><title>EXO前后对比</title><style>body{font-family:sans-serif;max-width:1160px;margin:32px auto;color:#24323d}video{border:1px solid #ddd}</style><h1>EXO内部适配：改善选例与失败对照</h1><p>这是固定VAL中的事后展示选例，不能代替整体结论。本候选整体验收失败，RICH隐藏关节退化；无TEST挑例或重新推理。</p><p><a href="http://localhost:8802/">Viser交互查看（需要本地服务或端口转发）</a> · <a href="EXO_examples.png">汇总PNG</a> · <a href="EXPORT_MANIFEST.json">来源与坐标核验</a></p>'+body)
+    screen='通过' if acceptance['status']=='passed' else '未通过'
+    (out/'index.html').write_text('<!doctype html><meta charset="utf-8"><title>EXO前后对比</title><style>body{font-family:sans-serif;max-width:1160px;margin:32px auto;color:#24323d}video{border:1px solid #ddd}</style><h1>EXO内部适配：固定选例前后对照</h1>'
+        f'<p>固定VAL选例，不能代替整体结论。本候选开发验收：{screen}；详见<a href="../../RESULTS_zh.md">结果报告</a>。无TEST挑例或重新推理。</p>'
+        f'<p><a href="{html.escape(args.viewer_url,quote=True)}">Viser交互查看（需要本地服务或端口转发）</a> · <a href="EXO_examples.png">汇总PNG</a> · <a href="EXPORT_MANIFEST.json">来源与坐标核验</a></p>'+body)
 
 
 if __name__=='__main__':

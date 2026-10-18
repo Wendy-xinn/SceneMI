@@ -1,0 +1,248 @@
+{
+  "status": "actual_GPU_preflight_baseline_and_first25_passed",
+  "checked_at": "2026-10-18T12:21:43+0800",
+  "training_launch": {
+    "supervisor_pid": 62428,
+    "launched_at": "2026-10-18T12:07:42.755378+08:00",
+    "command": [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops.adapter_stage",
+      "run",
+      "--prepared",
+      "--run",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2"
+    ],
+    "source_commit": "8c3eb049636e4f39a31c6586f9f7ec0eceb99ca9",
+    "status": "running",
+    "planned_stage_updates": 1000,
+    "child_pid": 62429
+  },
+  "actual_status": {
+    "protocol": "native30-frozen-base-exo-adapters-v1",
+    "status": "training",
+    "updated_at": "2026-10-18T12:21:31.798455+08:00",
+    "pid": 62429,
+    "automatic_extension": false,
+    "TEST_used": false,
+    "parent_step": 41000,
+    "planned_stage_updates": 1000,
+    "completed_stage_updates": 50,
+    "last_loss": 0.6611989140510559,
+    "gradient_norm": 0.4160846173763275,
+    "elapsed_s": 114.19190241000615,
+    "resume": false
+  },
+  "read_only_monitor": true,
+  "additional_GPU_tasks_started": false,
+  "source_changes": false,
+  "required_checks": [
+    "actual bare-parent zero-init EGO/EXO/mixed exact",
+    "nonzero adapter EGO bypass exact",
+    "actual EXO adapter gradients with frozen base",
+    "hidden GT poisoning unchanged",
+    "label-free frozen EXO interface",
+    "24 baseline validation predictions",
+    "first25 real optimizer updates finite and effective dataset quota"
+  ],
+  "completed_checks": [
+    "actual bare-parent zero-init EGO/EXO/mixed exact",
+    "nonzero adapter EGO bypass exact",
+    "actual EXO adapter gradients with frozen base",
+    "hidden GT poisoning unchanged",
+    "label-free frozen EXO interface",
+    "24 baseline validation predictions",
+    "first25 real optimizer updates finite and effective dataset quota"
+  ],
+  "ETA": {
+    "scope": "Estimate from only first25 realupdates; not a convergence or quality judgment",
+    "remaining_updates_at_step25": 975,
+    "remaining_training_minutes_at_first25_mean": 37.14362159170887,
+    "remaining_training_minutes_excluding_first5": 35.37012041551043,
+    "additional_final_VAL_CPU_recheck_minutes": "roughly 5\u201312 minutes; actual source/I/O load can vary",
+    "quality": "Only registered final VAL after1000 can assess EXO quality; broader EXO validation remains separately required"
+  },
+  "actual_preflight": {
+    "zero_init_equivalence": {
+      "exo": {
+        "exact_equal": true,
+        "rows": [
+          {
+            "row": 0,
+            "mode": "exo",
+            "exact_equal": true,
+            "maximum_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "nonzero_count": 0
+          }
+        ],
+        "maximum_absolute_error": 0.0,
+        "original": {
+          "shape": [
+            1,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "observed": {
+          "shape": [
+            1,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "noise_sha256": "5741cea5ae8b8371944cc7fce0d8e1e503f512d0dd6d26ca326708526f167f92"
+      },
+      "ego": {
+        "exact_equal": true,
+        "rows": [
+          {
+            "row": 0,
+            "mode": "ego",
+            "exact_equal": true,
+            "maximum_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "nonzero_count": 0
+          }
+        ],
+        "maximum_absolute_error": 0.0,
+        "original": {
+          "shape": [
+            1,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "observed": {
+          "shape": [
+            1,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "noise_sha256": "ebf68b1a08c8b9ab4a6bf1ceb11b8d44b0073f00c7f4ea6df3fe808329b96a73"
+      },
+      "mixed": {
+        "exact_equal": true,
+        "rows": [
+          {
+            "row": 0,
+            "mode": "exo",
+            "exact_equal": true,
+            "maximum_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "nonzero_count": 0
+          },
+          {
+            "row": 1,
+            "mode": "ego",
+            "exact_equal": true,
+            "maximum_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "nonzero_count": 0
+          }
+        ],
+        "maximum_absolute_error": 0.0,
+        "original": {
+          "shape": [
+            2,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "observed": {
+          "shape": [
+            2,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "noise_sha256": "7075d1baeee33e869ff8f11c3849166f9250f83d70f0f3c60bfa4268037ec79c"
+      }
+    },
+    "nonzero_adapter_EGO_bypass_exact": true,
+    "hidden_truth_poison_unchanged": true,
+    "frozen_EXO_without_body_labels": true,
+    "adapter_gradient_tensors": 90,
+    "baseline_validation_rows": 24,
+    "frozen_base_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+    "initial_adapter_sha256": "c5c346ca3f94d494deac64f44e3a5a0cdc13b42c51d86518a95cfd60da70f6d3"
+  },
+  "preflight_sha256": "21a1557313a0446e207f525a31522f2fdd99855d550b0acd56c056eeaa42188e",
+  "first25": {
+    "step": 25,
+    "updates": 25,
+    "EXO_examples": 50,
+    "actual_group_counts": {
+      "trumans": 17,
+      "rich": 17,
+      "interactee": 8,
+      "camera_wearer": 8
+    },
+    "actual_dataset_counts": {
+      "trumans": 17,
+      "rich": 17,
+      "egobody": 16
+    },
+    "dataset_fractions": {
+      "trumans": 0.34,
+      "rich": 0.34,
+      "egobody": 0.32
+    },
+    "all_losses_gradients_LR_times_finite": true,
+    "base_trainable_parameters": 0,
+    "adapter_trainable_parameters": 1955616,
+    "loss_first": 1.3604551553726196,
+    "loss_last": 0.5573501586914062,
+    "gradient_norm_last": 0.4252908527851105,
+    "elapsed_s": 58.26554458200553,
+    "mean_update_s": 2.285761328720546,
+    "mean_compute_s": 1.47740500887885,
+    "mean_preparation_s": 0.8063820505599142,
+    "mean_update_excluding_first5_s": 2.176622794800642,
+    "first25_trace_sha256": "254a1da69fafa66e35c0efdfd7ed493aab54b590c443b55158b060da8fcc0c76"
+  }
+}

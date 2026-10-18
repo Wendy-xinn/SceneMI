@@ -1,5 +1,15 @@
 # 当前方法的证据与最短检验路径
 
+## 10月18日中午：优先EXO与今晚汇报
+
+用户澄清：训练期间少量窗口选checkpoint的依据不足，但41k/55k对比现在不急。已暂停扩大EGO对比，保留51次已提交预测，可从同协议续跑。RICH TEST此前已完整结束，与当前暂停任务无关。
+
+今晚可直接使用的[中文报告和CSV](../runs/native30_exo_adapter_v1/presentation/REPORT_FOR_PRESENTATION_zh.md)、[视频索引](../runs/native30_exo_adapter_v1/presentation/visuals/index.html)、[EXO数据图](../runs/native30_exo_adapter_v1/presentation/visuals/EXO_hidden_metrics.png)已生成。素材包含两个改善选例和一个RICH失败对照，同相机同尺度；不把展示选例当作总体证据。[Viser](http://localhost:8802/)保留交互检查。
+
+同41k主干、相同adapter初值与1000步预算的EXO等语料配额实验已于12:07启动后台预检/训练流程，三数据集各1/3，其他架构、损失、噪声和物理设置保持。实际两个CPU工厂的base/adapter初始摘要完全一致，42项相关CPU测试、1032个数据/资产指纹通过。[新实验状态](../runs/native30_exo_adapter_balanced_v2/STATUS.json)。同时准备64个独立EXO录制的扩大验证，旧9个回归录制与新55个录制分开报告；尚无本轮新训练或扩大EXO结果，不预先承诺收益。
+
+以下保留此前各时刻的历史状态。
+
 ## 10月18日：EXO内部适配初筛与checkpoint选择复核
 
 从41k冻结主干、训练1,955,616个EXO门控内部参数的1000步试验已完成。实际更新累计34.5分钟；最终完整checkpoint独立CPU加载通过，基础权重摘要保持，原EGO六段DDIM预测逐值保留。固定开发验证的EXO隐藏误差三语料宏平均clean 114.53→86.99mm，noisy 135.57→129.03mm；TRUMANS/EgoBody改善，但RICH三窗clean 80.88→89.02mm、noisy109.94→141.59mm，双脚运动幅度误差也退化，故预注册验收未通过，不能宣称已得到整体可用版本。可见关节分组保护通过不等于每窗均改善。[完整结果](../runs/native30_exo_adapter_v1/RESULTS_zh.md)、[验收](../runs/native30_exo_adapter_v1/ACCEPTANCE.json)、[Viser前后对照](http://localhost:8802/)。权重和数组暂保留用于明确计划中的扩展复核。
