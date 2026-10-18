@@ -1,0 +1,170 @@
+{
+  "status": "passed_existing_CPU_verified_results_export",
+  "created_at": "2026-10-18T13:54:35.833442+08:00",
+  "source_run": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/rich_test_ego41k",
+  "source_sha256": {
+    "PLAN.json": "4f9a52f8a87e0dacf8049a0d815b5815d96b54a6aa03a23b2e4c6d449b1ebba5",
+    "SUMMARY.json": "2b1d9ce350742840042f642d890e240929e6df693110719784d1090e5c1b3cd1",
+    "rows.jsonl": "8728ee2c01bca42e606e4d03518e58c97ccf2283df988a664c468a7fd4b5d110",
+    "CPU_RECHECK.json": "bbd89416af4b25fa31903eb762fbd1b744e3c6bfa7c7a4badfbf392c17c498b6",
+    "VERIFY.json": "928ece8497ee8e3ae2ea7d41aea88760814b1614ae039d5b05d63eeddfda6f50",
+    "SCENE_ASSET_AUDIT.json": "e6662eea22c0c1f5b0d1f7b45d4f6df6504a0cd5b7bae81b2cf000231fb27351"
+  },
+  "source_code_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/rich_test.py": "14dcfed827f0725420dec003097e55dcb42774021d3ace7fa041aa075eb7d7ef",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/support_metrics.py": "adfad2b422188e4bdd29abd6f79fb9f4b58e9914503cfef8d38ae346011fcecd",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/foot_trial_evaluation.py": "dd7eef5980701c9a5012d11e1273ae55a84bc0683ee7dfa75c7d08754196f033",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/foot_trial_recheck.py": "a3b0c9f71dea933fe215b77131745a248f3b6915af3006fccfb8c86a50cb25e9",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_validation.py": "e54293aa45b162ed999ba53f361b0d824b1cb18f19cee49f3e104cc7b04cf431",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/standard_motion_metrics.py": "15308e25b6d91fb38ca7b0635bf20beedc0ef70dc5808b4ea9a384fa8e1da0b8"
+  },
+  "checkpoint_step": 41000,
+  "checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+  "new_predictions": false,
+  "new_metric_sampling": false,
+  "new_GPU_work": false,
+  "CUDA_imported_or_initialized": false,
+  "source_results_modified": false,
+  "CPU_RECHECK": {
+    "status": "independent_cpu_passed",
+    "predictions": 670,
+    "planned_predictions": 670,
+    "CUDA_initialized": false,
+    "maximum_recompute_difference": 0.0,
+    "maximum_independent_formula_difference": 5.684341886080802e-14,
+    "checked_at": "2026-10-18T02:38:15.837504+08:00"
+  },
+  "VERIFY": {
+    "status": "passed_complete",
+    "optimizer_updates": 0,
+    "frozen_model_tensors": true,
+    "model_tensor_sha256": "cd23bcc03260203a06c2abbcc6e756dea974e2238f7027524199ba021e8f4648",
+    "completed_predictions": 670,
+    "planned_predictions": 670,
+    "checked_at": "2026-10-18T02:37:20.907461+08:00"
+  },
+  "scope": {
+    "recordings": 52,
+    "subject_streams": 53,
+    "windows": 335,
+    "regimes": [
+      "clean",
+      "noisy"
+    ],
+    "predictions": 670,
+    "frames_per_window": 192,
+    "fps": 30,
+    "stride": 64,
+    "DDIM_steps": 20,
+    "source_frame_slots": 29903,
+    "covered_unique_person_frame_slots": 28224,
+    "invalid_fit_frame_slots": 10,
+    "window_frame_slots_per_regime": 64320
+  },
+  "export_rows": {
+    "ALL_METRICS.csv": 61,
+    "PER_RECORDING.csv": 104,
+    "PER_SEQUENCE.csv": 106,
+    "PER_WINDOW.csv": 670,
+    "COVERAGE.csv": 53
+  },
+  "metric_keys": {
+    "summary": 61,
+    "per_window": 63,
+    "all_null_metrics": [
+      "candidate_position_mpjpe_mm",
+      "candidate_rotation_deg"
+    ],
+    "ratio_valid_windows_per_regime": 331,
+    "ratio_valid_recordings_per_regime": 52,
+    "ratio_null_cases": [
+      {
+        "case": 95,
+        "recording": "Gym_011_pushup2",
+        "sequence_id": "Gym_011_pushup2__subject_011"
+      },
+      {
+        "case": 106,
+        "recording": "Gym_012_cooking2",
+        "sequence_id": "Gym_012_cooking2__subject_012"
+      },
+      {
+        "case": 140,
+        "recording": "Gym_013_lunge2",
+        "sequence_id": "Gym_013_lunge2__subject_013"
+      },
+      {
+        "case": 161,
+        "recording": "Gym_013_pushup2",
+        "sequence_id": "Gym_013_pushup2__subject_013"
+      }
+    ]
+  },
+  "aggregation": {
+    "source": "Original saved rows.jsonl only; no new predictions or per-artifact metric recomputation in this export.",
+    "window_mean": "Equal valid windows per regime; missing metrics excluded.",
+    "recording_macro": "Mean of recording-wise equal-window means; all subjects within recording included before equal-recording mean.",
+    "sequence_means": "Equal valid windows within each subject stream, independently derived from original rows.",
+    "checked_summary_numeric_cells": 244,
+    "maximum_rows_to_SUMMARY_aggregation_difference": 3.637978807091713e-12,
+    "tolerance": 1e-08,
+    "csv_numeric_roundtrip_exact": true,
+    "nulls_preserved_as_empty_not_zero": true
+  },
+  "sealed_source_verification": {
+    "files": 95,
+    "mismatches": []
+  },
+  "source_preserved_sha256_after": {
+    "PLAN.json": "4f9a52f8a87e0dacf8049a0d815b5815d96b54a6aa03a23b2e4c6d449b1ebba5",
+    "SUMMARY.json": "2b1d9ce350742840042f642d890e240929e6df693110719784d1090e5c1b3cd1",
+    "rows.jsonl": "8728ee2c01bca42e606e4d03518e58c97ccf2283df988a664c468a7fd4b5d110",
+    "CPU_RECHECK.json": "bbd89416af4b25fa31903eb762fbd1b744e3c6bfa7c7a4badfbf392c17c498b6",
+    "VERIFY.json": "928ece8497ee8e3ae2ea7d41aea88760814b1614ae039d5b05d63eeddfda6f50",
+    "SCENE_ASSET_AUDIT.json": "e6662eea22c0c1f5b0d1f7b45d4f6df6504a0cd5b7bae81b2cf000231fb27351"
+  },
+  "storage_before": {
+    "/": {
+      "total": 1081101176832,
+      "used": 906511060992,
+      "free": 119597760512
+    },
+    "/mnt/d": {
+      "total": 999074820096,
+      "used": 436709687296,
+      "free": 562365132800
+    },
+    "/mnt/e": {
+      "total": 2000387309568,
+      "used": 1880078942208,
+      "free": 120308367360
+    }
+  },
+  "storage_after_CSV_and_MD": {
+    "/": {
+      "total": 1081101176832,
+      "used": 906512412672,
+      "free": 119596408832
+    },
+    "/mnt/d": {
+      "total": 999074820096,
+      "used": 436709687296,
+      "free": 562365132800
+    },
+    "/mnt/e": {
+      "total": 2000387309568,
+      "used": 1880078942208,
+      "free": 120308367360
+    }
+  },
+  "outputs_sha256": {
+    "ALL_METRICS.csv": "486000d94c3d6b8a216cdd630384980e69e50ae22352d68f4a3cf3d1f743904a",
+    "COVERAGE.csv": "03568892cd0038f71dbeaf447b9691708d28e6108ba25516ed7d8645d0bee332",
+    "FULL_RESULTS_zh.md": "2ea0c3081f67f3711b96ff6328ae8997a47edc3b4038162c5e0003fa86033f75",
+    "PER_RECORDING.csv": "af12f6abc612091cd0906ed0b327d0cf090f071019a743812dfa1526619c977f",
+    "PER_SEQUENCE.csv": "37a09f3d70e3018255239c43d20b841cae9ccf1829ab001a086fc56448e439b6",
+    "PER_WINDOW.csv": "1d6f9b4ea161a3aa93ef9ab234a259797995fb5c90e8effc8c377b88f6cc3cfb"
+  },
+  "self_hash_policy": "EXPORT_AUDIT.json excludes its own hash; final audit and package SHA256 are returned to the caller.",
+  "package_policy": "Results CSV/MD/audit plus six unchanged compact original evidence files; no weights, NPZ motions, scene caches or scripts."
+}

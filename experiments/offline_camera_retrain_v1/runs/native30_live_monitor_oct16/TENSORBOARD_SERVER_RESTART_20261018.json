@@ -1,0 +1,144 @@
+{
+  "status": "healthy_loading_existing_events",
+  "checked_at": "2026-10-18T14:23:29.894932+08:00",
+  "pid": 3394,
+  "url": "http://localhost:6006/",
+  "bind_host": "127.0.0.1",
+  "port": 6006,
+  "session_detached": true,
+  "process_start_ticks": "119320",
+  "boot_id": "52f8b6e4-2a08-4f30-bbc1-8b7d72a1d2b4",
+  "command": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard_compat_server.py",
+    "--logdir",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/tensorboard",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "6006",
+    "--reload_interval",
+    "10",
+    "--samples_per_plugin",
+    "scalars=60000,images=100",
+    "--load_fast=false"
+  ],
+  "previous_record": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_live_monitor_oct16/TENSORBOARD_SERVER_PRE_RESTART_20261018.json",
+  "http_checks": [
+    {
+      "endpoint": "/",
+      "status": 200,
+      "bytes": 533757
+    },
+    {
+      "endpoint": "/data/plugins_listing",
+      "status": 200,
+      "bytes": 3188
+    },
+    {
+      "endpoint": "/data/plugin/scalars/tags",
+      "status": 200,
+      "bytes": 1189728,
+      "run_tag_counts": {
+        "old55k": 86,
+        "new_native30": 5202
+      }
+    }
+  ],
+  "scalar_checks": [
+    {
+      "run": "new_native30",
+      "tag": "train/loss",
+      "status": 200,
+      "points": 36912,
+      "latest_step": 36912,
+      "last_scalar": [
+        1792199817.3185766,
+        36912,
+        0.07970312982797623
+      ]
+    },
+    {
+      "run": "old55k",
+      "tag": "train/losses/total",
+      "status": 200,
+      "points": 2751,
+      "latest_step": 55000,
+      "last_scalar": [
+        1792128855.4763322,
+        55000,
+        0.13720948994159698
+      ]
+    },
+    {
+      "run": "new_native30",
+      "tag": "loss/total",
+      "status": 200,
+      "points": 36912,
+      "latest_step": 36912,
+      "last_scalar": [
+        1792199817.3363647,
+        36912,
+        0.07970312982797623
+      ]
+    }
+  ],
+  "new_train_source_latest_step": 55000,
+  "source_step_provenance": {
+    "record": "BRIDGE_STATUS.json",
+    "checked_at": "2026-10-17T22:04:31.606838+08:00",
+    "field": "sources.new_train.latest_step",
+    "meaning": "Previously imported completed source step, not proof of current TensorBoard reader load completion."
+  },
+  "events_before": {
+    "old55k": {
+      "files": 12,
+      "bytes": 9938937
+    },
+    "new_native30": {
+      "files": 7238,
+      "bytes": 406964307
+    },
+    "new_native30__active_seconds": {
+      "files": 3495,
+      "bytes": 4610427
+    },
+    "old55k__active_seconds": {
+      "files": 12,
+      "bytes": 223228
+    }
+  },
+  "events_after": {
+    "old55k": {
+      "files": 12,
+      "bytes": 9938937
+    },
+    "new_native30": {
+      "files": 7238,
+      "bytes": 406964307
+    },
+    "new_native30__active_seconds": {
+      "files": 3495,
+      "bytes": 4610427
+    },
+    "old55k__active_seconds": {
+      "files": 12,
+      "bytes": 223228
+    }
+  },
+  "event_counts_and_bytes_unchanged": true,
+  "event_file_total": 10757,
+  "event_bytes_total": 421736899,
+  "events_read_only": true,
+  "bridge_started": false,
+  "bridge_processes_observed": [],
+  "new_events_generated": false,
+  "source_modified": false,
+  "compat_server_source_sha256": "0af1589931ea14c18cfb64f6f41e486fb3828128a11112bd66521b01027369c3",
+  "compat_server_source_unchanged": true,
+  "GPU_work_started": false,
+  "CUDA_VISIBLE_DEVICES": "",
+  "process_memory": "VmRSS:\t 4739320 kB",
+  "loading_note": "Original event directory has10757 immutable files. HTTP is healthy; initial scalar load can lag behind completed55000 source. No cache cleanup, event rewrite, bridge restart or paused experiment restart was performed.",
+  "http_probe_proxy_policy": "Loopback probes explicitly disable proxy; initial inherited-proxy request returned502 and was superseded by direct127.0.0.1 HTTP200 checks."
+}

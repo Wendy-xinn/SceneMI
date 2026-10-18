@@ -1,0 +1,635 @@
+{
+  "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/training/last.pt",
+  "checkpoint_sha256": "25d78ae22422345d8ac6cefe84a120bc510e6504bd15a39bd856be9f46e2e95d",
+  "checkpoint_bytes": 519905779,
+  "adapter_spec": {
+    "protocol": "native30-exo-gated-internal-lora-v1",
+    "rank": 16,
+    "alpha": 16.0,
+    "targets": [
+      "core.unet.time_mlp.0",
+      "core.unet.time_mlp.2",
+      "core.unet.downs.0.0.time_mlp.1",
+      "core.unet.downs.0.0.blocks.0.block1.0",
+      "core.unet.downs.0.0.blocks.1.block.0",
+      "core.unet.downs.0.1.time_mlp.1",
+      "core.unet.downs.0.1.blocks.0.block1.0",
+      "core.unet.downs.0.1.blocks.1.block.0",
+      "core.unet.downs.1.0.time_mlp.1",
+      "core.unet.downs.1.0.blocks.0.block1.0",
+      "core.unet.downs.1.0.blocks.1.block.0",
+      "core.unet.downs.1.1.time_mlp.1",
+      "core.unet.downs.1.1.blocks.0.block1.0",
+      "core.unet.downs.1.1.blocks.1.block.0",
+      "core.unet.downs.2.0.time_mlp.1",
+      "core.unet.downs.2.0.blocks.0.block1.0",
+      "core.unet.downs.2.0.blocks.1.block.0",
+      "core.unet.downs.2.1.time_mlp.1",
+      "core.unet.downs.2.1.blocks.0.block1.0",
+      "core.unet.downs.2.1.blocks.1.block.0",
+      "core.unet.mid_block1.time_mlp.1",
+      "core.unet.mid_block1.blocks.0.block1.0",
+      "core.unet.mid_block1.blocks.1.block.0",
+      "core.unet.mid_block2.time_mlp.1",
+      "core.unet.mid_block2.blocks.0.block1.0",
+      "core.unet.mid_block2.blocks.1.block.0",
+      "core.unet.ups.0.0.time_mlp.1",
+      "core.unet.ups.0.0.blocks.0.block1.0",
+      "core.unet.ups.0.0.blocks.1.block.0",
+      "core.unet.ups.0.1.time_mlp.1",
+      "core.unet.ups.0.1.blocks.0.block1.0",
+      "core.unet.ups.0.1.blocks.1.block.0",
+      "core.unet.ups.1.0.time_mlp.1",
+      "core.unet.ups.1.0.blocks.0.block1.0",
+      "core.unet.ups.1.0.blocks.1.block.0",
+      "core.unet.ups.1.1.time_mlp.1",
+      "core.unet.ups.1.1.blocks.0.block1.0",
+      "core.unet.ups.1.1.blocks.1.block.0",
+      "core.unet.final_conv.0.block.0",
+      "observation_projection",
+      "camera_encoder.2",
+      "reference_projection",
+      "patch_condition",
+      "dynamic_condition",
+      "region_condition"
+    ]
+  },
+  "stage_step": 1000,
+  "planned_stage_updates": 1000,
+  "parent_step": 41000,
+  "frozen_base_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+  "adapter_sha256": "d029e25286f3e92f5b32d3ff46124acd3a1f581d3236a97d48cdaf219037c111",
+  "strict_full_state_loaded": true,
+  "all_state_tensors_finite": true,
+  "parent_checkpoint_opened": false,
+  "dataset_opened": false,
+  "device": "cpu",
+  "status": "passed",
+  "step": 1000,
+  "is_final_stage_checkpoint": true,
+  "checked_at": "2026-10-18T14:22:41.480700+08:00",
+  "audit_process_pid": 3578,
+  "CPU_threads": 2,
+  "CUDA_initialized": false,
+  "GPU_used": false,
+  "torch_version": "2.8.0+cu128",
+  "torch_load_calls": [
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/training/last.pt",
+      "map_location": "cpu",
+      "mmap": true
+    }
+  ],
+  "all_model_state_on_CPU": true,
+  "all_base_parameters_frozen": true,
+  "original_modules_all_eval": true,
+  "real_factory": "experiments.offline_camera_retrain_v1.prepare_native30.make_model",
+  "factory_mocked": false,
+  "CPU_motion_forward_rerun": false,
+  "scope": "Actual final1000 single-file load with no observation or dataset construction; usefulness evaluated separately",
+  "adapter_manifest": {
+    "protocol": "native30-exo-gated-internal-lora-v1",
+    "spec": {
+      "protocol": "native30-exo-gated-internal-lora-v1",
+      "rank": 16,
+      "alpha": 16.0,
+      "targets": [
+        "core.unet.time_mlp.0",
+        "core.unet.time_mlp.2",
+        "core.unet.downs.0.0.time_mlp.1",
+        "core.unet.downs.0.0.blocks.0.block1.0",
+        "core.unet.downs.0.0.blocks.1.block.0",
+        "core.unet.downs.0.1.time_mlp.1",
+        "core.unet.downs.0.1.blocks.0.block1.0",
+        "core.unet.downs.0.1.blocks.1.block.0",
+        "core.unet.downs.1.0.time_mlp.1",
+        "core.unet.downs.1.0.blocks.0.block1.0",
+        "core.unet.downs.1.0.blocks.1.block.0",
+        "core.unet.downs.1.1.time_mlp.1",
+        "core.unet.downs.1.1.blocks.0.block1.0",
+        "core.unet.downs.1.1.blocks.1.block.0",
+        "core.unet.downs.2.0.time_mlp.1",
+        "core.unet.downs.2.0.blocks.0.block1.0",
+        "core.unet.downs.2.0.blocks.1.block.0",
+        "core.unet.downs.2.1.time_mlp.1",
+        "core.unet.downs.2.1.blocks.0.block1.0",
+        "core.unet.downs.2.1.blocks.1.block.0",
+        "core.unet.mid_block1.time_mlp.1",
+        "core.unet.mid_block1.blocks.0.block1.0",
+        "core.unet.mid_block1.blocks.1.block.0",
+        "core.unet.mid_block2.time_mlp.1",
+        "core.unet.mid_block2.blocks.0.block1.0",
+        "core.unet.mid_block2.blocks.1.block.0",
+        "core.unet.ups.0.0.time_mlp.1",
+        "core.unet.ups.0.0.blocks.0.block1.0",
+        "core.unet.ups.0.0.blocks.1.block.0",
+        "core.unet.ups.0.1.time_mlp.1",
+        "core.unet.ups.0.1.blocks.0.block1.0",
+        "core.unet.ups.0.1.blocks.1.block.0",
+        "core.unet.ups.1.0.time_mlp.1",
+        "core.unet.ups.1.0.blocks.0.block1.0",
+        "core.unet.ups.1.0.blocks.1.block.0",
+        "core.unet.ups.1.1.time_mlp.1",
+        "core.unet.ups.1.1.blocks.0.block1.0",
+        "core.unet.ups.1.1.blocks.1.block.0",
+        "core.unet.final_conv.0.block.0",
+        "observation_projection",
+        "camera_encoder.2",
+        "reference_projection",
+        "patch_condition",
+        "dynamic_condition",
+        "region_condition"
+      ]
+    },
+    "targets": [
+      {
+        "path": "core.unet.time_mlp.0",
+        "adapter_key": "a0000",
+        "type": "Linear",
+        "weight_shape": [
+          1024,
+          256
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.time_mlp.2",
+        "adapter_key": "a0001",
+        "type": "Linear",
+        "weight_shape": [
+          256,
+          1024
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.downs.0.0.time_mlp.1",
+        "adapter_key": "a0002",
+        "type": "Linear",
+        "weight_shape": [
+          512,
+          256
+        ],
+        "parameters": 12288
+      },
+      {
+        "path": "core.unet.downs.0.0.blocks.0.block1.0",
+        "adapter_key": "a0003",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          298,
+          5
+        ],
+        "parameters": 27936
+      },
+      {
+        "path": "core.unet.downs.0.0.blocks.1.block.0",
+        "adapter_key": "a0004",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.downs.0.1.time_mlp.1",
+        "adapter_key": "a0005",
+        "type": "Linear",
+        "weight_shape": [
+          512,
+          256
+        ],
+        "parameters": 12288
+      },
+      {
+        "path": "core.unet.downs.0.1.blocks.0.block1.0",
+        "adapter_key": "a0006",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.downs.0.1.blocks.1.block.0",
+        "adapter_key": "a0007",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.downs.1.0.time_mlp.1",
+        "adapter_key": "a0008",
+        "type": "Linear",
+        "weight_shape": [
+          1024,
+          256
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.downs.1.0.blocks.0.block1.0",
+        "adapter_key": "a0009",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          256,
+          5
+        ],
+        "parameters": 28672
+      },
+      {
+        "path": "core.unet.downs.1.0.blocks.1.block.0",
+        "adapter_key": "a0010",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.downs.1.1.time_mlp.1",
+        "adapter_key": "a0011",
+        "type": "Linear",
+        "weight_shape": [
+          1024,
+          256
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.downs.1.1.blocks.0.block1.0",
+        "adapter_key": "a0012",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.downs.1.1.blocks.1.block.0",
+        "adapter_key": "a0013",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.downs.2.0.time_mlp.1",
+        "adapter_key": "a0014",
+        "type": "Linear",
+        "weight_shape": [
+          2048,
+          256
+        ],
+        "parameters": 36864
+      },
+      {
+        "path": "core.unet.downs.2.0.blocks.0.block1.0",
+        "adapter_key": "a0015",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          512,
+          5
+        ],
+        "parameters": 57344
+      },
+      {
+        "path": "core.unet.downs.2.0.blocks.1.block.0",
+        "adapter_key": "a0016",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.downs.2.1.time_mlp.1",
+        "adapter_key": "a0017",
+        "type": "Linear",
+        "weight_shape": [
+          2048,
+          256
+        ],
+        "parameters": 36864
+      },
+      {
+        "path": "core.unet.downs.2.1.blocks.0.block1.0",
+        "adapter_key": "a0018",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.downs.2.1.blocks.1.block.0",
+        "adapter_key": "a0019",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.mid_block1.time_mlp.1",
+        "adapter_key": "a0020",
+        "type": "Linear",
+        "weight_shape": [
+          2048,
+          256
+        ],
+        "parameters": 36864
+      },
+      {
+        "path": "core.unet.mid_block1.blocks.0.block1.0",
+        "adapter_key": "a0021",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.mid_block1.blocks.1.block.0",
+        "adapter_key": "a0022",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.mid_block2.time_mlp.1",
+        "adapter_key": "a0023",
+        "type": "Linear",
+        "weight_shape": [
+          2048,
+          256
+        ],
+        "parameters": 36864
+      },
+      {
+        "path": "core.unet.mid_block2.blocks.0.block1.0",
+        "adapter_key": "a0024",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.mid_block2.blocks.1.block.0",
+        "adapter_key": "a0025",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.ups.0.0.time_mlp.1",
+        "adapter_key": "a0026",
+        "type": "Linear",
+        "weight_shape": [
+          1024,
+          256
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.ups.0.0.blocks.0.block1.0",
+        "adapter_key": "a0027",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          2048,
+          5
+        ],
+        "parameters": 172032
+      },
+      {
+        "path": "core.unet.ups.0.0.blocks.1.block.0",
+        "adapter_key": "a0028",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.ups.0.1.time_mlp.1",
+        "adapter_key": "a0029",
+        "type": "Linear",
+        "weight_shape": [
+          1024,
+          256
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.ups.0.1.blocks.0.block1.0",
+        "adapter_key": "a0030",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.ups.0.1.blocks.1.block.0",
+        "adapter_key": "a0031",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.ups.1.0.time_mlp.1",
+        "adapter_key": "a0032",
+        "type": "Linear",
+        "weight_shape": [
+          512,
+          256
+        ],
+        "parameters": 12288
+      },
+      {
+        "path": "core.unet.ups.1.0.blocks.0.block1.0",
+        "adapter_key": "a0033",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          1024,
+          5
+        ],
+        "parameters": 86016
+      },
+      {
+        "path": "core.unet.ups.1.0.blocks.1.block.0",
+        "adapter_key": "a0034",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.ups.1.1.time_mlp.1",
+        "adapter_key": "a0035",
+        "type": "Linear",
+        "weight_shape": [
+          512,
+          256
+        ],
+        "parameters": 12288
+      },
+      {
+        "path": "core.unet.ups.1.1.blocks.0.block1.0",
+        "adapter_key": "a0036",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.ups.1.1.blocks.1.block.0",
+        "adapter_key": "a0037",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.final_conv.0.block.0",
+        "adapter_key": "a0038",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "observation_projection",
+        "adapter_key": "a0039",
+        "type": "Linear",
+        "weight_shape": [
+          64,
+          704
+        ],
+        "parameters": 12288
+      },
+      {
+        "path": "camera_encoder.2",
+        "adapter_key": "a0040",
+        "type": "Linear",
+        "weight_shape": [
+          64,
+          128
+        ],
+        "parameters": 3072
+      },
+      {
+        "path": "reference_projection",
+        "adapter_key": "a0041",
+        "type": "Linear",
+        "weight_shape": [
+          64,
+          1408
+        ],
+        "parameters": 23552
+      },
+      {
+        "path": "patch_condition",
+        "adapter_key": "a0042",
+        "type": "Linear",
+        "weight_shape": [
+          64,
+          1408
+        ],
+        "parameters": 23552
+      },
+      {
+        "path": "dynamic_condition",
+        "adapter_key": "a0043",
+        "type": "Linear",
+        "weight_shape": [
+          64,
+          1408
+        ],
+        "parameters": 23552
+      },
+      {
+        "path": "region_condition",
+        "adapter_key": "a0044",
+        "type": "Linear",
+        "weight_shape": [
+          32,
+          1408
+        ],
+        "parameters": 23040
+      }
+    ],
+    "target_count": 45,
+    "trainable_parameters": 1955616,
+    "trainable_parameter_tensors": 90,
+    "base_parameters": 122667536,
+    "all_base_parameters_frozen": true,
+    "only_adapters_trainable": true,
+    "original_model_training": false,
+    "original_modules_all_eval": true,
+    "mode_source": "explicit batch['mode']; no visibility-count inference",
+    "gate": "EGO path bypass; EXO-only row selection; ContextVar-scoped restoration",
+    "inference_parameter_metadata": "original requires_grad flags only during serialized no_grad forward; finally frozen",
+    "training_parameter_metadata": "all original parameters frozen, including internal no_grad proposal",
+    "deployment": "one state_dict containing frozen parent and internal adapters; save spec for strict reload"
+  }
+}

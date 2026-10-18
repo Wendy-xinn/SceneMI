@@ -1,0 +1,79 @@
+{
+  "status": "first_complete_clean_noisy_three_model_case_passed",
+  "checked_at": "2026-10-18T14:30:18.862241+08:00",
+  "evaluator_pid": 4258,
+  "case": 0,
+  "dataset": "rich",
+  "sequence_id": "Pavallion_013_sidebalancerun",
+  "panel": "new55",
+  "mode": "exo",
+  "predictions_checked": 6,
+  "committed_predictions_when_checked": 10,
+  "planned_predictions": 384,
+  "CUDA_initialized": false,
+  "inference_rerun": false,
+  "artifact_consistency_check_only": true,
+  "regimes": {
+    "clean": {
+      "models": [
+        "balancedv2adapter1000",
+        "base41k",
+        "v1adapter1000"
+      ],
+      "input_sha256": "2902f4e71d55c18d1d151ca5fb4ad654e68b8fdeed48ec7f91f247f62be70f4e",
+      "common_array_keys": [
+        "truth",
+        "rest",
+        "observations",
+        "observation_meta"
+      ],
+      "all_prediction_metrics_finite": true,
+      "artifact_hashes_exact": true,
+      "outputs": {
+        "base41k": {
+          "hidden_mpjpe_mm": 28.393234252929688,
+          "visible_mpjpe_mm": 5.432222843170166
+        },
+        "v1adapter1000": {
+          "hidden_mpjpe_mm": 29.31780433654785,
+          "visible_mpjpe_mm": 3.0943472385406494
+        },
+        "balancedv2adapter1000": {
+          "hidden_mpjpe_mm": 29.776559829711914,
+          "visible_mpjpe_mm": 2.5220160484313965
+        }
+      }
+    },
+    "noisy": {
+      "models": [
+        "balancedv2adapter1000",
+        "base41k",
+        "v1adapter1000"
+      ],
+      "input_sha256": "c995380f39c23d0791959c5bbd31d1f3403d9ed2b17cd506bcb4993ed6064c7d",
+      "common_array_keys": [
+        "truth",
+        "rest",
+        "observations",
+        "observation_meta"
+      ],
+      "all_prediction_metrics_finite": true,
+      "artifact_hashes_exact": true,
+      "outputs": {
+        "base41k": {
+          "hidden_mpjpe_mm": 50.446571350097656,
+          "visible_mpjpe_mm": 38.64136505126953
+        },
+        "v1adapter1000": {
+          "hidden_mpjpe_mm": 53.51517105102539,
+          "visible_mpjpe_mm": 32.733436584472656
+        },
+        "balancedv2adapter1000": {
+          "hidden_mpjpe_mm": 49.85939025878906,
+          "visible_mpjpe_mm": 27.479387283325195
+        }
+      }
+    }
+  },
+  "scope": "First complete pair verifies launch, strict checkpoints, explicit EXO route, shared visible inputs, atomic saved artifacts, finite metrics. Full384 and independentCPUrecheck remain required before interpreting aggregate quality."
+}

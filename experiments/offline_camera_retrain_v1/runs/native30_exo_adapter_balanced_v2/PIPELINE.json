@@ -118,11 +118,130 @@
   "plan_sha256": "510ff7f72a81e75cda4019286706069cfaff38351fbafe2f22b70a14a967d456",
   "optimizer_updates": 0,
   "automatic_retry": false,
-  "commands": [],
+  "commands": [
+    {
+      "phase": "deployment_cpu",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.adapter_pipeline",
+        "deployment-check",
+        "--stage",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2",
+        "--expected-sha256",
+        "25d78ae22422345d8ac6cefe84a120bc510e6504bd15a39bd856be9f46e2e95d"
+      ],
+      "started_at": "2026-10-18T14:22:37.822968+08:00",
+      "log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/pipeline/deployment_cpu.log",
+      "pid": 3578,
+      "returncode": 0,
+      "finished_at": "2026-10-18T14:22:52.837749+08:00"
+    },
+    {
+      "phase": "stage_report_cpu",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.adapter_pipeline",
+        "report",
+        "--stage",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2"
+      ],
+      "started_at": "2026-10-18T14:22:52.843181+08:00",
+      "log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/pipeline/stage_report_cpu.log",
+      "pid": 3676,
+      "returncode": 1,
+      "finished_at": "2026-10-18T14:23:10.606494+08:00"
+    },
+    {
+      "phase": "visuals_prepare_cpu",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.motion_viewer",
+        "--manifest",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/VIEWER_CASES.json",
+        "--config",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/config.json",
+        "--cache-root",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/visuals/viser/cache",
+        "--prepare-only"
+      ],
+      "started_at": "2026-10-18T14:23:10.611979+08:00",
+      "log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/pipeline/visuals_prepare_cpu.log",
+      "pid": 3704,
+      "returncode": 0,
+      "finished_at": "2026-10-18T14:23:40.620634+08:00"
+    },
+    {
+      "phase": "visuals_export_cpu",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.presentation_export",
+        "--run",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2",
+        "--viewer-url",
+        "http://localhost:8803/"
+      ],
+      "started_at": "2026-10-18T14:23:40.624554+08:00",
+      "log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/pipeline/visuals_export_cpu.log",
+      "pid": 3764,
+      "returncode": 0,
+      "finished_at": "2026-10-18T14:25:04.239662+08:00"
+    },
+    {
+      "phase": "expanded_exo_validation",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.adapter_evaluation",
+        "run",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_expanded_review_v1"
+      ],
+      "started_at": "2026-10-18T14:27:31.566126+08:00",
+      "log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/pipeline/expanded_exo_validation.log",
+      "pid": 4258
+    }
+  ],
   "history": [
     {
       "status": "waiting_for_stage",
       "at": "2026-10-18T14:06:03.795512+08:00"
+    },
+    {
+      "status": "verifying_stage_cpu",
+      "at": "2026-10-18T14:22:37.558497+08:00"
+    },
+    {
+      "status": "deployment_cpu",
+      "at": "2026-10-18T14:22:37.822990+08:00"
+    },
+    {
+      "status": "classifying_supervisor",
+      "at": "2026-10-18T14:22:52.839583+08:00"
+    },
+    {
+      "status": "stage_report_cpu",
+      "at": "2026-10-18T14:22:52.843196+08:00"
+    },
+    {
+      "status": "visuals_prepare_cpu",
+      "at": "2026-10-18T14:23:10.611997+08:00"
+    },
+    {
+      "status": "visuals_export_cpu",
+      "at": "2026-10-18T14:23:40.624574+08:00"
+    },
+    {
+      "status": "expanded_exo_validation",
+      "at": "2026-10-18T14:27:31.566148+08:00"
     }
   ],
   "disk_before": {
@@ -148,9 +267,71 @@
       }
     }
   },
-  "status": "waiting_for_stage",
-  "updated_at": "2026-10-18T14:10:59.106107+08:00",
-  "stage_status": "waiting_for_gpu",
-  "completed_stage_updates": null,
-  "wait_state": "running"
+  "status": "expanded_exo_validation",
+  "updated_at": "2026-10-18T14:31:36.022978+08:00",
+  "stage_status": "awaiting_independent_CPU_recheck",
+  "completed_stage_updates": 1000,
+  "wait_state": "running",
+  "active_command_pid": 4258,
+  "supervisor_classification": {
+    "status": "already_correct",
+    "checked_at": "2026-10-18T14:22:52.841217+08:00"
+  },
+  "stage_report": {
+    "status": "valid_report",
+    "checked_at": "2026-10-18T14:22:53.203842+08:00",
+    "report_returncode": 1,
+    "engineering_acceptance_passed": false,
+    "report_sha256": "ff95550ca1df588f11b9ecfc2bd608d51740a4aefa16eaf752d36fcf8e5d75f4",
+    "acceptance_sha256": "b2ccd0ad5ca1dd0924b047b50975c1842e07bd7ddee91ee679e61c14490a9479",
+    "CPU_recheck_sha256": "531967f1409bedd8c3d5a8b33b23b2fa1d6903778dad420d29bc9b8529c7b040"
+  },
+  "visuals": {
+    "status": "completed",
+    "checked_at": "2026-10-18T14:23:10.608600+08:00",
+    "GPU_used": false,
+    "inference_rerun": false,
+    "manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/VIEWER_CASES.json",
+    "manifest_sha256": "6cc1d202c7c38b4e596efdb373f123739bd6795cd5dab552b4956bcdc2a1b077",
+    "commands": [],
+    "source_sha256": {
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_viewer.py": "ee45c31771db58faf2a54668e0699d7b6cd63e8d9d89e31f3891cada5978620a",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/presentation_export.py": "91088d5c1f3dfdc2333afc61e0f5133be118df9aa86367b91195bb2d54de42c5"
+    },
+    "viewer_launch": {
+      "pid": 4256,
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.motion_viewer",
+        "--manifest",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/VIEWER_CASES.json",
+        "--config",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/config.json",
+        "--cache-root",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/visuals/viser/cache",
+        "--port",
+        "8803"
+      ],
+      "session_detached": true,
+      "log": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/pipeline/visuals_viewer.log",
+      "launched_at": "2026-10-18T14:27:29.551581+08:00"
+    },
+    "finished_at": "2026-10-18T14:27:31.556820+08:00",
+    "SERVER_sha256": "d4b94bbd8e0a25287b04bb37ebdb4d00eaa6aa8b417cd947c0d2ee61e7b85ecc",
+    "export_manifest_sha256": "c92dfd70a3d6d51f2caefb6a73338c57d8715020d0e0557b6f03e613a126f415",
+    "viewer": {
+      "pid": 4256,
+      "url": "http://localhost:8803/",
+      "bind": "127.0.0.1",
+      "manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/visuals/viser/PREPARED_CASES.json",
+      "cases": 12,
+      "cpu_only": true,
+      "source_file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_viewer.py",
+      "source_sha256": "ee45c31771db58faf2a54668e0699d7b6cd63e8d9d89e31f3891cada5978620a"
+    },
+    "export_reused": false,
+    "index": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/presentation/visuals/index.html"
+  }
 }
