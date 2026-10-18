@@ -4,7 +4,7 @@
 
 从41k冻结主干、训练1,955,616个EXO门控内部参数的1000步试验已完成。实际更新累计34.5分钟；最终完整checkpoint独立CPU加载通过，基础权重摘要保持，原EGO六段DDIM预测逐值保留。固定开发验证的EXO隐藏误差三语料宏平均clean 114.53→86.99mm，noisy 135.57→129.03mm；TRUMANS/EgoBody改善，但RICH三窗clean 80.88→89.02mm、noisy109.94→141.59mm，双脚运动幅度误差也退化，故预注册验收未通过，不能宣称已得到整体可用版本。可见关节分组保护通过不等于每窗均改善。[完整结果](../runs/native30_exo_adapter_v1/RESULTS_zh.md)、[验收](../runs/native30_exo_adapter_v1/ACCEPTANCE.json)、[Viser前后对照](http://localhost:8802/)。权重和数组暂保留用于明确计划中的扩展复核。
 
-主线best=41k的原选择口径只有一个固定RICH窗口，证据不足。扩展复核已于10月18日11:33启动：[运行状态](../runs/native30_checkpoint_review_v1/STATUS.json)、[预先固定的协议](../runs/native30_checkpoint_review_v1/PLAN.json)。现存41k/55k同条件比较RICH全部206窗/27录制，加TRUMANS50窗/33录制、EgoBody50窗/16录制，共1224次预测；按录制宏平均为主汇总，另报逐窗、有效计数加权及三数据集等权结果，完成后自动独立CPU复算。此前206窗全VAL是15,100步，不能给41k/55k复用指标。新复核完成前仅称41k为临时开发候选；本次比较也不代表遍历过全部历史权重，不从TEST回选，不自动覆盖原best/last。该评估是EGO输入，不能代替EXO遮挡泛化验证；EXO后续单变量实验建议另见[记录](../runs/native30_exo_adapter_v1/diagnostics/NEXT_EXPERIMENT_zh.md)，尚未启动下一轮训练。
+主线best=41k的原选择口径只有一个固定RICH窗口，证据不足。扩展复核在通过20项CPU回归及首窗4次真实GPU预测后，已于10月18日11:40启动后台完整续跑：[运行状态](../runs/native30_checkpoint_review_v1/STATUS.json)、[预先固定的协议](../runs/native30_checkpoint_review_v1/PLAN.json)。现存41k/55k同条件比较RICH全部206窗/27录制，加TRUMANS50窗/33录制、EgoBody50窗/16录制，共1224次预测；按录制宏平均为主汇总，另报逐窗、有效计数加权及三数据集等权结果，完成后自动独立CPU复算。此前206窗全VAL是15,100步，不能给41k/55k复用指标。新复核完成前仅称41k为临时开发候选；本次比较也不代表遍历过全部历史权重，不从TEST回选，不自动覆盖原best/last。该评估是EGO输入，不能代替EXO遮挡泛化验证；EXO后续单变量实验建议另见[记录](../runs/native30_exo_adapter_v1/diagnostics/NEXT_EXPERIMENT_zh.md)，尚未启动下一轮训练。
 
 冻结41k的独立RICH TEST现已670/670预测并经CPU复算通过：335窗、52录制、53人体流，clean/noisy等窗口World MPJPE155.67/169.48mm、PA113.94/121.10mm。该结果含观测场景和已知人体profile，不能当AMASS-only论文同协议排名，也不用于本轮调参或选checkpoint。[结果](../runs/rich_test_ego41k/SUMMARY.json)、[CPU核验](../runs/rich_test_ego41k/CPU_RECHECK.json)。
 

@@ -1,0 +1,72 @@
+{
+  "status": "first_case_actual_GPU_and_CPU_smoke_passed",
+  "checked_at": "2026-10-18T11:40:46.372859+08:00",
+  "predictions": 4,
+  "planned_predictions": 1224,
+  "scope": "Only first registered VAL window, clean/noisy x retained41k/final55k; not a completed cohort or model-selection result.",
+  "original_failed_attempt": "FAILED_ATTEMPTS/attempt001_asset_device_0pred",
+  "full_repreparation": "REPREPARATION.json",
+  "sampling_process_pid": 58843,
+  "sampling_exit_code": 0,
+  "device_assertion": "Every nested input/skin-asset Tensor checked on CUDA before original native model inference; scene indexing objects retained in their original CPU form.",
+  "finite_predictions": true,
+  "matched_GT_rest_observations_and_metric_denominators_exact": true,
+  "matched_recursive_tensor_input_fingerprints_exact": true,
+  "maximum_CPU_recompute_difference": 0.0,
+  "maximum_independent_formula_difference": 4.98549181315866e-06,
+  "CPU_check_CUDA_initialized": false,
+  "source_PLAN_sha256": "a27798d721ee82bb8ba37facf74c87f51aa1336789a97a796726276df9725667",
+  "rows": [
+    {
+      "case": 0,
+      "regime": "clean",
+      "model": "candidate41k",
+      "checkpoint_step": 41000,
+      "checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+      "input_sha256": "2ca044d453810815e3f262ec03faa23113f8a63a07fd3b90a420b7e1dfe09c35",
+      "artifact_sha256": "d14fcc47e7356d9b476ed5e88542d5fa501886794983f122b4d006ef8dbf979e",
+      "sampling_s": 16.96564138100075,
+      "metric_s": 0.01172376899921801,
+      "preparation_share_s": 0.7170240039995406
+    },
+    {
+      "case": 0,
+      "regime": "clean",
+      "model": "final55k",
+      "checkpoint_step": 55000,
+      "checkpoint_sha256": "4ac6fb138f0dd600ba6a3171aca57bbe1bbfab95391c66ec1a454e9402e42784",
+      "input_sha256": "2ca044d453810815e3f262ec03faa23113f8a63a07fd3b90a420b7e1dfe09c35",
+      "artifact_sha256": "2df94b7b75f1b2fe3835663223d049bbd3e6f4815731530ad37cf9daf9106bc1",
+      "sampling_s": 15.616015842002525,
+      "metric_s": 0.011094623005192261,
+      "preparation_share_s": 0.7170240039995406
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "model": "candidate41k",
+      "checkpoint_step": 41000,
+      "checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+      "input_sha256": "f9c4e03c3be210463fc96e0eef885f42d03c3a1cb6c5eaafa4df0bfc3fac4121",
+      "artifact_sha256": "40c46c70cb6d2a98e376b44fd3d03bb03659d337e29102d4ffeda2c3c969336e",
+      "sampling_s": 16.600588430999778,
+      "metric_s": 0.011061750003136694,
+      "preparation_share_s": 0.021684584498871118
+    },
+    {
+      "case": 0,
+      "regime": "noisy",
+      "model": "final55k",
+      "checkpoint_step": 55000,
+      "checkpoint_sha256": "4ac6fb138f0dd600ba6a3171aca57bbe1bbfab95391c66ec1a454e9402e42784",
+      "input_sha256": "f9c4e03c3be210463fc96e0eef885f42d03c3a1cb6c5eaafa4df0bfc3fac4121",
+      "artifact_sha256": "9c158c244e82eb26d2e1f630f13651c494f752a4555bbfa03a428d8ee491766a",
+      "sampling_s": 15.991414176001854,
+      "metric_s": 0.011774049999075942,
+      "preparation_share_s": 0.021684584498871118
+    }
+  ],
+  "optimizer_updates": 0,
+  "TEST_used": false,
+  "automatic_checkpoint_promotion": false
+}

@@ -1,0 +1,254 @@
+{
+  "status": "design_not_sampled",
+  "protocol": "native30-expanded-exo-validation-design-v1",
+  "checked_at": "2026-10-18T11:40:17.674683+08:00",
+  "execution": "EGO扩大验证及运行资源安排后执行。当前仅冻结设计与输入mask盘点，未构建新cohort、未运行预测。后续统一扩展现有validation_cohort/validation_review CLI；本次未改任何sealed source。",
+  "purpose": "下一次EXO候选的独立扩大VAL与旧窗口回归检查；当前adapter失败已有充分拒绝证据，不通过追加旧12调参来改变该结论。",
+  "TEST_used": false,
+  "GT_motion_read": false,
+  "observed_positions_read": false,
+  "predictions_read": false,
+  "GPU_used": false,
+  "optimizer_updates": 0,
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/config.json": "0029fedcd3c5e3a3ae73d7e14603936836e47f9b677e8d7e8eeecc26ab76f976",
+    "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/manifest.jsonl": "0ad36607e705a6480368486e98d3b5dd4de69f2ec916a45b73f2f0d9f2c9c9cc",
+    "/mnt/e/Projects/SceneMI/cache/native30_official_windows64_v1/dataset.json": "6ca16b858d5e1f1aa028094a18651ce74f0fe426434b1e90d4f20bdb84836e01",
+    "/mnt/e/Projects/SceneMI/cache/native30_official_windows64_v1/validation_exo.npy": "9e82c2d6d8a87e792c48556c00767a8816bb453d57c504d409542044c975d5b9",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/prepared/validation_plan.json": "f9b22a3a665cc1d04b9656b27cd3fd031d835b714687cb1dd2e0c20b64784481"
+  },
+  "input_verification": "仅载入validation/exo索引，以及它引用的VAL bundle exo_position_available/confidence数组；逐文件SHA与已封印manifest.output_sha256相等。不打开TEST数组、动作GT、位置观测或预测。",
+  "official_EgoBody_VAL": {
+    "recordings": 17,
+    "local_EXO_recordings": 17,
+    "missing_recordings": [],
+    "requested_twenty_independent_recordings_feasible": false,
+    "policy": "使用全部17，绝不把双角色或多个窗口计成20个独立录制。"
+  },
+  "availability": {
+    "rich": {
+      "legal_windows": 206,
+      "source_bundles": 27,
+      "distinct_recordings": 27,
+      "windows_by_role": {
+        "rich": 206
+      },
+      "prior_EXO_windows": 3,
+      "prior_EXO_recordings": 3,
+      "new_recordings_available": 24,
+      "simultaneous_both_feet_missing_window_tiers": {
+        "short_0_6": 161,
+        "medium_7_29": 16,
+        "long_30plus": 29
+      },
+      "recordings_with_at_least_one_window_in_each_tier": {
+        "short_0_6": 26,
+        "medium_7_29": 7,
+        "long_30plus": 8
+      },
+      "maximum_both_feet_missing_run_frames": 192,
+      "windows_any_lower_limb_joint_missing_30plus": 70,
+      "maximum_all22_missing_run_frames": 0,
+      "prior_EXO_mask_diagnostics": [
+        {
+          "prior_case_index": 11,
+          "recording": "LectureHall_020_wipingchairs1",
+          "group": "rich",
+          "start": 640,
+          "both_feet_missing_run_frames": 84,
+          "max_lower_limb_joint_missing_run_frames": 109
+        },
+        {
+          "prior_case_index": 5,
+          "recording": "ParkingLot1_004_phonetalk2",
+          "group": "rich",
+          "start": 320,
+          "both_feet_missing_run_frames": 0,
+          "max_lower_limb_joint_missing_run_frames": 3
+        },
+        {
+          "prior_case_index": 10,
+          "recording": "Pavallion_006_yoga1",
+          "group": "rich",
+          "start": 0,
+          "both_feet_missing_run_frames": 3,
+          "max_lower_limb_joint_missing_run_frames": 78
+        }
+      ]
+    },
+    "trumans": {
+      "legal_windows": 709,
+      "source_bundles": 31,
+      "distinct_recordings": 31,
+      "windows_by_role": {
+        "trumans": 709
+      },
+      "prior_EXO_windows": 3,
+      "prior_EXO_recordings": 3,
+      "new_recordings_available": 28,
+      "simultaneous_both_feet_missing_window_tiers": {
+        "short_0_6": 2,
+        "medium_7_29": 10,
+        "long_30plus": 697
+      },
+      "recordings_with_at_least_one_window_in_each_tier": {
+        "short_0_6": 1,
+        "medium_7_29": 5,
+        "long_30plus": 31
+      },
+      "maximum_both_feet_missing_run_frames": 192,
+      "windows_any_lower_limb_joint_missing_30plus": 709,
+      "maximum_all22_missing_run_frames": 14,
+      "prior_EXO_mask_diagnostics": [
+        {
+          "prior_case_index": 1,
+          "recording": "2023-02-17@11-01-52",
+          "group": "trumans",
+          "start": 256,
+          "both_feet_missing_run_frames": 93,
+          "max_lower_limb_joint_missing_run_frames": 107
+        },
+        {
+          "prior_case_index": 6,
+          "recording": "2023-02-18@16-55-22",
+          "group": "trumans",
+          "start": 320,
+          "both_feet_missing_run_frames": 192,
+          "max_lower_limb_joint_missing_run_frames": 192
+        },
+        {
+          "prior_case_index": 7,
+          "recording": "2023-02-18@22-17-40",
+          "group": "trumans",
+          "start": 1792,
+          "both_feet_missing_run_frames": 89,
+          "max_lower_limb_joint_missing_run_frames": 112
+        }
+      ]
+    },
+    "egobody": {
+      "legal_windows": 820,
+      "source_bundles": 34,
+      "distinct_recordings": 17,
+      "windows_by_role": {
+        "camera_wearer": 410,
+        "interactee": 410
+      },
+      "prior_EXO_windows": 3,
+      "prior_EXO_recordings": 3,
+      "new_recordings_available": 14,
+      "simultaneous_both_feet_missing_window_tiers": {
+        "short_0_6": 631,
+        "medium_7_29": 113,
+        "long_30plus": 76
+      },
+      "recordings_with_at_least_one_window_in_each_tier": {
+        "short_0_6": 17,
+        "medium_7_29": 15,
+        "long_30plus": 9
+      },
+      "maximum_both_feet_missing_run_frames": 192,
+      "windows_any_lower_limb_joint_missing_30plus": 326,
+      "maximum_all22_missing_run_frames": 0,
+      "prior_EXO_mask_diagnostics": [
+        {
+          "prior_case_index": 9,
+          "recording": "recording_20211002_S03_S18_01",
+          "group": "interactee",
+          "start": 64,
+          "both_feet_missing_run_frames": 29,
+          "max_lower_limb_joint_missing_run_frames": 57
+        },
+        {
+          "prior_case_index": 8,
+          "recording": "recording_20220215_S21_S22_01",
+          "group": "interactee",
+          "start": 1984,
+          "both_feet_missing_run_frames": 0,
+          "max_lower_limb_joint_missing_run_frames": 2
+        },
+        {
+          "prior_case_index": 3,
+          "recording": "recording_20220215_S21_S22_02",
+          "group": "camera_wearer",
+          "start": 1536,
+          "both_feet_missing_run_frames": 0,
+          "max_lower_limb_joint_missing_run_frames": 12
+        }
+      ]
+    }
+  },
+  "mask_definition": {
+    "valid": "available.astype(bool) & isfinite(confidence) & (confidence>0)",
+    "both_feet_missing": "~(valid[:,10] | valid[:,11]); maximum contiguous True run within192frames",
+    "lower_limb_joints": [
+      4,
+      5,
+      7,
+      8,
+      10,
+      11
+    ],
+    "lower_limb_missing": "maximum missing run over the six individual joint masks",
+    "tiers_frames": {
+      "short": [
+        0,
+        6
+      ],
+      "medium": [
+        7,
+        29
+      ],
+      "long": [
+        30,
+        192
+      ]
+    },
+    "fps": 30,
+    "scope": "真实存储输入mask的clean前分层，不等同整套tracker断线或GT接触。合法EXO窗限制全部22位置同时空缺最长18帧，脚部可长期不可见。"
+  },
+  "minimum_panel": {
+    "EXO_distinct_recordings": {
+      "rich": 27,
+      "trumans": 20,
+      "egobody": 17
+    },
+    "EXO_total": 64,
+    "EXO_prior_regression": 9,
+    "EXO_new_recordings": {
+      "rich": 24,
+      "trumans": 17,
+      "egobody": 14
+    },
+    "EXO_new_total": 55,
+    "EGO_prior_retention": 3,
+    "total_case_mode_windows": 67,
+    "regimes": [
+      "clean",
+      "noisy"
+    ],
+    "predictions_per_model": 134,
+    "predictions_for_two_models": 268,
+    "note": "EGO retention与EXO可共享物理recording，67不是67个独立录制；EXO64按dataset+recording去重。"
+  },
+  "exact_selection": {
+    "seed": 2026101808,
+    "hash": "SHA256(UTF8(json.dumps([seed,*identity],ensure_ascii=True,separators=(\",\",\":\")))).hexdigest(); ascending lexicographic hash, then identity for ties",
+    "old_panel": "原prepared/validation_plan.json全部12条身份/源start/原case_seed不动；EXO索引1,3,5,6,7,8,9,10,11单列regression，EGO索引0,2,4单列retention。",
+    "legal_sources": "仅原192帧/30Hz/stride64 validation/exo索引；沿所有VAL source非空common-grid在manifest顺序构造Native30Data member，含EXO-only源；运行前真实Native30Data再次核identity/recording/source clock/legalstart。",
+    "rich": "原3个EXO录制保留旧窗；其余24个录制全部纳入。新录制按hash(seed,rich,recording)排序。",
+    "trumans": "原3个EXO录制保留旧窗；其余28按hash(seed,trumans,recording)排序，取前17，共20录制。",
+    "egobody": "原3个EXO录制保留旧窗（camera_wearer1/interactee2）；其余14个录制全部纳入，按hash(seed,egobody,recording)排序。每新录制选当前全panel选中次数较少且存在合法窗的role；相等时取hash(seed,egobody,recording,role)较小者。两role都有合法窗，最终role为8/9或9/8，实际数落盘报告。",
+    "new_window": "确定recording/role后，合法窗按(source_first,sequence_id,source_bundle_ordinal,start)升序，取index=len(windows)//2的upper-middle窗。RICH/TRUMANS仅单role。无随机尝试、无GT动作幅度或预测误差选择。",
+    "new_case_seed": "(embedded_config.validation.seed + int.from_bytes(SHA256(json.dumps([group,\"exo\",sequence_id,source_first],separators=(\",\",\":\")).encode()).digest()[:4],\"little\")) % 2**32；旧12保持原seed。",
+    "occlusion_policy": "先按身份/源时钟确定窗口，再附上述输入mask层标签；本最小panel不按长遮挡或预测错误重选中位窗。TRUMANS短层仅1录制，禁止制造三层均衡或重复录制充数。",
+    "build_failure": "若原9EXO不可再绑定原legal索引，或不足所声明recording/role数，则停止并报告具体缺失，不换TEST、不重复录制补数。"
+  },
+  "evaluation": {
+    "model_pair": "下一次候选与预先冻结的同基座before模型；实际checkpoint SHA在EGO扩大验证及资源安排后、任何新预测前冻结。当前未指定胜出模型。",
+    "paired": "同case/regime input tensors、已知体型、可见场景与DDIM seed；原192帧/30Hz/DDIM20及既定物理修正配置一致。",
+    "report": "clean/noisy分别报新55录制、旧9回归、全部64。RICH另报新24与全部27。按录制聚合后等dataset宏均值；报告有效visible/hidden分母、World/root-relative/PA及脚部guards，保留逐录制paired deltas。",
+    "independence": "一录制一EXO窗；不把双角色、相邻窗或clean/noisy当独立录制。不同recording仍可能同subject/scene，不宣称独立受试者。",
+    "conclusion": "扩大panel是后续验证设计；本文件没有任何新模型性能结果、checkpoint选择或自动晋级。"
+  }
+}
