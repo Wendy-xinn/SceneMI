@@ -1,0 +1,91 @@
+{
+  "protocol": "fixed-dev-gate1000-sequential-evaluation-v1",
+  "status": "completed",
+  "started_at": "2026-10-19T00:43:05.053034+08:00",
+  "pid": 48448,
+  "stage_updates": 1000,
+  "expected_predictions": 72,
+  "cohort_panel": "dev",
+  "diffusion_seed_index": 0,
+  "TEST_used": false,
+  "confirmation_evaluated": false,
+  "automatic_training_extension": false,
+  "events": [
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "prepare",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/gate1000",
+        "--models",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/gate1000/INPUT_MODELS.json",
+        "--panel",
+        "dev",
+        "--seed-index",
+        "0",
+        "--arms",
+        "learned_only"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T01:13:33.696244+08:00",
+      "pid": 49930,
+      "returncode": 0,
+      "ended_at": "2026-10-19T01:13:55.559046+08:00"
+    },
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "evaluate",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/gate1000",
+        "--resume",
+        "--memory-fraction",
+        ".65"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T01:13:55.568059+08:00",
+      "pid": 49996,
+      "returncode": 0,
+      "ended_at": "2026-10-19T01:22:41.101978+08:00"
+    },
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "recheck",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/gate1000"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T01:22:41.103722+08:00",
+      "pid": 50519,
+      "returncode": 0,
+      "ended_at": "2026-10-19T01:23:05.525971+08:00"
+    }
+  ],
+  "training_snapshot": {
+    "pipeline_status": "completed",
+    "updates": {
+      "control": 1000,
+      "fusion": 1000
+    },
+    "audit_status": "passed",
+    "audit_updates": 1000,
+    "checked_at": "2026-10-19T01:13:32.601433+08:00"
+  },
+  "training_pipeline_sha256": "5d8d85093cbe2a2f7e4a461f5a186d0f7e1c6a2704e0226fe862176928d84db2",
+  "matched_audit_sha256": "8ebb4cb50865984da347d31c26eb35f4a893663a92b4cde2ac9a46c19be149a9",
+  "plan_sha256": "eac5efb9257dba61f73201a21a0449bcda4dd2f7433cd96851d1e8f7f9b8230b",
+  "ended_at": "2026-10-19T01:23:05.533153+08:00",
+  "completed_predictions": 72,
+  "CPU_recheck_sha256": "b431023d9122209b618f985a29730eb214514edb804525d9fca6dcb0c1cad6ab",
+  "rows_sha256": "f0d48bcfa96f8aa2f8d5f3d8e882e7285a44e7d8c0acccab2aa843f4bc38144c"
+}

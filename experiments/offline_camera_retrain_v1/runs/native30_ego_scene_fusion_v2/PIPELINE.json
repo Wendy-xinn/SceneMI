@@ -1,0 +1,86 @@
+{
+  "protocol": "matched-ego-scene-fusion-training-v2",
+  "status": "completed",
+  "started_at": "2026-10-19T01:27:08.984947+08:00",
+  "pid": 50890,
+  "plan_sha256": "0de163211d2be2a2486ece19a42504c9ad022e7f30206ae6ffe1db0f734e2818",
+  "stop_step": 3000,
+  "initial_steps": {
+    "control": 1000,
+    "fusion": 1000
+  },
+  "independent_children_release_CUDA": true,
+  "events": [
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_trial",
+        "train",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2",
+        "--arm",
+        "control",
+        "--stop-step",
+        "3000",
+        "--memory-fraction",
+        "0.65",
+        "--resume"
+      ],
+      "started_at": "2026-10-19T01:27:09.015759+08:00",
+      "status": "completed",
+      "pid": 50919,
+      "returncode": 0,
+      "ended_at": "2026-10-19T02:12:52.283653+08:00"
+    },
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_trial",
+        "train",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2",
+        "--arm",
+        "fusion",
+        "--stop-step",
+        "3000",
+        "--memory-fraction",
+        "0.65",
+        "--resume"
+      ],
+      "started_at": "2026-10-19T02:12:52.322832+08:00",
+      "status": "completed",
+      "pid": 53238,
+      "returncode": 0,
+      "ended_at": "2026-10-19T02:57:49.907432+08:00"
+    },
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_trial",
+        "audit",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2"
+      ],
+      "started_at": "2026-10-19T02:57:49.910225+08:00",
+      "status": "completed",
+      "pid": 54717,
+      "returncode": 0,
+      "ended_at": "2026-10-19T02:58:03.188084+08:00"
+    }
+  ],
+  "TEST_used": false,
+  "automatic_evaluation": false,
+  "automatic_checkpoint_promotion": false,
+  "ended_at": "2026-10-19T02:58:03.227245+08:00",
+  "final_steps": {
+    "control": 3000,
+    "fusion": 3000
+  },
+  "validation_required_before_further_extension": true
+}

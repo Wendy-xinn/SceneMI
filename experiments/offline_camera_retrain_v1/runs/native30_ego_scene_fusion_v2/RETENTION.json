@@ -1,0 +1,28 @@
+{
+  "protocol": "completed-scene-trial-retention-decision-v1",
+  "status": "decided_after_full_independent_review",
+  "checked_at": "2026-10-19T04:33:21.876006+08:00",
+  "selected_useful_candidate": {
+    "model": "control3000",
+    "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0/checkpoints/control.pt",
+    "sha256": "1df509cf10d5cc15d7762989c5795c0c347590465bbc95d2f50135784381bf22",
+    "scope": "Engineering/next-stage EGO candidate on fixed43 VAL. RICH World improvement versus41k is not statistically established; no official promotion.",
+    "full_optimizer_and_rng_retained": true
+  },
+  "protected_official_models": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/RETAINED_MODEL_RECHECK.json",
+  "retire_no_planned_reuse": {
+    "fusion3000": "Rejected by frozen criteria; no further weight or prediction reuse.",
+    "gate1000": "Intermediate evaluation completed; final-stage comparisons retained instead.",
+    "old_control500": "Superseded by verified full resumable control3000; no planned replay or continuation."
+  },
+  "independent_audit": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_combined/INDEPENDENT_AUDIT.json",
+    "sha256": "ae1dbc8ab6596eb216216e944c87e7f8721cac694773235c1829116815623b9e",
+    "coverage": 860
+  },
+  "retain_final_base_control_predictions": 516,
+  "retain_all_source_and_explicit_seals": true,
+  "historical_audits": "Evidence measured before cleanup; original audit bytes remain immutable.",
+  "cleanup_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/CLEANUP.json",
+  "datasets_and_scene_caches": "retain unchanged"
+}

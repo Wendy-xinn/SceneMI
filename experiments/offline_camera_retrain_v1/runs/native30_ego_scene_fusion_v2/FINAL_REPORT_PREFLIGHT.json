@@ -1,0 +1,327 @@
+{
+  "protocol": "final-report-delivery-retention-preflight-v1",
+  "status": "static_advice_only_final_verdict_pending",
+  "checked_at": "2026-10-19T03:21:54.171229+08:00",
+  "scope": {
+    "read": [
+      "REPORT_zh.md",
+      "ACCEPTANCE.json",
+      "ARCHITECTURE_AUDIT_zh.md",
+      "sealed architecture/trial/evaluation/sampling source",
+      "final PLAN/MODELS_PINNED/INPUT_MODELS and archived training audit metadata"
+    ],
+    "unfinished_prediction_metrics_or_arrays_read": false,
+    "GPU_used": false,
+    "experiments_started": false,
+    "deleted_files": 0,
+    "source_or_existing_records_modified": false,
+    "report_modified": false
+  },
+  "report_must_update": [
+    {
+      "location": "3000 final section, final on/off sentence",
+      "issue": "Current wording treats same-model scene-on/off as a possible future add-on although both control and fusion none arms are already registered and running.",
+      "required": "860 total =516 primary learned_only predictions (43 recordings x2 regimes x2 DDIM seeds x3 models) +344 descriptive scene-off predictions (43x2x2x2 models). Base41k has learned_only only in this run. Do not infer a new41k on/off result."
+    },
+    {
+      "location": "Mermaid x_t/x0 and DDIM prose",
+      "issue": "The actual diffusion target is reference_residual, while the model forward returns an absolute clean motion.",
+      "required": "Name the stochastic state r_t relative to the observation-derived reference, or explain this explicitly. Training noises GT-reference; inference computes r_hat0=absolute_prediction-reference, then DDIM updates residual state before adding reference back. The reference is observation-derived rather than a hidden GT body trajectory."
+    },
+    {
+      "location": "Final result tables and conclusion",
+      "required": "Replace all final placeholders only after both seed outputs are complete, CPU_RECHECK SHA-bound, and independent audit has consumed required arrays. Keep1000 result clearly historical development-gate evidence; do not mix its numerical values with3000."
+    },
+    {
+      "location": "Primary table",
+      "required": "Report every dataset and clean/noisy separately for41k/control3000/fusion3000, F-C/F-base and C-base deltas. Macro is equal dataset, within dataset equal recording, not RICH-weighted all-window pooling. Provide dev12 and confirmation31 secondary breakdowns."
+    },
+    {
+      "location": "Final acceptance table",
+      "required": "Quote unchanged DECISION.json and every failed guard against BOTH control and41k. RICH mean must improve >=1%, each regime strictly improve, recording-paired95% bootstrap upper delta strictly<0. A small mean decrease alone does not pass. Other-world tolerance=max(2mm,2%); RICH PA<=+1mm. Foot speed=max(.01m/s,5%), footY<=+5mm, acceleration<=+5%, observed-head<=+1mm for RICH and equal-dataset macro, each regime. All coverage/identity/CPU conditions remain binding."
+    },
+    {
+      "location": "Control-only conclusion if fusion rejected",
+      "required": "The registered decision is a FUSION acceptance rule; it does not automatically accept/promote control3000. Describe control improvement versus41k with its paired data, uncertainty and safety metrics, record an explicit retained-useful-control choice, and do not call a failed fusion an architecture success."
+    },
+    {
+      "location": "Final efficiency paragraph",
+      "required": "Use RUNTIME_3000 preparation/compute/total separately. Training compute ~.86-.87s/update is B2 FP32 and excludes initialization/checkpoint publication. No matched physics-on training benchmark or old55k timing exists here; do not claim that turning physics off saved a quantified amount, or that fusion accelerated the old model."
+    }
+  ],
+  "avoid_claims": [
+    "43 windows are not all RICH VAL windows, official TEST, or an external-method benchmark. RICH27 excludes one165-frame recording; TRUMANS/EgoBody8 each.",
+    "Dev12 were used at1000; all43 includes dev and cannot be called untouched holdout. Confirmation31 is held out from this trial gate; older base reports may contain its VAL identities.",
+    "Two DDIM sampling seeds are not two independent training seeds or86 independent recordings. Average metrics over sampling seeds and regimes inside recording before bootstrap27 RICH recordings. This is one paired training realization.",
+    "Foot low-speed mask is GT3D foot-joint velocity<.2m/s over adjacent-frame intervals, not labeled contact. Report valid recording n and GT opportunity denominators; do not double them for two seeds or treat count as aggregation weight. None stays missing, not0.",
+    "FootY is joint position error versus GT in native Y, not sole-ground distance, collision/penetration rate, support force, or guaranteed no floating. Acceleration is predicted-vs-GT error, not simply raw smoothness.",
+    "Observed-head error is distance to the supplied observation (which can be noisy), not error to clean GT head. It is a binding observation-fit guard in RICH/macro, not proof of overall pose accuracy.",
+    "physicsOFF disables iterative analytical scene guide_motion, while learned scene/contact feedback and observation anchoring/IK remain. No real physics simulation, gravity or tracker was added.",
+    "The22 queries are per temporal bottleneck bin, sharing all-body temporal features and region identity/pose; this is not an independent per-frame diffusion or a full joint-token transformer.",
+    "Additional module reuses existing tokens/query geometry without additional FK/queries; the complete model still performs its original FK/query work. Global attention is validity-gated; local hidden update is alpha_bar squared gated.",
+    "Same-model scene off switches all learned scene conditioning/feedback plus the new branch. Because earlier DDIM states then differ, on/off is a complete-trajectory condition ablation, not the isolated one-layer/raw correction effect.",
+    "An on/off gain alone does not prove fusion beats original scene conditioning. A pass concerns this exact fusion+training recipe; it does not isolate each added component or establish that every cross-attention architecture is superior.",
+    "This run is EGO/head-only. It neither validates current EXO robustness nor proves a unified EGO/EXO final model. Inputs in these datasets include derived/simulated observations, not a new real detector benchmark.",
+    "Stage step3000 starts from parent41000 with fresh optimizer; name it41k+3000 fine-tuning updates, not a continuous original44k training checkpoint or the legacy55k model."
+  ],
+  "delivery_minimum_fields": {
+    "decision_and_scope": [
+      "selected_model_label and selected_at, final_decision status/reason, supported input modes=EGO/head-only, evaluated fixedVAL scope, limits/no automatic official replacement"
+    ],
+    "checkpoint_identity": [
+      "one authoritative local resumable last.pt path",
+      "file SHA256 and model_tensor_sha256",
+      "architecture original or scene_fusion_v2",
+      "stage_updates=3000, parent_step=41000, parent_checkpoint SHA",
+      "source_config and training_config kept distinct",
+      "stage PLAN SHA and source/dependency seals",
+      "fusion_options and fusion_spec when attached"
+    ],
+    "load_contract": [
+      "make_model(original source config)",
+      "for fusion attach_scene_fusion with saved options before strict state_dict load",
+      "strict=True load and finite-state verification",
+      "explicit runtime model.guidance_enabled=False; do not rely on plain state_dict or original source config to restore this bool",
+      "use_scene=True for selected learned_only route; preserve original observation anchor/IK settings"
+    ],
+    "inference_contract": [
+      "201-channel native body representation and observation-derived reference_residual protocol",
+      "30fps,192 frames,20 deterministic DDIM steps",
+      "input model_inputs whitelist/head trajectory plus confidence/uncertainty/validity, rest/body and available scene representation; document coordinate frame/units and input provenance",
+      "sampling seed, observation/noise protocol and original reference construction",
+      "no downstream tracker included"
+    ],
+    "resumption": [
+      "full model/optimizer/optimizer_group_spec",
+      "data sampling and Python/NumPy/Torch/CUDA RNG",
+      "planned horizon/LR clock, source/data identities, counts and stage step",
+      "no claim of permission to extend past registered3000 boundary without a new explicit plan"
+    ],
+    "evidence": [
+      "final_seed0/1 PLAN/MODELS_PINNED/rows/CPU_RECHECK identities",
+      "MATCHED_AUDIT3000 and UPDATE_SANITY_3000",
+      "independent final audit and registered DECISION",
+      "per-dataset/regime/panel metrics, paired uncertainty and denominators",
+      "runtime record",
+      "single motion_viewer manifest pointing to retained fixed case/seed/regime arrays and model identities",
+      "exact local retained/retired paths plus CLEANUP record; compact records to authorized backup only, no need model archive"
+    ]
+  },
+  "static_final_checkpoint_registry": {
+    "control": {
+      "architecture": "original",
+      "stage_updates": 3000,
+      "sha256_from_sealed_registry": "1df509cf10d5cc15d7762989c5795c0c347590465bbc95d2f50135784381bf22",
+      "sha256_freshly_recomputed": false,
+      "unique_inode_bytes": 1477972456,
+      "aliases": [
+        {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/control/training/last.pt",
+          "bytes": 1477972456,
+          "device": 2096,
+          "inode": 2349852,
+          "nlink": 3
+        },
+        {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0/checkpoints/control.pt",
+          "bytes": 1477972456,
+          "device": 2096,
+          "inode": 2349852,
+          "nlink": 3
+        },
+        {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed1/checkpoints/control.pt",
+          "bytes": 1477972456,
+          "device": 2096,
+          "inode": 2349852,
+          "nlink": 3
+        }
+      ]
+    },
+    "fusion": {
+      "architecture": "scene_fusion_v2",
+      "stage_updates": 3000,
+      "sha256_from_sealed_registry": "d79482af69a5525ffc6ea5cee6506fc5699c3a0a3bfb624924c3cc1229b969a5",
+      "sha256_freshly_recomputed": false,
+      "unique_inode_bytes": 1482972224,
+      "aliases": [
+        {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/fusion/training/last.pt",
+          "bytes": 1482972224,
+          "device": 2096,
+          "inode": 2349855,
+          "nlink": 3
+        },
+        {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0/checkpoints/fusion.pt",
+          "bytes": 1482972224,
+          "device": 2096,
+          "inode": 2349855,
+          "nlink": 3
+        },
+        {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed1/checkpoints/fusion.pt",
+          "bytes": 1482972224,
+          "device": 2096,
+          "inode": 2349855,
+          "nlink": 3
+        }
+      ]
+    }
+  },
+  "cleanup_preconditions": [
+    "Both430-row seed evaluations and both CPU rechecks completed.",
+    "Independent audit has consumed all860 required arrays and model identities; no pending metrics/visual comparison/test dependencies.",
+    "Root records a useful retained resumable control and selected model; final verdict cannot be guessed.",
+    "Repeat live viewer/selector/pipeline/dependency and exact SHA/inode audit immediately before any removal.",
+    "Retire dependent viewer menu entries or exclude retained selected arrays from deletion; record exact files/physical unique inode bytes and mark audits pre-cleanup."
+  ],
+  "cleanup_common_after_final_review": {
+    "intermediate1k_checkpoint_paths": [
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/gate1000/checkpoints/control.pt",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/gate1000/checkpoints/fusion.pt"
+    ],
+    "intermediate1k_arrays": {
+      "identity_source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/gate1000/rows.jsonl",
+      "expected_count": 72,
+      "selection": "Only artifact paths recorded there after verifying current SHA and no active reuse; exclude any explicitly retained visualization cases."
+    },
+    "old500_paths_if_explicitly_superseded": [
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_trial/control/training/last.pt",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/checkpoints/control500.pt"
+    ],
+    "old500_arrays": {
+      "identity_source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/rows.jsonl",
+      "selector": "model == control500 and existing artifact; exclude active retained cases",
+      "expected_existing_count": 48
+    },
+    "estimated_unique_inode_bytes_for_1k_plus_old500_from_prior_preflight": 4482552504,
+    "old500_condition": "Existing retained-useful-control designation remains binding until explicitly superseded by verified new useful control.",
+    "base41k_aliases": "Optional redundant stage aliases only; protected official source and other live links remain. Do not claim parent payload is freed.",
+    "preserve": "All compact records/source seals/config/metrics/seeds/audits; official41k/55k; source data/assets/caches and every sealed Python dependency."
+  },
+  "cleanup_by_possible_conclusion": {
+    "fusion_passes_all_registered_checks": {
+      "retain": [
+        "fusion/training/last.pt full resumable and any live pinned aliases",
+        "control/training/last.pt as matched useful/resumable control unless root later records another useful control",
+        "official41k/55k",
+        "base/control/fusion arrays required by active final review or selected three-layer viewer examples"
+      ],
+      "candidate_only": [
+        "Common intermediate1k and supersededold500 assets above.",
+        "After final audits, no-planned-reuse prediction arrays not selected for viewer can become records-only; distinguish active comparison arrays from redundant bulk."
+      ],
+      "not_authorized": [
+        "No automatic deletion of control3000 merely because fusion wins.",
+        "No automatic replacement of official41k/55k or new long training."
+      ]
+    },
+    "fusion_fails_and_control_continuation_is_useful": {
+      "retain": [
+        "verified control3000 full resumable checkpoint and active pins",
+        "official41k/55k",
+        "base/control arrays for required metrics and selected viewer examples"
+      ],
+      "fusion_checkpoint_candidates": [
+        {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/fusion/training/last.pt",
+          "bytes": 1482972224,
+          "device": 2096,
+          "inode": 2349855,
+          "nlink": 3
+        },
+        {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0/checkpoints/fusion.pt",
+          "bytes": 1482972224,
+          "device": 2096,
+          "inode": 2349855,
+          "nlink": 3
+        },
+        {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed1/checkpoints/fusion.pt",
+          "bytes": 1482972224,
+          "device": 2096,
+          "inode": 2349855,
+          "nlink": 3
+        }
+      ],
+      "fusion_checkpoint_unique_inode_bytes": 1482972224,
+      "fusion_prediction_candidate_set": {
+        "seed_dirs": [
+          "final_seed0",
+          "final_seed1"
+        ],
+        "case_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          256,
+          257,
+          258,
+          259,
+          260,
+          261,
+          262,
+          263
+        ],
+        "regimes": [
+          "clean",
+          "noisy"
+        ],
+        "model": "fusion",
+        "arms": [
+          "learned_only",
+          "none"
+        ],
+        "filename_template": "{seed_dir}/motions/case{case:04d}_{regime}_fusion_{arm}.npz",
+        "expected_count": 344,
+        "selection_method": "Construct exact filenames from frozen PLAN entries; confirm against final rows artifact identities, then subtract any explicitly active viewer/test dependencies. No broad trial-directory deletion."
+      },
+      "retirement_condition": "Only if root records fusion rejected with no planned reuse AFTER all final audits and presentations requiring it.",
+      "other_candidates": [
+        "Common intermediate1k and supersededold500 assets above."
+      ],
+      "preserve_even_if_fusion_retired": [
+        "ops/scene_fusion.py and tests/source seals",
+        "ops/scene_attention_trial.py and ops/scene_attention.py (shared sealed dependencies)",
+        "all config/PLAN/metrics/audits/decision/retirement evidence"
+      ]
+    },
+    "neither_proves_useful_or_guards_fail": {
+      "rule": "Do not force the control-only conclusion. Preserve official models and current useful control; decide further retention explicitly after complete evidence."
+    }
+  }
+}

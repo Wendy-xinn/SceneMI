@@ -1,0 +1,149 @@
+{
+  "scope": "Matched3000 TRAIN, physics OFF; timings include audited forward/backward/Adam and preparation. Exclude checkpoint publication and process setup. Single sequential pair, not benchmark against old55k.",
+  "recorded_at": "2026-10-19T02:59:19.211655+08:00",
+  "arms": {
+    "control": {
+      "updates": 3000,
+      "whole_run_after_first100": {
+        "preparation_s": {
+          "mean": 0.33289965964343193,
+          "median": 0.29172379999727127
+        },
+        "compute_s": {
+          "mean": 0.863806354252738,
+          "median": 0.8829892344983818
+        },
+        "update_s": {
+          "mean": 1.2010219140327285,
+          "median": 1.2083273214993824
+        }
+      },
+      "stage1001_3000": {
+        "preparation_s": {
+          "mean": 0.317841026825532,
+          "median": 0.2800523885016446
+        },
+        "compute_s": {
+          "mean": 0.8598673124829475,
+          "median": 0.8794919220017618
+        },
+        "update_s": {
+          "mean": 1.1823056773769531,
+          "median": 1.1923359909997089
+        }
+      },
+      "training_loss_500update_means": [
+        {
+          "first": 1,
+          "last": 500,
+          "mean": 0.2284917197972536
+        },
+        {
+          "first": 501,
+          "last": 1000,
+          "mean": 0.21960786348581315
+        },
+        {
+          "first": 1001,
+          "last": 1500,
+          "mean": 0.22706979525089263
+        },
+        {
+          "first": 1501,
+          "last": 2000,
+          "mean": 0.21796562319248916
+        },
+        {
+          "first": 2001,
+          "last": 2500,
+          "mean": 0.21632466460764407
+        },
+        {
+          "first": 2501,
+          "last": 3000,
+          "mean": 0.218969682097435
+        }
+      ]
+    },
+    "fusion": {
+      "updates": 3000,
+      "whole_run_after_first100": {
+        "preparation_s": {
+          "mean": 0.3001515385806751,
+          "median": 0.25724935049947817
+        },
+        "compute_s": {
+          "mean": 0.8677092732983372,
+          "median": 0.890275425503205
+        },
+        "update_s": {
+          "mean": 1.173127553039687,
+          "median": 1.1844273759998032
+        }
+      },
+      "stage1001_3000": {
+        "preparation_s": {
+          "mean": 0.2910736708170516,
+          "median": 0.24774600350065157
+        },
+        "compute_s": {
+          "mean": 0.8663370911250567,
+          "median": 0.8877864149981178
+        },
+        "update_s": {
+          "mean": 1.1626322884524851,
+          "median": 1.1698715774982702
+        }
+      },
+      "training_loss_500update_means": [
+        {
+          "first": 1,
+          "last": 500,
+          "mean": 0.22840360939502716
+        },
+        {
+          "first": 501,
+          "last": 1000,
+          "mean": 0.21938786630332469
+        },
+        {
+          "first": 1001,
+          "last": 1500,
+          "mean": 0.22705170182883738
+        },
+        {
+          "first": 1501,
+          "last": 2000,
+          "mean": 0.21787981508672238
+        },
+        {
+          "first": 2001,
+          "last": 2500,
+          "mean": 0.21615036843717098
+        },
+        {
+          "first": 2501,
+          "last": 3000,
+          "mean": 0.21896471244096755
+        }
+      ]
+    }
+  },
+  "disk_bytes": {
+    "/": {
+      "total": 1081101176832,
+      "used": 918910668800,
+      "free": 107198152704
+    },
+    "/mnt/d": {
+      "total": 999074820096,
+      "used": 436709687296,
+      "free": 562365132800
+    },
+    "/mnt/e": {
+      "total": 2000387309568,
+      "used": 1880134516736,
+      "free": 120252792832
+    }
+  }
+}

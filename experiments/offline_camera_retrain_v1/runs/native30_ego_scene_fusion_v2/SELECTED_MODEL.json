@@ -1,0 +1,170 @@
+{
+  "protocol": "native30-retained-engineering-candidate-delivery-v1",
+  "selection_status": "selected_for_next_stage_useful_control_fixed_VAL",
+  "selected_at": "2026-10-19T04:36:19.429390+08:00",
+  "selection_authority": "Root agent retention decision after both final DDIM seeds, shared CPU and independent NumPy audit.",
+  "role": "Useful original-architecture control for next-stage engineering/experiments on this fixed VAL cohort; not an official41k replacement.",
+  "model": "control",
+  "label": "Native30 original41k +3000 EGO balanced low-LR updates; sceneON, analytical physicsOFF",
+  "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0/checkpoints/control.pt",
+  "checkpoint_sha256": "1df509cf10d5cc15d7762989c5795c0c347590465bbc95d2f50135784381bf22",
+  "model_tensor_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+  "step": 3000,
+  "expected_step": 3000,
+  "parent_step": 41000,
+  "parent_checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+  "architecture": "original",
+  "fusion_spec": null,
+  "fusion_options": null,
+  "resumable_source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/control/training/last.pt",
+  "resumption": {
+    "full_optimizer_and_RNG": true,
+    "keys": [
+      "training_config",
+      "planned_steps",
+      "optimizer",
+      "optimizer_group_spec",
+      "counts",
+      "data_rng",
+      "condition_rng",
+      "torch_rng",
+      "cuda_rng",
+      "numpy_rng"
+    ],
+    "planned_horizon": 3000,
+    "fixed_LR_clock_complete": true,
+    "new_budget_required_to_extend": true
+  },
+  "checkpoint_pinning": "Authoritative selected pointer is final_seed0/checkpoints/control.pt: a fixed hard link of the complete checkpoint. Future atomic replacement of training/last.pt cannot change this inode.",
+  "source_config": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+    "file_sha256": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad",
+    "json_canonical_sha256": "36a42ee85b6b4218fab7db0515c8f1e0f9f86dc17cfa138706852ba2711a4a87",
+    "checkpoint_config_exactly_matches": true,
+    "training_PLAN_config_exactly_matches": true,
+    "final_evaluation_config_exactly_matches": true
+  },
+  "inference_config": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/INFERENCE_CONFIG.json",
+    "file_sha256": "7449e0bc48abf4a153f5cb36f302fc3f167ae101cf9bdb3d623acbd61168f650",
+    "json_canonical_sha256": "31545332ac4f71907ca26b5cafc937b56bdfb598aecc5472e2626300a6ad1633",
+    "only_differences": [
+      {
+        "path": "/physical_guidance/enabled",
+        "source": true,
+        "inference": false
+      }
+    ]
+  },
+  "runtime": {
+    "use_scene": true,
+    "guidance_enabled": false,
+    "arm": "learned_only",
+    "scene_relations_enabled": true,
+    "learned_contact_feedback_retained": true,
+    "observation_anchor_IK_retained": true,
+    "query_backend": "cuda_exact_radius_v1"
+  },
+  "sampling": {
+    "use_scene": true,
+    "guidance_enabled": false,
+    "original_observation_anchor_and_IK_preserved": true,
+    "frames": 192,
+    "fps": 30,
+    "ddim_steps": 20,
+    "diffusion_target": "reference_residual",
+    "seed": "explicit caller-provided sampling seed",
+    "model_inputs": "original model_inputs(config,batch) whitelist and observation-derived reference",
+    "tracker_included": false
+  },
+  "supported_inputs": {
+    "evaluated_mode": "EGO",
+    "observation": "head-only original observation/reference protocol",
+    "model_input_whitelist": "native30_refinement.model_inputs",
+    "body_and_scene_contract": "Original201-channel native body, rest/body profile and original visible static/dynamic scene inputs; same native coordinate/units/reference convention.",
+    "EXO_validated_by_this_trial": false
+  },
+  "loading": {
+    "existing_loader": "ego_scene_review.load_model(declaration, SOURCE_CONFIG, device), then explicitly set model.guidance_enabled=False; passing modified INFERENCE_CONFIG to its source-config identity guard is invalid.",
+    "direct_factory": "make_model(INFERENCE_CONFIG); load_state_dict(checkpoint[model],strict=True); source_config/only-override/tensor identity checks are bound by DEPLOYMENT_CHECK.",
+    "viewer": "ops view/motion_viewer loads existing compatible prediction NPZ archives, not weights; explicit clean/noisy archives are required for these filenames."
+  },
+  "validation_scope": {
+    "recordings": 43,
+    "datasets": {
+      "rich": 27,
+      "trumans": 8,
+      "egobody": 8
+    },
+    "dev_recordings": 12,
+    "confirmation_recordings": 31,
+    "confirmation_datasets": {
+      "rich": 23,
+      "trumans": 4,
+      "egobody": 4
+    },
+    "diffusion_seed_indices": [
+      0,
+      1
+    ],
+    "training_seeds": 1,
+    "predictions_per_seed": 430,
+    "total_predictions": 860,
+    "paired_model_arm_observation_identities": 430,
+    "source_observations": 86,
+    "TEST_used": false
+  },
+  "conclusions": {
+    "control_vs41k_RICH_combined": {
+      "recordings": 27,
+      "candidate_mean": 170.7694431969867,
+      "comparator_mean": 172.28963118612575,
+      "mean_delta_mm": -1.5201879891390389,
+      "confidence_interval_95pct_mm": [
+        -5.84932124597341,
+        2.6477249507218885
+      ],
+      "relative_improvement_fraction": 0.00882344444452819,
+      "bootstrap_draws": 10000,
+      "bootstrap_seed": 2026101807,
+      "method": "Recording-paired percentile bootstrap; clean/noisy and both DDIM seeds averaged within recording first."
+    },
+    "fusion_verdict": "reject",
+    "official_baseline_replaced": false,
+    "foot_floating_or_collision_solved": false,
+    "interpretation": "Control has favorable descriptive average/foot proxies but RICH World confidence interval crosses zero; do not claim statistically established RICH improvement, official TEST performance, or cross-training-seed generalization."
+  },
+  "evidence": {
+    "training_plan": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/PLAN.json",
+      "sha256": "0de163211d2be2a2486ece19a42504c9ad022e7f30206ae6ffe1db0f734e2818"
+    },
+    "matched3000": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/UPDATE_SANITY_3000.json",
+      "sha256": "108a144b774e4b4264be17f2710a1abfcafb5f366307243aba311abdaeff30ec"
+    },
+    "formal_fusion_decision": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_combined/DECISION.json",
+      "sha256": "c606a04e1c49dbad15e5b1101b8eb5f1fe65cf3e10d722f2b88bba8d3cde8496"
+    },
+    "descriptive_review": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_combined/FINAL_REVIEW.json",
+      "sha256": "262265fb0406e5542ea0b11f872c79e4ec3bac7cd00f58649437c4b1afbd21bd"
+    },
+    "independent_audit": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_combined/INDEPENDENT_AUDIT.json",
+      "sha256": "ae1dbc8ab6596eb216216e944c87e7f8721cac694773235c1829116815623b9e"
+    },
+    "deployment": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/DEPLOYMENT_CHECK.json",
+      "sha256": "505c3ebca7674761ba735288bc6fbef9eff4f5be886a2836ba8c52fd7beb7084"
+    },
+    "retention": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/RETENTION.json",
+      "sha256": "77a31cb02c8075b80840fb07902d7a6f06c3d1b5c5b639928b93e0092a588b26"
+    }
+  },
+  "retained_official_models": "Official best41k and last55k remain protected and unchanged.",
+  "prediction_retention": "All516 final base41k/control prediction NPZ retained; rejected fusion, intermediate1k and obsoletecontrol500 arrays/weights retired after audits. See CLEANUP.json; historical audits are pre-cleanup evidence.",
+  "no_additional_training_or_evaluation_launched": true
+}

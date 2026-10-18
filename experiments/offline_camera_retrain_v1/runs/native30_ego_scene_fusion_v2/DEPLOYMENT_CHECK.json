@@ -1,0 +1,126 @@
+{
+  "protocol": "original-control3000-runtime-inference-config-deployment-check-v1",
+  "status": "CPU_strict_load_passed",
+  "checked_at": "2026-10-19T04:30:03.750331+08:00",
+  "scope": "CPU make_model(INFERENCE_CONFIG) and exact checkpoint identity/strict state/contract validation only; no forward, sampling, metric evaluation or GPU.",
+  "selection_status": "selected_for_next_stage_useful_control_fixed_VAL",
+  "checkpoint": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0/checkpoints/control.pt",
+    "sha256": "1df509cf10d5cc15d7762989c5795c0c347590465bbc95d2f50135784381bf22",
+    "bytes": 1477972456,
+    "device": 2096,
+    "inode": 2349852,
+    "nlink": 3,
+    "model_tensor_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+    "architecture": "original",
+    "step": 3000,
+    "parent_step": 41000,
+    "stage_plan_sha256": "0de163211d2be2a2486ece19a42504c9ad022e7f30206ae6ffe1db0f734e2818",
+    "resumable_source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/control/training/last.pt",
+    "full_optimizer_RNG_retained": true,
+    "resumption_keys": [
+      "training_config",
+      "planned_steps",
+      "optimizer",
+      "optimizer_group_spec",
+      "counts",
+      "data_rng",
+      "condition_rng",
+      "torch_rng",
+      "cuda_rng",
+      "numpy_rng"
+    ]
+  },
+  "source_config": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+    "file_sha256": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad",
+    "json_canonical_sha256": "36a42ee85b6b4218fab7db0515c8f1e0f9f86dc17cfa138706852ba2711a4a87",
+    "checkpoint_config_exactly_matches": true,
+    "training_PLAN_config_exactly_matches": true,
+    "final_evaluation_config_exactly_matches": true
+  },
+  "inference_config": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/INFERENCE_CONFIG.json",
+    "file_sha256": "7449e0bc48abf4a153f5cb36f302fc3f167ae101cf9bdb3d623acbd61168f650",
+    "json_canonical_sha256": "31545332ac4f71907ca26b5cafc937b56bdfb598aecc5472e2626300a6ad1633",
+    "only_differences": [
+      {
+        "path": "/physical_guidance/enabled",
+        "source": true,
+        "inference": false
+      }
+    ]
+  },
+  "strict_load": {
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "state_dict_tensors": 317,
+    "trainable_parameter_tensors": 315,
+    "parameters": 122667536,
+    "all_state_finite": true,
+    "tensor_sha_matches_evaluated_checkpoint": true,
+    "no_extra_fusion_or_attention_attached": true
+  },
+  "runtime_contract": {
+    "class_name": "Native30SceneRelations",
+    "architecture": "original",
+    "guidance_enabled": false,
+    "observation_anchor_gain": 0.9,
+    "joint_anchor_gain": 0.9,
+    "joint_anchor_iterations": 6,
+    "joint_anchor_damping_m2": 0.0025,
+    "joint_anchor_angle_limit_rad": 0.35,
+    "joint_anchor_compact": false,
+    "root_limit_m": 0.08,
+    "rotation_limit_rad": 0.12,
+    "feedback_gain": 1.0,
+    "query_backend": "cuda_exact_radius_v1",
+    "camera_enabled": true,
+    "patch_enabled": true,
+    "local_enabled": true,
+    "feedback_enabled": true,
+    "relations_config": {
+      "enabled": true,
+      "radius_m": 1.5,
+      "support_radius_m": 1.25,
+      "gain": 1.0,
+      "neighbors": 4,
+      "supervision": "observed-GT-calibrated-region-and-weak-contact-v2",
+      "input_policy": "predicted body and trusted tracks only; broad upward samples are context, not completed surfaces"
+    }
+  },
+  "inference_route": {
+    "use_scene": true,
+    "guidance_enabled": false,
+    "original_observation_anchor_and_IK_preserved": true,
+    "frames": 192,
+    "fps": 30,
+    "ddim_steps": 20,
+    "diffusion_target": "reference_residual",
+    "seed": "explicit caller-provided sampling seed",
+    "model_inputs": "original model_inputs(config,batch) whitelist and observation-derived reference",
+    "tracker_included": false
+  },
+  "compatibility": {
+    "existing_identity_checked_loader": "Pass original SOURCE_CONFIG to ego_scene_review/evaluation.load_model, then explicitly apply inference guidance_enabled=False. Passing modified INFERENCE_CONFIG to these strict source-config loaders is intentionally rejected.",
+    "factory_load": "make_model(INFERENCE_CONFIG), then strict load original model state; validated here without temporary evaluation patches.",
+    "viewer": "motion_viewer consumes existing prediction archives and a flat step/checkpoint_sha256 record, not model weights.",
+    "rich_test_cli": "Existing ops.rich_test.evaluate hardsets guidance_enabled=True; it does not preserve this verified physicsOFF runtime recipe."
+  },
+  "CUDA_initialized": false,
+  "forward_run": false,
+  "DDIM_run": false,
+  "model_or_optimizer_updated": false,
+  "checkpoint_stat_unchanged": true,
+  "protected_official_models_modified": false,
+  "selection_confirmed_at": "2026-10-19T04:36:19.429390+08:00",
+  "independent_final_review": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_combined/INDEPENDENT_AUDIT.json",
+    "sha256": "ae1dbc8ab6596eb216216e944c87e7f8721cac694773235c1829116815623b9e",
+    "status": "independent_numpy_final860_audit_passed"
+  },
+  "retention_decision": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/RETENTION.json",
+    "sha256": "77a31cb02c8075b80840fb07902d7a6f06c3d1b5c5b639928b93e0092a588b26"
+  }
+}

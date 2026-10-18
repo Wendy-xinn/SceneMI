@@ -1,6 +1,8 @@
 # 当前实验入口
 
-2026-10-19 新增主干内的 22 身体区域场景融合配对实验：[结构、验证与采纳标准](native30_ego_scene_fusion_v2/DESIGN_zh.md) · [后台流水线](native30_ego_scene_fusion_v2/PIPELINE.json)。从原 41k 独立开始，训练关闭迭代物理修正；先检查 1000 更新，再依据配对验证决定是否推进固定 3000 更新预算。该实验未替换正式权重，收益以完成后的独立验证为准。
+2026-10-19 身体区域场景融合实验已完成：两臂各续训3000更新，43录制、两个采样种子共860次预测通过独立审计。新增cross-attention未通过注册采纳标准；保留原结构control3000作后续工程候选，正式41k/55k不替换。control在RICH开启场景比关闭平均降低49.35mm World误差，但相对41k的1.52mm改善尚不显著。入口：[完整结果](native30_ego_scene_fusion_v2/REPORT_zh.md) · [候选模型与推理合同](native30_ego_scene_fusion_v2/SELECTED_MODEL.json) · [正式判定](native30_ego_scene_fusion_v2/final_combined/DECISION.json)。
+
+本轮已按精确身份删除1k中间权重/预测、被取代的control500及拒绝的fusion3000资产，释放5.67GiB；保留正式模型、完整可恢复control3000、516份最终base/control预测和全部封印源码。[逐文件清理记录](native30_ego_scene_fusion_v2/CLEANUP.json)；相关旧审计是清理前证据。
 
 2026-10-18 晚间主线调整为先验证 EGO 与场景、EXO 后置：[场景通路与主干 cross-attention 对照](native30_ego_scene_attention_trial/REPORT_zh.md) 汇总同 41k 权重的场景/反馈消融，以及同输入、同噪声的原结构与 attention 配对短训。原正式 41k/55k 不替换；短程结果不代替完整 TEST。
 
@@ -12,8 +14,8 @@
 
 | 要看什么 | 入口 |
 |---|---|
-| 身体区域主干融合 v2 | [设计](native30_ego_scene_fusion_v2/DESIGN_zh.md) · [固定训练配置](native30_ego_scene_fusion_v2/PLAN.json) · [进程与阶段](native30_ego_scene_fusion_v2/PIPELINE.json) · [原模型保护](native30_ego_scene_fusion_v2/PROTECTED_MODELS.json) |
-| EGO 场景/attention 当前实验 | [统一报告](native30_ego_scene_attention_trial/REPORT_zh.md) · [配对训练审计](native30_ego_scene_attention_trial/MATCHED_AUDIT.json) · [场景 CPU 复核](native30_ego_scene_review/CPU_RECHECK.json) · [反馈策略审计](native30_ego_scene_feedback_review/AUDIT_FINDINGS_zh.md) |
+| 身体区域主干融合 v2（已完成） | [最终报告](native30_ego_scene_fusion_v2/REPORT_zh.md) · [选定工程候选](native30_ego_scene_fusion_v2/SELECTED_MODEL.json) · [固定训练配置](native30_ego_scene_fusion_v2/PLAN.json) · [最终状态](native30_ego_scene_fusion_v2/STATUS.json) |
+| 历史 EGO 场景/attention 对照 | [历史报告](native30_ego_scene_attention_trial/REPORT_zh.md) · [配对训练审计](native30_ego_scene_attention_trial/MATCHED_AUDIT.json) · [场景 CPU 复核](native30_ego_scene_review/CPU_RECHECK.json) · [新控制组及退役记录](native30_ego_scene_fusion_v2/RETENTION.json) |
 | 55k 完成状态 | [STATUS.json](native30_gait_v2_ego55k_oct15/continuous_training_oct16/STATUS.json) |
 | RICH TEST实时进度 | [STATUS.json](rich_test_ego41k/STATUS.json) · [逐窗与汇总](rich_test_ego41k/SUMMARY.json) |
 | EXO适配完成结果 | [结果与取舍](native30_ego_exo_adapt_v1/RESULTS_zh.md) · [逐窗指标](native30_ego_exo_adapt_v1/RESULTS_SUMMARY.json) · [CPU验收](native30_ego_exo_adapt_v1/CPU_RECHECK.json) |

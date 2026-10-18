@@ -1,0 +1,78 @@
+{
+  "protocol": "standard-matplotlib-final-results-figure-v1",
+  "source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_combined/FINAL_REVIEW.json",
+  "source_sha256": "262265fb0406e5542ea0b11f872c79e4ec3bac7cd00f58649437c4b1afbd21bd",
+  "output": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/RESULTS.png",
+  "output_sha256": "344e596827d037a3baba779ce3b95be4233124a6223344892eba56aceb3e2d23",
+  "datasets": [
+    "rich",
+    "trumans",
+    "egobody"
+  ],
+  "recordings": [
+    27,
+    8,
+    8
+  ],
+  "models": [
+    "base41k",
+    "control",
+    "fusion"
+  ],
+  "aggregation": "Per-recording mean over two DDIM seeds and clean/noisy; equal recording within each dataset. Descriptive means; no error bars.",
+  "data": {
+    "world_mm": {
+      "base41k": [
+        172.28963118612572,
+        108.51248617737568,
+        149.8791566995782
+      ],
+      "control": [
+        170.76944319698669,
+        94.48284325594935,
+        143.19731272056254
+      ],
+      "fusion": [
+        170.9202967805028,
+        94.56901566061917,
+        143.53300522801578
+      ]
+    },
+    "same_model_scene_world_reduction_mm": {
+      "control": [
+        49.35398363716894,
+        45.124529079778995,
+        18.890874709310168
+      ],
+      "fusion": [
+        48.751991857916806,
+        45.41101923888674,
+        18.5928795063017
+      ]
+    },
+    "GT_low_horizontal_foot_speed_m_s": {
+      "base41k": [
+        0.26948182322705483,
+        0.16951801643135256,
+        0.16161386443019055
+      ],
+      "control": [
+        0.25599375442180355,
+        0.14646233353374932,
+        0.15027689014881884
+      ],
+      "fusion": [
+        0.25665278935592506,
+        0.14805678592256788,
+        0.1499819511720867
+      ]
+    }
+  },
+  "limitations": [
+    "No scene-off41k included in this run.",
+    "Same-model scene off/on is a condition ablation, not independently trained no-scene baseline.",
+    "GT-low foot velocity proxy is not contact, penetration or floating frequency.",
+    "Control-vs-base41k RICH World paired95% interval crosses0."
+  ],
+  "created_without_new_script": true
+}

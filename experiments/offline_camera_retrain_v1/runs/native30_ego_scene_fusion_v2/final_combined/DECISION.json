@@ -1,0 +1,556 @@
+{
+  "protocol": "fixed-recording-ego-scene-fusion-evaluation-v1",
+  "status": "reject",
+  "checked_at": "2026-10-19T04:24:17.790371+08:00",
+  "acceptance": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/ACCEPTANCE.json",
+  "acceptance_sha256": "1d81dda650ae4268f3c2e554a24cf89cd5d51002abff13b8ce1a3f23f52a54cd",
+  "checkpoint_labels": {
+    "base41k": "base41k",
+    "control": "control",
+    "fusion": "fusion"
+  },
+  "seed_outputs": [
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0",
+      "plan_sha256": "6c6a91a7d28e45db994e27988175ddf2b3991a76cf764a7adb8e096a61e53e47",
+      "rows_sha256": "37a7a14dcd4f22a5ae168a79394050b01439b2cde736f313d9bc38bbf15abeb6",
+      "CPU_recheck_sha256": "2dc982182148052185137fd3c9edf3e0e49798d17f3a1fa3115883a7b51657dc"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed1",
+      "plan_sha256": "08771ffaf68e0c396e45ff91a219005fc72d46bcb11ff437e2410033c0a76372",
+      "rows_sha256": "4a2390162beb8748c750b695d198de3f827da95047b1ed6ae157c1341f84eb61",
+      "CPU_recheck_sha256": "d6ba6a4ef57ae969be2e32aeec17ab7efe6a266aea5e40f8541e4de2757f267a"
+    }
+  ],
+  "comparisons": {
+    "control": {
+      "primary": {
+        "recordings": 27,
+        "candidate_mean": 170.9202967805028,
+        "comparator_mean": 170.7694431969867,
+        "mean_delta_mm": 0.15085358351613715,
+        "confidence_interval_95pct_mm": [
+          -0.1267265907027469,
+          0.45393314846347155
+        ],
+        "relative_improvement_fraction": -0.0008833757415375671,
+        "bootstrap_draws": 10000,
+        "bootstrap_seed": 2026101807,
+        "method": "Recording-paired percentile bootstrap; clean/noisy and both DDIM seeds averaged within recording first."
+      },
+      "guards": [
+        {
+          "name": "RICH_mean_World_relative_improvement",
+          "candidate": 170.9202967805028,
+          "comparator": 170.7694431969867,
+          "delta": 0.15085358351609557,
+          "maximum_allowed_regression": -1.7076944319698673,
+          "passed": false
+        },
+        {
+          "name": "RICH_bootstrap_upper_delta_mm",
+          "candidate": 0.45393314846347155,
+          "comparator": 0.0,
+          "delta": 0.45393314846347155,
+          "maximum_allowed_regression": 0.0,
+          "passed": false
+        },
+        {
+          "name": "rich/clean/World",
+          "candidate": 161.8877382363434,
+          "comparator": 161.82562249165397,
+          "delta": 0.062115744689435815,
+          "maximum_allowed_regression": 0.0,
+          "passed": false
+        },
+        {
+          "name": "rich/clean/PA",
+          "candidate": 130.24824455535762,
+          "comparator": 130.14243573869734,
+          "delta": 0.10580881666027153,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        },
+        {
+          "name": "trumans/clean/World",
+          "candidate": 84.20589476633799,
+          "comparator": 84.18042727240577,
+          "delta": 0.025467493932225693,
+          "maximum_allowed_regression": 2.0,
+          "passed": true
+        },
+        {
+          "name": "egobody/clean/World",
+          "candidate": 141.08720426474787,
+          "comparator": 140.70871832020228,
+          "delta": 0.3784859445455879,
+          "maximum_allowed_regression": 2.8141743664040457,
+          "passed": true
+        },
+        {
+          "name": "rich/clean/foot_horizontal_m_s",
+          "candidate": 0.24087768242096946,
+          "comparator": 0.24015904610680497,
+          "delta": 0.0007186363141644947,
+          "maximum_allowed_regression": 0.012007952305340248,
+          "passed": true
+        },
+        {
+          "name": "rich/clean/foot_y_abs_mm",
+          "candidate": 59.740648694306955,
+          "comparator": 59.778383858451605,
+          "delta": -0.0377351641446495,
+          "maximum_allowed_regression": 5.0,
+          "passed": true
+        },
+        {
+          "name": "rich/clean/acceleration_mm_s2",
+          "candidate": 6811.518275163787,
+          "comparator": 6804.823511036108,
+          "delta": 6.694764127678354,
+          "maximum_allowed_regression": 340.24117555180544,
+          "passed": true
+        },
+        {
+          "name": "rich/clean/observed_head_mm",
+          "candidate": 0.08749204742153446,
+          "comparator": 0.08811232663025703,
+          "delta": -0.0006202792087225684,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        },
+        {
+          "name": "macro/clean/foot_horizontal_m_s",
+          "candidate": 0.17216283394815657,
+          "comparator": 0.1716581665582927,
+          "delta": 0.0005046673898638776,
+          "maximum_allowed_regression": 0.01,
+          "passed": true
+        },
+        {
+          "name": "macro/clean/foot_y_abs_mm",
+          "candidate": 50.63798563856581,
+          "comparator": 50.42009884205315,
+          "delta": 0.21788679651265852,
+          "maximum_allowed_regression": 5.0,
+          "passed": true
+        },
+        {
+          "name": "macro/clean/acceleration_mm_s2",
+          "candidate": 4676.553312525909,
+          "comparator": 4670.703230275978,
+          "delta": 5.850082249930892,
+          "maximum_allowed_regression": 233.53516151379893,
+          "passed": true
+        },
+        {
+          "name": "macro/clean/observed_head_mm",
+          "candidate": 0.9986749058982677,
+          "comparator": 1.0048527858320937,
+          "delta": -0.006177879933826014,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/World",
+          "candidate": 179.9528553246622,
+          "comparator": 179.71326390231937,
+          "delta": 0.2395914223428406,
+          "maximum_allowed_regression": 0.0,
+          "passed": false
+        },
+        {
+          "name": "rich/noisy/PA",
+          "candidate": 139.4278228911871,
+          "comparator": 139.1949959153364,
+          "delta": 0.23282697585071332,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        },
+        {
+          "name": "trumans/noisy/World",
+          "candidate": 104.93213655490035,
+          "comparator": 104.78525923949292,
+          "delta": 0.14687731540743698,
+          "maximum_allowed_regression": 2.0957051847898582,
+          "passed": true
+        },
+        {
+          "name": "egobody/noisy/World",
+          "candidate": 145.9788061912837,
+          "comparator": 145.68590712092276,
+          "delta": 0.29289907036093155,
+          "maximum_allowed_regression": 2.9137181424184555,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/foot_horizontal_m_s",
+          "candidate": 0.27242789629088066,
+          "comparator": 0.2718284627368021,
+          "delta": 0.0005994335540785434,
+          "maximum_allowed_regression": 0.013591423136840107,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/foot_y_abs_mm",
+          "candidate": 70.1363470403903,
+          "comparator": 70.20278625696162,
+          "delta": -0.06643921657131102,
+          "maximum_allowed_regression": 5.0,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/acceleration_mm_s2",
+          "candidate": 7676.994298812346,
+          "comparator": 7669.7941471677605,
+          "delta": 7.200151644585276,
+          "maximum_allowed_regression": 383.48970735838805,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/observed_head_mm",
+          "candidate": 9.275162643350587,
+          "comparator": 9.286559635606427,
+          "delta": -0.011396992255839677,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        },
+        {
+          "name": "macro/noisy/foot_horizontal_m_s",
+          "candidate": 0.1976315170188965,
+          "comparator": 0.19683048551128843,
+          "delta": 0.0008010315076080743,
+          "maximum_allowed_regression": 0.01,
+          "passed": true
+        },
+        {
+          "name": "macro/noisy/foot_y_abs_mm",
+          "candidate": 58.81058790832624,
+          "comparator": 58.54072416124103,
+          "delta": 0.26986374708521055,
+          "maximum_allowed_regression": 5.0,
+          "passed": true
+        },
+        {
+          "name": "macro/noisy/acceleration_mm_s2",
+          "candidate": 5157.639827604804,
+          "comparator": 5155.498347079313,
+          "delta": 2.141480525490806,
+          "maximum_allowed_regression": 257.7749173539657,
+          "passed": true
+        },
+        {
+          "name": "macro/noisy/observed_head_mm",
+          "candidate": 8.734273121305357,
+          "comparator": 8.755573265995793,
+          "delta": -0.02130014469043573,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        }
+      ],
+      "monitors": [
+        {
+          "name": "rich/clean/observed_head_mm",
+          "candidate": 0.08749204742153446,
+          "comparator": 0.08811232663025703,
+          "delta": -0.0006202792087225684,
+          "binding": true
+        },
+        {
+          "name": "macro/clean/observed_head_mm",
+          "candidate": 0.9986749058982677,
+          "comparator": 1.0048527858320937,
+          "delta": -0.006177879933826014,
+          "binding": true
+        },
+        {
+          "name": "rich/noisy/observed_head_mm",
+          "candidate": 9.275162643350587,
+          "comparator": 9.286559635606427,
+          "delta": -0.011396992255839677,
+          "binding": true
+        },
+        {
+          "name": "macro/noisy/observed_head_mm",
+          "candidate": 8.734273121305357,
+          "comparator": 8.755573265995793,
+          "delta": -0.02130014469043573,
+          "binding": true
+        }
+      ],
+      "passed": false,
+      "failed_checks": [
+        "RICH_mean_World_relative_improvement",
+        "RICH_bootstrap_upper_delta_mm",
+        "rich/clean/World",
+        "rich/noisy/World"
+      ]
+    },
+    "base41k": {
+      "primary": {
+        "recordings": 27,
+        "candidate_mean": 170.9202967805028,
+        "comparator_mean": 172.28963118612575,
+        "mean_delta_mm": -1.3693344056229018,
+        "confidence_interval_95pct_mm": [
+          -5.673462345741168,
+          2.784267746625842
+        ],
+        "relative_improvement_fraction": 0.007947863119769723,
+        "bootstrap_draws": 10000,
+        "bootstrap_seed": 2026101807,
+        "method": "Recording-paired percentile bootstrap; clean/noisy and both DDIM seeds averaged within recording first."
+      },
+      "guards": [
+        {
+          "name": "RICH_mean_World_relative_improvement",
+          "candidate": 170.9202967805028,
+          "comparator": 172.28963118612575,
+          "delta": -1.3693344056229364,
+          "maximum_allowed_regression": -1.7228963118612575,
+          "passed": false
+        },
+        {
+          "name": "RICH_bootstrap_upper_delta_mm",
+          "candidate": 2.784267746625842,
+          "comparator": 0.0,
+          "delta": 2.784267746625842,
+          "maximum_allowed_regression": 0.0,
+          "passed": false
+        },
+        {
+          "name": "rich/clean/World",
+          "candidate": 161.8877382363434,
+          "comparator": 164.42358543525347,
+          "delta": -2.535847198910062,
+          "maximum_allowed_regression": 0.0,
+          "passed": true
+        },
+        {
+          "name": "rich/clean/PA",
+          "candidate": 130.24824455535762,
+          "comparator": 134.91864177484834,
+          "delta": -4.670397219490724,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        },
+        {
+          "name": "trumans/clean/World",
+          "candidate": 84.20589476633799,
+          "comparator": 97.57609282335585,
+          "delta": -13.37019805701786,
+          "maximum_allowed_regression": 2.0,
+          "passed": true
+        },
+        {
+          "name": "egobody/clean/World",
+          "candidate": 141.08720426474787,
+          "comparator": 145.1201487354277,
+          "delta": -4.032944470679837,
+          "maximum_allowed_regression": 2.9024029747085542,
+          "passed": true
+        },
+        {
+          "name": "rich/clean/foot_horizontal_m_s",
+          "candidate": 0.24087768242096946,
+          "comparator": 0.25427679950090404,
+          "delta": -0.013399117079934575,
+          "maximum_allowed_regression": 0.012713839975045202,
+          "passed": true
+        },
+        {
+          "name": "rich/clean/foot_y_abs_mm",
+          "candidate": 59.740648694306955,
+          "comparator": 62.14634552174018,
+          "delta": -2.405696827433225,
+          "maximum_allowed_regression": 5.0,
+          "passed": true
+        },
+        {
+          "name": "rich/clean/acceleration_mm_s2",
+          "candidate": 6811.518275163787,
+          "comparator": 7041.151748126688,
+          "delta": -229.63347296290158,
+          "maximum_allowed_regression": 352.05758740633445,
+          "passed": true
+        },
+        {
+          "name": "rich/clean/observed_head_mm",
+          "candidate": 0.08749204742153446,
+          "comparator": 0.11555535496900429,
+          "delta": -0.02806330754746983,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        },
+        {
+          "name": "macro/clean/foot_horizontal_m_s",
+          "candidate": 0.17216283394815657,
+          "comparator": 0.187431826449334,
+          "delta": -0.015268992501177442,
+          "maximum_allowed_regression": 0.01,
+          "passed": true
+        },
+        {
+          "name": "macro/clean/foot_y_abs_mm",
+          "candidate": 50.63798563856581,
+          "comparator": 59.92827315466505,
+          "delta": -9.29028751609924,
+          "maximum_allowed_regression": 5.0,
+          "passed": true
+        },
+        {
+          "name": "macro/clean/acceleration_mm_s2",
+          "candidate": 4676.553312525909,
+          "comparator": 4888.794119338466,
+          "delta": -212.2408068125569,
+          "maximum_allowed_regression": 244.4397059669233,
+          "passed": true
+        },
+        {
+          "name": "macro/clean/observed_head_mm",
+          "candidate": 0.9986749058982677,
+          "comparator": 0.9692175122623528,
+          "delta": 0.02945739363591493,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/World",
+          "candidate": 179.9528553246622,
+          "comparator": 180.15567693699796,
+          "delta": -0.2028216123357538,
+          "maximum_allowed_regression": 0.0,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/PA",
+          "candidate": 139.4278228911871,
+          "comparator": 140.71635241000698,
+          "delta": -1.288529518819871,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        },
+        {
+          "name": "trumans/noisy/World",
+          "candidate": 104.93213655490035,
+          "comparator": 119.4488795313955,
+          "delta": -14.516742976495152,
+          "maximum_allowed_regression": 2.3889775906279103,
+          "passed": true
+        },
+        {
+          "name": "egobody/noisy/World",
+          "candidate": 145.9788061912837,
+          "comparator": 154.6381646637287,
+          "delta": -8.659358472445007,
+          "maximum_allowed_regression": 3.092763293274574,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/foot_horizontal_m_s",
+          "candidate": 0.27242789629088066,
+          "comparator": 0.2846868469532056,
+          "delta": -0.012258950662324963,
+          "maximum_allowed_regression": 0.014234342347660281,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/foot_y_abs_mm",
+          "candidate": 70.1363470403903,
+          "comparator": 70.7781762885358,
+          "delta": -0.6418292481454984,
+          "maximum_allowed_regression": 5.0,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/acceleration_mm_s2",
+          "candidate": 7676.994298812346,
+          "comparator": 7878.747717938344,
+          "delta": -201.75341912599833,
+          "maximum_allowed_regression": 393.93738589691725,
+          "passed": true
+        },
+        {
+          "name": "rich/noisy/observed_head_mm",
+          "candidate": 9.275162643350587,
+          "comparator": 10.212088989695278,
+          "delta": -0.9369263463446913,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        },
+        {
+          "name": "macro/noisy/foot_horizontal_m_s",
+          "candidate": 0.1976315170188965,
+          "comparator": 0.2129773096097313,
+          "delta": -0.015345792590834795,
+          "maximum_allowed_regression": 0.010648865480486566,
+          "passed": true
+        },
+        {
+          "name": "macro/noisy/foot_y_abs_mm",
+          "candidate": 58.81058790832624,
+          "comparator": 68.08366085918392,
+          "delta": -9.273072950857681,
+          "maximum_allowed_regression": 5.0,
+          "passed": true
+        },
+        {
+          "name": "macro/noisy/acceleration_mm_s2",
+          "candidate": 5157.639827604804,
+          "comparator": 5390.837145868105,
+          "delta": -233.19731826330099,
+          "maximum_allowed_regression": 269.54185729340526,
+          "passed": true
+        },
+        {
+          "name": "macro/noisy/observed_head_mm",
+          "candidate": 8.734273121305357,
+          "comparator": 8.728596224802065,
+          "delta": 0.005676896503292284,
+          "maximum_allowed_regression": 1.0,
+          "passed": true
+        }
+      ],
+      "monitors": [
+        {
+          "name": "rich/clean/observed_head_mm",
+          "candidate": 0.08749204742153446,
+          "comparator": 0.11555535496900429,
+          "delta": -0.02806330754746983,
+          "binding": true
+        },
+        {
+          "name": "macro/clean/observed_head_mm",
+          "candidate": 0.9986749058982677,
+          "comparator": 0.9692175122623528,
+          "delta": 0.02945739363591493,
+          "binding": true
+        },
+        {
+          "name": "rich/noisy/observed_head_mm",
+          "candidate": 9.275162643350587,
+          "comparator": 10.212088989695278,
+          "delta": -0.9369263463446913,
+          "binding": true
+        },
+        {
+          "name": "macro/noisy/observed_head_mm",
+          "candidate": 8.734273121305357,
+          "comparator": 8.728596224802065,
+          "delta": 0.005676896503292284,
+          "binding": true
+        }
+      ],
+      "passed": false,
+      "failed_checks": [
+        "RICH_mean_World_relative_improvement",
+        "RICH_bootstrap_upper_delta_mm"
+      ]
+    }
+  },
+  "foot_y_and_acceleration_guard_scope": "RICH and equal-dataset macro, separately each clean/noisy regime.",
+  "interpretation": "Pass requires all registered checks against both comparators. A pass supports this fixed VAL cohort only; no automatic promotion or TEST claim.",
+  "automatic_checkpoint_promotion": false,
+  "TEST_used": false
+}

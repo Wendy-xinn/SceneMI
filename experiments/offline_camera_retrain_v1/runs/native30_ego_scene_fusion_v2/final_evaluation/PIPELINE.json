@@ -1,0 +1,228 @@
+{
+  "protocol": "fixed-final3000-two-seed-sequential-evaluation-v2",
+  "status": "completed",
+  "started_at": "2026-10-19T01:47:12.772294+08:00",
+  "pid": 52177,
+  "stage_updates": 3000,
+  "expected_predictions_per_seed": 430,
+  "expected_total_predictions": 860,
+  "cohort_panel": "all",
+  "recordings": 43,
+  "dev_recordings": 12,
+  "confirmation_recordings": 31,
+  "diffusion_seed_indices": [
+    0,
+    1
+  ],
+  "TEST_used": false,
+  "physics_OFF_all": true,
+  "automatic_training_extension": false,
+  "automatic_checkpoint_promotion": false,
+  "events": [
+    {
+      "stage": "prepare_seed0",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "prepare",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0",
+        "--models",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_evaluation/INPUT_MODELS.json",
+        "--panel",
+        "all",
+        "--seed-index",
+        "0",
+        "--arms",
+        "learned_only"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T02:58:12.102095+08:00",
+      "pid": 54794,
+      "returncode": 0,
+      "ended_at": "2026-10-19T02:58:35.330421+08:00"
+    },
+    {
+      "stage": "prepare_seed1",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "prepare",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed1",
+        "--models",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_evaluation/INPUT_MODELS.json",
+        "--panel",
+        "all",
+        "--seed-index",
+        "1",
+        "--arms",
+        "learned_only"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T02:58:36.585704+08:00",
+      "pid": 54867,
+      "returncode": 0,
+      "ended_at": "2026-10-19T02:58:56.099404+08:00"
+    },
+    {
+      "stage": "evaluate_seed0",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "evaluate",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0",
+        "--resume",
+        "--memory-fraction",
+        ".65"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T02:59:00.788747+08:00",
+      "pid": 54945,
+      "returncode": 0,
+      "ended_at": "2026-10-19T03:40:51.859848+08:00"
+    },
+    {
+      "stage": "recheck_seed0",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "recheck",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T03:40:51.866872+08:00",
+      "pid": 58860,
+      "returncode": 0,
+      "ended_at": "2026-10-19T03:41:28.804403+08:00"
+    },
+    {
+      "stage": "evaluate_seed1",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "evaluate",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed1",
+        "--resume",
+        "--memory-fraction",
+        ".65"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T03:41:28.811370+08:00",
+      "pid": 58986,
+      "returncode": 0,
+      "ended_at": "2026-10-19T04:23:21.446601+08:00"
+    },
+    {
+      "stage": "recheck_seed1",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "recheck",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed1"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T04:23:21.453147+08:00",
+      "pid": 60207,
+      "returncode": 0,
+      "ended_at": "2026-10-19T04:23:57.607920+08:00"
+    },
+    {
+      "stage": "combine",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "combine",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_combined",
+        "--inputs",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed1"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T04:23:57.614795+08:00",
+      "pid": 60280,
+      "returncode": 0,
+      "ended_at": "2026-10-19T04:24:06.360917+08:00"
+    },
+    {
+      "stage": "decision",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation",
+        "decision",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_combined",
+        "--inputs",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed1",
+        "--acceptance",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/ACCEPTANCE.json"
+      ],
+      "status": "completed",
+      "started_at": "2026-10-19T04:24:06.367803+08:00",
+      "pid": 60352,
+      "returncode": 0,
+      "ended_at": "2026-10-19T04:24:18.321946+08:00"
+    }
+  ],
+  "training_snapshot": {
+    "pipeline_status": "completed",
+    "updates": {
+      "control": 3000,
+      "fusion": 3000
+    },
+    "audit_status": "passed",
+    "audit_updates": 3000,
+    "checked_at": "2026-10-19T02:58:10.995831+08:00"
+  },
+  "matched_audit3000_sha256": "108a144b774e4b4264be17f2710a1abfcafb5f366307243aba311abdaeff30ec",
+  "training_pipeline3000_sha256": "b1f4b1414a850294254f1235c6816dad582e8c185be42ea1c7c6c04941c9dbaf",
+  "both_seeds_pinned_before_sampling": true,
+  "heartbeat_at": "2026-10-19T04:23:54.934535+08:00",
+  "child_snapshot": {
+    "status": "sampling_completed_pending_cpu",
+    "pid": 58986,
+    "checked_at": "2026-10-19T04:23:20.707808+08:00",
+    "completed_predictions": 430,
+    "planned_predictions": 430
+  },
+  "ended_at": "2026-10-19T04:24:18.325101+08:00",
+  "completed_predictions": 860,
+  "decision_status": "reject",
+  "DECISION_sha256": "c606a04e1c49dbad15e5b1101b8eb5f1fe65cf3e10d722f2b88bba8d3cde8496",
+  "seed_outputs": [
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed0",
+      "PLAN_sha256": "6c6a91a7d28e45db994e27988175ddf2b3991a76cf764a7adb8e096a61e53e47",
+      "rows_sha256": "37a7a14dcd4f22a5ae168a79394050b01439b2cde736f313d9bc38bbf15abeb6",
+      "CPU_RECHECK_sha256": "2dc982182148052185137fd3c9edf3e0e49798d17f3a1fa3115883a7b51657dc"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/final_seed1",
+      "PLAN_sha256": "08771ffaf68e0c396e45ff91a219005fc72d46bcb11ff437e2410033c0a76372",
+      "rows_sha256": "4a2390162beb8748c750b695d198de3f827da95047b1ed6ae157c1341f84eb61",
+      "CPU_RECHECK_sha256": "d6ba6a4ef57ae969be2e32aeec17ab7efe6a266aea5e40f8541e4de2757f267a"
+    }
+  ]
+}
