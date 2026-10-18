@@ -1,0 +1,3860 @@
+{
+  "status": "independent_numpy_dev_audit_passed",
+  "checked_at": "2026-10-19T01:26:34.303478+08:00",
+  "scope": "Only 12 preregistered dev recordings x clean/noisy x base41k/control1000/fusion1000, DDIM seed0. No confirmation predictions, no final3000/all43 decision.",
+  "predictions": 72,
+  "recordings": 12,
+  "dataset_recordings": {
+    "rich": 4,
+    "trumans": 4,
+    "egobody": 4
+  },
+  "CUDA_initialized": false,
+  "physics_guide_calls": 0,
+  "physics_stage_energy_and_accepted_steps_all_zero": true,
+  "PLAN_sha256": "eac5efb9257dba61f73201a21a0449bcda4dd2f7433cd96851d1e8f7f9b8230b",
+  "rows_sha256": "f0d48bcfa96f8aa2f8d5f3d8e882e7285a44e7d8c0acccab2aa843f4bc38144c",
+  "CPU_RECHECK_sha256": "b431023d9122209b618f985a29730eb214514edb804525d9fca6dcb0c1cad6ab",
+  "MATCHED_AUDIT1000_sha256": "8ebb4cb50865984da347d31c26eb35f4a893663a92b4cde2ac9a46c19be149a9",
+  "source_dependencies_checked": 419,
+  "source_dependencies_all_match": true,
+  "cohort_sha256": "f2b5f011f0bd9413616a197b2f3257b5cc0a1f84e115eba5d92097b43f70b5d5",
+  "checkpoints": {
+    "base41k": {
+      "checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+      "model_tensor_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+      "step": 41000,
+      "architecture": "original",
+      "pinned_inode": 1480166
+    },
+    "control": {
+      "checkpoint_sha256": "f4d16c244e9447f7b24b47504c7606a353f0313b03bed833bc50fd148176da00",
+      "model_tensor_sha256": "b3470a29f6d17defc812648d63c9c12bc4f337fbf90d18a228b72dc554383642",
+      "step": 1000,
+      "architecture": "original",
+      "pinned_inode": 2349742
+    },
+    "fusion": {
+      "checkpoint_sha256": "4031accab32b0505e958e9b3db4ab1af43d23124382d7d8a35b823179b4e29a1",
+      "model_tensor_sha256": "dd1bd5ea37fe7764a145b629e0809eb40b6b4f0c1d644d9bd71d0260d50a8626",
+      "step": 1000,
+      "architecture": "scene_fusion_v2",
+      "pinned_inode": 2349684
+    }
+  },
+  "fresh_source_GT_rest_observations_exact": true,
+  "fresh_full_identity_exact": true,
+  "saved_reference_crossmodel_exact": true,
+  "fresh_reference_CPU_atol": 2e-05,
+  "fresh_reference_CPU_rtol": 2e-05,
+  "maximum_fresh_reference_CPU_absolute_difference": 3.5762786865234375e-07,
+  "model_input_label_whitelist_and_head_only_checked": true,
+  "paired_recursive_input_fingerprint_and_counts_exact": true,
+  "CPU_regenerated_recursive_fingerprint_exact_pairs": 0,
+  "CPU_regenerated_recursive_fingerprint_total_pairs": 24,
+  "input_fingerprint_scope_note": "Stored recursive input SHA is checked against artifact and exactly across models; fresh CPU input hashes can differ from GPU construction through floating reference math. Source sensor arrays are freshly exact; reference uses stated CPU/GPU tolerance.",
+  "maximum_independent_metric_difference": {
+    "w_mpjpe_mm": 0.0,
+    "pa_mpjpe_mm": 2.842170943040401e-14,
+    "observed_head_position_error_mm": 7.105427357601002e-15,
+    "foot_joint_horizontal_speed_gt_low_m_s": 0.0,
+    "foot_joint_vertical_speed_gt_low_m_s": 0.0,
+    "gt_foot_joint_horizontal_speed_gt_low_m_s": 0.0,
+    "gt_foot_joint_vertical_speed_gt_low_m_s": 0.0,
+    "foot_joint_y_abs_error_gt_low_mm": 0.0,
+    "foot_joint_y_signed_error_gt_low_mm": 0.0,
+    "root_y_signed_error_mm": 7.105427357601002e-15,
+    "root_y_abs_error_mm": 7.105427357601002e-15,
+    "predicted_root_y_mean_m": 0.0,
+    "gt_root_y_mean_m": 0.0,
+    "predicted_body_joint_vertical_extent_mean_m": 0.0,
+    "gt_body_joint_vertical_extent_mean_m": 0.0,
+    "body_joint_vertical_extent_abs_error_mm": 0.0,
+    "predicted_head_to_foot_vertical_span_mean_m": 0.0,
+    "gt_head_to_foot_vertical_span_mean_m": 0.0,
+    "head_to_foot_vertical_span_abs_error_mm": 7.105427357601002e-15,
+    "bilateral_motion_rms_m": 0.0,
+    "gt_bilateral_motion_rms_m": 0.0,
+    "bilateral_motion_rms_error_mm": 0.0,
+    "bilateral_motion_rms_ratio": 0.0,
+    "bilateral_stride_change_mean_m": 0.0,
+    "gt_bilateral_stride_change_mean_m": 0.0,
+    "bilateral_stride_change_abs_error_mm": 0.0,
+    "foot_joint_y_abs_error_mm": 1.7763568394002505e-15,
+    "acceleration_error_mm_s2": 0.0,
+    "observed_head_position_valid_frames": 0.0
+  },
+  "maximum_independent_difference": 2.842170943040401e-14,
+  "denominator_notes": [
+    "World/PA have 192*22 samples; acceleration has (192-2)*22 samples; no cross-window differences.",
+    "GT low-speed foot mask uses 3D GT joint speed<0.2m/s at30Hz; horizontal speed is predicted speed on that mask, not velocity error or measured stance.",
+    "Full-frame foot Y error uses 192*2 samples and compares GT joint height, not sole clearance or scene penetration.",
+    "Observed-head denominator uses input availability and positive confidence, recorded here separately because row.counts omits this metric.",
+    "Dataset reports are equal-recording window means; macro gives each dataset one third. Missing metric windows are skipped, never zero-imputed; all direct missingness/counts verified model-independent."
+  ],
+  "per_prediction": [
+    {
+      "case": 0,
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "2ca044d453810815e3f262ec03faa23113f8a63a07fd3b90a420b7e1dfe09c35",
+      "artifact_sha256": "dcb8fac87b2da79c6f1ee4f66a5b3c1ef54ce2691924c25894bd6f1943761869",
+      "GT_observation_array_sha256": "abad67089a8cb44d1acda003e31a77a62450da9831c72e3bfb90b199b9f5cdf7",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 196,
+        "left_gt_low_speed_foot_samples": 94,
+        "right_gt_low_speed_foot_samples": 102,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "2ca044d453810815e3f262ec03faa23113f8a63a07fd3b90a420b7e1dfe09c35",
+      "artifact_sha256": "2b750e92264dd1df8ff300c42d9319e67c9b2c68c311cc3f5be023d80abb98a0",
+      "GT_observation_array_sha256": "abad67089a8cb44d1acda003e31a77a62450da9831c72e3bfb90b199b9f5cdf7",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 196,
+        "left_gt_low_speed_foot_samples": 94,
+        "right_gt_low_speed_foot_samples": 102,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "2ca044d453810815e3f262ec03faa23113f8a63a07fd3b90a420b7e1dfe09c35",
+      "artifact_sha256": "17a27b6f3fa901710cc254785e8ba7a0f903576e0db44b11143cd3165a62cd5c",
+      "GT_observation_array_sha256": "abad67089a8cb44d1acda003e31a77a62450da9831c72e3bfb90b199b9f5cdf7",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 196,
+        "left_gt_low_speed_foot_samples": 94,
+        "right_gt_low_speed_foot_samples": 102,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "f9c4e03c3be210463fc96e0eef885f42d03c3a1cb6c5eaafa4df0bfc3fac4121",
+      "artifact_sha256": "a2d86b52385564c53cffe931a7c4bdc66b2585dbe35b8bca2f59c8527c5ea9f1",
+      "GT_observation_array_sha256": "4045b0aa3c052a9a1269edbaa3fabbd8d942f7d536cf04ab3155fe15495606d3",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 196,
+        "left_gt_low_speed_foot_samples": 94,
+        "right_gt_low_speed_foot_samples": 102,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "f9c4e03c3be210463fc96e0eef885f42d03c3a1cb6c5eaafa4df0bfc3fac4121",
+      "artifact_sha256": "7a4425e2dc847cf4b7654d25d6a23854a1242cfbf07e21dd1d7016dbceef0e83",
+      "GT_observation_array_sha256": "4045b0aa3c052a9a1269edbaa3fabbd8d942f7d536cf04ab3155fe15495606d3",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 196,
+        "left_gt_low_speed_foot_samples": 94,
+        "right_gt_low_speed_foot_samples": 102,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 0,
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "f9c4e03c3be210463fc96e0eef885f42d03c3a1cb6c5eaafa4df0bfc3fac4121",
+      "artifact_sha256": "7a411c4acb8293e60861533cab62cf76cb5b41be2fb0b2b9dc957e2f60f22def",
+      "GT_observation_array_sha256": "4045b0aa3c052a9a1269edbaa3fabbd8d942f7d536cf04ab3155fe15495606d3",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 196,
+        "left_gt_low_speed_foot_samples": 94,
+        "right_gt_low_speed_foot_samples": 102,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "89f82c9959c3cca528225bcbd503a3b47ec5608b431aebea9fb8f01782d5b4f2",
+      "artifact_sha256": "2f93de98fd3937d058cf8d520e4a8d6a09c3f61f9267beee335d7953c10ab590",
+      "GT_observation_array_sha256": "0030c7273cbf9b7910f7bbe7a151edfc1e5440011dcfb07344f954f225f470bf",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 293,
+        "left_gt_low_speed_foot_samples": 178,
+        "right_gt_low_speed_foot_samples": 115,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "89f82c9959c3cca528225bcbd503a3b47ec5608b431aebea9fb8f01782d5b4f2",
+      "artifact_sha256": "5b352296d9709359599c0de6fd84bf77a827d83455f04d37d51abd58da8e0a6b",
+      "GT_observation_array_sha256": "0030c7273cbf9b7910f7bbe7a151edfc1e5440011dcfb07344f954f225f470bf",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 293,
+        "left_gt_low_speed_foot_samples": 178,
+        "right_gt_low_speed_foot_samples": 115,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "89f82c9959c3cca528225bcbd503a3b47ec5608b431aebea9fb8f01782d5b4f2",
+      "artifact_sha256": "3f89e733e7930c31760ec4425a34148202ce098259c914dca85433fdf635f7a2",
+      "GT_observation_array_sha256": "0030c7273cbf9b7910f7bbe7a151edfc1e5440011dcfb07344f954f225f470bf",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 293,
+        "left_gt_low_speed_foot_samples": 178,
+        "right_gt_low_speed_foot_samples": 115,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "8ea9afc5be3e11cd9003a7cdf1c56b7aad37bdfcf6ea386e8086341c18f47e78",
+      "artifact_sha256": "a8d4937306f7ae93f07f550c304ee80030652e44b2295d05822bcc000d5d0e6f",
+      "GT_observation_array_sha256": "6e5fdcb6fcea73bb7d9d3e1e8ac583f503354de2900e60a1ac9a792863a5c394",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 293,
+        "left_gt_low_speed_foot_samples": 178,
+        "right_gt_low_speed_foot_samples": 115,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "8ea9afc5be3e11cd9003a7cdf1c56b7aad37bdfcf6ea386e8086341c18f47e78",
+      "artifact_sha256": "9b646a879504b7ded8b11dc3cbc2debd0ae7bd242c5b1fd128e8097c86b22373",
+      "GT_observation_array_sha256": "6e5fdcb6fcea73bb7d9d3e1e8ac583f503354de2900e60a1ac9a792863a5c394",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 293,
+        "left_gt_low_speed_foot_samples": 178,
+        "right_gt_low_speed_foot_samples": 115,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "8ea9afc5be3e11cd9003a7cdf1c56b7aad37bdfcf6ea386e8086341c18f47e78",
+      "artifact_sha256": "05609f70c9611fd7e7b53e3b6b72d14b6898d084071a78c47e34fc8005ecf560",
+      "GT_observation_array_sha256": "6e5fdcb6fcea73bb7d9d3e1e8ac583f503354de2900e60a1ac9a792863a5c394",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 293,
+        "left_gt_low_speed_foot_samples": 178,
+        "right_gt_low_speed_foot_samples": 115,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "0ef8a129460946d28a9fe90b409a4256855e899f76e2596911d145402ec61940",
+      "artifact_sha256": "18e278f6d25a3887ba205c41302de9ffa56c5e1409981e2c29c21db32da4029a",
+      "GT_observation_array_sha256": "eafe3a41e5175d52ac37692094fd276ad3412ac8169f2b5e4e9cc2ad0eebf304",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 295,
+        "left_gt_low_speed_foot_samples": 148,
+        "right_gt_low_speed_foot_samples": 147,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "0ef8a129460946d28a9fe90b409a4256855e899f76e2596911d145402ec61940",
+      "artifact_sha256": "805d910bda75700694e78e02ecf24eb1d7894ecbd924371f4f4260167a21fc0d",
+      "GT_observation_array_sha256": "eafe3a41e5175d52ac37692094fd276ad3412ac8169f2b5e4e9cc2ad0eebf304",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 295,
+        "left_gt_low_speed_foot_samples": 148,
+        "right_gt_low_speed_foot_samples": 147,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "0ef8a129460946d28a9fe90b409a4256855e899f76e2596911d145402ec61940",
+      "artifact_sha256": "45203ffd794445e2948d8ce4860919c09231b812bb6339b126dc79115c1f4c84",
+      "GT_observation_array_sha256": "eafe3a41e5175d52ac37692094fd276ad3412ac8169f2b5e4e9cc2ad0eebf304",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 295,
+        "left_gt_low_speed_foot_samples": 148,
+        "right_gt_low_speed_foot_samples": 147,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "fb1b111ed36b032bbca6b80bed9e8e7b565d3cfa2633180bf80c7f9cc5d377f0",
+      "artifact_sha256": "ea3625596dca2f0b640c92eee1a3bd465f0de55ab362d1cda4bd08cc706b4894",
+      "GT_observation_array_sha256": "2ca8c1eaebd7bccc0fdb7270b408f37056fee86cdd7e61a8c2b7a25cd5c79241",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 295,
+        "left_gt_low_speed_foot_samples": 148,
+        "right_gt_low_speed_foot_samples": 147,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "fb1b111ed36b032bbca6b80bed9e8e7b565d3cfa2633180bf80c7f9cc5d377f0",
+      "artifact_sha256": "b38e92226b2459032a753b65e490ec5a6ef3f3b153d18f742cbae419ef23f98b",
+      "GT_observation_array_sha256": "2ca8c1eaebd7bccc0fdb7270b408f37056fee86cdd7e61a8c2b7a25cd5c79241",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 295,
+        "left_gt_low_speed_foot_samples": 148,
+        "right_gt_low_speed_foot_samples": 147,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "fb1b111ed36b032bbca6b80bed9e8e7b565d3cfa2633180bf80c7f9cc5d377f0",
+      "artifact_sha256": "12c14a0bb3829b230e026510e5d55b65ea43db54d2e3fcbac9e98b630c4c338b",
+      "GT_observation_array_sha256": "2ca8c1eaebd7bccc0fdb7270b408f37056fee86cdd7e61a8c2b7a25cd5c79241",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 295,
+        "left_gt_low_speed_foot_samples": 148,
+        "right_gt_low_speed_foot_samples": 147,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "72f9f1bfd484bd68ffe8a876ce669b36ae04a0140bd67afc866be5296b85c322",
+      "artifact_sha256": "91fa89127265e3ed2333a24401eb8d0f46c9175519b80b83d4aee02019effeb5",
+      "GT_observation_array_sha256": "667e1890595b25219d1c098ccdb14f173c57254f5b740e8c472b49e9b0fa6380",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 255,
+        "left_gt_low_speed_foot_samples": 130,
+        "right_gt_low_speed_foot_samples": 125,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "72f9f1bfd484bd68ffe8a876ce669b36ae04a0140bd67afc866be5296b85c322",
+      "artifact_sha256": "e3cea018c5971ce3046553b7717c5ce07e5b8784e5d6d7509cb98baaa88de80c",
+      "GT_observation_array_sha256": "667e1890595b25219d1c098ccdb14f173c57254f5b740e8c472b49e9b0fa6380",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 255,
+        "left_gt_low_speed_foot_samples": 130,
+        "right_gt_low_speed_foot_samples": 125,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "72f9f1bfd484bd68ffe8a876ce669b36ae04a0140bd67afc866be5296b85c322",
+      "artifact_sha256": "17227d374ec2346541d0e4873f5144772b64fdafe48147251e587f224b5ae02a",
+      "GT_observation_array_sha256": "667e1890595b25219d1c098ccdb14f173c57254f5b740e8c472b49e9b0fa6380",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 255,
+        "left_gt_low_speed_foot_samples": 130,
+        "right_gt_low_speed_foot_samples": 125,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "281ca1fd013fcb93abc55453f0af18eb69aea911edec52dcfe4999bb8c2b2b95",
+      "artifact_sha256": "8c1b99733ecfc97615e4a69fa8e2bcbc9a04cc075b0665a8540186a02be2d437",
+      "GT_observation_array_sha256": "a22ee2fcbbe6e1480bf246d0d5c968128f356beabf79d90e39419b6f011df3ba",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 255,
+        "left_gt_low_speed_foot_samples": 130,
+        "right_gt_low_speed_foot_samples": 125,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "281ca1fd013fcb93abc55453f0af18eb69aea911edec52dcfe4999bb8c2b2b95",
+      "artifact_sha256": "d57c31ee48776a3fac8ba295cb1d7c7bc66a9b760542732506222e2caf1beee3",
+      "GT_observation_array_sha256": "a22ee2fcbbe6e1480bf246d0d5c968128f356beabf79d90e39419b6f011df3ba",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 255,
+        "left_gt_low_speed_foot_samples": 130,
+        "right_gt_low_speed_foot_samples": 125,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "281ca1fd013fcb93abc55453f0af18eb69aea911edec52dcfe4999bb8c2b2b95",
+      "artifact_sha256": "ef8234fd651717e32761874567fba0eb43268c6bbf8e2d8aefe3f4c97b5e5e09",
+      "GT_observation_array_sha256": "a22ee2fcbbe6e1480bf246d0d5c968128f356beabf79d90e39419b6f011df3ba",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 255,
+        "left_gt_low_speed_foot_samples": 130,
+        "right_gt_low_speed_foot_samples": 125,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 206,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "0924b680ad95c93190772f9e85ffdfe091ffef6c919dfc676fc2cea26d9bf9f2",
+      "artifact_sha256": "6b6f922821de66c39eb70a98dc7337d277a3e1afe7d03c6d0c08b68388980299",
+      "GT_observation_array_sha256": "d0b19d081bab4fad76dea70d3e47f157e5ab64b88ca526950a6b16bfaba8be06",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 305,
+        "left_gt_low_speed_foot_samples": 155,
+        "right_gt_low_speed_foot_samples": 150,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 206,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "0924b680ad95c93190772f9e85ffdfe091ffef6c919dfc676fc2cea26d9bf9f2",
+      "artifact_sha256": "d93284db9f5018df9d60e6213d7fa518644f0a67728dfeadf88995f63c50fe2e",
+      "GT_observation_array_sha256": "d0b19d081bab4fad76dea70d3e47f157e5ab64b88ca526950a6b16bfaba8be06",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 305,
+        "left_gt_low_speed_foot_samples": 155,
+        "right_gt_low_speed_foot_samples": 150,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 206,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "0924b680ad95c93190772f9e85ffdfe091ffef6c919dfc676fc2cea26d9bf9f2",
+      "artifact_sha256": "54c3a8b8682c7f2f0e3c7bb263c08712acb19ce543a2d31cb0960a092241b726",
+      "GT_observation_array_sha256": "d0b19d081bab4fad76dea70d3e47f157e5ab64b88ca526950a6b16bfaba8be06",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 305,
+        "left_gt_low_speed_foot_samples": 155,
+        "right_gt_low_speed_foot_samples": 150,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 206,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "b18c1875f8b33b402c5933f0b017a0b9b7f55f6b65b4e653b860fb8ca9f442c5",
+      "artifact_sha256": "fe3fcf8ba2810f661ca7df798510e534acdfce596f293c3bf4552bee6edb2467",
+      "GT_observation_array_sha256": "a81378ae551f815bbe51db481cd970d5412123b7809004fa2aba186cfb78a5cc",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 305,
+        "left_gt_low_speed_foot_samples": 155,
+        "right_gt_low_speed_foot_samples": 150,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 206,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "b18c1875f8b33b402c5933f0b017a0b9b7f55f6b65b4e653b860fb8ca9f442c5",
+      "artifact_sha256": "88488102ecf42afc8d73de989d499d0d52c25afdaa21fa6691dc0adc1950a05c",
+      "GT_observation_array_sha256": "a81378ae551f815bbe51db481cd970d5412123b7809004fa2aba186cfb78a5cc",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 305,
+        "left_gt_low_speed_foot_samples": 155,
+        "right_gt_low_speed_foot_samples": 150,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 206,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "b18c1875f8b33b402c5933f0b017a0b9b7f55f6b65b4e653b860fb8ca9f442c5",
+      "artifact_sha256": "800f2cf84a3a0b49214cbb2369f0bb23f30f653be04c40c0c66e82346bdb7ff7",
+      "GT_observation_array_sha256": "a81378ae551f815bbe51db481cd970d5412123b7809004fa2aba186cfb78a5cc",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 305,
+        "left_gt_low_speed_foot_samples": 155,
+        "right_gt_low_speed_foot_samples": 150,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 207,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "b6b278df43534a8ef3dc0fb71bf0bdb809dc17fb5b317ae7f169f6f4097d1dfc",
+      "artifact_sha256": "aa756a8756e97e803cbcf001637352042ba14d965b9def1943df79087ab394e2",
+      "GT_observation_array_sha256": "131a802ca23f105e9e1da9c13359dba1ea471e2ec110df2829228679565d7560",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 355,
+        "left_gt_low_speed_foot_samples": 180,
+        "right_gt_low_speed_foot_samples": 175,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 207,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "b6b278df43534a8ef3dc0fb71bf0bdb809dc17fb5b317ae7f169f6f4097d1dfc",
+      "artifact_sha256": "99326acacd83aeef5d7df34d1d3edc99124242f4bb81836e7ceb1999c2f5d4d1",
+      "GT_observation_array_sha256": "131a802ca23f105e9e1da9c13359dba1ea471e2ec110df2829228679565d7560",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 355,
+        "left_gt_low_speed_foot_samples": 180,
+        "right_gt_low_speed_foot_samples": 175,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 207,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "b6b278df43534a8ef3dc0fb71bf0bdb809dc17fb5b317ae7f169f6f4097d1dfc",
+      "artifact_sha256": "6710e164d15138ee4b40aad36e369a2db5d7a291ef52e031bbae5d5cca8609ec",
+      "GT_observation_array_sha256": "131a802ca23f105e9e1da9c13359dba1ea471e2ec110df2829228679565d7560",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 355,
+        "left_gt_low_speed_foot_samples": 180,
+        "right_gt_low_speed_foot_samples": 175,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 207,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "17d1c6b0abebe051ff25539d15cb17e581a53283ece43a85c0926ef08938f06b",
+      "artifact_sha256": "21325fa4dedf3df80195dbb34a9c01aa5be1f32076dde4355a59581b68828bf7",
+      "GT_observation_array_sha256": "268051d7a81f629c04c01f3470050aeba1fb4b74f5ed454afa8916777953cbe3",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 355,
+        "left_gt_low_speed_foot_samples": 180,
+        "right_gt_low_speed_foot_samples": 175,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 207,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "17d1c6b0abebe051ff25539d15cb17e581a53283ece43a85c0926ef08938f06b",
+      "artifact_sha256": "4c98f8a46609f4ed71d78f20467af546c92dc13bb68b27ee575ae3e0fd771c4a",
+      "GT_observation_array_sha256": "268051d7a81f629c04c01f3470050aeba1fb4b74f5ed454afa8916777953cbe3",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 355,
+        "left_gt_low_speed_foot_samples": 180,
+        "right_gt_low_speed_foot_samples": 175,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 207,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "17d1c6b0abebe051ff25539d15cb17e581a53283ece43a85c0926ef08938f06b",
+      "artifact_sha256": "1875afce4dca52e6f22a993bc00567bdbfd579bcd9362ab334acf8c5e2f81b74",
+      "GT_observation_array_sha256": "268051d7a81f629c04c01f3470050aeba1fb4b74f5ed454afa8916777953cbe3",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 355,
+        "left_gt_low_speed_foot_samples": 180,
+        "right_gt_low_speed_foot_samples": 175,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 208,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "bc2ef51f6ebbda87487f8ed2604ad15068c11f6ae557ee46443da8f93cde6c5d",
+      "artifact_sha256": "5f25ad8bc6c58f2d55ac554c0a7d98d698ee058f7365434967f2818c94c86e90",
+      "GT_observation_array_sha256": "33731153f162dd2b92200c5c613ee3cfa452f8c3c06241710331a71f42f57ebd",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 208,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "bc2ef51f6ebbda87487f8ed2604ad15068c11f6ae557ee46443da8f93cde6c5d",
+      "artifact_sha256": "a3c99d008c6fc9d4daa8320f33c403527475f6038eef5c501a94d8d6ea2039c4",
+      "GT_observation_array_sha256": "33731153f162dd2b92200c5c613ee3cfa452f8c3c06241710331a71f42f57ebd",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 208,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "bc2ef51f6ebbda87487f8ed2604ad15068c11f6ae557ee46443da8f93cde6c5d",
+      "artifact_sha256": "647d00e5c10fc4d2b26a387dc5256735af1eee076d7cf8cab349b79c877dba9d",
+      "GT_observation_array_sha256": "33731153f162dd2b92200c5c613ee3cfa452f8c3c06241710331a71f42f57ebd",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 208,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "567d535c952f2349ebbac546a4bbce210a39d0b4c7ca4081e9c3b851ff50af6a",
+      "artifact_sha256": "7819e795b09eefaa66f952a778ea330805fd6a92f0e5842607c7985d47847fbd",
+      "GT_observation_array_sha256": "11ce38d64c98cc739dc6a4dca25e146b5ee5aa9f7f3c5395157de07544706ebd",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 208,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "567d535c952f2349ebbac546a4bbce210a39d0b4c7ca4081e9c3b851ff50af6a",
+      "artifact_sha256": "09d2a1204132b0d0a7ceb0e0e6f5a5ee814fae2405b6839c62045973aadf3131",
+      "GT_observation_array_sha256": "11ce38d64c98cc739dc6a4dca25e146b5ee5aa9f7f3c5395157de07544706ebd",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 208,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "567d535c952f2349ebbac546a4bbce210a39d0b4c7ca4081e9c3b851ff50af6a",
+      "artifact_sha256": "4c5ddefde56b7e9fd6a65e2c6e5c5b228e6b97b112b859e5565ac4681d6af1c5",
+      "GT_observation_array_sha256": "11ce38d64c98cc739dc6a4dca25e146b5ee5aa9f7f3c5395157de07544706ebd",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 209,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "816cda68714bf37896cccd4b6a8982be80afda1a7264f9a86251a3da39f4d656",
+      "artifact_sha256": "c341681332efdd3d53441337a17a85d533f214c534d6aabbb67e49d8d9b8275f",
+      "GT_observation_array_sha256": "c2c29c1ae234f8af6a29dff142b9d41bae9a8bae7172aeb791a2cde55dced03b",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 166,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 209,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "816cda68714bf37896cccd4b6a8982be80afda1a7264f9a86251a3da39f4d656",
+      "artifact_sha256": "1950ebcae566823486d326670b47243712b418f06cd53b3e5999a1645917d92f",
+      "GT_observation_array_sha256": "c2c29c1ae234f8af6a29dff142b9d41bae9a8bae7172aeb791a2cde55dced03b",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 166,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 209,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "816cda68714bf37896cccd4b6a8982be80afda1a7264f9a86251a3da39f4d656",
+      "artifact_sha256": "d902a4a8c9e74f46fc49dc5fb9451373bdc5dae1b42c4c6b7d68dc7423ff33ad",
+      "GT_observation_array_sha256": "c2c29c1ae234f8af6a29dff142b9d41bae9a8bae7172aeb791a2cde55dced03b",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 166,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 209,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "c97cc0557eb9c22cc67042420c6f659506917a6eeb94fe379de1094ef0ba93d7",
+      "artifact_sha256": "3e98add7e24018a4a5e43c873144aa2e9944cb3354ea5f565d9175126d3d28fc",
+      "GT_observation_array_sha256": "57e43ba7966e9999c0a8cc4c6175427a5ca15eaf7fa46d2c77efd48c1afee7cd",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 166,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 209,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "c97cc0557eb9c22cc67042420c6f659506917a6eeb94fe379de1094ef0ba93d7",
+      "artifact_sha256": "f6a092341e698904969b6cd095ba20952f286e65f8ab911a383d319770f21bca",
+      "GT_observation_array_sha256": "57e43ba7966e9999c0a8cc4c6175427a5ca15eaf7fa46d2c77efd48c1afee7cd",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 166,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 209,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "c97cc0557eb9c22cc67042420c6f659506917a6eeb94fe379de1094ef0ba93d7",
+      "artifact_sha256": "066de71c075fb70de9dab6688cf9ccf64ebd469ec075524f180dd2ca7d3b0368",
+      "GT_observation_array_sha256": "57e43ba7966e9999c0a8cc4c6175427a5ca15eaf7fa46d2c77efd48c1afee7cd",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 166,
+        "right_gt_low_speed_foot_samples": 156,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 256,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "05dfe3985c0dbe633bfd9955bcbce9dcf2f2e5c8f6b37ae79eda26a180bc93e5",
+      "artifact_sha256": "65060282d8ddf4e477d3378d3e31334d57e1373d95dd65682a5a6d8b438cce36",
+      "GT_observation_array_sha256": "cba5ec5afecbc113cf91fe19708e03f13f3e6f0f0b4dee5e9b08926b2cfe0d38",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 189,
+        "right_gt_low_speed_foot_samples": 133,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 256,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "05dfe3985c0dbe633bfd9955bcbce9dcf2f2e5c8f6b37ae79eda26a180bc93e5",
+      "artifact_sha256": "8d46493cbcb28f81a6c034cf0034212ee371075b33710dd8f5352409b0857185",
+      "GT_observation_array_sha256": "cba5ec5afecbc113cf91fe19708e03f13f3e6f0f0b4dee5e9b08926b2cfe0d38",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 189,
+        "right_gt_low_speed_foot_samples": 133,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 256,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "05dfe3985c0dbe633bfd9955bcbce9dcf2f2e5c8f6b37ae79eda26a180bc93e5",
+      "artifact_sha256": "c2bc0ea87df9c281022f96f85b9915ba1de9e06ddaf03fe718e9b644c2642144",
+      "GT_observation_array_sha256": "cba5ec5afecbc113cf91fe19708e03f13f3e6f0f0b4dee5e9b08926b2cfe0d38",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 189,
+        "right_gt_low_speed_foot_samples": 133,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 256,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "3c27fa1147e09acaf77f0c8b085b60ebf1268f6afd5be198ee02e20d107dc2d5",
+      "artifact_sha256": "785b0b60ff07d14f3580fabd140693e27309edc8fae11d75254766d4d8d45002",
+      "GT_observation_array_sha256": "7147e647888321e85414529e29b9a91ea4bc8f724b785bd9a8b8e505a7c73f8a",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 189,
+        "right_gt_low_speed_foot_samples": 133,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 256,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "3c27fa1147e09acaf77f0c8b085b60ebf1268f6afd5be198ee02e20d107dc2d5",
+      "artifact_sha256": "554cef3ff9887def68dc696faf578a8f85966c1576e4fc88a6ecb64875e3cc26",
+      "GT_observation_array_sha256": "7147e647888321e85414529e29b9a91ea4bc8f724b785bd9a8b8e505a7c73f8a",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 189,
+        "right_gt_low_speed_foot_samples": 133,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 256,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "3c27fa1147e09acaf77f0c8b085b60ebf1268f6afd5be198ee02e20d107dc2d5",
+      "artifact_sha256": "0fbf1aee8141adffe48bdeb3aa2769d72a25ac2a355edcb829ef2968f455728a",
+      "GT_observation_array_sha256": "7147e647888321e85414529e29b9a91ea4bc8f724b785bd9a8b8e505a7c73f8a",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 322,
+        "left_gt_low_speed_foot_samples": 189,
+        "right_gt_low_speed_foot_samples": 133,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 257,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "49f6ee2330123023d1234afc4e432c8a7a632940684a86e1686ea8a026909c80",
+      "artifact_sha256": "6ce718535c90662004625520ea1ec380984bc49862d961013e3a3f971a7ba66c",
+      "GT_observation_array_sha256": "830573c0823af930d8e78d3dc60cb85171e741aadbd2a6a550bf104823a980c7",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 278,
+        "left_gt_low_speed_foot_samples": 165,
+        "right_gt_low_speed_foot_samples": 113,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 257,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "49f6ee2330123023d1234afc4e432c8a7a632940684a86e1686ea8a026909c80",
+      "artifact_sha256": "5514d730842e54a061753bd1b8fa43f6911266e960505b3ca13f8275e97e5a95",
+      "GT_observation_array_sha256": "830573c0823af930d8e78d3dc60cb85171e741aadbd2a6a550bf104823a980c7",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 278,
+        "left_gt_low_speed_foot_samples": 165,
+        "right_gt_low_speed_foot_samples": 113,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 257,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "49f6ee2330123023d1234afc4e432c8a7a632940684a86e1686ea8a026909c80",
+      "artifact_sha256": "d9ae29a7b0589de1c9bd50cb301ebb93f6c63e6dd90052c976aae2c9456f2b2d",
+      "GT_observation_array_sha256": "830573c0823af930d8e78d3dc60cb85171e741aadbd2a6a550bf104823a980c7",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 278,
+        "left_gt_low_speed_foot_samples": 165,
+        "right_gt_low_speed_foot_samples": 113,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 257,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "7ea728fe78fe976e5156071d889cb1c2017b86f5896e9e3b2d64ac095d130f0a",
+      "artifact_sha256": "7242eb84b882136d19b1834b352c2686b5d12cb9d235b6c53b4a6bb75a73903f",
+      "GT_observation_array_sha256": "b7884c3b5249c0411780f09602346dcc3ed8b9103c20d40482bfedc886a596d8",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 278,
+        "left_gt_low_speed_foot_samples": 165,
+        "right_gt_low_speed_foot_samples": 113,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 257,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "7ea728fe78fe976e5156071d889cb1c2017b86f5896e9e3b2d64ac095d130f0a",
+      "artifact_sha256": "fa50616b82f4fe036594050e400e9d9192ca2bff033518ae5faab15e2d097b63",
+      "GT_observation_array_sha256": "b7884c3b5249c0411780f09602346dcc3ed8b9103c20d40482bfedc886a596d8",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 278,
+        "left_gt_low_speed_foot_samples": 165,
+        "right_gt_low_speed_foot_samples": 113,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 257,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "7ea728fe78fe976e5156071d889cb1c2017b86f5896e9e3b2d64ac095d130f0a",
+      "artifact_sha256": "e0d01c4c8ba67c07e428f042ce97f2178589d3d2b5f87ae33678f9de99850f62",
+      "GT_observation_array_sha256": "b7884c3b5249c0411780f09602346dcc3ed8b9103c20d40482bfedc886a596d8",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 278,
+        "left_gt_low_speed_foot_samples": 165,
+        "right_gt_low_speed_foot_samples": 113,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 258,
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "6c4b36832a093cbaed7c3b971209e9e2f23398b1f1cd3603f32792616ce9017c",
+      "artifact_sha256": "79df13b61f3dcf11d76b0805ea8621b444fa2dcd2b76a760c5ed112fab4ffa02",
+      "GT_observation_array_sha256": "524aba7767c4eebdb8c313feca75466089134b636965a48d4a8ba8e5aecb34a0",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 0,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 258,
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "6c4b36832a093cbaed7c3b971209e9e2f23398b1f1cd3603f32792616ce9017c",
+      "artifact_sha256": "59c7d9bd9956fc01378984d98939a41ec7eda24e051b0b35da2626dae5d86504",
+      "GT_observation_array_sha256": "524aba7767c4eebdb8c313feca75466089134b636965a48d4a8ba8e5aecb34a0",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 0,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 258,
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "6c4b36832a093cbaed7c3b971209e9e2f23398b1f1cd3603f32792616ce9017c",
+      "artifact_sha256": "e686a05a98feba00a73464f7298fe02946c5e7f56952be64df41f1871d079482",
+      "GT_observation_array_sha256": "524aba7767c4eebdb8c313feca75466089134b636965a48d4a8ba8e5aecb34a0",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 0,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 258,
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "47352d08cf25eb84f528ec526e5ba3187a6331aaf2041091dd494c4447f0d26b",
+      "artifact_sha256": "86a0b1394a701c1a9271640b3a2d266db63efaf01c6db0b675af95dfa49394ac",
+      "GT_observation_array_sha256": "8b7be08697d40114690e8aaba9e4473b59da47ce2f01da9f9cb40813f29c32b7",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 0,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 258,
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "47352d08cf25eb84f528ec526e5ba3187a6331aaf2041091dd494c4447f0d26b",
+      "artifact_sha256": "4866b32bc8f08a0945e5fbcfe19f588c97ebd1fa08a458a0bdd80e796fa3bc01",
+      "GT_observation_array_sha256": "8b7be08697d40114690e8aaba9e4473b59da47ce2f01da9f9cb40813f29c32b7",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 0,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 258,
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "47352d08cf25eb84f528ec526e5ba3187a6331aaf2041091dd494c4447f0d26b",
+      "artifact_sha256": "01b7a845f2095fe6e53d915b758031cb7585edeb40b6212068d26ba8cb7359d5",
+      "GT_observation_array_sha256": "8b7be08697d40114690e8aaba9e4473b59da47ce2f01da9f9cb40813f29c32b7",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 0,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 259,
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "regime": "clean",
+      "model": "base41k",
+      "input_sha256": "7c852ce95a22bb7ca186f0f9e7011102c6e2af5a1a04b73e4a1df7f773a57c88",
+      "artifact_sha256": "6c9b1b6ad4206efa65496bbbf565b43f5c0281fb40cc93af7561acda3d60640e",
+      "GT_observation_array_sha256": "f5ded9b375142cedca1d2b8e0ee8c63feb0567e5299e42ea44b11ef90c2023c0",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 259,
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "regime": "clean",
+      "model": "control",
+      "input_sha256": "7c852ce95a22bb7ca186f0f9e7011102c6e2af5a1a04b73e4a1df7f773a57c88",
+      "artifact_sha256": "ed71b2775ff2a733fc3099989ce07f34a3e1739f1a2410923ef2b91e24249103",
+      "GT_observation_array_sha256": "f5ded9b375142cedca1d2b8e0ee8c63feb0567e5299e42ea44b11ef90c2023c0",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 259,
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "regime": "clean",
+      "model": "fusion",
+      "input_sha256": "7c852ce95a22bb7ca186f0f9e7011102c6e2af5a1a04b73e4a1df7f773a57c88",
+      "artifact_sha256": "681a3c23be430cf001dd7425091e860d0010413bfb21c109116d2bd7bfecef50",
+      "GT_observation_array_sha256": "f5ded9b375142cedca1d2b8e0ee8c63feb0567e5299e42ea44b11ef90c2023c0",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 259,
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "regime": "noisy",
+      "model": "base41k",
+      "input_sha256": "dc4cd1474bee820cb800ea97f8374ea7e76ddbf26b345df950954a9f434165a0",
+      "artifact_sha256": "dc0c4825a7c6e3ec64b3b317e9a2f2e7114b5ef54da2e6c9b8cac4b0c8903176",
+      "GT_observation_array_sha256": "718d7222d510f980baddc9284d2fcf0cc12b60f67b98660ce4a10cbb1ff1a48f",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 259,
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "regime": "noisy",
+      "model": "control",
+      "input_sha256": "dc4cd1474bee820cb800ea97f8374ea7e76ddbf26b345df950954a9f434165a0",
+      "artifact_sha256": "aeb9da8d18bfff3e2d9067762dd87a5dca88a19df0361d5021a15d0ea5b8144c",
+      "GT_observation_array_sha256": "718d7222d510f980baddc9284d2fcf0cc12b60f67b98660ce4a10cbb1ff1a48f",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    },
+    {
+      "case": 259,
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "regime": "noisy",
+      "model": "fusion",
+      "input_sha256": "dc4cd1474bee820cb800ea97f8374ea7e76ddbf26b345df950954a9f434165a0",
+      "artifact_sha256": "36810e6829b1df295cfbd728f0ed964f2629c2213c6a02812a828c64074353d8",
+      "GT_observation_array_sha256": "718d7222d510f980baddc9284d2fcf0cc12b60f67b98660ce4a10cbb1ff1a48f",
+      "denominators": {
+        "frames": 192,
+        "body_joint_samples": 4224,
+        "observed_head_frames": 192,
+        "gt_low_speed_foot_samples": 382,
+        "left_gt_low_speed_foot_samples": 191,
+        "right_gt_low_speed_foot_samples": 191,
+        "foot_velocity_samples": 382,
+        "stride_pairs_by_lag_frames": {
+          "6": 186,
+          "12": 180
+        },
+        "stride_aggregation": "Arithmetic mean of the two per-lag means; not pooled pair mean.",
+        "bilateral_rms_windows": 1,
+        "bilateral_ratio_valid": 1,
+        "PA_alignment": "Per-frame proper similarity transform across all 22 joints.",
+        "all_frame_foot_samples": 384,
+        "acceleration_joint_samples": 4180,
+        "visible_joint_samples": 192,
+        "world_joint_samples": 4224
+      }
+    }
+  ],
+  "dataset_regime_window_means": {
+    "base41k/rich/clean": {
+      "w_mpjpe_mm": 117.10012330690417,
+      "pa_mpjpe_mm": 94.33345601142096,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.2209668226541998,
+      "foot_joint_y_abs_error_mm": 23.534459178335965,
+      "acceleration_error_mm_s2": 7360.425228499926,
+      "observed_head_position_error_mm": 0.09701358101495913
+    },
+    "base41k/trumans/clean": {
+      "w_mpjpe_mm": 108.59336982066199,
+      "pa_mpjpe_mm": 78.35903786701132,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.1358057727297454,
+      "foot_joint_y_abs_error_mm": 72.65496199640134,
+      "acceleration_error_mm_s2": 2974.318125564945,
+      "observed_head_position_error_mm": 0.0711857390687927
+    },
+    "base41k/egobody/clean": {
+      "w_mpjpe_mm": 148.0961523673081,
+      "pa_mpjpe_mm": 96.53419758500459,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.12416165933043563,
+      "foot_joint_y_abs_error_mm": 39.819765059898295,
+      "acceleration_error_mm_s2": 3502.966948395874,
+      "observed_head_position_error_mm": 2.5985810424822016
+    },
+    "base41k/macro/clean": {
+      "w_mpjpe_mm": 124.59654849829141,
+      "pa_mpjpe_mm": 89.7422304878123,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.16031141823812695,
+      "foot_joint_y_abs_error_mm": 45.3363954115452,
+      "acceleration_error_mm_s2": 4612.570100820249,
+      "observed_head_position_error_mm": 0.9222601208553178
+    },
+    "base41k/rich/noisy": {
+      "w_mpjpe_mm": 136.3737820805522,
+      "pa_mpjpe_mm": 102.12587869263675,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.26263021400172115,
+      "foot_joint_y_abs_error_mm": 27.67600402391205,
+      "acceleration_error_mm_s2": 8315.973556055133,
+      "observed_head_position_error_mm": 8.992763465440232
+    },
+    "base41k/trumans/noisy": {
+      "w_mpjpe_mm": 125.45203233225843,
+      "pa_mpjpe_mm": 82.03675373014082,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.14548624228004398,
+      "foot_joint_y_abs_error_mm": 75.05845379394789,
+      "acceleration_error_mm_s2": 2933.10499702573,
+      "observed_head_position_error_mm": 10.45785439499614
+    },
+    "base41k/egobody/noisy": {
+      "w_mpjpe_mm": 161.75187568605307,
+      "pa_mpjpe_mm": 102.4530158281945,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.15753663308097945,
+      "foot_joint_y_abs_error_mm": 39.61773092548052,
+      "acceleration_error_mm_s2": 3833.671263046651,
+      "observed_head_position_error_mm": 5.806934688625497
+    },
+    "base41k/macro/noisy": {
+      "w_mpjpe_mm": 141.19256336628789,
+      "pa_mpjpe_mm": 95.53854941699069,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.18855102978758154,
+      "foot_joint_y_abs_error_mm": 47.450729581113485,
+      "acceleration_error_mm_s2": 5027.583272042504,
+      "observed_head_position_error_mm": 8.419184183020622
+    },
+    "control/rich/clean": {
+      "w_mpjpe_mm": 114.17434419742281,
+      "pa_mpjpe_mm": 90.19115775485035,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.20014122686802857,
+      "foot_joint_y_abs_error_mm": 25.22001291314761,
+      "acceleration_error_mm_s2": 7073.909462141895,
+      "observed_head_position_error_mm": 0.07329662345789553
+    },
+    "control/trumans/clean": {
+      "w_mpjpe_mm": 90.16933629174135,
+      "pa_mpjpe_mm": 78.13623391505479,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.12276166978076787,
+      "foot_joint_y_abs_error_mm": 40.293050076191626,
+      "acceleration_error_mm_s2": 2697.3195553569212,
+      "observed_head_position_error_mm": 0.10250208986567741
+    },
+    "control/egobody/clean": {
+      "w_mpjpe_mm": 141.9853545574601,
+      "pa_mpjpe_mm": 88.87449980900145,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.11733127286157882,
+      "foot_joint_y_abs_error_mm": 41.19025977949301,
+      "acceleration_error_mm_s2": 3421.9576393334783,
+      "observed_head_position_error_mm": 3.3555513245644994
+    },
+    "control/macro/clean": {
+      "w_mpjpe_mm": 115.4430116822081,
+      "pa_mpjpe_mm": 85.7339638263022,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.1467447231701251,
+      "foot_joint_y_abs_error_mm": 35.56777425627742,
+      "acceleration_error_mm_s2": 4397.728885610765,
+      "observed_head_position_error_mm": 1.1771166792960241
+    },
+    "control/rich/noisy": {
+      "w_mpjpe_mm": 131.77773078174496,
+      "pa_mpjpe_mm": 97.56923133804695,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.23905231498509674,
+      "foot_joint_y_abs_error_mm": 28.220170992426574,
+      "acceleration_error_mm_s2": 7994.9007503420735,
+      "observed_head_position_error_mm": 7.455234298166556
+    },
+    "control/trumans/noisy": {
+      "w_mpjpe_mm": 108.50064888603988,
+      "pa_mpjpe_mm": 80.82217740287811,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.12899856533919468,
+      "foot_joint_y_abs_error_mm": 40.53681336032847,
+      "acceleration_error_mm_s2": 2705.718469171318,
+      "observed_head_position_error_mm": 12.223118079859152
+    },
+    "control/egobody/noisy": {
+      "w_mpjpe_mm": 153.51833627901777,
+      "pa_mpjpe_mm": 91.78065990732647,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.14788892869532866,
+      "foot_joint_y_abs_error_mm": 49.79234576846162,
+      "acceleration_error_mm_s2": 3758.7343629401184,
+      "observed_head_position_error_mm": 7.343311638787578
+    },
+    "control/macro/noisy": {
+      "w_mpjpe_mm": 131.26557198226755,
+      "pa_mpjpe_mm": 90.05735621608385,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.17197993633987335,
+      "foot_joint_y_abs_error_mm": 39.51644337373889,
+      "acceleration_error_mm_s2": 4819.784527484503,
+      "observed_head_position_error_mm": 9.007221338937763
+    },
+    "fusion/rich/clean": {
+      "w_mpjpe_mm": 115.05186188141141,
+      "pa_mpjpe_mm": 90.17941151437853,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.20113924434768646,
+      "foot_joint_y_abs_error_mm": 25.532941178729136,
+      "acceleration_error_mm_s2": 7069.732830222646,
+      "observed_head_position_error_mm": 0.07296398969076782
+    },
+    "fusion/trumans/clean": {
+      "w_mpjpe_mm": 89.59143354417617,
+      "pa_mpjpe_mm": 78.14549652761335,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.12183834022686496,
+      "foot_joint_y_abs_error_mm": 39.344624538595475,
+      "acceleration_error_mm_s2": 2693.2809768091242,
+      "observed_head_position_error_mm": 0.10139883579117123
+    },
+    "fusion/egobody/clean": {
+      "w_mpjpe_mm": 142.84095170140225,
+      "pa_mpjpe_mm": 89.38116843297765,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.1180502093742324,
+      "foot_joint_y_abs_error_mm": 41.481508718182646,
+      "acceleration_error_mm_s2": 3432.8005783301996,
+      "observed_head_position_error_mm": 3.4389825362273103
+    },
+    "fusion/macro/clean": {
+      "w_mpjpe_mm": 115.82808237566327,
+      "pa_mpjpe_mm": 85.9020254916565,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.1470092646495946,
+      "foot_joint_y_abs_error_mm": 35.45302481183575,
+      "acceleration_error_mm_s2": 4398.6047951206565,
+      "observed_head_position_error_mm": 1.204448453903083
+    },
+    "fusion/rich/noisy": {
+      "w_mpjpe_mm": 133.52442339963378,
+      "pa_mpjpe_mm": 97.83765398246899,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.24063815264701607,
+      "foot_joint_y_abs_error_mm": 29.420340433716774,
+      "acceleration_error_mm_s2": 8008.905508524943,
+      "observed_head_position_error_mm": 7.393242502202864
+    },
+    "fusion/trumans/noisy": {
+      "w_mpjpe_mm": 108.56878117277957,
+      "pa_mpjpe_mm": 80.86033316291088,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.12835169476034147,
+      "foot_joint_y_abs_error_mm": 39.7103075714161,
+      "acceleration_error_mm_s2": 2703.645240142754,
+      "observed_head_position_error_mm": 12.265665174048838
+    },
+    "fusion/egobody/noisy": {
+      "w_mpjpe_mm": 154.28716071921414,
+      "pa_mpjpe_mm": 92.21724352978241,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.1486182200306536,
+      "foot_joint_y_abs_error_mm": 50.082385151957475,
+      "acceleration_error_mm_s2": 3766.717954222126,
+      "observed_head_position_error_mm": 7.4913371268939875
+    },
+    "fusion/macro/noisy": {
+      "w_mpjpe_mm": 132.1267884305425,
+      "pa_mpjpe_mm": 90.30507689172076,
+      "foot_joint_horizontal_speed_gt_low_m_s": 0.17253602247933705,
+      "foot_joint_y_abs_error_mm": 39.73767771903012,
+      "acceleration_error_mm_s2": 4826.4229009632745,
+      "observed_head_position_error_mm": 9.050081601048563
+    }
+  },
+  "per_recording_paired_deltas": [
+    {
+      "case": 0,
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 124.40922558116635,
+            "control": 132.58567013220951,
+            "fusion": 133.50253619593119
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 77.22563252259312,
+            "control": 77.34705584330261,
+            "fusion": 77.55869010502458
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.27042044380497193,
+            "control": 0.2286250706570594,
+            "fusion": 0.2294370867270056
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 29.375509979824226,
+            "control": 41.510277427732944,
+            "fusion": 42.10005886852741
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 7766.525852045069,
+            "control": 7272.478481483523,
+            "fusion": 7255.040802674396
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.047264608797192596,
+            "control": 0.04516759896073025,
+            "fusion": 0.04459247411417034
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": 9.093310614764832,
+              "pa_mpjpe_mm": 0.333057582431465,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.040983357077966326,
+              "foot_joint_y_abs_error_mm": 12.724548888703186,
+              "acceleration_error_mm_s2": -511.48504937067264,
+              "observed_head_position_error_mm": -0.0026721346830222564
+            },
+            "control": {
+              "w_mpjpe_mm": 0.9168660637216703,
+              "pa_mpjpe_mm": 0.21163426172196864,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.0008120160699462142,
+              "foot_joint_y_abs_error_mm": 0.5897814407944679,
+              "acceleration_error_mm_s2": -17.437678809126737,
+              "observed_head_position_error_mm": -0.0005751248465599088
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 130.25073074657521,
+            "control": 142.28964376175495,
+            "fusion": 143.7140642499133
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 78.97288519908983,
+            "control": 82.17456289069045,
+            "fusion": 82.57994031404674
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.29299674616110355,
+            "control": 0.25493002424036854,
+            "fusion": 0.254260357588001
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 27.096325376381476,
+            "control": 38.11504878103733,
+            "fusion": 38.76298821220795
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 8444.763253207986,
+            "control": 7885.402393875659,
+            "fusion": 7872.17834851038
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 2.702251929803536,
+            "control": 1.9608817775270522,
+            "fusion": 1.891449416896782
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": 13.463333503338077,
+              "pa_mpjpe_mm": 3.607055114956907,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.038736388573102576,
+              "foot_joint_y_abs_error_mm": 11.666662835826475,
+              "acceleration_error_mm_s2": -572.5849046976064,
+              "observed_head_position_error_mm": -0.810802512906754
+            },
+            "control": {
+              "w_mpjpe_mm": 1.424420488158347,
+              "pa_mpjpe_mm": 0.4053774233562848,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.0006696666523675621,
+              "foot_joint_y_abs_error_mm": 0.6479394311706201,
+              "acceleration_error_mm_s2": -13.22404536527938,
+              "observed_head_position_error_mm": -0.06943236063027025
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": 11.278322059051455,
+        "control": 1.1706432759400087
+      }
+    },
+    {
+      "case": 1,
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 110.9176462777195,
+            "control": 104.54154601493008,
+            "fusion": 106.24390497187923
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 100.75006213204415,
+            "control": 92.5188779180382,
+            "fusion": 92.20878652625078
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.1543196252858624,
+            "control": 0.1700234665499646,
+            "fusion": 0.16969385519753585
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 13.660796917974949,
+            "control": 17.180548049509525,
+            "fusion": 17.470662482082844
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 5550.383377082296,
+            "control": 5679.071217158949,
+            "fusion": 5678.655009951433
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.054000435392232066,
+            "control": 0.0679266807461945,
+            "fusion": 0.06818766266773461
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -4.673741305840267,
+              "pa_mpjpe_mm": -8.541275605793373,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.015374229911673448,
+              "foot_joint_y_abs_error_mm": 3.809865564107895,
+              "acceleration_error_mm_s2": 128.27163286913765,
+              "observed_head_position_error_mm": 0.014187227275502548
+            },
+            "control": {
+              "w_mpjpe_mm": 1.7023589569491548,
+              "pa_mpjpe_mm": -0.31009139178742373,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.0003296113524287603,
+              "foot_joint_y_abs_error_mm": 0.2901144325733185,
+              "acceleration_error_mm_s2": -0.4162072075159813,
+              "observed_head_position_error_mm": 0.00026098192154011546
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 122.83748965521016,
+            "control": 118.61863913294162,
+            "fusion": 121.71434741124425
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 98.78075372792574,
+            "control": 94.46733873879275,
+            "fusion": 95.07249076454707
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.17611503581930268,
+            "control": 0.1974657218852286,
+            "fusion": 0.19503329215553808
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 20.215984123448532,
+            "control": 22.607609629631042,
+            "fusion": 24.21019847194354
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 6156.878514664292,
+            "control": 6229.754227581893,
+            "fusion": 6251.721175052888
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 1.5245358043658068,
+            "control": 2.2646278883835467,
+            "fusion": 2.3452933819340878
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -1.1231422439659156,
+              "pa_mpjpe_mm": -3.7082629633786723,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.018918256336235395,
+              "foot_joint_y_abs_error_mm": 3.9942143484950066,
+              "acceleration_error_mm_s2": 94.8426603885955,
+              "observed_head_position_error_mm": 0.8207575775682809
+            },
+            "control": {
+              "w_mpjpe_mm": 3.0957082783026237,
+              "pa_mpjpe_mm": 0.6051520257543217,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.002432429729690516,
+              "foot_joint_y_abs_error_mm": 1.602588842312496,
+              "acceleration_error_mm_s2": 21.966947470994455,
+              "observed_head_position_error_mm": 0.08066549355054109
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": -2.898441774903091,
+        "control": 2.3990336176258893
+      }
+    },
+    {
+      "case": 2,
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 113.13975277353691,
+            "control": 108.11098797490902,
+            "fusion": 108.46685670152308
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 84.14775737230005,
+            "control": 80.93146900798016,
+            "fusion": 80.57269403639229
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.2925723889399496,
+            "control": 0.2525054488327748,
+            "fusion": 0.2510590227613274
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 18.778647451351087,
+            "control": 12.033705910046896,
+            "fusion": 12.285747565329075
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 8387.356085783309,
+            "control": 7771.472855521212,
+            "fusion": 7759.386772375455
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.08732586497426538,
+            "control": 0.05002752358990934,
+            "fusion": 0.05007630965886986
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -4.6728960720138275,
+              "pa_mpjpe_mm": -3.575063335907757,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.04151336617862217,
+              "foot_joint_y_abs_error_mm": -6.492899886022013,
+              "acceleration_error_mm_s2": -627.9693134078543,
+              "observed_head_position_error_mm": -0.03724955531539552
+            },
+            "control": {
+              "w_mpjpe_mm": 0.3558687266140623,
+              "pa_mpjpe_mm": -0.358774971587863,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.0014464260714474042,
+              "foot_joint_y_abs_error_mm": 0.2520416552821789,
+              "acceleration_error_mm_s2": -12.086083145757584,
+              "observed_head_position_error_mm": 4.87860689605199e-05
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 143.1555559995221,
+            "control": 130.1769481610095,
+            "fusion": 132.89112166555168
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 96.45072267030487,
+            "control": 90.98533250814418,
+            "fusion": 91.75876798763468
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.4071583678583445,
+            "control": 0.34332423328773265,
+            "fusion": 0.35045671060737305
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 39.92395723859469,
+            "control": 25.915231400479872,
+            "fusion": 28.169028150538605
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 10241.171257055878,
+            "control": 9491.683475495347,
+            "fusion": 9518.534656805534
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 8.39618188085321,
+            "control": 6.268401042686062,
+            "fusion": 6.16057623467729
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -10.264434333970428,
+              "pa_mpjpe_mm": -4.691954682670186,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.05670165725097148,
+              "foot_joint_y_abs_error_mm": -11.754929088056084,
+              "acceleration_error_mm_s2": -722.6366002503437,
+              "observed_head_position_error_mm": -2.2356056461759195
+            },
+            "control": {
+              "w_mpjpe_mm": 2.714173504542174,
+              "pa_mpjpe_mm": 0.7734354794905016,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.007132477319640396,
+              "foot_joint_y_abs_error_mm": 2.253796750058733,
+              "acceleration_error_mm_s2": 26.851181310186803,
+              "observed_head_position_error_mm": -0.10782480800877181
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": -7.468665202992128,
+        "control": 1.5350211155781182
+      }
+    },
+    {
+      "case": 3,
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 119.93386859519389,
+            "control": 111.4591726676426,
+            "fusion": 111.99414965631216
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 115.21037201874651,
+            "control": 109.96722825008045,
+            "fusion": 110.37747538984648
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.16655483258601536,
+            "control": 0.14941092143231546,
+            "fusion": 0.15436701270487693
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 32.322882364193596,
+            "control": 30.155520265301067,
+            "fusion": 30.275295798977215
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 7737.435599089028,
+            "control": 7572.615294403898,
+            "fusion": 7585.848735889301
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.1994634148961465,
+            "control": 0.13006469053474803,
+            "fusion": 0.12899951232229648
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -7.939718938881725,
+              "pa_mpjpe_mm": -4.832896628900031,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.012187819881138429,
+              "foot_joint_y_abs_error_mm": -2.047586565216381,
+              "acceleration_error_mm_s2": -151.5868631997273,
+              "observed_head_position_error_mm": -0.07046390257385002
+            },
+            "control": {
+              "w_mpjpe_mm": 0.5349769886695555,
+              "pa_mpjpe_mm": 0.4102471397660281,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.004956091272561469,
+              "foot_joint_y_abs_error_mm": 0.11977553367614746,
+              "acceleration_error_mm_s2": 13.233441485403091,
+              "observed_head_position_error_mm": -0.0010651782124515563
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 149.2513519209013,
+            "control": 136.02569207127382,
+            "fusion": 135.77816027182587
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 134.29915317322653,
+            "control": 122.6496912145604,
+            "fusion": 121.9394168636475
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.17425070616813385,
+            "control": 0.1604892805270572,
+            "fusion": 0.16280225023715217
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 23.46774935722351,
+            "control": 26.242794158558052,
+            "fusion": 26.539146900177002
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 8421.081199292377,
+            "control": 8372.762904415395,
+            "fusion": 8393.187853730971
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 23.348084246738377,
+            "control": 19.327026484069563,
+            "fusion": 19.175650975303295
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -13.473191649075432,
+              "pa_mpjpe_mm": -12.359736309579034,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.011448455930981677,
+              "foot_joint_y_abs_error_mm": 3.071397542953491,
+              "acceleration_error_mm_s2": -27.893345561406022,
+              "observed_head_position_error_mm": -4.172433271435082
+            },
+            "control": {
+              "w_mpjpe_mm": -0.24753179944795534,
+              "pa_mpjpe_mm": -0.7102743509129112,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.002312969710094981,
+              "foot_joint_y_abs_error_mm": 0.29635274161895,
+              "acceleration_error_mm_s2": 20.42494931557667,
+              "observed_head_position_error_mm": -0.15137550876626804
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": -10.706455293978578,
+        "control": 0.14372259461080006
+      }
+    },
+    {
+      "case": 206,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 84.80156558640233,
+            "control": 85.07158791791896,
+            "fusion": 84.89103901755891
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 68.59447424542633,
+            "control": 74.47617857678489,
+            "fusion": 74.60479236656477
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.17446093288257028,
+            "control": 0.1439375309212774,
+            "fusion": 0.14539349905768087
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 34.70436359445254,
+            "control": 18.086830774943035,
+            "fusion": 17.88306546707948
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 3780.5459961727356,
+            "control": 3376.486618680838,
+            "fusion": 3383.782275391662
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.11833979399425175,
+            "control": 0.15117522741726636,
+            "fusion": 0.15390573077264932
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": 0.08947343115657702,
+              "pa_mpjpe_mm": 6.0103181211384396,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.02906743382488941,
+              "foot_joint_y_abs_error_mm": -16.82129812737306,
+              "acceleration_error_mm_s2": -396.7637207810735,
+              "observed_head_position_error_mm": 0.035565936778397575
+            },
+            "control": {
+              "w_mpjpe_mm": -0.18054890036005133,
+              "pa_mpjpe_mm": 0.1286137897798767,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.0014559681364034738,
+              "foot_joint_y_abs_error_mm": -0.20376530786355573,
+              "acceleration_error_mm_s2": 7.295656710824005,
+              "observed_head_position_error_mm": 0.0027305033553829683
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 115.09904536206768,
+            "control": 122.63930959777878,
+            "fusion": 123.4763157371392
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 74.98709534741842,
+            "control": 78.5903197155247,
+            "fusion": 78.96724595607239
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.17970991489380286,
+            "control": 0.14151551905940843,
+            "fusion": 0.1428580725589759
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 21.375431679189205,
+            "control": 12.362939616044363,
+            "fusion": 12.039817248781523
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 3679.476075504947,
+            "control": 3405.249358101342,
+            "fusion": 3380.990758964643
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 32.490440586549475,
+            "control": 30.857306806948912,
+            "fusion": 30.94475630780595
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": 8.377270375071518,
+              "pa_mpjpe_mm": 3.9801506086539717,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.03685184233482697,
+              "foot_joint_y_abs_error_mm": -9.335614430407682,
+              "acceleration_error_mm_s2": -298.48531654030376,
+              "observed_head_position_error_mm": -1.5456842787435257
+            },
+            "control": {
+              "w_mpjpe_mm": 0.837006139360426,
+              "pa_mpjpe_mm": 0.3769262405476894,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.001342553499567467,
+              "foot_joint_y_abs_error_mm": -0.32312236726284027,
+              "acceleration_error_mm_s2": -24.25859913669865,
+              "observed_head_position_error_mm": 0.08744950085703707
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": 4.2333719031140475,
+        "control": 0.32822861950018734
+      }
+    },
+    {
+      "case": 207,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 102.43288287577559,
+            "control": 95.64452484595287,
+            "fusion": 96.53639858484341
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 88.7557936593867,
+            "control": 86.2747387130071,
+            "fusion": 86.1838089736681
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.16687904777422236,
+            "control": 0.15331596620479898,
+            "fusion": 0.14917435811052154
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 78.38220180322726,
+            "control": 50.619485788047314,
+            "fusion": 48.89279635002216
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 3225.4426990008187,
+            "control": 3035.9465368782717,
+            "fusion": 3043.8490075287336
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.021122958077078924,
+            "control": 0.03734608839006611,
+            "fusion": 0.03852002700899508
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -5.896484290932179,
+              "pa_mpjpe_mm": -2.57198468571859,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.017704689663700812,
+              "foot_joint_y_abs_error_mm": -29.4894054532051,
+              "acceleration_error_mm_s2": -181.59369147208508,
+              "observed_head_position_error_mm": 0.017397068931916157
+            },
+            "control": {
+              "w_mpjpe_mm": 0.8918737388905384,
+              "pa_mpjpe_mm": -0.09092973933898918,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.004141608094277438,
+              "foot_joint_y_abs_error_mm": -1.7266894380251543,
+              "acceleration_error_mm_s2": 7.902470650461964,
+              "observed_head_position_error_mm": 0.00117393861892897
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 110.74020484079207,
+            "control": 118.34460552554754,
+            "fusion": 119.42046585588778
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 92.32043500599904,
+            "control": 92.68050550512037,
+            "fusion": 92.41214375784483
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.1824715971655981,
+            "control": 0.15981731263673754,
+            "fusion": 0.1576881084002923
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 74.39929650475581,
+            "control": 47.971424336234726,
+            "fusion": 46.54987373699745
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 3237.554741579159,
+            "control": 3012.8555373621066,
+            "fusion": 3013.0244234388388
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 2.2916373883944434,
+            "control": 3.3128251378324585,
+            "fusion": 3.3456443738511923
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": 8.68026101509571,
+              "pa_mpjpe_mm": 0.0917087518457862,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.02478348876530581,
+              "foot_joint_y_abs_error_mm": -27.849422767758362,
+              "acceleration_error_mm_s2": -224.5303181403201,
+              "observed_head_position_error_mm": 1.0540069854567489
+            },
+            "control": {
+              "w_mpjpe_mm": 1.075860330340248,
+              "pa_mpjpe_mm": -0.2683617472755344,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.002129204236445248,
+              "foot_joint_y_abs_error_mm": -1.4215505992372783,
+              "acceleration_error_mm_s2": 0.16888607673217848,
+              "observed_head_position_error_mm": 0.03281923601873382
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": 1.3918883620817653,
+        "control": 0.9838670346153933
+      }
+    },
+    {
+      "case": 208,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 163.86731384876896,
+            "control": 109.70801367247192,
+            "fusion": 107.31197231347399
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 91.55322012852827,
+            "control": 89.32143075448494,
+            "fusion": 89.53075457055787
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.0903058767642064,
+            "control": 0.07997615744213542,
+            "fusion": 0.07754148818857036
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 128.59081259618202,
+            "control": 64.0240606541435,
+            "fusion": 62.6326110213995
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 2346.426555300306,
+            "control": 2030.4677707437286,
+            "fusion": 1988.1495204513492
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.11859822792274803,
+            "control": 0.19462676033742868,
+            "fusion": 0.1864610237018054
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -56.55534153529497,
+              "pa_mpjpe_mm": -2.022465557970392,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.01276438857563604,
+              "foot_joint_y_abs_error_mm": -65.95820157478252,
+              "acceleration_error_mm_s2": -358.2770348489569,
+              "observed_head_position_error_mm": 0.06786279577905736
+            },
+            "control": {
+              "w_mpjpe_mm": -2.396041358997934,
+              "pa_mpjpe_mm": 0.20932381607293848,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.0024346692535650583,
+              "foot_joint_y_abs_error_mm": -1.3914496327439991,
+              "acceleration_error_mm_s2": -42.31825029237939,
+              "observed_head_position_error_mm": -0.008165736635623283
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 180.9080465599985,
+            "control": 110.81255129185696,
+            "fusion": 109.77537822773058
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 96.23412574495482,
+            "control": 88.90540643371943,
+            "fusion": 89.0945462566315
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.10086947360606274,
+            "control": 0.0884093180891751,
+            "fusion": 0.08503037627324674
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 149.0501957014203,
+            "control": 71.96416767934959,
+            "fusion": 70.98925889780124
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 2358.932550702049,
+            "control": 2087.5154544338275,
+            "fusion": 2102.189945781025
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 6.609259098674876,
+            "control": 14.319239956629238,
+            "fusion": 14.375402607666189
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -71.13266833226791,
+              "pa_mpjpe_mm": -7.139579488323321,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.015839097332816007,
+              "foot_joint_y_abs_error_mm": -78.06093680361907,
+              "acceleration_error_mm_s2": -256.74260492102394,
+              "observed_head_position_error_mm": 7.766143508991313
+            },
+            "control": {
+              "w_mpjpe_mm": -1.037173064126378,
+              "pa_mpjpe_mm": 0.1891398229120682,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.003378941815928363,
+              "foot_joint_y_abs_error_mm": -0.9749087815483506,
+              "acceleration_error_mm_s2": 14.674491347197545,
+              "observed_head_position_error_mm": 0.05616265103695106
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": -63.84400493378144,
+        "control": -1.716607211562156
+      }
+    },
+    {
+      "case": 209,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 83.27171697170107,
+            "control": 70.25321873062164,
+            "fusion": 69.62632426082835
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 64.532663434704,
+            "control": 62.47258761594225,
+            "fusion": 62.26263019966263
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.1115772334979825,
+            "control": 0.1138170245548597,
+            "fusion": 0.11524401555068708
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 48.942469991743565,
+            "control": 28.441823087632656,
+            "fusion": 27.970025315880775
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 2544.857251785921,
+            "control": 2346.377295124846,
+            "fusion": 2357.3431038647514
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.026681976281092108,
+            "control": 0.026860283317948472,
+            "fusion": 0.026708561681235105
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -13.645392710872713,
+              "pa_mpjpe_mm": -2.2700332350413746,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.003666782052704584,
+              "foot_joint_y_abs_error_mm": -20.97244467586279,
+              "acceleration_error_mm_s2": -187.51414792116975,
+              "observed_head_position_error_mm": 2.6585400142997706e-05
+            },
+            "control": {
+              "w_mpjpe_mm": -0.6268944697932852,
+              "pa_mpjpe_mm": -0.2099574162796216,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.0014269909958273819,
+              "foot_joint_y_abs_error_mm": -0.47179777175188065,
+              "acceleration_error_mm_s2": 10.965808739905242,
+              "observed_head_position_error_mm": -0.00015172163671336655
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 95.06083256617542,
+            "control": 82.20612912897626,
+            "fusion": 81.6029648703607
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 64.60535882219101,
+            "control": 63.112477957147945,
+            "fusion": 62.96739668109476
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.11889398345471225,
+            "control": 0.12625211157145766,
+            "fusion": 0.12783022180885098
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 55.408891290426254,
+            "control": 29.84872180968523,
+            "fusion": 29.26228040208419
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 2456.456620316766,
+            "control": 2317.2535267879957,
+            "fusion": 2318.37583238651
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.44008050636576534,
+            "control": 0.4031004180260009,
+            "fusion": 0.3968574068720177
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -13.457867695814727,
+              "pa_mpjpe_mm": -1.6379621410962457,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.008936238354138731,
+              "foot_joint_y_abs_error_mm": -26.146610888342064,
+              "acceleration_error_mm_s2": -138.08078793025607,
+              "observed_head_position_error_mm": -0.04322309949374764
+            },
+            "control": {
+              "w_mpjpe_mm": -0.6031642586155641,
+              "pa_mpjpe_mm": -0.14508127605318322,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.001578110237393321,
+              "foot_joint_y_abs_error_mm": -0.5864414076010398,
+              "acceleration_error_mm_s2": 1.122305598514231,
+              "observed_head_position_error_mm": -0.00624301115398318
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": -13.55163020334372,
+        "control": -0.6150293642044247
+      }
+    },
+    {
+      "case": 256,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 212.49668906814873,
+            "control": 201.39013042480798,
+            "fusion": 203.28526492320765
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 126.94605184963382,
+            "control": 123.57460632556378,
+            "fusion": 123.96160360888891
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.1187690181957248,
+            "control": 0.09818584826226556,
+            "fusion": 0.09812002402043467
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 92.54279701660077,
+            "control": 109.17234513908625,
+            "fusion": 109.65832757453124
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 3638.0674657678246,
+            "control": 3541.2743514736458,
+            "fusion": 3545.527632621008
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 5.578262909516952,
+            "control": 7.361911773662183,
+            "fusion": 7.476594673003279
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -9.211424144941077,
+              "pa_mpjpe_mm": -2.9844482407449107,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.020648994175290133,
+              "foot_joint_y_abs_error_mm": 17.11553055793047,
+              "acceleration_error_mm_s2": -92.53983314681682,
+              "observed_head_position_error_mm": 1.8983317634863273
+            },
+            "control": {
+              "w_mpjpe_mm": 1.8951344983996705,
+              "pa_mpjpe_mm": 0.3869972833251296,
+              "foot_joint_horizontal_speed_gt_low_m_s": -6.582424183089464e-05,
+              "foot_joint_y_abs_error_mm": 0.48598243544499553,
+              "acceleration_error_mm_s2": 4.253281147362031,
+              "observed_head_position_error_mm": 0.11468289934109599
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 234.23477328708,
+            "control": 213.76875312498515,
+            "fusion": 216.02861139968942
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 127.92131844973802,
+            "control": 121.88776586680672,
+            "fusion": 122.24917275153904
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.13998685363833396,
+            "control": 0.11547920101178384,
+            "fusion": 0.11604406028648631
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 84.24735472848018,
+            "control": 98.05571598311265,
+            "fusion": 98.86159716794889
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 3725.8903186778625,
+            "control": 3606.976998187843,
+            "fusion": 3611.889295955202
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 9.680713291790253,
+            "control": 12.675156023759888,
+            "fusion": 12.962908122417582
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -18.20616188739058,
+              "pa_mpjpe_mm": -5.672145698198989,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.023942793351847652,
+              "foot_joint_y_abs_error_mm": 14.614242439468711,
+              "acceleration_error_mm_s2": -114.00102272266031,
+              "observed_head_position_error_mm": 3.282194830627329
+            },
+            "control": {
+              "w_mpjpe_mm": 2.2598582747042713,
+              "pa_mpjpe_mm": 0.3614068847323182,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.00056485927470247,
+              "foot_joint_y_abs_error_mm": 0.8058811848362382,
+              "acceleration_error_mm_s2": 4.912297767359178,
+              "observed_head_position_error_mm": 0.2877520986576947
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": -13.708793016165828,
+        "control": 2.077496386551971
+      }
+    },
+    {
+      "case": 257,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 101.18874388247843,
+            "control": 99.4876066083086,
+            "fusion": 99.56698828894574
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 81.55860700063067,
+            "control": 73.82862794728045,
+            "fusion": 74.23956697174019
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.17687241627814587,
+            "control": 0.16836073597443285,
+            "fusion": 0.1714550977775772
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 11.575849416355291,
+            "control": 10.822621484597525,
+            "fusion": 10.855901055037975
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 5133.905491417152,
+            "control": 5118.126370313377,
+            "fusion": 5130.947283637804
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.007821241174966739,
+            "control": 0.01319803953871933,
+            "fusion": 0.012899465620395784
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -1.621755593532697,
+              "pa_mpjpe_mm": -7.319040028890484,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.005417318500568674,
+              "foot_joint_y_abs_error_mm": -0.7199483613173161,
+              "acceleration_error_mm_s2": -2.958207779348413,
+              "observed_head_position_error_mm": 0.005078224445429045
+            },
+            "control": {
+              "w_mpjpe_mm": 0.07938168063714102,
+              "pa_mpjpe_mm": 0.4109390244597364,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.0030943618031443465,
+              "foot_joint_y_abs_error_mm": 0.03327957044045071,
+              "acceleration_error_mm_s2": 12.820913324426328,
+              "observed_head_position_error_mm": -0.0002985739183235456
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 111.6577727480428,
+            "control": 108.97875709871832,
+            "fusion": 108.8187949611706
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 93.16965412816923,
+            "control": 84.71728108047611,
+            "fusion": 85.09976990343795
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.24542546911757374,
+            "control": 0.23328302004595325,
+            "fusion": 0.23560402683839773
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 14.440028617779413,
+            "control": 15.88435440013806,
+            "fusion": 15.750608717401823
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 5934.965828369312,
+            "control": 5878.15524202924,
+            "fusion": 5880.222952570204
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 3.340647406722647,
+            "control": 4.07723606043188,
+            "fusion": 4.0017337233206645
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -2.8389777868722064,
+              "pa_mpjpe_mm": -8.069884224731283,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.009821442279176001,
+              "foot_joint_y_abs_error_mm": 1.3105800996224097,
+              "acceleration_error_mm_s2": -54.74287579910742,
+              "observed_head_position_error_mm": 0.6610863165980176
+            },
+            "control": {
+              "w_mpjpe_mm": -0.1599621375477227,
+              "pa_mpjpe_mm": 0.3824888229618324,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.0023210067924444855,
+              "foot_joint_y_abs_error_mm": -0.13374568273623666,
+              "acceleration_error_mm_s2": 2.0677105409640717,
+              "observed_head_position_error_mm": -0.07550233711121557
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": -2.2303666902024517,
+        "control": -0.040290228455290844
+      }
+    },
+    {
+      "case": 258,
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 142.2671229222196,
+            "control": 136.10456304976046,
+            "fusion": 137.18272632678688
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 71.84240589641261,
+            "control": 68.27901705451785,
+            "fusion": 69.06765854949373
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.09153979172406358,
+            "control": 0.08756087123946024,
+            "fusion": 0.08728620745169444
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 25.836143642663956,
+            "control": 19.50669940561056,
+            "fusion": 19.75877769291401
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 1749.9214029552156,
+            "control": 1673.5108528263095,
+            "fusion": 1704.8190670836352
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 4.784827027156737,
+            "control": 6.030484730096075,
+            "fusion": 6.248750524129105
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -5.084396595432736,
+              "pa_mpjpe_mm": -2.774747346918886,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.004253584272369146,
+              "foot_joint_y_abs_error_mm": -6.077365949749947,
+              "acceleration_error_mm_s2": -45.10233587158041,
+              "observed_head_position_error_mm": 1.4639234969723676
+            },
+            "control": {
+              "w_mpjpe_mm": 1.0781632770264196,
+              "pa_mpjpe_mm": 0.7886414949758773,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.00027466378776580536,
+              "foot_joint_y_abs_error_mm": 0.2520782873034477,
+              "acceleration_error_mm_s2": 31.308214257325744,
+              "observed_head_position_error_mm": 0.21826579403303015
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 154.52310053788534,
+            "control": 148.4276760731744,
+            "fusion": 149.27091440642178
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 74.52869763849374,
+            "control": 69.3793170764828,
+            "fusion": 70.00216553203386
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.10082155244278958,
+            "control": 0.10446113752607025,
+            "fusion": 0.1041987145840176
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 44.91184279322624,
+            "control": 33.79585035145283,
+            "fusion": 33.940013187626995
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 1771.102351188869,
+            "control": 1728.1163488678355,
+            "fusion": 1752.4159290092819
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 5.709694825497455,
+            "control": 7.588622383677989,
+            "fusion": 7.858295943925138
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -5.25218613146356,
+              "pa_mpjpe_mm": -4.526532106459882,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.0033771621412280184,
+              "foot_joint_y_abs_error_mm": -10.971829605599247,
+              "acceleration_error_mm_s2": -18.686422179587225,
+              "observed_head_position_error_mm": 2.148601118427683
+            },
+            "control": {
+              "w_mpjpe_mm": 0.8432383332473705,
+              "pa_mpjpe_mm": 0.6228484555510505,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.00026242294205265637,
+              "foot_joint_y_abs_error_mm": 0.1441628361741678,
+              "acceleration_error_mm_s2": 24.299580141446313,
+              "observed_head_position_error_mm": 0.26967356024714917
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": -5.168291363448148,
+        "control": 0.960700805136895
+      }
+    },
+    {
+      "case": 259,
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "regimes": {
+        "clean": {
+          "w_mpjpe_mm": {
+            "base41k": 136.43205359638563,
+            "control": 130.95911814696345,
+            "fusion": 131.32882726666875
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 105.78972559334127,
+            "control": 89.81574790864373,
+            "fusion": 90.25584460178776
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.10946541112380828,
+            "control": 0.1152176359701566,
+            "fusion": 0.11533950824722328
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 29.32427016397317,
+            "control": 25.259373088677723,
+            "fusion": 25.653028550247353
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 3489.973433443305,
+            "control": 3354.9189827205796,
+            "fusion": 3349.908329978352
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 0.023412992080150786,
+            "control": 0.016610754961020782,
+            "fusion": 0.01768548215646157
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -5.103226329716875,
+              "pa_mpjpe_mm": -15.533880991553517,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.005874097123414995,
+              "foot_joint_y_abs_error_mm": -3.671241613725819,
+              "acceleration_error_mm_s2": -140.06510346495315,
+              "observed_head_position_error_mm": -0.0057275099236892175
+            },
+            "control": {
+              "w_mpjpe_mm": 0.3697091197053055,
+              "pa_mpjpe_mm": 0.440096693144028,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.00012187227706667025,
+              "foot_joint_y_abs_error_mm": 0.3936554615696295,
+              "acceleration_error_mm_s2": -5.010652742227649,
+              "observed_head_position_error_mm": 0.001074727195440786
+            }
+          }
+        },
+        "noisy": {
+          "w_mpjpe_mm": {
+            "base41k": 146.59185617120417,
+            "control": 142.89815881919318,
+            "fusion": 143.03032210957474
+          },
+          "pa_mpjpe_mm": {
+            "base41k": 114.19239309637697,
+            "control": 91.13827560554022,
+            "fusion": 91.51786593211878
+          },
+          "foot_joint_horizontal_speed_gt_low_m_s": {
+            "base41k": 0.14391265712522058,
+            "control": 0.13833235619750728,
+            "fusion": 0.1386260784137128
+          },
+          "foot_joint_y_abs_error_mm": {
+            "base41k": 14.871697562436262,
+            "control": 51.433462339142956,
+            "fusion": 51.777321534852184
+          },
+          "acceleration_error_mm_s2": {
+            "base41k": 3902.7265539505606,
+            "control": 3821.688862675555,
+            "fusion": 3822.3436393538163
+          },
+          "observed_head_position_error_mm": {
+            "base41k": 4.496683230491635,
+            "control": 5.0322320872805575,
+            "fusion": 5.142410717912564
+          },
+          "fusion_minus_comparator": {
+            "base41k": {
+              "w_mpjpe_mm": -3.5615340616294304,
+              "pa_mpjpe_mm": -22.674527164258194,
+              "foot_joint_horizontal_speed_gt_low_m_s": -0.005286578711507783,
+              "foot_joint_y_abs_error_mm": 36.905623972415924,
+              "acceleration_error_mm_s2": -80.38291459674429,
+              "observed_head_position_error_mm": 0.6457274874209293
+            },
+            "control": {
+              "w_mpjpe_mm": 0.1321632903815555,
+              "pa_mpjpe_mm": 0.3795903265785654,
+              "foot_joint_horizontal_speed_gt_low_m_s": 0.00029372221620552197,
+              "foot_joint_y_abs_error_mm": 0.3438591957092285,
+              "acceleration_error_mm_s2": 0.6547766782614417,
+              "observed_head_position_error_mm": 0.1101786306320065
+            }
+          }
+        }
+      },
+      "mean_clean_noisy_World_fusion_minus": {
+        "base41k": -4.332380195673153,
+        "control": 0.2509362050434305
+      }
+    }
+  ],
+  "training_rng_matching_proof": "MATCHED_AUDIT1000 independently bound by SHA and checkpoint hashes; this metric audit does not replay training.",
+  "sampler_diagnostics_scope": "Archived call counters/stage values and saved stage JSON integrity checked; sampler is not replayed on CPU.",
+  "interpretation": "1000-step development gate only; all43, second DDIM seed, final3000 and training-seed robustness have not been evaluated here."
+}

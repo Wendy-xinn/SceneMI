@@ -1,0 +1,164 @@
+{
+  "protocol": "matched-ego-scene-fusion-training-v2",
+  "status": "completed",
+  "started_at": "2026-10-19T00:20:26.140226+08:00",
+  "pid": 46344,
+  "plan_sha256": "0de163211d2be2a2486ece19a42504c9ad022e7f30206ae6ffe1db0f734e2818",
+  "stop_step": 1000,
+  "initial_steps": {
+    "control": 0,
+    "fusion": 0
+  },
+  "independent_children_release_CUDA": true,
+  "events": [
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_trial",
+        "preflight",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2",
+        "--memory-fraction",
+        "0.65"
+      ],
+      "started_at": "2026-10-19T00:20:26.140653+08:00",
+      "status": "completed",
+      "pid": 46364,
+      "returncode": 0,
+      "ended_at": "2026-10-19T00:21:41.955660+08:00"
+    },
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_trial",
+        "train",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2",
+        "--arm",
+        "control",
+        "--stop-step",
+        "2",
+        "--memory-fraction",
+        "0.65"
+      ],
+      "started_at": "2026-10-19T00:21:41.962769+08:00",
+      "status": "completed",
+      "pid": 46563,
+      "returncode": 0,
+      "ended_at": "2026-10-19T00:22:59.210435+08:00"
+    },
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_trial",
+        "train",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2",
+        "--arm",
+        "fusion",
+        "--stop-step",
+        "2",
+        "--memory-fraction",
+        "0.65"
+      ],
+      "started_at": "2026-10-19T00:22:59.233918+08:00",
+      "status": "completed",
+      "pid": 46877,
+      "returncode": 0,
+      "ended_at": "2026-10-19T00:24:09.960570+08:00"
+    },
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_trial",
+        "audit",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2"
+      ],
+      "started_at": "2026-10-19T00:24:09.963188+08:00",
+      "status": "completed",
+      "pid": 47166,
+      "returncode": 0,
+      "ended_at": "2026-10-19T00:24:23.997004+08:00"
+    },
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_trial",
+        "train",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2",
+        "--arm",
+        "control",
+        "--stop-step",
+        "1000",
+        "--memory-fraction",
+        "0.65",
+        "--resume"
+      ],
+      "started_at": "2026-10-19T00:24:24.061364+08:00",
+      "status": "completed",
+      "pid": 47251,
+      "returncode": 0,
+      "ended_at": "2026-10-19T00:49:08.625499+08:00"
+    },
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_trial",
+        "train",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2",
+        "--arm",
+        "fusion",
+        "--stop-step",
+        "1000",
+        "--memory-fraction",
+        "0.65",
+        "--resume"
+      ],
+      "started_at": "2026-10-19T00:49:08.659261+08:00",
+      "status": "completed",
+      "pid": 48909,
+      "returncode": 0,
+      "ended_at": "2026-10-19T01:13:03.934466+08:00"
+    },
+    {
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.ego_scene_trial",
+        "audit",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2"
+      ],
+      "started_at": "2026-10-19T01:13:03.936824+08:00",
+      "status": "completed",
+      "pid": 49845,
+      "returncode": 0,
+      "ended_at": "2026-10-19T01:13:18.504529+08:00"
+    }
+  ],
+  "TEST_used": false,
+  "automatic_evaluation": false,
+  "automatic_checkpoint_promotion": false,
+  "ended_at": "2026-10-19T01:13:18.540385+08:00",
+  "final_steps": {
+    "control": 1000,
+    "fusion": 1000
+  },
+  "validation_required_before_further_extension": true
+}

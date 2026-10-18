@@ -1,0 +1,2598 @@
+{
+  "protocol": "scene-fusion-v2-1000-dev-review-v1",
+  "status": "independent_CPU_verified_interim_dev_only",
+  "checked_at": "2026-10-19T01:29:43.441512+08:00",
+  "scope": {
+    "recordings": 12,
+    "dataset_recordings": {
+      "rich": 4,
+      "trumans": 4,
+      "egobody": 4
+    },
+    "observations": [
+      "clean",
+      "noisy"
+    ],
+    "DDIM_seed_index": 0,
+    "predictions": 72,
+    "confirmation_recordings_evaluated": 0,
+    "TEST_used": false,
+    "training_extension_or_checkpoint_promotion_by_this_report": false
+  },
+  "models": {
+    "base41k": {
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/gate1000/checkpoints/base41k.pt",
+      "expected_step": 41000,
+      "checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+      "source_checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_checkpoint_review_v1/checkpoints/candidate41k.pt",
+      "model_tensor_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+      "strict_CPU_load": true,
+      "finite": true,
+      "architecture": "original",
+      "arms": [
+        "learned_only"
+      ],
+      "source_checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+      "fusion_spec": null,
+      "fusion_options": null,
+      "attention_spec": null,
+      "parent_step": null,
+      "trained_guidance_enabled": null,
+      "stage_plan_sha256": null
+    },
+    "control": {
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/gate1000/checkpoints/control.pt",
+      "checkpoint_sha256": "f4d16c244e9447f7b24b47504c7606a353f0313b03bed833bc50fd148176da00",
+      "expected_step": 1000,
+      "architecture": "original",
+      "arms": [
+        "learned_only"
+      ],
+      "source_checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/control/training/last.pt",
+      "source_checkpoint_sha256": "f4d16c244e9447f7b24b47504c7606a353f0313b03bed833bc50fd148176da00",
+      "model_tensor_sha256": "b3470a29f6d17defc812648d63c9c12bc4f337fbf90d18a228b72dc554383642",
+      "fusion_spec": null,
+      "fusion_options": null,
+      "attention_spec": null,
+      "parent_step": 41000,
+      "trained_guidance_enabled": false,
+      "stage_plan_sha256": "0de163211d2be2a2486ece19a42504c9ad022e7f30206ae6ffe1db0f734e2818"
+    },
+    "fusion": {
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/gate1000/checkpoints/fusion.pt",
+      "checkpoint_sha256": "4031accab32b0505e958e9b3db4ab1af43d23124382d7d8a35b823179b4e29a1",
+      "expected_step": 1000,
+      "architecture": "scene_fusion_v2",
+      "arms": [
+        "learned_only"
+      ],
+      "source_checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/fusion/training/last.pt",
+      "source_checkpoint_sha256": "4031accab32b0505e958e9b3db4ab1af43d23124382d7d8a35b823179b4e29a1",
+      "model_tensor_sha256": "dd1bd5ea37fe7764a145b629e0809eb40b6b4f0c1d644d9bd71d0260d50a8626",
+      "fusion_spec": {
+        "policy": "native30-second-pass-regional-scene-fusion-v2",
+        "architecture": "scene_fusion_v2",
+        "state_prefix": "scene_fusion_v2.",
+        "hook": "core.unet.mid_block2",
+        "pass_policy": "second_core_pass_only",
+        "channels": 1024,
+        "token_dim": 64,
+        "heads": 4,
+        "fusion_dim": 128,
+        "include_global": true,
+        "include_local": true,
+        "query_count_per_bin": 22,
+        "query": "temporal bottleneck projection + region embedding + detached proposal position/rotation-6D",
+        "proposal_pose": "existing window-world positions (m/2) and local rotation columns (residual-6D + identity); temporal bin mean; no FK",
+        "global_token_count": 16,
+        "local_token_count": 22,
+        "null_tokens_per_branch": 1,
+        "global_local_attention": "separate; region-ordered shared fusion; additive hidden updates",
+        "local_keys": "normalized raw region context + region embedding + validity-pooled proposal position/rotation-6D projection",
+        "local_validity": "existing region_valid (including enabled relation context)",
+        "local_gate": "alpha_bar_squared_after_region_fusion_before_bias_free_output_projection",
+        "global_gate": "validity only; independent of local alpha_bar_squared gate",
+        "empty_policy": "per-branch evidence mask; bias-free final map gives exact identity",
+        "temporal_pool": "deterministic validity-weighted floor/ceil bin reduction",
+        "query_pose_pool": "uniform native-valid window frames; no GT frame weights",
+        "normalization": "LayerNorm query/global K-V/raw local context/composed local K-V; affine defaults",
+        "attention_dropout": 0.0,
+        "parameters": 413504,
+        "initialized_output": "exactly zero bias-free linear projection",
+        "zero_output_state_keys": [
+          "scene_fusion_v2.output_projection.weight"
+        ],
+        "attachment_preserves_rng": true,
+        "use_scene_gate": true,
+        "extra_scene_encoder_calls": 0,
+        "extra_geometry_queries": 0,
+        "extra_fk_calls": 0,
+        "main_unet_self_attention": false
+      },
+      "fusion_options": {
+        "token_dim": 64,
+        "heads": 4,
+        "fusion_dim": 128
+      },
+      "attention_spec": null,
+      "parent_step": 41000,
+      "trained_guidance_enabled": false,
+      "stage_plan_sha256": "0de163211d2be2a2486ece19a42504c9ad022e7f30206ae6ffe1db0f734e2818"
+    }
+  },
+  "groups": {
+    "rich/clean/base41k": {
+      "w_mpjpe_mm": {
+        "mean": 117.10012330690417,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 94.33345601142096,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 108.86467929896057,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.2209668226541998,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 23.534459178335965,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 17.68578304231881,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 7360.425228499926,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 0.09701358101495913,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "rich/clean/control": {
+      "w_mpjpe_mm": {
+        "mean": 114.17434419742281,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 90.19115775485035,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 106.83737564124348,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.20014122686802857,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 25.22001291314761,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 19.5435898718454,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 7073.909462141895,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 0.07329662345789553,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "rich/clean/fusion": {
+      "w_mpjpe_mm": {
+        "mean": 115.05186188141141,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 90.17941151437853,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 107.24818054076478,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.20113924434768646,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 25.532941178729136,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 19.85921835627522,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 7069.732830222646,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 0.07296398969076782,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "rich/noisy/base41k": {
+      "w_mpjpe_mm": {
+        "mean": 136.3737820805522,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 102.12587869263675,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 121.13212374056594,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.26263021400172115,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 27.67600402391205,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 22.21480866863085,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 8315.973556055133,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 8.992763465440232,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "rich/noisy/control": {
+      "w_mpjpe_mm": {
+        "mean": 131.77773078174496,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 97.56923133804695,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 117.26706989171996,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.23905231498509674,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 28.220170992426574,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 23.92117669274782,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 7994.9007503420735,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 7.455234298166556,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "rich/noisy/fusion": {
+      "w_mpjpe_mm": {
+        "mean": 133.52442339963378,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 97.83765398246899,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 118.35149224952592,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.24063815264701607,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 29.420340433716774,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 25.231118230429463,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1039,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 8008.905508524943,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 7.393242502202864,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "trumans/clean/base41k": {
+      "w_mpjpe_mm": {
+        "mean": 108.59336982066199,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 78.35903786701132,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 91.61333794792365,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.1358057727297454,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 72.65496199640134,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 72.81002109219068,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 2974.318125564945,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 0.0711857390687927,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "trumans/clean/control": {
+      "w_mpjpe_mm": {
+        "mean": 90.16933629174135,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 78.13623391505479,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 84.17248277397185,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.12276166978076787,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 40.293050076191626,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 40.617983913996206,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 2697.3195553569212,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 0.10250208986567741,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "trumans/clean/fusion": {
+      "w_mpjpe_mm": {
+        "mean": 89.59143354417617,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 78.14549652761335,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 84.19472622093298,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.12183834022686496,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 39.344624538595475,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 39.662730509262325,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 2693.2809768091242,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 0.10139883579117123,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "trumans/noisy/base41k": {
+      "w_mpjpe_mm": {
+        "mean": 125.45203233225843,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 82.03675373014082,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 97.74953345469767,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.14548624228004398,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 75.05845379394789,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 74.31680171037266,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 2933.10499702573,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 10.45785439499614,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "trumans/noisy/control": {
+      "w_mpjpe_mm": {
+        "mean": 108.50064888603988,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 80.82217740287811,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 90.71400564062044,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.12899856533919468,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 40.53681336032847,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 39.97412048463584,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 2705.718469171318,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 12.223118079859152,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "trumans/noisy/fusion": {
+      "w_mpjpe_mm": {
+        "mean": 108.56878117277957,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 80.86033316291088,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 90.88691840631239,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.12835169476034147,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 39.7103075714161,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 39.186172047355115,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 2703.645240142754,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 12.265665174048838,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "egobody/clean/base41k": {
+      "w_mpjpe_mm": {
+        "mean": 148.0961523673081,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 96.53419758500459,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 125.59309859754437,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.12416165933043563,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 39.819765059898295,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 32.9026482228985,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 3502.966948395874,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 2.5985810424822016,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "egobody/clean/control": {
+      "w_mpjpe_mm": {
+        "mean": 141.9853545574601,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 88.87449980900145,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 122.04790907050436,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.11733127286157882,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 41.19025977949301,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 34.20848259342369,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 3421.9576393334783,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 3.3555513245644994,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "egobody/clean/fusion": {
+      "w_mpjpe_mm": {
+        "mean": 142.84095170140225,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 89.38116843297765,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 122.90825815019073,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.1180502093742324,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 41.481508718182646,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 34.52029153070879,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 3432.8005783301996,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 3.4389825362273103,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "egobody/noisy/base41k": {
+      "w_mpjpe_mm": {
+        "mean": 161.75187568605307,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 102.4530158281945,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 135.64282406465333,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.15753663308097945,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 39.61773092548052,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 32.88894490125697,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 3833.671263046651,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 5.806934688625497,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "egobody/noisy/control": {
+      "w_mpjpe_mm": {
+        "mean": 153.51833627901777,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 91.78065990732647,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 129.61996538137836,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.14788892869532866,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 49.79234576846162,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 43.00614170653232,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 3758.7343629401184,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 7.343311638787578,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "egobody/noisy/fusion": {
+      "w_mpjpe_mm": {
+        "mean": 154.28716071921414,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 92.21724352978241,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 130.52422798484653,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16896,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.1486182200306536,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 50.082385151957475,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1536,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 43.298734397387946,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 1364,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 3766.717954222126,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 16720,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 7.4913371268939875,
+        "valid_recordings": 4,
+        "total_recordings": 4,
+        "GT_or_input_opportunity_samples": 768,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "macro/clean/base41k": {
+      "w_mpjpe_mm": {
+        "mean": 124.59654849829141,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 89.7422304878123,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 108.69037194814287,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.16031141823812695,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 45.3363954115452,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 4608,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 41.13281745246933,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 4612.570100820249,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50160,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 0.9222601208553178,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 2304,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "macro/clean/control": {
+      "w_mpjpe_mm": {
+        "mean": 115.4430116822081,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 85.7339638263022,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 104.35258916190656,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.1467447231701251,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 35.56777425627742,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 4608,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 31.456685459755096,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 4397.728885610765,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50160,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 1.1771166792960241,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 2304,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "macro/clean/fusion": {
+      "w_mpjpe_mm": {
+        "mean": 115.82808237566327,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 85.9020254916565,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 104.78372163729617,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.1470092646495946,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 35.45302481183575,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 4608,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 31.347413465415446,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 4398.6047951206565,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50160,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 1.204448453903083,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 2304,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "macro/noisy/base41k": {
+      "w_mpjpe_mm": {
+        "mean": 141.19256336628789,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 95.53854941699069,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 118.17482708663898,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.18855102978758154,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 47.450729581113485,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 4608,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 43.14018509342016,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 5027.583272042504,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50160,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 8.419184183020622,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 2304,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "macro/noisy/control": {
+      "w_mpjpe_mm": {
+        "mean": 131.26557198226755,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 90.05735621608385,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 112.53368030457293,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.17197993633987335,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 39.51644337373889,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 4608,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 35.633812961305324,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 4819.784527484503,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50160,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 9.007221338937763,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 2304,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    },
+    "macro/noisy/fusion": {
+      "w_mpjpe_mm": {
+        "mean": 132.1267884305425,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "pa_mpjpe_mm": {
+        "mean": 90.30507689172076,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "root_relative_mpjpe_mm": {
+        "mean": 113.25421288022828,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50688,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_horizontal_speed_gt_low_m_s": {
+        "mean": 0.17253602247933705,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_mm": {
+        "mean": 39.73767771903012,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 4608,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "foot_joint_y_abs_error_gt_low_mm": {
+        "mean": 35.905341558390845,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 3767,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "acceleration_error_mm_s2": {
+        "mean": 4826.4229009632745,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 50160,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      },
+      "observed_head_position_error_mm": {
+        "mean": 9.050081601048563,
+        "valid_recordings": 12,
+        "total_recordings": 12,
+        "GT_or_input_opportunity_samples": 2304,
+        "aggregation": "Equal recording within dataset; equal dataset macro. Opportunity totals are descriptive, not aggregation weights."
+      }
+    }
+  },
+  "paired_deltas": {
+    "control": {
+      "per_recording_per_regime": [
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_003_wipingchairs1",
+          "case": 0,
+          "regime": "clean",
+          "fusion_world_mm": 133.50253619593119,
+          "comparator_world_mm": 132.58567013220951,
+          "delta_mm": 0.9168660637216703
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_003_wipingchairs1",
+          "case": 0,
+          "regime": "noisy",
+          "fusion_world_mm": 143.7140642499133,
+          "comparator_world_mm": 142.28964376175495,
+          "delta_mm": 1.424420488158347
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_018_wipingtable1",
+          "case": 1,
+          "regime": "clean",
+          "fusion_world_mm": 106.24390497187923,
+          "comparator_world_mm": 104.54154601493008,
+          "delta_mm": 1.7023589569491548
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_018_wipingtable1",
+          "case": 1,
+          "regime": "noisy",
+          "fusion_world_mm": 121.71434741124425,
+          "comparator_world_mm": 118.61863913294162,
+          "delta_mm": 3.0957082783026237
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_020_wipingchairs1",
+          "case": 2,
+          "regime": "clean",
+          "fusion_world_mm": 108.46685670152308,
+          "comparator_world_mm": 108.11098797490902,
+          "delta_mm": 0.3558687266140623
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_020_wipingchairs1",
+          "case": 2,
+          "regime": "noisy",
+          "fusion_world_mm": 132.89112166555168,
+          "comparator_world_mm": 130.1769481610095,
+          "delta_mm": 2.714173504542174
+        },
+        {
+          "dataset": "rich",
+          "recording": "ParkingLot1_002_burpee1",
+          "case": 3,
+          "regime": "clean",
+          "fusion_world_mm": 111.99414965631216,
+          "comparator_world_mm": 111.4591726676426,
+          "delta_mm": 0.5349769886695555
+        },
+        {
+          "dataset": "rich",
+          "recording": "ParkingLot1_002_burpee1",
+          "case": 3,
+          "regime": "noisy",
+          "fusion_world_mm": 135.77816027182587,
+          "comparator_world_mm": 136.02569207127382,
+          "delta_mm": -0.24753179944795534
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-50-03",
+          "case": 206,
+          "regime": "clean",
+          "fusion_world_mm": 84.89103901755891,
+          "comparator_world_mm": 85.07158791791896,
+          "delta_mm": -0.18054890036005133
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-50-03",
+          "case": 206,
+          "regime": "noisy",
+          "fusion_world_mm": 123.4763157371392,
+          "comparator_world_mm": 122.63930959777878,
+          "delta_mm": 0.837006139360426
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-18-35",
+          "case": 207,
+          "regime": "clean",
+          "fusion_world_mm": 96.53639858484341,
+          "comparator_world_mm": 95.64452484595287,
+          "delta_mm": 0.8918737388905384
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-18-35",
+          "case": 207,
+          "regime": "noisy",
+          "fusion_world_mm": 119.42046585588778,
+          "comparator_world_mm": 118.34460552554754,
+          "delta_mm": 1.075860330340248
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-56-45",
+          "case": 208,
+          "regime": "clean",
+          "fusion_world_mm": 107.31197231347399,
+          "comparator_world_mm": 109.70801367247192,
+          "delta_mm": -2.396041358997934
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-56-45",
+          "case": 208,
+          "regime": "noisy",
+          "fusion_world_mm": 109.77537822773058,
+          "comparator_world_mm": 110.81255129185696,
+          "delta_mm": -1.037173064126378
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-10-27",
+          "case": 209,
+          "regime": "clean",
+          "fusion_world_mm": 69.62632426082835,
+          "comparator_world_mm": 70.25321873062164,
+          "delta_mm": -0.6268944697932852
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-10-27",
+          "case": 209,
+          "regime": "noisy",
+          "fusion_world_mm": 81.6029648703607,
+          "comparator_world_mm": 82.20612912897626,
+          "delta_mm": -0.6031642586155641
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_04",
+          "case": 256,
+          "regime": "clean",
+          "fusion_world_mm": 203.28526492320765,
+          "comparator_world_mm": 201.39013042480798,
+          "delta_mm": 1.8951344983996705
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_04",
+          "case": 256,
+          "regime": "noisy",
+          "fusion_world_mm": 216.02861139968942,
+          "comparator_world_mm": 213.76875312498515,
+          "delta_mm": 2.2598582747042713
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_03",
+          "case": 257,
+          "regime": "clean",
+          "fusion_world_mm": 99.56698828894574,
+          "comparator_world_mm": 99.4876066083086,
+          "delta_mm": 0.07938168063714102
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_03",
+          "case": 257,
+          "regime": "noisy",
+          "fusion_world_mm": 108.8187949611706,
+          "comparator_world_mm": 108.97875709871832,
+          "delta_mm": -0.1599621375477227
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20210923_S03_S14_01",
+          "case": 258,
+          "regime": "clean",
+          "fusion_world_mm": 137.18272632678688,
+          "comparator_world_mm": 136.10456304976046,
+          "delta_mm": 1.0781632770264196
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20210923_S03_S14_01",
+          "case": 258,
+          "regime": "noisy",
+          "fusion_world_mm": 149.27091440642178,
+          "comparator_world_mm": 148.4276760731744,
+          "delta_mm": 0.8432383332473705
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220215_S21_S22_02",
+          "case": 259,
+          "regime": "clean",
+          "fusion_world_mm": 131.32882726666875,
+          "comparator_world_mm": 130.95911814696345,
+          "delta_mm": 0.3697091197053055
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220215_S21_S22_02",
+          "case": 259,
+          "regime": "noisy",
+          "fusion_world_mm": 143.03032210957474,
+          "comparator_world_mm": 142.89815881919318,
+          "delta_mm": 0.1321632903815555
+        }
+      ],
+      "clean_noisy_within_recording_mean": [
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_003_wipingchairs1",
+          "case": 0,
+          "delta_mm": 1.1706432759400087
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_018_wipingtable1",
+          "case": 1,
+          "delta_mm": 2.3990336176258893
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_020_wipingchairs1",
+          "case": 2,
+          "delta_mm": 1.5350211155781182
+        },
+        {
+          "dataset": "rich",
+          "recording": "ParkingLot1_002_burpee1",
+          "case": 3,
+          "delta_mm": 0.14372259461080006
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-50-03",
+          "case": 206,
+          "delta_mm": 0.32822861950018734
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-18-35",
+          "case": 207,
+          "delta_mm": 0.9838670346153933
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-56-45",
+          "case": 208,
+          "delta_mm": -1.716607211562156
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-10-27",
+          "case": 209,
+          "delta_mm": -0.6150293642044247
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_04",
+          "case": 256,
+          "delta_mm": 2.077496386551971
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_03",
+          "case": 257,
+          "delta_mm": -0.040290228455290844
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20210923_S03_S14_01",
+          "case": 258,
+          "delta_mm": 0.960700805136895
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220215_S21_S22_02",
+          "case": 259,
+          "delta_mm": 0.2509362050434305
+        }
+      ],
+      "group_metric_deltas": {
+        "rich/clean": {
+          "w_mpjpe_mm": 0.8775176839886001,
+          "pa_mpjpe_mm": -0.011746240471822489,
+          "root_relative_mpjpe_mm": 0.4108048995212954,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.0009980174796578867,
+          "foot_joint_y_abs_error_mm": 0.312928265581526,
+          "foot_joint_y_abs_error_gt_low_mm": 0.3156284844298227,
+          "acceleration_error_mm_s2": -4.176631919249303,
+          "observed_head_position_error_mm": -0.0003326337671277074
+        },
+        "rich/noisy": {
+          "w_mpjpe_mm": 1.7466926178888116,
+          "pa_mpjpe_mm": 0.26842264442204566,
+          "root_relative_mpjpe_mm": 1.0844223578059626,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.0015858376619193315,
+          "foot_joint_y_abs_error_mm": 1.2001694412901998,
+          "foot_joint_y_abs_error_gt_low_mm": 1.3099415376816417,
+          "acceleration_error_mm_s2": 14.00475818286941,
+          "observed_head_position_error_mm": -0.0619917959636922
+        },
+        "trumans/clean": {
+          "w_mpjpe_mm": -0.5779027475651759,
+          "pa_mpjpe_mm": 0.009262612558558203,
+          "root_relative_mpjpe_mm": 0.022243446961127233,
+          "foot_joint_horizontal_speed_gt_low_m_s": -0.0009233295539029102,
+          "foot_joint_y_abs_error_mm": -0.948425537596151,
+          "foot_joint_y_abs_error_gt_low_mm": -0.955253404733881,
+          "acceleration_error_mm_s2": -4.0385785477969876,
+          "observed_head_position_error_mm": -0.001103254074506177
+        },
+        "trumans/noisy": {
+          "w_mpjpe_mm": 0.06813228673968297,
+          "pa_mpjpe_mm": 0.03815576003276533,
+          "root_relative_mpjpe_mm": 0.17291276569194736,
+          "foot_joint_horizontal_speed_gt_low_m_s": -0.0006468705788532092,
+          "foot_joint_y_abs_error_mm": -0.826505788912371,
+          "foot_joint_y_abs_error_gt_low_mm": -0.7879484372807255,
+          "acceleration_error_mm_s2": -2.0732290285636736,
+          "observed_head_position_error_mm": 0.04254709418968616
+        },
+        "egobody/clean": {
+          "w_mpjpe_mm": 0.8555971439421342,
+          "pa_mpjpe_mm": 0.5066686239761964,
+          "root_relative_mpjpe_mm": 0.8603490796863724,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.0007189365126535757,
+          "foot_joint_y_abs_error_mm": 0.291248938689634,
+          "foot_joint_y_abs_error_gt_low_mm": 0.3118089372851003,
+          "acceleration_error_mm_s2": 10.842938996721387,
+          "observed_head_position_error_mm": 0.08343121166281087
+        },
+        "egobody/noisy": {
+          "w_mpjpe_mm": 0.7688244401963686,
+          "pa_mpjpe_mm": 0.4365836224559416,
+          "root_relative_mpjpe_mm": 0.9042626034681689,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.0007292913353249553,
+          "foot_joint_y_abs_error_mm": 0.2900393834958521,
+          "foot_joint_y_abs_error_gt_low_mm": 0.2925926908556278,
+          "acceleration_error_mm_s2": 7.983591282007637,
+          "observed_head_position_error_mm": 0.14802548810640914
+        },
+        "macro/clean": {
+          "w_mpjpe_mm": 0.38507069345517664,
+          "pa_mpjpe_mm": 0.16806166535430123,
+          "root_relative_mpjpe_mm": 0.4311324753896031,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.0002645414794694989,
+          "foot_joint_y_abs_error_mm": -0.11474944444166368,
+          "foot_joint_y_abs_error_gt_low_mm": -0.10927199433965029,
+          "acceleration_error_mm_s2": 0.8759095098912439,
+          "observed_head_position_error_mm": 0.027331774607058934
+        },
+        "macro/noisy": {
+          "w_mpjpe_mm": 0.8612164482749449,
+          "pa_mpjpe_mm": 0.2477206756369128,
+          "root_relative_mpjpe_mm": 0.7205325756553549,
+          "foot_joint_horizontal_speed_gt_low_m_s": 0.0005560861394637018,
+          "foot_joint_y_abs_error_mm": 0.22123434529122932,
+          "foot_joint_y_abs_error_gt_low_mm": 0.2715285970855206,
+          "acceleration_error_mm_s2": 6.6383734787714275,
+          "observed_head_position_error_mm": 0.04286026211079985
+        }
+      }
+    },
+    "base41k": {
+      "per_recording_per_regime": [
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_003_wipingchairs1",
+          "case": 0,
+          "regime": "clean",
+          "fusion_world_mm": 133.50253619593119,
+          "comparator_world_mm": 124.40922558116635,
+          "delta_mm": 9.093310614764832
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_003_wipingchairs1",
+          "case": 0,
+          "regime": "noisy",
+          "fusion_world_mm": 143.7140642499133,
+          "comparator_world_mm": 130.25073074657521,
+          "delta_mm": 13.463333503338077
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_018_wipingtable1",
+          "case": 1,
+          "regime": "clean",
+          "fusion_world_mm": 106.24390497187923,
+          "comparator_world_mm": 110.9176462777195,
+          "delta_mm": -4.673741305840267
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_018_wipingtable1",
+          "case": 1,
+          "regime": "noisy",
+          "fusion_world_mm": 121.71434741124425,
+          "comparator_world_mm": 122.83748965521016,
+          "delta_mm": -1.1231422439659156
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_020_wipingchairs1",
+          "case": 2,
+          "regime": "clean",
+          "fusion_world_mm": 108.46685670152308,
+          "comparator_world_mm": 113.13975277353691,
+          "delta_mm": -4.6728960720138275
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_020_wipingchairs1",
+          "case": 2,
+          "regime": "noisy",
+          "fusion_world_mm": 132.89112166555168,
+          "comparator_world_mm": 143.1555559995221,
+          "delta_mm": -10.264434333970428
+        },
+        {
+          "dataset": "rich",
+          "recording": "ParkingLot1_002_burpee1",
+          "case": 3,
+          "regime": "clean",
+          "fusion_world_mm": 111.99414965631216,
+          "comparator_world_mm": 119.93386859519389,
+          "delta_mm": -7.939718938881725
+        },
+        {
+          "dataset": "rich",
+          "recording": "ParkingLot1_002_burpee1",
+          "case": 3,
+          "regime": "noisy",
+          "fusion_world_mm": 135.77816027182587,
+          "comparator_world_mm": 149.2513519209013,
+          "delta_mm": -13.473191649075432
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-50-03",
+          "case": 206,
+          "regime": "clean",
+          "fusion_world_mm": 84.89103901755891,
+          "comparator_world_mm": 84.80156558640233,
+          "delta_mm": 0.08947343115657702
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-50-03",
+          "case": 206,
+          "regime": "noisy",
+          "fusion_world_mm": 123.4763157371392,
+          "comparator_world_mm": 115.09904536206768,
+          "delta_mm": 8.377270375071518
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-18-35",
+          "case": 207,
+          "regime": "clean",
+          "fusion_world_mm": 96.53639858484341,
+          "comparator_world_mm": 102.43288287577559,
+          "delta_mm": -5.896484290932179
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-18-35",
+          "case": 207,
+          "regime": "noisy",
+          "fusion_world_mm": 119.42046585588778,
+          "comparator_world_mm": 110.74020484079207,
+          "delta_mm": 8.68026101509571
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-56-45",
+          "case": 208,
+          "regime": "clean",
+          "fusion_world_mm": 107.31197231347399,
+          "comparator_world_mm": 163.86731384876896,
+          "delta_mm": -56.55534153529497
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-56-45",
+          "case": 208,
+          "regime": "noisy",
+          "fusion_world_mm": 109.77537822773058,
+          "comparator_world_mm": 180.9080465599985,
+          "delta_mm": -71.13266833226791
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-10-27",
+          "case": 209,
+          "regime": "clean",
+          "fusion_world_mm": 69.62632426082835,
+          "comparator_world_mm": 83.27171697170107,
+          "delta_mm": -13.645392710872713
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-10-27",
+          "case": 209,
+          "regime": "noisy",
+          "fusion_world_mm": 81.6029648703607,
+          "comparator_world_mm": 95.06083256617542,
+          "delta_mm": -13.457867695814727
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_04",
+          "case": 256,
+          "regime": "clean",
+          "fusion_world_mm": 203.28526492320765,
+          "comparator_world_mm": 212.49668906814873,
+          "delta_mm": -9.211424144941077
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_04",
+          "case": 256,
+          "regime": "noisy",
+          "fusion_world_mm": 216.02861139968942,
+          "comparator_world_mm": 234.23477328708,
+          "delta_mm": -18.20616188739058
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_03",
+          "case": 257,
+          "regime": "clean",
+          "fusion_world_mm": 99.56698828894574,
+          "comparator_world_mm": 101.18874388247843,
+          "delta_mm": -1.621755593532697
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_03",
+          "case": 257,
+          "regime": "noisy",
+          "fusion_world_mm": 108.8187949611706,
+          "comparator_world_mm": 111.6577727480428,
+          "delta_mm": -2.8389777868722064
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20210923_S03_S14_01",
+          "case": 258,
+          "regime": "clean",
+          "fusion_world_mm": 137.18272632678688,
+          "comparator_world_mm": 142.2671229222196,
+          "delta_mm": -5.084396595432736
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20210923_S03_S14_01",
+          "case": 258,
+          "regime": "noisy",
+          "fusion_world_mm": 149.27091440642178,
+          "comparator_world_mm": 154.52310053788534,
+          "delta_mm": -5.25218613146356
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220215_S21_S22_02",
+          "case": 259,
+          "regime": "clean",
+          "fusion_world_mm": 131.32882726666875,
+          "comparator_world_mm": 136.43205359638563,
+          "delta_mm": -5.103226329716875
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220215_S21_S22_02",
+          "case": 259,
+          "regime": "noisy",
+          "fusion_world_mm": 143.03032210957474,
+          "comparator_world_mm": 146.59185617120417,
+          "delta_mm": -3.5615340616294304
+        }
+      ],
+      "clean_noisy_within_recording_mean": [
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_003_wipingchairs1",
+          "case": 0,
+          "delta_mm": 11.278322059051455
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_018_wipingtable1",
+          "case": 1,
+          "delta_mm": -2.898441774903091
+        },
+        {
+          "dataset": "rich",
+          "recording": "LectureHall_020_wipingchairs1",
+          "case": 2,
+          "delta_mm": -7.468665202992128
+        },
+        {
+          "dataset": "rich",
+          "recording": "ParkingLot1_002_burpee1",
+          "case": 3,
+          "delta_mm": -10.706455293978578
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-50-03",
+          "case": 206,
+          "delta_mm": 4.2333719031140475
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-18-35",
+          "case": 207,
+          "delta_mm": 1.3918883620817653
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@16-56-45",
+          "case": 208,
+          "delta_mm": -63.84400493378144
+        },
+        {
+          "dataset": "trumans",
+          "recording": "2023-02-18@22-10-27",
+          "case": 209,
+          "delta_mm": -13.55163020334372
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_04",
+          "case": 256,
+          "delta_mm": -13.708793016165828
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220315_S21_S30_03",
+          "case": 257,
+          "delta_mm": -2.2303666902024517
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20210923_S03_S14_01",
+          "case": 258,
+          "delta_mm": -5.168291363448148
+        },
+        {
+          "dataset": "egobody",
+          "recording": "recording_20220215_S21_S22_02",
+          "case": 259,
+          "delta_mm": -4.332380195673153
+        }
+      ],
+      "group_metric_deltas": {
+        "rich/clean": {
+          "w_mpjpe_mm": -2.048261425492754,
+          "pa_mpjpe_mm": -4.154044497042435,
+          "root_relative_mpjpe_mm": -1.6164987581957888,
+          "foot_joint_horizontal_speed_gt_low_m_s": -0.019827578306513355,
+          "foot_joint_y_abs_error_mm": 1.998482000393171,
+          "foot_joint_y_abs_error_gt_low_mm": 2.1734353139564107,
+          "acceleration_error_mm_s2": -290.6923982772796,
+          "observed_head_position_error_mm": -0.024049591324191308
+        },
+        "rich/noisy": {
+          "w_mpjpe_mm": -2.8493586809184137,
+          "pa_mpjpe_mm": -4.2882247101677535,
+          "root_relative_mpjpe_mm": -2.780631491040026,
+          "foot_joint_horizontal_speed_gt_low_m_s": -0.021992061354705078,
+          "foot_joint_y_abs_error_mm": 1.744336409804724,
+          "foot_joint_y_abs_error_gt_low_mm": 3.016309561798611,
+          "acceleration_error_mm_s2": -307.0680475301897,
+          "observed_head_position_error_mm": -1.5995209632373681
+        },
+        "trumans/clean": {
+          "w_mpjpe_mm": -19.00193627648582,
+          "pa_mpjpe_mm": -0.21354133939797748,
+          "root_relative_mpjpe_mm": -7.418611726990676,
+          "foot_joint_horizontal_speed_gt_low_m_s": -0.013967432502880434,
+          "foot_joint_y_abs_error_mm": -33.310337457805865,
+          "foot_joint_y_abs_error_gt_low_mm": -33.147290582928356,
+          "acceleration_error_mm_s2": -281.0371487558209,
+          "observed_head_position_error_mm": 0.030213096722378527
+        },
+        "trumans/noisy": {
+          "w_mpjpe_mm": -16.88325115947886,
+          "pa_mpjpe_mm": -1.1764205672299397,
+          "root_relative_mpjpe_mm": -6.86261504838528,
+          "foot_joint_horizontal_speed_gt_low_m_s": -0.017134547519702503,
+          "foot_joint_y_abs_error_mm": -35.34814622253179,
+          "foot_joint_y_abs_error_gt_low_mm": -35.130629663017544,
+          "acceleration_error_mm_s2": -229.45975688297585,
+          "observed_head_position_error_mm": 1.8078107790526978
+        },
+        "egobody/clean": {
+          "w_mpjpe_mm": -5.255200665905846,
+          "pa_mpjpe_mm": -7.153029152026946,
+          "root_relative_mpjpe_mm": -2.6848404473536363,
+          "foot_joint_horizontal_speed_gt_low_m_s": -0.006111449956203233,
+          "foot_joint_y_abs_error_mm": 1.661743658284351,
+          "foot_joint_y_abs_error_gt_low_mm": 1.6176433078102903,
+          "acceleration_error_mm_s2": -70.16637006567453,
+          "observed_head_position_error_mm": 0.8404014937451088
+        },
+        "egobody/noisy": {
+          "w_mpjpe_mm": -7.464714966838926,
+          "pa_mpjpe_mm": -10.235772298412087,
+          "root_relative_mpjpe_mm": -5.118596079806792,
+          "foot_joint_horizontal_speed_gt_low_m_s": -0.00891841305032584,
+          "foot_joint_y_abs_error_mm": 10.464654226476952,
+          "foot_joint_y_abs_error_gt_low_mm": 10.409789496130976,
+          "acceleration_error_mm_s2": -66.95330882452481,
+          "observed_head_position_error_mm": 1.6844024382684903
+        },
+        "macro/clean": {
+          "w_mpjpe_mm": -8.76846612262814,
+          "pa_mpjpe_mm": -3.8402049961557907,
+          "root_relative_mpjpe_mm": -3.9066503108467003,
+          "foot_joint_horizontal_speed_gt_low_m_s": -0.013302153588532345,
+          "foot_joint_y_abs_error_mm": -9.883370599709444,
+          "foot_joint_y_abs_error_gt_low_mm": -9.785403987053886,
+          "acceleration_error_mm_s2": -213.96530569959214,
+          "observed_head_position_error_mm": 0.28218833304776525
+        },
+        "macro/noisy": {
+          "w_mpjpe_mm": -9.065774935745395,
+          "pa_mpjpe_mm": -5.2334725252699315,
+          "root_relative_mpjpe_mm": -4.920614206410704,
+          "foot_joint_horizontal_speed_gt_low_m_s": -0.016015007308244483,
+          "foot_joint_y_abs_error_mm": -7.713051862083368,
+          "foot_joint_y_abs_error_gt_low_mm": -7.234843535029313,
+          "acceleration_error_mm_s2": -201.16037107922966,
+          "observed_head_position_error_mm": 0.6308974180279403
+        }
+      }
+    }
+  },
+  "world_delta_distributions": {
+    "control": {
+      "rich/clean": {
+        "recordings": 4,
+        "mean_delta_mm": 0.8775176839886107,
+        "median_delta_mm": 0.7259215261956129,
+        "minimum_delta_mm": 0.3558687266140623,
+        "maximum_delta_mm": 1.7023589569491548,
+        "q25_delta_mm": 0.49019992315568217,
+        "q75_delta_mm": 1.1132392870285415,
+        "improved_recordings": 0,
+        "worsened_recordings": 4,
+        "tied_recordings": 0
+      },
+      "rich/noisy": {
+        "recordings": 4,
+        "mean_delta_mm": 1.7466926178887974,
+        "median_delta_mm": 2.0692969963502605,
+        "minimum_delta_mm": -0.24753179944795534,
+        "maximum_delta_mm": 3.0957082783026237,
+        "q25_delta_mm": 1.0064324162567715,
+        "q75_delta_mm": 2.8095571979822864,
+        "improved_recordings": 1,
+        "worsened_recordings": 3,
+        "tied_recordings": 0
+      },
+      "rich/clean_noisy_within_recording_mean": {
+        "recordings": 4,
+        "mean_delta_mm": 1.312105150938704,
+        "median_delta_mm": 1.3528321957590634,
+        "minimum_delta_mm": 0.14372259461080006,
+        "maximum_delta_mm": 2.3990336176258893,
+        "q25_delta_mm": 0.9139131056077066,
+        "q75_delta_mm": 1.751024241090061,
+        "improved_recordings": 0,
+        "worsened_recordings": 4,
+        "tied_recordings": 0
+      },
+      "trumans/clean": {
+        "recordings": 4,
+        "mean_delta_mm": -0.577902747565183,
+        "median_delta_mm": -0.4037216850766683,
+        "minimum_delta_mm": -2.396041358997934,
+        "maximum_delta_mm": 0.8918737388905384,
+        "q25_delta_mm": -1.0691811920944474,
+        "q75_delta_mm": 0.08755675945259611,
+        "improved_recordings": 3,
+        "worsened_recordings": 1,
+        "tied_recordings": 0
+      },
+      "trumans/noisy": {
+        "recordings": 4,
+        "mean_delta_mm": 0.06813228673968297,
+        "median_delta_mm": 0.11692094037243095,
+        "minimum_delta_mm": -1.037173064126378,
+        "maximum_delta_mm": 1.075860330340248,
+        "q25_delta_mm": -0.7116664599932676,
+        "q75_delta_mm": 0.8967196871053815,
+        "improved_recordings": 2,
+        "worsened_recordings": 2,
+        "tied_recordings": 0
+      },
+      "trumans/clean_noisy_within_recording_mean": {
+        "recordings": 4,
+        "mean_delta_mm": -0.25488523041275,
+        "median_delta_mm": -0.14340037235211867,
+        "minimum_delta_mm": -1.716607211562156,
+        "maximum_delta_mm": 0.9838670346153933,
+        "q25_delta_mm": -0.8904238260438575,
+        "q75_delta_mm": 0.4921382232789888,
+        "improved_recordings": 2,
+        "worsened_recordings": 2,
+        "tied_recordings": 0
+      },
+      "egobody/clean": {
+        "recordings": 4,
+        "mean_delta_mm": 0.8555971439421342,
+        "median_delta_mm": 0.7239361983658625,
+        "minimum_delta_mm": 0.07938168063714102,
+        "maximum_delta_mm": 1.8951344983996705,
+        "q25_delta_mm": 0.2971272599382644,
+        "q75_delta_mm": 1.2824060823697323,
+        "improved_recordings": 0,
+        "worsened_recordings": 4,
+        "tied_recordings": 0
+      },
+      "egobody/noisy": {
+        "recordings": 4,
+        "mean_delta_mm": 0.7688244401963686,
+        "median_delta_mm": 0.487700811814463,
+        "minimum_delta_mm": -0.1599621375477227,
+        "maximum_delta_mm": 2.2598582747042713,
+        "q25_delta_mm": 0.05913193339923595,
+        "q75_delta_mm": 1.1973933186115957,
+        "improved_recordings": 1,
+        "worsened_recordings": 3,
+        "tied_recordings": 0
+      },
+      "egobody/clean_noisy_within_recording_mean": {
+        "recordings": 4,
+        "mean_delta_mm": 0.8122107920692514,
+        "median_delta_mm": 0.6058185050901628,
+        "minimum_delta_mm": -0.040290228455290844,
+        "maximum_delta_mm": 2.077496386551971,
+        "q25_delta_mm": 0.17812959666875017,
+        "q75_delta_mm": 1.239899700490664,
+        "improved_recordings": 1,
+        "worsened_recordings": 3,
+        "tied_recordings": 0
+      },
+      "macro/clean": {
+        "recordings": 12,
+        "mean_delta_mm": 0.3850706934551873,
+        "median_delta_mm": 0.4523430541874305,
+        "minimum_delta_mm": -2.396041358997934,
+        "maximum_delta_mm": 1.8951344983996705,
+        "q25_delta_mm": 0.014399035387842929,
+        "q75_delta_mm": 0.9571903670478576,
+        "improved_recordings": 3,
+        "worsened_recordings": 9,
+        "tied_recordings": 0
+      },
+      "macro/noisy": {
+        "recordings": 12,
+        "mean_delta_mm": 0.8612164482749497,
+        "median_delta_mm": 0.8401222363038983,
+        "minimum_delta_mm": -1.037173064126378,
+        "maximum_delta_mm": 3.0957082783026237,
+        "q25_delta_mm": -0.18185455302278086,
+        "q75_delta_mm": 1.6332799347948281,
+        "improved_recordings": 4,
+        "worsened_recordings": 8,
+        "tied_recordings": 0
+      },
+      "macro/clean_noisy_within_recording_mean": {
+        "recordings": 12,
+        "mean_delta_mm": 0.6231435708650684,
+        "median_delta_mm": 0.6444647123185412,
+        "minimum_delta_mm": -1.716607211562156,
+        "maximum_delta_mm": 2.3990336176258893,
+        "q25_delta_mm": 0.09771938884427733,
+        "q75_delta_mm": 1.261737735849536,
+        "improved_recordings": 3,
+        "worsened_recordings": 9,
+        "tied_recordings": 0
+      }
+    },
+    "base41k": {
+      "rich/clean": {
+        "recordings": 4,
+        "mean_delta_mm": -2.048261425492747,
+        "median_delta_mm": -4.673318688927047,
+        "minimum_delta_mm": -7.939718938881725,
+        "maximum_delta_mm": 9.093310614764832,
+        "q25_delta_mm": -5.490235714100631,
+        "q75_delta_mm": -1.2313444003191627,
+        "improved_recordings": 3,
+        "worsened_recordings": 1,
+        "tied_recordings": 0
+      },
+      "rich/noisy": {
+        "recordings": 4,
+        "mean_delta_mm": -2.8493586809184244,
+        "median_delta_mm": -5.693788288968172,
+        "minimum_delta_mm": -13.473191649075432,
+        "maximum_delta_mm": 13.463333503338077,
+        "q25_delta_mm": -11.066623662746679,
+        "q75_delta_mm": 2.5234766928600827,
+        "improved_recordings": 3,
+        "worsened_recordings": 1,
+        "tied_recordings": 0
+      },
+      "rich/clean_noisy_within_recording_mean": {
+        "recordings": 4,
+        "mean_delta_mm": -2.4488100532055856,
+        "median_delta_mm": -5.183553488947609,
+        "minimum_delta_mm": -10.706455293978578,
+        "maximum_delta_mm": 11.278322059051455,
+        "q25_delta_mm": -8.27811272573874,
+        "q75_delta_mm": 0.6457491835855453,
+        "improved_recordings": 3,
+        "worsened_recordings": 1,
+        "tied_recordings": 0
+      },
+      "trumans/clean": {
+        "recordings": 4,
+        "mean_delta_mm": -19.00193627648582,
+        "median_delta_mm": -9.770938500902446,
+        "minimum_delta_mm": -56.55534153529497,
+        "maximum_delta_mm": 0.08947343115657702,
+        "q25_delta_mm": -24.372879916978277,
+        "q75_delta_mm": -4.39999486040999,
+        "improved_recordings": 3,
+        "worsened_recordings": 1,
+        "tied_recordings": 0
+      },
+      "trumans/noisy": {
+        "recordings": 4,
+        "mean_delta_mm": -16.883251159478853,
+        "median_delta_mm": -2.5402986603716045,
+        "minimum_delta_mm": -71.13266833226791,
+        "maximum_delta_mm": 8.68026101509571,
+        "q25_delta_mm": -27.876567854928023,
+        "q75_delta_mm": 8.453018035077566,
+        "improved_recordings": 2,
+        "worsened_recordings": 2,
+        "tied_recordings": 0
+      },
+      "trumans/clean_noisy_within_recording_mean": {
+        "recordings": 4,
+        "mean_delta_mm": -17.942593717982337,
+        "median_delta_mm": -6.079870920630977,
+        "minimum_delta_mm": -63.84400493378144,
+        "maximum_delta_mm": 4.2333719031140475,
+        "q25_delta_mm": -26.124723885953152,
+        "q75_delta_mm": 2.102259247339836,
+        "improved_recordings": 2,
+        "worsened_recordings": 2,
+        "tied_recordings": 0
+      },
+      "egobody/clean": {
+        "recordings": 4,
+        "mean_delta_mm": -5.255200665905846,
+        "median_delta_mm": -5.093811462574806,
+        "minimum_delta_mm": -9.211424144941077,
+        "maximum_delta_mm": -1.621755593532697,
+        "q25_delta_mm": -6.130275783522926,
+        "q75_delta_mm": -4.218736344957726,
+        "improved_recordings": 4,
+        "worsened_recordings": 0,
+        "tied_recordings": 0
+      },
+      "egobody/noisy": {
+        "recordings": 4,
+        "mean_delta_mm": -7.464714966838944,
+        "median_delta_mm": -4.406860096546495,
+        "minimum_delta_mm": -18.20616188739058,
+        "maximum_delta_mm": -2.8389777868722064,
+        "q25_delta_mm": -8.490680070445315,
+        "q75_delta_mm": -3.3808949929401244,
+        "improved_recordings": 4,
+        "worsened_recordings": 0,
+        "tied_recordings": 0
+      },
+      "egobody/clean_noisy_within_recording_mean": {
+        "recordings": 4,
+        "mean_delta_mm": -6.359957816372395,
+        "median_delta_mm": -4.7503357795606505,
+        "minimum_delta_mm": -13.708793016165828,
+        "maximum_delta_mm": -2.2303666902024517,
+        "q25_delta_mm": -7.303416776627568,
+        "q75_delta_mm": -3.8068768193054776,
+        "improved_recordings": 4,
+        "worsened_recordings": 0,
+        "tied_recordings": 0
+      },
+      "macro/clean": {
+        "recordings": 12,
+        "mean_delta_mm": -8.768466122628139,
+        "median_delta_mm": -5.093811462574806,
+        "minimum_delta_mm": -56.55534153529497,
+        "maximum_delta_mm": 9.093310614764832,
+        "q25_delta_mm": -8.257645240396563,
+        "q75_delta_mm": -3.910110952393545,
+        "improved_recordings": 10,
+        "worsened_recordings": 2,
+        "tied_recordings": 0
+      },
+      "macro/noisy": {
+        "recordings": 12,
+        "mean_delta_mm": -9.065774935745408,
+        "median_delta_mm": -4.406860096546495,
+        "minimum_delta_mm": -71.13266833226791,
+        "maximum_delta_mm": 13.463333503338077,
+        "q25_delta_mm": -13.461698684129903,
+        "q75_delta_mm": 1.2519609107934428,
+        "improved_recordings": 9,
+        "worsened_recordings": 3,
+        "tied_recordings": 0
+      },
+      "macro/clean_noisy_within_recording_mean": {
+        "recordings": 12,
+        "mean_delta_mm": -8.917120529186773,
+        "median_delta_mm": -4.7503357795606505,
+        "minimum_delta_mm": -63.84400493378144,
+        "maximum_delta_mm": 11.278322059051455,
+        "q25_delta_mm": -11.417749021319864,
+        "q75_delta_mm": -1.3248029271313975,
+        "improved_recordings": 9,
+        "worsened_recordings": 3,
+        "tied_recordings": 0
+      }
+    }
+  },
+  "proof": {
+    "PLAN_sha256": "eac5efb9257dba61f73201a21a0449bcda4dd2f7433cd96851d1e8f7f9b8230b",
+    "rows_sha256": "f0d48bcfa96f8aa2f8d5f3d8e882e7285a44e7d8c0acccab2aa843f4bc38144c",
+    "CPU_RECHECK_sha256": "b431023d9122209b618f985a29730eb214514edb804525d9fca6dcb0c1cad6ab",
+    "INDEPENDENT_AUDIT_sha256": "96a744b99fcf2a17ec77338af3e518212703a1adbc98b46daf40b0fc6c43bd2b",
+    "MATCHED_AUDIT1000_sha256": "8ebb4cb50865984da347d31c26eb35f4a893663a92b4cde2ac9a46c19be149a9",
+    "training_pipeline1000_sha256": "5d8d85093cbe2a2f7e4a461f5a186d0f7e1c6a2704e0226fe862176928d84db2",
+    "saved_crossmodel_inputs_fingerprints_counts_exact": true,
+    "fresh_GT_rest_observations_and_identity_exact": true,
+    "CPU_reference_max_absolute_difference": 3.5762786865234375e-07,
+    "CPU_reference_tolerance": 2e-05,
+    "CPU_full_recursive_fingerprint_bit_exact_claim": false,
+    "independent_numpy_max_metric_difference": 2.842170943040401e-14,
+    "physics_guide_calls": 0
+  },
+  "interpretation": [
+    "Both continued-training arms improve World relative to41k on these dev means; fusion has not established additional benefit over the matched control.",
+    "Fusion minus control combined clean/noisy World: RICH+1.3121mm(0/4 improved), TRUMANS-0.2549mm(2/4), EgoBody+0.8122mm(1/4); macro+0.6231mm(3/12).",
+    "No numeric/audit failure or clear material collapse was observed. This small single-seed dev gate has no preregistered fixed numerical stopping line; it does not pass or fail the final3000 acceptance.",
+    "Root may continue the unchanged preregistered3000 schedule; no learning-rate/threshold/cohort changes or attention-effectiveness claim are justified by this gate."
+  ],
+  "head_monitoring": {
+    "egobody_noisy_fusion_minus_base41k_mm": 1.6844024382684903,
+    "egobody_noisy_fusion_minus_control_mm": 0.14802548810640914,
+    "formal_final_guard_scope": "RICH and equal-dataset macro, separately clean/noisy, against both control and41k; maximum regression1mm. Scope is unchanged.",
+    "egobody_single_dataset_warning_is_formal_guard_failure": false,
+    "macro_noisy_fusion_minus_base41k_mm": 0.6308974180279403
+  },
+  "limitations": [
+    "All results use only the12dev recordings, one192-frame window per recording and one prespecified DDIM seed. No final CI or architecture-adoption claim.",
+    "GT-low foot masks use GT3D joint speed<0.2m/s, not measured contact. None opportunities are excluded and never filled with0. FootY is all-frame foot-joint vertical error toGT, not sole gap or scene penetration.",
+    "Crossmodel saved inputs have identical fingerprints; independent CPU sensor arrays are exact and reference is checked within stated CPU/GPU tolerance, not all tensor bytes exact."
+  ]
+}

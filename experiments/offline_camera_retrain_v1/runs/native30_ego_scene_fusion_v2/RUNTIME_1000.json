@@ -1,0 +1,46 @@
+{
+  "scope": "Matched1000 TRAIN stage, physics OFF. Per-update times exclude checkpoint publication and process/model setup; source trace includes preparation fingerprints and audits. Not an old55k or inference timing comparison.",
+  "recorded_at": "2026-10-19T01:16:04.314103+08:00",
+  "updates_excluded_for_warmup": 100,
+  "arms": {
+    "control": {
+      "updates": 1000,
+      "timing_updates": 900,
+      "seconds": {
+        "preparation_s": {
+          "mean": 0.3663632881276539,
+          "median": 0.3928984709964425
+        },
+        "compute_s": {
+          "mean": 0.8725597804078279,
+          "median": 0.8928517610002018
+        },
+        "update_s": {
+          "mean": 1.2426135510455627,
+          "median": 1.2589344280022488
+        }
+      },
+      "last_loss": 0.26616770029067993
+    },
+    "fusion": {
+      "updates": 1000,
+      "timing_updates": 900,
+      "seconds": {
+        "preparation_s": {
+          "mean": 0.32032457805539405,
+          "median": 0.34779438550322084
+        },
+        "compute_s": {
+          "mean": 0.8707585670167383,
+          "median": 0.8947522759990534
+        },
+        "update_s": {
+          "mean": 1.1964503632334689,
+          "median": 1.2198950719975983
+        }
+      },
+      "last_loss": 0.2659115195274353
+    }
+  },
+  "fusion_relative_compute_change_fraction": -0.0020642865182805004
+}

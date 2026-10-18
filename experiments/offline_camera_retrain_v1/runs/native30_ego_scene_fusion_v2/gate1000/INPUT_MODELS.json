@@ -1,0 +1,33 @@
+{
+  "base41k": {
+    "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_checkpoint_review_v1/checkpoints/candidate41k.pt",
+    "expected_step": 41000,
+    "checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+    "source_checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/best.pt",
+    "model_tensor_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+    "strict_CPU_load": true,
+    "finite": true,
+    "architecture": "original",
+    "arms": [
+      "learned_only"
+    ]
+  },
+  "control": {
+    "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/control/training/last.pt",
+    "checkpoint_sha256": "f4d16c244e9447f7b24b47504c7606a353f0313b03bed833bc50fd148176da00",
+    "expected_step": 1000,
+    "architecture": "original",
+    "arms": [
+      "learned_only"
+    ]
+  },
+  "fusion": {
+    "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2/fusion/training/last.pt",
+    "checkpoint_sha256": "4031accab32b0505e958e9b3db4ab1af43d23124382d7d8a35b823179b4e29a1",
+    "expected_step": 1000,
+    "architecture": "scene_fusion_v2",
+    "arms": [
+      "learned_only"
+    ]
+  }
+}
