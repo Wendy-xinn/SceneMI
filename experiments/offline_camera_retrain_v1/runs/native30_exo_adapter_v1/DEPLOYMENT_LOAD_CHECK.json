@@ -1,0 +1,224 @@
+{
+  "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/training/last.pt",
+  "checkpoint_sha256": "d410954559d4d9c4847aad295dab7f51f9ce24348de43c1e8d97d4998a8586bd",
+  "checkpoint_bytes": 519903923,
+  "stage_step": 1000,
+  "planned_stage_updates": 1000,
+  "parent_step": 41000,
+  "frozen_base_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+  "adapter_sha256": "8e74a50f905d5802b89879a07812a1f1391e8a23c35d0da9b32e9af0091f4a40",
+  "strict_full_state_loaded": true,
+  "all_state_tensors_finite": true,
+  "device": "cpu",
+  "status": "passed",
+  "step": 1000,
+  "is_final_stage_checkpoint": true,
+  "scope": "Actual finalstep1000 single-file deployment load",
+  "checked_at": "2026-10-18T03:02:54+0800",
+  "audit_process_pid": 45388,
+  "torch_version": "2.8.0+cu128",
+  "CPU_threads": 4,
+  "CUDA_initialized": false,
+  "GPU_used": false,
+  "real_factory": "experiments.offline_camera_retrain_v1.prepare_native30.make_model",
+  "factory_mocked": false,
+  "parent_checkpoint_opened": false,
+  "dataset_or_external_config_opened": false,
+  "torch_load_calls": [
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/training/last.pt",
+      "map_location": "cpu",
+      "mmap": true
+    }
+  ],
+  "opened_model_or_dataset_paths": [
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/training/last.pt"
+  ],
+  "blocked_opens": [],
+  "all_model_state_on_CPU": true,
+  "all_base_parameters_frozen": true,
+  "only_adapters_trainable": true,
+  "original_modules_all_eval": true,
+  "adapter_target_count": 45,
+  "adapter_parameters": 1955616,
+  "base_parameters": 122667536,
+  "explicit_mode": "explicit batch['mode']; no visibility-count inference",
+  "inference_parameter_metadata": "original requires_grad flags only during serialized no_grad forward; finally frozen",
+  "training_parameter_metadata": "all original parameters frozen, including internal no_grad proposal",
+  "inference_call_interface": "native30 forward/sample_motion; inference uses torch.no_grad and separately supplied observation/scene/body inputs",
+  "CPU_motion_forward_rerun": false,
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/adapter_model.py": "444c737cfcbf6f847ac749982b1db03a7f92b9bfa2671006dc7c021669a5de04",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/prepare_native30.py": "6ce2430fe2c3ccbb2715b04cc38b462981d483cf3c50c43f9a7a47a4dab30644"
+  },
+  "retention": "Loading only; usefulness and acceptance require matched development VAL and independent CPU metric recheck",
+  "actual_preflight_evidence": {
+    "status": "passed",
+    "zero_init_equivalence": {
+      "exo": {
+        "exact_equal": true,
+        "rows": [
+          {
+            "row": 0,
+            "mode": "exo",
+            "exact_equal": true,
+            "maximum_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "nonzero_count": 0
+          }
+        ],
+        "maximum_absolute_error": 0.0,
+        "original": {
+          "shape": [
+            1,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "observed": {
+          "shape": [
+            1,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "noise_sha256": "5741cea5ae8b8371944cc7fce0d8e1e503f512d0dd6d26ca326708526f167f92"
+      },
+      "ego": {
+        "exact_equal": true,
+        "rows": [
+          {
+            "row": 0,
+            "mode": "ego",
+            "exact_equal": true,
+            "maximum_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "nonzero_count": 0
+          }
+        ],
+        "maximum_absolute_error": 0.0,
+        "original": {
+          "shape": [
+            1,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "observed": {
+          "shape": [
+            1,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "noise_sha256": "ebf68b1a08c8b9ab4a6bf1ceb11b8d44b0073f00c7f4ea6df3fe808329b96a73"
+      },
+      "mixed": {
+        "exact_equal": true,
+        "rows": [
+          {
+            "row": 0,
+            "mode": "exo",
+            "exact_equal": true,
+            "maximum_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "nonzero_count": 0
+          },
+          {
+            "row": 1,
+            "mode": "ego",
+            "exact_equal": true,
+            "maximum_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "nonzero_count": 0
+          }
+        ],
+        "maximum_absolute_error": 0.0,
+        "original": {
+          "shape": [
+            2,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "observed": {
+          "shape": [
+            2,
+            192,
+            201
+          ],
+          "stride": [
+            38592,
+            201,
+            1
+          ],
+          "dtype": "torch.float32",
+          "contiguous": true
+        },
+        "noise_sha256": "7075d1baeee33e869ff8f11c3849166f9250f83d70f0f3c60bfa4268037ec79c"
+      }
+    },
+    "nonzero_adapter_EGO_bypass_exact": true,
+    "hidden_truth_poison_unchanged": true,
+    "frozen_EXO_without_body_labels": true,
+    "baseline_validation_rows": 24,
+    "frozen_base_sha256": "4d789e1e63f1681885c000b1d1795ba444b5a3eee3fd6af225fc9b7b0da6008f",
+    "initial_adapter_sha256": "c5c346ca3f94d494deac64f44e3a5a0cdc13b42c51d86518a95cfd60da70f6d3"
+  },
+  "actual_preflight_evidence_source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/prepared/input_checks.json",
+  "training_launch": {
+    "supervisor_pid": 34486,
+    "child_pid": 34488,
+    "launched_at": "2026-10-18T02:08:04.918367+08:00",
+    "source_commit": "79a0a01"
+  },
+  "first_checkpoint_evidence": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_v1/DEPLOYMENT_FIRST_LOAD_CHECK.json",
+    "stage_step": 1,
+    "checkpoint_sha256": "75d13b9fa175fee02a2831b5c0085c37fc2dda04a3f401430b6ba51e1396e6c7",
+    "record_sha256": "55bb5343e16cc27357703c9aa1453e2a978d1780dac6e1117b800f99cfb1312b"
+  },
+  "training_trace": {
+    "rows": 1000,
+    "steps_contiguous_1_to_1000": true,
+    "all_losses_gradients_LR_times_finite": true,
+    "EXO_only": true,
+    "examples": 2000,
+    "trace_sha256": "beea9b622c53bf6f282fe64d427aef41e8482ce3646a5741c8dc7452dd546697"
+  }
+}

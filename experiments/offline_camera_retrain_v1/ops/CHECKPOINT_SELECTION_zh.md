@@ -1,3 +1,7 @@
+2026-10-18更新：主线55k已结束，现存`best.pt`是41k，仍只表示单个固定RICH窗口上的临时候选。用户指出这一选择面板过小；正在准备独立的扩展验证`runs/native30_checkpoint_review_v1`，比较现存41k与最终55k。目标面板为RICH全部206个合法VAL窗口，TRUMANS/EgoBody各50个窗口，按录制汇总，统一输入、种子、场景和物理配置。在新任务完成且独立复算前，不把41k称为全验证集最优，也不覆盖原best/last。过去已覆盖的历史权重不能从曲线恢复，补验证不等于追溯比较过全部训练步数。EXO内部适配实验另按预注册的第1000步终点评估，没有用12窗挑本轮best。
+
+以下为原守护器的历史选择协议：
+
 当前主线保留两个不同用途的文件：`training/last.pt` 含优化器及随机状态，可继续训练；`training/best.pt` 只保存模型，用于评估。后者由本目录的 `checkpoint_guardian.py` 独立生成，训练代码、配置和当前训练进程均不改动。
 
 目前 best 的选择口径是临时监控口径：同一个预先固定的 RICH 验证窗口、scene ON、head-only ego，干净和扰动输入的原始世界坐标 MPJPE 算术平均，越低越好。轮换窗口不进入选择。`best.json` 中明确记录 `selection_status=provisional_fixed_rich_window`。这不是全 RICH 验证集最优，也不是对外论文比较结果；完整验证结果可用于之后确定更可靠的候选。

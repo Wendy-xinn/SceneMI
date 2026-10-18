@@ -1,5 +1,13 @@
 # 当前方法的证据与最短检验路径
 
+## 10月18日：EXO内部适配初筛与checkpoint选择复核
+
+从41k冻结主干、训练1,955,616个EXO门控内部参数的1000步试验已完成。实际更新累计34.5分钟；最终完整checkpoint独立CPU加载通过，基础权重摘要保持，原EGO六段DDIM预测逐值保留。固定开发验证的EXO隐藏误差三语料宏平均clean 114.53→86.99mm，noisy 135.57→129.03mm；TRUMANS/EgoBody改善，但RICH三窗clean 80.88→89.02mm、noisy109.94→141.59mm，双脚运动幅度误差也退化，故预注册验收未通过，不能宣称已得到整体可用版本。可见关节分组保护通过不等于每窗均改善。[完整结果](../runs/native30_exo_adapter_v1/RESULTS_zh.md)、[验收](../runs/native30_exo_adapter_v1/ACCEPTANCE.json)、[Viser前后对照](http://localhost:8802/)。权重和数组暂保留用于明确计划中的扩展复核。
+
+主线best=41k的原选择口径只有一个固定RICH窗口，证据不足。正在准备`runs/native30_checkpoint_review_v1`：现存41k/55k同条件比较RICH全部206个合法VAL窗口，加TRUMANS/EgoBody各50窗，报告录制覆盖和录制宏平均。此前206窗全VAL是15,100步，不能给41k/55k复用指标。新复核完成前仅称41k为临时开发候选；不从TEST回选权重，不自动覆盖原best/last。
+
+冻结41k的独立RICH TEST现已670/670预测并经CPU复算通过：335窗、52录制、53人体流，clean/noisy等窗口World MPJPE155.67/169.48mm、PA113.94/121.10mm。该结果含观测场景和已知人体profile，不能当AMASS-only论文同协议排名，也不用于本轮调参或选checkpoint。[结果](../runs/rich_test_ego41k/SUMMARY.json)、[CPU核验](../runs/rich_test_ego41k/CPU_RECHECK.json)。
+
 ## 10月17日21:20最终复核：55k正常完成，验证平台与轻微回退，保留41k开发候选
 
 主线已于 **2026-10-17 20:49:24** 正常完成 55,000 步，worker 返回码 0。真实 `last.pt` 为 55k，模型/Adam 有限、全部 RNG 与 sampler/counts 完整；`best.pt` 为 41k 模型副本，无 Adam/RNG。365 份源封印及配置核验一致。best 的保存规则仍只依赖一个固定 RICH VAL 窗口，不是全 RICH 最优。[最终统一报告](../runs/native30_gait_v2_ego55k_oct15/final_review/REPORT_zh.md)、[训练与固定验证曲线](../runs/native30_gait_v2_ego55k_oct15/final_review/TRAINING_CURVES.png)、[checkpoint 审计](../runs/native30_gait_v2_ego55k_oct15/final_review/CHECKPOINT_AUDIT.json)。
