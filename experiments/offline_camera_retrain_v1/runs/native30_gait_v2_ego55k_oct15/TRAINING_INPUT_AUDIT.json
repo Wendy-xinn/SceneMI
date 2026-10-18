@@ -1,0 +1,329 @@
+{
+  "protocol": "native30-ego-training-input-audit-v1",
+  "status": "verified",
+  "audited_at": "2026-10-18T13:55:48.204088+08:00",
+  "scope": "Original native30_gait_v2_ego55k_oct15 EGO main training, including its selected step41000 best.pt; excludes later EXO adaptation stages.",
+  "audit_method": {
+    "gpu_used": false,
+    "source_or_training_config_modified": false,
+    "training_trace": "Full committed training/trace.jsonl streamed with json.loads, counted by step/mode/group/split; no trace statistics inferred from configured probabilities. Prior stream results reused for report generation; no redundant trace reread.",
+    "uncommitted_trace_archives_included": false,
+    "test_arrays_read": false
+  },
+  "files": {
+    "config.json": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+      "bytes": 10927,
+      "mtime_ns": 1792074288710311278,
+      "mtime": "2026-10-15T22:24:48.710311+08:00",
+      "inode": 2265074,
+      "device": 2096,
+      "sha256": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad"
+    },
+    "prepared/effective_config.json": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/prepared/effective_config.json",
+      "bytes": 269924,
+      "mtime_ns": 1792074288716061729,
+      "mtime": "2026-10-15T22:24:48.716062+08:00",
+      "inode": 2265078,
+      "device": 2096,
+      "sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8"
+    },
+    "training/protocol.json": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/protocol.json",
+      "bytes": 274163,
+      "mtime_ns": 1792241352905957116,
+      "mtime": "2026-10-17T20:49:12.905957+08:00",
+      "inode": 2277422,
+      "device": 2096,
+      "sha256": "104171856168b49d18abe6ce7fd44dfdbaa7216fa4398c7ce70b9b4351417238"
+    },
+    "training/trace.jsonl": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/trace.jsonl",
+      "bytes": 800273916,
+      "mtime_ns": 1792241176293857485,
+      "mtime": "2026-10-17T20:46:16.293858+08:00",
+      "inode": 51652,
+      "device": 2096,
+      "sha256": null,
+      "sha256_not_computed_reason": "The full JSONL was streamed and counted earlier in this same audit session without simultaneously hashing; this report reuses those observed statistics and records current stat identity without inventing a digest."
+    }
+  },
+  "trace_statistics": {
+    "through_step_41000": {
+      "steps": 41000,
+      "trace_rows": 41000,
+      "sample_count": 82000,
+      "mode_counts": {
+        "ego": 82000,
+        "exo": 0
+      },
+      "group_counts": {
+        "trumans": 51440,
+        "camera_wearer": 11385,
+        "interactee": 10654,
+        "rich": 8521
+      },
+      "group_mode_counts": {
+        "trumans/ego": 51440,
+        "camera_wearer/ego": 11385,
+        "interactee/ego": 10654,
+        "rich/ego": 8521
+      },
+      "real_ego_samples": 11385,
+      "pseudo_ego_samples": 70615,
+      "scene_enabled_update_count": 36862,
+      "scene_disabled_update_count": 4138,
+      "first_step": 1,
+      "last_step": 41000,
+      "steps_contiguous": true,
+      "all_sample_splits_train": true
+    },
+    "through_step_55000": {
+      "steps": 55000,
+      "trace_rows": 55000,
+      "sample_count": 110000,
+      "mode_counts": {
+        "ego": 110000,
+        "exo": 0
+      },
+      "group_counts": {
+        "trumans": 69005,
+        "camera_wearer": 15273,
+        "interactee": 14292,
+        "rich": 11430
+      },
+      "group_mode_counts": {
+        "trumans/ego": 69005,
+        "camera_wearer/ego": 15273,
+        "interactee/ego": 14292,
+        "rich/ego": 11430
+      },
+      "real_ego_samples": 15273,
+      "pseudo_ego_samples": 94727,
+      "scene_enabled_update_count": 49468,
+      "scene_disabled_update_count": 5532,
+      "first_step": 1,
+      "last_step": 55000,
+      "steps_contiguous": true,
+      "all_sample_splits_train": true
+    },
+    "noncontiguous_step_count": 0,
+    "non_train_sample_count": 0,
+    "missing_or_unknown_mode_count": 0,
+    "final_counts_match_training_protocol": true
+  },
+  "actual_sampling_plan": [
+    {
+      "group": "trumans",
+      "mode": "ego",
+      "probability": 0.6273183651057721
+    },
+    {
+      "group": "camera_wearer",
+      "mode": "ego",
+      "probability": 0.13884365896311507
+    },
+    {
+      "group": "interactee",
+      "mode": "ego",
+      "probability": 0.12992709370860306
+    },
+    {
+      "group": "rich",
+      "mode": "ego",
+      "probability": 0.10391088222250972
+    }
+  ],
+  "mode_config": {
+    "training_mode": "ego",
+    "sampler_training_mode": "ego",
+    "nominal_ego_probability": 0.7,
+    "nominal_probability_caveat": "training_plan filters to training_mode=ego and renormalizes; nominal .7 does not imply 30% EXO in this run."
+  },
+  "ego_sources": {
+    "camera_wearer": {
+      "kind": "real_ego",
+      "dataset": "EgoBody",
+      "definition": "Released actual PV camera trajectory, synchronized/calibrated into the body/scene world; not an online video-estimated frontend."
+    },
+    "trumans": {
+      "kind": "pseudo_ego",
+      "definition": "Virtual target head-mounted camera derived from native body fit head pose."
+    },
+    "interactee": {
+      "kind": "pseudo_ego",
+      "dataset": "EgoBody",
+      "definition": "Virtual camera attached to the interactee own head; not the wearer PV camera observing the interactee."
+    },
+    "rich": {
+      "kind": "pseudo_ego",
+      "definition": "Virtual target head-mounted camera derived from native body fit head pose."
+    }
+  },
+  "training_manifest_allowed_mode_row_counts": [
+    {
+      "group": "trumans",
+      "allowed_modes": [
+        "ego",
+        "exo"
+      ],
+      "rows": 469
+    },
+    {
+      "group": "rich",
+      "allowed_modes": [
+        "ego",
+        "exo"
+      ],
+      "rows": 62
+    },
+    {
+      "group": "camera_wearer",
+      "allowed_modes": [
+        "ego"
+      ],
+      "rows": 93
+    },
+    {
+      "group": "camera_wearer",
+      "allowed_modes": [
+        "exo"
+      ],
+      "rows": 65
+    },
+    {
+      "group": "interactee",
+      "allowed_modes": [
+        "ego"
+      ],
+      "rows": 107
+    },
+    {
+      "group": "interactee",
+      "allowed_modes": [
+        "exo"
+      ],
+      "rows": 65
+    }
+  ],
+  "manifest_caveat": "Shared manifest includes EXO-capable rows and EXO metadata. allowed_modes is availability, not actual sampled mode; EGO main training samples only its filtered EGO plan.",
+  "body_observation_input": {
+    "ego_head_only_probability": 1.0,
+    "selected_joint_ids": [
+      15
+    ],
+    "ego_wrists_enabled": false,
+    "definition": "Head trajectory and availability/confidence from the same possibly noisy/dropped camera stream; other dynamic joint observations are masked and zeroed. Body rest/type/scale and inference geometry assets remain static inputs."
+  },
+  "scene_input": {
+    "enabled_update_count": 49468,
+    "disabled_update_count": 5532,
+    "configured_dropout_probability": 0.1,
+    "memory_protocol": "observed-static-recording-union-v3",
+    "observation_budget": "entire supplied recording observed-static union; same observer/world/split only; dynamics current frame",
+    "unknown_policy": "surface-only; no free-space inference",
+    "definition": "EGO first-hit observed environment surfaces; target owner100 excluded; partner/rigid surfaces may remain. Static observed surfaces are unioned within supplied recording, same observer/world/split; dynamics are current-frame. This is offline observed-recording memory, not strictly causal prefix memory or an unfiltered complete scene scan."
+  },
+  "ground_truth_boundary": {
+    "clean_full_body_conditioning": false,
+    "full_body_gt_used_for_training_target": true,
+    "full_body_gt_used_to_construct_training_noisy_x_t": true,
+    "diffusion_target": "reference_residual",
+    "definition": "GT motion forms the residual training target and noised x_t, and is used for supervised losses. It is not passed as clean dynamic full-body conditioning. Conditioning whitelist excludes motion/contact truth/target GT pose; reference defaults to observation-derived frontend. Inference starts from seeded random Gaussian noise. Pseudo-EGO camera and simulated observed geometry are generated offline using dataset body/scene fits."
+  },
+  "later_exo_adaptation_is_distinct": {
+    "base": "selected step41000 EGO model",
+    "stages": [
+      "native30_exo_adapter_v1",
+      "native30_exo_adapter_balanced_v2"
+    ],
+    "training_mode": "exo",
+    "base_weights_frozen": true,
+    "trainable": "explicit-EXO-gated internal adapters",
+    "ego_route": "adapter bypass",
+    "caveat": "These later EXO stages do not change which inputs the original 55k EGO main training sampled; full-weight native30_ego_exo_adapt_v1 was a separate earlier mixed-mode attempt."
+  },
+  "evidence": {
+    "mode_filter": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/prepare_native30.py",
+      "line": 141,
+      "source_sha256": "6ce2430fe2c3ccbb2715b04cc38b462981d483cf3c50c43f9a7a47a4dab30644"
+    },
+    "sampling_and_head_selection": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/prepare_native30.py",
+      "line": 192,
+      "source_sha256": "6ce2430fe2c3ccbb2715b04cc38b462981d483cf3c50c43f9a7a47a4dab30644"
+    },
+    "effective_sampling_plan": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/prepared/effective_config.json",
+      "line": 330,
+      "source_sha256": "1d58e21e4070fa86e543782a6b74291828f5579b7a80f38c6d1512134ad495f8"
+    },
+    "protocol_counts": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/protocol.json",
+      "line": 1786,
+      "source_sha256": "104171856168b49d18abe6ce7fd44dfdbaa7216fa4398c7ce70b9b4351417238"
+    },
+    "allowed_mode_enforcement": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_data.py",
+      "line": 150,
+      "source_sha256": "effd42741d2638be22e1b9d79d801a83286a036615d5649db164a252060575a2"
+    },
+    "egobody_pv_vs_master_streams": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_splits.py",
+      "line": 55,
+      "source_sha256": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5"
+    },
+    "real_pv_selection": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_export.py",
+      "line": 168,
+      "source_sha256": "3a9d7648c416172dc4fa34fccc5c5888e3d6901123e8d2304109ca6885618327"
+    },
+    "virtual_head_camera": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_export.py",
+      "line": 310,
+      "source_sha256": "3a9d7648c416172dc4fa34fccc5c5888e3d6901123e8d2304109ca6885618327"
+    },
+    "observations_mask_and_head_conversion": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observations.py",
+      "line": 130,
+      "source_sha256": "a400b12f5bb8e52a4334f230dab2f9fdd1baa5f19141c07f1eb4d96222d589e5"
+    },
+    "conditioning_whitelist": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observations.py",
+      "line": 20,
+      "source_sha256": "a400b12f5bb8e52a4334f230dab2f9fdd1baa5f19141c07f1eb4d96222d589e5"
+    },
+    "training_noisy_state_and_supervision": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/train_native30.py",
+      "line": 127,
+      "source_sha256": "28d3aa504dff2a34d835413b331df5462ecc023fe0a24c5c2a556c4419f07862"
+    },
+    "residual_training_target": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py",
+      "line": 174,
+      "source_sha256": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6"
+    },
+    "inference_random_initialization": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py",
+      "line": 235,
+      "source_sha256": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6"
+    },
+    "scene_scope": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+      "line": 30,
+      "source_sha256": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad"
+    },
+    "scene_target_mesh_exclusion": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_export.py",
+      "line": 238,
+      "source_sha256": "3a9d7648c416172dc4fa34fccc5c5888e3d6901123e8d2304109ca6885618327"
+    },
+    "later_exo_adapter_mode": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/config.json",
+      "line": 258,
+      "source_sha256": "b6190d331e634d6029c67b5ae182a2accfdfe21399c18963d434e2845520cfae"
+    }
+  }
+}

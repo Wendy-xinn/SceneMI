@@ -2,6 +2,10 @@
 
 ## 10月18日中午：优先EXO与今晚汇报
 
+13:56核查更新：新版55k主训的110,000个实际样本全部为EGO（真实PV15,273、伪EGO94,727），EXO为0；41k前缀82,000个样本同样EXO为0。人体运动观测为head-only，同时有静态身体信息和EGO可见场景；后续冻结主干EXO adapter是单独阶段。详见[输入审计](../runs/native30_gait_v2_ego55k_oct15/TRAINING_INPUT_AUDIT_zh.md)。RICH TEST完整61项有效指标、52录制/53人体流/335窗的clean-noisy全部670次结果已导出：[完整报告](../runs/rich_test_ego41k/results/FULL_RESULTS_zh.md)、[完整结果包](../runs/rich_test_ego41k/rich_test_ego41k_all_results.zip)。原始CPU复核与95个源码封印不变，导出逐字段复验通过；HSC接触、mesh碰撞和PVE尚未计算。
+
+新EXO v2在12:51第954步场景CUDA查询时OOM，953步trace已落盘、最后原子checkpoint为900。13:45本次核查发现后，已审计保留失败attempt并清理其卡住的退出进程；13:52启动相同科学配置从900恢复至1000，新child75357、新pipeline75359。当前完整来源SHA读取中，尚未越过954；扩大EXO验证尚未启动。此前13:00–13:10初筛/15点扩大结果的预估已失效，新时间须以恢复实际进度为准。[恢复状态](../runs/native30_exo_adapter_balanced_v2/STATUS.json)、[OOM证据](../runs/native30_exo_adapter_balanced_v2/diagnostics/OOM_20261018_125110.json)。旧进程显存仅约4.7GiB、配置上限0.25，但OOM日志没有分配细节，不能断言只由进程限额引起。
+
 用户澄清：训练期间少量窗口选checkpoint的依据不足，但41k/55k对比现在不急。已暂停扩大EGO对比，保留51次已提交预测，可从同协议续跑。RICH TEST此前已完整结束，与当前暂停任务无关。
 
 今晚可直接使用的[中文报告和CSV](../runs/native30_exo_adapter_v1/presentation/REPORT_FOR_PRESENTATION_zh.md)、[视频索引](../runs/native30_exo_adapter_v1/presentation/visuals/index.html)、[EXO数据图](../runs/native30_exo_adapter_v1/presentation/visuals/EXO_hidden_metrics.png)已生成。素材包含两个改善选例和一个RICH失败对照，同相机同尺度；不把展示选例当作总体证据。[Viser](http://localhost:8802/)保留交互检查。
