@@ -1,0 +1,345 @@
+{
+  "protocol": "native30-input-and-camera-readonly-audit-v1",
+  "audited_at": "2026-10-18T17:42:02.202340+08:00",
+  "scope": "Read-only input-generation, camera provenance and existing EGO41k/EXO viewer case evidence; no training or diffusion inference.",
+  "writes": "Only this compact audit JSON and its Chinese Markdown report.",
+  "exo_input": {
+    "source": "GT-position tracker simulation with first-hit regional visibility/confidence; not real RGB tracker output",
+    "complete_gt_pose_perturbed_as_reference": false,
+    "gt_visible_joint_positions": true,
+    "clean_positions": "Exact simulated available GT joint positions",
+    "noisy_positions": "Available GT positions plus coherent offset/drift and optional additional joint dropout",
+    "missing_observation_coordinates_zeroed": true,
+    "exo_joint_rotation_observations": false,
+    "reference": "Observed available positions plus supplied native rest bones; missing/terminal orientations use kinematic low-confidence fallback; no hidden GT joint pose read",
+    "missing_reference_is_nonzero": "A kinematic hypothesis, distinct from the zeroed/masked raw measurements",
+    "known_shape_and_scale": "Native shape/rest and world scale are supplied simulator conditions, derived from target fits."
+  },
+  "gt_uses": {
+    "simulator": [
+      "Native body/shape and synthetic head-camera trajectory",
+      "Raycast visibility, confidence and observed environment surfaces",
+      "Available EXO position measurements"
+    ],
+    "training": [
+      "GT-reference residual target",
+      "Noised diffusion training state x_t built from target",
+      "Supervised full-body/foot/scene losses"
+    ],
+    "not_clean_conditioning": [
+      "Full target motion",
+      "Hidden target GT joint pose",
+      "GT contact target"
+    ],
+    "inference_initialization": "Seeded Gaussian residual noise around observation-derived reference, not GT motion with diffusion noise."
+  },
+  "camera": {
+    "pseudo_ego": "Each target body fit own anatomical head pose and fixed virtual mount; TRUMANS/RICH/EgoBody interactee",
+    "real_ego": "EgoBody wearer released calibrated/synchronized PV trajectory",
+    "exo_override": "EXO sampling replaces camera position/rotation with external sensor transforms; unused pseudo-EGO camera fields do not become model EXO camera input",
+    "egobody_exo": "Released Kinect master calibration",
+    "rich_exo": "Released calibration, view selected by hash(sequence identity) independent of pose/error",
+    "trumans_exo": "Recovered first released camera centre; explicit synthetic look-at orientation and intrinsics; not a verified released-K benchmark camera",
+    "real_pv_mount": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_official_memory_v3/TRAIN_camera_mounts.json",
+      "sha256": "de235d77633936d395ecc929e920c1cfd64ffeb23378dc5f049f42dc34853b25",
+      "fitting_split": "train",
+      "recording_count": 64,
+      "frames": 1024
+    }
+  },
+  "ego41k_training": {
+    "input_audit_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/TRAINING_INPUT_AUDIT.json",
+    "input_audit_sha256": "2b45b4e3445b0cea8cb150f0f3a58c3a054db2db60350e90dba2465ce342c7fc",
+    "trace_statistics_reused_not_recounted": true,
+    "step": 41000,
+    "window_count": 82000,
+    "mode_counts": {
+      "ego": 82000,
+      "exo": 0
+    },
+    "real_ego_windows": 11385,
+    "pseudo_ego_windows": 70615,
+    "dynamic_body_observation_joint_ids": [
+      15
+    ],
+    "checkpoint_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/best.pt",
+    "checkpoint_sha256_from_existing_best_record": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+    "best_record_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/training/best.json",
+    "best_record_sha256": "35250a07ced13b5b59fb0a39589b74f1ea90cd64f280fe61f9d22b01d64d5c0e",
+    "checkpoint_weights_not_rehashed_this_audit": true
+  },
+  "why_41k_direct_exo_can_work": {
+    "architectural_reuse": "Shared 22-joint input representation, observation-derived full reference and learned human-motion prior",
+    "explicit_constraints": {
+      "observation_anchor_gain": 0.9,
+      "joint_anchor_gain": 0.9,
+      "joint_anchor_iterations": 6,
+      "scope": "Confidence/uncertainty-weighted visible positions and EXO torso rigid alignment inside diffusion proposals; not a separate learned EXO network"
+    },
+    "inference": "Plausible shared input/kinematic pipeline transfer with much stronger observed full-body position evidence than EGO head-only",
+    "not_proven": [
+      "Pure neural zero-shot EXO generalization independent of reference/IK",
+      "Strong occlusion completion from low all-joint MPJPE alone",
+      "Robustness to real video tracker errors",
+      "Rotational and temporal quality from joint-position MPJPE alone"
+    ]
+  },
+  "egobody_recording_split_check": {
+    "manifest_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_official_memory_v3/manifest.jsonl",
+    "manifest_sha256": "0ad36607e705a6480368486e98d3b5dd4de69f2ec916a45b73f2f0d9f2c9c9cc",
+    "recordings_by_split": {
+      "train": 65,
+      "validation": 17,
+      "test": 43
+    },
+    "pairwise_overlap_recordings": {
+      "train__validation": [],
+      "train__test": [],
+      "validation__test": []
+    },
+    "example_recording": "recording_20220215_S21_S22_01",
+    "example_bundles": [
+      {
+        "split": "validation",
+        "group": "camera_wearer",
+        "allowed_modes": [
+          "ego"
+        ],
+        "sequence_id": "recording_20220215_S21_S22_01_camera_wearer_1901-2171"
+      },
+      {
+        "split": "validation",
+        "group": "camera_wearer",
+        "allowed_modes": [
+          "exo"
+        ],
+        "sequence_id": "recording_20220215_S21_S22_01_camera_wearer_1901-4901_master_full"
+      },
+      {
+        "split": "validation",
+        "group": "camera_wearer",
+        "allowed_modes": [
+          "ego"
+        ],
+        "sequence_id": "recording_20220215_S21_S22_01_camera_wearer_2261-4871"
+      },
+      {
+        "split": "validation",
+        "group": "interactee",
+        "allowed_modes": [
+          "ego"
+        ],
+        "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-2171"
+      },
+      {
+        "split": "validation",
+        "group": "interactee",
+        "allowed_modes": [
+          "exo"
+        ],
+        "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-4901_master_full"
+      },
+      {
+        "split": "validation",
+        "group": "interactee",
+        "allowed_modes": [
+          "ego"
+        ],
+        "sequence_id": "recording_20220215_S21_S22_01_interactee_2261-4871"
+      }
+    ],
+    "limit": "Recording-disjoint, not a verified subject- or scene-disjoint protocol. Same-person and same-environment recurrence across recordings is not excluded."
+  },
+  "viewer_example": {
+    "case_manifest_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_motion_review/CASES.json",
+    "case_manifest_sha256": "eeea7ba40e707493806b81d5f4f832a44cb07b0594d0e3259d41e6fb23291369",
+    "case_key": "exo_egobody_8",
+    "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-4901_master_full",
+    "split": "validation",
+    "start": 1984,
+    "source_start_30fps": 3885,
+    "input_archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/training/validation_latest.npz",
+    "input_archive_sha256": "d61c2fbc8b9f1e6b48ac22a41e24fcee5daed01f13092efa1c47df17c1a5c33b",
+    "case_index": 8,
+    "window_measurement_statistics": {
+      "clean": {
+        "frames": 192,
+        "joints": 22,
+        "mean_available_joints": 19.182291666666668,
+        "missing_joint_fraction": 0.12807765151515152,
+        "left_elbow_available_frames": 66,
+        "rotation_available_count": 0
+      },
+      "noisy": {
+        "frames": 192,
+        "joints": 22,
+        "mean_available_joints": 19.182291666666668,
+        "missing_joint_fraction": 0.12807765151515152,
+        "left_elbow_available_frames": 66,
+        "rotation_available_count": 0
+      }
+    },
+    "whole_recording_mean_available_joints": 19.184666666666665,
+    "whole_recording_first_hit_counts": {
+      "reference": 1516616,
+      "visible": 1516603,
+      "person": 0,
+      "static": 13,
+      "rigid": 0
+    },
+    "interpretation": "Many joints are supplied; low all-joint position error alone cannot establish occlusion completion or suppress intermittent local rotation flips. Self-occlusion and low projected pixel count can still make regional availability switch.",
+    "export_fingerprint_from_saved_identity": {
+      "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+      "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+      "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+      "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+      "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+      "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+      "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+    }
+  },
+  "evidence": {
+    "exo_gt_positions": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_export.py",
+      "lines": [
+        332,
+        337,
+        392
+      ],
+      "current_file_sha256": "3a9d7648c416172dc4fa34fccc5c5888e3d6901123e8d2304109ca6885618327"
+    },
+    "exo_first_hit_visibility": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_exo.py",
+      "lines": [
+        96,
+        121,
+        123
+      ],
+      "current_file_sha256": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22"
+    },
+    "noise_and_dropout": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_input_noise.py",
+      "lines": [
+        30,
+        37,
+        65,
+        71
+      ],
+      "current_file_sha256": "d488fbfeb9d12463fa4632226352a976474f92e69185af6f05bba55897d707bd"
+    },
+    "sanitization_and_no_rotation_invention": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observations.py",
+      "lines": [
+        24,
+        29,
+        101,
+        130,
+        139
+      ],
+      "current_file_sha256": "a400b12f5bb8e52a4334f230dab2f9fdd1baa5f19141c07f1eb4d96222d589e5"
+    },
+    "observation_reference_and_anchors": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py",
+      "lines": [
+        66,
+        90,
+        115,
+        119,
+        144,
+        174,
+        207,
+        235
+      ],
+      "current_file_sha256": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6"
+    },
+    "joint_position_ik": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observation_ik.py",
+      "lines": [
+        14,
+        16,
+        28,
+        31
+      ],
+      "current_file_sha256": "468d525fbeba5e29a6a9b2c965f2447b74def1aa0a68447f6743c2fc29b1274f"
+    },
+    "pseudo_head_camera": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_export.py",
+      "lines": [
+        215,
+        221,
+        228,
+        310
+      ],
+      "current_file_sha256": "3a9d7648c416172dc4fa34fccc5c5888e3d6901123e8d2304109ca6885618327"
+    },
+    "external_camera_selection": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_exo.py",
+      "lines": [
+        27,
+        36,
+        40,
+        53,
+        68
+      ],
+      "current_file_sha256": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22"
+    },
+    "mode_uses_external_camera": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_data.py",
+      "lines": [
+        159,
+        162,
+        165
+      ],
+      "current_file_sha256": "effd42741d2638be22e1b9d79d801a83286a036615d5649db164a252060575a2"
+    },
+    "official_egobody_recording_split": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_splits.py",
+      "lines": [
+        55,
+        59,
+        64,
+        80
+      ],
+      "current_file_sha256": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5"
+    },
+    "train_only_mount_fit": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/fit_native30_camera_mount.py",
+      "lines": [
+        22,
+        26,
+        36,
+        61
+      ],
+      "current_file_sha256": "fe4901d85dbec2192801fd07e82a66039cdfc1310652727c26b08a62b89c06ca"
+    },
+    "ego_only_sampling_filter": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/prepare_native30.py",
+      "lines": [
+        141,
+        203
+      ],
+      "current_file_sha256": "6ce2430fe2c3ccbb2715b04cc38b462981d483cf3c50c43f9a7a47a4dab30644"
+    },
+    "gt_residual_diffusion_training": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/train_native30.py",
+      "lines": [
+        127,
+        131,
+        137
+      ],
+      "current_file_sha256": "28d3aa504dff2a34d835413b331df5462ecc023fe0a24c5c2a556c4419f07862"
+    },
+    "base_training_config": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_gait_v2_ego55k_oct15/config.json",
+      "lines": [
+        20,
+        192,
+        204,
+        259
+      ],
+      "current_file_sha256": "89fadfc6d1af8cf0c819e503ac646443b6c8d281ce46abb5f7e8c53828a796ad"
+    }
+  },
+  "provenance_note": "Evidence hashes identify source files inspected now. Historical cached export fingerprint is preserved separately; this audit does not rewrite immutable training/evaluation source seals or assert unchanged current files are identical to every historical export."
+}

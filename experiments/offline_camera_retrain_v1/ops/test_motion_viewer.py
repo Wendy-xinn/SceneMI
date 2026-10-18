@@ -173,6 +173,45 @@ class ArchiveTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "manifest guidance differs"):
             viewer.load_source(case, self.root)
 
+    def prepared_fixture(self):
+        source = self.write_case()
+        arrays, metadata = viewer.load_source(source, self.root)
+        folder = self.root / "cache"
+        folder.mkdir(exist_ok=True)
+        cache, record = folder / "playback.npz", folder / "MANIFEST.json"
+        metadata["viewer_sha256"] = "historical UI source; no geometry rebuild required"
+        np.savez(cache, **arrays, metadata_json=np.asarray(json.dumps(metadata)))
+        record.write_text(json.dumps(metadata))
+        source.update(cache=str(cache), cache_manifest=str(record))
+        manifest = dict(schema=viewer.SCHEMA, cases=[dict(label="prepared fixture",
+            paired_inputs_verified=True, models=[dict(key="base41k", label="base", mode="exo", case=source)])])
+        return manifest, arrays, metadata
+
+    def test_serve_prepared_accepts_old_ui_source_when_original_arrays_still_match(self):
+        manifest, _, _ = self.prepared_fixture()
+        result = viewer.validate_prepared_cases(manifest, self.root)
+        self.assertIs(result, manifest["cases"])
+
+    def test_serve_prepared_rejects_changed_source_or_cache_motion_or_reference(self):
+        for kind in ("source", "prediction", "reference"):
+            with self.subTest(kind=kind):
+                manifest, arrays, metadata = self.prepared_fixture()
+                if kind == "source":
+                    source = self.root / "clean.npz"
+                    with np.load(source, allow_pickle=False) as saved:
+                        values = {key: saved[key].copy() for key in saved.files}
+                    values["prediction"][0, 0] += 1
+                    np.savez(source, **values)
+                    expected = "metadata differs: sources"
+                else:
+                    key = "clean_prediction" if kind == "prediction" else "clean_reference_motion"
+                    arrays[key][0, 0] += 1
+                    np.savez(self.root / "cache/playback.npz", **arrays,
+                        metadata_json=np.asarray(json.dumps(metadata)))
+                    expected = "array differs: clean_prediction" if kind == "prediction" else "input reference differs"
+                with self.assertRaisesRegex(ValueError, expected):
+                    viewer.validate_prepared_cases(manifest, self.root)
+
 
 if __name__ == "__main__":
     unittest.main()

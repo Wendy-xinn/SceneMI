@@ -391,9 +391,69 @@ def prepare_review_case(case: dict, base: Path, config: dict, cache_root: Path) 
     return dict(case, models=prepared, paired_inputs_verified=True)
 
 
+def validate_prepared_cases(manifest: dict, base: Path) -> list[dict]:
+    """Validate reusable geometry against its saved sources without rebuilding.
+
+    UI-only changes can serve an existing prepared manifest. The cached source
+    hashes, identities and motion arrays must still match the original archives;
+    this does not treat an old viewer source digest as a geometry authority.
+    """
+    if manifest.get("schema") != SCHEMA or not manifest.get("cases"):
+        raise ValueError("--serve-prepared requires a nonempty PREPARED_CASES manifest")
+    for case in manifest["cases"]:
+        if not case.get("paired_inputs_verified") or not case.get("models"):
+            raise ValueError("Prepared case has no verified model pair declaration")
+        paired = {}
+        for entry in case["models"]:
+            source = entry["case"]
+            artifact = Path(source["cache"])
+            record = Path(source["cache_manifest"])
+            artifact = artifact if artifact.is_absolute() else base / artifact
+            record = record if record.is_absolute() else base / record
+            if not artifact.is_file() or not record.is_file() or artifact.parent.resolve() != record.parent.resolve():
+                raise ValueError("Prepared playback/cache manifest path missing or mismatched")
+            arrays, expected = load_source(source, base)
+            with np.load(artifact, allow_pickle=False) as saved:
+                metadata = json.loads(str(saved["metadata_json"]))
+                if metadata != json.loads(record.read_text()):
+                    raise ValueError("Prepared cache metadata and manifest differ")
+                for name in ("sources", "identity", "step"):
+                    if metadata[name] != expected[name]:
+                        raise ValueError("Prepared cache/source metadata differs: " + name)
+                for name in ("truth", "rest", "clean_prediction", "noisy_prediction",
+                             "clean_observations", "noisy_observations",
+                             "clean_observation_meta", "noisy_observation_meta"):
+                    if not np.array_equal(saved[name], arrays[name]):
+                        raise ValueError("Prepared cache/source array differs: " + name)
+                for regime in ("clean", "noisy"):
+                    name = regime + "_reference_motion"
+                    if name in arrays and not np.array_equal(saved[name], arrays[name]):
+                        raise ValueError("Prepared input reference differs from source: " + regime)
+            mode = expected["identity"].get("mode", "ego")
+            if entry.get("mode") != mode:
+                raise ValueError("Prepared model observer mode differs")
+            if mode in paired:
+                previous, identity = paired[mode]
+                if expected["identity"] != identity:
+                    raise ValueError("Prepared model window identities differ")
+                for name in ("truth", "rest", "clean_observations", "noisy_observations",
+                             "clean_observation_meta", "noisy_observation_meta"):
+                    if not np.array_equal(arrays[name], previous[name]):
+                        raise ValueError("Prepared paired conditions differ: " + name)
+            else:
+                paired[mode] = arrays, expected["identity"]
+        targets = [item[0] for item in paired.values()]
+        for target in targets[1:]:
+            if any(not np.array_equal(target[name], targets[0][name]) for name in ("truth", "rest")):
+                raise ValueError("Prepared EGO/EXO targets differ")
+    return manifest["cases"]
+
+
 class MotionViewer:
     """One timeline with independent EGO/EXO folders and overlaid model layers."""
-    COLORS = {"base41k": (235, 140, 35), "adapter_v2": (185, 40, 160), "prediction": (185, 40, 160)}
+    COLORS = {"base41k": (235, 140, 35), "adapter_v2": (185, 40, 160),
+        "base41k_ref_fixed": (20, 180, 185), "adapter_v2_ref_fixed": (225, 65, 65),
+        "prediction": (185, 40, 160)}
 
     def __init__(self, cases: list[dict], port: int):
         import viser
@@ -415,7 +475,7 @@ class MotionViewer:
         self.play = server.gui.add_checkbox("播放", initial_value=False)
         self.speed = server.gui.add_slider("播放倍速", min=.25, max=2., step=.25, initial_value=.75)
         self.opacity = server.gui.add_slider("预测人体不透明度", min=.15, max=1., step=.05, initial_value=.85)
-        self.panels, self.preset_buttons = {}, []
+        self.panels, self.preset_buttons, self.reference_fix_button = {}, [], None
         for mode in ("ego", "exo"):
             with server.gui.add_folder(mode.upper() + " · 图层"):
                 panel = {}
@@ -444,13 +504,18 @@ class MotionViewer:
                 # Predictions and conditions remain independently selectable.
                 for key, label in keys.items():
                     panel["models"][key] = server.gui.add_checkbox(label,
-                        initial_value=True)
+                        initial_value=not key.endswith("_ref_fixed"))
+                panel["reference_source"] = server.gui.add_dropdown("输入参考来源",
+                    options=("本窗口第一个模型",), initial_value="本窗口第一个模型")
                 if mode == "exo":
                     before = server.gui.add_button("对照：原41k / EXO适配")
                     reference = server.gui.add_button("对照：输入参考 / 扩散结果")
+                    reference_fix = server.gui.add_button("对照：参考修复前 / 后（适配输出）")
                     before.on_click(lambda _: self.comparison("generator"))
                     reference.on_click(lambda _: self.comparison("reference"))
-                    self.preset_buttons.extend((before, reference))
+                    reference_fix.on_click(lambda _: self.comparison("reference_fix"))
+                    self.reference_fix_button = reference_fix
+                    self.preset_buttons.extend((before, reference, reference_fix))
                 panel["info"] = server.gui.add_markdown("")
                 self.panels[mode] = panel
         self.follow = server.gui.add_checkbox("跟随 GT 人体", initial_value=False)
@@ -480,13 +545,16 @@ class MotionViewer:
         with self.lock:
             panel = self.panels["exo"]
             panel["enabled"].value = True
-            panel["gt"].value = kind == "generator"
+            panel["gt"].value = kind in ("generator", "reference_fix")
             panel["reference"].value = kind == "reference"
             panel["uncertainty"].value = kind == "reference"
             panel["observations"].value = kind == "reference"
             panel["occluded"].value = True
+            selected = {"generator": {"base41k", "adapter_v2"},
+                "reference": {"adapter_v2"},
+                "reference_fix": {"adapter_v2", "adapter_v2_ref_fixed"}}[kind]
             for key, control in panel["models"].items():
-                control.value = key != "base41k" or kind == "generator"
+                control.value = key in selected
             self.update()
 
     def read_case(self, index: int) -> list[dict]:
@@ -550,11 +618,24 @@ class MotionViewer:
                     for key, control in panel["models"].items():
                         control.disabled = key not in {item["entry"]["key"] for item in members}
                         control.visible = not control.disabled
-                    panel["status"].content = ("同一窗口、同一输入的叠加对照。" if available else
+                    if mode == "exo" and self.reference_fix_button is not None:
+                        can_compare = {"adapter_v2", "adapter_v2_ref_fixed"}.issubset(
+                            {item["entry"]["key"] for item in members})
+                        self.reference_fix_button.visible = can_compare
+                        self.reference_fix_button.disabled = not can_compare
+                    has_reference_versions = any(item["entry"]["key"].endswith("_ref_fixed") for item in members)
+                    panel["status"].content = (("同一窗口、相同原始观测；参考构造版本不同。"
+                        "青：参考修复后的41k输出；红：参考修复后的适配输出。" if has_reference_versions else
+                        "同一窗口、同一输入的叠加对照。") if available else
                         "本窗口没有已保存的 " + mode.upper() + " 输出；未用其他窗口冒充配对。")
                     panel["info"].content = ""
                     if not available:
                         continue
+                    reference_options = tuple(item["entry"]["label"] for item in members)
+                    if len(set(reference_options)) != len(reference_options):
+                        raise ValueError("Model labels must be unique within an observer panel")
+                    panel["reference_source"].options = reference_options
+                    panel["reference_source"].value = reference_options[0]
                     data = members[0]["data"]
                     prefix = "/" + mode
                     rt = dict(data=data, meta=members[0]["meta"], models=members)
@@ -627,7 +708,11 @@ class MotionViewer:
                     panel, data = self.panels[mode], rt["data"]
                     enabled = panel["enabled"].value
                     truth = data["truth_joints"]
-                    reference = data[f"{regime}_reference_joints"]
+                    reference_member = next(item for item in rt["models"]
+                        if item["entry"]["label"] == panel["reference_source"].value)
+                    reference_data = reference_member["data"]
+                    reference_label = reference_member["entry"]["label"]
+                    reference = reference_data[f"{regime}_reference_joints"]
                     meta = data[f"{regime}_observation_meta"]
                     classes, colors, _ = observation_classes(meta[t], mode)
                     active = meta[t, :, 0] > 0
@@ -637,7 +722,7 @@ class MotionViewer:
                         rt["gt"].vertices = data["truth_vertices"][t]
                     rt["reference"].visible = bool(enabled and panel["reference"].value)
                     if rt["reference"].visible:
-                        rt["reference"].vertices = data[f"{regime}_reference_vertices"][t]
+                        rt["reference"].vertices = reference_data[f"{regime}_reference_vertices"][t]
                     rt["input"].points = data[f"{regime}_observations"][t, active, :3] * 2
                     rt["input"].colors = colors[active]
                     rt["input"].visible = bool(enabled and panel["observations"].value)
@@ -696,7 +781,7 @@ class MotionViewer:
                         if "source_occluded" in data and data["source_occluded"].any():
                             occ_error = np.linalg.norm(pred - truth, axis=-1)[data["source_occluded"].astype(bool)].mean() * 1000
                             occlusion_values.append(f"{item['entry']['label']}：{occ_error:.1f} mm")
-                    ref_key = "reference_metrics_" + regime
+                    ref_key = "reference_metrics_" + regime + "_" + reference_member["entry"]["key"]
                     if ref_key not in rt:
                         rt[ref_key] = masked_joint_metrics(reference, truth, meta)
                     rm = rt[ref_key]
@@ -712,7 +797,7 @@ class MotionViewer:
                     source_note = rt["meta"].get("display_geometry", {}).get("camera", {}).get("source_note", "")
                     archived_guidance = rt["meta"].get("generation", {}).get("recorded_guidance", "见选例记录")
                     panel["info"].content = (f"本帧提供 {int(active.sum())}/22 个位置；低置信 {int((classes == 1).sum())}；"
-                        f"有原始遮挡证据 {int(occ.sum())}。\\n\\n"
+                        f"有原始遮挡证据 {int(occ.sum())}。\\n\\n输入参考来源：{reference_label}。\\n\\n"
                         "整段 World MPJPE（mm；原评估提供/未提供掩码）：\\n\\n"
                         "| 图层 | 全身 | 已提供 | 未提供 |\\n|---|---:|---:|---:|\\n" + "\\n".join(values) +
                         ("\\n\\n原始有遮挡证据部位误差（含部分遮挡）：" + "；".join(occlusion_values) if occlusion_values else "") +
@@ -739,18 +824,24 @@ def main() -> None:
     parser.add_argument("--cache-root", type=Path, default=DEFAULT_CACHE)
     parser.add_argument("--port", type=int, default=8800)
     parser.add_argument("--prepare-only", action="store_true")
+    parser.add_argument("--serve-prepared", action="store_true",
+        help="Validate and serve PREPARED_CASES without rebuilding geometry after UI-only changes")
     args = parser.parse_args()
     import torch
     torch.set_num_threads(1)
     torch.set_num_interop_threads(1)
     manifest = json.loads(args.manifest.read_text())
     config = json.loads(args.config.read_text())
-    prepared = []
-    for case in manifest["cases"]:
-        prepared.append(prepare_review_case(case, args.manifest.parent, config, args.cache_root))
-    published = args.cache_root.parent / "PREPARED_CASES.json"
-    atomic_json(published, dict(schema=SCHEMA, source_manifest=str(args.manifest.resolve()),
-        config=str(args.config.resolve()), cases=prepared))
+    if args.serve_prepared:
+        prepared = validate_prepared_cases(manifest, args.manifest.parent)
+        published = args.manifest.resolve()
+    else:
+        prepared = []
+        for case in manifest["cases"]:
+            prepared.append(prepare_review_case(case, args.manifest.parent, config, args.cache_root))
+        published = args.cache_root.parent / "PREPARED_CASES.json"
+        atomic_json(published, dict(schema=SCHEMA, source_manifest=str(args.manifest.resolve()),
+            config=str(args.config.resolve()), cases=prepared))
     if args.prepare_only:
         print(str(published), flush=True)
         return
@@ -762,6 +853,7 @@ def main() -> None:
         helper_sha256={name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
             for name in ("viewer_geometry.py", "viewer_observation.py")},
         previous_viewer_sha256="ee45c31771db58faf2a54668e0699d7b6cd63e8d9d89e31f3891cada5978620a",
+        served_prepared_geometry=bool(args.serve_prepared),
         new_model_inference=False, model_weights_modified=False))
     print(f"READY http://127.0.0.1:{args.port}/ · {len(prepared)} cases", flush=True)
     viewer.run()

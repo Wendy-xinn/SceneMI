@@ -1,0 +1,51 @@
+{
+  "status": "saved",
+  "checked_at": "2026-10-18T17:52:23.298710+08:00",
+  "case": 62,
+  "regime": "clean",
+  "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-4901_master_full",
+  "left_elbow_joint": 18,
+  "left_wrist_joint": 20,
+  "missing_elbow_frames": 126,
+  "frames": 192,
+  "fps": 30.0,
+  "rotation_definition": "Geodesic angle of consecutive global left-wrist joint rotation matrices; no position alignment or smoothing.",
+  "missing_definition": "Position availability channel <=0 or confidence channel <=0; includes more than physical occlusion.",
+  "diagnostic_only": true,
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/motions/case0062_clean_original_base41k.npz": "e1f9ffecd4edba4b9850402a2185d183b94d2312f519a367dfc6caddb4466e2e",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/motions/case0062_clean_original_balancedv2adapter1000.npz": "fb8743e41e12171888158559f28c304a57978105d5be23893d183f648ddab57d",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/motions/case0062_clean_exo-local-so3-reference-gap-fill-v1_base41k.npz": "12f9990e29c0aea73098086314a7beb40e6e7ed7f74558cacee4265a58a32b79",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/motions/case0062_clean_exo-local-so3-reference-gap-fill-v1_balancedv2adapter1000.npz": "67434dcd1e48ff48abf6fa9d1f80bbb566f28050d5b1373206835a67bf97b95c"
+  },
+  "plot_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/presentation/case0062_clean_wrist_rotation_diagnostic.png": "bacd75b2f1cacb7a221c4f176c9ab43f449c6b74e6b9dc9c0719c4e57662de70",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/presentation/case0062_clean_wrist_rotation_diagnostic.svg": "80b9103758528a8412603545b531fdbe992033c0a1aefe15b082d84f07dd53fc"
+  },
+  "metrics": [
+    {
+      "layer": "Reference initializer",
+      "original_step_p95_deg": 118.70109722169114,
+      "repaired_step_p95_deg": 9.326793108276767,
+      "GT_step_p95_deg": 14.73840960500791,
+      "original_step_over30_count": 30,
+      "repaired_step_over30_count": 0
+    },
+    {
+      "layer": "Base 41k",
+      "original_step_p95_deg": 46.77530332798632,
+      "repaired_step_p95_deg": 13.08070370229277,
+      "GT_step_p95_deg": 14.73840960500791,
+      "original_step_over30_count": 26,
+      "repaired_step_over30_count": 0
+    },
+    {
+      "layer": "EXO adapter v2",
+      "original_step_p95_deg": 45.67091328611245,
+      "repaired_step_p95_deg": 20.22034036591893,
+      "GT_step_p95_deg": 14.73840960500791,
+      "original_step_over30_count": 25,
+      "repaired_step_over30_count": 0
+    }
+  ]
+}

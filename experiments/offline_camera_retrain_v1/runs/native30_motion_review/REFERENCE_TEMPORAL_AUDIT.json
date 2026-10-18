@@ -1,0 +1,94 @@
+{
+  "policy": "exo-local-so3-reference-gap-fill-v1",
+  "checked_at": "2026-10-18T17:38:04.889420+08:00",
+  "scope": "Reference initialization only; no new diffusion generation or training",
+  "case": {
+    "key": "exo_egobody_8",
+    "case_index": 8,
+    "sequence_id": "recording_20220215_S21_S22_01_interactee_1901-4901_master_full",
+    "start": 1984,
+    "frames": 192,
+    "fps": 30
+  },
+  "method": {
+    "coordinates": "local SO(3), with parent repaired first",
+    "usable_evidence": "original observed rotation or positive-confidence observed outgoing bone",
+    "gaps": "geodesic interpolation inside window and endpoint hold",
+    "no_evidence_anywhere": "retain original local rotation",
+    "root": "unchanged",
+    "confidence": "unchanged, no inferred confidence upgrade",
+    "labels_read_by_helper": false,
+    "ego": "bitwise original output, including mixed batch",
+    "offline_future_evidence": true
+  },
+  "source": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2/baseline_validation/validation_latest.npz",
+    "sha256": "7271852bb1b690610cacce840d99159b982293ca99d877ed8b2e002a56f57b7f"
+  },
+  "code_sha256": {
+    "experiments/offline_camera_retrain_v1/ops/reference_temporal.py": "7f43eb8d9dfcfdcf3dd9060fded13b3cf1112995151f6474939da6af52fae1e7",
+    "experiments/offline_camera_retrain_v1/ops/test_reference_temporal.py": "78adf0877ab1c10fe5b887d86d99ad533cf386b9741d8f8240fabb88cdd54015",
+    "experiments/offline_camera_retrain_v1/native30_refinement.py": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6"
+  },
+  "tests": {
+    "command": "python -m unittest experiments.offline_camera_retrain_v1.ops.test_reference_temporal experiments.offline_camera_retrain_v1.test_native30_refinement -v",
+    "passed": 24,
+    "failed": 0
+  },
+  "regimes": {
+    "clean": {
+      "confidence_bitwise_equal": true,
+      "root_first9_bitwise_equal": true,
+      "evidence_frame_global_rotation_max_matrix_diff": 4.76837158203125e-07,
+      "original_vs_saved_reference_max_diff": 3.039836883544922e-06,
+      "original_reference": {
+        "left_wrist_global_step_deg_p95": 118.7010498046875,
+        "left_wrist_global_step_deg_max": 133.78546142578125,
+        "left_wrist_jumps_over_30deg": 30,
+        "left_wrist_step_displacement_mm_max": 512.8738403320312,
+        "mpjpe_mm": 44.845237731933594
+      },
+      "temporal_reference": {
+        "left_wrist_global_step_deg_p95": 9.327007293701172,
+        "left_wrist_global_step_deg_max": 18.01957893371582,
+        "left_wrist_jumps_over_30deg": 0,
+        "left_wrist_step_displacement_mm_max": 58.4798583984375,
+        "mpjpe_mm": 30.377714157104492
+      },
+      "gt_for_metric_only": {
+        "left_wrist_global_step_deg_p95": 14.738519668579102,
+        "left_wrist_global_step_deg_max": 21.85291862487793,
+        "left_wrist_jumps_over_30deg": 0,
+        "left_wrist_step_displacement_mm_max": 62.122901916503906,
+        "mpjpe_mm": 0.0
+      }
+    },
+    "noisy": {
+      "confidence_bitwise_equal": true,
+      "root_first9_bitwise_equal": true,
+      "evidence_frame_global_rotation_max_matrix_diff": 4.76837158203125e-07,
+      "original_vs_saved_reference_max_diff": 2.682209014892578e-06,
+      "original_reference": {
+        "left_wrist_global_step_deg_p95": 104.96381378173828,
+        "left_wrist_global_step_deg_max": 112.82500457763672,
+        "left_wrist_jumps_over_30deg": 30,
+        "left_wrist_step_displacement_mm_max": 471.0006408691406,
+        "mpjpe_mm": 83.81938171386719
+      },
+      "temporal_reference": {
+        "left_wrist_global_step_deg_p95": 7.50899600982666,
+        "left_wrist_global_step_deg_max": 13.671506881713867,
+        "left_wrist_jumps_over_30deg": 0,
+        "left_wrist_step_displacement_mm_max": 57.47270965576172,
+        "mpjpe_mm": 68.93675231933594
+      },
+      "gt_for_metric_only": {
+        "left_wrist_global_step_deg_p95": 14.738519668579102,
+        "left_wrist_global_step_deg_max": 21.85291862487793,
+        "left_wrist_jumps_over_30deg": 0,
+        "left_wrist_step_displacement_mm_max": 62.122901916503906,
+        "mpjpe_mm": 0.0
+      }
+    }
+  }
+}

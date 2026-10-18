@@ -1,0 +1,37 @@
+{
+  "old_server": {
+    "pid": 11898,
+    "url": "http://localhost:8802/",
+    "bind": "127.0.0.1",
+    "manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_motion_review/PREPARED_CASES.json",
+    "cases": 14,
+    "cpu_only": true,
+    "source_file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_viewer.py",
+    "source_sha256": "6af2c352e482bec823555ad252d3565c78fa1246b2f0f97ef3a24ef3366ee6f6",
+    "helper_sha256": {
+      "viewer_geometry.py": "cd5f2c926d42b3199e393f55f0ba2a88116fd19e5c8ade18ce3548d0a7de1a64",
+      "viewer_observation.py": "60b36837458d97dbb4abc99130a5b2a719346bd6649d065c23e49cad66cda943"
+    },
+    "previous_viewer_sha256": "ee45c31771db58faf2a54668e0699d7b6cd63e8d9d89e31f3891cada5978620a",
+    "new_model_inference": false,
+    "model_weights_modified": false
+  },
+  "new_pid": 26083,
+  "argv": [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops.motion_viewer",
+    "--manifest",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_motion_review/PREPARED_CASES.json",
+    "--cache-root",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_motion_review/cache",
+    "--serve-prepared",
+    "--port",
+    "8802"
+  ],
+  "reason": "Add frozen reference repair comparison and reference-source selection in the same viewer",
+  "GPU_jobs_untouched": [
+    21490
+  ]
+}

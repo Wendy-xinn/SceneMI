@@ -1,0 +1,110 @@
+{
+  "checked_at": "2026-10-18T17:48:04.673588+08:00",
+  "case": "exo_egobody_8",
+  "source_plan": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/PLAN.json",
+  "source_plan_sha256": "140205266144512dfc21674d99b439562a5cd7040c493e21d6fa162aa570aeb1",
+  "other_cases_unchanged": true,
+  "predictions_reused_no_new_generation": true,
+  "server_restarted": false,
+  "models": {
+    "base41k_ref_fixed": {
+      "checkpoint_sha256": "f8e2d22b155240c2fda8cb7d75aca451bb4152ede2441d592f3952f52068b4d0",
+      "checkpoint_step": 41000,
+      "sources": {
+        "clean": {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/motions/case0062_clean_exo-local-so3-reference-gap-fill-v1_base41k.npz",
+          "sha256": "12f9990e29c0aea73098086314a7beb40e6e7ed7f74558cacee4265a58a32b79"
+        },
+        "noisy": {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/motions/case0062_noisy_exo-local-so3-reference-gap-fill-v1_base41k.npz",
+          "sha256": "88fdecfe3e43250a1b6eb6642f1971f4e3e1ee267f71b9dd953c2b3845528e71"
+        }
+      },
+      "playback_cache": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_motion_review/cache/28035169b5ba8ae69e2c6cf98aab76e39308a12829f695c411c8dd5a743da499/playback.npz",
+        "sha256": "d882031dd709799ec08f51e3eb25ef3765bc5a52fec0c2a01040982b1dd50b30",
+        "bytes": 86978510
+      }
+    },
+    "adapter_v2_ref_fixed": {
+      "checkpoint_sha256": "25d78ae22422345d8ac6cefe84a120bc510e6504bd15a39bd856be9f46e2e95d",
+      "checkpoint_step": 1000,
+      "sources": {
+        "clean": {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/motions/case0062_clean_exo-local-so3-reference-gap-fill-v1_balancedv2adapter1000.npz",
+          "sha256": "67434dcd1e48ff48abf6fa9d1f80bbb566f28050d5b1373206835a67bf97b95c"
+        },
+        "noisy": {
+          "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_reference_review/motions/case0062_noisy_exo-local-so3-reference-gap-fill-v1_balancedv2adapter1000.npz",
+          "sha256": "fcb16be1861f60ba908e54381fd0637a631aea838188009b6ab80ea60cd81bcd"
+        }
+      },
+      "playback_cache": {
+        "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_motion_review/cache/cb39045a1cedeb139eeba458c2e547a4ba8ea264ca0af39b86177800b97c0962/playback.npz",
+        "sha256": "1c1feb5a9faf8fbde48121bea99a947bce430c48489a04850b112a0d52572656",
+        "bytes": 86978682
+      }
+    }
+  },
+  "checks": {
+    "base41k_ref_fixed": {
+      "truth": true,
+      "rest": true,
+      "clean_observations": true,
+      "noisy_observations": true,
+      "clean_observation_meta": true,
+      "noisy_observation_meta": true
+    },
+    "adapter_v2_ref_fixed": {
+      "truth": true,
+      "rest": true,
+      "clean_observations": true,
+      "noisy_observations": true,
+      "clean_observation_meta": true,
+      "noisy_observation_meta": true
+    }
+  },
+  "manifest_sha256": "443c81d7f5f85afc27cdee5a9468039e84375b79fad7b6b7beffecd5ae86d042",
+  "prepared_manifest_sha256": "c77cb0b6c180d27906b5581221ff2634d1b4241b11b4bfb5445515c7dca52210",
+  "final_checked_at": "2026-10-18T17:59:34.668138+08:00",
+  "viewer_source_sha256": "a980848e876be2a53bcc7fc06e5855a35789022f51b5ee172b209c2ca88165f3",
+  "viewer_test_source_sha256": "8f844e8cfcd79b7df327f923b2948d419bb1a1115ab7a3a2931e1f90c16e4b7f",
+  "viewer_checks": {
+    "unit_tests_passed": 26,
+    "actual_viser_handle_checks": 14,
+    "formal_browser_smoke": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_motion_review/screenshots/REFERENCE_FIX_BROWSER_SMOKE.json",
+    "formal_browser_smoke_sha256": "42256d77775302b44c28b509180eabb5581ee00e413bc283e5946f46be6a3681"
+  },
+  "serve_prepared": {
+    "validation": "Original NPZ source hashes, identity, step, target/rest/observations/predictions/reference arrays verified against cached metadata and arrays; all14cases23layers. Geometry reused after UI-only revision.",
+    "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -m experiments.offline_camera_retrain_v1.ops.motion_viewer --manifest experiments/offline_camera_retrain_v1/runs/native30_motion_review/PREPARED_CASES.json --cache-root experiments/offline_camera_retrain_v1/runs/native30_motion_review/cache --serve-prepared --port 8802",
+    "server": {
+      "pid": 26083,
+      "url": "http://localhost:8802/",
+      "bind": "127.0.0.1",
+      "manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_motion_review/PREPARED_CASES.json",
+      "cases": 14,
+      "cpu_only": true,
+      "source_file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/motion_viewer.py",
+      "source_sha256": "a980848e876be2a53bcc7fc06e5855a35789022f51b5ee172b209c2ca88165f3",
+      "helper_sha256": {
+        "viewer_geometry.py": "cd5f2c926d42b3199e393f55f0ba2a88116fd19e5c8ade18ce3548d0a7de1a64",
+        "viewer_observation.py": "60b36837458d97dbb4abc99130a5b2a719346bd6649d065c23e49cad66cda943"
+      },
+      "previous_viewer_sha256": "ee45c31771db58faf2a54668e0699d7b6cd63e8d9d89e31f3891cada5978620a",
+      "served_prepared_geometry": true,
+      "new_model_inference": false,
+      "model_weights_modified": false
+    }
+  },
+  "screenshots": {
+    "experiments/offline_camera_retrain_v1/runs/native30_motion_review/screenshots/exo_reference_fix_adapter_comparison.png": {
+      "sha256": "cf44ecc44ccd8e07f7d57a48ad471c15427fec0e2ca49c0bf413623a1e344a72",
+      "bytes": 296992
+    },
+    "experiments/offline_camera_retrain_v1/runs/native30_motion_review/screenshots/exo_reference_fixed_input.png": {
+      "sha256": "5d680a24cc153499c9955650ab701ff894cfac3e5a9416613fda7ac8305ab8f2",
+      "bytes": 290091
+    }
+  }
+}

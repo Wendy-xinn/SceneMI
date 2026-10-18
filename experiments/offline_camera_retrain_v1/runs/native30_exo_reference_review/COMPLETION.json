@@ -1,0 +1,37 @@
+{
+  "completed_at": "2026-10-18T18:07:56.761359+08:00",
+  "status": "completed",
+  "predictions": 104,
+  "primary_windows": 12,
+  "diagnostic_windows": 1,
+  "optimizer_updates": 0,
+  "TEST_used": false,
+  "tests": {
+    "reference_and_legacy_contracts": 24,
+    "viewer_geometry_observation": 26,
+    "live_GUI_checks": 14,
+    "browser_page_errors": 0,
+    "browser_console_errors": 0
+  },
+  "inference_elapsed_s": 1232.3723146920001,
+  "cpu_recheck": {
+    "status": "independent_cpu_passed",
+    "checked_at": "2026-10-18T18:04:10.108553+08:00",
+    "predictions": 104,
+    "maximum_metric_difference": 5.326552644646654e-05,
+    "CUDA_initialized": false,
+    "source_GT_rest_observations_exact": true,
+    "recursive_model_input_fingerprints_paired": true,
+    "reference_CPU_reconstruction_tolerance": 2e-05,
+    "rows_sha256": "5ad82c1bd8d9a8001dea4fe1ebd97a5cc253569e9d69e174e256095459e37269"
+  },
+  "viewer_url": "http://localhost:8802/",
+  "viewer_pid": 26083,
+  "storage": {
+    "root_free_GiB_rounded_before": 108,
+    "root_free_GiB_rounded_after": 108,
+    "new_checkpoint_copies": 0,
+    "large_arrays_and_playback_cache": "local only; retained for active comparison"
+  },
+  "next_step": "Retune EXO adapter with repaired references, then reassess against reference-only and frozen41k controls; no new training started in this review."
+}
