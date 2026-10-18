@@ -1,0 +1,37 @@
+{
+  "protocol": "ego-scene-fusion-v2-preregistered-acceptance-v1",
+  "registered_at_local": "2026-10-18T23:59:08+08:00",
+  "TEST_used": false,
+  "primary_dataset": "rich",
+  "primary_metric": "w_mpjpe_mm",
+  "comparators": [
+    "same_budget_original_control",
+    "retained_original_41k"
+  ],
+  "evaluation_units": "Distinct recordings; average clean/noisy and sampling seeds within each recording for paired uncertainty. Also report each regime separately.",
+  "fusion_acceptance": {
+    "rich_world_relative_improvement_minimum_fraction": 0.01,
+    "rich_world_improves_each_regime": true,
+    "rich_world_paired_bootstrap_95pct_upper_delta_below_mm": 0.0,
+    "rich_pa_no_regression_above_mm": 1.0,
+    "other_dataset_world_maximum_regression": {
+      "absolute_mm": 2.0,
+      "relative_fraction": 0.02,
+      "rule": "allow the larger tolerance, separately per dataset/regime"
+    },
+    "foot_speed_maximum_regression": {
+      "absolute_m_s": 0.01,
+      "relative_fraction": 0.05,
+      "rule": "allow the larger tolerance for macro and RICH per regime"
+    },
+    "foot_y_absolute_error_maximum_regression_mm": 5.0,
+    "acceleration_error_maximum_relative_regression_fraction": 0.05,
+    "all_metrics_finite": true,
+    "same_inputs_and_source_identity_verified": true,
+    "independent_CPU_metric_recheck_passes": true,
+    "observed_head_position_error_maximum_regression_mm": 1.0
+  },
+  "scene_evidence": "Report same-model scene-on/off on independent recording panels with identical observations/reference/seeds; an ablation alone does not establish that fusion improved over its control.",
+  "early_gate": "At 1000 updates use dev recordings only; finite loss or training-loss decrease is not acceptance. Stop or revise only on declared material regressions, numerical errors, or implementation faults; do not select confirmation checkpoints repeatedly.",
+  "scope_limit": "43 sampled VAL windows, not all RICH VAL windows or any official TEST result; limited seeds cannot prove universal improvement. No automatic promotion over protected official models."
+}
