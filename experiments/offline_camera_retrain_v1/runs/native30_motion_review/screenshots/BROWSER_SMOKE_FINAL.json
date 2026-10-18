@@ -1,0 +1,58 @@
+{
+  "status": "final_browser_smoke_passed",
+  "checked_at": "2026-10-18T16:15:41.837527+08:00",
+  "url": "http://localhost:8802/",
+  "cases": 14,
+  "models": 21,
+  "default_case": "EGOBODY · recording_20211002_S03_S18_04_interactee_3601-5401 · 起始 832 帧",
+  "js_errors": [],
+  "console_errors": [],
+  "font_injection": "Browser-session route of local Windows Microsoft Yahei TTC only; no source/system change",
+  "unavailable_mode_controls_hidden": true,
+  "preset_generator": {
+    "GT 人体（蓝）": true,
+    "输入参考人体（观测构造）": false,
+    "适配前：41k直接输入EXO": true,
+    "适配后：共享41k+EXO适配1000步": true
+  },
+  "preset_reference": {
+    "GT 人体（蓝）": false,
+    "输入参考人体（观测构造）": true,
+    "适配前：41k直接输入EXO": false,
+    "适配后：共享41k+EXO适配1000步": true
+  },
+  "independent_layer_controls": [
+    "实际输入关节点 + 置信颜色",
+    "输入参考骨架：缺失 / 低置信",
+    "原始遮挡部位标记（红点）",
+    "完整静态场景（GT参考）",
+    "本录制可见静态并集（实际输入）",
+    "当前帧可见场景（采样）",
+    "当前帧其他人 / 物体",
+    "输入相机位置 + 视锥",
+    "输入相机轨迹"
+  ],
+  "tested_datasets": [
+    "egobody",
+    "rich",
+    "trumans"
+  ],
+  "tested_rich_case": "RICH · ParkingLot1_004_phonetalk2 · 起始 320 帧",
+  "tested_rich_regime": "noisy",
+  "rich_reference_hidden_mpjpe_mm": 56.4,
+  "rich_adapter_hidden_mpjpe_mm": 25.8,
+  "playback_frame_before": [
+    "0"
+  ],
+  "playback_frame_after": [
+    "45"
+  ],
+  "screenshots": [
+    "ego41k_walking.png",
+    "exo_before_after_gt.png",
+    "exo_input_reference_vs_diffusion.png",
+    "rich_noisy_reference_vs_diffusion.png"
+  ],
+  "restored_case": "EGOBODY · recording_20211002_S03_S18_04_interactee_3601-5401 · 起始 832 帧",
+  "browser": "Chromium1223 / SwiftShader software rendering; no training GPU used"
+}

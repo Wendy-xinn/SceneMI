@@ -31,7 +31,7 @@ sys.path.insert(0, str(REPO))
 HERE = REPO / "experiments/offline_camera_retrain_v1"
 DEFAULT_CONFIG = HERE / "runs/native30_gait_v2_ego55k_oct15/config.json"
 DEFAULT_CACHE = HERE / "runs/native30_live_monitor_oct16/visuals/viser/cache"
-SCHEMA = "motion-viewer-native-mesh-v1"
+SCHEMA = "motion-viewer-native-mesh-v2"
 
 import numpy as np
 
@@ -44,14 +44,9 @@ def atomic_json(path: Path, value: dict) -> None:
 
 
 def existing_array(identity: dict, name: str) -> np.ndarray:
-    """Read the verified Linux mirror; never populate a training cache."""
-    digest = identity.get("output_sha256", {}).get(name + ".npy")
-    mirror = HERE / "data/native30_verified_read_cache_v1" / (str(digest) + ".npy")
-    source = Path(identity["path"]) / (name + ".npy")
-    path = mirror if mirror.exists() else source
-    if str(path.resolve()).startswith("/mnt/"):
-        raise FileNotFoundError(f"Verified Linux mirror absent: {name}")
-    return np.load(path, mmap_mode="r", allow_pickle=False)
+    """Read verified observations without populating a training cache."""
+    from .viewer_geometry import readonly_array
+    return readonly_array(identity, name)
 
 
 def observed_scene(identity: dict, config: dict, length: int) -> tuple[dict, dict]:
@@ -130,6 +125,8 @@ def reference_scene(identity: dict, center: np.ndarray, radius: float) -> tuple[
         variant = "chair" if "chair" in identity["sequence_id"] else "yoga"
         path = root / "scan_calibration" / scene / (
             f"scan_{variant}_scene_camcoord.ply" if scene == "LectureHall" else "scan_camcoord.ply")
+        if scene == "Gym" and "cooking" in identity["sequence_id"].lower():
+            path = root / "scan_calibration" / scene / "scan_table_camcoord.ply"
         calibration = root / "multicam2world" / (
             f"LectureHall_{variant}_multicam2world.json" if scene == "LectureHall" else f"{scene}_multicam2world.json")
         scale, rotation, translation = _read_transform(calibration)
@@ -142,20 +139,14 @@ def reference_scene(identity: dict, center: np.ndarray, radius: float) -> tuple[
         scale, rotation, translation = transform
         vertices = (scale * vertices @ rotation.T + translation).astype(np.float32)
     vertices = ((vertices - identity["origin"]) @ np.asarray(identity["anchor"]).T).astype(np.float32)
-    lower, upper = center - [radius, 1.4, radius], center + [radius, 1.5, radius]
-    selected = []
-    for first in range(0, len(faces), 50000):
-        part = faces[first:first + 50000]
-        triangles = vertices[part]
-        selected.append(part[((triangles.max(1) >= lower) & (triangles.min(1) <= upper)).all(1)])
-    faces = np.concatenate(selected)
-    if len(faces) > 60000:
-        faces = faces[np.linspace(0, len(faces) - 1, 60000, dtype=int)]
+    original_faces = len(faces)
+    if len(faces) > 100000:
+        faces = faces[np.linspace(0, len(faces) - 1, 100000, dtype=int)]
     unique, remap = np.unique(faces, return_inverse=True)
     return dict(scene_vertices=vertices[unique], scene_faces=remap.reshape(-1, 3).astype(np.int32)), dict(
         status="available", reference_only=True, fed_to_model=False, source_mesh=str(path),
-        triangles=len(faces), crop_lower_m=lower.tolist(), crop_upper_m=upper.tolist(),
-        note="Full static scan within display crop; no invented floor or GT dynamic people")
+        triangles=len(faces), original_triangles=original_faces, spatial_crop=False,
+        note="Complete static scan extent, sampled faces for display; no invented floor or GT dynamic people")
 
 
 def load_source(case: dict, base: Path) -> tuple[dict, dict]:
@@ -195,6 +186,9 @@ def load_source(case: dict, base: Path) -> tuple[dict, dict]:
             else:
                 current_identity = json.loads(str(saved["identity_json"]))
                 part = {key: saved[key] for key in ("truth", "rest", "prediction", "observations", "observation_meta")}
+            reference_key = f"{i}_{regime}_reference_motion" if "case_index" in case else "reference_motion"
+            if reference_key in saved:
+                part["reference_motion"] = saved[reference_key]
             stored_step = int(saved["step"]) if "step" in saved else (
                 int(saved["checkpoint_step"]) if "checkpoint_step" in saved else None)
             if checkpoint is not None:
@@ -222,23 +216,32 @@ def load_source(case: dict, base: Path) -> tuple[dict, dict]:
             arrays["truth"], arrays["rest"] = part["truth"], part["rest"]
             for key in ("prediction", "observations", "observation_meta"):
                 arrays[f"{regime}_{key}"] = part[key]
+            if "reference_motion" in part:
+                arrays[f"{regime}_reference_motion"] = part["reference_motion"]
         files[regime] = dict(path=str(regime_path), sha256=hashlib.sha256(raw).hexdigest())
     metadata = dict(schema=SCHEMA, step=step, identity=identity, sources=files,
         label=case["label"], selection_reason=case.get("selection_reason", ""),
-        metrics=case.get("metrics", {}))
+        metrics=case.get("metrics", {}),
+        generation=dict(parent_step=case.get("parent_step", step),
+            recorded_guidance=case.get("guidance", "see original evaluation config")))
     if checkpoint_meta is not None:
         metadata["checkpoint_identity_record"] = checkpoint_meta
     return arrays, metadata
 
 
 def prepare_case(case: dict, base: Path, config: dict, cache_root: Path) -> dict:
-    """Freeze published arrays and generate native meshes in small CPU batches."""
+    """Freeze saved predictions, verifying any reused mesh against source hashes."""
     import torch
+    from .viewer_geometry import build_scene_layers, reference_motion_from_inputs
     from experiments.offline_camera_retrain_v1.native_body_mesh import decode_native_mesh
     from experiments.offline_camera_retrain_v1.export_rest_joints import load_model
     from experiments.offline_camera_retrain_v1.supervision import forward_kinematics
     arrays, meta = load_source(case, base)
-    signature = dict(schema=SCHEMA, sources=meta["sources"], identity=meta["identity"], scene_config=config["scene"])
+    geometry_source = Path(__file__).with_name("viewer_geometry.py")
+    signature = dict(schema=SCHEMA, sources=meta["sources"], identity=meta["identity"],
+        scene_config=config["scene"], viewer_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        geometry_sha256=hashlib.sha256(geometry_source.read_bytes()).hexdigest(),
+        observation_sha256=hashlib.sha256(Path(__file__).with_name("viewer_observation.py").read_bytes()).hexdigest())
     if "checkpoint_identity_record" in meta:
         signature["checkpoint_identity_record"] = meta["checkpoint_identity_record"]
     digest = hashlib.sha256(json.dumps(signature, sort_keys=True).encode()).hexdigest()
@@ -250,10 +253,41 @@ def prepare_case(case: dict, base: Path, config: dict, cache_root: Path) -> dict
             return dict(case, cache=str(artifact), cache_manifest=str(record), step=meta["step"])
     folder.mkdir(parents=True, exist_ok=True)
     identity = meta["identity"]
-    model = load_model(identity["native_body"]["model"], identity["native_body"]["gender"]).cpu()
-    rest = torch.from_numpy(arrays["rest"])[None]
+    mode = identity.get("mode", "ego")
+    meta["reference_input"] = {}
+    for regime in ("clean", "noisy"):
+        key = f"{regime}_reference_motion"
+        if key in arrays:
+            meta["reference_input"][regime] = dict(kind="original_saved_observation_reference",
+                gt_pose_used=False, tracker_mesh_available=False, new_model_inference=False)
+        else:
+            arrays[key], meta["reference_input"][regime] = reference_motion_from_inputs(
+                arrays[f"{regime}_observations"], arrays[f"{regime}_observation_meta"],
+                arrays["rest"], config, mode=mode)
+    # Historical display caches are an optimization, never an identity authority.
+    old_path = Path(case.get("cache", "/nonexistent"))
     max_error = 0.
-    for name, key in (("truth", "truth"), ("clean", "clean_prediction"), ("noisy", "noisy_prediction")):
+    if old_path.is_file():
+        with np.load(old_path, allow_pickle=False) as saved:
+            old_meta = json.loads(str(saved["metadata_json"]))
+            if (old_meta["sources"] == meta["sources"] and old_meta["identity"] == identity
+                    and old_meta["step"] == meta["step"]):
+                for key in ("truth", "rest", "clean_prediction", "noisy_prediction"):
+                    if not np.array_equal(saved[key], arrays[key]):
+                        raise ValueError("Historical mesh cache/source array mismatch: " + key)
+                for key in ("faces", "truth_vertices", "truth_joints", "clean_vertices", "clean_joints",
+                            "noisy_vertices", "noisy_joints"):
+                    arrays[key] = np.array(saved[key])
+                max_error = old_meta.get("mesh_fk_max_error_m", 0.)
+                meta["reused_mesh_cache"] = str(old_path)
+    model = None
+    rest = torch.from_numpy(arrays["rest"])[None]
+    for name, key in (("truth", "truth"), ("clean", "clean_prediction"), ("noisy", "noisy_prediction"),
+                      ("clean_reference", "clean_reference_motion"), ("noisy_reference", "noisy_reference_motion")):
+        if f"{name}_vertices" in arrays:
+            continue
+        if model is None:
+            model = load_model(identity["native_body"]["model"], identity["native_body"]["gender"]).cpu()
         vertices, joints = [], []
         for first in range(0, len(arrays[key]), 16):
             motion = arrays[key][first:first + 16]
@@ -278,7 +312,31 @@ def prepare_case(case: dict, base: Path, config: dict, cache_root: Path) -> dict
         errors.append("Visible scene: " + repr(exc))
         meta["observed_scene"] = dict(status="unavailable", error=str(exc))
         arrays["visible_static"] = np.empty((0, 3), np.float32)
-        arrays.update({f"dynamic_{t}": np.empty((0, 3), np.float32) for t in range(len(truth))})
+    scene, meta["display_geometry"] = build_scene_layers(identity, config, len(truth), existing_array)
+    arrays.update(scene)
+    for layer in meta["display_geometry"].values():
+        if layer["status"] != "available":
+            errors.append(str(layer))
+    if mode == "exo":
+        # Preserve raw first-hit availability separately from noisy/dropout masks.
+        try:
+            start = int(identity["start"])
+            for name in ("exo_position_available", "exo_position_confidence"):
+                arrays["source_" + name] = np.asarray(existing_array(identity, name)[start:start + len(truth)])
+            from .viewer_observation import exo_first_hit_evidence
+            counts = {name: np.asarray(existing_array(identity, f"exo_{name}_counts")[start:start + len(truth)])
+                for name in ("reference", "visible", "person", "static", "rigid")}
+            valid = np.asarray(existing_array(identity, "observation_valid")[start:start + len(truth)])
+            evidence = exo_first_hit_evidence(counts["reference"], counts["visible"],
+                {name: counts[name] for name in ("person", "static", "rigid")}, valid=valid)
+            if not np.array_equal(evidence["exported_position_available"], arrays["source_exo_position_available"]):
+                raise ValueError("Original first-hit availability partition differs from saved export")
+            if not np.allclose(evidence["exported_position_confidence"], arrays["source_exo_position_confidence"], atol=5e-7, rtol=0):
+                raise ValueError("Original first-hit confidence differs from saved export")
+            arrays["source_occluded"] = evidence["has_occluding_surface"]
+            meta["source_visibility"] = "raw exported first-hit joint availability/confidence; separate from input dropout"
+        except Exception as exc:
+            meta["source_visibility"] = "not available: " + str(exc)
     try:
         scene, meta["reference_scene"] = reference_scene(identity, center, radius)
         arrays.update(scene)
@@ -300,156 +358,371 @@ def prepare_case(case: dict, base: Path, config: dict, cache_root: Path) -> dict
     return dict(case, cache=str(artifact), cache_manifest=str(record), step=meta["step"])
 
 
+def prepare_review_case(case: dict, base: Path, config: dict, cache_root: Path) -> dict:
+    """Bind comparable outputs; mismatched inputs must never look like a pair."""
+    if "models" not in case:
+        case = dict(case, models=[dict(key="prediction", label="扩散生成", case=case)])
+    if case.get("config"):
+        path = Path(case["config"])
+        config = json.loads((path if path.is_absolute() else base / path).read_text())
+    prepared, originals = [], {}
+    for entry in case["models"]:
+        source_case = entry["case"]
+        arrays, metadata = load_source(source_case, base)
+        mode = metadata["identity"].get("mode", "ego")
+        if mode in originals:
+            previous, identity = originals[mode]
+            if metadata["identity"] != identity:
+                raise ValueError("Paired outputs have different observer/window identities")
+            for key in ("truth", "rest", "clean_observations", "noisy_observations",
+                        "clean_observation_meta", "noisy_observation_meta"):
+                if not np.array_equal(arrays[key], previous[key]):
+                    raise ValueError("Paired outputs have different conditions: " + key)
+        else:
+            originals[mode] = arrays, metadata["identity"]
+        prepared.append(dict(entry, mode=mode,
+            case=prepare_case(source_case, base, config, cache_root)))
+    # Both panels can overlay only when the exact same anchored GT window exists.
+    if len(originals) > 1:
+        first = next(iter(originals.values()))[0]
+        for data, _ in originals.values():
+            if not np.array_equal(first["truth"], data["truth"]) or not np.array_equal(first["rest"], data["rest"]):
+                raise ValueError("EGO/EXO panels are not the same anchored target/window")
+    return dict(case, models=prepared, paired_inputs_verified=True)
+
+
 class MotionViewer:
+    """One timeline with independent EGO/EXO folders and overlaid model layers."""
+    COLORS = {"base41k": (235, 140, 35), "adapter_v2": (185, 40, 160), "prediction": (185, 40, 160)}
+
     def __init__(self, cases: list[dict], port: int):
         import viser
         self.cases, self.cache = cases, OrderedDict()
         self.lock = threading.RLock()
-        self.server = server = viser.ViserServer(host="127.0.0.1", port=port, label="SceneMI · 动作验证")
+        self.loading, self.runtime, self.handles = False, {}, []
+        self.server = server = viser.ViserServer(host="127.0.0.1", port=port, label="SceneMI · EGO / EXO")
         server.scene.set_up_direction("+y")
-        server.gui.add_markdown("## 动作与场景验证\n\n**蓝色：GT人体 · 紫色：预测人体**\n\n"
-            "青色为实际输入的已见静态表面；灰色为仅供参考的完整静态扫描（局部裁剪）。"
-            "黄色点若出现，是其他人或物体的可见片段，不是预测人体。")
-        labels = [f"{case['label']} · {case['step']:,} 步" for case in cases]
-        self.labels = labels
-        self.choice = server.gui.add_dropdown("片段", options=labels, initial_value=labels[0])
-        self.regime = server.gui.add_dropdown("输入", options=("clean", "noisy"), initial_value="clean")
+        server.gui.add_markdown("## 共享生成器 · 动作对照\n\n蓝：GT · 橙：原41k输出 · 紫：EXO适配输出。"
+            "所有人体保留原坐标，可用复选框叠加。示例按运动和误差挑选，不代表测试集平均效果。")
+        self.labels = [f"{case.get('dataset', '').upper()} · {case.get('sequence_id', case['label'])}"
+            + (f" · 起始 {case['start']} 帧" if 'start' in case else '') for case in cases]
+        if len(set(self.labels)) != len(self.labels):
+            raise ValueError("Case labels must be unique")
+        preferred = next((label for label in self.labels if "20211002_S03_S18_04" in label), self.labels[0])
+        self.choice = server.gui.add_dropdown("案例", options=self.labels, initial_value=preferred)
+        self.regime = server.gui.add_dropdown("观测条件", options=("clean", "noisy"), initial_value="clean")
         self.frame = server.gui.add_slider("帧 / 30 Hz", min=0, max=191, step=1, initial_value=0)
         self.play = server.gui.add_checkbox("播放", initial_value=False)
         self.speed = server.gui.add_slider("播放倍速", min=.25, max=2., step=.25, initial_value=.75)
-        self.gt = server.gui.add_checkbox("GT 人体", initial_value=True)
-        self.pred = server.gui.add_checkbox("预测人体", initial_value=True)
-        self.wire = server.gui.add_checkbox("GT 线框", initial_value=False)
-        self.opacity = server.gui.add_slider("预测不透明度", min=.15, max=1., step=.05, initial_value=.85)
-        self.scan = server.gui.add_checkbox("完整静态扫描（参考）", initial_value=False)
-        self.static = server.gui.add_checkbox("已见静态场景（实际输入）", initial_value=True)
-        self.dynamic = server.gui.add_checkbox("其他人 / 物体可见片段", initial_value=False)
-        self.inputs = server.gui.add_checkbox("可信头部位置输入", initial_value=False)
-        self.trails = server.gui.add_checkbox("左右脚轨迹", initial_value=True)
-        self.paths = server.gui.add_checkbox("骨盆行走轨迹", initial_value=True)
+        self.opacity = server.gui.add_slider("预测人体不透明度", min=.15, max=1., step=.05, initial_value=.85)
+        self.panels, self.preset_buttons = {}, []
+        for mode in ("ego", "exo"):
+            with server.gui.add_folder(mode.upper() + " · 图层"):
+                panel = {}
+                panel["status"] = server.gui.add_markdown("")
+                for key, label, initial in (
+                    ("enabled", "显示该板块", True), ("gt", "GT 人体（蓝）", True),
+                    ("reference", "输入参考人体（观测构造）", False),
+                    ("observations", "实际输入关节点 + 置信颜色", False),
+                    ("uncertainty", "输入参考骨架：缺失 / 低置信", False),
+                    ("occluded", "原始遮挡部位标记（红点）", False),
+                    ("scan", "完整静态场景（GT参考）", False),
+                    ("static", "本录制可见静态并集（实际输入）", True),
+                    ("current", "当前帧可见场景（采样）", False),
+                    ("dynamic", "当前帧其他人 / 物体", False),
+                    ("camera", "输入相机位置 + 视锥", True),
+                    ("camera_path", "输入相机轨迹", False),
+                    ("feet", "左右脚最近1秒轨迹", False),
+                    ("paths", "骨盆行走轨迹", True)):
+                    panel[key] = server.gui.add_checkbox(label, initial_value=initial)
+                panel["models"] = {}
+                keys = {}
+                for case in cases:
+                    for entry in case["models"]:
+                        if entry["mode"] == mode:
+                            keys[entry["key"]] = entry["label"]
+                # Predictions and conditions remain independently selectable.
+                for key, label in keys.items():
+                    panel["models"][key] = server.gui.add_checkbox(label,
+                        initial_value=True)
+                if mode == "exo":
+                    before = server.gui.add_button("对照：原41k / EXO适配")
+                    reference = server.gui.add_button("对照：输入参考 / 扩散结果")
+                    before.on_click(lambda _: self.comparison("generator"))
+                    reference.on_click(lambda _: self.comparison("reference"))
+                    self.preset_buttons.extend((before, reference))
+                panel["info"] = server.gui.add_markdown("")
+                self.panels[mode] = panel
         self.follow = server.gui.add_checkbox("跟随 GT 人体", initial_value=False)
         self.reset = server.gui.add_button("重置视角")
         self.info = server.gui.add_markdown("")
-        server.gui.add_markdown("左右脚轨迹与人体同色，浅色为右脚。轨迹显示脚尖的最近1秒；"
-            "骨盆轨迹显示整段运动。未做额外对齐、贴地或动作修正。手和脸按模型约定中性显示。")
-        self.handles = []
-        self.data = None
+        server.gui.add_markdown("输入参考人体是模型原有的关节观测初始化，并非真实 tracker 的完整 mesh。"
+            "绿：输入置信度1；橙：0到1之间；灰：未提供。红点来自原始 first-hit 遮挡证据，"
+            "部分遮挡与非零输入可以并存。缺失、噪声丢点与遮挡分开解释。\n\n"
+            "完整场景为仅供参考的静态扫描，按面采样显示；当前案例的静态输入是整段录制的"
+            "已见表面并集，包含后续帧的观测。"
+            "当前帧为导出时的512个first-hit环境采样，不是稠密画面。"
+            "显示过程不追加贴地、对齐或物理修正；原生成是否使用物理引导见各案例说明。")
         self.choice.on_update(lambda _: self.load_case())
-        for control in (self.regime, self.frame, self.gt, self.pred, self.wire, self.opacity,
-                        self.scan, self.static, self.dynamic, self.inputs, self.trails, self.paths):
+        controls = [self.regime, self.frame, self.opacity]
+        for panel in self.panels.values():
+            controls += [value for key, value in panel.items() if key not in ("status", "info", "models")]
+            controls += list(panel["models"].values())
+        for control in controls:
             control.on_update(lambda _: self.update())
         self.follow.on_update(lambda _: self.camera())
         self.reset.on_click(lambda _: self.camera())
         server.on_client_connect(lambda client: self.camera(client))
         self.load_case()
 
-    def read_case(self, index: int) -> dict:
+    def comparison(self, kind: str) -> None:
+        """Change only display layers while preserving the exact case and frame."""
+        with self.lock:
+            panel = self.panels["exo"]
+            panel["enabled"].value = True
+            panel["gt"].value = kind == "generator"
+            panel["reference"].value = kind == "reference"
+            panel["uncertainty"].value = kind == "reference"
+            panel["observations"].value = kind == "reference"
+            panel["occluded"].value = True
+            for key, control in panel["models"].items():
+                control.value = key != "base41k" or kind == "generator"
+            self.update()
+
+    def read_case(self, index: int) -> list[dict]:
         if index not in self.cache:
-            with np.load(self.cases[index]["cache"], allow_pickle=False) as saved:
-                self.cache[index] = {key: np.array(saved[key]) for key in saved.files}
+            result = []
+            for entry in self.cases[index]["models"]:
+                with np.load(entry["case"]["cache"], allow_pickle=False) as saved:
+                    data = {key: np.array(saved[key]) for key in saved.files}
+                result.append(dict(entry=entry, data=data, meta=json.loads(str(data["metadata_json"]))))
+            self.cache[index] = result
         self.cache.move_to_end(index)
-        while len(self.cache) > 2:
+        while len(self.cache) > 1:
             self.cache.popitem(last=False)
         return self.cache[index]
-
-    def load_case(self) -> None:
-        with self.lock, self.server.atomic():
-            self.play.value = False
-            self.index = self.labels.index(self.choice.value)
-            self.data = self.read_case(self.index)
-            self.meta = json.loads(str(self.data["metadata_json"]))
-            self.frame.max = len(self.data["truth_joints"]) - 1
-            self.frame.value = 0
-            for handle in self.handles:
-                handle.remove()
-            scene, data = self.server.scene, self.data
-            self.gt_mesh = scene.add_mesh_simple("/motion/GT", data["truth_vertices"][0], data["faces"],
-                color=(45, 120, 220), opacity=.45, side="double")
-            self.pred_mesh = scene.add_mesh_simple("/motion/prediction", data["clean_vertices"][0], data["faces"],
-                color=(190, 40, 155), opacity=.85, side="double")
-            self.scan_mesh = scene.add_mesh_simple("/scene/reference_static_scan", data["scene_vertices"], data["scene_faces"],
-                color=(175, 185, 190), opacity=.35, side="double", cast_shadow=False)
-            # Keep the exact map in the cache; draw a bounded, sparse subset
-            # so room surfaces near the inspection camera do not hide people.
-            points = data["visible_static"]
-            lower = data["truth_joints"].min((0, 1)) - [.8, .18, .8]
-            upper = data["truth_joints"].max((0, 1)) + [.8, .25, .8]
-            points = points[((points >= lower) & (points <= upper)).all(1)]
-            if len(points) > 35000:
-                points = points[np.linspace(0, len(points) - 1, 35000, dtype=int)]
-            self.static_points = scene.add_point_cloud("/scene/visible_static_input", points,
-                colors=(45, 170, 180), point_size=.005, point_shape="circle", precision="float32")
-            self.dynamic_points = scene.add_point_cloud("/scene/other_visible_surface", np.zeros((0, 3), np.float32),
-                colors=(225, 175, 45), point_size=.015, precision="float32")
-            self.input_points = scene.add_point_cloud("/motion/head_position_input", np.zeros((0, 3), np.float32),
-                colors=(35, 200, 90), point_size=.035, precision="float32")
-            self.foot_lines = []
-            for name, color in (("GT_left", (30, 95, 210)), ("GT_right", (105, 175, 245)),
-                                ("pred_left", (170, 30, 135)), ("pred_right", (235, 115, 195))):
-                self.foot_lines.append(scene.add_line_segments("/trails/" + name, np.zeros((0, 2, 3), np.float32),
-                    colors=color, thickness=3., thickness_units="screen"))
-            self.root_lines = [scene.add_line_segments("/paths/" + name, self.segments(data[key][:, 0]),
-                colors=color, thickness=2., thickness_units="screen")
-                for name, key, color in (("GT", "truth_joints", (45, 120, 220)),
-                    ("prediction", "clean_joints", (190, 40, 155)))]
-            self.handles = [self.gt_mesh, self.pred_mesh, self.scan_mesh, self.static_points,
-                self.dynamic_points, self.input_points, *self.foot_lines, *self.root_lines]
-            self.update()
-            self.camera()
 
     @staticmethod
     def segments(points: np.ndarray) -> np.ndarray:
         return np.stack((points[:-1], points[1:]), axis=1).astype(np.float32)
 
+    def lines(self, name, points, color, thickness=2.):
+        handle = self.server.scene.add_line_segments(name, points.astype(np.float32), colors=color,
+            thickness=thickness, thickness_units="screen")
+        self.handles.append(handle)
+        return handle
+
+    def points(self, name, color, size=.025):
+        handle = self.server.scene.add_point_cloud(name, np.zeros((0, 3), np.float32),
+            colors=color, point_size=size, point_shape="circle", precision="float32")
+        self.handles.append(handle)
+        return handle
+
+    def mesh(self, name, vertices, faces, color, opacity):
+        handle = self.server.scene.add_mesh_simple(name, vertices, faces, color=color,
+            opacity=opacity, side="double", cast_shadow=False)
+        self.handles.append(handle)
+        return handle
+
+    def load_case(self) -> None:
+        with self.lock, self.server.atomic():
+            self.loading = True
+            try:
+                self.play.value = False
+                self.index = self.labels.index(self.choice.value)
+                records = self.read_case(self.index)
+                for handle in self.handles:
+                    handle.remove()
+                self.handles, self.runtime = [], {}
+                self.frame.max = len(records[0]["data"]["truth_joints"]) - 1
+                self.frame.value = 0
+                for mode, panel in self.panels.items():
+                    members = [item for item in records if item["entry"]["mode"] == mode]
+                    available = bool(members)
+                    if mode == "exo":
+                        for button in self.preset_buttons:
+                            button.disabled = not available
+                            button.visible = available
+                    for key, control in panel.items():
+                        if key not in ("status", "info", "models"):
+                            control.disabled = not available
+                            control.visible = available
+                    for key, control in panel["models"].items():
+                        control.disabled = key not in {item["entry"]["key"] for item in members}
+                        control.visible = not control.disabled
+                    panel["status"].content = ("同一窗口、同一输入的叠加对照。" if available else
+                        "本窗口没有已保存的 " + mode.upper() + " 输出；未用其他窗口冒充配对。")
+                    panel["info"].content = ""
+                    if not available:
+                        continue
+                    data = members[0]["data"]
+                    prefix = "/" + mode
+                    rt = dict(data=data, meta=members[0]["meta"], models=members)
+                    rt["gt"] = self.mesh(prefix + "/GT", data["truth_vertices"][0], data["faces"], (45, 120, 220), .28)
+                    rt["reference"] = self.mesh(prefix + "/input_reference", data["clean_reference_vertices"][0],
+                        data["faces"], (100, 180, 145), .55)
+                    rt["input"] = self.points(prefix + "/observed_joints", (35, 195, 100), .035)
+                    rt["uncertain_joints"] = self.points(prefix + "/reference_confidence_joints", (155, 160, 170), .035)
+                    rt["uncertain_bones"] = self.lines(prefix + "/reference_confidence_bones",
+                        np.zeros((21, 2, 3), np.float32), (155, 160, 170), 3.)
+                    rt["scan"] = self.mesh(prefix + "/scene/full_static_scan", data["scene_vertices"],
+                        data["scene_faces"], (175, 185, 190), .25)
+                    points = data["visible_static"]
+                    if len(points) > 50000:
+                        points = points[np.linspace(0, len(points) - 1, 50000, dtype=int)]
+                    rt["static"] = self.points(prefix + "/scene/observed_static_map", (45, 170, 180), .006)
+                    rt["static"].points = points
+                    rt["current"] = self.points(prefix + "/scene/current_static", (20, 135, 150), .025)
+                    rt["dynamic"] = self.points(prefix + "/scene/current_dynamic", (230, 185, 45), .025)
+                    rt["camera"] = self.lines(prefix + "/camera/frustum", np.zeros((0, 2, 3)), (240, 95, 20), 2.5)
+                    rt["camera_axes"] = self.lines(prefix + "/camera/axes", np.zeros((0, 2, 3)), (240, 95, 20), 3.)
+                    rt["camera_position"] = self.points(prefix + "/camera/position", (240, 95, 20), .05)
+                    rt["camera_path"] = self.lines(prefix + "/camera/path", data.get("camera_path", np.zeros((0, 2, 3))),
+                        (240, 95, 20), 1.5)
+                    rt["gt_path"] = self.lines(prefix + "/paths/GT", self.segments(data["truth_joints"][:, 0]), (45, 120, 220))
+                    rt["gt_feet"] = [self.lines(prefix + "/feet/GT_" + str(foot), np.zeros((0, 2, 3)), (45, 120, 220), 3.)
+                        for foot in (10, 11)]
+                    rt["occluded_gt"] = self.points(prefix + "/occlusion/GT", (245, 65, 65), .04)
+                    rt["occluded_reference"] = self.points(prefix + "/occlusion/input_reference", (245, 65, 65), .04)
+                    for item in members:
+                        key, color = item["entry"]["key"], self.COLORS.get(item["entry"]["key"], (185, 40, 160))
+                        model_data = item["data"]
+                        item["mesh"] = self.mesh(prefix + "/models/" + key, model_data["clean_vertices"][0],
+                            model_data["faces"], color, .85)
+                        item["path"] = self.lines(prefix + "/paths/" + key,
+                            self.segments(model_data["clean_joints"][:, 0]), color)
+                        item["feet"] = [self.lines(prefix + "/feet/" + key + str(foot), np.zeros((0, 2, 3)), color, 3.)
+                            for foot in (10, 11)]
+                        item["occluded"] = self.points(prefix + "/occlusion/" + key, color, .04)
+                    self.runtime[mode] = rt
+            finally:
+                self.loading = False
+            self.update()
+            self.camera()
+
     def camera(self, client=None) -> None:
-        if self.data is None:
-            return
-        center = self.data["center"].astype(float)
-        if self.follow.value:
-            center = self.data["truth_joints"][int(self.frame.value), 0].astype(float) + [0, .3, 0]
-        radius = max(2.6, min(7., float(self.data["radius"]) * 1.4))
-        offset = np.asarray([.7, .40, .85]) * radius
-        self.server.initial_camera.position = tuple(center + offset)
-        self.server.initial_camera.look_at = tuple(center)
-        for target in ([client] if client is not None else self.server.get_clients().values()):
-            target.camera.position, target.camera.look_at = tuple(center + offset), tuple(center)
+        with self.lock:
+            if not self.runtime:
+                return
+            data = next(iter(self.runtime.values()))["data"]
+            center = data["center"].astype(float)
+            if self.follow.value:
+                center = data["truth_joints"][int(self.frame.value), 0].astype(float) + [0, .3, 0]
+            radius = max(2.6, min(7., float(data["radius"]) * 1.4))
+            offset = np.asarray([.7, .40, .85]) * radius
+            self.server.initial_camera.position = tuple(center + offset)
+            self.server.initial_camera.look_at = tuple(center)
+            for target in ([client] if client is not None else self.server.get_clients().values()):
+                target.camera.position, target.camera.look_at = tuple(center + offset), tuple(center)
 
     def update(self) -> None:
+        from .viewer_observation import observation_classes, masked_joint_metrics
+        from experiments.offline_camera_retrain_v1.supervision import PARENTS
         with self.lock:
-            if self.data is None or not hasattr(self, "gt_mesh"):
+            if self.loading:
                 return
-            data, t, regime = self.data, int(self.frame.value), self.regime.value
-            truth, pred = data["truth_joints"][t], data[f"{regime}_joints"][t]
+            t, regime = int(self.frame.value), self.regime.value
             with self.server.atomic():
-                self.gt_mesh.vertices, self.gt_mesh.visible = data["truth_vertices"][t], self.gt.value
-                self.gt_mesh.wireframe = self.wire.value
-                self.pred_mesh.vertices, self.pred_mesh.visible = data[f"{regime}_vertices"][t], self.pred.value
-                self.pred_mesh.opacity = float(self.opacity.value)
-                self.scan_mesh.visible = bool(self.scan.value and len(data["scene_faces"]))
-                self.static_points.visible = self.static.value
-                dynamic = data[f"dynamic_{t}"]
-                self.dynamic_points.points, self.dynamic_points.visible = dynamic, bool(self.dynamic.value and len(dynamic))
-                mask = data[f"{regime}_observation_meta"][t, :, 0] > 0
-                self.input_points.points = data[f"{regime}_observations"][t, mask, :3] * 2
-                self.input_points.visible = self.inputs.value
-                start = max(0, t - 30)
-                for handle, key, foot in zip(self.foot_lines,
-                        ("truth_joints", "truth_joints", f"{regime}_joints", f"{regime}_joints"), (10, 11, 10, 11)):
-                    handle.points = self.segments(data[key][start:t + 1, foot])
-                    handle.visible = bool(self.trails.value and (self.gt.value if key == "truth_joints" else self.pred.value))
-                self.root_lines[1].points = self.segments(data[f"{regime}_joints"][:, 0])
-                self.root_lines[0].visible = bool(self.paths.value and self.gt.value)
-                self.root_lines[1].visible = bool(self.paths.value and self.pred.value)
-                window_mm = float(np.linalg.norm(data[f"{regime}_joints"] - data["truth_joints"], axis=-1).mean() * 1000)
-                frame_mm = float(np.linalg.norm(pred - truth, axis=-1).mean() * 1000)
-                foot_mm = float(np.linalg.norm(pred[[7, 8, 10, 11]] - truth[[7, 8, 10, 11]], axis=-1).mean() * 1000)
-                identity = self.meta["identity"]
-                reason = self.cases[self.index].get("selection_reason", "")
-                warnings = "\n\n" + "；".join(self.meta["scene_errors"]) if self.meta["scene_errors"] else ""
-                self.info.content = f"**训练 {self.meta['step']:,} 步 · {identity['dataset']} · {regime}**\n\n" \
-                    f"{identity['sequence_id']}\n\n起始源帧 {identity.get('source_start_30fps', identity['start'])} · " \
-                    f"第 {t} 帧 / {t / 30:.2f} 秒\n\n本帧全身误差 **{frame_mm:.1f} mm**，踝脚 {foot_mm:.1f} mm；" \
-                    f"整段全身误差 **{window_mm:.1f} mm**。\n\n{reason}{warnings}"
+                for mode, rt in self.runtime.items():
+                    panel, data = self.panels[mode], rt["data"]
+                    enabled = panel["enabled"].value
+                    truth = data["truth_joints"]
+                    reference = data[f"{regime}_reference_joints"]
+                    meta = data[f"{regime}_observation_meta"]
+                    classes, colors, _ = observation_classes(meta[t], mode)
+                    active = meta[t, :, 0] > 0
+                    occ = data.get("source_occluded", np.zeros(truth.shape[:2], bool))[t].astype(bool)
+                    rt["gt"].visible = bool(enabled and panel["gt"].value)
+                    if rt["gt"].visible:
+                        rt["gt"].vertices = data["truth_vertices"][t]
+                    rt["reference"].visible = bool(enabled and panel["reference"].value)
+                    if rt["reference"].visible:
+                        rt["reference"].vertices = data[f"{regime}_reference_vertices"][t]
+                    rt["input"].points = data[f"{regime}_observations"][t, active, :3] * 2
+                    rt["input"].colors = colors[active]
+                    rt["input"].visible = bool(enabled and panel["observations"].value)
+                    rt["uncertain_joints"].points, rt["uncertain_joints"].colors = reference[t], colors
+                    rt["uncertain_joints"].visible = bool(enabled and panel["uncertainty"].value)
+                    rt["uncertain_bones"].points = np.stack((reference[t, np.asarray(PARENTS[1:])], reference[t, 1:]), 1)
+                    rt["uncertain_bones"].colors = np.repeat(colors[1:, None, :], 2, axis=1)
+                    rt["uncertain_bones"].visible = bool(enabled and panel["uncertainty"].value)
+                    for name in ("scan", "static", "camera_path"):
+                        rt[name].visible = bool(enabled and panel[name].value)
+                    for name, field in (("current", "current_static_"), ("dynamic", "current_dynamic_")):
+                        rt[name].points = data.get(field + str(t), np.empty((0, 3), np.float32))
+                        rt[name].visible = bool(enabled and panel[name].value)
+                    camera_available = "camera_positions" in data
+                    for name in ("camera", "camera_axes", "camera_position"):
+                        rt[name].visible = bool(enabled and panel["camera"].value and camera_available)
+                    if camera_available:
+                        rt["camera"].points = data["camera_frustum_segments"][t]
+                        rt["camera_axes"].points = data["camera_axis_segments"][t]
+                        rt["camera_axes"].colors = np.repeat(np.array(((220, 50, 50), (50, 190, 80), (50, 100, 230)), np.uint8)[:, None], 2, 1)
+                        rt["camera_position"].points = data["camera_positions"][t:t + 1]
+                    rt["gt_path"].visible = bool(enabled and panel["paths"].value and panel["gt"].value)
+                    start = max(0, t - 30)
+                    for handle, foot in zip(rt["gt_feet"], (10, 11)):
+                        handle.points = self.segments(truth[start:t + 1, foot])
+                        handle.visible = bool(enabled and panel["feet"].value and panel["gt"].value)
+                    for name, coords, show in (("occluded_gt", truth[t], panel["gt"].value),
+                                              ("occluded_reference", reference[t], panel["reference"].value)):
+                        rt[name].points = coords[occ]
+                        rt[name].visible = bool(enabled and panel["occluded"].value and show)
+                    values, occlusion_values = [], []
+                    for item in rt["models"]:
+                        key, model_data = item["entry"]["key"], item["data"]
+                        visible = bool(enabled and panel["models"][key].value)
+                        pred = model_data[f"{regime}_joints"]
+                        item["mesh"].visible = visible
+                        if visible:
+                            item["mesh"].vertices = model_data[f"{regime}_vertices"][t]
+                        item["mesh"].opacity = float(self.opacity.value)
+                        item["path"].points = self.segments(pred[:, 0])
+                        item["path"].visible = bool(visible and panel["paths"].value)
+                        for handle, foot in zip(item["feet"], (10, 11)):
+                            handle.points = self.segments(pred[start:t + 1, foot])
+                            handle.visible = bool(visible and panel["feet"].value)
+                        item["occluded"].points = pred[t, occ]
+                        item["occluded"].visible = bool(visible and panel["occluded"].value)
+                        # Window metrics computed once per condition, not once per frame.
+                        cache_key = "metrics_" + regime
+                        if cache_key not in item:
+                            item[cache_key] = masked_joint_metrics(pred, truth, meta)
+                        metrics = item[cache_key]
+                        def number(value):
+                            return "—" if value is None else f"{value:.1f}"
+                        values.append(f"| {item['entry']['label']} | {number(metrics['mpjpe_mm']['value'])} | "
+                            f"{number(metrics['conditioned_mpjpe_mm']['value'])} | {number(metrics['unconditioned_mpjpe_mm']['value'])} |")
+                        if "source_occluded" in data and data["source_occluded"].any():
+                            occ_error = np.linalg.norm(pred - truth, axis=-1)[data["source_occluded"].astype(bool)].mean() * 1000
+                            occlusion_values.append(f"{item['entry']['label']}：{occ_error:.1f} mm")
+                    ref_key = "reference_metrics_" + regime
+                    if ref_key not in rt:
+                        rt[ref_key] = masked_joint_metrics(reference, truth, meta)
+                    rm = rt[ref_key]
+                    if "source_occluded" in data and data["source_occluded"].any():
+                        ref_occ_error = np.linalg.norm(reference - truth, axis=-1)[data["source_occluded"].astype(bool)].mean() * 1000
+                        occlusion_values.insert(0, f"输入参考人体：{ref_occ_error:.1f} mm")
+                    def text_number(value):
+                        return "—" if value is None else f"{value:.1f}"
+                    values.insert(0, f"| 输入参考人体 | {text_number(rm['mpjpe_mm']['value'])} | "
+                        f"{text_number(rm['conditioned_mpjpe_mm']['value'])} | {text_number(rm['unconditioned_mpjpe_mm']['value'])} |")
+                    identity = rt["meta"]["identity"]
+                    camera_note = rt["meta"].get("display_geometry", {}).get("camera", {}).get("source_kind", "")
+                    source_note = rt["meta"].get("display_geometry", {}).get("camera", {}).get("source_note", "")
+                    archived_guidance = rt["meta"].get("generation", {}).get("recorded_guidance", "见选例记录")
+                    panel["info"].content = (f"本帧提供 {int(active.sum())}/22 个位置；低置信 {int((classes == 1).sum())}；"
+                        f"有原始遮挡证据 {int(occ.sum())}。\\n\\n"
+                        "整段 World MPJPE（mm；原评估提供/未提供掩码）：\\n\\n"
+                        "| 图层 | 全身 | 已提供 | 未提供 |\\n|---|---:|---:|---:|\\n" + "\\n".join(values) +
+                        ("\\n\\n原始有遮挡证据部位误差（含部分遮挡）：" + "；".join(occlusion_values) if occlusion_values else "") +
+                        f"\\n\\n相机：{camera_note}；{source_note}。原生成物理引导：{archived_guidance}。"
+                        "完整扫描为参考，未输入模型。")
+                    panel["info"].content = panel["info"].content.replace("\\n", "\n")
+                case = self.cases[self.index]
+                errors = [error for rt in self.runtime.values() for error in rt["meta"].get("scene_errors", [])]
+                self.info.content = (f"**第 {t} 帧 · {t / 30:.2f} 秒 · {regime}**\n\n"
+                    + case.get("selection_reason", "") + ("\n\n不可用图层：" + "；".join(errors) if errors else ""))
                 if self.follow.value:
                     self.camera()
 
@@ -457,8 +730,7 @@ class MotionViewer:
         while True:
             time.sleep(1 / (30 * float(self.speed.value)))
             if self.play.value:
-                self.frame.value = (int(self.frame.value) + 1) % len(self.data["truth_joints"])
-
+                self.frame.value = (int(self.frame.value) + 1) % (int(self.frame.max) + 1)
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -475,11 +747,7 @@ def main() -> None:
     config = json.loads(args.config.read_text())
     prepared = []
     for case in manifest["cases"]:
-        # A prepared case remains available after validation_latest rotates.
-        if case.get("cache") and Path(case["cache"]).exists():
-            prepared.append(case)
-        else:
-            prepared.append(prepare_case(case, args.manifest.parent, config, args.cache_root))
+        prepared.append(prepare_review_case(case, args.manifest.parent, config, args.cache_root))
     published = args.cache_root.parent / "PREPARED_CASES.json"
     atomic_json(published, dict(schema=SCHEMA, source_manifest=str(args.manifest.resolve()),
         config=str(args.config.resolve()), cases=prepared))
@@ -490,7 +758,11 @@ def main() -> None:
     atomic_json(args.cache_root.parent / "SERVER.json", dict(pid=os.getpid(),
         url=f"http://localhost:{args.port}/", bind="127.0.0.1", manifest=str(published),
         cases=len(prepared), cpu_only=True, source_file=str(Path(__file__).resolve()),
-        source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()))
+        source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        helper_sha256={name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
+            for name in ("viewer_geometry.py", "viewer_observation.py")},
+        previous_viewer_sha256="ee45c31771db58faf2a54668e0699d7b6cd63e8d9d89e31f3891cada5978620a",
+        new_model_inference=False, model_weights_modified=False))
     print(f"READY http://127.0.0.1:{args.port}/ · {len(prepared)} cases", flush=True)
     viewer.run()
 
