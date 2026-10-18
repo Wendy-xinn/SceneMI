@@ -1,0 +1,259 @@
+{
+  "schema": "native30-scene-attention-design-audit-v1",
+  "checked_at": "2026-10-18T22:20:14.806632+08:00",
+  "scope": "Read-only design/source/existing-evidence inspection; only this report and JSON added; no GPU, new experiment, test execution or frozen-file modification.",
+  "plan_sha256": "bfc5813d6c507b9d6053ef7a25ba759e2affe21a6b6010da9ba76e85b60122a3",
+  "source_seal": {
+    "paths_checked": 1122,
+    "mismatches": [],
+    "passed": true
+  },
+  "sources": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/scene_attention.py": "d47709ae178da3f16309339a2f25265ca46fe2d1a8c84b34852bb9d2d432ce02",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/scene_attention_trial.py": "f8216dd0a97de1cf3f9914723087e52dafb978aaa910de93d36ff0d4aca8ae6f",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/scene_feedback_policy.py": "8c6948643aaed735b61bd98640095c242a962f3761f5d218155e090ed709c7d2",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/test_scene_attention.py": "936f5c2a81ae8af42e360410914d74a211097b20f681c78db03cc657ff7fd214",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/test_scene_feedback_policy.py": "f754d80815dc3d8c44c2c4970b3562963886f7396de2486ad5cf06fd8175f809"
+  },
+  "architecture": {
+    "policy": "native30-second-pass-bottleneck-scene-cross-attention-v1",
+    "hook": "core.unet.mid_block2",
+    "activation_shape_native192": [
+      "B",
+      1024,
+      48
+    ],
+    "query_shape": [
+      "B*48",
+      1,
+      64
+    ],
+    "key_value_shape": [
+      "B*48",
+      39,
+      64
+    ],
+    "query_semantics": "Whole-body temporal bottleneck feature; not per-joint tokens and no temporal attention across queries.",
+    "keys": {
+      "global_patches": 16,
+      "local_body_regions": 22,
+      "null": 1
+    },
+    "local_source": "Raw model.local_geometry context, including enabled scene-relation addition.",
+    "local_validity": "Original region_valid: local anchor evidence OR broad relation evidence.",
+    "local_pool": "Validity-weighted deterministic temporal bin sum/normalization.",
+    "local_explicit_alpha_bar_squared_gate": false,
+    "old_region_condition_explicit_alpha_bar_squared_gate": true,
+    "old_bps_explicit_alpha_bar_squared_gate": true,
+    "old_learned_feedback_explicit_alpha_bar_squared_gate": true,
+    "timestep_information": {
+      "query": "Inherited U-Net timestep/conditioning embedding.",
+      "local_context": "Original query-center interpolation and query/features contain alpha_bar or its square root.",
+      "interpretation": "Timestep information is not an explicit multiplicative amplitude gate."
+    },
+    "initialization": "Output projection weight and bias exactly zero; RNG preserved during attachment.",
+    "use_scene_gate": true,
+    "pass_policy": "second_core_pass_only",
+    "after_training_scene_off_scope": "New branch bypass remains exact, but independently trained backbone weights can differ from control500.",
+    "new_parameters": 148800,
+    "main_unet_self_attention": false,
+    "extra_scene_encoder_calls": 0,
+    "extra_geometry_queries": 0,
+    "metadata_clarification": "The frozen attention_spec does not explicitly name raw-local amplitude scheduling. This audit adds interpretation without modifying it."
+  },
+  "pilot_interpretation": {
+    "comparison": "attention500 versus matched control500; base41k is supplementary.",
+    "parent_step": 41000,
+    "fullgraph_both": true,
+    "analytical_physics_off_both": true,
+    "original_observation_anchor_and_IK_retained": true,
+    "optimizer_reset_both": true,
+    "optimizer": {
+      "type": "AdamW",
+      "lr": 2e-05,
+      "warmup_steps": 25,
+      "floor_fraction": 0.2,
+      "weight_decay": 0.01,
+      "clip_norm": 1.0
+    },
+    "batch_size": 2,
+    "precision": "FP32",
+    "schedule_horizon": 1500,
+    "pilot_stop": 500,
+    "training_window_inputs_per_arm": 1000,
+    "training_window_inputs_are_not_claimed_unique": true,
+    "training_sampling_plan": [
+      {
+        "group": "trumans",
+        "mode": "ego",
+        "probability": 0.6273183651057721
+      },
+      {
+        "group": "camera_wearer",
+        "mode": "ego",
+        "probability": 0.13884365896311507
+      },
+      {
+        "group": "interactee",
+        "mode": "ego",
+        "probability": 0.12992709370860306
+      },
+      {
+        "group": "rich",
+        "mode": "ego",
+        "probability": 0.10391088222250972
+      }
+    ],
+    "scene_dropout_probability": 0.1,
+    "validation_windows": 12,
+    "validation_recording_panels": "Development and confirmation: two recordings per dataset per panel.",
+    "TEST_used": false,
+    "can_conclude": "Short-finetuning utility of this particular second-pass bottleneck cross-attention with ungated raw-local K/V.",
+    "cannot_conclude": [
+      "Convergence",
+      "Best final checkpoint",
+      "Full RICH test performance",
+      "All cross-attention designs effective or ineffective",
+      "Per-joint Transformer quality",
+      "Pure effect of fusion position independent of local-time signal strength"
+    ],
+    "confounded_treatment_dimensions": [
+      "Fusion form",
+      "Fusion position",
+      "Explicit local amplitude schedule",
+      "Additional parameters and gradient route to scene encoders"
+    ]
+  },
+  "feedback_policy": {
+    "architectures": [
+      "original"
+    ],
+    "arm": "learned_only",
+    "analytical_physics_off": true,
+    "near_only": {
+      "changes": "Geometry dictionary region_valid only, reconstructed by any local anchor evidence per joint.",
+      "preserves_at_same_inputs": [
+        "context object",
+        "bps object",
+        "valid object",
+        "original geometry dictionaries",
+        "relation_valid",
+        "checkpoint weights",
+        "reference",
+        "observations",
+        "scene condition construction"
+      ],
+      "radius_max_m": 0.6,
+      "centres": "Actual query centers; may mix trusted observations at high noise.",
+      "does_not_imply": [
+        "True contact",
+        "Collision-free mesh",
+        "Stable planted foot"
+      ]
+    },
+    "feedback_off": {
+      "changes": "model.feedback_enabled=False only"
+    },
+    "closed_loop_caveat": "At fixed x_t conditions remain unchanged. Modified x0 changes subsequent DDIM x_t/proposal/query centers, so later condition tensor values need not be equal.",
+    "scope": "Only learned-feedback permission directly changes; broad scene context remains available to the generator."
+  },
+  "existing_evidence": {
+    "PREFLIGHT.json": {
+      "sha256": "e9f0c92bd73ecb18833821915aa893e57fde61a104ec040b0903748f2efc49ad",
+      "data": {
+        "status": "passed_zero_update_actual_TRAIN_GPU",
+        "checked_at": "2026-10-18T21:41:31.145544+08:00",
+        "plan_sha256": "bfc5813d6c507b9d6053ef7a25ba759e2affe21a6b6010da9ba76e85b60122a3",
+        "optimizer_updates": 0,
+        "physics_OFF": true,
+        "common_input_sha256": "673710a380da2883090ebceb45fb711ebb26b108e153f96e69ab1d28880c8573",
+        "zero_initialization_equivalence": [
+          {
+            "use_scene": true,
+            "exact": true,
+            "maximum_absolute_feature_delta": 0.0
+          },
+          {
+            "use_scene": false,
+            "exact": true,
+            "maximum_absolute_feature_delta": 0.0
+          }
+        ]
+      }
+    },
+    "MATCHED_AUDIT.json": {
+      "sha256": "d4bbb7f55b5399601989e8d7a49c0fb6a1686ddc1df6f12b180ac455f4b7d4af",
+      "data": {
+        "status": "passed",
+        "checked_at": "2026-10-18T21:44:06.893505+08:00",
+        "updates_per_arm": 2,
+        "parent_step": 41000,
+        "plan_sha256": "bfc5813d6c507b9d6053ef7a25ba759e2affe21a6b6010da9ba76e85b60122a3",
+        "physics_OFF_both": true,
+        "actual_samples_reference_supervision_noise_timesteps_dropout_geometry_RNG_exact": true,
+        "common_initial_and_final_rng_exact": true,
+        "optimizer_reset_both": true,
+        "all_parameters_trainable": true,
+        "horizon": 1500,
+        "independent_validation_required": true,
+        "TEST_used": false,
+        "CUDA_initialized": false,
+        "checkpoint_sha256": {
+          "control": "726043cb96007f72275e578f3c4d994202ec2c471904047f05827c868df3ba1e",
+          "attention": "53c00070761dced19bdc70f670e51086a4d4e29c390189257800903fae8e607e"
+        }
+      }
+    },
+    "UPDATE_SANITY.json": {
+      "sha256": "aedc812ffa45ea9c68a62983b186e5add0917da9f25faaa0a56ddeeccfbd5980",
+      "data": {
+        "control": {
+          "changed_original_tensors": 315
+        },
+        "attention": {
+          "changed_original_tensors": 315,
+          "output_projection_norm": 0.00018783578707370907
+        }
+      }
+    }
+  },
+  "status_snapshots": {
+    "control": {
+      "source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_trial/control/STATUS.json",
+      "read_sha256": "cb9fc95e50f1810878844250e8fd5c4f21094214fdd5049747dad5ff4a9ce761",
+      "snapshot": {
+        "protocol": "matched-ego-scene-attention-training-v1",
+        "status": "completed_pilot",
+        "checked_at": "2026-10-18T22:07:33.680818+08:00",
+        "pid": 36675,
+        "TEST_used": false,
+        "step": 500,
+        "stop_step": 500,
+        "horizon": 1500,
+        "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_trial/control/training/last.pt",
+        "checkpoint_sha256": "777471e19b4a5e28152fd9410a155aac2208d9f8d023c1ce058b84ab8838e941",
+        "free_disk_after": 111862923264
+      },
+      "live_file_may_advance": true
+    },
+    "attention": {
+      "source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_trial/attention/STATUS.json",
+      "read_sha256": "aa591bd8705c46efd168ca8c0e4f73f308d967a65977827ef4298a355215e870",
+      "snapshot": {
+        "protocol": "matched-ego-scene-attention-training-v1",
+        "status": "training",
+        "checked_at": "2026-10-18T22:20:03.933280+08:00",
+        "pid": 40118,
+        "TEST_used": false,
+        "step": 217,
+        "stop_step": 500,
+        "horizon": 1500,
+        "last_loss": 0.14786745607852936,
+        "last_update_s": 1.5158408590032195
+      },
+      "live_file_may_advance": true
+    }
+  },
+  "quality_verdict": "No new quality verdict in this design audit; wait for matched 500-step prediction/metric audit.",
+  "report_sha256": "f46303b4fcc69383049a2d75d1a10e993f04931682e24b2c04134df3f6e9cb33"
+}

@@ -2,6 +2,14 @@
 
 当前实验、曲线、验证和权重统一从 [runs/INDEX_zh.md](../runs/INDEX_zh.md) 进入。
 
+EGO 场景与主干融合实验复用以下模块入口，案例身份放在不可覆盖的 PLAN 中，不在 runs 复制训练或评估脚本：
+
+- `python -m experiments.offline_camera_retrain_v1.ops.scene_attention_trial {prepare,preflight,train,audit}`：同一 warm-start 的原结构/场景 cross-attention 配对训练，`train --arm control|attention --stop-step 500 --resume` 恢复包含优化器和 RNG 的单个 `last.pt`。
+- `python -m experiments.offline_camera_retrain_v1.ops.ego_scene_review {prepare,evaluate,recheck,report} --out <目录>`：同观测/参考/噪声的场景消融；新候选用新目录和显式 `--models <JSON清单>`，声明 checkpoint 路径、SHA256、步数、架构和场景 arms。`evaluate --resume` 恢复已保存的逐窗结果，`recheck` 在独立 CPU 进程重读原数据复算。
+- `python -m experiments.offline_camera_retrain_v1.ops.scene_feedback_policy {prepare,evaluate,recheck,compare} --out <目录>`：复用上项评估，只改变学习式反馈的许可或开关，保留场景条件；与已完成原策略做精确输入配对。
+
+本轮设计、完成结果与实验边界见 [EGO 场景/attention 报告](../runs/native30_ego_scene_attention_trial/REPORT_zh.md)。未运行完整 TEST，短程比较不自动替换正式模型；封印源码在其训练和依赖评估完成前保持不变。
+
 统一运行 `python -m experiments.offline_camera_retrain_v1.ops --help`。子命令 `status`、`view`、`best`、`scene-check` 分别读取状态、打开Viser、保存best和执行登记的配对检查；`motion-check`、`support-check` 执行动作约束实验。已有后台任务不需要重复启动。
 
 - `motion_viewer.py`：同步回放已有预测、GT和场景，案例来自数据清单；以后换例子复用同一入口。[Viser](http://localhost:8800)。

@@ -1,0 +1,31 @@
+[
+  [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops.ego_scene_review",
+    "prepare",
+    "--out",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review",
+    "--models",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/MODELS.json"
+  ],
+  [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops.ego_scene_review",
+    "evaluate",
+    "--out",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review"
+  ],
+  [
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-u",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops.ego_scene_review",
+    "recheck",
+    "--out",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review"
+  ]
+]

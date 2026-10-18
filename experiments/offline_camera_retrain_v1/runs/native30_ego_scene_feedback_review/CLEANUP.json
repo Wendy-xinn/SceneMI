@@ -1,0 +1,266 @@
+{
+  "status": "executed",
+  "checked_at": "2026-10-18T22:23:17.177029+08:00",
+  "reason": "Both frozen feedback-policy candidates rejected as current fix: no consistent practical improvement; no planned array reuse.",
+  "retention": "records_only",
+  "pre_cleanup_evidence": [
+    "CPU_RECHECK.json",
+    "BASELINE_COMPARISON.json",
+    "AUDIT_FINDINGS.json",
+    "AUDIT_FINDINGS_zh.md"
+  ],
+  "historical_audit_note": "These audits verified prediction arrays before cleanup. Archived rows retain exact array identities; rerunning array audits requires regeneration in a fresh review output.",
+  "dependencies": {
+    "active_GPU_or_training": false,
+    "viewer_references": false,
+    "other_plans_depend_on_arrays": false,
+    "reference_search": "Only own PLAN/COMMANDS/PROCESS, reusable default CLI and report/index references; no viewer or active plan references to these prediction arrays.",
+    "source_41k_checkpoint_retained": true,
+    "datasets_or_scene_caches_removed": false
+  },
+  "free_before": 110353514496,
+  "files": [
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0000_clean_base41k_near_only_learned_only.npz",
+      "sha256": "5739340d6559f22b61ddd7163e263ea8404d3ac7d69ed806a98abd537e019313",
+      "bytes": 365723
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0000_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "da8db4c49498e47a4b061f280d3ac7ca56853c05f9f05046fe93f46a934844a4",
+      "bytes": 364444
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0000_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "010af4f2735f382424de0ba55fc8f0374fb24859e7429741bf48d31223b7e675",
+      "bytes": 366920
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0000_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "05b18d3ff3896893fdfbb30098b0814d355a6bf87c333f365f99cfceb3e83713",
+      "bytes": 365683
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0001_clean_base41k_near_only_learned_only.npz",
+      "sha256": "b29f42bf7fd374e74d3b58ce7959635757e3f56fc581c8a0684d34945cb81b11",
+      "bytes": 364912
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0001_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "06c1d3e769f27513eead85635f671d8045bfb46e832253b523ac55adea2547d6",
+      "bytes": 363611
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0001_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "189cae61479caa792131fc188e4055df98735071c5f5b719da59370eab965cfa",
+      "bytes": 366303
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0001_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "75fcf41315013ac8309263260f5c47617e28a602da609f00b7412995bceef719",
+      "bytes": 365149
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0002_clean_base41k_near_only_learned_only.npz",
+      "sha256": "7d511896dd01342fa7b4314bda2ad3c8866aac4c0f86cb82b78e5be0a3272b6e",
+      "bytes": 364966
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0002_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "8c8bdd7f0fad95c1d6625b86ce23ff4557fafd57c2b91ff4459d45cdf48eb1a8",
+      "bytes": 363697
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0002_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "fd8ab4e83d7d519b49f75aa0b850213da7cbe80c56b8d33fe592b9f0c777f2c1",
+      "bytes": 366297
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0002_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "b2d7dd832ceb52891156bf4f9ea1909226a7618b0e854408a1ba332093c95cab",
+      "bytes": 365106
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0003_clean_base41k_near_only_learned_only.npz",
+      "sha256": "f4ef09e317092b7ae3658b2d80747129ca5f2639d7bcedc30db93541eb4bd607",
+      "bytes": 366087
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0003_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "b016505c4dab12a0422528ea48f6e224649441d88198ce6f82c5b22b90d9e51c",
+      "bytes": 364869
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0003_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "96d767f6669a65106cab609d8cde93fefb1654cb3efc09b8f85a2633846fabce",
+      "bytes": 367822
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0003_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "391fa7b2a4d106a57be99525fb3dd81cc0b9a52b822b5bb00e698dc67333de36",
+      "bytes": 366556
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0206_clean_base41k_near_only_learned_only.npz",
+      "sha256": "b8d13d13a496055a45b06b787c35200781e4e423519bd2981e5953a73b1bc8f1",
+      "bytes": 365853
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0206_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "2b940b3d443a8e23a8175edc9f656ffd72cda8869bdae575b99ceec0c30d3084",
+      "bytes": 364532
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0206_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "f6c6ddbf6e42222d3efd3e3b536acdce7138f41cb8b57a6cb647e8ff05ff635f",
+      "bytes": 367219
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0206_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "baab1c3470fcb1858c8bbf8deffa4b5606227a6d6e7e8b4e3f037966e3b5fce1",
+      "bytes": 366032
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0207_clean_base41k_near_only_learned_only.npz",
+      "sha256": "de4a9df5c8ff8ca3f465d8a7581dab0147e497c68c173b6f72911246395178ee",
+      "bytes": 364040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0207_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "40da8995d14c91d0231472f11b811a999e4f21084d9792faa0cbd75491a54f4e",
+      "bytes": 362773
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0207_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "d28d0f2ba4451fdc776711f972787c889bf2d111d487b7dd8345cc5a1be24f35",
+      "bytes": 365408
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0207_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "6b4d797178974a1d16b052bbe3abf2681e592fb7ed22b7c00e7873c1407e0263",
+      "bytes": 364260
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0208_clean_base41k_near_only_learned_only.npz",
+      "sha256": "95017d96f2d004a315d52e1a981b50651de8684082bc5f4d979b989e8bed2bdd",
+      "bytes": 363564
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0208_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "5a741951e2150cc494b55a00732e5f08492c9f58cc52eb5166c7beadbd2d0f4c",
+      "bytes": 362259
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0208_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "10fdfa9cd67c8e899582e5621a3f66aa25a96eea32c18fc530833ab4ac934224",
+      "bytes": 365397
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0208_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "a864ae4e23832614bf270fd8f0a2815095b6509aab34d49fabb19572b52edcd0",
+      "bytes": 364093
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0209_clean_base41k_near_only_learned_only.npz",
+      "sha256": "a995063c87fd1c6724abaeb7634eade3155391f14d850ea6c1d222265cdc89cd",
+      "bytes": 363550
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0209_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "74ab2d2577871449c4b3f7fd84a79241d1cca43ccb517cbea2be4fd7857590b8",
+      "bytes": 362312
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0209_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "0be05a000b2da5b6aa52e95c733a693ece8cff839a27a93613102b3b109247ad",
+      "bytes": 364807
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0209_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "ee2dd62be352a82defc0ecbd95fdd6a9f6d368b3f5c8e9a4992de6413bef0e54",
+      "bytes": 363572
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0256_clean_base41k_near_only_learned_only.npz",
+      "sha256": "a1c2df15fdcd8dbdf54caff658674d5bc298974c919e78ae620538c16149f7d6",
+      "bytes": 361091
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0256_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "b2a5a1f89e0d89fa128017fb8a5e134026707ae64f0099e83f5a9b570b017539",
+      "bytes": 361092
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0256_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "8b3ae435f16159d5b74b2064b6932324ce71c18a8bc43c0530333af330f2bd7e",
+      "bytes": 362745
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0256_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "f505a827a5f6b0661cb38be198baefb9feb3881412caa449dd6ff6f1f21eb6d9",
+      "bytes": 362746
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0257_clean_base41k_near_only_learned_only.npz",
+      "sha256": "c8c5573f478669e86549d0a0bf318a7eab0bca58aae67212efc2706421f4f6e6",
+      "bytes": 361254
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0257_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "ef4d625279cca27a6c7efcea768a7d7c73f7195f275d30a8acd592ce3082f84b",
+      "bytes": 359908
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0257_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "997444f6c897796b0106dfef3345fc0c0f6926b79f8795b6dc325577b1be156e",
+      "bytes": 362714
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0257_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "24785367c4fdf62924fa368e0b85a9a9f724a41a109853f7aba0c49386677808",
+      "bytes": 361482
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0258_clean_base41k_near_only_learned_only.npz",
+      "sha256": "d07aa34fb15c9b154959a48e6a48114d27f70010620f830364e1616457875f43",
+      "bytes": 359228
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0258_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "7767248a1e642ff7d5713ee9e4bc0bb034c1cd38983073a579385d78e1dcbf90",
+      "bytes": 359229
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0258_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "88b46f5f83fecacee49d0493e81c6814ce61eaaeb24ff203cef0f2cfccaafc14",
+      "bytes": 361184
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0258_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "252329b305255fef4477113d6a965d7cad2651720b06729e597df512072576a5",
+      "bytes": 361185
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0259_clean_base41k_near_only_learned_only.npz",
+      "sha256": "6a1c4ecfba955e3d79ed793eaf01bee09298d38908722f4ffea92730dfd54506",
+      "bytes": 362373
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0259_clean_base41k_feedback_off_learned_only.npz",
+      "sha256": "783fbc3ecebbd4514f10162458cfae515bc8b4b41c9b5c247bbc204f98aead95",
+      "bytes": 361171
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0259_noisy_base41k_near_only_learned_only.npz",
+      "sha256": "496e78db75beb4cc7a4bc970132ecab9e2194ef89c3a157cf98bd8c66795b3ff",
+      "bytes": 364050
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_feedback_review/motions/case0259_noisy_base41k_feedback_off_learned_only.npz",
+      "sha256": "1a2fd27a4621f2f290c31d178482baaa83751cb9f4b062b6df2fd4c052d920fb",
+      "bytes": 362912
+    }
+  ],
+  "removed_bytes": 17462180,
+  "free_after": 110371065856
+}

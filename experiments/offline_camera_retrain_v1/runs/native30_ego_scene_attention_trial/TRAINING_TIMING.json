@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-18T22:28:21.260099+08:00",
+  "matched_steps": 500,
+  "exclude_warmup_first_steps": 25,
+  "arms": {
+    "control": {
+      "total_recorded_update_seconds": 729.8906610790291,
+      "mean_after_warmup": {
+        "preparation_s": 0.5010857891389184,
+        "compute_s": 0.9375084224189739,
+        "update_s": 1.4417870277158555
+      },
+      "loss_mean_last100": 0.13905914884060622,
+      "scene_on_steps": 444
+    },
+    "attention": {
+      "total_recorded_update_seconds": 698.452616537932,
+      "mean_after_warmup": {
+        "preparation_s": 0.43150423435356444,
+        "compute_s": 0.9405740361999931,
+        "update_s": 1.3770887672566996
+      },
+      "loss_mean_last100": 0.13902573682367803,
+      "scene_on_steps": 444
+    }
+  },
+  "compute_mean_ratio_attention_over_control": 1.0032699586560612,
+  "interpretation": "Sequential matched runs on one GPU. Preparation has cache/order effects; not a claim of end-to-end speedup. Compute measurement includes unchanged model/query/constraints and new attention. Recorded updates exclude admission/startup/evaluation and are not whole training wall-clock time."
+}

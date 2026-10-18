@@ -1,0 +1,644 @@
+{
+  "status": "executed",
+  "checked_at": "2026-10-18T22:41:40.542987+08:00",
+  "decision": "Reject this attention500 pilot as current replacement: no practical gain versus matched control; no planned reuse of its weights or prediction arrays.",
+  "retention": "Rejected attention500 records only; preserve exact original41k/55k, parent, control500 full optimizer/RNG and all baseline/control predictions.",
+  "pre_cleanup_evidence": [
+    "CPU_RECHECK.json",
+    "AUDIT_FINDINGS.json",
+    "AUDIT_FINDINGS_zh.md",
+    "../native30_ego_scene_attention_trial/UPDATE_SANITY_500.json",
+    "../native30_ego_scene_attention_trial/MATCHED_AUDIT.json"
+  ],
+  "historical_audit_note": "Audits verified all candidate models and arrays before retirement. Sealed PLAN/MODELS/rows keep historical identities; their attention file paths are intentionally absent after cleanup. Re-running full array/checkpoint audits requires deterministic regeneration in a new output.",
+  "dependencies": {
+    "training_and_evaluation_pipelines_completed": true,
+    "both_independent_auditors_finished_arrays_and_checkpoints": true,
+    "no_viewer_menu_reference": true,
+    "no_other_active_plan_requires_attention_files": true,
+    "retained_control_checkpoint_and_arrays_SHA_verified": true,
+    "baseline_72_arrays_verified_by_independent_auditors": true,
+    "original_41k_55k_SHA_verified_in": "PROTECTED_MODELS.json",
+    "search_scope": "ops and runs Python/JSON/Markdown; only own plan/commands/model/audit/report/status references found"
+  },
+  "removed_files": [
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0000_clean_attention500_none.npz",
+      "sha256": "0ad891c2b62f7d29aeda762e8ab942b778537bc5ff3a91df90344e3fef4719a1",
+      "bytes": 363100,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0000_clean_attention500_learned_only.npz",
+      "sha256": "b1c2cedfd38f5167ccb9b6d296cf8a50fc040f29006026aadfb2ed8654fd5420",
+      "bytes": 365557,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0000_noisy_attention500_none.npz",
+      "sha256": "dc7b0f675f9614c87d1b4bcbbd19d00b6ea7f310134b30851b217a24fd56cdae",
+      "bytes": 364332,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0000_noisy_attention500_learned_only.npz",
+      "sha256": "2930d25de5cfac1b3aed34d0740f8a36b85cbc0f815c716e3d43f35c7003a361",
+      "bytes": 366711,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0001_clean_attention500_none.npz",
+      "sha256": "35831138f884fc6cd49ac78aa1fc5558a8890417de84a93e81a72fa542ad5f8a",
+      "bytes": 362793,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0001_clean_attention500_learned_only.npz",
+      "sha256": "b98402ab2cb2267a8a3ce1ee4094198748bcbd054c585bae41403282139fa766",
+      "bytes": 364860,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0001_noisy_attention500_none.npz",
+      "sha256": "848ea585b2ef97611f09794a66d3d9a7653e5e89f4d26dbd95d1df632a0f8ed4",
+      "bytes": 364267,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0001_noisy_attention500_learned_only.npz",
+      "sha256": "3c4ce72c36a61de90201536e9187e507093b71ff4e2dc2cd97b3232ba543d48f",
+      "bytes": 366274,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0002_clean_attention500_none.npz",
+      "sha256": "b384d75bfa21268ac85cb50b0e9d3cf9597d3bcc0ffad3bc1b157ff578c56444",
+      "bytes": 362568,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0002_clean_attention500_learned_only.npz",
+      "sha256": "5a65977eb9285cc6fc99701329c6d2e7740f18f4bfa7336e60ceeedc06a06f71",
+      "bytes": 364876,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0002_noisy_attention500_none.npz",
+      "sha256": "7deb36b39d3035827e64eb6c2287b7b9499c9d1d410af49010c8952ff2a0adee",
+      "bytes": 363812,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0002_noisy_attention500_learned_only.npz",
+      "sha256": "24b7b152504762763ef17f472c446572a539ff8b1030258c154905be6fb2598a",
+      "bytes": 366188,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0003_clean_attention500_none.npz",
+      "sha256": "1b99c7df3eadc88850badc6fc0de134b2061f4d89553362168df646eea4dde64",
+      "bytes": 363819,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0003_clean_attention500_learned_only.npz",
+      "sha256": "fa368f200fc503c7e762745214d721f4dda85de7ef1df25731187c5c4b2dcaf2",
+      "bytes": 365985,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0003_noisy_attention500_none.npz",
+      "sha256": "47f86d2794323c0e44b3de6f5632ee9db74d21d1cc0e2228918d98d183d007a8",
+      "bytes": 365428,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0003_noisy_attention500_learned_only.npz",
+      "sha256": "f9e8ff7a157166b0858a24df1de6190980a3c07fd27c992c4a02ff4b91ab367a",
+      "bytes": 367687,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0206_clean_attention500_none.npz",
+      "sha256": "f26e89afb6cc16cab857d9f69dd0b40394da5f6607455c8656ab78ea61462807",
+      "bytes": 363478,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0206_clean_attention500_learned_only.npz",
+      "sha256": "12d9aa298dac48ea4b3a729acaf85fab1a28edb75d75ac0a5d5cc503e194db1d",
+      "bytes": 365627,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0206_noisy_attention500_none.npz",
+      "sha256": "f15ce92bcde318fb84f5df39f0e75161e9ead7858147c8855d01c85f56163a4f",
+      "bytes": 364858,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0206_noisy_attention500_learned_only.npz",
+      "sha256": "912967ba02fa058c79756ab185f53b1d92293ad31aba02e32fc30494f4328ad5",
+      "bytes": 367152,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0207_clean_attention500_none.npz",
+      "sha256": "517b6783ea649a844b42675b9c3a374fe3cab5ce7a7b794def0e99d7e13a7b1f",
+      "bytes": 361850,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0207_clean_attention500_learned_only.npz",
+      "sha256": "823de56604850bae42c0ae3ef6593adc245501c105a0dbb52df16b288f092334",
+      "bytes": 364039,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0207_noisy_attention500_none.npz",
+      "sha256": "0acd529caa13649f2c8980befb46d708de86e83b56965aabab221ed0ffc897c2",
+      "bytes": 363173,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0207_noisy_attention500_learned_only.npz",
+      "sha256": "022d4e322e8ecc17cd0906d564859509fc686e1f3c1c8deac265e264266ef680",
+      "bytes": 365366,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0208_clean_attention500_none.npz",
+      "sha256": "809da67ed70fa4aeefad51a1b9df2a8b76490da1d0792e86fcb52273c2f9e06e",
+      "bytes": 361889,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0208_clean_attention500_learned_only.npz",
+      "sha256": "07f56365055378243f05503b959c04f4d95791ab213bfebbbe621d544c04d3bb",
+      "bytes": 363415,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0208_noisy_attention500_none.npz",
+      "sha256": "0ee5166d57a1aa66b7730f55993ebd2f552cebeba9892d2213ad8f7219b2b12a",
+      "bytes": 363760,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0208_noisy_attention500_learned_only.npz",
+      "sha256": "209877ade00682ae1fafc95b76100a446ee0372b498d6a932de50354acc66ac4",
+      "bytes": 365413,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0209_clean_attention500_none.npz",
+      "sha256": "d9f60dfd23203f6673395b358302137e20d24acefd757b18066fae93375c93b4",
+      "bytes": 361308,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0209_clean_attention500_learned_only.npz",
+      "sha256": "909b424edca16c5fe6fdf14f75b4d4dc80b25717a47d60c2693424596048cc33",
+      "bytes": 363659,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0209_noisy_attention500_none.npz",
+      "sha256": "c44ab047a5afcf62c1dcf6393266d82922a24179faf0e0fdde112044f78fd2ed",
+      "bytes": 362497,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0209_noisy_attention500_learned_only.npz",
+      "sha256": "6db9569ad627fdfd4e645de32e55e284c509bf108e15b8512b85c9c860520b6e",
+      "bytes": 364772,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0256_clean_attention500_none.npz",
+      "sha256": "199e82107ee188d9f0c6227bc1f8abd89a8e9dad0967d378d05a4eaafcac6228",
+      "bytes": 360311,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0256_clean_attention500_learned_only.npz",
+      "sha256": "29cd594b0d4ca0c72ad38c1063889ad230a5d09de11009ca6b12481800e2495e",
+      "bytes": 362492,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0256_noisy_attention500_none.npz",
+      "sha256": "805440cd38c91479f7f1876c00df9dde8878a7465e5084c9652ff870cd155c9c",
+      "bytes": 361825,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0256_noisy_attention500_learned_only.npz",
+      "sha256": "21b12699c3adf4ac2b375ea74e975d458733f31197150bc1bd7138a1b1f2254d",
+      "bytes": 363765,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0257_clean_attention500_none.npz",
+      "sha256": "62fef7021f8ba34dbe32e5dda6f63dc41bf546f4a32ca0b71b6a0057e035d62b",
+      "bytes": 359291,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0257_clean_attention500_learned_only.npz",
+      "sha256": "cc2f105aa1b95b20c3f1aac69742867e276e18bd8dbf3795e6413110df2e78b9",
+      "bytes": 361519,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0257_noisy_attention500_none.npz",
+      "sha256": "5ef8dc77636e2c3490e08a98e0d11dcd32b7314a6fde6feba09288013d9007b7",
+      "bytes": 360566,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0257_noisy_attention500_learned_only.npz",
+      "sha256": "3d38c058910f51c4ec99b20637d98e87e3e34872bf115c0d605d45dbea97cc04",
+      "bytes": 362723,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0258_clean_attention500_none.npz",
+      "sha256": "2cf4c516b25b686730a8ec7bf9739ab89a2058563785f646addd8a69e3159baa",
+      "bytes": 358415,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0258_clean_attention500_learned_only.npz",
+      "sha256": "444b6eb0c47dbede55ab7db504ba362f661a341c9aacf6f5758fa0a893a684d0",
+      "bytes": 360593,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0258_noisy_attention500_none.npz",
+      "sha256": "ff20dc279396ef295c015f595782025b7f93194dc20fb3c18ee323efaf145d8c",
+      "bytes": 360464,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0258_noisy_attention500_learned_only.npz",
+      "sha256": "9c6ad51e1adfcd54da6319a3f56138234cc6bf577d65fee8903cd728ae6b267c",
+      "bytes": 362663,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0259_clean_attention500_none.npz",
+      "sha256": "2a34f7601613dbcf67ead763ac6c016c874e3e7844c5447a7c035b6f87aee144",
+      "bytes": 360109,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0259_clean_attention500_learned_only.npz",
+      "sha256": "8bdb9310916d995248df37844345460698cf0270768064f7adedc9bc4fb3d2e7",
+      "bytes": 362412,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0259_noisy_attention500_none.npz",
+      "sha256": "ab4d37947fcd1d67e6b9dfff1afcdd283be93a824c60b5faab91ddff9c820ea6",
+      "bytes": 362090,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0259_noisy_attention500_learned_only.npz",
+      "sha256": "ab37d2014f41e1a19ab4706fc49f9d3b865416ed904dea874a0c751ddcb23806",
+      "bytes": 364214,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_trial/attention/training/last.pt",
+      "sha256": "da379262347fbb165e1dd81717f2426aa458b3a91936fcedb25ca14109957f5f",
+      "bytes": 1479723656,
+      "device": 2096,
+      "inode": 2349448,
+      "links": 2,
+      "kind": "checkpoint"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/checkpoints/attention500.pt",
+      "sha256": "da379262347fbb165e1dd81717f2426aa458b3a91936fcedb25ca14109957f5f",
+      "bytes": 1479723656,
+      "device": 2096,
+      "inode": 2349448,
+      "links": 2,
+      "kind": "checkpoint"
+    }
+  ],
+  "retained_files": [
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0000_clean_control500_none.npz",
+      "sha256": "53c8e0a2f99224a0d08d3e1932556124d3a3909ea689ce4b183f50893caa6df2",
+      "bytes": 363079,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0000_clean_control500_learned_only.npz",
+      "sha256": "fff7756ce7d8f10889b3b39777dd18c09f9294cddb3bb41976355e627eb76c13",
+      "bytes": 365516,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0000_noisy_control500_none.npz",
+      "sha256": "04e5f5093ca8ab08931c28f75e170908f3ac580043d3cdddfe85fa08b4cebc59",
+      "bytes": 364339,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0000_noisy_control500_learned_only.npz",
+      "sha256": "804b54d291230c336c2ed06325d2116bc4bf601086420b64fa9be109ce0f5786",
+      "bytes": 366749,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0001_clean_control500_none.npz",
+      "sha256": "b65b32b873e190a750ebabe6a08ea94f0b037567f165948c538789bf724e5bc4",
+      "bytes": 362860,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0001_clean_control500_learned_only.npz",
+      "sha256": "891d671fefebf782148861df7fead62f074263abf1fa39531652531958d75fdf",
+      "bytes": 364766,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0001_noisy_control500_none.npz",
+      "sha256": "9c4b44c6cbced7b1dea813f0a22d9e5108b412f95c57a9a447ac181282c98972",
+      "bytes": 364258,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0001_noisy_control500_learned_only.npz",
+      "sha256": "ac9f9bf3308bebb16e4260f108d9c4156ff5dc818a3a3c04e64394ae2d9adf54",
+      "bytes": 366274,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0002_clean_control500_none.npz",
+      "sha256": "0daadea5015057231637321e760dacfdcc12e845fa7ebfe59f295f1072db2c07",
+      "bytes": 362567,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0002_clean_control500_learned_only.npz",
+      "sha256": "2bb0b262944ab95e93d43b1d6c83ce530bef0c1e0010c8515b3b929a37ff6805",
+      "bytes": 364891,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0002_noisy_control500_none.npz",
+      "sha256": "7830584d1eb20904d1e32ee01b10e4b9bdd32f04c3aef0ae0a026149dbc4b7ce",
+      "bytes": 363893,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0002_noisy_control500_learned_only.npz",
+      "sha256": "76fa080b62ef7d547065e06549086bade03fbfe4d02fa37805e3c622b1789eff",
+      "bytes": 366142,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0003_clean_control500_none.npz",
+      "sha256": "3bd49d1ff48d997857efd7b4e8e3b440fece43cfadd814a6c76f93a017618dff",
+      "bytes": 363818,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0003_clean_control500_learned_only.npz",
+      "sha256": "5e3d404b9b757e2fddc9badb8671eacead27400ddf93885cd4a849a6011df9a7",
+      "bytes": 365946,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0003_noisy_control500_none.npz",
+      "sha256": "74859c168f08a91e10c495c4bdda1b2dbaa302c470c7bf8d829c8fcefdb554e9",
+      "bytes": 365354,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0003_noisy_control500_learned_only.npz",
+      "sha256": "169c31b6a5a04dec6faa3e10df2180a441e2a8b698afb561f847b4efcb9ddd24",
+      "bytes": 367765,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0206_clean_control500_none.npz",
+      "sha256": "eba4dec5beb33849a55d14998eeae8101700dfdaf1ab0cee9b530d89b236887f",
+      "bytes": 363433,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0206_clean_control500_learned_only.npz",
+      "sha256": "2c6ef3e8bd1379adc4f1930afad2139b59690aef2dba50d4d2bab2542fa5003f",
+      "bytes": 365661,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0206_noisy_control500_none.npz",
+      "sha256": "1bab9eb9dadfe0258573cb7c6d557cb9e7b48bb82feb1aec73b4589f3fc0f49c",
+      "bytes": 364838,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0206_noisy_control500_learned_only.npz",
+      "sha256": "62acc65c7e2d5dcb1068633ce7ceb50be6a707a18f399ff547bfea8ebebb0980",
+      "bytes": 367172,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0207_clean_control500_none.npz",
+      "sha256": "ca9533c8a4eec8ea9d006541b41f2279c36725e4b83e9752331e1ff51964b78f",
+      "bytes": 361805,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0207_clean_control500_learned_only.npz",
+      "sha256": "d5d689bf6934fdabb64ad58da64e64172beb7a8d1fad85e9a2335f815a49189e",
+      "bytes": 364141,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0207_noisy_control500_none.npz",
+      "sha256": "5eced693f5c31031d3b11817a714d41d91e3f454e323a20b0f14853a4f82f001",
+      "bytes": 363195,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0207_noisy_control500_learned_only.npz",
+      "sha256": "0b37e443a5b3836606e2dda55bf47a764516b4d8d508fea0ad3042e16e302fb9",
+      "bytes": 365403,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0208_clean_control500_none.npz",
+      "sha256": "e61d891e63f1d6d9cfe9e80ff3759c7c08fcff5f131dadf53cdd55d1c1073366",
+      "bytes": 361918,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0208_clean_control500_learned_only.npz",
+      "sha256": "6e324eabad2fb6e845fbd2acfca0749809db902e4c2877646790ec16c0302d06",
+      "bytes": 363400,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0208_noisy_control500_none.npz",
+      "sha256": "6032a10f0a9148834030cb2035cdfdae6be48ff8c2543148188e02301602393c",
+      "bytes": 363714,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0208_noisy_control500_learned_only.npz",
+      "sha256": "3ec9901b1de3e4b3058ef57850eacc96d47c5b6fde6eb1e6903f151e544fb394",
+      "bytes": 365479,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0209_clean_control500_none.npz",
+      "sha256": "33a6b3f79f0dbcb3acd06613df8138d32f4c7f64d1f9cb22bd862e3be0aec620",
+      "bytes": 361287,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0209_clean_control500_learned_only.npz",
+      "sha256": "7372eded541cbc75f35d16fa6b0ebfee7d8219f82c1f6ba684fa74b0a4fc3848",
+      "bytes": 363577,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0209_noisy_control500_none.npz",
+      "sha256": "206b2cebe88733b20d08f9ddefd0f03b0127e78efad7f1d416caff081f8713e4",
+      "bytes": 362548,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0209_noisy_control500_learned_only.npz",
+      "sha256": "7c61e26625c06778338575c7250acf289540c9a72a3833d8eae39a5f15c810b2",
+      "bytes": 364814,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0256_clean_control500_none.npz",
+      "sha256": "b0df21b0e569a72f26506d4b842f9f53c7013976488cf97397502b89a6eae864",
+      "bytes": 360302,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0256_clean_control500_learned_only.npz",
+      "sha256": "93cc177f2fb692f6f89d30b8a7a6525ba6f9a6f0b551d0d2287a150edfaf7453",
+      "bytes": 362523,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0256_noisy_control500_none.npz",
+      "sha256": "cf86013a730801093fe66569273f7266beae18fce847a24d685a3e0aa8bafe84",
+      "bytes": 361813,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0256_noisy_control500_learned_only.npz",
+      "sha256": "5c6196ae25f48bb36823a0afd4f43f4adb18866e852de925c02cf6d0053590d0",
+      "bytes": 363827,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0257_clean_control500_none.npz",
+      "sha256": "abeb23dc608d0d9b8857948d248f2a76697882ef0142467043f29a47c17e6f23",
+      "bytes": 359274,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0257_clean_control500_learned_only.npz",
+      "sha256": "752c1fc8d49a61523ead964a4981474aa59596cc6991323a0bc66bb6d77cc719",
+      "bytes": 361499,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0257_noisy_control500_none.npz",
+      "sha256": "1e16a793b590fbf70d461d169c1308bcdaa8b413250d5d7d78d5eb655a73129d",
+      "bytes": 360536,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0257_noisy_control500_learned_only.npz",
+      "sha256": "ffadd769bdb1b60907195aa7fe080d6d4d4a93d1420ac58c2d4aa40ea7720d96",
+      "bytes": 362695,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0258_clean_control500_none.npz",
+      "sha256": "1242271c6ee22d802a01a9f809bffce3fcf1847bebde2c55ea835b7b67423cf5",
+      "bytes": 358400,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0258_clean_control500_learned_only.npz",
+      "sha256": "a74cd28c5c1b6c8b7c45234ff86b816c42b741b440d32372daf1d83c3c7ea3f8",
+      "bytes": 360574,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0258_noisy_control500_none.npz",
+      "sha256": "eb28f075f70468407fc667580a0476d09309ce8e7a4f9cf0a2dbd15d4beec48e",
+      "bytes": 360490,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0258_noisy_control500_learned_only.npz",
+      "sha256": "70ba38147bd5eb6ad32fd485e231baa280a9f1261358c008ccac8f4bc3039631",
+      "bytes": 362571,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0259_clean_control500_none.npz",
+      "sha256": "081e61a44bb62ab0b924f7bce00d24081149c761f5c218823ac938e5e142013c",
+      "bytes": 360109,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0259_clean_control500_learned_only.npz",
+      "sha256": "cb09497e5739fb66ed70a95461d8f052f0379283b45573d90927dad0b00e8f48",
+      "bytes": 362456,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0259_noisy_control500_none.npz",
+      "sha256": "1a20ab16435917ad0e62fa57caa1220f7fb5a8b08431652617029b9636cfea24",
+      "bytes": 362070,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/motions/case0259_noisy_control500_learned_only.npz",
+      "sha256": "89313cbdbb2bcb9b64d354756a9fa6f103f38caeacf9958a79306457874cb641",
+      "bytes": 364223,
+      "kind": "prediction"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_trial/control/training/last.pt",
+      "sha256": "777471e19b4a5e28152fd9410a155aac2208d9f8d023c1ce058b84ab8838e941",
+      "bytes": 1477927016,
+      "device": 2096,
+      "inode": 2349304,
+      "links": 2,
+      "kind": "checkpoint"
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_attention_review/checkpoints/control500.pt",
+      "sha256": "777471e19b4a5e28152fd9410a155aac2208d9f8d023c1ce058b84ab8838e941",
+      "bytes": 1477927016,
+      "device": 2096,
+      "inode": 2349304,
+      "links": 2,
+      "kind": "checkpoint"
+    }
+  ],
+  "removed_logical_bytes": 2976891277,
+  "removed_unique_inode_bytes": 1497167621,
+  "free_before": 111807700992,
+  "free_after": 113304936448
+}
