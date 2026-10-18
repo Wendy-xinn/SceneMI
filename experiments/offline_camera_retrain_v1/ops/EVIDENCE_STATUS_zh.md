@@ -8,6 +8,8 @@
 
 同41k主干、相同adapter初值与1000步预算的EXO等语料配额实验已于12:07启动后台预检/训练流程，三数据集各1/3，其他架构、损失、噪声和物理设置保持。实际两个CPU工厂的base/adapter初始摘要完全一致，42项相关CPU测试、1032个数据/资产指纹通过。[新实验状态](../runs/native30_exo_adapter_balanced_v2/STATUS.json)。同时准备64个独立EXO录制的扩大验证，旧9个回归录制与新55个录制分开报告；尚无本轮新训练或扩大EXO结果，不预先承诺收益。
 
+12:29更新：v2真实GPU预检及24条baseline完成，EGO/EXO/mixed初始输出与原主干逐位相同，GT poisoning和无身体标签EXO接口通过。首25更新实际采样TRUMANS17/RICH17/EgoBody16，配额生效，随后已到250步。预计13:00–13:10产生1000步开发结果；此为速度估计，未代表质量改善。已启动持久[流水线](../runs/native30_exo_adapter_balanced_v2/PIPELINE.json)，PID66203，等待原训练完整退出后依次核验最终CPU证据、自包含部署加载、报告、固定选例视频/Viser8803，以及三模型64录制共384次扩大EXO预测和独立CPU复算。预计全量约14:45–15:00，实际依首批速度更新；失败会停止并记录，无自动重试或模型替换。原Viser8802已本机直连HTTP200复核，当前[离线材料包](../runs/native30_exo_adapter_v1/presentation_materials.zip)可用于今晚19:00–20:00汇报。
+
 以下保留此前各时刻的历史状态。
 
 ## 10月18日：EXO内部适配初筛与checkpoint选择复核
