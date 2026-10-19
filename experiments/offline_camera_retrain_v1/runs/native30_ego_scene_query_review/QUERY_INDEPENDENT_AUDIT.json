@@ -1,0 +1,265 @@
+{
+  "status": "passed_complete_24",
+  "checked_at": "2026-10-19T10:25:14.609900+08:00",
+  "plan_sha256": "18bf5c959db79fb4f49adf1d5c04db911bca36c9f6b85b2d37622867394775d1",
+  "predictions_checked": 24,
+  "planned_predictions": 24,
+  "baseline_identities_checked": 24,
+  "critical_dependency_seals": {
+    "ops/scene_query_review.py": true,
+    "ops/scene_query_metrics.py": true,
+    "ops/ego_scene_evaluation.py": true,
+    "ops/validation_review.py": true,
+    "native30_scene_relations.py": true,
+    "native30_query_runtime.py": true,
+    "native30_model.py": true,
+    "native30_surface_cache.py": true,
+    "native30_overnight.py": true,
+    "native30_refinement.py": true,
+    "supervision.py": true,
+    "prepare_native30.py": true
+  },
+  "sealed_dependency_checks": 558,
+  "distinct_sealed_dependencies": 450,
+  "checkpoint_sha256": "1df509cf10d5cc15d7762989c5795c0c347590465bbc95d2f50135784381bf22",
+  "dataset_counts": {
+    "rich": 8,
+    "trumans": 8,
+    "egobody": 8
+  },
+  "expected_key_set_exact": true,
+  "metrics_independently_checked": 14400,
+  "fractions_independently_checked": 5760,
+  "maximum_independent_metric_difference": 4.440892098500626e-16,
+  "maximum_independent_GT_FK_difference_m": 5.493952430768445e-07,
+  "formulas": "Separate NumPy norm/sorted linear quantile/finite differences; residual uses diff(selected_point-query_centre), not production delta-point minus delta-centre expression. GT FK uses independent NumPy residual6D kinematic chain. No production metrics/model or geometry module imported.",
+  "prediction_identity_scope": "Checks provenance and runtime bit-exact assertion against each sealed historical baseline; traces omit final prediction so CPU audit does not independently compare final sampled prediction arrays or rerun DDIM.",
+  "gt_policy": "GT is present only in stored post-sampling diagnostics; independent source review confirmed hooks close over whitelisted known inputs and use no truth.",
+  "limits": [
+    "Only selected near radius=.6/rank0 and relation nearest rank0; not all surface slots or wide-support reliability.",
+    "Region context features combine near+relation; not relation-only feature contributions.",
+    "Normal reliability is boolean geometry evidence, not calibrated continuous gate reliability.",
+    "Adjacent-frame selected-point displacement is descriptive, not tracked-point motion or contact-switch truth.",
+    "Recomputed trace statistics do not independently audit scene NN backend membership."
+  ],
+  "per_prediction": [
+    {
+      "case": 0,
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "regime": "clean",
+      "seed": 2429043429,
+      "input_sha256": "2ca044d453810815e3f262ec03faa23113f8a63a07fd3b90a420b7e1dfe09c35",
+      "artifact_sha256": "3cb7a7924a85e7954f7adfe695bf916b48a08ee3248980cd448c151e9bb8db9e"
+    },
+    {
+      "case": 0,
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "regime": "noisy",
+      "seed": 2429043429,
+      "input_sha256": "f9c4e03c3be210463fc96e0eef885f42d03c3a1cb6c5eaafa4df0bfc3fac4121",
+      "artifact_sha256": "f5ab31a7bf67ff7b023577bc7e0e961f2f5762dbf55a7ebdfff0654e9f5ea5e9"
+    },
+    {
+      "case": 1,
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "regime": "clean",
+      "seed": 3757690078,
+      "input_sha256": "89f82c9959c3cca528225bcbd503a3b47ec5608b431aebea9fb8f01782d5b4f2",
+      "artifact_sha256": "c6f46af3c49ff4f112f2f4f26b440cdbb0580f163189c694c67b0e35d6ea9562"
+    },
+    {
+      "case": 1,
+      "dataset": "rich",
+      "recording": "LectureHall_018_wipingtable1",
+      "regime": "noisy",
+      "seed": 3757690078,
+      "input_sha256": "8ea9afc5be3e11cd9003a7cdf1c56b7aad37bdfcf6ea386e8086341c18f47e78",
+      "artifact_sha256": "adcb077890d0c6b9336494e7a261575bd1770f6da8a08b0151cb6ae9883f9501"
+    },
+    {
+      "case": 2,
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "regime": "clean",
+      "seed": 3209501670,
+      "input_sha256": "0ef8a129460946d28a9fe90b409a4256855e899f76e2596911d145402ec61940",
+      "artifact_sha256": "99f6a711282f1740662a28b1beb0776dc5b937c9d2ff98d63f72abb556bda9d5"
+    },
+    {
+      "case": 2,
+      "dataset": "rich",
+      "recording": "LectureHall_020_wipingchairs1",
+      "regime": "noisy",
+      "seed": 3209501670,
+      "input_sha256": "fb1b111ed36b032bbca6b80bed9e8e7b565d3cfa2633180bf80c7f9cc5d377f0",
+      "artifact_sha256": "41bbec333d1ee28e757f51e549e88ddcbf9b752957bc3adb4e95c82d5b55a3d9"
+    },
+    {
+      "case": 3,
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "regime": "clean",
+      "seed": 2763493791,
+      "input_sha256": "72f9f1bfd484bd68ffe8a876ce669b36ae04a0140bd67afc866be5296b85c322",
+      "artifact_sha256": "f460582c1b94381754ebbed524caac01321a1ffa233becd83d137a7a4876b685"
+    },
+    {
+      "case": 3,
+      "dataset": "rich",
+      "recording": "ParkingLot1_002_burpee1",
+      "regime": "noisy",
+      "seed": 2763493791,
+      "input_sha256": "281ca1fd013fcb93abc55453f0af18eb69aea911edec52dcfe4999bb8c2b2b95",
+      "artifact_sha256": "f9d2d4292b1077c349aa6d42e9cb7ecb1d00f569cf0701bcd3d6a97a06a832f0"
+    },
+    {
+      "case": 206,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "regime": "clean",
+      "seed": 1557314531,
+      "input_sha256": "0924b680ad95c93190772f9e85ffdfe091ffef6c919dfc676fc2cea26d9bf9f2",
+      "artifact_sha256": "6fec82973e0a8935519879c3b820044c6173d2454529e727b50b91074a6fb632"
+    },
+    {
+      "case": 206,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-50-03",
+      "regime": "noisy",
+      "seed": 1557314531,
+      "input_sha256": "b18c1875f8b33b402c5933f0b017a0b9b7f55f6b65b4e653b860fb8ca9f442c5",
+      "artifact_sha256": "f3e29e82eb2aadb09d32655b37fd0e25b0dfebac83b7ccb0050fa3f9507125c2"
+    },
+    {
+      "case": 207,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "regime": "clean",
+      "seed": 869125657,
+      "input_sha256": "b6b278df43534a8ef3dc0fb71bf0bdb809dc17fb5b317ae7f169f6f4097d1dfc",
+      "artifact_sha256": "e5ad72148f6898cd01262c32016df886434dd71c4582c23fd8a26f2b645422e2"
+    },
+    {
+      "case": 207,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-18-35",
+      "regime": "noisy",
+      "seed": 869125657,
+      "input_sha256": "17d1c6b0abebe051ff25539d15cb17e581a53283ece43a85c0926ef08938f06b",
+      "artifact_sha256": "aff301915c8d1dffb5c6f6c0fd2f80af5e05084828e1aea6eb89ae95e0705cce"
+    },
+    {
+      "case": 208,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "regime": "clean",
+      "seed": 330768162,
+      "input_sha256": "bc2ef51f6ebbda87487f8ed2604ad15068c11f6ae557ee46443da8f93cde6c5d",
+      "artifact_sha256": "aab1391fb99ddd42277b88e17b052d7f26c967fedc7da29c8ea8449443d51d31"
+    },
+    {
+      "case": 208,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-56-45",
+      "regime": "noisy",
+      "seed": 330768162,
+      "input_sha256": "567d535c952f2349ebbac546a4bbce210a39d0b4c7ca4081e9c3b851ff50af6a",
+      "artifact_sha256": "43b8aa291a4c724f2561f187f0a10d4e9853c55af51ec3015119aa8f717b578f"
+    },
+    {
+      "case": 209,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "regime": "clean",
+      "seed": 2952494324,
+      "input_sha256": "816cda68714bf37896cccd4b6a8982be80afda1a7264f9a86251a3da39f4d656",
+      "artifact_sha256": "f54b35000ac30bd10d9db593ed3b9b9bec167f3ec2eae3699d4757295f8478c4"
+    },
+    {
+      "case": 209,
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-10-27",
+      "regime": "noisy",
+      "seed": 2952494324,
+      "input_sha256": "c97cc0557eb9c22cc67042420c6f659506917a6eeb94fe379de1094ef0ba93d7",
+      "artifact_sha256": "22f4414d9e076ac8aff905236280207032a9e37ecde2d83c5452040e73868f20"
+    },
+    {
+      "case": 256,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "regime": "clean",
+      "seed": 671539497,
+      "input_sha256": "05dfe3985c0dbe633bfd9955bcbce9dcf2f2e5c8f6b37ae79eda26a180bc93e5",
+      "artifact_sha256": "c7aba06f521bdb2a855fcd9e8794eb1f39b821b2813c3136f0d330dec823ff83"
+    },
+    {
+      "case": 256,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_04",
+      "regime": "noisy",
+      "seed": 671539497,
+      "input_sha256": "3c27fa1147e09acaf77f0c8b085b60ebf1268f6afd5be198ee02e20d107dc2d5",
+      "artifact_sha256": "a545382c4e49179a64badc387447db90e4ab708ae4cd8d1e998f2e5d48f56e3d"
+    },
+    {
+      "case": 257,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "regime": "clean",
+      "seed": 821772882,
+      "input_sha256": "49f6ee2330123023d1234afc4e432c8a7a632940684a86e1686ea8a026909c80",
+      "artifact_sha256": "653326244f42f9986fee6a6e7d2d5ebd0370d62186e0030fdf845f036c46ef57"
+    },
+    {
+      "case": 257,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_03",
+      "regime": "noisy",
+      "seed": 821772882,
+      "input_sha256": "7ea728fe78fe976e5156071d889cb1c2017b86f5896e9e3b2d64ac095d130f0a",
+      "artifact_sha256": "f8834ca2e8884de767b2878233c232c8ce3a1e7a620f621fb5756b8d84c5218c"
+    },
+    {
+      "case": 258,
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "regime": "clean",
+      "seed": 1665935778,
+      "input_sha256": "6c4b36832a093cbaed7c3b971209e9e2f23398b1f1cd3603f32792616ce9017c",
+      "artifact_sha256": "b0b07fe5909cdd642d539df6b2f2248ec9a7908cf0ff1d302aa1a93155e8d59e"
+    },
+    {
+      "case": 258,
+      "dataset": "egobody",
+      "recording": "recording_20210923_S03_S14_01",
+      "regime": "noisy",
+      "seed": 1665935778,
+      "input_sha256": "47352d08cf25eb84f528ec526e5ba3187a6331aaf2041091dd494c4447f0d26b",
+      "artifact_sha256": "3dbcc027d4ae0ede687e1d7a86fdc9b29bfbce04e605ed19fd0dac4a134962e0"
+    },
+    {
+      "case": 259,
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "regime": "clean",
+      "seed": 4270495867,
+      "input_sha256": "7c852ce95a22bb7ca186f0f9e7011102c6e2af5a1a04b73e4a1df7f773a57c88",
+      "artifact_sha256": "288e1cb3b662b630b1be050449c72ca059d2da56fa443ab78855db56f4841b1a"
+    },
+    {
+      "case": 259,
+      "dataset": "egobody",
+      "recording": "recording_20220215_S21_S22_02",
+      "regime": "noisy",
+      "seed": 4270495867,
+      "input_sha256": "dc4cd1474bee820cb800ea97f8374ea7e76ddbf26b345df950954a9f434165a0",
+      "artifact_sha256": "f932b86ecc59810db37e2a4c4d2770c004594bcd4110411e55cf722e15b49927"
+    }
+  ],
+  "audit_source_sha256": "70e12c1d37766023b1edbee3603d02d462d354f0e0357ca1840b2e5cb67df019",
+  "audit_source_python": "\nimport bisect, datetime, hashlib, json, math\nfrom collections import Counter\nfrom pathlib import Path\nimport numpy as np\n\nOUT = Path('/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_query_review')\ndef read(p): return json.loads(Path(p).read_text())\ndef digest(p):\n    h=hashlib.sha256()\n    with Path(p).open('rb') as stream:\n        for block in iter(lambda:stream.read(8*1024**2),b''): h.update(block)\n    return h.hexdigest()\ndef check(test,message):\n    if not test: raise AssertionError(message)\nplan=read(OUT/'PLAN.json')\nsource=Path('/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_ego_scene_fusion_v2')\nold=read(source/'final_seed0/PLAN.json')\noriginal=[json.loads(x) for x in (source/'final_seed0/rows.jsonl').read_text().splitlines()]\nentries={e['case']:e for e in plan['entries']}\nbaselines={(b['case'],b['regime']):b for b in plan['baselines']}\ncheck(len(entries)==12 and len(baselines)==24,'Expected12recordings/24baselines')\ncheck(plan['config']==old['config'] and plan['declaration']==old['models']['control'],'Source config/model mismatch')\ncheck(Counter(e['dataset'] for e in entries.values())==dict(rich=4,trumans=4,egobody=4),'Dataset balance changed')\ncheck({(b['case'],b['regime']) for b in plan['baselines']}=={(c,r) for c in entries for r in ('clean','noisy')},'Baseline key set changed')\nfor e in entries.values():\n    check(e==next(x for x in old['entries'] if x['case']==e['case']),'Historical entry differs')\nfor key,b in baselines.items():\n    check(b==next(x for x in original if (x['case'],x['regime'],x['model'],x['arm'])==(*key,'control','learned_only')),'Historical baseline row differs')\n    e=entries[key[0]]\n    check(all(b[k]==e[k] for k in ('dataset','recording','sequence_id','start','source_first','review_panel')),'Baseline identity differs')\n    check(b['seed']==e['case_seed'] and b['checkpoint_sha256']==plan['selected_checkpoint_sha256'] and b['checkpoint_step']==3000,'Baseline seed/checkpoint differs')\n    check(digest(b['artifact'])==b['artifact_sha256'],'Baseline artifact hash differs')\nsealed={}\nfor section in ('source_sha256','historical_source_sha256','dependencies'):\n    for p,h in plan[section].items():\n        check(digest(p)==h,'Changed sealed dependency:'+p)\n        check(p not in sealed or sealed[p]==h,'Conflicting source seals:'+p)\n        sealed[p]=h\ncritical=['ops/scene_query_review.py','ops/scene_query_metrics.py','ops/ego_scene_evaluation.py','ops/validation_review.py','native30_scene_relations.py','native30_query_runtime.py','native30_model.py','native30_surface_cache.py','native30_overnight.py','native30_refinement.py','supervision.py','prepare_native30.py']\nbase=source.parents[1]\ncritical_results={p:str((base/p).resolve()) in plan['source_sha256'] for p in critical}\ncheck(all(critical_results.values()),'Missing critical source seal')\ncheck(digest(plan['declaration']['checkpoint'])==plan['selected_checkpoint_sha256'],'Checkpoint hash differs')\npath=OUT/'rows.jsonl'\nraw=path.read_bytes() if path.exists() else b''\nlines=raw.splitlines(keepends=True)\nif lines and not lines[-1].endswith(b'\\n'):lines.pop()\nrows=[json.loads(x) for x in lines]\nkeys=[(r['case'],r['regime']) for r in rows]\ncheck(len(keys)==len(set(keys)) and set(keys)<=baselines.keys(),'Unknown/duplicate trace row')\nmaximum_delta=0.\nmaximum_gt_fk_delta=0.\nmetric_count=0\nfraction_count=0\nper_row=[]\ndef stats(values,mask):\n    values=np.asarray(values,dtype=np.float64)[mask]\n    check(np.isfinite(values).all(),'Invalid finite metric')\n    if not len(values): return dict(count=0,mean=None,p50=None,p90=None,min=None,max=None)\n    ordered=np.sort(values)\n    def percentile(q):\n        position=(len(ordered)-1)*q;low=int(math.floor(position));high=int(math.ceil(position))\n        return float(ordered[low]+(ordered[high]-ordered[low])*(position-low))\n    return dict(count=len(values),mean=float(np.sum(values)/len(values)),p50=percentile(.5),p90=percentile(.9),min=float(ordered[0]),max=float(ordered[-1]))\ndef compare(actual,expected,label):\n    global maximum_delta,metric_count\n    check(actual['count']==expected['count'],'Count:'+label)\n    for k,v in expected.items():\n        if k=='count':continue\n        if v is None:check(actual[k] is None,'Empty metric:'+label)\n        else:\n            delta=abs(actual[k]-v);maximum_delta=max(maximum_delta,delta)\n            check(delta<=1e-11*max(1.,abs(v)),'Metric:'+label+'/'+k+' delta='+str(delta))\n    metric_count+=1\ndef fraction(actual,condition,valid,label):\n    global fraction_count\n    n=int(np.count_nonzero(condition & valid));d=int(np.count_nonzero(valid))\n    check(actual==dict(numerator=n,denominator=d,fraction=None if d==0 else n/d),'Fraction:'+label)\n    fraction_count+=1\nparents=(-1,0,0,0,1,2,3,4,5,6,7,8,9,9,9,12,13,14,16,17,18,19)\ndef gt_fk(motion,rest):\n    m=motion.astype(np.float64);rest=rest.astype(np.float64)\n    six=m[:,3:135].reshape(-1,22,6)+np.array([1.,0.,0.,0.,1.,0.])\n    a=six[...,:3];a=a/np.maximum(np.sqrt(np.sum(a*a,axis=-1,keepdims=True)),1e-6)\n    b=six[...,3:];b=b-np.sum(a*b,axis=-1,keepdims=True)*a;b=b/np.maximum(np.sqrt(np.sum(b*b,axis=-1,keepdims=True)),1e-6)\n    local=np.stack([a,b,np.cross(a,b)],axis=-1)\n    rot=[local[:,0]];j=[m[:,:3]*2+rest[0]]\n    for i in range(1,22):\n        p=parents[i];rot.append(rot[p]@local[:,i]);j.append(j[p]+(rot[p]@(rest[i]-rest[p])[None,:,None])[...,0])\n    return np.stack(j,axis=1)\nfor row in rows:\n    key=(row['case'],row['regime']);e=entries[key[0]];b=baselines[key]\n    check(all(row[k]==e[k] for k in ('dataset','recording')),'Trace dataset/recording differs')\n    check(row['seed']==e['case_seed']==b['seed'] and row['input_sha256']==b['input_sha256'] and row['baseline_artifact_sha256']==b['artifact_sha256'],'Trace seed/input/baseline differs')\n    check(row['prediction_exactly_matches_baseline'] is True and row['prediction_max_difference']==0 and row['physics_calls']==0,'Runtime identity/guidance guard failed')\n    check(Path(row['artifact']).resolve()==(OUT/'traces'/f\"case{row['case']:04d}_{row['regime']}.npz\").resolve(),'Unexpected trace path')\n    check(digest(row['artifact'])==row['artifact_sha256'],'Trace artifact changed')\n    with np.load(row['artifact'],allow_pickle=False) as f:a={k:f[k] for k in f.files}\n    with np.load(b['artifact'],allow_pickle=False) as z:\n        check(str(z['input_sha256'])==row['input_sha256'] and str(z['checkpoint_sha256'])==plan['selected_checkpoint_sha256'],'Saved baseline identity mismatch')\n        new_gt=gt_fk(z['truth'],z['rest'])\n    gt=a['truth_joints'].astype(np.float64)\n    gt_delta=float(np.max(np.abs(new_gt-gt)));maximum_gt_fk_delta=max(maximum_gt_fk_delta,gt_delta)\n    check(gt_delta<2e-5,'GT FK disagreement')\n    check(a['proposal'].shape==(20,192,22,3) and a['context'].shape==(20,192,22,64),'Trace joint/context shape mismatch')\n    check(a['timesteps'].tolist()==[s['timestep'] for s in b['stages']],'DDIM clock differs')\n    check(len(row['query_steps'])==40,'Missing near/relation stage')\n    for i,t in enumerate(a['timesteps']):\n        for kind,anchors in [('near',67),('relation',22)]:\n            r=next(r for r in row['query_steps'] if r['timestep']==int(t) and r['query_kind']==kind)\n            check(r['window_id']==f\"{row['dataset']}/{row['recording']}/{row['regime']}\",'Metric window identity differs')\n            check(r['alpha_bar']==float(a['alphas'][i]),'Alpha differs')\n            independent_bin=min(bisect.bisect_right([0.,.1,.5,.9,1.],r['alpha_bar'])-1,3)\n            check(r['alpha_bar_bin']['index']==independent_bin,'Alpha bin differs')\n            p=a['proposal'][i].astype(np.float64);c=a[kind+'_centres'][i].astype(np.float64);s=a[kind+'_points'][i].astype(np.float64)\n            v=a[kind+'_valid'][i].astype(bool);owners=a[kind+'_owners'][i];rel=a[kind+'_reliable'][i].astype(bool)\n            check(c.shape==(192,anchors,3) and s.shape==c.shape and v.shape==(192,anchors),'Trace query shape differs')\n            check(np.isfinite(c).all() and np.isfinite(s[v]).all() and np.isfinite(p).all(),'Nonfinite valid trace')\n            d=p[1:]-p[:-1];dc=c[1:]-c[:-1];ds=s[1:]-s[:-1];both=v[1:]&v[:-1];same=owners[1:]==owners[:-1]\n            norm=lambda x:np.sqrt(np.sum(x*x,axis=-1))\n            jall=np.ones((192,22),bool);pairs=np.ones((191,22),bool);qpairs=np.ones((191,anchors),bool)\n            residual=norm((s-c)[1:]-(s-c)[:-1])\n            expected={\n                'proposal_joint_speed_m_s':(norm(d)*30,pairs),\n                'proposal_foot_speed_m_s':(norm(d[:,[10,11]])*30,pairs[:,[10,11]]),\n                'proposal_foot_horizontal_speed_m_s':(norm(d[:,[10,11]][:,:,[0,2]])*30,pairs[:,[10,11]]),\n                'query_centre_speed_m_s':(norm(dc)*30,qpairs),\n                'all_returned_neighbor_distance_m':(norm(s-c),v),\n                'selected_neighbor_distance_m':(norm(s-c),v),\n                'selected_point_displacement_m':(norm(ds),both),\n                'selected_point_speed_m_s':(norm(ds)*30,both),\n                'selected_point_minus_centre_displacement_m':(residual,both),\n                'selected_point_minus_centre_displacement_same_owner_m':(residual,both&same),\n                'selected_point_minus_centre_displacement_static_owner_m':(residual,both&same&(owners[1:]==0)),\n                'proposal_joint_error_m':(norm(p-gt),jall),\n                'proposal_foot_error_m':(norm(p[:,[10,11]]-gt[:,[10,11]]),jall[:,[10,11]]),\n                'proposal_foot_horizontal_speed_gt_low_m_s':(norm(d[:,[10,11]][:,:,[0,2]])*30,norm(gt[1:,[10,11]]-gt[:-1,[10,11]])*30<.2)\n            }\n            if kind=='relation':\n                f=a['context'][i].astype(np.float64);df=norm(f[1:]-f[:-1])\n                expected['feature_adjacent_frame_l2_difference']=(df,qpairs)\n                expected['feature_adjacent_frame_rms_difference']=(df/8,qpairs)\n            check(set(expected)==set(r['metrics']),'Unknown/missing metric field')\n            for name,(values,mask) in expected.items():compare(r['metrics'][name],stats(values,mask),name)\n            fraction(r['fractions']['invalid_neighbor_slots'],~v,np.ones(v.shape,bool),'invalid neighbor')\n            fraction(r['fractions']['invalid_selected_neighbor'],~v,np.ones(v.shape,bool),'invalid selected')\n            fraction(r['fractions']['reliable_normal_among_valid_neighbors'],rel,v,'reliable all')\n            fraction(r['fractions']['reliable_normal_among_valid_selected_neighbors'],rel,v,'reliable selected')\n            fraction(r['fractions']['selected_owner_changed_adjacent_frames'],~same,both,'owner')\n            fraction(r['fractions']['selected_neighbor_validity_changed_adjacent_frames'],v[1:]!=v[:-1],qpairs,'validity')\n    per_row.append(dict(case=row['case'],dataset=row['dataset'],recording=row['recording'],regime=row['regime'],seed=row['seed'],input_sha256=row['input_sha256'],artifact_sha256=row['artifact_sha256']))\naudit=dict(status='passed_complete_24' if len(rows)==24 else 'passed_partial',\n    checked_at=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat(),\n    plan_sha256=digest(OUT/'PLAN.json'), predictions_checked=len(rows), planned_predictions=24,\n    baseline_identities_checked=24, critical_dependency_seals=critical_results,\n    sealed_dependency_checks=len(plan['source_sha256'])+len(plan['historical_source_sha256'])+len(plan['dependencies']),\n    distinct_sealed_dependencies=len(sealed), checkpoint_sha256=plan['selected_checkpoint_sha256'],\n    dataset_counts=dict(Counter(r['dataset'] for r in rows)), expected_key_set_exact=len(rows)==24 and set(keys)==set(baselines),\n    metrics_independently_checked=metric_count,fractions_independently_checked=fraction_count,\n    maximum_independent_metric_difference=maximum_delta, maximum_independent_GT_FK_difference_m=maximum_gt_fk_delta,\n    formulas='Separate NumPy norm/sorted linear quantile/finite differences; residual uses diff(selected_point-query_centre), not production delta-point minus delta-centre expression. GT FK uses independent NumPy residual6D kinematic chain. No production metrics/model or geometry module imported.',\n    prediction_identity_scope='Checks provenance and runtime bit-exact assertion against each sealed historical baseline; traces omit final prediction so CPU audit does not independently compare final sampled prediction arrays or rerun DDIM.',\n    gt_policy='GT is present only in stored post-sampling diagnostics; independent source review confirmed hooks close over whitelisted known inputs and use no truth.',\n    limits=['Only selected near radius=.6/rank0 and relation nearest rank0; not all surface slots or wide-support reliability.',\n            'Region context features combine near+relation; not relation-only feature contributions.',\n            'Normal reliability is boolean geometry evidence, not calibrated continuous gate reliability.',\n            'Adjacent-frame selected-point displacement is descriptive, not tracked-point motion or contact-switch truth.',\n            'Recomputed trace statistics do not independently audit scene NN backend membership.'],\n    per_prediction=per_row,\n    audit_source_sha256=hashlib.sha256(globals().get('audit_source_text','').encode()).hexdigest(),\n    audit_source_python=globals().get('audit_source_text',''))\nif len(rows)==24:\n    temporary=OUT/'QUERY_INDEPENDENT_AUDIT.json.tmp'\n    temporary.write_text(json.dumps(audit,ensure_ascii=False,indent=2,allow_nan=False)+'\\n')\n    temporary.replace(OUT/'QUERY_INDEPENDENT_AUDIT.json')\nprint(json.dumps({k:v for k,v in audit.items() if k not in ('per_prediction','audit_source_python')},ensure_ascii=False))\n"
+}

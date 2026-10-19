@@ -1,0 +1,1350 @@
+{
+  "schema": "scene-query-diagnostics-v1",
+  "alpha_bar_edges": [
+    0.0,
+    0.1,
+    0.5,
+    0.9,
+    1.0
+  ],
+  "steps": 960,
+  "groups": [
+    {
+      "query_kind": "near",
+      "alpha_bar_bin": {
+        "index": 0,
+        "lower": 0.0,
+        "upper": 0.1,
+        "upper_inclusive": false,
+        "label": "[0,0.1)"
+      },
+      "steps": 96,
+      "unique_named_windows": 24,
+      "unnamed_steps": 0,
+      "metrics": {
+        "all_returned_neighbor_distance_m": {
+          "count": 615263,
+          "mean": 0.28722573605912816,
+          "min": 0.00040126582927991225,
+          "max": 0.5999998520939496,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_error_m": {
+          "count": 36864,
+          "mean": 0.26986762371138573,
+          "min": 0.0014648806971499784,
+          "max": 1.1340762981089154,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_gt_low_m_s": {
+          "count": 30136,
+          "mean": 0.8572952438647472,
+          "min": 0.0006747467755621584,
+          "max": 11.46846579951195,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_m_s": {
+          "count": 36672,
+          "mean": 0.9548408187838766,
+          "min": 0.0006747467755621584,
+          "max": 11.46846579951195,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_speed_m_s": {
+          "count": 36672,
+          "mean": 1.0727778188292592,
+          "min": 0.011777054372377475,
+          "max": 13.755277536555482,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_error_m": {
+          "count": 405504,
+          "mean": 0.16575620885586342,
+          "min": 0.0002943267430919884,
+          "max": 1.1340762981089154,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_speed_m_s": {
+          "count": 403392,
+          "mean": 0.7021466409060819,
+          "min": 0.004326769870550802,
+          "max": 13.755277536555482,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "query_centre_speed_m_s": {
+          "count": 1228512,
+          "mean": 0.7288374082377048,
+          "min": 0.0005281973865129505,
+          "max": 13.949451950377723,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_neighbor_distance_m": {
+          "count": 615263,
+          "mean": 0.28722573605912816,
+          "min": 0.00040126582927991225,
+          "max": 0.5999998520939496,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_displacement_m": {
+          "count": 606302,
+          "mean": 0.026604373710245044,
+          "min": 0.0,
+          "max": 1.2279734913362956,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_m": {
+          "count": 606302,
+          "mean": 0.03582775238566888,
+          "min": 0.0001337767864107689,
+          "max": 1.1860222208355482,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_same_owner_m": {
+          "count": 605054,
+          "mean": 0.03521587230744562,
+          "min": 0.0001337767864107689,
+          "max": 1.1697271754483267,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_static_owner_m": {
+          "count": 591394,
+          "mean": 0.03547135066474682,
+          "min": 0.0001337767864107689,
+          "max": 1.1697271754483267,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_speed_m_s": {
+          "count": 606302,
+          "mean": 0.798131211307351,
+          "min": 0.0,
+          "max": 36.83920474008887,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        }
+      },
+      "fractions": {
+        "invalid_neighbor_slots": {
+          "numerator": 619681,
+          "denominator": 1234944,
+          "fraction": 0.5017887450766998
+        },
+        "invalid_selected_neighbor": {
+          "numerator": 619681,
+          "denominator": 1234944,
+          "fraction": 0.5017887450766998
+        },
+        "reliable_normal_among_valid_neighbors": {
+          "numerator": 365578,
+          "denominator": 615263,
+          "fraction": 0.5941816751535522
+        },
+        "reliable_normal_among_valid_selected_neighbors": {
+          "numerator": 365578,
+          "denominator": 615263,
+          "fraction": 0.5941816751535522
+        },
+        "selected_neighbor_validity_changed_adjacent_frames": {
+          "numerator": 11240,
+          "denominator": 1228512,
+          "fraction": 0.009149279779114897
+        },
+        "selected_owner_changed_adjacent_frames": {
+          "numerator": 1248,
+          "denominator": 606302,
+          "fraction": 0.0020583801471873754
+        }
+      }
+    },
+    {
+      "query_kind": "near",
+      "alpha_bar_bin": {
+        "index": 1,
+        "lower": 0.1,
+        "upper": 0.5,
+        "upper_inclusive": false,
+        "label": "[0.1,0.5)"
+      },
+      "steps": 144,
+      "unique_named_windows": 24,
+      "unnamed_steps": 0,
+      "metrics": {
+        "all_returned_neighbor_distance_m": {
+          "count": 929994,
+          "mean": 0.28543628436479684,
+          "min": 0.0006155303075788631,
+          "max": 0.5999983842411555,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_error_m": {
+          "count": 55296,
+          "mean": 0.25537982735487263,
+          "min": 0.003330441424524549,
+          "max": 1.1768954036370176,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_gt_low_m_s": {
+          "count": 45204,
+          "mean": 0.9342929971001557,
+          "min": 0.005311094760380556,
+          "max": 10.07058541610588,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_m_s": {
+          "count": 55008,
+          "mean": 1.02647413652362,
+          "min": 0.005311094760380556,
+          "max": 10.07058541610588,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_speed_m_s": {
+          "count": 55008,
+          "mean": 1.1225380830085976,
+          "min": 0.009611148566002987,
+          "max": 10.240661503344448,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_error_m": {
+          "count": 608256,
+          "mean": 0.15551754081080496,
+          "min": 7.449234025521428e-05,
+          "max": 1.1768954036370176,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_speed_m_s": {
+          "count": 605088,
+          "mean": 0.7079718945091009,
+          "min": 0.003201836417395124,
+          "max": 10.240661503344448,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "query_centre_speed_m_s": {
+          "count": 1842768,
+          "mean": 0.741764714901123,
+          "min": 0.001208354469718204,
+          "max": 10.8572102807065,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_neighbor_distance_m": {
+          "count": 929994,
+          "mean": 0.28543628436479684,
+          "min": 0.0006155303075788631,
+          "max": 0.5999983842411555,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_displacement_m": {
+          "count": 916307,
+          "mean": 0.027267680666871415,
+          "min": 0.0,
+          "max": 1.1523190220812876,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_m": {
+          "count": 916307,
+          "mean": 0.03540339605590173,
+          "min": 5.580349683800369e-05,
+          "max": 1.1413400965296414,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_same_owner_m": {
+          "count": 914395,
+          "mean": 0.03491302425955939,
+          "min": 5.580349683800369e-05,
+          "max": 1.1413400965296414,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_static_owner_m": {
+          "count": 894306,
+          "mean": 0.035170045301377295,
+          "min": 5.580349683800369e-05,
+          "max": 1.1413400965296414,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_speed_m_s": {
+          "count": 916307,
+          "mean": 0.8180304200061427,
+          "min": 0.0,
+          "max": 34.56957066243863,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        }
+      },
+      "fractions": {
+        "invalid_neighbor_slots": {
+          "numerator": 922422,
+          "denominator": 1852416,
+          "fraction": 0.49795618262852404
+        },
+        "invalid_selected_neighbor": {
+          "numerator": 922422,
+          "denominator": 1852416,
+          "fraction": 0.49795618262852404
+        },
+        "reliable_normal_among_valid_neighbors": {
+          "numerator": 563266,
+          "denominator": 929994,
+          "fraction": 0.6056662731157405
+        },
+        "reliable_normal_among_valid_selected_neighbors": {
+          "numerator": 563266,
+          "denominator": 929994,
+          "fraction": 0.6056662731157405
+        },
+        "selected_neighbor_validity_changed_adjacent_frames": {
+          "numerator": 17323,
+          "denominator": 1842768,
+          "fraction": 0.009400532242799962
+        },
+        "selected_owner_changed_adjacent_frames": {
+          "numerator": 1912,
+          "denominator": 916307,
+          "fraction": 0.0020866369022609233
+        }
+      }
+    },
+    {
+      "query_kind": "near",
+      "alpha_bar_bin": {
+        "index": 2,
+        "lower": 0.5,
+        "upper": 0.9,
+        "upper_inclusive": false,
+        "label": "[0.5,0.9)"
+      },
+      "steps": 144,
+      "unique_named_windows": 24,
+      "unnamed_steps": 0,
+      "metrics": {
+        "all_returned_neighbor_distance_m": {
+          "count": 941417,
+          "mean": 0.28275692811740216,
+          "min": 0.0007911123851208565,
+          "max": 0.5999983099306514,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_error_m": {
+          "count": 55296,
+          "mean": 0.22548875575102836,
+          "min": 0.0006432071577132037,
+          "max": 1.1282557473197103,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_gt_low_m_s": {
+          "count": 45204,
+          "mean": 0.7130628253445473,
+          "min": 0.002714098891666561,
+          "max": 7.421918187135462,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_m_s": {
+          "count": 55008,
+          "mean": 0.801603872799235,
+          "min": 0.002714098891666561,
+          "max": 7.421918187135462,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_speed_m_s": {
+          "count": 55008,
+          "mean": 0.8473454304825632,
+          "min": 0.010951524289981661,
+          "max": 8.280910533263272,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_error_m": {
+          "count": 608256,
+          "mean": 0.14022927903389917,
+          "min": 4.5491270787935696e-07,
+          "max": 1.1282557473197103,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_speed_m_s": {
+          "count": 605088,
+          "mean": 0.5539461044685574,
+          "min": 0.0011418107264645398,
+          "max": 8.424148316175215,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "query_centre_speed_m_s": {
+          "count": 1842768,
+          "mean": 0.5841541986220528,
+          "min": 0.000323530406999279,
+          "max": 8.725925403342888,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_neighbor_distance_m": {
+          "count": 941417,
+          "mean": 0.28275692811740216,
+          "min": 0.0007911123851208565,
+          "max": 0.5999983099306514,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_displacement_m": {
+          "count": 929343,
+          "mean": 0.02052239801774782,
+          "min": 0.0,
+          "max": 1.2252060064816568,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_m": {
+          "count": 929343,
+          "mean": 0.027290969909312318,
+          "min": 1.0784346899975966e-05,
+          "max": 1.1925231490586239,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_same_owner_m": {
+          "count": 927201,
+          "mean": 0.026814998918258028,
+          "min": 1.0784346899975966e-05,
+          "max": 1.119386679784114,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_static_owner_m": {
+          "count": 904165,
+          "mean": 0.02693864619376843,
+          "min": 1.0784346899975966e-05,
+          "max": 1.119386679784114,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_speed_m_s": {
+          "count": 929343,
+          "mean": 0.615671940532435,
+          "min": 0.0,
+          "max": 36.756180194449705,
+          "contributing_steps": 120,
+          "quantiles": "not reconstructed from summaries"
+        }
+      },
+      "fractions": {
+        "invalid_neighbor_slots": {
+          "numerator": 910999,
+          "denominator": 1852416,
+          "fraction": 0.4917896412037037
+        },
+        "invalid_selected_neighbor": {
+          "numerator": 910999,
+          "denominator": 1852416,
+          "fraction": 0.4917896412037037
+        },
+        "reliable_normal_among_valid_neighbors": {
+          "numerator": 577543,
+          "denominator": 941417,
+          "fraction": 0.6134826543391505
+        },
+        "reliable_normal_among_valid_selected_neighbors": {
+          "numerator": 577543,
+          "denominator": 941417,
+          "fraction": 0.6134826543391505
+        },
+        "selected_neighbor_validity_changed_adjacent_frames": {
+          "numerator": 14118,
+          "denominator": 1842768,
+          "fraction": 0.00766130082571436
+        },
+        "selected_owner_changed_adjacent_frames": {
+          "numerator": 2142,
+          "denominator": 929343,
+          "fraction": 0.0023048540743299296
+        }
+      }
+    },
+    {
+      "query_kind": "near",
+      "alpha_bar_bin": {
+        "index": 3,
+        "lower": 0.9,
+        "upper": 1.0,
+        "upper_inclusive": true,
+        "label": "[0.9,1]"
+      },
+      "steps": 96,
+      "unique_named_windows": 24,
+      "unnamed_steps": 0,
+      "metrics": {
+        "all_returned_neighbor_distance_m": {
+          "count": 633599,
+          "mean": 0.2813551495083779,
+          "min": 0.000524418984210823,
+          "max": 0.5999975271828613,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_error_m": {
+          "count": 36864,
+          "mean": 0.20031398376078935,
+          "min": 0.0004568304482834935,
+          "max": 1.09407631121164,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_gt_low_m_s": {
+          "count": 30136,
+          "mean": 0.4013743912857105,
+          "min": 0.001585301316436937,
+          "max": 6.649411889380426,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_m_s": {
+          "count": 36672,
+          "mean": 0.5100284295826117,
+          "min": 0.001585301316436937,
+          "max": 6.649411889380426,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_speed_m_s": {
+          "count": 36672,
+          "mean": 0.5361615462335777,
+          "min": 0.0029796699882036603,
+          "max": 6.743269664849805,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_error_m": {
+          "count": 405504,
+          "mean": 0.13061616804069137,
+          "min": 1.0030651105818346e-07,
+          "max": 1.09407631121164,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_speed_m_s": {
+          "count": 403392,
+          "mean": 0.4201897054128786,
+          "min": 0.0005924696751218854,
+          "max": 6.812717661314567,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "query_centre_speed_m_s": {
+          "count": 1228512,
+          "mean": 0.4420218963275316,
+          "min": 0.00048278210038822737,
+          "max": 7.1862563793558305,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_neighbor_distance_m": {
+          "count": 633599,
+          "mean": 0.2813551495083779,
+          "min": 0.000524418984210823,
+          "max": 0.5999975271828613,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_displacement_m": {
+          "count": 626542,
+          "mean": 0.014720620238458925,
+          "min": 0.0,
+          "max": 1.0784403591997624,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_m": {
+          "count": 626542,
+          "mean": 0.020856070308707928,
+          "min": 2.9720450985068104e-05,
+          "max": 1.0778253067690746,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_same_owner_m": {
+          "count": 624956,
+          "mean": 0.02036893734769942,
+          "min": 2.9720450985068104e-05,
+          "max": 1.0778253067690746,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_static_owner_m": {
+          "count": 608157,
+          "mean": 0.020347004167060354,
+          "min": 2.9720450985068104e-05,
+          "max": 1.0778253067690746,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_speed_m_s": {
+          "count": 626542,
+          "mean": 0.4416186071537679,
+          "min": 0.0,
+          "max": 32.35321077599287,
+          "contributing_steps": 80,
+          "quantiles": "not reconstructed from summaries"
+        }
+      },
+      "fractions": {
+        "invalid_neighbor_slots": {
+          "numerator": 601345,
+          "denominator": 1234944,
+          "fraction": 0.4869411082607794
+        },
+        "invalid_selected_neighbor": {
+          "numerator": 601345,
+          "denominator": 1234944,
+          "fraction": 0.4869411082607794
+        },
+        "reliable_normal_among_valid_neighbors": {
+          "numerator": 396134,
+          "denominator": 633599,
+          "fraction": 0.6252124766611058
+        },
+        "reliable_normal_among_valid_selected_neighbors": {
+          "numerator": 396134,
+          "denominator": 633599,
+          "fraction": 0.6252124766611058
+        },
+        "selected_neighbor_validity_changed_adjacent_frames": {
+          "numerator": 7356,
+          "denominator": 1228512,
+          "fraction": 0.005987731499570212
+        },
+        "selected_owner_changed_adjacent_frames": {
+          "numerator": 1586,
+          "denominator": 626542,
+          "fraction": 0.0025313546418276826
+        }
+      }
+    },
+    {
+      "query_kind": "relation",
+      "alpha_bar_bin": {
+        "index": 0,
+        "lower": 0.0,
+        "upper": 0.1,
+        "upper_inclusive": false,
+        "label": "[0,0.1)"
+      },
+      "steps": 96,
+      "unique_named_windows": 24,
+      "unnamed_steps": 0,
+      "metrics": {
+        "all_returned_neighbor_distance_m": {
+          "count": 355514,
+          "mean": 0.6233794511173266,
+          "min": 0.0009234365291213146,
+          "max": 1.4999988891892324,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "feature_adjacent_frame_l2_difference": {
+          "count": 403392,
+          "mean": 1.1836800448865143,
+          "min": 0.0,
+          "max": 24.58262054656186,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "feature_adjacent_frame_rms_difference": {
+          "count": 403392,
+          "mean": 0.1479600056108143,
+          "min": 0.0,
+          "max": 3.0728275683202324,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_error_m": {
+          "count": 36864,
+          "mean": 0.26986762371138573,
+          "min": 0.0014648806971499784,
+          "max": 1.1340762981089154,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_gt_low_m_s": {
+          "count": 30136,
+          "mean": 0.8572952438647472,
+          "min": 0.0006747467755621584,
+          "max": 11.46846579951195,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_m_s": {
+          "count": 36672,
+          "mean": 0.9548408187838766,
+          "min": 0.0006747467755621584,
+          "max": 11.46846579951195,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_speed_m_s": {
+          "count": 36672,
+          "mean": 1.0727778188292592,
+          "min": 0.011777054372377475,
+          "max": 13.755277536555482,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_error_m": {
+          "count": 405504,
+          "mean": 0.16575620885586342,
+          "min": 0.0002943267430919884,
+          "max": 1.1340762981089154,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_speed_m_s": {
+          "count": 403392,
+          "mean": 0.7021466409060819,
+          "min": 0.004326769870550802,
+          "max": 13.755277536555482,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "query_centre_speed_m_s": {
+          "count": 403392,
+          "mean": 0.6969549990284284,
+          "min": 0.003296615310565545,
+          "max": 13.755277536555482,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_neighbor_distance_m": {
+          "count": 355514,
+          "mean": 0.6233794511173266,
+          "min": 0.0009234365291213146,
+          "max": 1.4999988891892324,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_displacement_m": {
+          "count": 352610,
+          "mean": 0.026641571273818478,
+          "min": 0.0,
+          "max": 2.02858523802838,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_m": {
+          "count": 352610,
+          "mean": 0.04005350026097427,
+          "min": 0.0001442256623516934,
+          "max": 2.0279437819451815,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_same_owner_m": {
+          "count": 351285,
+          "mean": 0.03866773320994304,
+          "min": 0.0001442256623516934,
+          "max": 2.0279437819451815,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_static_owner_m": {
+          "count": 330911,
+          "mean": 0.03847119713388545,
+          "min": 0.0001442256623516934,
+          "max": 2.0279437819451815,
+          "contributing_steps": 89,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_speed_m_s": {
+          "count": 352610,
+          "mean": 0.7992471382145543,
+          "min": 0.0,
+          "max": 60.857557140851405,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        }
+      },
+      "fractions": {
+        "invalid_neighbor_slots": {
+          "numerator": 49990,
+          "denominator": 405504,
+          "fraction": 0.12327868529040405
+        },
+        "invalid_selected_neighbor": {
+          "numerator": 49990,
+          "denominator": 405504,
+          "fraction": 0.12327868529040405
+        },
+        "reliable_normal_among_valid_neighbors": {
+          "numerator": 243396,
+          "denominator": 355514,
+          "fraction": 0.6846312662792464
+        },
+        "reliable_normal_among_valid_selected_neighbors": {
+          "numerator": 243396,
+          "denominator": 355514,
+          "fraction": 0.6846312662792464
+        },
+        "selected_neighbor_validity_changed_adjacent_frames": {
+          "numerator": 2262,
+          "denominator": 403392,
+          "fraction": 0.005607448833888624
+        },
+        "selected_owner_changed_adjacent_frames": {
+          "numerator": 1325,
+          "denominator": 352610,
+          "fraction": 0.0037576926349224354
+        }
+      }
+    },
+    {
+      "query_kind": "relation",
+      "alpha_bar_bin": {
+        "index": 1,
+        "lower": 0.1,
+        "upper": 0.5,
+        "upper_inclusive": false,
+        "label": "[0.1,0.5)"
+      },
+      "steps": 144,
+      "unique_named_windows": 24,
+      "unnamed_steps": 0,
+      "metrics": {
+        "all_returned_neighbor_distance_m": {
+          "count": 537868,
+          "mean": 0.6237192524886959,
+          "min": 0.0009222455085019956,
+          "max": 1.49999919235496,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "feature_adjacent_frame_l2_difference": {
+          "count": 605088,
+          "mean": 1.080194511026381,
+          "min": 0.0,
+          "max": 19.943323832039,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "feature_adjacent_frame_rms_difference": {
+          "count": 605088,
+          "mean": 0.13502431387829764,
+          "min": 0.0,
+          "max": 2.492915479004875,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_error_m": {
+          "count": 55296,
+          "mean": 0.25537982735487263,
+          "min": 0.003330441424524549,
+          "max": 1.1768954036370176,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_gt_low_m_s": {
+          "count": 45204,
+          "mean": 0.9342929971001557,
+          "min": 0.005311094760380556,
+          "max": 10.07058541610588,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_m_s": {
+          "count": 55008,
+          "mean": 1.02647413652362,
+          "min": 0.005311094760380556,
+          "max": 10.07058541610588,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_speed_m_s": {
+          "count": 55008,
+          "mean": 1.1225380830085976,
+          "min": 0.009611148566002987,
+          "max": 10.240661503344448,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_error_m": {
+          "count": 608256,
+          "mean": 0.15551754081080496,
+          "min": 7.449234025521428e-05,
+          "max": 1.1768954036370176,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_speed_m_s": {
+          "count": 605088,
+          "mean": 0.7079718945091009,
+          "min": 0.003201836417395124,
+          "max": 10.240661503344448,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "query_centre_speed_m_s": {
+          "count": 605088,
+          "mean": 0.7061405155990295,
+          "min": 0.002888296356970185,
+          "max": 10.240661503344448,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_neighbor_distance_m": {
+          "count": 537868,
+          "mean": 0.6237192524886959,
+          "min": 0.0009222455085019956,
+          "max": 1.49999919235496,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_displacement_m": {
+          "count": 533466,
+          "mean": 0.026316038482641396,
+          "min": 0.0,
+          "max": 2.02858523802838,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_m": {
+          "count": 533466,
+          "mean": 0.039148496209435,
+          "min": 0.00011019156423694878,
+          "max": 2.0278200688152856,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_same_owner_m": {
+          "count": 531635,
+          "mean": 0.03775046560152895,
+          "min": 0.00011019156423694878,
+          "max": 2.0278200688152856,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_static_owner_m": {
+          "count": 499233,
+          "mean": 0.03745823905576959,
+          "min": 0.00011019156423694878,
+          "max": 2.0278200688152856,
+          "contributing_steps": 142,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_speed_m_s": {
+          "count": 533466,
+          "mean": 0.7894811544792419,
+          "min": 0.0,
+          "max": 60.857557140851405,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        }
+      },
+      "fractions": {
+        "invalid_neighbor_slots": {
+          "numerator": 70388,
+          "denominator": 608256,
+          "fraction": 0.1157210122053872
+        },
+        "invalid_selected_neighbor": {
+          "numerator": 70388,
+          "denominator": 608256,
+          "fraction": 0.1157210122053872
+        },
+        "reliable_normal_among_valid_neighbors": {
+          "numerator": 373755,
+          "denominator": 537868,
+          "fraction": 0.6948823875002789
+        },
+        "reliable_normal_among_valid_selected_neighbors": {
+          "numerator": 373755,
+          "denominator": 537868,
+          "fraction": 0.6948823875002789
+        },
+        "selected_neighbor_validity_changed_adjacent_frames": {
+          "numerator": 3446,
+          "denominator": 605088,
+          "fraction": 0.005695039399227881
+        },
+        "selected_owner_changed_adjacent_frames": {
+          "numerator": 1831,
+          "denominator": 533466,
+          "fraction": 0.0034322712225333947
+        }
+      }
+    },
+    {
+      "query_kind": "relation",
+      "alpha_bar_bin": {
+        "index": 2,
+        "lower": 0.5,
+        "upper": 0.9,
+        "upper_inclusive": false,
+        "label": "[0.5,0.9)"
+      },
+      "steps": 144,
+      "unique_named_windows": 24,
+      "unnamed_steps": 0,
+      "metrics": {
+        "all_returned_neighbor_distance_m": {
+          "count": 540813,
+          "mean": 0.6211556847444922,
+          "min": 0.001013703739750993,
+          "max": 1.4999962456104539,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "feature_adjacent_frame_l2_difference": {
+          "count": 605088,
+          "mean": 0.7583587518910038,
+          "min": 0.0,
+          "max": 16.736513563406135,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "feature_adjacent_frame_rms_difference": {
+          "count": 605088,
+          "mean": 0.09479484398637547,
+          "min": 0.0,
+          "max": 2.092064195425767,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_error_m": {
+          "count": 55296,
+          "mean": 0.22548875575102836,
+          "min": 0.0006432071577132037,
+          "max": 1.1282557473197103,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_gt_low_m_s": {
+          "count": 45204,
+          "mean": 0.7130628253445473,
+          "min": 0.002714098891666561,
+          "max": 7.421918187135462,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_m_s": {
+          "count": 55008,
+          "mean": 0.801603872799235,
+          "min": 0.002714098891666561,
+          "max": 7.421918187135462,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_speed_m_s": {
+          "count": 55008,
+          "mean": 0.8473454304825632,
+          "min": 0.010951524289981661,
+          "max": 8.280910533263272,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_error_m": {
+          "count": 608256,
+          "mean": 0.14022927903389917,
+          "min": 4.5491270787935696e-07,
+          "max": 1.1282557473197103,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_speed_m_s": {
+          "count": 605088,
+          "mean": 0.5539461044685574,
+          "min": 0.0011418107264645398,
+          "max": 8.424148316175215,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "query_centre_speed_m_s": {
+          "count": 605088,
+          "mean": 0.5538055196106897,
+          "min": 0.0011418107264645398,
+          "max": 8.424148316175215,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_neighbor_distance_m": {
+          "count": 540813,
+          "mean": 0.6211556847444922,
+          "min": 0.001013703739750993,
+          "max": 1.4999962456104539,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_displacement_m": {
+          "count": 536561,
+          "mean": 0.0212892832632651,
+          "min": 0.0,
+          "max": 2.02858523802838,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_m": {
+          "count": 536561,
+          "mean": 0.031898943361679775,
+          "min": 6.959353588738182e-05,
+          "max": 2.0269299373387986,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_same_owner_m": {
+          "count": 534717,
+          "mean": 0.0305540578792091,
+          "min": 6.959353588738182e-05,
+          "max": 2.0269299373387986,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_static_owner_m": {
+          "count": 500790,
+          "mean": 0.02984322659504739,
+          "min": 6.959353588738182e-05,
+          "max": 2.0269299373387986,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_speed_m_s": {
+          "count": 536561,
+          "mean": 0.6386784978979532,
+          "min": 0.0,
+          "max": 60.857557140851405,
+          "contributing_steps": 144,
+          "quantiles": "not reconstructed from summaries"
+        }
+      },
+      "fractions": {
+        "invalid_neighbor_slots": {
+          "numerator": 67443,
+          "denominator": 608256,
+          "fraction": 0.11087930082070707
+        },
+        "invalid_selected_neighbor": {
+          "numerator": 67443,
+          "denominator": 608256,
+          "fraction": 0.11087930082070707
+        },
+        "reliable_normal_among_valid_neighbors": {
+          "numerator": 379614,
+          "denominator": 540813,
+          "fraction": 0.7019320911294662
+        },
+        "reliable_normal_among_valid_selected_neighbors": {
+          "numerator": 379614,
+          "denominator": 540813,
+          "fraction": 0.7019320911294662
+        },
+        "selected_neighbor_validity_changed_adjacent_frames": {
+          "numerator": 3119,
+          "denominator": 605088,
+          "fraction": 0.005154622137606431
+        },
+        "selected_owner_changed_adjacent_frames": {
+          "numerator": 1844,
+          "denominator": 536561,
+          "fraction": 0.003436701512036842
+        }
+      }
+    },
+    {
+      "query_kind": "relation",
+      "alpha_bar_bin": {
+        "index": 3,
+        "lower": 0.9,
+        "upper": 1.0,
+        "upper_inclusive": true,
+        "label": "[0.9,1]"
+      },
+      "steps": 96,
+      "unique_named_windows": 24,
+      "unnamed_steps": 0,
+      "metrics": {
+        "all_returned_neighbor_distance_m": {
+          "count": 361082,
+          "mean": 0.6182840885087285,
+          "min": 0.0009722684170607335,
+          "max": 1.4999987025548154,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "feature_adjacent_frame_l2_difference": {
+          "count": 403392,
+          "mean": 0.5400612066636707,
+          "min": 0.0,
+          "max": 14.099586160466169,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "feature_adjacent_frame_rms_difference": {
+          "count": 403392,
+          "mean": 0.06750765083295884,
+          "min": 0.0,
+          "max": 1.762448270058271,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_error_m": {
+          "count": 36864,
+          "mean": 0.20031398376078935,
+          "min": 0.0004568304482834935,
+          "max": 1.09407631121164,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_gt_low_m_s": {
+          "count": 30136,
+          "mean": 0.4013743912857105,
+          "min": 0.001585301316436937,
+          "max": 6.649411889380426,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_horizontal_speed_m_s": {
+          "count": 36672,
+          "mean": 0.5100284295826117,
+          "min": 0.001585301316436937,
+          "max": 6.649411889380426,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_foot_speed_m_s": {
+          "count": 36672,
+          "mean": 0.5361615462335777,
+          "min": 0.0029796699882036603,
+          "max": 6.743269664849805,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_error_m": {
+          "count": 405504,
+          "mean": 0.13061616804069137,
+          "min": 1.0030651105818346e-07,
+          "max": 1.09407631121164,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "proposal_joint_speed_m_s": {
+          "count": 403392,
+          "mean": 0.4201897054128786,
+          "min": 0.0005924696751218854,
+          "max": 6.812717661314567,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "query_centre_speed_m_s": {
+          "count": 403392,
+          "mean": 0.42018739237219443,
+          "min": 0.0005924696751218854,
+          "max": 6.812717661314567,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_neighbor_distance_m": {
+          "count": 361082,
+          "mean": 0.6182840885087285,
+          "min": 0.0009722684170607335,
+          "max": 1.4999987025548154,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_displacement_m": {
+          "count": 358425,
+          "mean": 0.01730046440468872,
+          "min": 0.0,
+          "max": 2.02858523802838,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_m": {
+          "count": 358425,
+          "mean": 0.026137821197999067,
+          "min": 2.1209404349250154e-05,
+          "max": 2.0279821870664128,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_same_owner_m": {
+          "count": 357252,
+          "mean": 0.024890500686536296,
+          "min": 2.1209404349250154e-05,
+          "max": 2.0279821870664128,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_minus_centre_displacement_static_owner_m": {
+          "count": 334808,
+          "mean": 0.023930511281671573,
+          "min": 2.1209404349250154e-05,
+          "max": 2.0279821870664128,
+          "contributing_steps": 90,
+          "quantiles": "not reconstructed from summaries"
+        },
+        "selected_point_speed_m_s": {
+          "count": 358425,
+          "mean": 0.5190139321406614,
+          "min": 0.0,
+          "max": 60.857557140851405,
+          "contributing_steps": 96,
+          "quantiles": "not reconstructed from summaries"
+        }
+      },
+      "fractions": {
+        "invalid_neighbor_slots": {
+          "numerator": 44422,
+          "denominator": 405504,
+          "fraction": 0.10954762468434344
+        },
+        "invalid_selected_neighbor": {
+          "numerator": 44422,
+          "denominator": 405504,
+          "fraction": 0.10954762468434344
+        },
+        "reliable_normal_among_valid_neighbors": {
+          "numerator": 254974,
+          "denominator": 361082,
+          "fraction": 0.7061387718025268
+        },
+        "reliable_normal_among_valid_selected_neighbors": {
+          "numerator": 254974,
+          "denominator": 361082,
+          "fraction": 0.7061387718025268
+        },
+        "selected_neighbor_validity_changed_adjacent_frames": {
+          "numerator": 1717,
+          "denominator": 403392,
+          "fraction": 0.0042564056798349995
+        },
+        "selected_owner_changed_adjacent_frames": {
+          "numerator": 1173,
+          "denominator": 358425,
+          "fraction": 0.003272651182255702
+        }
+      }
+    }
+  ],
+  "interpretation": "Opportunity-weighted descriptive means; DDIM steps are correlated, not independent training/window replicates. Quantiles and confidence intervals are not pooled."
+}
