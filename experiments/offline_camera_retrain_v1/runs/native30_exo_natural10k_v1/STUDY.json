@@ -1,7 +1,7 @@
 {
   "protocol": "native30-exo-natural-longrun-v1",
   "created_at": "2026-10-20T00:32:38.915682+08:00",
-  "status": "preparing_not_started",
+  "status": "background_preflight_then_fresh10k_launched",
   "authorization": "User: 重新另训一个10k; best by validation; train and validation proportions match their real split sizes; validation windows around100 and can rotate.",
   "training": {
     "fresh": true,
@@ -78,5 +78,16 @@
     "E_available_GiB_approx": 112,
     "host_gpu": "RTX5090Dv2 24455MiB,889MiB used,1% utilization (read-only host admission check)"
   },
-  "training_started": false
+  "training_started": false,
+  "launched_at": "2026-10-20T01:00:34.432811+08:00",
+  "optimizer_updates_as_of_record": 0,
+  "configuration_sha256": "ad14c0aac18db1292043c83dfe10bbd90bf1a7c18a6b9de4ef6c8339c23a7789",
+  "effective_configuration_sha256": "e93675e8ef673299d457912027771166c3530d80a8b14521fac356bb80d1711d",
+  "runtime_source_files": 114,
+  "data_fingerprints": 1032,
+  "launch": "LAUNCH.json",
+  "mutable_status": "STATUS.json",
+  "supervisor_status": "JOB.json",
+  "source_preflight": "prepared/SOURCE_REVALIDATION.json",
+  "postprocessing": "After completed10k: strict independent CPU best reconstruction, then fixed saved-array temporal audit; no automatic TEST or promotion."
 }

@@ -1,11 +1,11 @@
 {
-  "checked_at": "2026-10-20T00:54:39.083210+08:00",
+  "checked_at": "2026-10-20T01:02:10.386681+08:00",
   "status": "passed",
   "CPU_only": true,
   "CUDA_initialized": false,
-  "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -m unittest experiments.offline_camera_retrain_v1.ops.test_window_sampling experiments.offline_camera_retrain_v1.ops.test_exo_longrun_panel experiments.offline_camera_retrain_v1.ops.test_exo_longrun -q",
+  "command": "/home/wenxin/miniconda3/envs/scenemi/bin/python -m unittest experiments.offline_camera_retrain_v1.ops.test_window_sampling experiments.offline_camera_retrain_v1.ops.test_exo_longrun_panel experiments.offline_camera_retrain_v1.ops.test_exo_longrun -q experiments.offline_camera_retrain_v1.ops.test_exo_longrun_report",
   "cwd": "/home/wenxin/projects/SceneMI",
-  "tests_run": 27,
+  "tests_run": 33,
   "failures": 0,
   "errors": 0,
   "sources_sha256": {
@@ -14,7 +14,9 @@
     "exo_longrun.py": "1e5b7f6303c517df5080c8d0473e777df1892764123091d4b38f3c451b7d3dfa",
     "test_window_sampling.py": "9f642806384024bac0d73f22ce053e40ee2c054ff81dff38066538a7b835789c",
     "test_exo_longrun_panel.py": "1becaf0bdd9407c8cdb6888a6f5534ae7e2c93611921c79bf81afcd0cb314dd7",
-    "test_exo_longrun.py": "20ff3b346a750df7f134f471ead27fed225fdb6435c61f9a0a6b0b23bc1ffb84"
+    "test_exo_longrun.py": "20ff3b346a750df7f134f471ead27fed225fdb6435c61f9a0a6b0b23bc1ffb84",
+    "exo_longrun_report.py": "eed48e1b54e71f50bc5d627feaff0dcd14ff05bbb54f916e654d983d8c1bd22f",
+    "test_exo_longrun_report.py": "f6066ff51d083221bcff081e22ea488cac504c51aa771c506ca09e7eb8fd128e"
   },
-  "scope": "Natural sampling, exact RNG resume/isolation, panel identity/scoring, standalone checkpoint reconstruction, Adam resume, immutable full checkpoint pinning and best-record crash recovery. Actual GPU forward/backward and initial fixed-panel evaluation run next."
+  "scope": "Natural sampling, exact RNG resume/isolation, panel identity/scoring, standalone checkpoint reconstruction, Adam resume, immutable full checkpoint pinning and best-record crash recovery. Actual GPU forward/backward and initial fixed-panel evaluation run next. Six independent saved-array CPU report tests also passed."
 }

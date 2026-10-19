@@ -1,0 +1,41 @@
+{
+  "status": "running",
+  "supervisor_pid": 178157,
+  "started_at": "2026-10-20T01:00:34.450998+08:00",
+  "planned_stage_updates": 10000,
+  "automatic_retry": false,
+  "TEST_used": false,
+  "source_commit": "5168e5628b6e4da47682c1680820ea3ec27538ff",
+  "commands": {
+    "training": [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+      "run",
+      "--prepared",
+      "--run",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+    ],
+    "CPU_verify": [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+      "verify",
+      "--run",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+    ],
+    "CPU_temporal_report": [
+      "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+      "-u",
+      "-m",
+      "experiments.offline_camera_retrain_v1.ops.exo_longrun_report",
+      "--run",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+    ]
+  },
+  "phase": "training",
+  "child_pid": 178158,
+  "phase_started_at": "2026-10-20T01:00:34.454746+08:00"
+}

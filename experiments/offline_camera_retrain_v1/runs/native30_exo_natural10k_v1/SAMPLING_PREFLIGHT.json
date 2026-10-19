@@ -1,0 +1,426 @@
+{
+  "protocol": "natural-window-sampling-CPU-preflight-v1",
+  "status": "passed",
+  "checked_at": "2026-10-20T00:45:51.232079+08:00",
+  "scope": "CPU row-identity simulation only, not model training or DDIM inference; no GPU, no optimizer updates",
+  "GPU_used": false,
+  "optimizer_updates": 0,
+  "model_loaded": false,
+  "run": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1",
+  "config_sha256": "ad14c0aac18db1292043c83dfe10bbd90bf1a7c18a6b9de4ef6c8339c23a7789",
+  "seed": 2026102001,
+  "sampler_seed": 2026102372,
+  "batch_size": 8,
+  "planned_updates": 10000,
+  "planned_presentations": 80000,
+  "source": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/window_sampling.py",
+    "sha256": "fc76d6420167ecb675242f30bf4bf9b084c25490f8645d53d578180fb37cdd1e"
+  },
+  "window_index": {
+    "path": "/mnt/e/Projects/SceneMI/cache/native30_official_windows64_v1/dataset.json",
+    "sha256": "6ca16b858d5e1f1aa028094a18651ce74f0fe426434b1e90d4f20bdb84836e01",
+    "files": {
+      "ego": {
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_windows64_v1/train_ego.npy",
+        "sha256": "e42ba759713397417142a9c5c347af7dfcbe4cf135fc8f915030602067c94dbc",
+        "windows": 18096
+      },
+      "exo": {
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_windows64_v1/train_exo.npy",
+        "sha256": "b5dd595be2021537ad8cb0ab7a3c7359cc2847449e6903891a0f2702ae8144d1",
+        "windows": 15319
+      }
+    }
+  },
+  "train_manifest": {
+    "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/manifest.jsonl",
+    "sha256": "0ad36607e705a6480368486e98d3b5dd4de69f2ec916a45b73f2f0d9f2c9c9cc"
+  },
+  "source_metadata_and_input_validity": {
+    "files": 861,
+    "identity_sha256": "eb0fe28842020d4df676a897c0bcea6a408e921c8ae1d4128b7a88ff88bd97bf"
+  },
+  "population_reconstruction": "Native30Data manifest member order and raw observation_valid grid; EXO starts read from the verified persisted index. No scene/GT value is used for selection.",
+  "sampling_plan": [
+    {
+      "group": "camera_wearer",
+      "mode": "exo",
+      "probability": 0.10842744304458515
+    },
+    {
+      "group": "interactee",
+      "mode": "exo",
+      "probability": 0.10842744304458515
+    },
+    {
+      "group": "rich",
+      "mode": "exo",
+      "probability": 0.025719694497029832
+    },
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "probability": 0.7574254194137998
+    }
+  ],
+  "sampling_fingerprint": "7a4bca0fa323f86368447526c6e597be1f6cc13c4d8ac38875b3ec845ff436ea",
+  "prepared_effective_fingerprint_match": true,
+  "draw_digest": {
+    "sha256": "40298d9c10411c4e97aa5f49ed33d7ce41217bf2471334d352073af319beed04",
+    "encoding": "Each exact draw() row JSON with sorted keys, separators comma/colon, UTF-8 plus newline, in draw order",
+    "cycles": [
+      {
+        "cycle_index": 0,
+        "draws": 15319,
+        "complete": true,
+        "sha256": "dbad2d9b331de5b07362fad0e1163e68f4111c94f6144dedc6f806afad3b68d3"
+      },
+      {
+        "cycle_index": 1,
+        "draws": 15319,
+        "complete": true,
+        "sha256": "77df74fb403f934c8629af2c32cc0d19870abeeb07c0f891534e6347da66c7db"
+      },
+      {
+        "cycle_index": 2,
+        "draws": 15319,
+        "complete": true,
+        "sha256": "77b1e7810d09aaeac9efb09ee1c4dd2195499474ebc9f575bce4aa4eae138d23"
+      },
+      {
+        "cycle_index": 3,
+        "draws": 15319,
+        "complete": true,
+        "sha256": "e176fcf4e16169d20de340835e2fa77ccac1f9fb7be7d714ecd473b21051cdf4"
+      },
+      {
+        "cycle_index": 4,
+        "draws": 15319,
+        "complete": true,
+        "sha256": "71eb404fa6039a183f78303c0930cba92f318280c2d0095a49bfa689c8753fd4"
+      },
+      {
+        "cycle_index": 5,
+        "draws": 3405,
+        "complete": false,
+        "sha256": "2e1b5d356f86362c73df653d7a99be1729f217e665020abcd0bef798155ee11c"
+      }
+    ]
+  },
+  "first_batch": [
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "member": 420,
+      "start": 448,
+      "recording_key": "trumans/2023-02-18@21-10-22",
+      "cooldown_fallback": null,
+      "overlap_fallback": null
+    },
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "member": 203,
+      "start": 192,
+      "recording_key": "trumans/2023-02-12@20-52-34",
+      "cooldown_fallback": null,
+      "overlap_fallback": null
+    },
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "member": 126,
+      "start": 1344,
+      "recording_key": "trumans/2023-02-11@19-50-11",
+      "cooldown_fallback": null,
+      "overlap_fallback": null
+    },
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "member": 38,
+      "start": 1216,
+      "recording_key": "trumans/2023-01-15@18-38-35",
+      "cooldown_fallback": null,
+      "overlap_fallback": null
+    },
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "member": 213,
+      "start": 1920,
+      "recording_key": "trumans/2023-02-12@21-36-00",
+      "cooldown_fallback": null,
+      "overlap_fallback": null
+    },
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "member": 84,
+      "start": 448,
+      "recording_key": "trumans/2023-01-17@00-43-57",
+      "cooldown_fallback": null,
+      "overlap_fallback": null
+    },
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "member": 462,
+      "start": 1024,
+      "recording_key": "trumans/2023-02-20@21-28-40",
+      "cooldown_fallback": null,
+      "overlap_fallback": null
+    },
+    {
+      "group": "trumans",
+      "mode": "exo",
+      "member": 105,
+      "start": 2304,
+      "recording_key": "trumans/2023-02-09@14-28-09",
+      "cooldown_fallback": null,
+      "overlap_fallback": null
+    }
+  ],
+  "first_complete_epoch_at_update": 1915,
+  "coverage_at_update_1915": {
+    "protocol": "natural-global-train-windows-v1",
+    "fingerprint": "7a4bca0fa323f86368447526c6e597be1f6cc13c4d8ac38875b3ec845ff436ea",
+    "population_windows": 15319,
+    "draws": 15320,
+    "cycle_index": 1,
+    "cursor": 1,
+    "completed_cycles": 1,
+    "unique_windows_seen": 15319,
+    "repeated_presentations": 1,
+    "min_presentations_per_window": 1,
+    "max_presentations_per_window": 2,
+    "recording_cooldown_applied": false,
+    "temporal_overlap_avoidance_applied": false,
+    "physical_recordings": 591,
+    "groups": {
+      "camera_wearer": {
+        "eligible_windows": 1661,
+        "total_draws": 1661,
+        "unique_windows_seen": 1661,
+        "current_cycle_windows_seen": 0,
+        "eligible_recordings": 65,
+        "recordings_seen": 65,
+        "natural_probability": 0.10842744304458515,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 0
+      },
+      "interactee": {
+        "eligible_windows": 1661,
+        "total_draws": 1661,
+        "unique_windows_seen": 1661,
+        "current_cycle_windows_seen": 0,
+        "eligible_recordings": 65,
+        "recordings_seen": 65,
+        "natural_probability": 0.10842744304458515,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 0
+      },
+      "rich": {
+        "eligible_windows": 394,
+        "total_draws": 394,
+        "unique_windows_seen": 394,
+        "current_cycle_windows_seen": 0,
+        "eligible_recordings": 62,
+        "recordings_seen": 62,
+        "natural_probability": 0.025719694497029832,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 0
+      },
+      "trumans": {
+        "eligible_windows": 11603,
+        "total_draws": 11604,
+        "unique_windows_seen": 11603,
+        "current_cycle_windows_seen": 1,
+        "eligible_recordings": 464,
+        "recordings_seen": 464,
+        "natural_probability": 0.7574254194137998,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 1
+      }
+    }
+  },
+  "final_coverage": {
+    "protocol": "natural-global-train-windows-v1",
+    "fingerprint": "7a4bca0fa323f86368447526c6e597be1f6cc13c4d8ac38875b3ec845ff436ea",
+    "population_windows": 15319,
+    "draws": 80000,
+    "cycle_index": 5,
+    "cursor": 3405,
+    "completed_cycles": 5,
+    "unique_windows_seen": 15319,
+    "repeated_presentations": 64681,
+    "min_presentations_per_window": 5,
+    "max_presentations_per_window": 6,
+    "recording_cooldown_applied": false,
+    "temporal_overlap_avoidance_applied": false,
+    "physical_recordings": 591,
+    "groups": {
+      "camera_wearer": {
+        "eligible_windows": 1661,
+        "total_draws": 8664,
+        "unique_windows_seen": 1661,
+        "current_cycle_windows_seen": 359,
+        "eligible_recordings": 65,
+        "recordings_seen": 65,
+        "natural_probability": 0.10842744304458515,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 7003
+      },
+      "interactee": {
+        "eligible_windows": 1661,
+        "total_draws": 8675,
+        "unique_windows_seen": 1661,
+        "current_cycle_windows_seen": 370,
+        "eligible_recordings": 65,
+        "recordings_seen": 65,
+        "natural_probability": 0.10842744304458515,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 7014
+      },
+      "rich": {
+        "eligible_windows": 394,
+        "total_draws": 2056,
+        "unique_windows_seen": 394,
+        "current_cycle_windows_seen": 86,
+        "eligible_recordings": 62,
+        "recordings_seen": 62,
+        "natural_probability": 0.025719694497029832,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 1662
+      },
+      "trumans": {
+        "eligible_windows": 11603,
+        "total_draws": 60605,
+        "unique_windows_seen": 11603,
+        "current_cycle_windows_seen": 2590,
+        "eligible_recordings": 464,
+        "recordings_seen": 464,
+        "natural_probability": 0.7574254194137998,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 49002
+      }
+    }
+  },
+  "resume": {
+    "exact": true,
+    "checkpoint_at_draw": 30138,
+    "replayed_draws": 1000,
+    "crosses_epoch_boundary": true,
+    "replayed_rows_sha256": "1f3a1841a49b8da2b334730445ee8ff65c4ed604d10700736a6577fd8a7874a0"
+  },
+  "caveats": [
+    "Natural proportions apply to eligible stride64 TRAIN EXO windows, not raw recording counts or all original frames.",
+    "No physical recording cooldown or temporal non-overlap enforcement; adjacent legal windows can overlap.",
+    "Repeated window presentations receive separate training noise/augmentation when actual training executes."
+  ],
+  "engine_integration_review": {
+    "status": "passed_CPU_integration",
+    "engine_source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/exo_longrun.py",
+    "engine_sha256": "1e5b7f6303c517df5080c8d0473e777df1892764123091d4b38f3c451b7d3dfa",
+    "explicit_source_files": 114,
+    "explicit_sources_identity_sha256": "c832ae59704eab27faf248b1ed38094ea14bd14972fb7c36a574b68c009c0020",
+    "source_files_present": true,
+    "dynamic_cache_and_checkpoint_imports": {
+      "experiments.offline_camera_retrain_v1.native30_support_cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_support_cache.py",
+      "experiments.offline_camera_retrain_v1.native30_surface_cache": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_surface_cache.py",
+      "experiments.offline_camera_retrain_v1.native30_cache_io": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_cache_io.py",
+      "experiments.offline_camera_retrain_v1.native30_query_runtime": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_query_runtime.py",
+      "experiments.offline_camera_retrain_v1.checkpoint_io": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/checkpoint_io.py"
+    },
+    "CLI_training_scope_uses_natural_sampler": true,
+    "preparation_and_training_use_same_natural_plan": true,
+    "original_Native30Data_restore_uses_patched_sampler": true,
+    "scope_bindings_restore_on_exit": true,
+    "engine_all_CPU_RNG_streams_1000_draw_resume_exact": true,
+    "validation_preserves_training_CPU_RNG_exact": true,
+    "checkpoint_boundary_cross_checks": "Reviewed counts and natural sampler draws/fingerprint equal step*BATCH in strict checkpoint metadata validation",
+    "CUDA_initialized": false,
+    "limitations": [
+      "Full GPU model/backward/baseline preflight is performed separately; not certified by this CPU sampler record.",
+      "Cache modules import successfully; this does not claim every derived support/surface cache file is populated or CRC checked."
+    ]
+  },
+  "updated_at": "2026-10-20T00:58:50.204530+08:00",
+  "prepared_effective_sha256": "e93675e8ef673299d457912027771166c3530d80a8b14521fac356bb80d1711d",
+  "prepared_integrity_checks": {
+    "sampling_fingerprint": true,
+    "natural_plan": true,
+    "config": true,
+    "panels": true,
+    "prepared_validation_plan": true,
+    "sampler_source": true,
+    "engine_source": true,
+    "all_sealed_sources": true
+  },
+  "prepared_initial_sampling_coverage": {
+    "protocol": "natural-global-train-windows-v1",
+    "fingerprint": "7a4bca0fa323f86368447526c6e597be1f6cc13c4d8ac38875b3ec845ff436ea",
+    "population_windows": 15319,
+    "draws": 0,
+    "cycle_index": 0,
+    "cursor": 0,
+    "completed_cycles": 0,
+    "unique_windows_seen": 0,
+    "repeated_presentations": 0,
+    "min_presentations_per_window": 0,
+    "max_presentations_per_window": 0,
+    "recording_cooldown_applied": false,
+    "temporal_overlap_avoidance_applied": false,
+    "physical_recordings": 591,
+    "groups": {
+      "camera_wearer": {
+        "eligible_windows": 1661,
+        "total_draws": 0,
+        "unique_windows_seen": 0,
+        "current_cycle_windows_seen": 0,
+        "eligible_recordings": 65,
+        "recordings_seen": 0,
+        "natural_probability": 0.10842744304458515,
+        "window_coverage_fraction": 0.0,
+        "repeated_presentations": 0
+      },
+      "interactee": {
+        "eligible_windows": 1661,
+        "total_draws": 0,
+        "unique_windows_seen": 0,
+        "current_cycle_windows_seen": 0,
+        "eligible_recordings": 65,
+        "recordings_seen": 0,
+        "natural_probability": 0.10842744304458515,
+        "window_coverage_fraction": 0.0,
+        "repeated_presentations": 0
+      },
+      "rich": {
+        "eligible_windows": 394,
+        "total_draws": 0,
+        "unique_windows_seen": 0,
+        "current_cycle_windows_seen": 0,
+        "eligible_recordings": 62,
+        "recordings_seen": 0,
+        "natural_probability": 0.025719694497029832,
+        "window_coverage_fraction": 0.0,
+        "repeated_presentations": 0
+      },
+      "trumans": {
+        "eligible_windows": 11603,
+        "total_draws": 0,
+        "unique_windows_seen": 0,
+        "current_cycle_windows_seen": 0,
+        "eligible_recordings": 464,
+        "recordings_seen": 0,
+        "natural_probability": 0.7574254194137998,
+        "window_coverage_fraction": 0.0,
+        "repeated_presentations": 0
+      }
+    }
+  },
+  "prepared_sources_count": 114,
+  "prepared_data_fingerprints_count": 1032,
+  "engine_commit": "5168e56"
+}
