@@ -1,18 +1,56 @@
 {
   "protocol": "native30-frozen-control-temporal-exo-v1",
-  "status": "training",
-  "updated_at": "2026-10-19T14:40:40.222353+08:00",
-  "pid": 95568,
+  "status": "completed",
+  "updated_at": "2026-10-19T16:01:19.004039+08:00",
+  "pid": 98084,
   "automatic_extension": false,
   "TEST_used": false,
   "ancestor_step": 41000,
   "reference_policy": "exo-local-so3-reference-gap-fill-v1",
   "analytical_physics_enabled": false,
+  "completed_stage_updates": 1000,
   "parent_step": 3000,
-  "planned_stage_updates": 1000,
-  "completed_stage_updates": 25,
-  "last_loss": 0.8149514198303223,
-  "gradient_norm": 0.30395251512527466,
-  "elapsed_s": 124.76916689200152,
-  "resume": false
+  "acceptance": "failed",
+  "EGO_serialized_outputs_exact": true,
+  "frozen_base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+  "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_control_temporal_v1/training/last.pt",
+  "full_resumable_checkpoint": true,
+  "legacy_control_acceptance": "pass",
+  "acceptance_authority": "USABILITY_REVIEW.json:usability",
+  "acceptance_scope": "Preregistered equal-recording hidden improvement versus BOTH input reference and control; original ACCEPTANCE.json remains the legacy control-only audit.",
+  "reviewed_at": "2026-10-19T08:25:57.517948+00:00",
+  "usability_report_sha256": "0bc0391c823def46bb8a1f06fcb836b2656d8b388d7d2405bd4b446a51a54da8",
+  "final_checkpoint_sha256": "b10b1ebcffa3c7089037d8df95f23e0a9ba0bdb8d52bc23aa0d36c66b7e98ee3",
+  "candidate_retention": "Full resumable candidate and paired arrays retained for active qualitative review; not promoted, no added training.",
+  "failed_gate": [
+    {
+      "regime": "clean",
+      "comparator": "input_reference",
+      "baseline_hidden_mm": 83.19542013671129,
+      "final_hidden_mm": 79.74573803145466,
+      "passed": false
+    }
+  ],
+  "training_summary": {
+    "updates": 1000,
+    "windows": 8000,
+    "elapsed_s": 3539.2281681869936,
+    "loss_means_per100": [
+      0.6517129644751549,
+      0.4075400285422802,
+      0.3911721962690353,
+      0.3781581871211529,
+      0.3630546323955059,
+      0.36151234060525894,
+      0.3483874046802521,
+      0.346983508169651,
+      0.35709160938858986,
+      0.3633781509101391
+    ],
+    "nonfinite_updates": 0,
+    "trend_interpretation": "Early decrease, later plateau; only baseline/final validation, no convergence claim.",
+    "raw_trace_bytes": 53668583,
+    "raw_trace_sha256": "b483edf5b20cb8abbb7f066eebf8a0b497a099f5cdd746c56c41e190b6624fb9",
+    "raw_trace_retention": "Full trace remains local; compact summaries and audited final metrics backed up."
+  }
 }
