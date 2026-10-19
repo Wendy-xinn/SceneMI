@@ -1,0 +1,82 @@
+{
+  "protocol": "native30-exo-natural-longrun-v1",
+  "created_at": "2026-10-20T00:32:38.915682+08:00",
+  "status": "preparing_not_started",
+  "authorization": "User: 重新另训一个10k; best by validation; train and validation proportions match their real split sizes; validation windows around100 and can rotate.",
+  "training": {
+    "fresh": true,
+    "parent": "selected immutable original41k+3000 control",
+    "old_1000_adapter_loaded": false,
+    "frozen_original_generator": true,
+    "EGO_structural_adapter_bypass": true,
+    "updates": 10000,
+    "batch_size": 8,
+    "window_presentations": 80000,
+    "epochs_approx": 5.222272994320778,
+    "seed": 2026102001,
+    "lr_max": 0.0001,
+    "warmup_updates": 200,
+    "cosine_horizon_updates": 10000,
+    "lr_floor_fraction": 0.2,
+    "physical_guidance": false,
+    "learned_scene_paths": true,
+    "scene_dropout_probability": 0.1,
+    "other_objective_observation_and_body_settings": "Inherited unchanged; TRAIN-only calibration pinned in config."
+  },
+  "sampling": {
+    "basis": "Eligible native30 EXO windows at192frames/stride64; not raw archives, bytes, recordings or GT performance.",
+    "split_window_counts": {
+      "train": {
+        "trumans": 11603,
+        "camera_wearer": 1661,
+        "interactee": 1661,
+        "rich": 394
+      },
+      "validation": {
+        "trumans": 709,
+        "camera_wearer": 410,
+        "interactee": 410,
+        "rich": 206
+      }
+    },
+    "training_policy": "One global random permutation per full eligible-window cycle; no replacement within a cycle. Five full cycles plus a partial cycle in80k presentations.",
+    "augmentation": "Original yaw, smooth observation noise/missingness and diffusion noise/timestep augmentations retained.",
+    "validation_policy": "VAL derives proportions from its own eligible windows; do not copy TRAIN quota."
+  },
+  "validation": {
+    "fixed_exo_windows": 100,
+    "rotating_exo_windows_per_milestone": 100,
+    "milestones": [
+      2000,
+      4000,
+      6000,
+      8000,
+      10000
+    ],
+    "regimes": [
+      "clean",
+      "noisy"
+    ],
+    "EGO_anchors": "Separate fixed head-only retention probes, excluded from EXO best score.",
+    "selection_metric": "For each regime: per-corpus mean of fixed-window hidden-joint MPJPE, weighted by exact natural VAL eligible corpus-window fractions; then equally average clean/noisy. Report all valid-window/joint counts.",
+    "dataset_diagnostics": "Report each corpus separately and equal-corpus macro alongside natural-window score; visible/hidden, velocity/acceleration, arm rotational timing and foot proxies.",
+    "checkpoint_comparability": "Fixed windows, observations, noise and DDIM seeds identical for all candidates. Rotating windows are monitoring only.",
+    "TEST_used_for_selection": false,
+    "interpretation": "Best available VAL checkpoint is not automatically scientifically accepted. Preserve old strict failure records; wider full evaluation and scene ablation still required.",
+    "coverage_disclosure": "Corpus quotas follow natural eligible-window population sizes. Within-corpus recording spread is deliberate; this development subset is not an unbiased estimator of all VAL windows.",
+    "wrist_probe": "Extra fixed old EgoBody recording_20220215_S21_S22_01_interactee_1901-4901_master_full,start1984,seed1568365135 when legal; excluded from selection."
+  },
+  "storage": {
+    "last": "Every100 updates and boundary interruption, atomic complete model+Adam+sampler+allRNG state.",
+    "milestones": "Complete2k/4k/6k/8k/10k checkpoints.",
+    "best": "Full checkpoint with fixed-validation score and identity pointer; hardlink if identical to a milestone.",
+    "official_models": "Original41k/55k/control and old1k useful candidate retained."
+  },
+  "resource_before": {
+    "root_available_GiB_approx": 104,
+    "D_available_GiB_approx": 524,
+    "E_available_GiB_approx": 112,
+    "host_gpu": "RTX5090Dv2 24455MiB,889MiB used,1% utilization (read-only host admission check)"
+  },
+  "training_started": false
+}
