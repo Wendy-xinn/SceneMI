@@ -65,7 +65,18 @@
     "warmup_updates": 50,
     "throughput_evidence": "throughput/BENCHMARK.json",
     "zero_update_retry": "attempts/zero_update_case_collision_v1/FAILURE.json",
-    "retry_change": "Only remove duplicate output case field when installing runtime validation panel; sealed declared cases/windows/seeds unchanged."
+    "retry_change": "Only remove duplicate output case field when installing runtime validation panel; sealed declared cases/windows/seeds unchanged.",
+    "launch_evidence": {
+      "first_resumable_checkpoint_step": 1,
+      "checkpoint_bytes": 519798643,
+      "required_resume_state_present": true,
+      "adapter_changed": true,
+      "base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+      "source_and_gradient_preflight": "prepared/input_checks.json",
+      "independent_baseline_pairing": "BASELINE_PAIRING_CHECK.json",
+      "actual_latest_trace_step": 21,
+      "baseline_comparisons_exact": 256
+    }
   },
   "resource_before": {
     "disk_bytes": {
@@ -88,6 +99,17 @@
     "gpu": "24GiB RTX5090Dv2 idle at launch inventory",
     "available_host_RAM_GiB_approx": 20
   },
-  "phase": "preflight_and_baseline_validation",
-  "updated_at": "2026-10-19T06:23:21.424224+00:00"
+  "phase": "training",
+  "updated_at": "2026-10-19T06:40:28.114596+00:00",
+  "resource_after_launch": {
+    "/": {
+      "free_bytes": 111340089344
+    },
+    "/mnt/d": {
+      "free_bytes": 562365132800
+    },
+    "/mnt/e": {
+      "free_bytes": 120168906752
+    }
+  }
 }
