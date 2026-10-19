@@ -274,16 +274,25 @@ def engine_context(config):
         _ORIGINAL.update(factory=trial.make_adapter_model, plan=prepare.training_plan,
                          payload=trial.checkpoint_payload)
         original_factory = prepare.make_model
+        original_install_panel = adapt.install_fixed_panel
         def no_physics_factory(value):
             model = original_factory(value)
             model.guidance_enabled = False
             return model
+        def indexed_runtime_panel(panel):
+            # The native validator assigns its own contiguous case index when
+            # writing rows. Keep manifest indices in the sealed declaration,
+            # but avoid passing that output-only field twice to dict(case=i,
+            # **entry). All window/input/seed fields are preserved exactly.
+            runtime = [{key:value for key,value in entry.items() if key != "case"} for entry in panel]
+            return original_install_panel(runtime)
         for name, value in dict(PROTOCOL=PROTOCOL, STEPS=config["adaptation"]["updates"], MODULE=MODULE,
             configured=configured, validate_stage_config=validate_stage_config, load_parent=load_parent,
             make_adapter_model=make_adapter_model, checkpoint_payload=checkpoint_payload, status=status).items():
             patch(trial, name, value)
         patch(prepare, "training_plan", training_plan)
         patch(prepare, "make_model", no_physics_factory)
+        patch(adapt, "install_fixed_panel", indexed_runtime_panel)
         with reference_temporal.installed():
             yield trial
     finally:

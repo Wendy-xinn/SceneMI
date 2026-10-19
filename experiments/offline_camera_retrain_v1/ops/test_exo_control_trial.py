@@ -99,6 +99,26 @@ class ProtocolTests(unittest.TestCase):
         self.assertAlmostEqual(probabilities["interactee"]/probabilities["camera_wearer"],2)
         self.assertEqual([r["probability"] for r in original],[.1,.3,.2,.4])
 
+    def test_native_validator_assigns_case_without_duplicate_manifest_index(self):
+        from experiments.offline_camera_retrain_v1 import native30_validation as validation
+        declared=[dict(case=0,dataset="rich",mode="exo",start=64,case_seed=19),
+                  dict(case=1,dataset="trumans",mode="ego",start=128,case_seed=23)]
+        before=copy.deepcopy(declared)
+        original_install=adapt.install_fixed_panel
+        original_plan=validation.monitoring_plan
+        with stage.engine_context(self.config):
+            returned=adapt.install_fixed_panel(declared)
+            self.assertIs(returned,original_plan)
+            try:
+                runtime=validation.monitoring_plan(SimpleNamespace(split="validation"),self.config,0)
+                rows=[dict(case=i,**entry) for i,entry in enumerate(runtime)]
+                self.assertEqual(rows,before)
+                self.assertEqual(declared,before)
+            finally:
+                validation.monitoring_plan=returned
+        self.assertIs(adapt.install_fixed_panel,original_install)
+        self.assertIs(validation.monitoring_plan,original_plan)
+
 
 class SelectionTests(unittest.TestCase):
     def test_parent_pin_and_calibration_identity_are_both_required(self):
