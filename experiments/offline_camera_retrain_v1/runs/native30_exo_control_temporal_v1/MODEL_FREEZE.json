@@ -1,0 +1,153 @@
+{
+  "protocol": "native30-shared-generator-paper-eval-v1",
+  "model_name": "candidate-1000",
+  "status": "candidate_only_final_selection_withdrawn",
+  "frozen_at": "2026-10-19T16:42:56.333302+08:00",
+  "authority": "User questions whether 1000 updates establish EXO readiness; premature final-evaluation selection withdrawn. No full evaluation or extra training was started.",
+  "selection": {
+    "purpose": "Retained 1000-step development candidate and draft inference contract; not the final paper model.",
+    "decision": "No final model selected. Discuss bounded further training and convergence checks before launching it.",
+    "official_41k_baseline_replaced": false,
+    "strict_trial_acceptance": "failed; unchanged",
+    "strict_failure": "Clean hidden-joint MPJPE improvement over repaired input reference is 4.146480779%, below registered 5%.",
+    "known_limitations": [
+      "EgoBody clean hidden-joint regression versus input reference.",
+      "Known wrist temporal regression is unresolved.",
+      "Current evidence uses historical VAL and simulated EXO observations."
+    ],
+    "final_model_selected": false,
+    "reason_final_selection_withdrawn": "Only baseline/final VAL exists; unresolved temporal regression and failed registered clean-reference gate. Update count alone neither proves nor disproves convergence."
+  },
+  "checkpoint": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_control_temporal_v1/candidate1000.pt",
+    "sha256": "b10b1ebcffa3c7089037d8df95f23e0a9ba0bdb8d52bc23aa0d36c66b7e98ee3",
+    "bytes": 519918835,
+    "pinning": "Hard link retained only for this development candidate; SHA required for reuse. No final publication model promotion.",
+    "source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_control_temporal_v1/training/last.pt",
+    "adapter_updates": 1000,
+    "adapter_training_windows": 8000,
+    "parent": "original41k + independently optimized 3000-step EGO control",
+    "frozen_base_tensor_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+    "adapter_tensor_sha256": "d2bfd39fe9cff2724ddd228e1fcb3872b92049f5944c18d3e92b5c20e4bcdb75"
+  },
+  "loader": {
+    "module": "experiments.offline_camera_retrain_v1.ops.exo_control_trial",
+    "function": "load_inference_model",
+    "expected_sha256": "b10b1ebcffa3c7089037d8df95f23e0a9ba0bdb8d52bc23aa0d36c66b7e98ee3",
+    "observation_context": "experiments.offline_camera_retrain_v1.ops.reference_temporal.installed",
+    "explicit_mode_required": true
+  },
+  "inference": {
+    "frames": 192,
+    "fps": 30,
+    "ddim_steps": 20,
+    "diffusion_target": "reference_residual",
+    "analytical_physical_guidance": false,
+    "observation_anchor_and_IK": "Preserve checkpoint settings identically in all arms.",
+    "ego": "Explicit mode=ego; original control path, internal EXO adapters bypassed, original EGO reference unchanged.",
+    "exo": "Explicit mode=exo; internal EXO adapters enabled; corrected EXO reference policy exo-local-so3-reference-gap-fill-v1.",
+    "scene_on": "sample_motion(..., use_scene=True): retain all learned static/dynamic, patch, local-query and learned-feedback paths.",
+    "scene_off": "sample_motion(..., use_scene=False): disable the complete learned scene path; do not merely zero occupancy.",
+    "scene_budget": {
+      "dropout_probability": 0.1,
+      "patch_tokens": 16,
+      "neighbors_per_scale": 8,
+      "scales_m": [
+        0.08,
+        0.25,
+        0.6
+      ],
+      "observation_budget": "entire supplied recording observed-static union; same observer/world/split only; dynamics current frame",
+      "unknown_policy": "surface-only; no free-space inference",
+      "memory_protocol": "observed-static-recording-union-v3",
+      "coordinate_protocol": "persistent world map; transform to current window anchor at query",
+      "memory_control_protocol": "observed-static-prefix-through-window-end-v2",
+      "evaluation_input_scope": "supplied recording only; restricted benchmark clips must use a restricted observation manifest"
+    },
+    "tracker_included": false
+  },
+  "evaluation_matrix": [
+    {
+      "mode": "ego",
+      "use_scene": true,
+      "checkpoint_sha256": "b10b1ebcffa3c7089037d8df95f23e0a9ba0bdb8d52bc23aa0d36c66b7e98ee3"
+    },
+    {
+      "mode": "ego",
+      "use_scene": false,
+      "checkpoint_sha256": "b10b1ebcffa3c7089037d8df95f23e0a9ba0bdb8d52bc23aa0d36c66b7e98ee3"
+    },
+    {
+      "mode": "exo",
+      "use_scene": true,
+      "checkpoint_sha256": "b10b1ebcffa3c7089037d8df95f23e0a9ba0bdb8d52bc23aa0d36c66b7e98ee3"
+    },
+    {
+      "mode": "exo",
+      "use_scene": false,
+      "checkpoint_sha256": "b10b1ebcffa3c7089037d8df95f23e0a9ba0bdb8d52bc23aa0d36c66b7e98ee3"
+    }
+  ],
+  "regimes": [
+    "clean",
+    "noisy"
+  ],
+  "pairing": "Within a mode, use exactly the same window, body profile, camera, observations, missingness masks, reference, observation noise and DDIM seed in ON/OFF. Do not change adapters or observation anchors.",
+  "scene_ablation_interpretation": "Inference removal of all learned scene context from one fixed model; not a retrained no-scene baseline or isolated cross-attention ablation. Observation visibility masks remain fixed.",
+  "evaluation_scope": {
+    "VAL": "Full eligible indexed validation windows requested; write actual coverage and exclusions before reporting completion.",
+    "TEST": "RICH TEST main benchmark remains a separate frozen evaluation; never use TEST results to select/tune weights.",
+    "validation_index": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/data/native30_official_windows64_v1/dataset.json",
+      "sha256": "6ca16b858d5e1f1aa028094a18651ce74f0fe426434b1e90d4f20bdb84836e01",
+      "windows_by_mode": {
+        "ego": 1806,
+        "exo": 1735
+      },
+      "planned_predictions_one_ddim_seed": 14164
+    },
+    "case_manifests_seeds_and_execution": "Draft scope only; no long evaluation or new training is authorized/launched by this record. Model selection and evaluation plan remain under discussion.",
+    "reporting": "Report all three datasets separately, recording-level aggregates and window aggregates, valid counts, full/visible/missing-joint and temporal/foot metrics. Different EGO/EXO eligible cohorts must not be silently conflated."
+  },
+  "existing_results_reuse": "Old official41k RICH TEST used different weights and analytical physics ON, so it is a baseline only. Control EGO arrays may be reused only when checkpoint-equivalent path, inputs, seeds and inference settings match exactly.",
+  "evidence": {
+    "config.json": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_control_temporal_v1/config.json",
+      "sha256": "12940082578bef5d09d5a3072cd0744aee8350699fde9d46d06761a8acbd9109"
+    },
+    "prepared/effective_config.json": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_control_temporal_v1/prepared/effective_config.json",
+      "sha256": "b9a8601b306e92ef011b490983e1e8b7e1548cceedd9f5bd102cb7d7594e3e65"
+    },
+    "prepared/input_checks.json": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_control_temporal_v1/prepared/input_checks.json",
+      "sha256": "b0dfce278addebf489ac94771e09ed86386cd098e2fe69b4bc328a00518748d1"
+    },
+    "USABILITY_REVIEW.json": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_control_temporal_v1/USABILITY_REVIEW.json",
+      "sha256": "0bc0391c823def46bb8a1f06fcb836b2656d8b388d7d2405bd4b446a51a54da8"
+    },
+    "CPU_RECHECK.json": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_control_temporal_v1/CPU_RECHECK.json",
+      "sha256": "16925ae9faec5e142113b31c0d2a0f7f3d26e59f40ef1bc5ab60e33f2dc42dd5"
+    }
+  },
+  "source_seal_checked_files": 272,
+  "full_evaluation_started": false,
+  "additional_training_started": false,
+  "independent_CPU_load_check": {
+    "status": "passed",
+    "loader_actually_called": true,
+    "device": "cpu",
+    "stage_step": 1000,
+    "finite_state_tensors": 407,
+    "frozen_base_parameters": 122667536,
+    "trainable_adapter_parameters": 1955616,
+    "checkpoint_base_adapter_SHA_recomputed_and_match": true,
+    "CPU_RNG_unchanged": true,
+    "CUDA_initialized": false,
+    "training_or_inference_forward_performed": false,
+    "external_parent_checkpoint_required": false
+  },
+  "corrected_at": "2026-10-19T16:45:29.723845+08:00"
+}
