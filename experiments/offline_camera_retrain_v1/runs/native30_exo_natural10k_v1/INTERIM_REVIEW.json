@@ -1,0 +1,502 @@
+{
+  "status": "interim_development_review",
+  "as_of": "2026-10-20T11:15:41.461446+08:00",
+  "scope": "Completed fixed100 EXO validation milestones, sceneON, clean/noisy; not fullVAL or TEST. No new inference.",
+  "initial_control": {
+    "score_mm": 171.55002006650534,
+    "metrics": {
+      "metrics/clean/rich": {
+        "unconditioned_mpjpe_mm": 61.24814727089622,
+        "conditioned_mpjpe_mm": 6.7096186876297,
+        "mpjpe_mm": 12.286580642064413,
+        "foot_speed_during_GT_stance_m_s": 0.14229922772695622
+      },
+      "metrics/clean/trumans": {
+        "unconditioned_mpjpe_mm": 222.8109786801222,
+        "conditioned_mpjpe_mm": 12.759556031808621,
+        "mpjpe_mm": 93.28491013224532,
+        "foot_speed_during_GT_stance_m_s": 0.4405215884127268
+      },
+      "metrics/clean/egobody": {
+        "unconditioned_mpjpe_mm": 107.38485988510979,
+        "conditioned_mpjpe_mm": 11.967399201494581,
+        "mpjpe_mm": 41.07600559579565,
+        "foot_speed_during_GT_stance_m_s": 0.19643505809313438
+      },
+      "metrics/clean/natural_weighted": {
+        "unconditioned_mpjpe_mm": 149.07532410824282,
+        "conditioned_mpjpe_mm": 11.66684381638593,
+        "mpjpe_mm": 58.99271555307183,
+        "foot_speed_during_GT_stance_m_s": 0.28975227362117956
+      },
+      "metrics/noisy/rich": {
+        "unconditioned_mpjpe_mm": 101.43871275583903,
+        "conditioned_mpjpe_mm": 36.57438087463379,
+        "mpjpe_mm": 47.23460372289022,
+        "foot_speed_during_GT_stance_m_s": 0.19090555918713412
+      },
+      "metrics/noisy/trumans": {
+        "unconditioned_mpjpe_mm": 287.1036263442621,
+        "conditioned_mpjpe_mm": 44.92451183970382,
+        "mpjpe_mm": 131.11421185005003,
+        "foot_speed_during_GT_stance_m_s": 0.5188752489119042
+      },
+      "metrics/noisy/egobody": {
+        "unconditioned_mpjpe_mm": 136.80492243559465,
+        "conditioned_mpjpe_mm": 42.152790191325735,
+        "mpjpe_mm": 70.6155285530902,
+        "foot_speed_during_GT_stance_m_s": 0.22431448074255853
+      },
+      "metrics/noisy/natural_weighted": {
+        "unconditioned_mpjpe_mm": 194.02471602476788,
+        "conditioned_mpjpe_mm": 42.62310623136119,
+        "mpjpe_mm": 92.56198154589903,
+        "foot_speed_during_GT_stance_m_s": 0.34071871520460384
+      },
+      "reference_metrics/clean/rich": {
+        "unconditioned_mpjpe_mm": 36.22977612235329,
+        "conditioned_mpjpe_mm": 2.5675452055802452,
+        "mpjpe_mm": 6.6000822683151155,
+        "foot_speed_during_GT_stance_m_s": 0.11684693737576406
+      },
+      "reference_metrics/clean/trumans": {
+        "unconditioned_mpjpe_mm": 171.33331336044682,
+        "conditioned_mpjpe_mm": 23.596696477225432,
+        "mpjpe_mm": 76.43162141776666,
+        "foot_speed_during_GT_stance_m_s": 0.27007294664295706
+      },
+      "reference_metrics/clean/egobody": {
+        "unconditioned_mpjpe_mm": 66.54113379045222,
+        "conditioned_mpjpe_mm": 20.29977077116448,
+        "mpjpe_mm": 31.085634695005943,
+        "foot_speed_during_GT_stance_m_s": 0.11756598418380351
+      },
+      "reference_metrics/clean/natural_weighted": {
+        "unconditioned_mpjpe_mm": 105.76506211062386,
+        "conditioned_mpjpe_mm": 19.54166233259783,
+        "mpjpe_mm": 46.7088512866711,
+        "foot_speed_during_GT_stance_m_s": 0.17980189930834745
+      },
+      "reference_metrics/noisy/rich": {
+        "unconditioned_mpjpe_mm": 60.0582762559255,
+        "conditioned_mpjpe_mm": 36.01571798324585,
+        "mpjpe_mm": 39.86820141474406,
+        "foot_speed_during_GT_stance_m_s": 0.13189211518814167
+      },
+      "reference_metrics/noisy/trumans": {
+        "unconditioned_mpjpe_mm": 198.40282282015173,
+        "conditioned_mpjpe_mm": 51.78341837627132,
+        "mpjpe_mm": 104.8377459456281,
+        "foot_speed_during_GT_stance_m_s": 0.3503159384538488
+      },
+      "reference_metrics/noisy/egobody": {
+        "unconditioned_mpjpe_mm": 86.96738481521606,
+        "conditioned_mpjpe_mm": 48.206537896014275,
+        "mpjpe_mm": 57.88552641361318,
+        "foot_speed_during_GT_stance_m_s": 0.13318458813777628
+      },
+      "reference_metrics/noisy/natural_weighted": {
+        "unconditioned_mpjpe_mm": 129.31000682229705,
+        "conditioned_mpjpe_mm": 48.220773837496665,
+        "mpjpe_mm": 74.93310837236335,
+        "foot_speed_during_GT_stance_m_s": 0.22176088666600147
+      }
+    }
+  },
+  "input_reference_score_mm": 117.53753446646046,
+  "milestones": [
+    {
+      "step": 2000,
+      "completed_at": "2026-10-20T04:48:42.122974+08:00",
+      "score_mm": 126.17044939471003,
+      "metrics": {
+        "metrics/clean/rich": {
+          "unconditioned_mpjpe_mm": 75.11586999893188,
+          "conditioned_mpjpe_mm": 5.051155457894008,
+          "mpjpe_mm": 16.106419612963993,
+          "foot_speed_during_GT_stance_m_s": 0.16623676971842846
+        },
+        "metrics/clean/trumans": {
+          "unconditioned_mpjpe_mm": 168.8392333984375,
+          "conditioned_mpjpe_mm": 8.252190807970559,
+          "mpjpe_mm": 70.33603280928077,
+          "foot_speed_during_GT_stance_m_s": 0.2963915385487603
+        },
+        "metrics/clean/egobody": {
+          "unconditioned_mpjpe_mm": 66.82922529776891,
+          "conditioned_mpjpe_mm": 5.685266095273038,
+          "mpjpe_mm": 24.049497248010432,
+          "foot_speed_during_GT_stance_m_s": 0.12235081176015924
+        },
+        "metrics/clean/natural_weighted": {
+          "unconditioned_mpjpe_mm": 109.49904924694101,
+          "conditioned_mpjpe_mm": 6.658939196139011,
+          "mpjpe_mm": 42.021185847503865,
+          "foot_speed_during_GT_stance_m_s": 0.19868244440138208
+        },
+        "metrics/noisy/rich": {
+          "unconditioned_mpjpe_mm": 116.50578721364339,
+          "conditioned_mpjpe_mm": 30.152679284413654,
+          "mpjpe_mm": 43.79501231511434,
+          "foot_speed_during_GT_stance_m_s": 0.1691733052333196
+        },
+        "metrics/noisy/trumans": {
+          "unconditioned_mpjpe_mm": 221.267583986608,
+          "conditioned_mpjpe_mm": 32.54899364564477,
+          "mpjpe_mm": 101.85327501994807,
+          "foot_speed_during_GT_stance_m_s": 0.37002514847894996
+        },
+        "metrics/noisy/egobody": {
+          "unconditioned_mpjpe_mm": 81.6484143215677,
+          "conditioned_mpjpe_mm": 28.375610939999845,
+          "mpjpe_mm": 44.356506144746824,
+          "foot_speed_during_GT_stance_m_s": 0.13774936590740022
+        },
+        "metrics/noisy/natural_weighted": {
+          "unconditioned_mpjpe_mm": 142.84184954247905,
+          "conditioned_mpjpe_mm": 30.292039998934428,
+          "mpjpe_mm": 67.78563663674302,
+          "foot_speed_during_GT_stance_m_s": 0.23639885371395247
+        },
+        "reference_metrics/clean/rich": {
+          "unconditioned_mpjpe_mm": 36.22977612235329,
+          "conditioned_mpjpe_mm": 2.5675452055802452,
+          "mpjpe_mm": 6.6000822683151155,
+          "foot_speed_during_GT_stance_m_s": 0.11684693737576406
+        },
+        "reference_metrics/clean/trumans": {
+          "unconditioned_mpjpe_mm": 171.33331336044682,
+          "conditioned_mpjpe_mm": 23.596696477225432,
+          "mpjpe_mm": 76.43162141776666,
+          "foot_speed_during_GT_stance_m_s": 0.27007294664295706
+        },
+        "reference_metrics/clean/egobody": {
+          "unconditioned_mpjpe_mm": 66.54113379045222,
+          "conditioned_mpjpe_mm": 20.29977077116448,
+          "mpjpe_mm": 31.085634695005943,
+          "foot_speed_during_GT_stance_m_s": 0.11756598418380351
+        },
+        "reference_metrics/clean/natural_weighted": {
+          "unconditioned_mpjpe_mm": 105.76506211062386,
+          "conditioned_mpjpe_mm": 19.54166233259783,
+          "mpjpe_mm": 46.7088512866711,
+          "foot_speed_during_GT_stance_m_s": 0.17980189930834745
+        },
+        "reference_metrics/noisy/rich": {
+          "unconditioned_mpjpe_mm": 60.0582762559255,
+          "conditioned_mpjpe_mm": 36.01571798324585,
+          "mpjpe_mm": 39.86820141474406,
+          "foot_speed_during_GT_stance_m_s": 0.13189211518814167
+        },
+        "reference_metrics/noisy/trumans": {
+          "unconditioned_mpjpe_mm": 198.40282282015173,
+          "conditioned_mpjpe_mm": 51.78341837627132,
+          "mpjpe_mm": 104.8377459456281,
+          "foot_speed_during_GT_stance_m_s": 0.3503159384538488
+        },
+        "reference_metrics/noisy/egobody": {
+          "unconditioned_mpjpe_mm": 86.96738481521606,
+          "conditioned_mpjpe_mm": 48.206537896014275,
+          "mpjpe_mm": 57.88552641361318,
+          "foot_speed_during_GT_stance_m_s": 0.13318458813777628
+        },
+        "reference_metrics/noisy/natural_weighted": {
+          "unconditioned_mpjpe_mm": 129.31000682229705,
+          "conditioned_mpjpe_mm": 48.220773837496665,
+          "mpjpe_mm": 74.93310837236335,
+          "foot_speed_during_GT_stance_m_s": 0.22176088666600147
+        }
+      },
+      "EGO_retention": {
+        "exact": true,
+        "anchor_regimes_checked": 18
+      }
+    },
+    {
+      "step": 4000,
+      "completed_at": "2026-10-20T07:51:20.273144+08:00",
+      "score_mm": 115.09927984608714,
+      "metrics": {
+        "metrics/clean/rich": {
+          "unconditioned_mpjpe_mm": 41.79715805703943,
+          "conditioned_mpjpe_mm": 3.6028774678707123,
+          "mpjpe_mm": 7.5372714300950365,
+          "foot_speed_during_GT_stance_m_s": 0.11524723377078772
+        },
+        "metrics/clean/trumans": {
+          "unconditioned_mpjpe_mm": 156.5582617782965,
+          "conditioned_mpjpe_mm": 7.031039828207435,
+          "mpjpe_mm": 65.40394089861614,
+          "foot_speed_during_GT_stance_m_s": 0.27473349106021044
+        },
+        "metrics/clean/egobody": {
+          "unconditioned_mpjpe_mm": 64.43581691847908,
+          "conditioned_mpjpe_mm": 5.427241644960769,
+          "mpjpe_mm": 22.773241240927515,
+          "foot_speed_during_GT_stance_m_s": 0.1222508550086554
+        },
+        "metrics/clean/natural_weighted": {
+          "unconditioned_mpjpe_mm": 99.39330952951885,
+          "conditioned_mpjpe_mm": 5.866016222160385,
+          "mpjpe_mm": 38.38508923877752,
+          "foot_speed_during_GT_stance_m_s": 0.18373064923663915
+        },
+        "metrics/noisy/rich": {
+          "unconditioned_mpjpe_mm": 117.48100662231445,
+          "conditioned_mpjpe_mm": 29.99965222676595,
+          "mpjpe_mm": 43.65590397516886,
+          "foot_speed_during_GT_stance_m_s": 0.16717186818520227
+        },
+        "metrics/noisy/trumans": {
+          "unconditioned_mpjpe_mm": 197.25422314899723,
+          "conditioned_mpjpe_mm": 29.95893641215999,
+          "mpjpe_mm": 93.17508050872058,
+          "foot_speed_during_GT_stance_m_s": 0.34388007350811145
+        },
+        "metrics/noisy/egobody": {
+          "unconditioned_mpjpe_mm": 76.69850909191629,
+          "conditioned_mpjpe_mm": 27.30165538382023,
+          "mpjpe_mm": 41.86788688821996,
+          "foot_speed_during_GT_stance_m_s": 0.13022391315787396
+        },
+        "metrics/noisy/natural_weighted": {
+          "unconditioned_mpjpe_mm": 130.80525016265545,
+          "conditioned_mpjpe_mm": 28.707879936407956,
+          "mpjpe_mm": 63.04663720340521,
+          "foot_speed_during_GT_stance_m_s": 0.22192045288349244
+        },
+        "reference_metrics/clean/rich": {
+          "unconditioned_mpjpe_mm": 36.22977612235329,
+          "conditioned_mpjpe_mm": 2.5675452055802452,
+          "mpjpe_mm": 6.6000822683151155,
+          "foot_speed_during_GT_stance_m_s": 0.11684693737576406
+        },
+        "reference_metrics/clean/trumans": {
+          "unconditioned_mpjpe_mm": 171.33331336044682,
+          "conditioned_mpjpe_mm": 23.596696477225432,
+          "mpjpe_mm": 76.43162141776666,
+          "foot_speed_during_GT_stance_m_s": 0.27007294664295706
+        },
+        "reference_metrics/clean/egobody": {
+          "unconditioned_mpjpe_mm": 66.54113379045222,
+          "conditioned_mpjpe_mm": 20.29977077116448,
+          "mpjpe_mm": 31.085634695005943,
+          "foot_speed_during_GT_stance_m_s": 0.11756598418380351
+        },
+        "reference_metrics/clean/natural_weighted": {
+          "unconditioned_mpjpe_mm": 105.76506211062386,
+          "conditioned_mpjpe_mm": 19.54166233259783,
+          "mpjpe_mm": 46.7088512866711,
+          "foot_speed_during_GT_stance_m_s": 0.17980189930834745
+        },
+        "reference_metrics/noisy/rich": {
+          "unconditioned_mpjpe_mm": 60.0582762559255,
+          "conditioned_mpjpe_mm": 36.01571798324585,
+          "mpjpe_mm": 39.86820141474406,
+          "foot_speed_during_GT_stance_m_s": 0.13189211518814167
+        },
+        "reference_metrics/noisy/trumans": {
+          "unconditioned_mpjpe_mm": 198.40282282015173,
+          "conditioned_mpjpe_mm": 51.78341837627132,
+          "mpjpe_mm": 104.8377459456281,
+          "foot_speed_during_GT_stance_m_s": 0.3503159384538488
+        },
+        "reference_metrics/noisy/egobody": {
+          "unconditioned_mpjpe_mm": 86.96738481521606,
+          "conditioned_mpjpe_mm": 48.206537896014275,
+          "mpjpe_mm": 57.88552641361318,
+          "foot_speed_during_GT_stance_m_s": 0.13318458813777628
+        },
+        "reference_metrics/noisy/natural_weighted": {
+          "unconditioned_mpjpe_mm": 129.31000682229705,
+          "conditioned_mpjpe_mm": 48.220773837496665,
+          "mpjpe_mm": 74.93310837236335,
+          "foot_speed_during_GT_stance_m_s": 0.22176088666600147
+        }
+      },
+      "EGO_retention": {
+        "exact": true,
+        "anchor_regimes_checked": 18
+      }
+    },
+    {
+      "step": 6000,
+      "completed_at": "2026-10-20T10:54:46.095800+08:00",
+      "score_mm": 116.93160221260214,
+      "metrics": {
+        "metrics/clean/rich": {
+          "unconditioned_mpjpe_mm": 38.8386774930087,
+          "conditioned_mpjpe_mm": 3.566179926196734,
+          "mpjpe_mm": 7.286160657803218,
+          "foot_speed_during_GT_stance_m_s": 0.11507033774008353
+        },
+        "metrics/clean/trumans": {
+          "unconditioned_mpjpe_mm": 157.65303374499808,
+          "conditioned_mpjpe_mm": 7.079470791467807,
+          "mpjpe_mm": 66.49873249705244,
+          "foot_speed_during_GT_stance_m_s": 0.2646953089208138
+        },
+        "metrics/clean/egobody": {
+          "unconditioned_mpjpe_mm": 64.57832706901762,
+          "conditioned_mpjpe_mm": 5.015110846529615,
+          "mpjpe_mm": 22.55094428392167,
+          "foot_speed_during_GT_stance_m_s": 0.12183376643410389
+        },
+        "metrics/clean/natural_weighted": {
+          "unconditioned_mpjpe_mm": 99.55677042383739,
+          "conditioned_mpjpe_mm": 5.686667867493652,
+          "mpjpe_mm": 38.697593515120126,
+          "foot_speed_during_GT_stance_m_s": 0.1794104622912273
+        },
+        "metrics/noisy/rich": {
+          "unconditioned_mpjpe_mm": 113.81174532572429,
+          "conditioned_mpjpe_mm": 29.977553526560467,
+          "mpjpe_mm": 43.55756457646688,
+          "foot_speed_during_GT_stance_m_s": 0.16677973108987013
+        },
+        "metrics/noisy/trumans": {
+          "unconditioned_mpjpe_mm": 202.99307660358707,
+          "conditioned_mpjpe_mm": 29.788502158188237,
+          "mpjpe_mm": 95.03939205262719,
+          "foot_speed_during_GT_stance_m_s": 0.32943469358653554
+        },
+        "metrics/noisy/egobody": {
+          "unconditioned_mpjpe_mm": 80.06628310162088,
+          "conditioned_mpjpe_mm": 27.955596923828125,
+          "mpjpe_mm": 42.553638742325155,
+          "foot_speed_during_GT_stance_m_s": 0.12926219768346625
+        },
+        "metrics/noisy/natural_weighted": {
+          "unconditioned_mpjpe_mm": 134.3064340013669,
+          "conditioned_mpjpe_mm": 28.94467638856829,
+          "mpjpe_mm": 64.12090549669826,
+          "foot_speed_during_GT_stance_m_s": 0.21551632533591314
+        },
+        "reference_metrics/clean/rich": {
+          "unconditioned_mpjpe_mm": 36.22977612235329,
+          "conditioned_mpjpe_mm": 2.5675452055802452,
+          "mpjpe_mm": 6.6000822683151155,
+          "foot_speed_during_GT_stance_m_s": 0.11684693737576406
+        },
+        "reference_metrics/clean/trumans": {
+          "unconditioned_mpjpe_mm": 171.33331336044682,
+          "conditioned_mpjpe_mm": 23.596696477225432,
+          "mpjpe_mm": 76.43162141776666,
+          "foot_speed_during_GT_stance_m_s": 0.27007294664295706
+        },
+        "reference_metrics/clean/egobody": {
+          "unconditioned_mpjpe_mm": 66.54113379045222,
+          "conditioned_mpjpe_mm": 20.29977077116448,
+          "mpjpe_mm": 31.085634695005943,
+          "foot_speed_during_GT_stance_m_s": 0.11756598418380351
+        },
+        "reference_metrics/clean/natural_weighted": {
+          "unconditioned_mpjpe_mm": 105.76506211062386,
+          "conditioned_mpjpe_mm": 19.54166233259783,
+          "mpjpe_mm": 46.7088512866711,
+          "foot_speed_during_GT_stance_m_s": 0.17980189930834745
+        },
+        "reference_metrics/noisy/rich": {
+          "unconditioned_mpjpe_mm": 60.0582762559255,
+          "conditioned_mpjpe_mm": 36.01571798324585,
+          "mpjpe_mm": 39.86820141474406,
+          "foot_speed_during_GT_stance_m_s": 0.13189211518814167
+        },
+        "reference_metrics/noisy/trumans": {
+          "unconditioned_mpjpe_mm": 198.40282282015173,
+          "conditioned_mpjpe_mm": 51.78341837627132,
+          "mpjpe_mm": 104.8377459456281,
+          "foot_speed_during_GT_stance_m_s": 0.3503159384538488
+        },
+        "reference_metrics/noisy/egobody": {
+          "unconditioned_mpjpe_mm": 86.96738481521606,
+          "conditioned_mpjpe_mm": 48.206537896014275,
+          "mpjpe_mm": 57.88552641361318,
+          "foot_speed_during_GT_stance_m_s": 0.13318458813777628
+        },
+        "reference_metrics/noisy/natural_weighted": {
+          "unconditioned_mpjpe_mm": 129.31000682229705,
+          "conditioned_mpjpe_mm": 48.220773837496665,
+          "mpjpe_mm": 74.93310837236335,
+          "foot_speed_during_GT_stance_m_s": 0.22176088666600147
+        }
+      },
+      "EGO_retention": {
+        "exact": true,
+        "anchor_regimes_checked": 18
+      }
+    }
+  ],
+  "best_stage_step": 4000,
+  "best_score_mm": 115.09927984608714,
+  "best_checkpoint_sha256": "a2fe21f0b83cdfb72ef9829ea62ac08a9652b596df76ffbb25530c7e3d0cb32b",
+  "best_vs_control_improvement_percent": 32.90628599083448,
+  "best_vs_reference_improvement_percent": 2.074447648950025,
+  "train_loss_by_1000": [
+    {
+      "start": 1,
+      "end": 1000,
+      "count": 1000,
+      "mean": 0.5095978127270937,
+      "median": 0.44573332369327545
+    },
+    {
+      "start": 1001,
+      "end": 2000,
+      "count": 1000,
+      "mean": 0.37738049280643465,
+      "median": 0.3395600914955139
+    },
+    {
+      "start": 2001,
+      "end": 3000,
+      "count": 1000,
+      "mean": 0.3519454141408205,
+      "median": 0.3129863739013672
+    },
+    {
+      "start": 3001,
+      "end": 4000,
+      "count": 1000,
+      "mean": 0.3467227635383606,
+      "median": 0.30431781709194183
+    },
+    {
+      "start": 4001,
+      "end": 5000,
+      "count": 1000,
+      "mean": 0.33871210250258443,
+      "median": 0.3048660159111023
+    },
+    {
+      "start": 5001,
+      "end": 6000,
+      "count": 1000,
+      "mean": 0.3286234057471156,
+      "median": 0.2897986173629761
+    }
+  ],
+  "training_progress": {
+    "complete_atomic_checkpoint_step": 6000,
+    "last_pre_restart_trace_step": 6044,
+    "previous_uncommitted_steps": 44,
+    "resume_command": "run --resume",
+    "resume_record": "RESUME_LAUNCH_001.json",
+    "phase_as_of_review": "Restore and recheck existing data/model; read STATUS.json and JOB.json for live state."
+  },
+  "interpretation": [
+    "Training objective slowly improves; fixed validation peaked at4k and6k regressed1.59%.",
+    "EGO9anchors clean/noisy18 predictions exactly preserved at2k/4k/6k.",
+    "RICH noisy hidden error remains worse than unadapted control and inputreference.",
+    "Visible errors and GT-stance foot-speed proxy improve vscontrol at4k/6k; this does not establish no float or collision.",
+    "Best available is not automatic paper acceptance. Finish declared8k/10k; retain4k."
+  ],
+  "inputs_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/baseline_validation/SCORE.json": "21b02fdb470c0b1154070e153b052eacd65666456fc67e76ca25a96d67b770b6",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/best.json": "13c0a9a68847ab9e2fcb05dd389c05e7f818ed7b6fc9d318efe70c7e4e147f3c",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/RESUME_LAUNCH_001.json": "fc00034d5855e49eb70bd6b005decc3dfb4ba34196c4cc71c23d75d9b8c47389",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_002000.json": "b52257ba45010fd5a296060b430834800e1dc223455d3fdc9122342d09fe063a",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_004000.json": "63870b01f2d1b049d8837c72d63e74d49bee8a13f35b9db69175c5432cb86d4d",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_006000.json": "6f9e68083dfa264a561673b5cd4392a3427908237f9916f78191ad602f2963e3"
+  }
+}

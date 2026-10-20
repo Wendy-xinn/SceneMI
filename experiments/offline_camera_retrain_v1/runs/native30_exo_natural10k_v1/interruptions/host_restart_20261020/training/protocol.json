@@ -1,0 +1,625 @@
+{
+  "protocol": "native30-exo-natural-longrun-v1",
+  "planned_steps": 10000,
+  "completed_steps": 6000,
+  "status": "training",
+  "checkpoint_policy": "Full atomic last every100; full2k milestones; full fixed-panel best",
+  "initial_adapter_sha256": "0326898dbddf9f982cf03638284ac3dd8ff0c50feb9ca003486e369a83de8497",
+  "fresh_stage": true,
+  "frozen_base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+  "adapter_manifest": {
+    "protocol": "native30-exo-gated-internal-lora-v1",
+    "spec": {
+      "protocol": "native30-exo-gated-internal-lora-v1",
+      "rank": 16,
+      "alpha": 16.0,
+      "targets": [
+        "core.unet.time_mlp.0",
+        "core.unet.time_mlp.2",
+        "core.unet.downs.0.0.time_mlp.1",
+        "core.unet.downs.0.0.blocks.0.block1.0",
+        "core.unet.downs.0.0.blocks.1.block.0",
+        "core.unet.downs.0.1.time_mlp.1",
+        "core.unet.downs.0.1.blocks.0.block1.0",
+        "core.unet.downs.0.1.blocks.1.block.0",
+        "core.unet.downs.1.0.time_mlp.1",
+        "core.unet.downs.1.0.blocks.0.block1.0",
+        "core.unet.downs.1.0.blocks.1.block.0",
+        "core.unet.downs.1.1.time_mlp.1",
+        "core.unet.downs.1.1.blocks.0.block1.0",
+        "core.unet.downs.1.1.blocks.1.block.0",
+        "core.unet.downs.2.0.time_mlp.1",
+        "core.unet.downs.2.0.blocks.0.block1.0",
+        "core.unet.downs.2.0.blocks.1.block.0",
+        "core.unet.downs.2.1.time_mlp.1",
+        "core.unet.downs.2.1.blocks.0.block1.0",
+        "core.unet.downs.2.1.blocks.1.block.0",
+        "core.unet.mid_block1.time_mlp.1",
+        "core.unet.mid_block1.blocks.0.block1.0",
+        "core.unet.mid_block1.blocks.1.block.0",
+        "core.unet.mid_block2.time_mlp.1",
+        "core.unet.mid_block2.blocks.0.block1.0",
+        "core.unet.mid_block2.blocks.1.block.0",
+        "core.unet.ups.0.0.time_mlp.1",
+        "core.unet.ups.0.0.blocks.0.block1.0",
+        "core.unet.ups.0.0.blocks.1.block.0",
+        "core.unet.ups.0.1.time_mlp.1",
+        "core.unet.ups.0.1.blocks.0.block1.0",
+        "core.unet.ups.0.1.blocks.1.block.0",
+        "core.unet.ups.1.0.time_mlp.1",
+        "core.unet.ups.1.0.blocks.0.block1.0",
+        "core.unet.ups.1.0.blocks.1.block.0",
+        "core.unet.ups.1.1.time_mlp.1",
+        "core.unet.ups.1.1.blocks.0.block1.0",
+        "core.unet.ups.1.1.blocks.1.block.0",
+        "core.unet.final_conv.0.block.0",
+        "observation_projection",
+        "camera_encoder.2",
+        "reference_projection",
+        "patch_condition",
+        "dynamic_condition",
+        "region_condition"
+      ]
+    },
+    "targets": [
+      {
+        "path": "core.unet.time_mlp.0",
+        "adapter_key": "a0000",
+        "type": "Linear",
+        "weight_shape": [
+          1024,
+          256
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.time_mlp.2",
+        "adapter_key": "a0001",
+        "type": "Linear",
+        "weight_shape": [
+          256,
+          1024
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.downs.0.0.time_mlp.1",
+        "adapter_key": "a0002",
+        "type": "Linear",
+        "weight_shape": [
+          512,
+          256
+        ],
+        "parameters": 12288
+      },
+      {
+        "path": "core.unet.downs.0.0.blocks.0.block1.0",
+        "adapter_key": "a0003",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          298,
+          5
+        ],
+        "parameters": 27936
+      },
+      {
+        "path": "core.unet.downs.0.0.blocks.1.block.0",
+        "adapter_key": "a0004",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.downs.0.1.time_mlp.1",
+        "adapter_key": "a0005",
+        "type": "Linear",
+        "weight_shape": [
+          512,
+          256
+        ],
+        "parameters": 12288
+      },
+      {
+        "path": "core.unet.downs.0.1.blocks.0.block1.0",
+        "adapter_key": "a0006",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.downs.0.1.blocks.1.block.0",
+        "adapter_key": "a0007",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.downs.1.0.time_mlp.1",
+        "adapter_key": "a0008",
+        "type": "Linear",
+        "weight_shape": [
+          1024,
+          256
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.downs.1.0.blocks.0.block1.0",
+        "adapter_key": "a0009",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          256,
+          5
+        ],
+        "parameters": 28672
+      },
+      {
+        "path": "core.unet.downs.1.0.blocks.1.block.0",
+        "adapter_key": "a0010",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.downs.1.1.time_mlp.1",
+        "adapter_key": "a0011",
+        "type": "Linear",
+        "weight_shape": [
+          1024,
+          256
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.downs.1.1.blocks.0.block1.0",
+        "adapter_key": "a0012",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.downs.1.1.blocks.1.block.0",
+        "adapter_key": "a0013",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.downs.2.0.time_mlp.1",
+        "adapter_key": "a0014",
+        "type": "Linear",
+        "weight_shape": [
+          2048,
+          256
+        ],
+        "parameters": 36864
+      },
+      {
+        "path": "core.unet.downs.2.0.blocks.0.block1.0",
+        "adapter_key": "a0015",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          512,
+          5
+        ],
+        "parameters": 57344
+      },
+      {
+        "path": "core.unet.downs.2.0.blocks.1.block.0",
+        "adapter_key": "a0016",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.downs.2.1.time_mlp.1",
+        "adapter_key": "a0017",
+        "type": "Linear",
+        "weight_shape": [
+          2048,
+          256
+        ],
+        "parameters": 36864
+      },
+      {
+        "path": "core.unet.downs.2.1.blocks.0.block1.0",
+        "adapter_key": "a0018",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.downs.2.1.blocks.1.block.0",
+        "adapter_key": "a0019",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.mid_block1.time_mlp.1",
+        "adapter_key": "a0020",
+        "type": "Linear",
+        "weight_shape": [
+          2048,
+          256
+        ],
+        "parameters": 36864
+      },
+      {
+        "path": "core.unet.mid_block1.blocks.0.block1.0",
+        "adapter_key": "a0021",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.mid_block1.blocks.1.block.0",
+        "adapter_key": "a0022",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.mid_block2.time_mlp.1",
+        "adapter_key": "a0023",
+        "type": "Linear",
+        "weight_shape": [
+          2048,
+          256
+        ],
+        "parameters": 36864
+      },
+      {
+        "path": "core.unet.mid_block2.blocks.0.block1.0",
+        "adapter_key": "a0024",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.mid_block2.blocks.1.block.0",
+        "adapter_key": "a0025",
+        "type": "Conv1d",
+        "weight_shape": [
+          1024,
+          1024,
+          5
+        ],
+        "parameters": 98304
+      },
+      {
+        "path": "core.unet.ups.0.0.time_mlp.1",
+        "adapter_key": "a0026",
+        "type": "Linear",
+        "weight_shape": [
+          1024,
+          256
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.ups.0.0.blocks.0.block1.0",
+        "adapter_key": "a0027",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          2048,
+          5
+        ],
+        "parameters": 172032
+      },
+      {
+        "path": "core.unet.ups.0.0.blocks.1.block.0",
+        "adapter_key": "a0028",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.ups.0.1.time_mlp.1",
+        "adapter_key": "a0029",
+        "type": "Linear",
+        "weight_shape": [
+          1024,
+          256
+        ],
+        "parameters": 20480
+      },
+      {
+        "path": "core.unet.ups.0.1.blocks.0.block1.0",
+        "adapter_key": "a0030",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.ups.0.1.blocks.1.block.0",
+        "adapter_key": "a0031",
+        "type": "Conv1d",
+        "weight_shape": [
+          512,
+          512,
+          5
+        ],
+        "parameters": 49152
+      },
+      {
+        "path": "core.unet.ups.1.0.time_mlp.1",
+        "adapter_key": "a0032",
+        "type": "Linear",
+        "weight_shape": [
+          512,
+          256
+        ],
+        "parameters": 12288
+      },
+      {
+        "path": "core.unet.ups.1.0.blocks.0.block1.0",
+        "adapter_key": "a0033",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          1024,
+          5
+        ],
+        "parameters": 86016
+      },
+      {
+        "path": "core.unet.ups.1.0.blocks.1.block.0",
+        "adapter_key": "a0034",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.ups.1.1.time_mlp.1",
+        "adapter_key": "a0035",
+        "type": "Linear",
+        "weight_shape": [
+          512,
+          256
+        ],
+        "parameters": 12288
+      },
+      {
+        "path": "core.unet.ups.1.1.blocks.0.block1.0",
+        "adapter_key": "a0036",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.ups.1.1.blocks.1.block.0",
+        "adapter_key": "a0037",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "core.unet.final_conv.0.block.0",
+        "adapter_key": "a0038",
+        "type": "Conv1d",
+        "weight_shape": [
+          256,
+          256,
+          5
+        ],
+        "parameters": 24576
+      },
+      {
+        "path": "observation_projection",
+        "adapter_key": "a0039",
+        "type": "Linear",
+        "weight_shape": [
+          64,
+          704
+        ],
+        "parameters": 12288
+      },
+      {
+        "path": "camera_encoder.2",
+        "adapter_key": "a0040",
+        "type": "Linear",
+        "weight_shape": [
+          64,
+          128
+        ],
+        "parameters": 3072
+      },
+      {
+        "path": "reference_projection",
+        "adapter_key": "a0041",
+        "type": "Linear",
+        "weight_shape": [
+          64,
+          1408
+        ],
+        "parameters": 23552
+      },
+      {
+        "path": "patch_condition",
+        "adapter_key": "a0042",
+        "type": "Linear",
+        "weight_shape": [
+          64,
+          1408
+        ],
+        "parameters": 23552
+      },
+      {
+        "path": "dynamic_condition",
+        "adapter_key": "a0043",
+        "type": "Linear",
+        "weight_shape": [
+          64,
+          1408
+        ],
+        "parameters": 23552
+      },
+      {
+        "path": "region_condition",
+        "adapter_key": "a0044",
+        "type": "Linear",
+        "weight_shape": [
+          32,
+          1408
+        ],
+        "parameters": 23040
+      }
+    ],
+    "target_count": 45,
+    "trainable_parameters": 1955616,
+    "trainable_parameter_tensors": 90,
+    "base_parameters": 122667536,
+    "all_base_parameters_frozen": true,
+    "only_adapters_trainable": true,
+    "original_model_training": false,
+    "original_modules_all_eval": true,
+    "mode_source": "explicit batch['mode']; no visibility-count inference",
+    "gate": "EGO path bypass; EXO-only row selection; ContextVar-scoped restoration",
+    "inference_parameter_metadata": "original requires_grad flags only during serialized no_grad forward; finally frozen",
+    "training_parameter_metadata": "all original parameters frozen, including internal no_grad proposal",
+    "deployment": "one state_dict containing frozen parent and internal adapters; save spec for strict reload"
+  },
+  "free_disk_before": 110855618560,
+  "elapsed_training_s": 21742.03954907498,
+  "counts": {
+    "trumans/exo": 36337,
+    "interactee/exo": 5223,
+    "camera_wearer/exo": 5216,
+    "rich/exo": 1224
+  },
+  "sampling_coverage": {
+    "protocol": "natural-global-train-windows-v1",
+    "fingerprint": "7a4bca0fa323f86368447526c6e597be1f6cc13c4d8ac38875b3ec845ff436ea",
+    "population_windows": 15319,
+    "draws": 48000,
+    "cycle_index": 3,
+    "cursor": 2043,
+    "completed_cycles": 3,
+    "unique_windows_seen": 15319,
+    "repeated_presentations": 32681,
+    "min_presentations_per_window": 3,
+    "max_presentations_per_window": 4,
+    "recording_cooldown_applied": false,
+    "temporal_overlap_avoidance_applied": false,
+    "physical_recordings": 591,
+    "groups": {
+      "camera_wearer": {
+        "eligible_windows": 1661,
+        "total_draws": 5216,
+        "unique_windows_seen": 1661,
+        "current_cycle_windows_seen": 233,
+        "eligible_recordings": 65,
+        "recordings_seen": 65,
+        "natural_probability": 0.10842744304458515,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 3555
+      },
+      "interactee": {
+        "eligible_windows": 1661,
+        "total_draws": 5223,
+        "unique_windows_seen": 1661,
+        "current_cycle_windows_seen": 240,
+        "eligible_recordings": 65,
+        "recordings_seen": 65,
+        "natural_probability": 0.10842744304458515,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 3562
+      },
+      "rich": {
+        "eligible_windows": 394,
+        "total_draws": 1224,
+        "unique_windows_seen": 394,
+        "current_cycle_windows_seen": 42,
+        "eligible_recordings": 62,
+        "recordings_seen": 62,
+        "natural_probability": 0.025719694497029832,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 830
+      },
+      "trumans": {
+        "eligible_windows": 11603,
+        "total_draws": 36337,
+        "unique_windows_seen": 11603,
+        "current_cycle_windows_seen": 1528,
+        "eligible_recordings": 464,
+        "recordings_seen": 464,
+        "natural_probability": 0.7574254194137998,
+        "window_coverage_fraction": 1.0,
+        "repeated_presentations": 24734
+      }
+    }
+  }
+}
