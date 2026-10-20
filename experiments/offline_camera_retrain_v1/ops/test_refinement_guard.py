@@ -256,6 +256,63 @@ class RefinementGuardTests(unittest.TestCase):
         np.testing.assert_array_equal(project_local_rotations(motion, prediction, rest, 0,
                                                                observation_meta=meta), prediction)
 
+    def test_window_eligibility_is_full_time_intersection_per_batch(self):
+        meta = np.zeros((2, 4, 22, 4))
+        meta[0, 0, 8, [0, 2]] = 1  # Right ankle appears for only one frame.
+        meta[1, 3, 7, [0, 2]] = 1  # Other batch has only left ankle visible.
+        frame = unobserved_rotation_mask(meta)
+        window = unobserved_rotation_mask(meta, eligibility='window')
+        self.assertFalse(frame[0, 0, 5])
+        self.assertTrue(frame[0, 1:, 5].all())
+        self.assertFalse(window[0, :, 5].any())
+        self.assertTrue(window[0, :, 4].all())
+        self.assertFalse(window[1, :, 4].any())
+        self.assertTrue(window[1, :, 5].all())
+        np.testing.assert_array_equal(window, np.broadcast_to(frame.all(axis=1, keepdims=True), frame.shape))
+        self.assertFalse(np.diff(window.astype(int), axis=1).any())
+        with self.assertRaises(ValueError):
+            unobserved_rotation_mask(meta, eligibility='sequence')
+
+    def test_window_projection_protects_full_window_and_removes_eligibility_switch(self):
+        rest = rest_skeleton()
+        reference = consistent_motion(rest)
+        prediction = reference.copy()
+        set_rotation(prediction, 5, Rotation.from_euler('x', 150, degrees=True).as_matrix())
+        set_rotation(prediction, 18, Rotation.from_euler('y', 130, degrees=True).as_matrix())
+        prediction[:, 135:] = (forward_kinematics_numpy(prediction, rest) / 2).reshape(3, 66)
+        meta = np.zeros((3, 22, 4))
+        meta[0, 8, [0, 2]] = 1
+        meta[1, 16, [1, 3]] = 1
+        frame = project_local_rotations(reference, prediction, rest, 30, observation_meta=meta)
+        window = project_local_rotations(reference, prediction, rest, 30,
+                                        observation_meta=meta, eligibility='window')
+        # Knee is never changed in window mode; frame mode changes it as soon
+        # as its ankle disappears. The separately hidden elbow still changes.
+        np.testing.assert_array_equal(window[:, 3 + 5 * 6:9 + 5 * 6],
+                                      prediction[:, 3 + 5 * 6:9 + 5 * 6])
+        self.assertGreater(np.max(np.abs(frame[1:, 3 + 5 * 6:9 + 5 * 6]
+                                         - prediction[1:, 3 + 5 * 6:9 + 5 * 6])), .5)
+        self.assertGreater(np.max(np.abs(window - prediction)), .5)
+        np.testing.assert_array_equal(window[:, :9], prediction[:, :9])
+        position_visible, rotation_visible = meta[..., 0] > 0, meta[..., 1] > 0
+        np.testing.assert_allclose(forward_kinematics_numpy(window, rest)[position_visible],
+                                   forward_kinematics_numpy(prediction, rest)[position_visible], atol=1e-12)
+        np.testing.assert_allclose(global_rotations(window)[rotation_visible],
+                                   global_rotations(prediction)[rotation_visible], atol=1e-12)
+
+    def test_window_empty_eligibility_returns_exact_prediction(self):
+        rest = rest_skeleton()
+        reference = consistent_motion(rest, frames=22)
+        prediction = reference.copy()
+        set_rotation(prediction, 5, Rotation.from_euler('x', 150, degrees=True).as_matrix())
+        meta = np.zeros((22, 22, 4))
+        for joint in range(22):
+            meta[joint, joint, [1, 3]] = 1
+        self.assertTrue(unobserved_rotation_mask(meta)[0, 1:].all())
+        self.assertFalse(unobserved_rotation_mask(meta, eligibility='window').any())
+        np.testing.assert_array_equal(project_local_rotations(reference, prediction, rest, 0,
+                                      observation_meta=meta, eligibility='window'), prediction)
+
 
 if __name__ == '__main__':
     unittest.main()

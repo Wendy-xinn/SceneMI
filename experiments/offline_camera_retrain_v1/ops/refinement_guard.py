@@ -34,7 +34,7 @@ def _motion_array(value, name):
 
 
 def review_saved(run, output, *, step=8000, panels=('fixed', 'rotating'), caps=(30., 60., 90.),
-                 scope='all'):
+                 scope='all', eligibility='frame'):
     """Paired CPU review of completed saved VAL predictions, never training.
 
     Truth is used only for reporting. The projection itself never receives it.
@@ -53,6 +53,8 @@ def review_saved(run, output, *, step=8000, panels=('fixed', 'rotating'), caps=(
         raise ValueError('Choose unique fixed/rotating panels')
     if scope not in ('all', 'unobserved'):
         raise ValueError('scope must be all or unobserved')
+    if eligibility not in ('frame', 'window'):
+        raise ValueError('eligibility must be frame or window')
     caps = tuple(float(v) for v in caps)
     if not caps or len(set(caps)) != len(caps) or any(not 0 <= v <= 180 for v in caps):
         raise ValueError('Choose unique finite caps in [0,180]')
@@ -114,8 +116,10 @@ def review_saved(run, output, *, step=8000, panels=('fixed', 'rotating'), caps=(
                 truth, rest = saved[f'{index}_truth'], saved[f'{index}_rest']
                 observation_meta = saved[prefix + 'observation_meta']
                 visible = observation_meta[..., 0] > 0
-                eligible = (unobserved_rotation_mask(observation_meta) if scope == 'unobserved'
+                eligible = (unobserved_rotation_mask(observation_meta, eligibility=eligibility) if scope == 'unobserved'
                             else np.broadcast_to(np.arange(22) != 0, (*pred.shape[:-1], 22)))
+                nonleaf = np.array([joint in PARENTS[1:] for joint in range(22)])
+                nonleaf[0] = False
                 gt = forward_kinematics_numpy(truth, rest)
                 base = evaluate(forward_kinematics_numpy(pred, rest), gt, visible)
                 ref_metrics = evaluate(forward_kinematics_numpy(ref, rest), gt, visible)
@@ -136,12 +140,15 @@ def review_saved(run, output, *, step=8000, panels=('fixed', 'rotating'), caps=(
                                                'source_first', 'start', 'case_seed', 'regime', 'panel')}
                 for cap in (None, *caps):
                     candidate = project_local_rotations(ref, pred, rest, cap,
-                        observation_meta=observation_meta if scope == 'unobserved' else None)
+                        observation_meta=observation_meta if scope == 'unobserved' else None,
+                        eligibility=eligibility)
                     if not np.array_equal(candidate[..., :9], pred[..., :9]):
                         raise ValueError('Projection changed root channels')
                     values = base if cap is None else evaluate(forward_kinematics_numpy(candidate, rest), gt, visible)
-                    rows.append(dict(identity, cap_deg=cap, scope=scope, metrics=values, baseline=base,
+                    rows.append(dict(identity, cap_deg=cap, scope=scope, eligibility=eligibility,
+                        metrics=values, baseline=base,
                         eligible_nonroot_joint_frames=int(eligible[..., 1:].sum()),
+                        eligible_nonleaf_joint_frames=int((eligible & nonleaf).sum()),
                         total_nonroot_joint_frames=int(eligible[..., 1:].size),
                         reference=ref_metrics,
                         required_large_rotation_fraction=float((required > cap).mean()) if cap is not None else None))
@@ -153,7 +160,9 @@ def review_saved(run, output, *, step=8000, panels=('fixed', 'rotating'), caps=(
                     items = [r for r in rows if (r['panel'], r['dataset'], r['regime'], r['cap_deg'])
                              == (panel, dataset, regime, cap)]
                     group = dict(panel=panel, dataset=dataset, regime=regime, cap_deg=cap, scope=scope,
-                                 windows=len(items))
+                        eligibility=eligibility, windows=len(items),
+                        windows_with_eligible_nonroot_rotation=sum(r['eligible_nonroot_joint_frames'] > 0 for r in items),
+                        windows_with_eligible_position_affecting_rotation=sum(r['eligible_nonleaf_joint_frames'] > 0 for r in items))
                     for metric in ('hidden_mm', 'visible_mm', 'all_mm', 'root_relative_hidden_mm',
                                    'stance_foot_speed_m_s', 'mpjve_mm_s', 'acceleration_error_mm_s2'):
                         valid = [r for r in items if r['metrics'][metric] is not None]
@@ -180,10 +189,13 @@ def review_saved(run, output, *, step=8000, panels=('fixed', 'rotating'), caps=(
         if digest(path) != expected:
             raise ValueError('Review input changed during computation: ' + path)
     result = dict(protocol='saved-exo-reference-SO3-cap-review-v1', status='completed', scope=scope,
+        eligibility_mode=eligibility,
         recorded_at=datetime.now(timezone.utc).isoformat(), step=step, panels=list(panels), caps_deg=list(caps),
         eligibility=('All nonroot local joints.' if scope == 'all' else
             'Only local joints with no effective observed position in strict descendants and no effective '
-            'observed global orientation in inclusive subtree; availability and confidence must be finite and >0.'),
+            'observed global orientation in inclusive subtree; availability and confidence must be finite and >0. '
+            + ('Eligibility is the intersection over the full saved window, with no framewise switches.'
+               if eligibility == 'window' else 'Eligibility is evaluated per frame.')),
         source_sha256={str(Path(__file__).resolve()): digest(__file__)}, inputs_sha256=inputs,
         optimizer_updates=0, inference_calls=0, cuda_initialized=False,
         peak_cpu_rss_mib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024,
@@ -192,12 +204,14 @@ def review_saved(run, output, *, step=8000, panels=('fixed', 'rotating'), caps=(
         limitations=['Saved-output projection, not DDIM-internal constraint or a newly trained model.',
                      'Root unchanged; observed joint IK is not rerun. Visible-joint and foot guards must be assessed.',
                      'All caps predeclared for diagnosis; no automatic model promotion or checkpoint selection.',
-                     'Per-frame eligibility may switch over time and create temporal discontinuities; velocity and acceleration errors are reported.',
+                     ('Per-frame eligibility may switch over time and create temporal discontinuities; velocity and acceleration errors are reported.'
+                      if eligibility == 'frame' else
+                      'Window eligibility removes mask switches only; reference jitter and projected motion can still be temporally poor. No smoothing is applied.'),
                      'EGO excluded and unchanged by design; this review modifies EXO outputs only.'],
         groups=groups, rows=rows)
     (output / 'REVIEW.json').write_text(json.dumps(result, ensure_ascii=False, separators=(',', ':'), allow_nan=False) + '\n')
     lines = ['# EXO 参考旋转修正范围 CPU 对照', '',
-             f'阶段{step}；范围{scope}；仅处理已保存的 EXO 输出；不训练、不重跑 DDIM/IK，不自动选最终方案。', '',
+             f'阶段{step}；范围{scope}；eligibility={eligibility}；仅处理已保存的 EXO 输出；不训练、不重跑 DDIM/IK，不自动选最终方案。', '',
              '| 面板 | 数据集 | 输入 | 上限° | hidden mm | visible mm | visible守卫 | foot守卫 |',
              '|---|---|---|---:|---:|---:|---|---|']
     for group in groups:
@@ -207,7 +221,9 @@ def review_saved(run, output, *, step=8000, panels=('fixed', 'rotating'), caps=(
             str(group['visible_mm_guard_pass']), str(group['stance_foot_speed_m_s_guard_pass']))) + ' |')
     lines.extend(['', '真实需要大幅修正的子集、P90、逐窗退化数、源身份与哈希见 REVIEW.json。',
                   '范围相对于参考局部旋转，不是限制膝盖的绝对弯曲角。GT仅用于指标与分组，投影函数不读取GT。',
-                  'unobserved仅使用输入观测元数据保护可见位置和全局旋转；按帧mask切换可能引入跳动，速度和加速度误差已记录。', ''])
+                  'unobserved仅使用输入观测元数据保护可见位置和全局旋转；速度和加速度误差已记录。',
+                  ('window取整窗eligible交集，没有逐帧开关，但参考抖动、动作投影仍可能损害时序；没有加入平滑。'
+                   if eligibility == 'window' else 'frame按帧mask切换可能引入跳动。'), ''])
     (output / 'REVIEW_zh.md').write_text('\n'.join(lines))
     return result
 
@@ -222,9 +238,10 @@ def main(argv=None):
     parser.add_argument('--panels', nargs='+', choices=('fixed', 'rotating'), default=('fixed', 'rotating'))
     parser.add_argument('--caps', nargs='+', type=float, default=(30., 60., 90.))
     parser.add_argument('--scope', choices=('all', 'unobserved'), default='all')
+    parser.add_argument('--eligibility', choices=('frame', 'window'), default='frame')
     args = parser.parse_args(argv)
     result = review_saved(args.run, args.output, step=args.step, panels=args.panels, caps=args.caps,
-                          scope=args.scope)
+                          scope=args.scope, eligibility=args.eligibility)
     print(json.dumps({key: result[key] for key in ('status', 'step', 'peak_cpu_rss_mib',
                                                   'maximum_saved_metric_recompute_difference_mm')}))
 
@@ -286,7 +303,7 @@ def forward_kinematics_numpy(motion, rest):
     return joints
 
 
-def unobserved_rotation_mask(observation_meta):
+def unobserved_rotation_mask(observation_meta, *, eligibility='frame'):
     """Find local rotations that cannot change any effective observation.
 
     Accept [T,22,C] or [B,T,22,C], C >= 4. Metadata channels are position
@@ -300,9 +317,16 @@ def unobserved_rotation_mask(observation_meta):
     alone therefore does not block a local rotation. Root is always blocked.
     This guarantee concerns FK from motion rotations and rest joints, within
     numerical precision; it does not assert consistency of saved joint channels.
-    Per-frame changes in eligibility can cause temporal discontinuities.
+    With eligibility='window', take the intersection across the whole time
+    axis, independently for each batch element. It is broadcast across the
+    window, so a transient observed descendant protects its ancestors for the
+    entire window. This removes mask switching but may leave only leaf joints
+    (or no joints) editable. It does not smooth reference or output motion.
+    The default per-frame eligibility can cause temporal discontinuities.
     """
     meta = np.asarray(observation_meta)
+    if eligibility not in ('frame', 'window'):
+        raise ValueError('eligibility must be frame or window')
     if (meta.ndim not in (3, 4) or meta.shape[-2] != 22 or meta.shape[-1] < 4
             or any(size == 0 for size in meta.shape[:-2])):
         raise ValueError('observation_meta must have shape [T,22,C] or [B,T,22,C], C>=4')
@@ -323,10 +347,13 @@ def unobserved_rotation_mask(observation_meta):
                | np.any(orientation[..., None, :] & inclusive, axis=-1))
     eligible = ~blocked
     eligible[..., 0] = False
+    if eligibility == 'window':
+        eligible = np.broadcast_to(eligible.all(axis=-2, keepdims=True), eligible.shape).copy()
     return eligible
 
 
-def project_local_rotations(reference, prediction, rest, max_angle_deg, *, observation_meta=None):
+def project_local_rotations(reference, prediction, rest, max_angle_deg, *, observation_meta=None,
+                            eligibility='frame'):
     """Project non-root local rotations to a reference-centred SO(3) ball.
 
     For each local joint, let D = R_reference.T @ R_prediction. The output is
@@ -344,6 +371,8 @@ def project_local_rotations(reference, prediction, rest, max_angle_deg, *, obser
     unobserved_rotation_mask are eligible. This preserves all effective
     observed FK joint positions and global rotations relative to prediction.
     It does not enforce agreement with the observed values themselves.
+    eligibility='window' protects any observation anywhere in the window;
+    the default 'frame' preserves the prior per-frame diagnostic behavior.
 
     Zero permits reference local rotations with prediction root pose; it
     does not lock any joint to ground or prevent root drift. A fixed limit
@@ -355,9 +384,11 @@ def project_local_rotations(reference, prediction, rest, max_angle_deg, *, obser
     if reference.shape != prediction.shape:
         raise ValueError('reference and prediction shapes must match')
     rest = _rest_array(rest, prediction)
+    if eligibility not in ('frame', 'window'):
+        raise ValueError('eligibility must be frame or window')
     eligible = None
     if observation_meta is not None:
-        eligible = unobserved_rotation_mask(observation_meta)
+        eligible = unobserved_rotation_mask(observation_meta, eligibility=eligibility)
         if eligible.shape != (*prediction.shape[:-1], 22):
             raise ValueError('observation_meta leading axes must match prediction')
     if max_angle_deg is not None:
