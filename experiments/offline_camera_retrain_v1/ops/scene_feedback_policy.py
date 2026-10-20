@@ -26,9 +26,10 @@ from .dependencies import dependency_closure, sha256
 PROTOCOL = 'frozen-head-only-ego-scene-feedback-policy-review-v1'
 POLICY_PROTOCOL = 'native30-scene-feedback-evidence-gate-v1'
 POLICIES = ('original', 'near_only', 'feedback_off', 'cls_off', 'patch_off', 'dynamic_off',
-            'exo_patch_off', 'exo_static_global_off')
+            'exo_patch_off', 'exo_static_global_off', 'exo_patch_second_pass')
 EXO_POLICIES = ('original', 'cls_off', 'patch_off', 'dynamic_off')
-EXO_REPAIR_POLICIES = ('original', 'exo_patch_off', 'exo_static_global_off')
+EXO_REPAIR_POLICIES = ('original', 'exo_patch_off', 'exo_static_global_off',
+                       'exo_patch_second_pass')
 EXO_PROTOCOL = 'frozen-EXO-scene-branch-diagnostic-v1'
 EXO_DEFAULT_OUT = review.BASE / 'runs/native30_exo_scene_repair_v1/branch_diagnostic'
 DEFAULT_OUT = review.BASE / 'runs/native30_ego_scene_feedback_review'
@@ -100,7 +101,7 @@ def apply_scene_feedback_policy(model, policy, *, architecture='original'):
         handle = model.dynamic_condition.register_forward_hook(
             lambda module, inputs, output: torch.zeros_like(output))
         restore.append(handle.remove)
-    elif policy in ('exo_patch_off', 'exo_static_global_off'):
+    elif policy in ('exo_patch_off', 'exo_static_global_off', 'exo_patch_second_pass'):
         active = ContextVar('native30_exo_scene_policy_rows', default=None)
         original_core = model._core_pass
         restore.append(lambda: setattr(model, '_core_pass', original_core))
@@ -111,7 +112,16 @@ def apply_scene_feedback_policy(model, policy, *, architecture='original'):
             batch = kwargs.get('batch', args[2] if len(args) > 2 else None)
             require(torch.is_tensor(noisy), 'Scene policy core requires a tensor diffusion state')
             selected = _explicit_exo_rows(batch, len(noisy))
-            token = active.set((len(noisy), selected))
+            suppress_patch = True
+            if policy == 'exo_patch_second_pass':
+                # This wrapper surrounds the most-derived _core_pass, before
+                # Native30Refinement converts the first query to reference+xt.
+                # In eval both passes are no_grad: grad state cannot route them.
+                query_motion = kwargs.get('query_motion', args[7] if len(args) > 7 else None)
+                require(query_motion is None or torch.is_tensor(query_motion),
+                    'Second-pass policy requires an absent proposal query or tensor refinement query')
+                suppress_patch = query_motion is None
+            token = active.set((len(noisy), selected, suppress_patch))
             try:
                 return original_core(*args, **kwargs)
             finally:
@@ -121,9 +131,11 @@ def apply_scene_feedback_policy(model, policy, *, architecture='original'):
             context = active.get()
             require(context is not None and len(output) == context[0],
                 'Patch policy must run inside an explicit-mode core pass')
-            return _zero_exo_rows(output, context[1])
+            return _zero_exo_rows(output, context[1]) if context[2] else output
 
         model._core_pass = MethodType(core_pass, model)
+        # Loaded EXO models already have their adapter hooks installed. Appending
+        # here gates the complete base+LoRA patch contribution, not only its base.
         handle = model.patch_condition.register_forward_hook(patch_output)
         restore.append(handle.remove)
         if policy == 'exo_static_global_off':
@@ -145,6 +157,17 @@ def apply_scene_feedback_policy(model, policy, *, architecture='original'):
         training_and_inference_same_policy=True,
         checkpoint_weights_unchanged=True, reference_unchanged=True,
         analytical_guidance_unchanged=True)
+    if policy == 'exo_patch_second_pass':
+        metadata.update(patch_pass_policy=dict(proposal='EXO_zero', refinement='unchanged'),
+            pass_routing='outermost_core_pass_query_motion_None_vs_tensor',
+            hook_order='appended_after_existing_adapter_hooks',
+            rule_identical_in_training_and_inference=True,
+            # The frozen10k was trained with patch enabled in both passes.
+            # A shared callable rule is not evidence of retraining this model.
+            training_and_inference_same_policy=False,
+            checkpoint_trained_with_this_policy=False,
+            training_policy_note='Frozen-weight inference candidate; original10k used both patch passes. '
+                'A new TRAIN run must install this same pass rule to claim training-policy consistency.')
     model._scene_feedback_policy = metadata
     model._scene_feedback_restore = restore
     return metadata
@@ -400,7 +423,7 @@ def prepare_exo(out, source=None, case_ids=(1, 4, 8), policies=None, *, selectio
     require(case_ids and len(set(case_ids)) == len(case_ids), 'Unique fixed case IDs required')
     require(policies and len(set(policies)) == len(policies)
         and all(p in EXO_POLICIES + EXO_REPAIR_POLICIES[1:] for p in policies) and policies[0] == 'original',
-        'EXO policies must begin with original and contain only declared global branches')
+        'EXO policies must begin with original and contain only declared scene policies')
     selection_path = Path(selection).resolve() if selection else None
     if selection_path:
         choice = _read_exo_selection(selection_path, source)

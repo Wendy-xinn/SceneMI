@@ -451,19 +451,70 @@ def validate_prepared_cases(manifest: dict, base: Path) -> list[dict]:
 
 class MotionViewer:
     """One timeline with independent EGO/EXO folders and overlaid model layers."""
+    # Keep historical manifests' colours, then assign new entries a distinct
+    # colour in manifest order. A manifest may specify an explicit RGB colour.
     COLORS = {"base41k": (235, 140, 35), "adapter_v2": (185, 40, 160),
         "base41k_ref_fixed": (20, 180, 185), "adapter_v2_ref_fixed": (225, 65, 65),
         "prediction": (185, 40, 160)}
+    PALETTE = ((235, 140, 35), (185, 40, 160), (20, 180, 185), (225, 65, 65),
+        (155, 115, 35), (125, 90, 210), (55, 150, 75), (210, 100, 150))
+
+    @classmethod
+    def model_styles(cls, cases: list[dict]) -> dict:
+        import colorsys
+        styles = {}
+        reserved = {cls.COLORS[entry["key"]] for case in cases for entry in case["models"]
+            if entry["key"] in cls.COLORS}
+        for case in cases:
+            for entry in case["models"]:
+                key = entry["key"]
+                if key in styles:
+                    continue
+                color = entry.get("color", cls.COLORS.get(key))
+                if color is None:
+                    color = next((value for value in cls.PALETTE
+                        if value not in reserved), None)
+                    if color is None:
+                        index = len(styles)
+                        while True:
+                            color = tuple(round(channel * 255) for channel in
+                                colorsys.hsv_to_rgb((index * .61803398875) % 1., .72, .84))
+                            if color not in reserved:
+                                break
+                            index += 1
+                if (not isinstance(color, (list, tuple)) or len(color) != 3
+                        or any(not isinstance(channel, int) or not 0 <= channel <= 255 for channel in color)):
+                    raise ValueError("Model colour must be three integer RGB channels: " + key)
+                color = tuple(color)
+                reserved.add(color)
+                styles[key] = dict(label=entry["label"], color=color)
+        return styles
+
+    @staticmethod
+    def reference_comparison(entries: list[dict]) -> tuple | None:
+        """Use declared parent keys, with support for historical reference fixes."""
+        keys = {entry["key"] for entry in entries}
+        pairs = []
+        for entry in entries:
+            key = entry["key"]
+            parent = entry.get("reference_parent_key")
+            if parent is None and key.endswith("_ref_fixed"):
+                parent = key.removesuffix("_ref_fixed")
+            if parent in keys:
+                pairs.append((parent, key))
+        return pairs[-1] if pairs else None
 
     def __init__(self, cases: list[dict], port: int):
         import viser
         self.cases, self.cache = cases, OrderedDict()
+        self.styles = self.model_styles(cases)
         self.lock = threading.RLock()
         self.loading, self.runtime, self.handles = False, {}, []
         self.server = server = viser.ViserServer(host="127.0.0.1", port=port, label="SceneMI · EGO / EXO")
         server.scene.set_up_direction("+y")
-        server.gui.add_markdown("## 共享生成器 · 动作对照\n\n蓝：GT · 橙：原41k输出 · 紫：EXO适配输出。"
-            "所有人体保留原坐标，可用复选框叠加。示例按运动和误差挑选，不代表测试集平均效果。")
+        server.gui.add_markdown("## 已保存动作 · 模型对照\n\n蓝：GT · 浅绿：输入参考。"
+            "模型：" + "；".join(style["label"] for style in self.styles.values()) + "。"
+            "所有人体保留原坐标，可用复选框叠加。选例依据见当前案例说明，不代表测试集平均效果。")
         self.labels = [f"{case.get('dataset', '').upper()} · {case.get('sequence_id', case['label'])}"
             + (f" · 起始 {case['start']} 帧" if 'start' in case else '') for case in cases]
         if len(set(self.labels)) != len(self.labels):
@@ -475,7 +526,7 @@ class MotionViewer:
         self.play = server.gui.add_checkbox("播放", initial_value=False)
         self.speed = server.gui.add_slider("播放倍速", min=.25, max=2., step=.25, initial_value=.75)
         self.opacity = server.gui.add_slider("预测人体不透明度", min=.15, max=1., step=.05, initial_value=.85)
-        self.panels, self.preset_buttons, self.reference_fix_button = {}, [], None
+        self.panels, self.preset_buttons = {}, {}
         for mode in ("ego", "exo"):
             with server.gui.add_folder(mode.upper() + " · 图层"):
                 panel = {}
@@ -507,15 +558,12 @@ class MotionViewer:
                         initial_value=not key.endswith("_ref_fixed"))
                 panel["reference_source"] = server.gui.add_dropdown("输入参考来源",
                     options=("本窗口第一个模型",), initial_value="本窗口第一个模型")
-                if mode == "exo":
-                    before = server.gui.add_button("对照：原41k / EXO适配")
-                    reference = server.gui.add_button("对照：输入参考 / 扩散结果")
-                    reference_fix = server.gui.add_button("对照：参考修复前 / 后（适配输出）")
-                    before.on_click(lambda _: self.comparison("generator"))
-                    reference.on_click(lambda _: self.comparison("reference"))
-                    reference_fix.on_click(lambda _: self.comparison("reference_fix"))
-                    self.reference_fix_button = reference_fix
-                    self.preset_buttons.extend((before, reference, reference_fix))
+                buttons = {"generator": server.gui.add_button("对照：全部模型"),
+                    "reference": server.gui.add_button("对照：输入参考 / 所选模型"),
+                    "reference_fix": server.gui.add_button("对照：参考构造版本")}
+                for kind, button in buttons.items():
+                    button.on_click(lambda _, mode=mode, kind=kind: self.comparison(kind, mode))
+                self.preset_buttons[mode] = buttons
                 panel["info"] = server.gui.add_markdown("")
                 self.panels[mode] = panel
         self.follow = server.gui.add_checkbox("跟随 GT 人体", initial_value=False)
@@ -540,19 +588,28 @@ class MotionViewer:
         server.on_client_connect(lambda client: self.camera(client))
         self.load_case()
 
-    def comparison(self, kind: str) -> None:
+    def comparison(self, kind: str, mode: str = "exo") -> None:
         """Change only display layers while preserving the exact case and frame."""
         with self.lock:
-            panel = self.panels["exo"]
+            panel = self.panels[mode]
+            entries = [item["entry"] for item in self.runtime.get(mode, {}).get("models", [])]
+            if not entries:
+                return
             panel["enabled"].value = True
             panel["gt"].value = kind in ("generator", "reference_fix")
             panel["reference"].value = kind == "reference"
             panel["uncertainty"].value = kind == "reference"
             panel["observations"].value = kind == "reference"
             panel["occluded"].value = True
-            selected = {"generator": {"base41k", "adapter_v2"},
-                "reference": {"adapter_v2"},
-                "reference_fix": {"adapter_v2", "adapter_v2_ref_fixed"}}[kind]
+            if kind == "generator":
+                selected = {entry["key"] for entry in entries}
+            elif kind == "reference":
+                selected = {entry["key"] for entry in entries
+                    if entry["label"] == panel["reference_source"].value}
+            elif kind == "reference_fix":
+                selected = set(self.reference_comparison(entries) or ())
+            else:
+                raise ValueError("Unknown display comparison: " + kind)
             for key, control in panel["models"].items():
                 control.value = key in selected
             self.update()
@@ -607,10 +664,9 @@ class MotionViewer:
                 for mode, panel in self.panels.items():
                     members = [item for item in records if item["entry"]["mode"] == mode]
                     available = bool(members)
-                    if mode == "exo":
-                        for button in self.preset_buttons:
-                            button.disabled = not available
-                            button.visible = available
+                    for button in self.preset_buttons[mode].values():
+                        button.disabled = not available
+                        button.visible = available
                     for key, control in panel.items():
                         if key not in ("status", "info", "models"):
                             control.disabled = not available
@@ -618,14 +674,17 @@ class MotionViewer:
                     for key, control in panel["models"].items():
                         control.disabled = key not in {item["entry"]["key"] for item in members}
                         control.visible = not control.disabled
-                    if mode == "exo" and self.reference_fix_button is not None:
-                        can_compare = {"adapter_v2", "adapter_v2_ref_fixed"}.issubset(
-                            {item["entry"]["key"] for item in members})
-                        self.reference_fix_button.visible = can_compare
-                        self.reference_fix_button.disabled = not can_compare
+                    entries = [item["entry"] for item in members]
+                    pair = self.reference_comparison(entries)
+                    reference_button = self.preset_buttons[mode]["reference_fix"]
+                    reference_button.visible = bool(pair)
+                    reference_button.disabled = not bool(pair)
+                    if pair:
+                        labels = {entry["key"]: entry["label"] for entry in entries}
+                        reference_button.label = "对照：" + " / ".join(labels[key] for key in pair)
                     has_reference_versions = any(item["entry"]["key"].endswith("_ref_fixed") for item in members)
                     panel["status"].content = (("同一窗口、相同原始观测；参考构造版本不同。"
-                        "青：参考修复后的41k输出；红：参考修复后的适配输出。" if has_reference_versions else
+                        "参考来源与生成结果均按模型标签区分。" if has_reference_versions else
                         "同一窗口、同一输入的叠加对照。") if available else
                         "本窗口没有已保存的 " + mode.upper() + " 输出；未用其他窗口冒充配对。")
                     panel["info"].content = ""
@@ -666,7 +725,8 @@ class MotionViewer:
                     rt["occluded_gt"] = self.points(prefix + "/occlusion/GT", (245, 65, 65), .04)
                     rt["occluded_reference"] = self.points(prefix + "/occlusion/input_reference", (245, 65, 65), .04)
                     for item in members:
-                        key, color = item["entry"]["key"], self.COLORS.get(item["entry"]["key"], (185, 40, 160))
+                        key = item["entry"]["key"]
+                        color = self.styles[key]["color"]
                         model_data = item["data"]
                         item["mesh"] = self.mesh(prefix + "/models/" + key, model_data["clean_vertices"][0],
                             model_data["faces"], color, .85)

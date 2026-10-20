@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from . import scene_policy_review as review
 
@@ -78,6 +79,24 @@ class PolicyReviewTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             with self.assertRaisesRegex(ValueError, 'Freeze dev choice'):
                 review.confirmation_report(folder)
+
+    def test_freeze_supports_a_single_candidate_without_legacy_patch_label(self):
+        with tempfile.TemporaryDirectory() as folder:
+            out = Path(folder)
+            for filename in ('SELECTION.json', 'ACCEPTANCE.json'):
+                (out / filename).write_text('{}\n')
+            labels = dict(original='original', exo_patch_second_pass='exo_patch_second_pass')
+            rules = dict(baseline_policy='original', candidate_policies=['exo_patch_second_pass'])
+            result = dict(passed=True, candidate_summary=dict(natural_primary=dict(combined=80.)))
+            with patch.object(review, 'binding', return_value=({}, rules, {}, labels)), \
+                 patch.object(review, 'phase_rows', return_value=[]), \
+                 patch.object(review, 'expected_rows'), \
+                 patch.object(review, 'cpu_verify', return_value=dict(EGO_retention=[])), \
+                 patch.object(review, 'assess', return_value=result):
+                choice = review.freeze_dev_choice(out)
+            self.assertEqual(choice['selected_policy'], 'exo_patch_second_pass')
+            self.assertEqual(choice['selected_label'], 'exo_patch_second_pass')
+            self.assertFalse(choice['confirmation_metrics_read'])
 
 
 if __name__ == '__main__':

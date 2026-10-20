@@ -52,6 +52,22 @@ class _Model(nn.Module):
         return self._core_pass(noisy_motion, timestep, batch)
 
 
+class _TwoPassModel(_Model):
+    """Match native30's proposal/refinement call signature and no-grad scope."""
+    def __init__(self):
+        super().__init__()
+        self.patch_condition = nn.Linear(3, 3)
+        self.dynamic_condition = nn.Linear(3, 3)
+
+    def forward(self, noisy_motion, timestep, batch, *, use_scene=True):
+        with torch.no_grad():
+            proposal = self._core_pass(noisy_motion, timestep, batch,
+                None, None, use_scene, True)
+        refined = self._core_pass(noisy_motion, timestep, batch,
+            None, None, use_scene, True, proposal.detach())
+        return proposal, refined
+
+
 class FeedbackPolicyTests(unittest.TestCase):
     def test_near_gate_preserves_conditions_and_original_dictionaries(self):
         model = _Model()
@@ -228,6 +244,118 @@ class FeedbackPolicyTests(unittest.TestCase):
                 self.assertTrue(torch.equal(actual[0], baseline[0]))
                 self.assertTrue(torch.equal(actual[1], legacy[1]))
             self.assertIsNone(model._exo_adapter_routing.active.get())
+
+    def test_second_pass_policy_distinguishes_query_argument_in_no_grad(self):
+        model = _Model(); x = torch.randn(2, 5, 3); batch = {'mode': ['ego', 'exo']}
+        with torch.no_grad():
+            original = model._core_pass(x, None, batch)
+            dynamic = model.dynamic_condition(x)
+            with policy.scene_policy(model, 'exo_patch_second_pass'):
+                # Both calls are no_grad; only query_motion distinguishes them.
+                first = model._core_pass(x, None, batch)
+                explicit_first = model._core_pass(x, None, batch, query_motion=None)
+                positional_second = model._core_pass(x, None, batch, None, None, True, True, x)
+                keyword_second = model._core_pass(noisy=x, timestep=None, batch=batch, query_motion=x)
+                self.assertTrue(torch.equal(first[0], original[0]))
+                self.assertTrue(torch.equal(first[1], dynamic[1]))
+                self.assertTrue(torch.equal(first, explicit_first))
+                self.assertTrue(torch.equal(positional_second, original))
+                self.assertTrue(torch.equal(keyword_second, original))
+                self.assertIs(model.scene_tokens(batch)[0], model.summary)
+                with self.assertRaises((ValueError, AssertionError)):
+                    model._core_pass(x, None, batch, query_motion='not a motion tensor')
+            self.assertTrue(torch.equal(model._core_pass(x, None, batch), original))
+
+    def test_second_pass_policy_gates_complete_real_lora_after_its_hook(self):
+        from .adapter_model import install_adapters
+        model = _TwoPassModel()
+        install_adapters(model, {'rank': 2, 'alpha': 2., 'targets': ['patch_condition']})
+        with torch.no_grad():
+            model.exo_adapters['a0000'].down.weight.fill_(.2)
+            model.exo_adapters['a0000'].up.weight.fill_(.4)
+        model.eval(); x = torch.arange(30.).reshape(2, 5, 3) / 30.
+        batch = {'mode': ['ego', 'exo']}; state = copy.deepcopy(model.state_dict())
+        original_hooks = tuple(model.patch_condition._forward_hooks)
+        with torch.no_grad():
+            original = model(x, None, batch)
+            dynamic = model.dynamic_condition(x)
+            base_patch = model.patch_condition(x)  # Outside adapter context.
+            self.assertGreater(float((original[1][1] - dynamic[1] - base_patch[1]).abs().max()), .01)
+            with policy.scene_policy(model, 'exo_patch_second_pass'):
+                self.assertEqual(tuple(model.patch_condition._forward_hooks)[:-1], original_hooks)
+                proposal, refined = model(x, None, batch)
+                self.assertTrue(torch.equal(proposal[0], original[0][0]))
+                self.assertTrue(torch.equal(proposal[1], dynamic[1]))
+                self.assertTrue(torch.equal(refined, original[1]))
+                self.assertTrue(all(torch.equal(v, model.state_dict()[k]) for k, v in state.items()))
+            restored = model(x, None, batch)
+            self.assertTrue(all(torch.equal(a, b) for a, b in zip(restored, original)))
+        self.assertEqual(tuple(model.patch_condition._forward_hooks), original_hooks)
+        self.assertIsNone(model._exo_adapter_routing.active.get())
+
+    def test_second_pass_policy_keeps_train_second_pass_adapter_gradient(self):
+        from .adapter_model import install_adapters
+        model = _TwoPassModel()
+        install_adapters(model, {'rank': 2, 'alpha': 2., 'targets': ['patch_condition']})
+        model.train(True); x = torch.ones(2, 5, 3, requires_grad=True)
+        with policy.scene_policy(model, 'exo_patch_second_pass'):
+            proposal, refined = model(x, None, {'mode': ['ego', 'exo']})
+            self.assertFalse(proposal.requires_grad)
+            self.assertTrue(refined.requires_grad)
+            refined.sum().backward()
+        up = model.exo_adapters['a0000'].up.weight
+        self.assertIsNotNone(up.grad)
+        self.assertTrue(torch.isfinite(up.grad).all())
+        self.assertGreater(float(up.grad.abs().sum()), 0.)
+        self.assertIsNone(model.patch_condition.weight.grad)
+        self.assertTrue(torch.isfinite(x.grad).all())
+        self.assertIsNone(model._exo_adapter_routing.active.get())
+
+    def test_second_pass_policy_ego_and_scene_off_are_exact_for_both_passes(self):
+        model = _TwoPassModel(); x = torch.randn(1, 5, 3); ego = {'mode': ['ego']}
+        original = model(x, None, ego)
+        with policy.scene_policy(model, 'exo_patch_second_pass'):
+            actual = model(x, None, ego)
+            self.assertTrue(all(torch.equal(a, b) for a, b in zip(actual, original)))
+            off = model(x, None, {'mode': ['exo']}, use_scene=False)
+            self.assertTrue(all(value is x for value in off))
+            self.assertTrue(model.patch_enabled and model.local_enabled and model.feedback_enabled)
+        self.assertEqual(len(model.patch_condition._forward_hooks), 0)
+
+    def test_second_pass_context_restores_after_core_exception_and_removal(self):
+        model = _Model(); x = torch.randn(1, 5, 3); batch = {'mode': ['exo']}
+        original_core = model._core_pass
+        def fail(module, arguments, output):
+            raise RuntimeError('core patch failure')
+        with policy.scene_policy(model, 'exo_patch_second_pass'):
+            failure = model.patch_condition.register_forward_hook(fail)
+            try:
+                with self.assertRaisesRegex(RuntimeError, 'core patch failure'):
+                    model._core_pass(x, None, batch)
+            finally:
+                failure.remove()
+            # A leaked context would let this out-of-core call proceed.
+            with self.assertRaisesRegex((ValueError, AssertionError), 'inside an explicit-mode'):
+                model.patch_condition(x)
+            with self.assertRaises((ValueError, AssertionError)):
+                model._core_pass(x, None, {})
+            second = model._core_pass(x, None, batch, query_motion=x)
+            # A subsequent EGO call must retain its ordinary patch contribution.
+            ego = model._core_pass(x, None, {'mode': ['ego']})
+            self.assertTrue(torch.equal(second, ego))
+        self.assertEqual(model._core_pass, original_core)
+        self.assertEqual(len(model.patch_condition._forward_hooks), 0)
+
+    def test_second_pass_registration_and_metadata_do_not_claim_retrained_weights(self):
+        self.assertIn('exo_patch_second_pass', policy.POLICIES)
+        self.assertIn('exo_patch_second_pass', policy.EXO_REPAIR_POLICIES)
+        model = _Model()
+        with policy.scene_policy(model, 'exo_patch_second_pass') as metadata:
+            self.assertEqual(metadata['patch_pass_policy'],
+                dict(proposal='EXO_zero', refinement='unchanged'))
+            self.assertTrue(metadata['rule_identical_in_training_and_inference'])
+            self.assertFalse(metadata['checkpoint_trained_with_this_policy'])
+            self.assertFalse(metadata['training_and_inference_same_policy'])
 
 
 if __name__=='__main__':

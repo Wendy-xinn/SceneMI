@@ -291,7 +291,7 @@ def freeze_dev_choice(out):
     expected_rows(rows, selection, [baseline, *candidates], 'dev')
     cpu = cpu_verify(rows, baseline)
     results = {label: assess(rows, weights, baseline, label, 'dev', ego_checks=cpu['EGO_retention']) for label in candidates}
-    selected = choose(results, labels['exo_patch_off'])
+    selected = choose(results, labels.get('exo_patch_off'))
     policy = next((p for p, label in labels.items() if label == selected), None)
     result = dict(protocol=PROTOCOL, frozen_at=dt.datetime.now().astimezone().isoformat(), identities=identities,
         status='dev_selected' if selected else 'dev_NO', selected_label=selected, selected_policy=policy,
