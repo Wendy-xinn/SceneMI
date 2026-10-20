@@ -395,5 +395,56 @@
     "raw_frame172_temporary_png": "/tmp/grail_stairs_2064_0001_raw_01.png",
     "raw_frame173_temporary_png": "/tmp/grail_stairs_2064_0001_raw_02.png",
     "observation": "Same room, stairs, character as user source-video screenshot; screenshot is an earlier pose. Frame173 shows single-foot support and other foot lifting. Video supports24Hz timing but is not an independent metric3D source ground truth."
+  },
+  "original24Hz_timepoint_subset_check": {
+    "schema": "grail-original-timepoint-contact-subset-v1",
+    "CPU_only": true,
+    "independent_raw24_forward_performed": false,
+    "reason_raw_forward_not_performed": "torch import failed in environment with ld.so elf_machine_rela_relative assertion; no environment edits attempted",
+    "source_recon_sha256": "8bd454474b3be8a725585fabea0e369dbb6ad7ada8b5823858c9c3cdae66f448",
+    "method": "Subset saved30Hz mesh at output frames0,5,..300, whose timestamps equal raw24Hz frames0,4,..240. Validate saved pre-FK parameters against raw inputs at those times. Same audited scene raycasting as other contact entries.",
+    "common_timepoints": 61,
+    "parameter_maximum_differences": {
+      "global_orient_rotation_matrix_max_abs": 0.0,
+      "body_pose_rotation_matrix_max_abs": 0.0,
+      "left_hand_pose_rotation_matrix_max_abs": 0.0,
+      "right_hand_pose_rotation_matrix_max_abs": 0.0,
+      "root_translation_max_abs_m": 0.0
+    },
+    "common_timepoint_lowest_foot_clearance_quantiles_m": {
+      "min": -0.02301025390625,
+      "p05": -0.018782615661621094,
+      "median": 0.004662513732910156,
+      "p95": 0.02939128875732422,
+      "max": 0.04592323303222656
+    },
+    "common_timepoints_over2cm_penetration": 3,
+    "common_timepoints_over2cm_penetration_output30_indices": [
+      135,
+      140,
+      145
+    ],
+    "common_timepoints_over2cm_penetration_raw24_indices": [
+      108,
+      112,
+      116
+    ],
+    "common_timepoints_over2cm_penetration_depth_m": [
+      0.02301025390625,
+      0.022904396057128906,
+      0.020391464233398438
+    ],
+    "common_timepoints_over5cm_hover": 0,
+    "full30Hz": {
+      "frames": 301,
+      "over2cm_penetration_count": 14,
+      "min_clearance_m": -0.023778915405273438,
+      "max_lower_foot_clearance_m": 0.04692554473876953
+    },
+    "noncommon_timepoints": {
+      "count": 240,
+      "over2cm_penetration_count": 11
+    },
+    "conclusion": "Over2cm contact penetration occurs at exact original24Hz timestamps as well, so the observed issue is not limited to newly interpolated timestamps. This is a saved-forward subset check, not an independent raw24Hz FK, official renderer or body-forward correctness certification."
   }
 }

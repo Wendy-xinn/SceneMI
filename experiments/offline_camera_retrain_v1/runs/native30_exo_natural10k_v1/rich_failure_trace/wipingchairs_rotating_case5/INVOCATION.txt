@@ -1,0 +1,121 @@
+TORCH_USE_RTLD_GLOBAL=1 CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 /home/wenxin/miniconda3/envs/scenemi/bin/python -u - <<'PY'
+import os,sys,json,time,resource,gc,hashlib,types
+os.environ["CUDA_VISIBLE_DEVICES"]=""
+os.environ["TORCH_USE_RTLD_GLOBAL"]="1"
+os.environ["OMP_NUM_THREADS"]="4"
+os.environ["MKL_NUM_THREADS"]="4"
+from pathlib import Path
+import numpy as np
+import torch
+torch.set_num_threads(4)
+torch.set_num_interop_threads(1)
+torch.use_deterministic_algorithms(True)
+from experiments.offline_camera_retrain_v1.ops import exo_longrun as longrun, adapt, adapter_evaluation, reference_temporal
+from experiments.offline_camera_retrain_v1.native30_data import Native30Data
+from experiments.offline_camera_retrain_v1.prepare_native30 import window_options
+from experiments.offline_camera_retrain_v1.native30_refinement import sample_motion
+from experiments.offline_camera_retrain_v1.native30_model import reconcile_motion
+from experiments.offline_camera_retrain_v1.native30_validation import raw_metrics
+from experiments.offline_camera_retrain_v1.supervision import rotation_from_6d,forward_kinematics
+root=Path("/home/wenxin/projects/SceneMI")
+run=root/"experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+out=run/"rich_failure_trace/wipingchairs_rotating_case5"
+out.mkdir(parents=True,exist_ok=True)
+started=time.monotonic()
+meta=dict(status="initializing",optimizer_updates=0,device="cpu",CUDA_VISIBLE_DEVICES=os.environ["CUDA_VISIBLE_DEVICES"],torch_threads=torch.get_num_threads(),torch_interop_threads=torch.get_num_interop_threads(),torch_loader_workaround="TORCH_USE_RTLD_GLOBAL=1 avoids optional nvrtc preload whose ELF relocation fails in this host; no installed library edited",historical_gpu_noise_not_reproduced=True,noise_warning="CPU and CUDA torch.Generator with equal seed do not guarantee identical initial noise. CPU pairs share exactly one CPU RNG seed; historical GPU comparison is descriptive only.",runs=[])
+def peak():
+    return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*1024
+def checkpoint_status(label):
+    meta.update(status=label,elapsed_s=time.monotonic()-started,peak_rss_bytes=peak(),cuda_initialized=torch.cuda.is_initialized())
+    (out/"TRACE_STATUS.json").write_text(json.dumps(meta,indent=2)+"\n")
+    print(label,"rssMB",round(peak()/1024**2,1),flush=True)
+    if peak()>4*1024**3:raise MemoryError("4 GiB RSS diagnostic budget exceeded")
+checkpoint_status("loading_strict_checkpoint")
+model,identity=longrun.load_inference_model(run/"training/checkpoints/step_008000.pt",device="cpu")
+config=identity["config"]
+meta["model_identity"]=identity
+checkpoint_status("loading_validation_dataset")
+data=Native30Data(adapt.BASE/config["train_manifest"],"validation",config["seed"]+1,frames=config["frames"],memory_protocol=config["scene"]["memory_protocol"],quality_config=config["gt_reliability"],exo_max_empty_frames=config["exo_max_empty_frames"],**window_options(config))
+from experiments.offline_camera_retrain_v1.native30_assets import Native30SkinAnchorCache
+from experiments.offline_camera_retrain_v1.native30_observations import Native30ObservationBuilder
+builder=Native30ObservationBuilder(Native30SkinAnchorCache(device="cpu"),adapt.read(adapt.BASE/config["mount_defaults"]),config["observation"]["input_noise"])
+panel=json.loads((run/"prepared/panels.json").read_text())
+entry=next(e for e in panel["rotating_exo"]["8000"] if e["recording"]=="LectureHall_020_wipingchairs1")
+meta["case"]=entry
+saved=np.load(run/"rotating_validation/step_008000/validation_latest.npz",allow_pickle=False)
+record={};finals={};active={}
+def stats(value):
+    v=np.asarray(value,dtype=np.float64)
+    return dict(min=float(v.min()),p05=float(np.quantile(v,.05)),median=float(np.median(v)),mean=float(v.mean()),p95=float(np.quantile(v,.95)),max=float(v.max()))
+def summarize(motion,rest,truth):
+    with torch.no_grad():
+        local=rotation_from_6d(motion[...,3:135].reshape(*motion.shape[:2],22,6))
+        gt=rotation_from_6d(truth[...,3:135].reshape(*truth.shape[:2],22,6))
+        cos=((local.diagonal(dim1=-2,dim2=-1).sum(-1)-1)/2).clamp(-1,1)
+        angle=torch.rad2deg(torch.acos(cos))[0].cpu().numpy()
+        delta=local@gt.transpose(-1,-2)
+        err=torch.rad2deg(torch.acos(((delta.diagonal(dim1=-2,dim2=-1).sum(-1)-1)/2).clamp(-1,1)))[0].cpu().numpy()
+        joint_error=(forward_kinematics(motion,rest)-forward_kinematics(truth,rest)).norm(dim=-1)[0].cpu().numpy()*1000
+        return dict(local_angle_deg={str(j):stats(angle[:,j]) for j in range(22)},local_rotation_error_deg={str(j):stats(err[:,j]) for j in range(22)},joint_position_error_mm={str(j):stats(joint_error[:,j]) for j in range(22)})
+orig_core=model._core_pass
+orig_constraint=model.constrain_motion
+orig_forward=model.forward
+def core_hook(self,noisy,timestep,batch,*args,**kwargs):
+    value=orig_core(noisy,timestep,batch,*args,**kwargs)
+    active["core_calls"]+=1
+    active["steps"].append(dict(timestep=int(timestep[0]),phase="proposal_raw" if active["core_calls"]%2 else "final_core_raw",summary=summarize(value,batch["rest"],active["truth"])))
+    return value
+def constrain_hook(self,motion,timestep,batch):
+    phase="proposal" if active["core_calls"]%2 else "final"
+    active["steps"].append(dict(timestep=int(timestep[0]),phase=phase+"_before_observation_IK",summary=summarize(motion,batch["rest"],active["truth"])))
+    value=orig_constraint(motion,timestep,batch)
+    active["steps"].append(dict(timestep=int(timestep[0]),phase=phase+"_after_observation_IK",summary=summarize(value,batch["rest"],active["truth"])))
+    return value
+def forward_hook(self,*args,**kwargs):
+    wanted=kwargs.get("return_details",False)
+    kwargs["return_details"]=True
+    value,details=orig_forward(*args,**kwargs)
+    timestep=args[1]
+    active["feedback"].append(dict(timestep=int(timestep[0]),root_delta_max_m=float(details["root_delta_m"].norm(dim=-1).max()),rotation_delta_max_deg=float(torch.rad2deg(details["rotation_delta_rad"].norm(dim=-1)).max())))
+    checkpoint_status("sampling_"+active["label"]+"_t"+str(int(timestep[0])))
+    return (value,details) if wanted else value
+model._core_pass=types.MethodType(core_hook,model)
+model.constrain_motion=types.MethodType(constrain_hook,model)
+model.forward=types.MethodType(forward_hook,model)
+try:
+    with reference_temporal.installed(),torch.no_grad():
+        for regime in ("noisy",):
+            checkpoint_status("building_"+regime)
+            sample,observed,scene,asset=adapter_evaluation.source_observation(data,builder,entry,regime)
+            batch,known=adapter_evaluation.collated_inputs(config,observed,scene,asset,"cpu")
+            truth=torch.from_numpy(sample["motion"][None])
+            meta.setdefault("input_reproduction",{})[regime]=dict(reference_max_abs_error_vs_saved_GPU=float(np.max(np.abs(known["reference_motion"][0].numpy()-saved[f'5_{regime}_reference_motion']))),trajectory_max_abs_error=float(np.max(np.abs(observed["trajectory"]-saved[f'5_{regime}_observations']))),observation_meta_max_abs_error=float(np.max(np.abs(observed["observation_meta"]-saved[f'5_{regime}_observation_meta']))))
+            conditioned=batch["observation_meta"][...,0]>0
+            target=dict(batch,motion=truth)
+            finals[regime+"_truth"]=sample["motion"]
+            finals[regime+"_reference"]=known["reference_motion"][0].numpy()
+            for use_scene in (False,True):
+                label=regime+("_scene_on" if use_scene else "_scene_off")
+                active.clear()
+                active.update(label=label,truth=truth,steps=[],feedback=[],core_calls=0)
+                before=time.monotonic()
+                prediction=sample_motion(model,known,config,steps=config["sampling"]["ddim_steps"],seed=entry["case_seed"],use_scene=use_scene)
+                current=dict(regime=regime,use_scene=use_scene,seed=entry["case_seed"],elapsed_s=time.monotonic()-before,metrics=raw_metrics(prediction,target,conditioned),reference_metrics=raw_metrics(known["reference_motion"],target,conditioned),final_summary=summarize(prediction,batch["rest"],truth),steps=active["steps"],feedback=active["feedback"])
+                gpu=torch.from_numpy(saved[f'5_{regime}_prediction'][None])
+                current["historical_GPU_descriptive_difference"]=dict(max_absolute_motion_feature=float((prediction-gpu).abs().max()),mean_joint_distance_mm=float(((forward_kinematics(prediction,batch["rest"])-forward_kinematics(gpu,batch["rest"])).norm(dim=-1)*1000).mean()),right_knee_local_angle_median_deg=summarize(gpu,batch["rest"],truth)["local_angle_deg"]["5"]["median"],warning=meta["noise_warning"])
+                record[label]=current
+                finals[label+"_prediction"]=prediction[0].numpy()
+                (out/(label+".json")).write_text(json.dumps(current,indent=2,allow_nan=False)+"\n")
+                np.savez_compressed(out/"predictions.npz",**finals)
+                meta["runs"].append(dict(label=label,elapsed_s=current["elapsed_s"],hidden_error_mm=current["metrics"]["unconditioned_mpjpe_mm"],right_knee_local_angle_median_deg=current["final_summary"]["local_angle_deg"]["5"]["median"]))
+                checkpoint_status("completed_"+label)
+            del sample,observed,scene,asset,batch,known,truth,target
+            gc.collect()
+    checkpoint_status("complete")
+finally:
+    model._core_pass=orig_core
+    model.constrain_motion=orig_constraint
+    model.forward=orig_forward
+    checkpoint_status(meta["status"])
+
+PY

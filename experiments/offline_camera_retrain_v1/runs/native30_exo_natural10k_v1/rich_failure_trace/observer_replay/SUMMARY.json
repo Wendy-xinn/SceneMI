@@ -1,0 +1,63 @@
+{
+  "status": "complete",
+  "device": "cpu",
+  "optimizer_updates": 0,
+  "CUDA_VISIBLE_DEVICES": "",
+  "torch_threads": 4,
+  "torch_interop_threads": 1,
+  "historical_gpu_noise_not_reproduced": true,
+  "noise_warning": "CPU and CUDA torch.Generator with equal seed do not guarantee identical initial noise. CPU pairs share exactly one CPU RNG seed; historical GPU comparison is descriptive only.",
+  "torch_loader_workaround": "TORCH_USE_RTLD_GLOBAL=1 avoids optional nvrtc preload whose ELF relocation fails in this host; no installed library edited",
+  "elapsed_s": 22.151196814000286,
+  "peak_rss_bytes": 2157101056,
+  "cuda_initialized": false,
+  "case": {
+    "group": "rich",
+    "mode": "exo",
+    "member": 23,
+    "start": 640,
+    "joints": null,
+    "sequence_id": "Pavallion_006_yoga1",
+    "source_first": 645,
+    "dataset": "rich",
+    "recording": "Pavallion_006_yoga1",
+    "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_006_yoga1",
+    "case_seed": 1742430047,
+    "case": 1,
+    "panel": "fixed",
+    "monitor_round": 0,
+    "identity_sha256": "80d3c609913f015b56356e410b326912c4442284f9e0ec3840f85a275d792b0d"
+  },
+  "input_reproduction": {
+    "noisy": {
+      "reference_max_abs_error_vs_saved_GPU": 2.086162567138672e-06,
+      "trajectory_max_abs_error": 0.0,
+      "observation_meta_max_abs_error": 0.0
+    }
+  },
+  "observer_hooks_installed": false,
+  "observer_vs_noobserver_comparison": {
+    "bitwise_equal": true,
+    "maximum_absolute_motion_feature_difference": 0.0,
+    "mean_joint_difference_mm": 0.0
+  },
+  "checkpoint_identity": {
+    "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/checkpoints/step_008000.pt",
+    "checkpoint_sha256": "f8dcc1d63608895b1a8ade99fd4314d75f760014234de2de203dd6d6083d477a",
+    "stage_step": 8000,
+    "frozen_base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+    "adapter_sha256": "9cce07c241ba0fe3a6e1c9371fa96474818ded74cf37f0f7908dec5c48aeb940",
+    "reference_policy": "exo-local-so3-reference-gap-fill-v1",
+    "guidance_enabled": false,
+    "planned_steps": 10000,
+    "full_resumable": true
+  },
+  "scope": "Necessary observer nonperturbation verification of original yoga noisy sceneON; numerical comparison within CPU only.",
+  "evidence_sha256": {
+    "predictions.npz": "b556a3b6b6c11f284c33920bc5336df9b2e4e0fe85ee57b5bbff75308b3d4566",
+    "TRACE_STATUS.json": "5a60b317012069764964d1d60fc7e449b7ee512db72848e3399b8cf4d8f3be1e",
+    "INVOCATION.txt": "b608c4d767d79b8065b24cba3fc9be3169de68fe891c7edf3634afdfd35f32b4",
+    "noisy_scene_on.json": "0556008fbb320aa3bca49ff6f3f7de32b1fe4243ef6f8d4a7d38271c3ef101de"
+  },
+  "original_observed_prediction_sha256": "1a8e53c898b5cbda40ebec9f25dd7dc92de7c183c691bb1c2967eda1137e29be"
+}

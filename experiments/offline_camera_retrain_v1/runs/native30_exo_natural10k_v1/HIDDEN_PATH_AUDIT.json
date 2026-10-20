@@ -1,0 +1,119 @@
+{
+  "recorded_at": "2026-10-20T17:19:17.970876+08:00",
+  "scope": "Read-only current sealed implementation audit and existing tiny CPU contract tests. No model checkpoint loaded, no GPU sampling/training, no source edits.",
+  "source_sha256": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py": "8859036ffa34ec07df79cb795ac3f43f3277e411c8ae02e0eabfc58451fc5854",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_losses.py": "88621f45a809d756cc7af01dd8559c8f57d9522b2d2440a3b1fe186b4a4f09ac",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_scene_relations.py": "09f207d1afc0e93e029254299f6631c7a4f24d49b1c242c69bfc69564e9b08e3",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observation_ik.py": "468d525fbeba5e29a6a9b2c965f2447b74def1aa0a68447f6743c2fc29b1274f",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/supervision.py": "dff0548ef3f4b8eb44198bde12367e746bd5a8646238bcbcf1666f67b2533e58",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/scene_model.py": "19882da0e640d089fb8068213c7b76bea11c5ef561936492f9a3fe15e4354f9e",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_gt_reliability.py": "11d82979f672d81591c1082623530fdb859955337b20b139d5697053a9204c9a",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/reference_temporal.py": "7f43eb8d9dfcfdcf3dd9060fded13b3cf1112995151f6474939da6af52fae1e7",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/adapter_model.py": "444c737cfcbf6f847ac749982b1db03a7f92b9bfa2671006dc7c021669a5de04",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/exo_longrun.py": "1e5b7f6303c517df5080c8d0473e777df1892764123091d4b38f3c451b7d3dfa",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/exo_control_trial.py": "0a9d3356c5f314e035f2e1d957d63dbab6f87160c48e8e39a69ebe700f96d813",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_validation.py": "e54293aa45b162ed999ba53f361b0d824b1cb18f19cee49f3e104cc7b04cf431"
+  },
+  "reviewed_sources_match_current_training_seal": true,
+  "architecture_identity": {
+    "selected": "original41k+3000 original-architecture control plus EXO internal LoRA",
+    "scene_fusion_v2_attached": false,
+    "evidence": "runs/native30_ego_scene_fusion_v2/SELECTED_MODEL.json: architecture=original,fusion_spec=null,fusion_verdict=reject"
+  },
+  "confirmed_contracts": [
+    {
+      "claim": "TRAIN=GT-reference; denoiser returns reference+residual; sampler subtracts reference for DDIM residual-state update, then adds reference at termination. No residual-sign mismatch found.",
+      "evidence": [
+        "native30_refinement.py:174-177,228-252",
+        "ops/exo_longrun.py:677-691"
+      ]
+    },
+    {
+      "claim": "Reference, target, reconciliation and FK agree on local rotation matrix columns0/1, represented as identity-centred6D.",
+      "evidence": [
+        "supervision.py:13-38",
+        "native30_model.py:18-35",
+        "ops/reference_temporal.py:87-101"
+      ]
+    },
+    {
+      "claim": "Hidden GT joints remain supervised by x0/raw_x0/FK/global rotation. Observation visibility masks only observation-specific losses and constraints.",
+      "evidence": [
+        "native30_losses.py:21-30,54-64,94-131",
+        "native30_gt_reliability.py:26-52"
+      ]
+    },
+    {
+      "claim": "TRAIN and current milestone validation share the versioned temporal EXO reference context. Analytical physical guidance isOFF.",
+      "evidence": [
+        "ops/exo_control_trial.py:278-297",
+        "ops/exo_longrun.py:116-135,339-368"
+      ]
+    }
+  ],
+  "confirmed_design_risks": [
+    {
+      "claim": "201D Euclidean additive residual has no localSO3 correction bound or reference-preservation guarantee. It can generate near180deg changes.",
+      "evidence": [
+        "native30_refinement.py:174-177,228-232",
+        "native30_model.py:258-282",
+        "native30_losses.py:21-85"
+      ]
+    },
+    {
+      "claim": "Visible knee position does not constrain its own local rotation. With no observed ankle/foot descendants, that knee has exactly zero observationIK strength.",
+      "evidence": [
+        "native30_observation_ik.py:19-24,43-51",
+        "RICH_FAILURE_AUDIT.json"
+      ]
+    },
+    {
+      "claim": "Reference position/rotation features are attenuated by their respective confidence, then tokens by max(position_conf,rotation_conf). Fully hidden joints may be doubly attenuated; visible-knee rotation gets only its own0.05 attenuation because position confidence ishigh.",
+      "evidence": [
+        "native30_refinement.py:216-226"
+      ]
+    },
+    {
+      "claim": "0.12rad limit bounds only explicit learned-feedback in one x0 call, not UNet residual or wholeDDIM path.",
+      "evidence": [
+        "native30_model.py:267-282",
+        "native30_refinement.py:247-251"
+      ]
+    },
+    {
+      "claim": "Only selected internal low-rank adapters train; original encoders, feedback readouts and finalposeoutput stay frozen. Capacity limitation ispossible but unproved.",
+      "evidence": [
+        "ops/adapter_model.py:31-44,198-235"
+      ]
+    }
+  ],
+  "not_yet_proven": [
+    "No demonstrated rot6d convention, residual algebra, hiddenGT masking or reference-target alignment bug in reviewed path.",
+    "No saved internalDDIM intermediates to separate scene effect from denoiser effect.",
+    "Toy contracts do not prove actual8k reference preservation or exclude degenerate6D states.",
+    "Original requires_grad flags differ between adapter training and top-levelno_grad inference to preserve oldMHA inference numerics; code documents this. No causal evidence this numerical difference creates the large knee fold."
+  ],
+  "CPU_contract_tests": {
+    "modules": [
+      "test_native30_refinement",
+      "ops.test_reference_temporal",
+      "ops.test_adapter_model"
+    ],
+    "tests_run": 35,
+    "failures": 0,
+    "errors": 0,
+    "runtime_s": 1.05,
+    "CUDA_VISIBLE_DEVICES": "",
+    "scope": "small CPU tests only; no actual8k forward/new data sampling"
+  },
+  "available_diagnostic_API": {
+    "loader": "ops.exo_longrun.load_inference_model(checkpoint, device, expected_sha256=...,check_sources=True)",
+    "inputs": "with ops.reference_temporal.installed(): known=native30_refinement.model_inputs(config,batch)",
+    "scene_pair": "native30_refinement.sample_motion(model,known,config,steps=20,seed=case_seed,use_scene=True/False)",
+    "intermediates": "model(...,return_details=True) exposes raw_motion,proposal,root_delta_m,rotation_delta_rad. Process-local constrain_motion wrapper secondoutercall captures finalfeedbackoutput and finalIKoutput.",
+    "CLI_limit": "ops/motion_diagnostics.py StageObserver is reusable but currentCLI hardlocks old19k EGO/physicsON and line159 requires physicaloutput; scene_comparison.py also assumes oldregistered source. Neither can run unchanged for current8k.",
+    "control": "Any observer must preserve known input fingerprints and match unobserved same-seed final output byte-for-byte."
+  }
+}

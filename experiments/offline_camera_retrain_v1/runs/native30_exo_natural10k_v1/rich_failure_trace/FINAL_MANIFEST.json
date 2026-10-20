@@ -1,0 +1,62 @@
+{
+  "recorded_at": "2026-10-20T17:49:07.372820+08:00",
+  "status": "complete",
+  "optimizer_updates": 0,
+  "total_inference_calls": 7,
+  "cuda_initialized_in_successful_runs": false,
+  "max_peak_rss_bytes": 2243833856,
+  "sealed_training_sources_edited": false,
+  "all_diagnostic_processes": "exited normally with status0",
+  "compact_backup_files": {
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rich_failure_trace/SUMMARY.json": {
+      "sha256": "2b1ef84fdfcfc24ae8b554f57e62106b8849ccaeeb86411775ffad97747eec23",
+      "bytes": 25186
+    },
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rich_failure_trace/REPORT_zh.md": {
+      "sha256": "d43991258141233ed269600a7f760362d5279fdaf224564398209eefc2eccdad",
+      "bytes": 3399
+    },
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rich_failure_trace/INVOCATION.txt": {
+      "sha256": "4d7f1d6b72ab6d1404624e7bb95f01ec8168f79f16ee05c26f5b082620083ffd",
+      "bytes": 9439
+    },
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rich_failure_trace/observer_replay/SUMMARY.json": {
+      "sha256": "99a23e65a7aeb9d9edc6c632467a06805f2e8566e33ba4ff75a8209d7a365d84",
+      "bytes": 2859
+    },
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rich_failure_trace/observer_replay/INVOCATION.txt": {
+      "sha256": "b608c4d767d79b8065b24cba3fc9be3169de68fe891c7edf3634afdfd35f32b4",
+      "bytes": 9811
+    },
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rich_failure_trace/wipingchairs_rotating_case5/SUMMARY.json": {
+      "sha256": "ff03c899a242d4c8f7d18c894c46312d0dd8f864f1ee1461c9e0df927186244d",
+      "bytes": 15370
+    },
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rich_failure_trace/wipingchairs_rotating_case5/REPORT_zh.md": {
+      "sha256": "c591e0b0bb3e7cf64711c0321e8f83533a6986c06088fcffbc984fc773a354cf",
+      "bytes": 1392
+    },
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rich_failure_trace/wipingchairs_rotating_case5/INVOCATION.txt": {
+      "sha256": "5a8a67068801682c9c19f699e6df6229dabb1a39cc246885918bde890f62261a",
+      "bytes": 9484
+    }
+  },
+  "local_only_rebuildable_outputs": [
+    "*_scene_*.json",
+    "predictions.npz",
+    "TRACE_COMPACT.json",
+    "TRACE_STATUS.json",
+    "wipingchairs_rotating_case5/*_scene_*.json",
+    "wipingchairs_rotating_case5/predictions.npz",
+    "wipingchairs_rotating_case5/TRACE_STATUS.json",
+    "observer_replay/noisy_scene_on.json",
+    "observer_replay/predictions.npz",
+    "observer_replay/TRACE_STATUS.json"
+  ],
+  "limitations": [
+    "No same-initial-noise CUDA reproduction.",
+    "Only two RICH cases sampled, not full-corpus scene ablation.",
+    "Scene ON/OFF toggles existing whole scene path; not yet separate global occupancy /patch attention /dynamic attention /local body query.",
+    "Observer nonperturbation numerically checked on original yoga noisy sceneON, not separately repeated for every case."
+  ]
+}

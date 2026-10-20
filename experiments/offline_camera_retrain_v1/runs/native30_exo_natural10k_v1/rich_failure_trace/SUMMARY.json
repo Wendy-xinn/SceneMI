@@ -1,0 +1,716 @@
+{
+  "protocol": "rich-paired-cpu-stage-trace-v1",
+  "status": "complete",
+  "scope": "Two scene variants x two observation regimes of one fixed VAL window; diagnostics only",
+  "optimizer_updates": 0,
+  "cuda_initialized": false,
+  "device": "cpu",
+  "peak_rss_bytes": 2243833856,
+  "elapsed_s": 57.5698471579999,
+  "threads": 4,
+  "noise_warning": "CPU and CUDA torch.Generator with equal seed do not guarantee identical initial noise. CPU pairs share exactly one CPU RNG seed; historical GPU comparison is descriptive only.",
+  "torch_loader_workaround": "TORCH_USE_RTLD_GLOBAL=1 avoids optional nvrtc preload whose ELF relocation fails in this host; no installed library edited",
+  "case": {
+    "group": "rich",
+    "mode": "exo",
+    "member": 23,
+    "start": 640,
+    "joints": null,
+    "sequence_id": "Pavallion_006_yoga1",
+    "source_first": 645,
+    "dataset": "rich",
+    "recording": "Pavallion_006_yoga1",
+    "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_006_yoga1",
+    "case_seed": 1742430047,
+    "case": 1,
+    "panel": "fixed",
+    "monitor_round": 0,
+    "identity_sha256": "80d3c609913f015b56356e410b326912c4442284f9e0ec3840f85a275d792b0d"
+  },
+  "checkpoint_identity": {
+    "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/checkpoints/step_008000.pt",
+    "checkpoint_sha256": "f8dcc1d63608895b1a8ade99fd4314d75f760014234de2de203dd6d6083d477a",
+    "stage_step": 8000,
+    "frozen_base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+    "adapter_sha256": "9cce07c241ba0fe3a6e1c9371fa96474818ded74cf37f0f7908dec5c48aeb940",
+    "reference_policy": "exo-local-so3-reference-gap-fill-v1",
+    "guidance_enabled": false,
+    "planned_steps": 10000,
+    "full_resumable": true
+  },
+  "input_reproduction": {
+    "noisy": {
+      "reference_max_abs_error_vs_saved_GPU": 2.086162567138672e-06,
+      "trajectory_max_abs_error": 0.0,
+      "observation_meta_max_abs_error": 0.0
+    },
+    "clean": {
+      "reference_max_abs_error_vs_saved_GPU": 5.0067901611328125e-06,
+      "trajectory_max_abs_error": 0.0,
+      "observation_meta_max_abs_error": 0.0
+    }
+  },
+  "observer_vs_noobserver_numerical_comparison_completed": true,
+  "source_seal_revalidated_after_inference": true,
+  "runs": {
+    "noisy_scene_off": {
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 32.09929656982422,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 20.382394790649414,
+          "count": 3190
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 68.2471923828125,
+          "count": 1034
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 32.09929656982422,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 10.3558931350708,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 10.232566833496094,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 38.2303352355957,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 18.53913688659668,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.27017223834991455,
+          "count": 354
+        }
+      },
+      "reference_metrics": {
+        "mpjpe_mm": {
+          "value": 53.02022171020508,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 39.329715728759766,
+          "count": 3190
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 95.25688171386719,
+          "count": 1034
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 53.02022171020508,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 9.543293952941895,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 13.044400215148926,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 16.076398849487305,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 19.925600051879883,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.21644316613674164,
+          "count": 354
+        }
+      },
+      "historical_GPU_difference": {
+        "max_absolute_motion_feature": 1.9409384727478027,
+        "mean_joint_distance_mm": 191.9140625,
+        "right_knee_local_angle_median_deg": 155.97591400146484,
+        "warning": "CPU and CUDA torch.Generator with equal seed do not guarantee identical initial noise. CPU pairs share exactly one CPU RNG seed; historical GPU comparison is descriptive only."
+      },
+      "elapsed_s": 3.6581361040007323,
+      "stages": [
+        {
+          "timestep": 999,
+          "phase": "proposal_raw",
+          "left_knee_local_angle_median_deg": 4.42026424407959,
+          "right_knee_local_angle_median_deg": 5.440964460372925,
+          "left_ankle_position_error_mean_mm": 46.20716689278682,
+          "right_ankle_position_error_mean_mm": 66.26149421930313
+        },
+        {
+          "timestep": 999,
+          "phase": "final_core_raw",
+          "left_knee_local_angle_median_deg": 4.42026424407959,
+          "right_knee_local_angle_median_deg": 5.440964460372925,
+          "left_ankle_position_error_mean_mm": 46.20716689278682,
+          "right_ankle_position_error_mean_mm": 66.26149421930313
+        },
+        {
+          "timestep": 526,
+          "phase": "final_after_observation_IK",
+          "left_knee_local_angle_median_deg": 6.202376842498779,
+          "right_knee_local_angle_median_deg": 7.204321384429932,
+          "left_ankle_position_error_mean_mm": 49.025352189938225,
+          "right_ankle_position_error_mean_mm": 58.697118025273085
+        },
+        {
+          "timestep": 0,
+          "phase": "final_core_raw",
+          "left_knee_local_angle_median_deg": 5.384903192520142,
+          "right_knee_local_angle_median_deg": 7.683163166046143,
+          "left_ankle_position_error_mean_mm": 118.11846884091695,
+          "right_ankle_position_error_mean_mm": 80.44496089716752
+        },
+        {
+          "timestep": 0,
+          "phase": "final_before_observation_IK",
+          "left_knee_local_angle_median_deg": 5.384866237640381,
+          "right_knee_local_angle_median_deg": 7.683163166046143,
+          "left_ankle_position_error_mean_mm": 118.11848133802414,
+          "right_ankle_position_error_mean_mm": 80.44496780137221
+        },
+        {
+          "timestep": 0,
+          "phase": "final_after_observation_IK",
+          "left_knee_local_angle_median_deg": 5.255419015884399,
+          "right_knee_local_angle_median_deg": 7.683163166046143,
+          "left_ankle_position_error_mean_mm": 45.081644828120865,
+          "right_ankle_position_error_mean_mm": 51.909312680363655
+        }
+      ],
+      "maximum_feedback_rotation_deg": 0.0,
+      "first_step_feedback": {
+        "timestep": 999,
+        "root_delta_max_m": 0.0,
+        "rotation_delta_max_deg": 0.0
+      }
+    },
+    "noisy_scene_on": {
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 203.8736572265625,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 77.18133544921875,
+          "count": 3190
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 594.73291015625,
+          "count": 1034
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 203.8736572265625,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 68.89116668701172,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 21.253576278686523,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.15202522277832,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 50.190940856933594,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.5024715065956116,
+          "count": 354
+        }
+      },
+      "reference_metrics": {
+        "mpjpe_mm": {
+          "value": 53.02022171020508,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 39.329715728759766,
+          "count": 3190
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 95.25688171386719,
+          "count": 1034
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 53.02022171020508,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 9.543293952941895,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 13.044400215148926,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 16.076398849487305,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 19.925600051879883,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.21644316613674164,
+          "count": 354
+        }
+      },
+      "historical_GPU_difference": {
+        "max_absolute_motion_feature": 0.3733997344970703,
+        "mean_joint_distance_mm": 6.502464294433594,
+        "right_knee_local_angle_median_deg": 155.97591400146484,
+        "warning": "CPU and CUDA torch.Generator with equal seed do not guarantee identical initial noise. CPU pairs share exactly one CPU RNG seed; historical GPU comparison is descriptive only."
+      },
+      "elapsed_s": 14.174732337998648,
+      "stages": [
+        {
+          "timestep": 999,
+          "phase": "proposal_raw",
+          "left_knee_local_angle_median_deg": 37.52542495727539,
+          "right_knee_local_angle_median_deg": 59.919668197631836,
+          "left_ankle_position_error_mean_mm": 179.82209837436676,
+          "right_ankle_position_error_mean_mm": 357.43164531389874
+        },
+        {
+          "timestep": 999,
+          "phase": "final_core_raw",
+          "left_knee_local_angle_median_deg": 43.576873779296875,
+          "right_knee_local_angle_median_deg": 69.36339950561523,
+          "left_ankle_position_error_mean_mm": 210.3326849937439,
+          "right_ankle_position_error_mean_mm": 394.3083689212799
+        },
+        {
+          "timestep": 526,
+          "phase": "final_after_observation_IK",
+          "left_knee_local_angle_median_deg": 126.04433822631836,
+          "right_knee_local_angle_median_deg": 144.13658905029297,
+          "left_ankle_position_error_mean_mm": 654.6983524958292,
+          "right_ankle_position_error_mean_mm": 799.855217297872
+        },
+        {
+          "timestep": 0,
+          "phase": "final_core_raw",
+          "left_knee_local_angle_median_deg": 142.49663543701172,
+          "right_knee_local_angle_median_deg": 155.19732666015625,
+          "left_ankle_position_error_mean_mm": 771.4481150309244,
+          "right_ankle_position_error_mean_mm": 838.4522895812988
+        },
+        {
+          "timestep": 0,
+          "phase": "final_before_observation_IK",
+          "left_knee_local_angle_median_deg": 142.4915771484375,
+          "right_knee_local_angle_median_deg": 155.19873809814453,
+          "left_ankle_position_error_mean_mm": 771.1740430196127,
+          "right_ankle_position_error_mean_mm": 838.190910657247
+        },
+        {
+          "timestep": 0,
+          "phase": "final_after_observation_IK",
+          "left_knee_local_angle_median_deg": 131.84850311279297,
+          "right_knee_local_angle_median_deg": 155.1987533569336,
+          "left_ankle_position_error_mean_mm": 740.477809270223,
+          "right_ankle_position_error_mean_mm": 941.7876373926798
+        }
+      ],
+      "maximum_feedback_rotation_deg": 3.239640951156616,
+      "first_step_feedback": {
+        "timestep": 999,
+        "root_delta_max_m": 1.1873129500266243e-19,
+        "rotation_delta_max_deg": 4.00427480450631e-17
+      }
+    },
+    "clean_scene_off": {
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 19.523557662963867,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2.174163818359375,
+          "count": 3208
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 74.30391693115234,
+          "count": 1016
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 19.523557662963867,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 2.8763229846954346,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.3861179053783417,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 22.119430541992188,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 14.256758689880371,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.3779602348804474,
+          "count": 354
+        }
+      },
+      "reference_metrics": {
+        "mpjpe_mm": {
+          "value": 18.824018478393555,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2.8396480083465576,
+          "count": 3208
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 69.29434967041016,
+          "count": 1016
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 18.824018478393555,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.00021754340559709817,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.001165685593150556,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 14.136760711669922,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 12.995828628540039,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.21120941638946533,
+          "count": 354
+        }
+      },
+      "historical_GPU_difference": {
+        "max_absolute_motion_feature": 0.6368639469146729,
+        "mean_joint_distance_mm": 11.318170547485352,
+        "right_knee_local_angle_median_deg": 7.897092819213867,
+        "warning": "CPU and CUDA torch.Generator with equal seed do not guarantee identical initial noise. CPU pairs share exactly one CPU RNG seed; historical GPU comparison is descriptive only."
+      },
+      "elapsed_s": 5.105693018000238,
+      "stages": [
+        {
+          "timestep": 999,
+          "phase": "proposal_raw",
+          "left_knee_local_angle_median_deg": 7.0733113288879395,
+          "right_knee_local_angle_median_deg": 8.336563110351562,
+          "left_ankle_position_error_mean_mm": 86.91879447301228,
+          "right_ankle_position_error_mean_mm": 68.56432930628459
+        },
+        {
+          "timestep": 999,
+          "phase": "final_core_raw",
+          "left_knee_local_angle_median_deg": 7.0733113288879395,
+          "right_knee_local_angle_median_deg": 8.336563110351562,
+          "left_ankle_position_error_mean_mm": 86.91879447301228,
+          "right_ankle_position_error_mean_mm": 68.56432930628459
+        },
+        {
+          "timestep": 526,
+          "phase": "final_after_observation_IK",
+          "left_knee_local_angle_median_deg": 3.337980628013611,
+          "right_knee_local_angle_median_deg": 5.301172256469727,
+          "left_ankle_position_error_mean_mm": 49.64303371310234,
+          "right_ankle_position_error_mean_mm": 60.854718352357544
+        },
+        {
+          "timestep": 0,
+          "phase": "final_core_raw",
+          "left_knee_local_angle_median_deg": 10.744568347930908,
+          "right_knee_local_angle_median_deg": 4.59906530380249,
+          "left_ankle_position_error_mean_mm": 75.73360776901245,
+          "right_ankle_position_error_mean_mm": 69.68749253948529
+        },
+        {
+          "timestep": 0,
+          "phase": "final_before_observation_IK",
+          "left_knee_local_angle_median_deg": 10.744550228118896,
+          "right_knee_local_angle_median_deg": 4.599023103713989,
+          "left_ankle_position_error_mean_mm": 75.73358895381291,
+          "right_ankle_position_error_mean_mm": 69.68747842311859
+        },
+        {
+          "timestep": 0,
+          "phase": "final_after_observation_IK",
+          "left_knee_local_angle_median_deg": 5.632827520370483,
+          "right_knee_local_angle_median_deg": 4.599023103713989,
+          "left_ankle_position_error_mean_mm": 51.581075079739094,
+          "right_ankle_position_error_mean_mm": 60.096320693691574
+        }
+      ],
+      "maximum_feedback_rotation_deg": 0.0,
+      "first_step_feedback": {
+        "timestep": 999,
+        "root_delta_max_m": 0.0,
+        "rotation_delta_max_deg": 0.0
+      }
+    },
+    "clean_scene_on": {
+      "metrics": {
+        "mpjpe_mm": {
+          "value": 23.274394989013672,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3.3542449474334717,
+          "count": 3208
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 86.171875,
+          "count": 1016
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 23.274394989013672,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 4.899953365325928,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.3648050129413605,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.1965274810791,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 14.368825912475586,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.3754187524318695,
+          "count": 354
+        }
+      },
+      "reference_metrics": {
+        "mpjpe_mm": {
+          "value": 18.824018478393555,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2.8396480083465576,
+          "count": 3208
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 69.29434967041016,
+          "count": 1016
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 18.824018478393555,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.00021754340559709817,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.001165685593150556,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 14.136760711669922,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 12.995828628540039,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.21120941638946533,
+          "count": 354
+        }
+      },
+      "historical_GPU_difference": {
+        "max_absolute_motion_feature": 0.28988969326019287,
+        "mean_joint_distance_mm": 8.097478866577148,
+        "right_knee_local_angle_median_deg": 7.897092819213867,
+        "warning": "CPU and CUDA torch.Generator with equal seed do not guarantee identical initial noise. CPU pairs share exactly one CPU RNG seed; historical GPU comparison is descriptive only."
+      },
+      "elapsed_s": 24.4264984750007,
+      "stages": [
+        {
+          "timestep": 999,
+          "phase": "proposal_raw",
+          "left_knee_local_angle_median_deg": 21.576645851135254,
+          "right_knee_local_angle_median_deg": 25.77227210998535,
+          "left_ankle_position_error_mean_mm": 149.03169723351797,
+          "right_ankle_position_error_mean_mm": 185.02117097377777
+        },
+        {
+          "timestep": 999,
+          "phase": "final_core_raw",
+          "left_knee_local_angle_median_deg": 24.154211044311523,
+          "right_knee_local_angle_median_deg": 26.61163902282715,
+          "left_ankle_position_error_mean_mm": 147.90672512849173,
+          "right_ankle_position_error_mean_mm": 180.16450027624765
+        },
+        {
+          "timestep": 526,
+          "phase": "final_after_observation_IK",
+          "left_knee_local_angle_median_deg": 9.920588493347168,
+          "right_knee_local_angle_median_deg": 20.319350242614746,
+          "left_ankle_position_error_mean_mm": 115.6452759206295,
+          "right_ankle_position_error_mean_mm": 152.32996381322542
+        },
+        {
+          "timestep": 0,
+          "phase": "final_core_raw",
+          "left_knee_local_angle_median_deg": 10.404868125915527,
+          "right_knee_local_angle_median_deg": 5.843308687210083,
+          "left_ankle_position_error_mean_mm": 80.23016742865245,
+          "right_ankle_position_error_mean_mm": 87.73168402910233
+        },
+        {
+          "timestep": 0,
+          "phase": "final_before_observation_IK",
+          "left_knee_local_angle_median_deg": 10.359405994415283,
+          "right_knee_local_angle_median_deg": 5.830697774887085,
+          "left_ankle_position_error_mean_mm": 82.6925335129102,
+          "right_ankle_position_error_mean_mm": 90.18548429012299
+        },
+        {
+          "timestep": 0,
+          "phase": "final_after_observation_IK",
+          "left_knee_local_angle_median_deg": 5.440364360809326,
+          "right_knee_local_angle_median_deg": 5.830697774887085,
+          "left_ankle_position_error_mean_mm": 50.561535892387234,
+          "right_ankle_position_error_mean_mm": 72.78543308377266
+        }
+      ],
+      "maximum_feedback_rotation_deg": 6.855649948120117,
+      "first_step_feedback": {
+        "timestep": 999,
+        "root_delta_max_m": 2.0416564936852741e-19,
+        "rotation_delta_max_deg": 4.0133757764778636e-17
+      }
+    }
+  },
+  "conclusions": [
+    "In this failed noisy window, sceneON causes early core prediction knee folding, prior to the local-body query, feedback, and observation IK; full scene ON/OFF does not isolate the individual scene branch.",
+    "The same CPU initial noise is shared across four runs; historical GPU initial noise was not reproduced.",
+    "This one-window result does not establish that sceneOFF improves full RICH or other corpora."
+  ],
+  "evidence_sha256": {
+    "predictions.npz": "1a8e53c898b5cbda40ebec9f25dd7dc92de7c183c691bb1c2967eda1137e29be",
+    "TRACE_STATUS.json": "28da8bd99c4cea37eb7ab8b6ce4a0b4f1540bdc1f876bf41a3780e8996f9c4d0",
+    "INVOCATION.txt": "4d7f1d6b72ab6d1404624e7bb95f01ec8168f79f16ee05c26f5b082620083ffd",
+    "clean_scene_off.json": "9277a65c0e27dfc9aee2a6d1c9d4e7618397ad64833032214245321ae188d5a6",
+    "noisy_scene_on.json": "9a0a1cb5c86b1bc41376a0e12b2e88ba76927485e60d4b27340007930bde2d32",
+    "TRACE_COMPACT.json": "65f984e46e781fac356b09797d23f67682553ac32f3e678f0fe4fea7ead12143",
+    "REPORT_zh.md": "d43991258141233ed269600a7f760362d5279fdaf224564398209eefc2eccdad",
+    "clean_scene_on.json": "66b8179ddc589367591b6d2b7b762de52a1ac448b393893d14422eac4d90a6d3",
+    "noisy_scene_off.json": "1af6a2beda7c49e82cb9c3c4761f941ec73e8d171bfa0fd6e8aad049731fcde1"
+  },
+  "observer_nonperturbation_verification": {
+    "bitwise_equal": true,
+    "maximum_absolute_motion_feature_difference": 0.0,
+    "mean_joint_difference_mm": 0.0,
+    "case": "original yoga noisy sceneON",
+    "summary_path": "observer_replay/SUMMARY.json",
+    "elapsed_s": 22.151196814000286
+  },
+  "second_non_yoga_case": {
+    "summary_path": "wipingchairs_rotating_case5/SUMMARY.json",
+    "reference_hidden_mm": 144.68299865722656,
+    "scene_off_hidden_mm": 280.0939636230469,
+    "scene_on_hidden_mm": 302.06903076171875,
+    "CPU_CUDA_noise_distinction": true
+  }
+}
