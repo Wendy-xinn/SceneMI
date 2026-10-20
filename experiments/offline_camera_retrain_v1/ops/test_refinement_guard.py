@@ -5,7 +5,8 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 from .refinement_guard import (IDENTITY_6D, PARENTS, forward_kinematics_numpy,
-                               motion_rotations, project_local_rotations)
+                               motion_rotations, project_local_rotations,
+                               unobserved_rotation_mask)
 
 
 def rest_skeleton():
@@ -40,6 +41,14 @@ def angles_between(reference, prediction):
     a, b = motion_rotations(reference), motion_rotations(prediction)
     relative = np.swapaxes(a, -1, -2) @ b
     return np.rad2deg(Rotation.from_matrix(relative.reshape(-1, 3, 3)).magnitude()).reshape(a.shape[:-2])
+
+
+def global_rotations(motion):
+    local = motion_rotations(motion)
+    global_ = local.copy()
+    for joint in range(1, 22):
+        global_[..., joint, :, :] = global_[..., PARENTS[joint], :, :] @ local[..., joint, :, :]
+    return global_
 
 
 class RefinementGuardTests(unittest.TestCase):
@@ -149,6 +158,103 @@ class RefinementGuardTests(unittest.TestCase):
         collinear[0, 9:15] = np.array([1, 0, 0, 2, 0, 0]) - IDENTITY_6D
         with self.assertRaises(ValueError):
             project_local_rotations(motion, collinear, rest, 30)
+
+    def test_unobserved_tree_dependencies(self):
+        meta = np.zeros((5, 22, 4))
+        # Frame 0: every non-root local rotation is eligible.
+        # Frame 1: knee self-position does not depend on its local rotation.
+        meta[1, 5, [0, 2]] = 1
+        # Frame 2: ankle position depends on its knee and hip, not itself.
+        meta[2, 8, [0, 2]] = 1
+        # Frame 3: ankle global orientation depends on ankle, knee and hip.
+        meta[3, 8, [1, 3]] = 1
+        # Frame 4: knee global orientation protects knee and ancestors.
+        meta[4, 5, [1, 3]] = 1
+        eligible = unobserved_rotation_mask(meta)
+        self.assertFalse(eligible[:, 0].any())
+        self.assertTrue(eligible[0, 1:].all())
+        self.assertTrue(eligible[1, 5])
+        self.assertFalse(eligible[1, 2])
+        self.assertFalse(eligible[2, 5])
+        self.assertFalse(eligible[2, 2])
+        self.assertTrue(eligible[2, 8])
+        self.assertTrue(eligible[2, 11])
+        for joint in (2, 5, 8):
+            self.assertFalse(eligible[3, joint])
+        self.assertTrue(eligible[3, 11])
+        self.assertFalse(eligible[4, 5])
+        self.assertTrue(eligible[4, 8])
+        np.testing.assert_array_equal(unobserved_rotation_mask(np.stack((meta, meta))),
+                                      np.stack((eligible, eligible)))
+
+    def test_unobserved_availability_confidence_and_nonfinite_metadata(self):
+        meta = np.zeros((1, 22, 6))
+        for availability, confidence in ((1, 0), (0, 1), (-1, 1), (1, -1),
+                                         (np.nan, 1), (1, np.inf)):
+            for flag_channel, confidence_channel in ((0, 2), (1, 3)):
+                meta[:] = 0
+                meta[0, 8, flag_channel] = availability
+                meta[0, 8, confidence_channel] = confidence
+                self.assertTrue(unobserved_rotation_mask(meta)[0, 1:].all())
+        meta[:] = 0
+        meta[0, 8, [0, 2]] = [1, .01]
+        meta[..., 4:] = np.nan  # Extra metadata is not an observation channel.
+        self.assertFalse(unobserved_rotation_mask(meta)[0, 5])
+        self.assertTrue(unobserved_rotation_mask(meta)[0, 8])
+
+    def test_unobserved_projection_preserves_all_measured_fk_positions_and_rotations(self):
+        rest = rest_skeleton()
+        reference = consistent_motion(rest)
+        prediction = reference.copy()
+        rng = np.random.default_rng(819)
+        arbitrary = Rotation.random(3 * 22, random_state=rng).as_matrix().reshape(3, 22, 3, 3)
+        prediction[:, 3:135] = (np.concatenate((arbitrary[..., 0], arbitrary[..., 1]), -1)
+                                - IDENTITY_6D).reshape(3, 132)
+        prediction[:, :3] += [.3, -.4, .2]
+        prediction[:, 135:] = (forward_kinematics_numpy(prediction, rest) / 2).reshape(3, 66)
+        meta = np.zeros((3, 22, 4))
+        for frame, position_joints, rotation_joint in ((0, (5, 15, 20), 6),
+                                                       (1, (8,), 20), (2, (7, 18), 21)):
+            meta[frame, position_joints, 0] = 1
+            meta[frame, position_joints, 2] = .7
+            meta[frame, rotation_joint, [1, 3]] = 1
+        original_meta = meta.copy()
+        result = project_local_rotations(reference, prediction, rest, 0, observation_meta=meta)
+        visible_position, visible_rotation = meta[..., 0] > 0, meta[..., 1] > 0
+        np.testing.assert_allclose(forward_kinematics_numpy(result, rest)[visible_position],
+                                   forward_kinematics_numpy(prediction, rest)[visible_position], atol=1e-12)
+        np.testing.assert_allclose(global_rotations(result)[visible_rotation],
+                                   global_rotations(prediction)[visible_rotation], atol=1e-12)
+        np.testing.assert_array_equal(result[:, :9], prediction[:, :9])
+        eligible = unobserved_rotation_mask(meta)
+        np.testing.assert_allclose(motion_rotations(result)[eligible],
+                                   motion_rotations(reference)[eligible], atol=1e-12)
+        unchanged = ~eligible
+        np.testing.assert_array_equal(result[:, 3:135].reshape(3, 22, 6)[unchanged],
+                                      prediction[:, 3:135].reshape(3, 22, 6)[unchanged])
+        self.assertGreater(np.max(np.abs(result - prediction)), .1)
+        np.testing.assert_array_equal(meta, original_meta)
+        hidden = np.zeros_like(meta)
+        np.testing.assert_array_equal(project_local_rotations(reference, prediction, rest, 30,
+                                                               observation_meta=hidden),
+                                      project_local_rotations(reference, prediction, rest, 30))
+
+    def test_unobserved_invalid_shapes_and_all_observed_passthrough(self):
+        rest = rest_skeleton()
+        motion = consistent_motion(rest)
+        for bad in (np.zeros((22, 4)), np.zeros((3, 21, 4)), np.zeros((3, 22, 3)),
+                    np.zeros((0, 22, 4)), np.zeros((3, 22, 4), dtype=complex)):
+            with self.assertRaises(ValueError):
+                unobserved_rotation_mask(bad)
+        with self.assertRaises(ValueError):
+            project_local_rotations(motion, motion, rest, 30,
+                                    observation_meta=np.ones((2, 22, 4)))
+        prediction = motion.copy()
+        set_rotation(prediction, 5, Rotation.from_euler('x', 165, degrees=True).as_matrix())
+        meta = np.ones((3, 22, 4))
+        self.assertFalse(unobserved_rotation_mask(meta).any())
+        np.testing.assert_array_equal(project_local_rotations(motion, prediction, rest, 0,
+                                                               observation_meta=meta), prediction)
 
 
 if __name__ == '__main__':
