@@ -1,0 +1,27 @@
+{
+  "original_archive": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/interruptions/wsl_restart_20261020_1446/trace.before_resume.jsonl",
+  "original_bytes": 438464512,
+  "original_sha256": "b8909e5e6b8b83fa3f0b9dc54aef3f1f059291db545ae8ee4b5e24857609610b",
+  "valid_rows_before": 8028,
+  "last_valid_before": {
+    "step": 8028,
+    "loss": 0.26562589406967163,
+    "gradient_norm": 0.6864389181137085,
+    "update_s": 4.095134708000842,
+    "elapsed_s": 29433.93491744098
+  },
+  "parse_errors": [
+    {
+      "offset": 438461175,
+      "line_bytes": 3337,
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "zero_bytes": 3337
+    }
+  ],
+  "preserved_committed_rows": 8000,
+  "preserved_committed_bytes": 436931961,
+  "uncommitted_valid_updates_archived": 28,
+  "discarded_active_trace_bytes": 1532551,
+  "repaired_trace_sha256": "f6dbcba03d9c6564d92a932ea3f0f5ed35d8f7c009dbe4ca32fa453fe8ffccb1",
+  "reason": "WSL restart terminated writer after uncheckpointed updates; preserve original exact bytes including trailing NUL corruption, retain only complete committed8000 boundary. No recorded weights/optimizer/RNG changed."
+}

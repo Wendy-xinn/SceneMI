@@ -1,0 +1,40 @@
+{
+  "protocol": "wsl-host-restart-investigation-v1",
+  "checked_at": "2026-10-20T15:22:25.670037+08:00",
+  "old_boot_id": "fc90a1d3-2507-4b5a-a54a-89526ac78713",
+  "new_boot_id": "b30a448e-16b5-4f78-a7fb-d9cecbf4b39b",
+  "windows_events": [
+    {
+      "provider": "Microsoft-Windows-Hyper-V-VmSwitch",
+      "local_time": "2026-10-20T14:44:53+08:00",
+      "event": "Old WSL VM B314C97A deleted network interfaces"
+    },
+    {
+      "provider": "Microsoft-Windows-Hyper-V-VmSwitch",
+      "local_time": "2026-10-20T14:45:02+08:00",
+      "event": "Replacement WSL VM 2B83BD0D created and connected network interfaces"
+    }
+  ],
+  "windows_last_boot": "2026-10-20T10:57:55+08:00",
+  "unclean_previous_linux_journal": true,
+  "linux_oom_or_normal_shutdown_evidence_found": false,
+  "windows_application_or_resource_exhaustion_events_1435_1455": 0,
+  "wslconfig_recently_modified": false,
+  "wsl_networking_mode": "Mirrored",
+  "proxy_endpoint": "http://127.0.0.1:17892",
+  "cause": "WSL VM termination and replacement confirmed; specific trigger and actor not established. Proxy connection alone is not proof of a VM shutdown.",
+  "operations_performed_by_this_turn": "Read-only Linux and Windows diagnostics; continued existing EXO training and GRAIL preprocessing. No WSL shutdown, service restart, proxy mutation, or network configuration change.",
+  "official_shutdown_reference": "https://learn.microsoft.com/en-us/windows/wsl/basic-commands#shutdown",
+  "resume_launch": "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/RESUME_LAUNCH_002.json",
+  "user_report": "User reports no remembered operation around14:45; do not attribute shutdown to user action.",
+  "targeted_followup": {
+    "window": "2026-10-20T14:44:30+08:00/2026-10-20T14:45:10+08:00",
+    "service_control_manager_events": 0,
+    "powershell_operational_events": 0,
+    "hyperv_compute_or_host_network_service_events": 0,
+    "windows_error_reports": 0,
+    "task_scheduler_operational": "not enabled before incident; cannot exclude task trigger",
+    "dedicated_lxss_wsl_hcs_persistent_log": "not available"
+  },
+  "specific_trigger": "unknown"
+}
