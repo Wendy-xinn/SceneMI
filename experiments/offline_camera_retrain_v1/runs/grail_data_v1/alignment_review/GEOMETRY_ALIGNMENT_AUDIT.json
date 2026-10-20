@@ -127,7 +127,6 @@
     "limitations": [
       "Closest vertical gap can include an edge/toe and is not full sole contact area",
       "Signed height is vertical support gap, not watertight signed-volume penetration",
-      "No explicit original source-video frame comparison; videos not downloaded locally",
       "Only one stairs sequence and one chair asset inspected",
       "Low source contact error does not prove all template/source semantics"
     ],
@@ -379,5 +378,22 @@
     },
     "interpretation": "Applying recon scale places bottom at y=0 exactly. Omitting scale puts chair bottom10.23cm below plane. Supports unscaled published USD; do not remove obj_scale based only on earlier postprocess export code."
   },
-  "conclusion": "No scene coordinate mismatch found for audited cases; current G1 has substantially smaller source-contact support gaps than standard SMPL-X with raw uniform scale. G1 source-code provenance must be assessed separately."
+  "conclusion": "No scene coordinate mismatch found for audited cases; current G1 has substantially smaller source-contact support gaps than standard SMPL-X with raw uniform scale. G1 source-code provenance must be assessed separately.",
+  "source_video_probe": {
+    "url": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Locomanipulation-GRAIL/resolve/main/data/stair_p2/video/terrain_stairs__stairs_2064__0001.mp4",
+    "local_temporary_path": "/tmp/grail_stairs_2064_0001_source.mp4",
+    "bytes": 6274657,
+    "sha256": "a51c052ab5d7623727f3ff254583cdc1e0166cbcd08da8700dc92ee35b073360",
+    "codec_probe": {
+      "fps": "24/1",
+      "width": 1280,
+      "height": 720,
+      "frames": 241,
+      "container_duration_s": 10.041667
+    },
+    "CPU_only": true,
+    "raw_frame172_temporary_png": "/tmp/grail_stairs_2064_0001_raw_01.png",
+    "raw_frame173_temporary_png": "/tmp/grail_stairs_2064_0001_raw_02.png",
+    "observation": "Same room, stairs, character as user source-video screenshot; screenshot is an earlier pose. Frame173 shows single-foot support and other foot lifting. Video supports24Hz timing but is not an independent metric3D source ground truth."
+  }
 }
