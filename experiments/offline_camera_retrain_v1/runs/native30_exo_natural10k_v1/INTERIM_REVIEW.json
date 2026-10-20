@@ -1,7 +1,7 @@
 {
-  "status": "interim_development_review",
-  "as_of": "2026-10-20T18:54:31.375194+08:00",
-  "scope": "Completed fixed100 EXO validation at 2k/4k/6k/8k/10k, sceneON, clean/noisy; 10k rotating100 and final CPU checks tracked separately. Not full VAL or TEST. No new inference.",
+  "status": "completed_development_review_not_scientific_acceptance",
+  "as_of": "2026-10-20T19:28:53.941341+08:00",
+  "scope": "Training10000 updates, all five fixed100 and rotating100 EXO VAL clean/noisy milestone rounds complete; independent CPU strict model verification and saved-array temporal audit complete after process-local loader recovery. Not full VAL or TEST. No new inference.",
   "initial_control": {
     "score_mm": 171.55002006650534,
     "metrics": {
@@ -640,7 +640,10 @@
         "anchor_regimes_checked": 18
       },
       "checkpoint_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
-      "completion_scope": "Fixed100 EXO clean/noisy and 18 EGO retention probes complete; rotating100 and final CPU checks recorded separately, not implied by this entry."
+      "completion_scope": "Fixed100 EXO clean/noisy,18 EGO probes and rotating100 monitoring complete; independent CPU postrun checks complete after process-local loader recovery.",
+      "completed_at": "2026-10-20T18:58:35.301626+08:00",
+      "fixed_arrays_sha256": "67d66917bab424758a6a7430af3d9026c14b3838c59f46a4c1edc9702243457a",
+      "rotating_arrays_sha256": "e7d66d80c8c3bf54b8b1c68809573b633b2f21cdd0577c0b309072c221a626ba"
     }
   ],
   "best_stage_step": 10000,
@@ -695,8 +698,8 @@
   "training_progress": {
     "live_status_snapshot": {
       "protocol": "native30-exo-natural-longrun-v1",
-      "status": "milestone_validation",
-      "updated_at": "2026-10-20T17:54:45.397823+08:00",
+      "status": "completed",
+      "updated_at": "2026-10-20T18:58:35.951936+08:00",
       "pid": 2837,
       "automatic_extension": false,
       "TEST_used": false,
@@ -705,11 +708,21 @@
       "analytical_physics_enabled": false,
       "reference_policy": "exo-local-so3-reference-gap-fill-v1",
       "completed_stage_updates": 10000,
-      "fixed_windows": 110,
-      "rotating_windows": 100
+      "planned_stage_updates": 10000,
+      "elapsed_training_s": 37345.00164385997,
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/last.pt",
+      "full_resumable_checkpoint": true,
+      "final_selection_locked": false,
+      "further_training_automatic": false,
+      "best_available_identity": {
+        "stage_step": 10000,
+        "score_mm": 112.86957874209594,
+        "checkpoint_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+        "status": "best_available_development_candidate"
+      }
     },
     "live_job_snapshot": {
-      "status": "running",
+      "status": "completed_recovered",
       "supervisor_pid": 2836,
       "started_at": "2026-10-20T15:21:38.426107+08:00",
       "planned_stage_updates": 10000,
@@ -745,13 +758,78 @@
           "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
         ]
       },
-      "phase": "training",
-      "child_pid": 2837,
-      "phase_started_at": "2026-10-20T15:21:38.430150+08:00"
+      "phase": "CPU_temporal_report",
+      "child_pid": 86086,
+      "phase_started_at": "2026-10-20T19:23:10.734768+08:00",
+      "returncodes": {
+        "training": 0,
+        "CPU_verify": 0,
+        "CPU_temporal_report": 0
+      },
+      "phase_finished_at": "2026-10-20T19:23:26.010354+08:00",
+      "finished_at": "2026-10-20T19:23:26.010365+08:00",
+      "recovery_record": "POSTRUN_RECOVERY.json",
+      "original_failure": {
+        "status": "failed",
+        "supervisor_pid": 2836,
+        "started_at": "2026-10-20T15:21:38.426107+08:00",
+        "planned_stage_updates": 10000,
+        "automatic_retry": false,
+        "TEST_used": false,
+        "source_commit": "5168e5628b6e4da47682c1680820ea3ec27538ff",
+        "commands": {
+          "training": [
+            "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+            "-u",
+            "-m",
+            "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+            "run",
+            "--resume",
+            "--run",
+            "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+          ],
+          "CPU_verify": [
+            "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+            "-u",
+            "-m",
+            "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+            "verify",
+            "--run",
+            "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+          ],
+          "CPU_temporal_report": [
+            "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+            "-u",
+            "-m",
+            "experiments.offline_camera_retrain_v1.ops.exo_longrun_report",
+            "--run",
+            "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+          ]
+        },
+        "phase": "CPU_verify",
+        "child_pid": 85142,
+        "phase_started_at": "2026-10-20T18:58:38.016746+08:00",
+        "returncodes": {
+          "training": 0,
+          "CPU_verify": 127
+        },
+        "phase_finished_at": "2026-10-20T18:58:38.064089+08:00",
+        "finished_at": "2026-10-20T18:58:38.065669+08:00",
+        "error": "RuntimeError('CPU_verify returned 127')",
+        "traceback": "Traceback (most recent call last):\n  File \"<string>\", line 24, in <module>\nRuntimeError: CPU_verify returned 127\n"
+      },
+      "recovered_stages": [
+        "CPU_verify",
+        "CPU_temporal_report"
+      ],
+      "recovery_returncodes": {
+        "CPU_verify": 0,
+        "CPU_temporal_report": 0
+      }
     },
     "resume_record": "RESUME_LAUNCH_002.json",
     "recovery_verified": "interruptions/wsl_restart_20261020_1446/REPLAY_VERIFY.json",
-    "note": "Read-only snapshot. Training updates10000 and fixed100 validation complete; STATUS/JOB remain live. Best selection is not final scientific acceptance."
+    "note": "All training/fixed/rotating/CPU postrun checks complete; original loader failure and process-local recovery retained. Development score does not establish paper acceptance."
   },
   "interpretation": [
     "10k is the current fixed-panel development best, hidden error112.869579mm; only0.202% lower than8k. This is a plateau indication, not proof of full convergence.",
@@ -760,8 +838,9 @@
     "RICH clean/noisy mean hidden76.309mm remains worse than reference48.144mm. RICH noisy60.058→114.181mm;9/12 windows worse; yoga95.257→585.784mm. Overcorrection is not solved.",
     "EgoBody clean/noisy mean hidden68.923mm; TRUMANS174.319mm. Per-corpus success is not established by the global mean alone.",
     "All9 EGO anchors times2 regimes remain exactly equal at10k; a limited retention probe.",
-    "10k rotating100, independent CPU model verification and final temporal report remain pending unless separately recorded below. Best is not scientific or paper acceptance.",
-    "Stance-foot speed is a GT-support proxy, not proof of no floating, penetration, or jitter."
+    "All training/validation milestones and independent CPU postrun checks now complete. Strict model and saved-array consistency checks pass; these do not establish scientific or paper acceptance.",
+    "Stance-foot speed is a GT-support proxy, not proof of no floating, penetration, or jitter.",
+    "Original CPU verification failed before model loading with ld.so exit127; both original CPU commands then succeeded with an isolated process loader workaround. No GPU was initialized and selected checkpoint/configuration/source identities were unchanged."
   ],
   "inputs_sha256": {
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/baseline_validation/SCORE.json": "21b02fdb470c0b1154070e153b052eacd65666456fc67e76ca25a96d67b770b6",
@@ -774,8 +853,15 @@
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_008000.json": "8d5f598517c1611cc4263c70d04ba0f36eb1f812b4536513ca07057c61fba9f9",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/fixed_validation/step_010000/SCORE.json": "4d4c2ef44bb89ddfea8954e338419441611a855a2d253e01d6a2f1adf73ec8a9",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/fixed_validation/step_010000/validation.jsonl": "d8548cda0c20a44125d4683bf51b9b35b33a1c45e8198a65260019179742ef39",
-    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/STATUS.json": "57b01753db8ddf940ac2fbccd50165c8beda9a2e9348eccc4aca613dd191bd2b",
-    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/JOB.json": "0a0c65ac0e2543ca20890e86dcc2b80bab1a00c84865a1375194f5848244ac52"
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/STATUS.json": "d1568f89ed89fb7b012d13bfaba1061f1aac9148a460f57ff085639ea2811f80",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/JOB.json": "68aae443657c705bbe597f250fab11e460b3733da8e800255a7bde3f369ca0ae",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_010000.json": "7c54da4316c253c33e9865152e643ec202e3b6079f07419fa500d5570d317310",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rotating_validation/step_010000/MONITOR.json": "663363798ae2b2bc86d7eb271b3bc92459bd699f61a87dc418d610c11ecc565b",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rotating_validation/step_010000/validation.jsonl": "06e9054047a4b4f1f74edd19f8ba447514ff376200e4691b5bc9d0226a6becec",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/CPU_MODEL_VERIFY.json": "09396e2ca2a06acff3678ef11af112d7f787f0dc35fc9d240eccb9c15b27fe84",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/CPU_TEMPORAL_REVIEW.json": "7fd56d1ed2400220cbff2f13056d4f1ac3c0170c5178f52b43d2907e93d1c7c8",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/CPU_TEMPORAL_REVIEW_zh.md": "b571e5d7cfaaaa8c5272325b14d398e443d5381ac288f3d03ebcc4e9aa18449c",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/POSTRUN_RECOVERY.json": "14a014f638c7e9d875804f4d9f5d1f43c0ffcc7dad2753d70ae823de6a5149ea"
   },
   "train_loss_table_as_of": "2026-10-20T11:15:41.461446+08:00",
   "prior_review_snapshots": [
@@ -816,26 +902,68 @@
         "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_006000.json": "6f9e68083dfa264a561673b5cd4392a3427908237f9916f78191ad602f2963e3",
         "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_008000.json": "8d5f598517c1611cc4263c70d04ba0f36eb1f812b4536513ca07057c61fba9f9"
       }
+    },
+    {
+      "as_of": "2026-10-20T18:54:31.375194+08:00",
+      "best_stage_step": 10000,
+      "best_score_mm": 112.86957874209594,
+      "best_checkpoint_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+      "completion_status": {
+        "training_updates": "complete_10000",
+        "fixed100_clean_noisy": "complete",
+        "EGO_18_probes": "complete_exact",
+        "rotating100_step10000": "pending_no_completed_milestone_record",
+        "rotating_step10000_files": [],
+        "CPU_model_verify": "pending_no_record",
+        "CPU_temporal_final_report": "pending_no_record",
+        "job_status_snapshot": "running",
+        "job_phase_snapshot": "training",
+        "status_snapshot": "milestone_validation",
+        "scientific_acceptance": "not_established; best is a fixed-panel development candidate only",
+        "observed_at": "2026-10-20T18:54:31.375194+08:00",
+        "expected_CPU_final_records": [
+          "CPU_MODEL_VERIFY.json",
+          "CPU_TEMPORAL_REVIEW.json",
+          "CPU_TEMPORAL_REVIEW_zh.md"
+        ]
+      },
+      "inputs_sha256": {
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/baseline_validation/SCORE.json": "21b02fdb470c0b1154070e153b052eacd65666456fc67e76ca25a96d67b770b6",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/best.json": "57cd719297877414c8fa22aa9b3cad7f6401623a3072a12c8aec274dca659866",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/RESUME_LAUNCH_002.json": "b127326eaddb3c8da1026fdd66bf26fe33a2183bad76eb81b402aa951d5f813e",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/interruptions/wsl_restart_20261020_1446/REPLAY_VERIFY.json": "da1206578f12f74051ce0ef6048ea8c428f7c083ba9b8d5dea30a2bef4e12f6e",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_002000.json": "b52257ba45010fd5a296060b430834800e1dc223455d3fdc9122342d09fe063a",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_004000.json": "63870b01f2d1b049d8837c72d63e74d49bee8a13f35b9db69175c5432cb86d4d",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_006000.json": "6f9e68083dfa264a561673b5cd4392a3427908237f9916f78191ad602f2963e3",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_008000.json": "8d5f598517c1611cc4263c70d04ba0f36eb1f812b4536513ca07057c61fba9f9",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/fixed_validation/step_010000/SCORE.json": "4d4c2ef44bb89ddfea8954e338419441611a855a2d253e01d6a2f1adf73ec8a9",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/fixed_validation/step_010000/validation.jsonl": "d8548cda0c20a44125d4683bf51b9b35b33a1c45e8198a65260019179742ef39",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/STATUS.json": "57b01753db8ddf940ac2fbccd50165c8beda9a2e9348eccc4aca613dd191bd2b",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/JOB.json": "0a0c65ac0e2543ca20890e86dcc2b80bab1a00c84865a1375194f5848244ac52"
+      }
     }
   ],
   "completion_status": {
     "training_updates": "complete_10000",
-    "fixed100_clean_noisy": "complete",
-    "EGO_18_probes": "complete_exact",
-    "rotating100_step10000": "pending_no_completed_milestone_record",
-    "rotating_step10000_files": [],
-    "CPU_model_verify": "pending_no_record",
-    "CPU_temporal_final_report": "pending_no_record",
-    "job_status_snapshot": "running",
-    "job_phase_snapshot": "training",
-    "status_snapshot": "milestone_validation",
+    "fixed100_clean_noisy": "complete_all5_milestones",
+    "EGO_18_probes": "complete_exact_at_each_milestone",
+    "rotating100_step10000": "complete",
+    "all_rotating_panels": "5x100 distinct EXO windows, clean/noisy, monitor only",
+    "CPU_model_verify": "independent_CPU_model_passed",
+    "CPU_temporal_final_report": "CPU_saved_array_audit_passed",
+    "CPU_temporal_rows": 1540,
+    "CPU_inference_calls": 0,
+    "CUDA_initialized": false,
+    "job_status_snapshot": "completed_recovered",
+    "status_snapshot": "completed",
     "scientific_acceptance": "not_established; best is a fixed-panel development candidate only",
-    "observed_at": "2026-10-20T18:54:31.375194+08:00",
+    "postrun_recovery": "Original CPU_verify ld.so failure127 preserved. Original CPU commands succeeded under process-local TORCH_USE_RTLD_GLOBAL=1, CUDA_VISIBLE_DEVICES empty, <=4 threads. No training, checkpoint, STATUS, installation, or source/config modifications.",
     "expected_CPU_final_records": [
       "CPU_MODEL_VERIFY.json",
       "CPU_TEMPORAL_REVIEW.json",
       "CPU_TEMPORAL_REVIEW_zh.md"
-    ]
+    ],
+    "observed_at": "2026-10-20T19:28:53.941341+08:00"
   },
   "remaining_failure_evidence": {
     "scope": "Existing fixed100 step10000 arrays/metrics; no new inference",
@@ -851,5 +979,460 @@
       "output_hidden_mm": 585.7843017578125
     },
     "interpretation": "Severe overcorrection remains at10k; overall best score does not establish successful hidden-pose recovery in every corpus."
+  },
+  "CPU_final_audit_summary": {
+    "model_status": "independent_CPU_model_passed",
+    "model_tensors": 407,
+    "optimizer_and_all_RNG_preserved": true,
+    "saved_array_status": "CPU_saved_array_audit_passed",
+    "CUDA_initialized": false,
+    "inference_calls": 0,
+    "rows": 1540,
+    "checkpoint_selection_changed": false,
+    "source": {
+      "strict_model": "CPU_MODEL_VERIFY.json",
+      "full_saved_array_report": "CPU_TEMPORAL_REVIEW.json",
+      "readable_report": "CPU_TEMPORAL_REVIEW_zh.md",
+      "recovery": "POSTRUN_RECOVERY.json"
+    },
+    "best_hidden_comparisons": [
+      {
+        "dataset": "rich",
+        "regime": "clean",
+        "comparator": "control",
+        "best_hidden_mm": 38.43771532549501,
+        "baseline_hidden_mm": 61.24814206874945,
+        "delta_mm": -22.81042674325444,
+        "better": true
+      },
+      {
+        "dataset": "rich",
+        "regime": "clean",
+        "comparator": "input_reference",
+        "best_hidden_mm": 38.43771532549501,
+        "baseline_hidden_mm": 36.229784504900266,
+        "delta_mm": 2.207930820594747,
+        "better": false
+      },
+      {
+        "dataset": "trumans",
+        "regime": "clean",
+        "comparator": "control",
+        "best_hidden_mm": 155.48186441462397,
+        "baseline_hidden_mm": 222.8109788917306,
+        "delta_mm": -67.32911447710663,
+        "better": true
+      },
+      {
+        "dataset": "trumans",
+        "regime": "clean",
+        "comparator": "input_reference",
+        "best_hidden_mm": 155.48186441462397,
+        "baseline_hidden_mm": 171.33331199788643,
+        "delta_mm": -15.851447583262456,
+        "better": true
+      },
+      {
+        "dataset": "egobody",
+        "regime": "clean",
+        "comparator": "control",
+        "best_hidden_mm": 61.85506651706974,
+        "baseline_hidden_mm": 107.38486036815826,
+        "delta_mm": -45.52979385108852,
+        "better": true
+      },
+      {
+        "dataset": "egobody",
+        "regime": "clean",
+        "comparator": "input_reference",
+        "best_hidden_mm": 61.85506651706974,
+        "baseline_hidden_mm": 66.54113298425688,
+        "delta_mm": -4.686066467187139,
+        "better": true
+      },
+      {
+        "dataset": "natural_weighted",
+        "regime": "clean",
+        "comparator": "control",
+        "best_hidden_mm": 97.33485058848274,
+        "baseline_hidden_mm": 149.07532380535397,
+        "delta_mm": -51.74047321687124,
+        "better": true
+      },
+      {
+        "dataset": "natural_weighted",
+        "regime": "clean",
+        "comparator": "input_reference",
+        "best_hidden_mm": 97.33485058848274,
+        "baseline_hidden_mm": 105.76506216807007,
+        "delta_mm": -8.430211579587336,
+        "better": true
+      },
+      {
+        "dataset": "rich",
+        "regime": "noisy",
+        "comparator": "control",
+        "best_hidden_mm": 114.18115599168932,
+        "baseline_hidden_mm": 101.4387149308106,
+        "delta_mm": 12.742441060878718,
+        "better": false
+      },
+      {
+        "dataset": "rich",
+        "regime": "noisy",
+        "comparator": "input_reference",
+        "best_hidden_mm": 114.18115599168932,
+        "baseline_hidden_mm": 60.058277370420456,
+        "delta_mm": 54.12287862126887,
+        "better": false
+      },
+      {
+        "dataset": "trumans",
+        "regime": "noisy",
+        "comparator": "control",
+        "best_hidden_mm": 193.15635451998438,
+        "baseline_hidden_mm": 287.10362816671784,
+        "delta_mm": -93.94727364673346,
+        "better": true
+      },
+      {
+        "dataset": "trumans",
+        "regime": "noisy",
+        "comparator": "input_reference",
+        "best_hidden_mm": 193.15635451998438,
+        "baseline_hidden_mm": 198.40282247833545,
+        "delta_mm": -5.246467958351076,
+        "better": true
+      },
+      {
+        "dataset": "egobody",
+        "regime": "noisy",
+        "comparator": "control",
+        "best_hidden_mm": 75.99060433539685,
+        "baseline_hidden_mm": 136.80492169340394,
+        "delta_mm": -60.81431735800709,
+        "better": true
+      },
+      {
+        "dataset": "egobody",
+        "regime": "noisy",
+        "comparator": "input_reference",
+        "best_hidden_mm": 75.99060433539685,
+        "baseline_hidden_mm": 86.96738529949745,
+        "delta_mm": -10.976780964100598,
+        "better": true
+      },
+      {
+        "dataset": "natural_weighted",
+        "regime": "noisy",
+        "comparator": "control",
+        "best_hidden_mm": 128.4043049244855,
+        "baseline_hidden_mm": 194.02471667696898,
+        "delta_mm": -65.62041175248348,
+        "better": true
+      },
+      {
+        "dataset": "natural_weighted",
+        "regime": "noisy",
+        "comparator": "input_reference",
+        "best_hidden_mm": 128.4043049244855,
+        "baseline_hidden_mm": 129.31000704382384,
+        "delta_mm": -0.9057021193383434,
+        "better": true
+      }
+    ],
+    "best_temporal_metrics": {
+      "adapter_10000/clean/rich": {
+        "acceleration_error_mm_s2": 1353.8475568024228,
+        "arm_global_orientation_error_deg": 35.34826005686564,
+        "arm_step_angle_error_deg": 1.712046245781561,
+        "foot_joint_speed_gt_low_m_s": 0.11211918473724049,
+        "hidden_mpjpe_mm": 38.43771532549501,
+        "left_wrist_gt_step_p95_deg": 9.572987071987903,
+        "left_wrist_step_over30_count": 0.25,
+        "left_wrist_step_p95_deg": 8.234638751648253,
+        "mpjve_mm_s": 35.82002278007815,
+        "right_wrist_gt_step_p95_deg": 11.586733447233948,
+        "right_wrist_step_over30_count": 3.25,
+        "right_wrist_step_p95_deg": 10.921820319416709,
+        "root_position_error_mm": 9.696463712468026,
+        "visible_mpjpe_mm": 3.3805087149305524,
+        "w_mpjpe_mm": 6.985836101232238
+      },
+      "adapter_10000/clean/trumans": {
+        "acceleration_error_mm_s2": 4788.271100317539,
+        "arm_global_orientation_error_deg": 31.75718470402139,
+        "arm_step_angle_error_deg": 1.5385672001599036,
+        "foot_joint_speed_gt_low_m_s": 0.2642684220237504,
+        "hidden_mpjpe_mm": 155.48186441462397,
+        "left_wrist_gt_step_p95_deg": 6.315080474154659,
+        "left_wrist_step_over30_count": 1.6097560975609757,
+        "left_wrist_step_p95_deg": 9.674501958028364,
+        "mpjve_mm_s": 144.14606213333028,
+        "right_wrist_gt_step_p95_deg": 6.152603758871944,
+        "right_wrist_step_over30_count": 1.024390243902439,
+        "right_wrist_step_p95_deg": 8.990697692936413,
+        "root_position_error_mm": 37.53972828084657,
+        "visible_mpjpe_mm": 7.028332176947438,
+        "w_mpjpe_mm": 65.97457173812715
+      },
+      "adapter_10000/clean/egobody": {
+        "acceleration_error_mm_s2": 2448.6738259013437,
+        "arm_global_orientation_error_deg": 29.264184047303303,
+        "arm_step_angle_error_deg": 2.113427129038752,
+        "foot_joint_speed_gt_low_m_s": 0.11501967043876082,
+        "hidden_mpjpe_mm": 61.85506651706974,
+        "left_wrist_gt_step_p95_deg": 10.90317846629911,
+        "left_wrist_step_over30_count": 1.2765957446808511,
+        "left_wrist_step_p95_deg": 10.59706624080551,
+        "mpjve_mm_s": 64.30059827547282,
+        "right_wrist_gt_step_p95_deg": 11.521816810006232,
+        "right_wrist_step_over30_count": 2.021276595744681,
+        "right_wrist_step_p95_deg": 12.963231180182584,
+        "root_position_error_mm": 15.321121606637117,
+        "visible_mpjpe_mm": 4.950229814311787,
+        "w_mpjpe_mm": 21.494891757298344
+      },
+      "adapter_10000/clean/natural_weighted": {
+        "acceleration_error_mm_s2": 3274.748901478695,
+        "arm_global_orientation_error_deg": 31.005312072423166,
+        "arm_step_angle_error_deg": 1.830856436516513,
+        "foot_joint_speed_gt_low_m_s": 0.17566512566599105,
+        "hidden_mpjpe_mm": 97.33485058848274,
+        "left_wrist_gt_step_p95_deg": 8.870336446899383,
+        "left_wrist_step_over30_count": 1.2908504805815733,
+        "left_wrist_step_p95_deg": 9.939568754202979,
+        "mpjve_mm_s": 93.54753506116137,
+        "right_wrist_gt_step_p95_deg": 9.33541956159972,
+        "right_wrist_step_over30_count": 1.759792214084996,
+        "right_wrist_step_p95_deg": 11.097492344577221,
+        "root_position_error_mm": 23.732829160421364,
+        "visible_mpjpe_mm": 5.613060954736076,
+        "w_mpjpe_mm": 37.94862526810988
+      },
+      "adapter_10000/noisy/rich": {
+        "acceleration_error_mm_s2": 2926.601086675919,
+        "arm_global_orientation_error_deg": 39.02477845146993,
+        "arm_step_angle_error_deg": 1.8433343925088876,
+        "foot_joint_speed_gt_low_m_s": 0.17975142360555227,
+        "hidden_mpjpe_mm": 114.18115599168932,
+        "left_wrist_gt_step_p95_deg": 9.572987071987903,
+        "left_wrist_step_over30_count": 0.5,
+        "left_wrist_step_p95_deg": 8.727216195348252,
+        "mpjve_mm_s": 82.30378419591163,
+        "right_wrist_gt_step_p95_deg": 11.586733447233948,
+        "right_wrist_step_over30_count": 2.9166666666666665,
+        "right_wrist_step_p95_deg": 11.234793473505974,
+        "root_position_error_mm": 25.892167393162964,
+        "visible_mpjpe_mm": 30.198395394667145,
+        "w_mpjpe_mm": 43.69411991365522
+      },
+      "adapter_10000/noisy/trumans": {
+        "acceleration_error_mm_s2": 6499.211551617345,
+        "arm_global_orientation_error_deg": 36.041714718502305,
+        "arm_step_angle_error_deg": 1.8763367885495859,
+        "foot_joint_speed_gt_low_m_s": 0.32256084768378235,
+        "hidden_mpjpe_mm": 193.15635451998438,
+        "left_wrist_gt_step_p95_deg": 6.315080474154659,
+        "left_wrist_step_over30_count": 1.975609756097561,
+        "left_wrist_step_p95_deg": 11.716935597849224,
+        "mpjve_mm_s": 191.94381374387964,
+        "right_wrist_gt_step_p95_deg": 6.152603758871944,
+        "right_wrist_step_over30_count": 1.4878048780487805,
+        "right_wrist_step_p95_deg": 10.74680170417433,
+        "root_position_error_mm": 53.51146257936402,
+        "visible_mpjpe_mm": 29.71583285488285,
+        "w_mpjpe_mm": 92.12485559302405
+      },
+      "adapter_10000/noisy/egobody": {
+        "acceleration_error_mm_s2": 3377.4734772974657,
+        "arm_global_orientation_error_deg": 33.67609716598429,
+        "arm_step_angle_error_deg": 2.169197454755889,
+        "foot_joint_speed_gt_low_m_s": 0.1244951183458544,
+        "hidden_mpjpe_mm": 75.99060433539685,
+        "left_wrist_gt_step_p95_deg": 10.90317846629911,
+        "left_wrist_step_over30_count": 1.1702127659574468,
+        "left_wrist_step_p95_deg": 10.141577477116124,
+        "mpjve_mm_s": 90.97165954483145,
+        "right_wrist_gt_step_p95_deg": 11.521816810006232,
+        "right_wrist_step_over30_count": 1.8085106382978724,
+        "right_wrist_step_p95_deg": 13.166549476548443,
+        "root_position_error_mm": 29.958266087363942,
+        "visible_mpjpe_mm": 26.983991410604663,
+        "w_mpjpe_mm": 40.88204607952165
+      },
+      "adapter_10000/noisy/natural_weighted": {
+        "acceleration_error_mm_s2": 4599.624821519227,
+        "arm_global_orientation_error_deg": 35.277855776673235,
+        "arm_step_angle_error_deg": 2.01083088232756,
+        "foot_joint_speed_gt_low_m_s": 0.21199448490728878,
+        "hidden_mpjpe_mm": 128.4043049244855,
+        "left_wrist_gt_step_p95_deg": 8.870336446899383,
+        "left_wrist_step_over30_count": 1.419758953981716,
+        "left_wrist_step_p95_deg": 10.61741060884845,
+        "mpjve_mm_s": 131.20432525390794,
+        "right_wrist_gt_step_p95_deg": 9.33541956159972,
+        "right_wrist_step_over30_count": 1.8090292307055758,
+        "right_wrist_step_p95_deg": 11.948369126554208,
+        "root_position_error_mm": 39.10039864172859,
+        "visible_mpjpe_mm": 28.481998790841033,
+        "w_mpjpe_mm": 62.156074410878844
+      }
+    },
+    "EGO_retention": {
+      "2000": {
+        "exact": true,
+        "checked_anchor_regimes": 18,
+        "compared_inputs": [
+          "observations",
+          "observation_meta",
+          "reference_motion",
+          "GT",
+          "rest",
+          "identities"
+        ],
+        "limitation": "Scene occupancy/camera tensors are not serialized in these prediction archives; source seals remain separate evidence."
+      },
+      "4000": {
+        "exact": true,
+        "checked_anchor_regimes": 18,
+        "compared_inputs": [
+          "observations",
+          "observation_meta",
+          "reference_motion",
+          "GT",
+          "rest",
+          "identities"
+        ],
+        "limitation": "Scene occupancy/camera tensors are not serialized in these prediction archives; source seals remain separate evidence."
+      },
+      "6000": {
+        "exact": true,
+        "checked_anchor_regimes": 18,
+        "compared_inputs": [
+          "observations",
+          "observation_meta",
+          "reference_motion",
+          "GT",
+          "rest",
+          "identities"
+        ],
+        "limitation": "Scene occupancy/camera tensors are not serialized in these prediction archives; source seals remain separate evidence."
+      },
+      "8000": {
+        "exact": true,
+        "checked_anchor_regimes": 18,
+        "compared_inputs": [
+          "observations",
+          "observation_meta",
+          "reference_motion",
+          "GT",
+          "rest",
+          "identities"
+        ],
+        "limitation": "Scene occupancy/camera tensors are not serialized in these prediction archives; source seals remain separate evidence."
+      },
+      "10000": {
+        "exact": true,
+        "checked_anchor_regimes": 18,
+        "compared_inputs": [
+          "observations",
+          "observation_meta",
+          "reference_motion",
+          "GT",
+          "rest",
+          "identities"
+        ],
+        "limitation": "Scene occupancy/camera tensors are not serialized in these prediction archives; source seals remain separate evidence."
+      }
+    },
+    "limitations": [
+      "Development VAL, not independent TEST or proof of real monocular EXO generalization.",
+      "Wrist angular quantiles alone do not prove or disprove jitter.",
+      "Scene tensors are not archived; report verifies saved observation/reference/GT equality and historical source seals."
+    ]
+  },
+  "rotating10k_monitor": {
+    "scope": "Separate100 EXO VAL windows, clean/noisy; monitor only, never best selection; differs from earlier rotating panels, so between-round scores are not a fixed-panel learning curve.",
+    "groups": {
+      "clean/rich": {
+        "metrics": {
+          "unconditioned_mpjpe_mm": 32.28695911169052,
+          "conditioned_mpjpe_mm": 3.194577693939209
+        },
+        "reference_metrics": {
+          "unconditioned_mpjpe_mm": 30.812719097787824,
+          "conditioned_mpjpe_mm": 4.717089408528409
+        },
+        "windows": 12,
+        "hidden_valid_windows": 12,
+        "hidden_worse_than_reference_windows": 4
+      },
+      "noisy/rich": {
+        "metrics": {
+          "unconditioned_mpjpe_mm": 61.090378761291504,
+          "conditioned_mpjpe_mm": 30.371078491210938
+        },
+        "reference_metrics": {
+          "unconditioned_mpjpe_mm": 66.38873195648193,
+          "conditioned_mpjpe_mm": 35.52399015426636
+        },
+        "windows": 12,
+        "hidden_valid_windows": 12,
+        "hidden_worse_than_reference_windows": 5
+      },
+      "clean/trumans": {
+        "metrics": {
+          "unconditioned_mpjpe_mm": 140.0180574742759,
+          "conditioned_mpjpe_mm": 6.661451076588979
+        },
+        "reference_metrics": {
+          "unconditioned_mpjpe_mm": 171.33568461348372,
+          "conditioned_mpjpe_mm": 20.909802836417107
+        },
+        "windows": 41,
+        "hidden_valid_windows": 41,
+        "hidden_worse_than_reference_windows": 11
+      },
+      "noisy/trumans": {
+        "metrics": {
+          "unconditioned_mpjpe_mm": 173.87840689682378,
+          "conditioned_mpjpe_mm": 29.010903195637027
+        },
+        "reference_metrics": {
+          "unconditioned_mpjpe_mm": 193.45490413758813,
+          "conditioned_mpjpe_mm": 50.36323105416647
+        },
+        "windows": 41,
+        "hidden_valid_windows": 41,
+        "hidden_worse_than_reference_windows": 14
+      },
+      "clean/egobody": {
+        "metrics": {
+          "unconditioned_mpjpe_mm": 57.2880180892737,
+          "conditioned_mpjpe_mm": 4.668738822987739
+        },
+        "reference_metrics": {
+          "unconditioned_mpjpe_mm": 54.497807165687526,
+          "conditioned_mpjpe_mm": 15.329790160044139
+        },
+        "windows": 47,
+        "hidden_valid_windows": 46,
+        "hidden_worse_than_reference_windows": 29
+      },
+      "noisy/egobody": {
+        "metrics": {
+          "unconditioned_mpjpe_mm": 72.49503080895606,
+          "conditioned_mpjpe_mm": 26.28795497975451
+        },
+        "reference_metrics": {
+          "unconditioned_mpjpe_mm": 80.09947072698715,
+          "conditioned_mpjpe_mm": 43.4907989907772
+        },
+        "windows": 47,
+        "hidden_valid_windows": 47,
+        "hidden_worse_than_reference_windows": 16
+      }
+    }
   }
 }

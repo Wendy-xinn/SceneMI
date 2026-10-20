@@ -1,0 +1,236 @@
+{
+  "protocol": "exo-postrun-CPU-loader-recovery-v1",
+  "status": "completed_recovered",
+  "started_at": "2026-10-20T19:23:01.236103+08:00",
+  "controller_pid": 86051,
+  "authorization": "Complete original JOB.commands CPU post-processing only, preserving failed loader evidence; no training, GPU, TEST, or installation changes.",
+  "environment_overrides": {
+    "TORCH_USE_RTLD_GLOBAL": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "OMP_NUM_THREADS": "4",
+    "MKL_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "4",
+    "NUMEXPR_NUM_THREADS": "4"
+  },
+  "cwd": "/home/wenxin/projects/SceneMI",
+  "original_failure": {
+    "status": "failed",
+    "supervisor_pid": 2836,
+    "started_at": "2026-10-20T15:21:38.426107+08:00",
+    "planned_stage_updates": 10000,
+    "automatic_retry": false,
+    "TEST_used": false,
+    "source_commit": "5168e5628b6e4da47682c1680820ea3ec27538ff",
+    "commands": {
+      "training": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+        "run",
+        "--resume",
+        "--run",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+      ],
+      "CPU_verify": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+        "verify",
+        "--run",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+      ],
+      "CPU_temporal_report": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.exo_longrun_report",
+        "--run",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+      ]
+    },
+    "phase": "CPU_verify",
+    "child_pid": 85142,
+    "phase_started_at": "2026-10-20T18:58:38.016746+08:00",
+    "returncodes": {
+      "training": 0,
+      "CPU_verify": 127
+    },
+    "phase_finished_at": "2026-10-20T18:58:38.064089+08:00",
+    "finished_at": "2026-10-20T18:58:38.065669+08:00",
+    "error": "RuntimeError('CPU_verify returned 127')",
+    "traceback": "Traceback (most recent call last):\n  File \"<string>\", line 24, in <module>\nRuntimeError: CPU_verify returned 127\n"
+  },
+  "original_failure_log": {
+    "path": "CPU_verify.log",
+    "sha256": "048bb0d9f0d2123a884bf370f126322ddb2d87385aa3b86b6953d64c6f6f3b06"
+  },
+  "protected_before_sha256": {
+    "STATUS.json": "d1568f89ed89fb7b012d13bfaba1061f1aac9148a460f57ff085639ea2811f80",
+    "training/best.json": "57cd719297877414c8fa22aa9b3cad7f6401623a3072a12c8aec274dca659866",
+    "training/best.pt": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+    "config.json": "ad14c0aac18db1292043c83dfe10bbd90bf1a7c18a6b9de4ef6c8339c23a7789",
+    "prepared/effective_config.json": "e93675e8ef673299d457912027771166c3530d80a8b14521fac356bb80d1711d",
+    "training/protocol.json": "18d0f89d85314b0bfee99ef52c721feab9ef82da6ab7da5b7052671f17ffc2cf"
+  },
+  "best_checkpoint_sha256_expected": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+  "phases": [
+    {
+      "phase": "CPU_verify",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+        "verify",
+        "--run",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+      ],
+      "started_at": "2026-10-20T19:23:01.513662+08:00",
+      "log": "CPU_verify.recovery_001.log",
+      "pid": 86052,
+      "returncode": 0,
+      "finished_at": "2026-10-20T19:23:10.734432+08:00",
+      "log_sha256": "559860dfab4ea4c503c013d63a7bfcabb203a90666c72aa17e935a240c9d7d3e"
+    },
+    {
+      "phase": "CPU_temporal_report",
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.exo_longrun_report",
+        "--run",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+      ],
+      "started_at": "2026-10-20T19:23:10.734768+08:00",
+      "log": "CPU_temporal_report.recovery_001.log",
+      "pid": 86086,
+      "returncode": 0,
+      "finished_at": "2026-10-20T19:23:25.817162+08:00",
+      "log_sha256": "ccea385b3cef587c188c5a28b4f5c6b44f9db80ecadcc2d76c2b6d5b96ef7c54"
+    }
+  ],
+  "TEST_used": false,
+  "protected_after_sha256": {
+    "STATUS.json": "d1568f89ed89fb7b012d13bfaba1061f1aac9148a460f57ff085639ea2811f80",
+    "training/best.json": "57cd719297877414c8fa22aa9b3cad7f6401623a3072a12c8aec274dca659866",
+    "training/best.pt": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+    "config.json": "ad14c0aac18db1292043c83dfe10bbd90bf1a7c18a6b9de4ef6c8339c23a7789",
+    "prepared/effective_config.json": "e93675e8ef673299d457912027771166c3530d80a8b14521fac356bb80d1711d",
+    "training/protocol.json": "18d0f89d85314b0bfee99ef52c721feab9ef82da6ab7da5b7052671f17ffc2cf"
+  },
+  "job_after": {
+    "status": "completed_recovered",
+    "supervisor_pid": 2836,
+    "started_at": "2026-10-20T15:21:38.426107+08:00",
+    "planned_stage_updates": 10000,
+    "automatic_retry": false,
+    "TEST_used": false,
+    "source_commit": "5168e5628b6e4da47682c1680820ea3ec27538ff",
+    "commands": {
+      "training": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+        "run",
+        "--resume",
+        "--run",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+      ],
+      "CPU_verify": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+        "verify",
+        "--run",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+      ],
+      "CPU_temporal_report": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.exo_longrun_report",
+        "--run",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+      ]
+    },
+    "phase": "CPU_temporal_report",
+    "child_pid": 86086,
+    "phase_started_at": "2026-10-20T19:23:10.734768+08:00",
+    "returncodes": {
+      "training": 0,
+      "CPU_verify": 0,
+      "CPU_temporal_report": 0
+    },
+    "phase_finished_at": "2026-10-20T19:23:26.010354+08:00",
+    "finished_at": "2026-10-20T19:23:26.010365+08:00",
+    "recovery_record": "POSTRUN_RECOVERY.json",
+    "original_failure": {
+      "status": "failed",
+      "supervisor_pid": 2836,
+      "started_at": "2026-10-20T15:21:38.426107+08:00",
+      "planned_stage_updates": 10000,
+      "automatic_retry": false,
+      "TEST_used": false,
+      "source_commit": "5168e5628b6e4da47682c1680820ea3ec27538ff",
+      "commands": {
+        "training": [
+          "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+          "-u",
+          "-m",
+          "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+          "run",
+          "--resume",
+          "--run",
+          "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+        ],
+        "CPU_verify": [
+          "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+          "-u",
+          "-m",
+          "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+          "verify",
+          "--run",
+          "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+        ],
+        "CPU_temporal_report": [
+          "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+          "-u",
+          "-m",
+          "experiments.offline_camera_retrain_v1.ops.exo_longrun_report",
+          "--run",
+          "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+        ]
+      },
+      "phase": "CPU_verify",
+      "child_pid": 85142,
+      "phase_started_at": "2026-10-20T18:58:38.016746+08:00",
+      "returncodes": {
+        "training": 0,
+        "CPU_verify": 127
+      },
+      "phase_finished_at": "2026-10-20T18:58:38.064089+08:00",
+      "finished_at": "2026-10-20T18:58:38.065669+08:00",
+      "error": "RuntimeError('CPU_verify returned 127')",
+      "traceback": "Traceback (most recent call last):\n  File \"<string>\", line 24, in <module>\nRuntimeError: CPU_verify returned 127\n"
+    },
+    "recovered_stages": [
+      "CPU_verify",
+      "CPU_temporal_report"
+    ],
+    "recovery_returncodes": {
+      "CPU_verify": 0,
+      "CPU_temporal_report": 0
+    }
+  },
+  "outputs_sha256": {
+    "CPU_MODEL_VERIFY.json": "09396e2ca2a06acff3678ef11af112d7f787f0dc35fc9d240eccb9c15b27fe84",
+    "CPU_TEMPORAL_REVIEW.json": "7fd56d1ed2400220cbff2f13056d4f1ac3c0170c5178f52b43d2907e93d1c7c8",
+    "CPU_TEMPORAL_REVIEW_zh.md": "b571e5d7cfaaaa8c5272325b14d398e443d5381ac288f3d03ebcc4e9aa18449c"
+  },
+  "finished_at": "2026-10-20T19:23:26.014263+08:00"
+}

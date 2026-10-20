@@ -1,6 +1,6 @@
 # EXO 10k 阶段结果
 
-记录时间：2026-10-20T18:54:31.375194+08:00。训练已完成10,000次更新，固定100个EXO验证窗口的clean/noisy已算完。按真实VAL窗口比例加权；不是完整VAL或TEST。本报告只读取已有结果。
+记录时间：2026-10-20T19:28:53.941341+08:00。训练已完成10,000次更新，固定100个EXO验证窗口的clean/noisy已算完。按真实VAL窗口比例加权；不是完整VAL或TEST。全部5轮固定与轮换验证现均完成；独立CPU模型校验及保存数组的时序审计也已完成。指标来自已有预测，本次后处理没有重新推理。
 
 | 模型／适配步数 | 隐藏关节 MPJPE（mm，越低越好） |
 | --- | ---: |
@@ -24,6 +24,10 @@
 
 10k的18项EGO保持探针全部逐元素一致。整体可见关节误差17.05mm，GT支撑期脚部速度代理0.1938m/s；后者不能证明消除漂浮、穿模或抖动。
 
-截至记录时间，实时STATUS为`milestone_validation`、JOB为`running`：10k轮换100窗、独立CPU模型严格加载验证及最终时序报告尚无完成记录。`best`只是本轮固定面板选出的开发候选，科学有效性尚未验收。实时进度以STATUS.json/JOB.json为准。
+最终STATUS为`completed`，JOB为`completed_recovered`。CPU严格加载校验通过（407个模型张量、优化器/RNG保留），已审计1540条保存结果；5轮EGO探针均精确保持。CPU过程中未初始化CUDA、未重新推理。**这些是身份与结果一致性检查通过，不代表RICH恢复能力通过验收。**
+
+原CPU后处理曾在加载库时以ld.so错误127退出；保留原日志与失败JOB，给独立新CPU进程设置`TORCH_USE_RTLD_GLOBAL=1`、隐藏CUDA、最多4线程后，两条原命令均以0退出。`POSTRUN_RECOVERY.json`保存全过程，best权重、best记录、STATUS、配置与训练协议的前后SHA全部一致。没有重训或改安装库。
+
+`best`仍只是固定面板选出的开发候选。完整保存数组时序结果见`CPU_TEMPORAL_REVIEW.json`，可读摘要见`CPU_TEMPORAL_REVIEW_zh.md`。
 
 2k/4k/6k/8k里程碑和此前来源hash保留在JSON；历史训练loss表仍截至6k，带原始记录时间，没有冒充10k统计。14:45左右WSL中断后从完整8k恢复的逐项重放证据仍见`interruptions/wsl_restart_20261020_1446/REPLAY_VERIFY.json`。本报告不改变checkpoint选择、不启动推理或训练。
