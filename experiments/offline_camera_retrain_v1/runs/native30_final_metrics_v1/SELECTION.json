@@ -1,0 +1,33 @@
+{
+  "protocol": "native30-final-metric-baseline-selection-v1",
+  "frozen": true,
+  "selected_at": "2026-10-20T21:26:40.427098+08:00",
+  "selected_on": "validation",
+  "TEST_used_for_selection": false,
+  "kind": "longrun",
+  "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/checkpoints/step_010000.pt",
+  "checkpoint_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+  "config": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/config.json",
+  "config_sha256": "ad14c0aac18db1292043c83dfe10bbd90bf1a7c18a6b9de4ef6c8339c23a7789",
+  "expected_step": 10000,
+  "reference_policy": "exo-local-so3-reference-gap-fill-v1",
+  "analytical_physics_enabled": false,
+  "output_policy": "raw_model",
+  "scene_comparison": [
+    "scene_on",
+    "scene_off"
+  ],
+  "inference_steps": 20,
+  "fps": 30,
+  "frames": 192,
+  "stride": 64,
+  "reason": "Existing completed natural10k development best; authorized 150+150 short trial produced zero updates due runtime dynamic-loader failure, so no unverified candidate replaces it.",
+  "acceptance": "Reproducible metric baseline, not claim of solved EXO refinement or stable scene gain.",
+  "known_limitations": [
+    "Fixed RICH noisy hidden reference60.058mm vs output114.181mm;9/12 windows worse.",
+    "Current10k scene ON/OFF paired aggregate not yet established.",
+    "Native synthetic/noisy observation protocol is not matched to AMASS-only published methods.",
+    "RICH TEST permits EGO only; no EXO TEST observations invented."
+  ],
+  "further_checkpoint_selection": false
+}

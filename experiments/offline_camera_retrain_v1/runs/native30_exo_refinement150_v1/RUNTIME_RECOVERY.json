@@ -1,0 +1,58 @@
+{
+  "status": "verified_process_local_runtime_recovery",
+  "recorded_at": "2026-10-20T22:24:48.503180+08:00",
+  "scope": "CUDA runtime repair for the already sealed 150+150 trial; no model or training-source edit",
+  "installed_library": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12",
+  "installed_bytes": 104487248,
+  "installed_sha256": "2cb70a1bdc953507956ee397ba85c652091147661fb09b0dedb1f1e1bb3e876d",
+  "wheel_RECORD": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/nvidia_cuda_nvrtc_cu12-12.8.93.dist-info/RECORD",
+  "wheel_RECORD_expected_sha256": "43731e24cd89e3749826304f304e8aa11fbecf1188715271b1f5018d6212b5e6",
+  "compatible_source": "/home/wenxin/miniconda3/envs/crisp/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12",
+  "compatible_source_version": "12.8.93; same package version and bytes required by scenemi wheel RECORD",
+  "binary_comparison": {
+    "same_file_size": true,
+    "different_bytes": 128,
+    "first_difference_hex": "0x211900",
+    "last_difference_hex": "0x211dfc",
+    "differing_4096_byte_pages": 1
+  },
+  "ELF_evidence": {
+    "DT_RELACOUNT": 178846,
+    "installed_non_R_X86_64_RELATIVE_entries_in_that_range": 22,
+    "first_bad_entry_index": 89729,
+    "first_bad_entry_file_offset_hex": "0x2118f8",
+    "first_bad_r_info_hex": "0x9400000080",
+    "first_bad_relocation_type": 128,
+    "compatible_copy_bad_entries": 0
+  },
+  "recovery": {
+    "process_local_library": "/tmp/scenemi_nvrtc_verified_runtime/libnvrtc.so.12",
+    "process_local_library_sha256": "43731e24cd89e3749826304f304e8aa11fbecf1188715271b1f5018d6212b5e6",
+    "LD_PRELOAD": "/tmp/scenemi_nvrtc_verified_runtime/libnvrtc.so.12",
+    "TORCH_USE_RTLD_GLOBAL": "1",
+    "LD_BIND_NOW": "1",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "system_or_conda_libraries_modified": false,
+    "WSL_or_daemons_modified": false,
+    "ELF_dynamic_table_patched": false
+  },
+  "validation": {
+    "CUDA_batched_SVD_shape": [
+      8,
+      192,
+      22,
+      3,
+      3
+    ],
+    "exit_code": 0,
+    "evidence_source": "Root actual successful runtime probe; full training outcome tracked separately in STATUS/arm results",
+    "training_launch_session": 88804,
+    "training_success_claimed": false
+  },
+  "prior_failure": {
+    "exit_code": 127,
+    "completed_optimizer_updates": 0,
+    "calibration_batches_completed": 0,
+    "record": "TRAINING_FAILURE.json"
+  }
+}
