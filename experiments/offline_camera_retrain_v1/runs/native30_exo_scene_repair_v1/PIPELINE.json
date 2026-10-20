@@ -1,9 +1,9 @@
 {
   "objective": "Improve EXO output without degrading reliable references, visible evidence or EGO generation",
-  "status": "dev_validation_running",
-  "updated_at": "2026-10-21T01:12:38.447296+08:00",
+  "status": "repair_stopped_for_user_requested_metrics",
+  "updated_at": "2026-10-21T02:25:32.042053+08:00",
   "user_authorization": "User explicitly reaffirmed repair goal; continue necessary diagnosis, implementation and paired validation without repeated step approval",
-  "formal_metrics_paused": true,
+  "formal_metrics_paused": false,
   "remote_backup": "local_only_per_user",
   "checkpoint_parent_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
   "stages": [
@@ -41,11 +41,27 @@
     },
     {
       "name": "paired_validation",
-      "status": "sampling_dev",
+      "status": "dev_rejected_no_confirmation",
       "scope": "90 DEV predictions; then freeze candidate and48 independent-recording confirmation predictions",
       "worker_pid": 102715,
       "session_id": 6084,
-      "confirmed_predictions_at_update": 20
+      "confirmed_predictions_at_update": 20,
+      "completed_predictions": 90,
+      "choice": "repair_validation/DEV_CHOICE.json",
+      "source_commit": "f647934"
+    },
+    {
+      "name": "second_pass_patch_repair",
+      "status": "dev_rejected_no_confirmation",
+      "policy": "exo_patch_second_pass",
+      "baseline_reused_predictions": 30,
+      "planned_new_dev_predictions": 30,
+      "planned_confirmation_predictions": 48,
+      "scope": "First of two core passes suppresses EXO patch; second retains patch; EGO and other scene paths unchanged; guards unchanged",
+      "selection": "second_pass_validation/SELECTION.json",
+      "acceptance": "second_pass_validation/ACCEPTANCE.json",
+      "choice": "second_pass_validation/DEV_CHOICE.json",
+      "completed_predictions": 60
     }
   ],
   "promoted": false,
@@ -64,5 +80,7 @@
     "interpretation": "patch_off is causal diagnostic improvement on one failure, not validated final repair; combined policy requires real paired validation"
   },
   "attribution_record": "ROOT_LOCAL_ATTRIBUTION_zh.md",
-  "local_only": true
+  "local_only": true,
+  "active_metrics": "../native30_final_metrics_v1/full_validation_noisy",
+  "scope_change": "User now prioritizes original10k EGO+EXO noisy fullVAL scene ON/OFF; no more repair experiments running"
 }
