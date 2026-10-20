@@ -1,7 +1,7 @@
 {
   "status": "interim_development_review",
-  "as_of": "2026-10-20T15:43:26.544126+08:00",
-  "scope": "Completed fixed100 EXO validation milestones, sceneON, clean/noisy; not fullVAL or TEST. No new inference.",
+  "as_of": "2026-10-20T18:54:31.375194+08:00",
+  "scope": "Completed fixed100 EXO validation at 2k/4k/6k/8k/10k, sceneON, clean/noisy; 10k rotating100 and final CPU checks tracked separately. Not full VAL or TEST. No new inference.",
   "initial_control": {
     "score_mm": 171.55002006650534,
     "metrics": {
@@ -532,13 +532,122 @@
         "exact": true,
         "anchor_regimes_checked": 18
       }
+    },
+    {
+      "step": 10000,
+      "fixed_score_recorded_at": "2026-10-20T18:27:41.829129+08:00",
+      "score_mm": 112.86957874209594,
+      "metrics": {
+        "metrics/clean/rich": {
+          "unconditioned_mpjpe_mm": 38.43771547620947,
+          "conditioned_mpjpe_mm": 3.380509227514267,
+          "mpjpe_mm": 6.985836793979009,
+          "foot_speed_during_GT_stance_m_s": 0.11211910502364238
+        },
+        "metrics/clean/trumans": {
+          "unconditioned_mpjpe_mm": 155.48186437095083,
+          "conditioned_mpjpe_mm": 7.028332263958164,
+          "mpjpe_mm": 65.97457346102087,
+          "foot_speed_during_GT_stance_m_s": 0.2642684162753384
+        },
+        "metrics/clean/egobody": {
+          "unconditioned_mpjpe_mm": 61.85506868097517,
+          "conditioned_mpjpe_mm": 4.9502300911761346,
+          "mpjpe_mm": 21.49489288888079,
+          "foot_speed_during_GT_stance_m_s": 0.11501968973019022
+        },
+        "metrics/noisy/rich": {
+          "unconditioned_mpjpe_mm": 114.1811621983846,
+          "conditioned_mpjpe_mm": 30.198395252227783,
+          "mpjpe_mm": 43.69412088394165,
+          "foot_speed_during_GT_stance_m_s": 0.17975141728917757
+        },
+        "metrics/noisy/trumans": {
+          "unconditioned_mpjpe_mm": 193.1563545785299,
+          "conditioned_mpjpe_mm": 29.71583273352646,
+          "mpjpe_mm": 92.12485722797673,
+          "foot_speed_during_GT_stance_m_s": 0.32256084825934433
+        },
+        "metrics/noisy/egobody": {
+          "unconditioned_mpjpe_mm": 75.99060473234758,
+          "conditioned_mpjpe_mm": 26.983991359142546,
+          "mpjpe_mm": 40.8820469227243,
+          "foot_speed_during_GT_stance_m_s": 0.12449513145900787
+        },
+        "reference_metrics/clean/rich": {
+          "unconditioned_mpjpe_mm": 36.22977612235329,
+          "conditioned_mpjpe_mm": 2.5675452055802452,
+          "mpjpe_mm": 6.6000822683151155,
+          "foot_speed_during_GT_stance_m_s": 0.11684693737576406
+        },
+        "reference_metrics/clean/trumans": {
+          "unconditioned_mpjpe_mm": 171.33331336044682,
+          "conditioned_mpjpe_mm": 23.596696477225432,
+          "mpjpe_mm": 76.43162141776666,
+          "foot_speed_during_GT_stance_m_s": 0.27007294664295706
+        },
+        "reference_metrics/clean/egobody": {
+          "unconditioned_mpjpe_mm": 66.54113379045222,
+          "conditioned_mpjpe_mm": 20.29977077116448,
+          "mpjpe_mm": 31.085634695005943,
+          "foot_speed_during_GT_stance_m_s": 0.11756598418380351
+        },
+        "reference_metrics/noisy/rich": {
+          "unconditioned_mpjpe_mm": 60.0582762559255,
+          "conditioned_mpjpe_mm": 36.01571798324585,
+          "mpjpe_mm": 39.86820141474406,
+          "foot_speed_during_GT_stance_m_s": 0.13189211518814167
+        },
+        "reference_metrics/noisy/trumans": {
+          "unconditioned_mpjpe_mm": 198.40282282015173,
+          "conditioned_mpjpe_mm": 51.78341837627132,
+          "mpjpe_mm": 104.8377459456281,
+          "foot_speed_during_GT_stance_m_s": 0.3503159384538488
+        },
+        "reference_metrics/noisy/egobody": {
+          "unconditioned_mpjpe_mm": 86.96738481521606,
+          "conditioned_mpjpe_mm": 48.206537896014275,
+          "mpjpe_mm": 57.88552641361318,
+          "foot_speed_during_GT_stance_m_s": 0.13318458813777628
+        },
+        "metrics/clean/natural_weighted": {
+          "unconditioned_mpjpe_mm": 97.3348516112409,
+          "conditioned_mpjpe_mm": 5.613061182005019,
+          "mpjpe_mm": 37.9486265892252,
+          "foot_speed_during_GT_stance_m_s": 0.1756651229699373
+        },
+        "metrics/noisy/natural_weighted": {
+          "unconditioned_mpjpe_mm": 128.404305872951,
+          "conditioned_mpjpe_mm": 28.48199870001503,
+          "mpjpe_mm": 62.15607559271551,
+          "foot_speed_during_GT_stance_m_s": 0.211994490590105
+        },
+        "reference_metrics/clean/natural_weighted": {
+          "unconditioned_mpjpe_mm": 105.76506211062386,
+          "conditioned_mpjpe_mm": 19.54166233259783,
+          "mpjpe_mm": 46.7088512866711,
+          "foot_speed_during_GT_stance_m_s": 0.17980189930834745
+        },
+        "reference_metrics/noisy/natural_weighted": {
+          "unconditioned_mpjpe_mm": 129.31000682229705,
+          "conditioned_mpjpe_mm": 48.220773837496665,
+          "mpjpe_mm": 74.93310837236335,
+          "foot_speed_during_GT_stance_m_s": 0.22176088666600147
+        }
+      },
+      "EGO_retention": {
+        "exact": true,
+        "anchor_regimes_checked": 18
+      },
+      "checkpoint_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+      "completion_scope": "Fixed100 EXO clean/noisy and 18 EGO retention probes complete; rotating100 and final CPU checks recorded separately, not implied by this entry."
     }
   ],
-  "best_stage_step": 8000,
-  "best_score_mm": 113.09785532425822,
-  "best_checkpoint_sha256": "f8dcc1d63608895b1a8ade99fd4314d75f760014234de2de203dd6d6083d477a",
-  "best_vs_control_improvement_percent": 34.07295709996815,
-  "best_vs_reference_improvement_percent": 3.777243722488588,
+  "best_stage_step": 10000,
+  "best_score_mm": 112.86957874209594,
+  "best_checkpoint_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+  "best_vs_control_improvement_percent": 34.20602416814674,
+  "best_vs_reference_improvement_percent": 3.971459623986351,
   "train_loss_by_1000": [
     {
       "start": 1,
@@ -586,8 +695,8 @@
   "training_progress": {
     "live_status_snapshot": {
       "protocol": "native30-exo-natural-longrun-v1",
-      "status": "training",
-      "updated_at": "2026-10-20T15:42:32.070994+08:00",
+      "status": "milestone_validation",
+      "updated_at": "2026-10-20T17:54:45.397823+08:00",
       "pid": 2837,
       "automatic_extension": false,
       "TEST_used": false,
@@ -595,33 +704,152 @@
       "ancestor_step": 41000,
       "analytical_physics_enabled": false,
       "reference_policy": "exo-local-so3-reference-gap-fill-v1",
-      "completed_stage_updates": 8150,
+      "completed_stage_updates": 10000,
+      "fixed_windows": 110,
+      "rotating_windows": 100
+    },
+    "live_job_snapshot": {
+      "status": "running",
+      "supervisor_pid": 2836,
+      "started_at": "2026-10-20T15:21:38.426107+08:00",
       "planned_stage_updates": 10000,
-      "last_loss": 0.3375435471534729,
-      "elapsed_training_s": 30056.41192929698,
-      "lr": 2e-05
+      "automatic_retry": false,
+      "TEST_used": false,
+      "source_commit": "5168e5628b6e4da47682c1680820ea3ec27538ff",
+      "commands": {
+        "training": [
+          "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+          "-u",
+          "-m",
+          "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+          "run",
+          "--resume",
+          "--run",
+          "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+        ],
+        "CPU_verify": [
+          "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+          "-u",
+          "-m",
+          "experiments.offline_camera_retrain_v1.ops.exo_longrun",
+          "verify",
+          "--run",
+          "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+        ],
+        "CPU_temporal_report": [
+          "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+          "-u",
+          "-m",
+          "experiments.offline_camera_retrain_v1.ops.exo_longrun_report",
+          "--run",
+          "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1"
+        ]
+      },
+      "phase": "training",
+      "child_pid": 2837,
+      "phase_started_at": "2026-10-20T15:21:38.430150+08:00"
     },
     "resume_record": "RESUME_LAUNCH_002.json",
     "recovery_verified": "interruptions/wsl_restart_20261020_1446/REPLAY_VERIFY.json",
-    "note": "Snapshot only; STATUS.json and JOB.json are live. Milestone validation is complete through8000."
+    "note": "Read-only snapshot. Training updates10000 and fixed100 validation complete; STATUS/JOB remain live. Best selection is not final scientific acceptance."
   },
   "interpretation": [
-    "8k is the current best fixed-panel development candidate; hidden-joint error113.098mm, 1.739% lower than4k.",
-    "Fixed100 EXO windows, same panel/seed, clean+noisy, natural eligible-VAL corpus weights; not full VAL or TEST.",
-    "Vs original control hidden error improves34.073%; vs input reference only3.777%.",
-    "RICH clean/noisy mean hidden77.741mm remains worse than input reference48.144mm; domain robustness is not established.",
-    "All9 fixed EGO anchors times2 regimes remain exactly equal at8k; this is a limited retention probe.",
+    "10k is the current fixed-panel development best, hidden error112.869579mm; only0.202% lower than8k. This is a plateau indication, not proof of full convergence.",
+    "Fixed100 EXO VAL windows, same panel/seeds, clean+noisy, natural eligible-VAL corpus weights. Not full VAL or TEST.",
+    "Vs control improves34.206%; vs input reference improves3.971%.",
+    "RICH clean/noisy mean hidden76.309mm remains worse than reference48.144mm. RICH noisy60.058→114.181mm;9/12 windows worse; yoga95.257→585.784mm. Overcorrection is not solved.",
+    "EgoBody clean/noisy mean hidden68.923mm; TRUMANS174.319mm. Per-corpus success is not established by the global mean alone.",
+    "All9 EGO anchors times2 regimes remain exactly equal at10k; a limited retention probe.",
+    "10k rotating100, independent CPU model verification and final temporal report remain pending unless separately recorded below. Best is not scientific or paper acceptance.",
     "Stance-foot speed is a GT-support proxy, not proof of no floating, penetration, or jitter."
   ],
   "inputs_sha256": {
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/baseline_validation/SCORE.json": "21b02fdb470c0b1154070e153b052eacd65666456fc67e76ca25a96d67b770b6",
-    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/best.json": "b37350c1b0a99ae868b27b15866070819cec8b0e7bdfe8d3f0733790fba1a3c1",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/best.json": "57cd719297877414c8fa22aa9b3cad7f6401623a3072a12c8aec274dca659866",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/RESUME_LAUNCH_002.json": "b127326eaddb3c8da1026fdd66bf26fe33a2183bad76eb81b402aa951d5f813e",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/interruptions/wsl_restart_20261020_1446/REPLAY_VERIFY.json": "da1206578f12f74051ce0ef6048ea8c428f7c083ba9b8d5dea30a2bef4e12f6e",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_002000.json": "b52257ba45010fd5a296060b430834800e1dc223455d3fdc9122342d09fe063a",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_004000.json": "63870b01f2d1b049d8837c72d63e74d49bee8a13f35b9db69175c5432cb86d4d",
     "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_006000.json": "6f9e68083dfa264a561673b5cd4392a3427908237f9916f78191ad602f2963e3",
-    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_008000.json": "8d5f598517c1611cc4263c70d04ba0f36eb1f812b4536513ca07057c61fba9f9"
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_008000.json": "8d5f598517c1611cc4263c70d04ba0f36eb1f812b4536513ca07057c61fba9f9",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/fixed_validation/step_010000/SCORE.json": "4d4c2ef44bb89ddfea8954e338419441611a855a2d253e01d6a2f1adf73ec8a9",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/fixed_validation/step_010000/validation.jsonl": "d8548cda0c20a44125d4683bf51b9b35b33a1c45e8198a65260019179742ef39",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/STATUS.json": "57b01753db8ddf940ac2fbccd50165c8beda9a2e9348eccc4aca613dd191bd2b",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/JOB.json": "0a0c65ac0e2543ca20890e86dcc2b80bab1a00c84865a1375194f5848244ac52"
   },
-  "train_loss_table_as_of": "2026-10-20T11:15:41.461446+08:00"
+  "train_loss_table_as_of": "2026-10-20T11:15:41.461446+08:00",
+  "prior_review_snapshots": [
+    {
+      "as_of": "2026-10-20T15:43:26.544126+08:00",
+      "best_stage_step": 8000,
+      "best_score_mm": 113.09785532425822,
+      "best_checkpoint_sha256": "f8dcc1d63608895b1a8ade99fd4314d75f760014234de2de203dd6d6083d477a",
+      "training_progress": {
+        "live_status_snapshot": {
+          "protocol": "native30-exo-natural-longrun-v1",
+          "status": "training",
+          "updated_at": "2026-10-20T15:42:32.070994+08:00",
+          "pid": 2837,
+          "automatic_extension": false,
+          "TEST_used": false,
+          "parent_stage_step": 3000,
+          "ancestor_step": 41000,
+          "analytical_physics_enabled": false,
+          "reference_policy": "exo-local-so3-reference-gap-fill-v1",
+          "completed_stage_updates": 8150,
+          "planned_stage_updates": 10000,
+          "last_loss": 0.3375435471534729,
+          "elapsed_training_s": 30056.41192929698,
+          "lr": 2e-05
+        },
+        "resume_record": "RESUME_LAUNCH_002.json",
+        "recovery_verified": "interruptions/wsl_restart_20261020_1446/REPLAY_VERIFY.json",
+        "note": "Snapshot only; STATUS.json and JOB.json are live. Milestone validation is complete through8000."
+      },
+      "inputs_sha256": {
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/baseline_validation/SCORE.json": "21b02fdb470c0b1154070e153b052eacd65666456fc67e76ca25a96d67b770b6",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/best.json": "b37350c1b0a99ae868b27b15866070819cec8b0e7bdfe8d3f0733790fba1a3c1",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/RESUME_LAUNCH_002.json": "b127326eaddb3c8da1026fdd66bf26fe33a2183bad76eb81b402aa951d5f813e",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/interruptions/wsl_restart_20261020_1446/REPLAY_VERIFY.json": "da1206578f12f74051ce0ef6048ea8c428f7c083ba9b8d5dea30a2bef4e12f6e",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_002000.json": "b52257ba45010fd5a296060b430834800e1dc223455d3fdc9122342d09fe063a",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_004000.json": "63870b01f2d1b049d8837c72d63e74d49bee8a13f35b9db69175c5432cb86d4d",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_006000.json": "6f9e68083dfa264a561673b5cd4392a3427908237f9916f78191ad602f2963e3",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/reviews/step_008000.json": "8d5f598517c1611cc4263c70d04ba0f36eb1f812b4536513ca07057c61fba9f9"
+      }
+    }
+  ],
+  "completion_status": {
+    "training_updates": "complete_10000",
+    "fixed100_clean_noisy": "complete",
+    "EGO_18_probes": "complete_exact",
+    "rotating100_step10000": "pending_no_completed_milestone_record",
+    "rotating_step10000_files": [],
+    "CPU_model_verify": "pending_no_record",
+    "CPU_temporal_final_report": "pending_no_record",
+    "job_status_snapshot": "running",
+    "job_phase_snapshot": "training",
+    "status_snapshot": "milestone_validation",
+    "scientific_acceptance": "not_established; best is a fixed-panel development candidate only",
+    "observed_at": "2026-10-20T18:54:31.375194+08:00",
+    "expected_CPU_final_records": [
+      "CPU_MODEL_VERIFY.json",
+      "CPU_TEMPORAL_REVIEW.json",
+      "CPU_TEMPORAL_REVIEW_zh.md"
+    ]
+  },
+  "remaining_failure_evidence": {
+    "scope": "Existing fixed100 step10000 arrays/metrics; no new inference",
+    "rich_noisy_hidden_reference_mm": 60.0582762559255,
+    "rich_noisy_hidden_output_mm": 114.1811621983846,
+    "rich_noisy_hidden_worse_windows": 9,
+    "rich_noisy_windows": 12,
+    "yoga_noisy": {
+      "sequence_id": "Pavallion_006_yoga1",
+      "start": 640,
+      "case_seed": 1742430047,
+      "reference_hidden_mm": 95.25689697265625,
+      "output_hidden_mm": 585.7843017578125
+    },
+    "interpretation": "Severe overcorrection remains at10k; overall best score does not establish successful hidden-pose recovery in every corpus."
+  }
 }
