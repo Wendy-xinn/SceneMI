@@ -1,0 +1,4331 @@
+{
+  "protocol": "grail-template-fixed-assets-crosscheck-v1",
+  "selection": "First lexicographic + 19 random sequences per category, seed20261020; 100 source first frames, no per-motion fitting or height shift",
+  "seed": 20261020,
+  "scope": "CPU source mesh geometry, before any training; not whole-sequence physics validation",
+  "sources": {
+    "dataset_card": "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Locomanipulation-GRAIL",
+    "human_forward": "https://github.com/NVlabs/GRAIL/blob/main/grail/retargeting/retarget.py",
+    "g1_template": "https://github.com/NVlabs/GRAIL/blob/main/grail/models/g1_smplx_model.py",
+    "ground_plane": "https://github.com/NVlabs/GRAIL/blob/main/grail/visualization/batch_render_replay.py"
+  },
+  "g1_template": {
+    "body_template": "grail_g1_baked_v1",
+    "reference_scale": 0.7633275389671326,
+    "paths": {
+      "g1_smplx_tpose.obj": "/home/wenxin/projects/SceneMI/body_models/grail_g1_smplx/g1_smplx_tpose.obj",
+      "g1_smplx_param.npz": "/home/wenxin/projects/SceneMI/body_models/grail_g1_smplx/g1_smplx_param.npz"
+    },
+    "sha256": {
+      "g1_smplx_tpose.obj": "e410329e7841b2c82099728a96d52de30c25fd40e0a36bba1c127adb903815af",
+      "g1_smplx_param.npz": "b02c93ad681cb54bcf3b8ba26e64e6661de28059baf04bbdd78f9d46d6df46eb"
+    },
+    "forward_policy": "baked v_template, shapedirs/expr_dirs zero, posedirs*reference_scale once, ignore human_data.scale"
+  },
+  "model_convention": {
+    "gender": "neutral",
+    "flat_hand_mean": true,
+    "use_pca": false,
+    "num_betas": 10,
+    "num_expression_coeffs": 10
+  },
+  "standard_forward": "s*(SMPLX(poses,betas=0,trans)-trans)+trans using raw source.scale",
+  "g1_forward": "Official baked v_template/zero shapedirs/posedirs*reference_scale, source trans unchanged; ignore raw scale as official wrapper",
+  "decision": "Explicit grail_g1_baked_v1 for GRAIL source processing; per-record exact template tags are absent, this is a code-backed and geometry-backed inference",
+  "limitation": "Ground z=0 comparison supports model identity for many starts but does not prove zero penetration/contact with every asset, especially stairs starting above/below the terrain datum. Full mesh and foot/terrain checks remain required.",
+  "summary": {
+    "sitting": {
+      "standard": {
+        "count": 20,
+        "min_m": -0.18194901943206787,
+        "median_m": -0.17570504546165466,
+        "max_m": -0.16650062799453735,
+        "median_abs_m": 0.17570504546165466,
+        "within_20mm_of_zero": 0
+      },
+      "g1": {
+        "count": 20,
+        "min_m": -1.1920928955078125e-07,
+        "median_m": 0.0,
+        "max_m": 1.1920928955078125e-07,
+        "median_abs_m": 0.0,
+        "within_20mm_of_zero": 20
+      }
+    },
+    "slope": {
+      "standard": {
+        "count": 20,
+        "min_m": -0.1851205825805664,
+        "median_m": -0.18446344137191772,
+        "max_m": -0.18055713176727295,
+        "median_abs_m": 0.18446344137191772,
+        "within_20mm_of_zero": 0
+      },
+      "g1": {
+        "count": 20,
+        "min_m": -1.1920928955078125e-07,
+        "median_m": 0.0,
+        "max_m": 5.960464477539063e-08,
+        "median_abs_m": 0.0,
+        "within_20mm_of_zero": 20
+      }
+    },
+    "curb": {
+      "standard": {
+        "count": 20,
+        "min_m": -0.18470025062561035,
+        "median_m": -0.18422719836235046,
+        "max_m": -0.17964380979537964,
+        "median_abs_m": 0.18422719836235046,
+        "within_20mm_of_zero": 0
+      },
+      "g1": {
+        "count": 20,
+        "min_m": -1.1920928955078125e-07,
+        "median_m": 0.0,
+        "max_m": 1.1920928955078125e-07,
+        "median_abs_m": 0.0,
+        "within_20mm_of_zero": 20
+      }
+    },
+    "stair_p1": {
+      "standard": {
+        "count": 20,
+        "min_m": -0.167769193649292,
+        "median_m": 0.047557979822158813,
+        "max_m": 1.0693655014038086,
+        "median_abs_m": 0.04767456650733948,
+        "within_20mm_of_zero": 0
+      },
+      "g1": {
+        "count": 20,
+        "min_m": -5.960464477539063e-08,
+        "median_m": 2.9802322387695312e-08,
+        "max_m": 1.2533793449401855,
+        "median_abs_m": 5.960464477539063e-08,
+        "within_20mm_of_zero": 15
+      }
+    },
+    "stair_p2": {
+      "standard": {
+        "count": 20,
+        "min_m": -0.19002145528793335,
+        "median_m": 0.047764986753463745,
+        "max_m": 1.2609233856201172,
+        "median_abs_m": 0.04794514179229736,
+        "within_20mm_of_zero": 0
+      },
+      "g1": {
+        "count": 20,
+        "min_m": -0.014419376850128174,
+        "median_m": 0.0,
+        "max_m": 1.4439048767089844,
+        "median_abs_m": 5.960464477539063e-08,
+        "within_20mm_of_zero": 18
+      }
+    }
+  },
+  "records": [
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__acadian_rustic_wooden_dining_chair_distressed_white__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__acadian_rustic_wooden_dining_chair_distressed_white__000.pkl",
+      "recon_sha256": "207a9a116fb0d871b1a8799954f3a90e570f838ace9e1b575f77cc24e7fbce1c",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6557122468948364,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/acadian_rustic_wooden_dining_chair_distressed_white/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17705637216567993,
+          "root_z_m": 0.7744380831718445,
+          "head_z_m": 1.3869962692260742,
+          "ankle_z_m": [
+            -0.10325181484222412,
+            -0.10384184122085571
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7663506865501404,
+          "head_z_m": 1.2248108386993408,
+          "ankle_z_m": [
+            0.060042619705200195,
+            0.05083698034286499
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__knoll_pollock_executive_armchair_leather_and_chrome__006",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__knoll_pollock_executive_armchair_leather_and_chrome__006.pkl",
+      "recon_sha256": "599299c612236f0b93fa550c52c2697dee485eac99e8474e4fb4a5c8575692ed",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6263188123703003,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/knoll_pollock_executive_armchair_leather_and_chrome/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17702746391296387,
+          "root_z_m": 0.7791265249252319,
+          "head_z_m": 1.3936536312103271,
+          "ankle_z_m": [
+            -0.10003089904785156,
+            -0.10077422857284546
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -1.1920928955078125e-07,
+          "root_z_m": 0.7710391283035278,
+          "head_z_m": 1.2309428453445435,
+          "ankle_z_m": [
+            0.0634227991104126,
+            0.05409538745880127
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__black_powder_coated_metal_mesh_outdoor_chair__009",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__black_powder_coated_metal_mesh_outdoor_chair__009.pkl",
+      "recon_sha256": "352effc7d638d843dffae9f0d620c1e5b4cd4458ee4ee606a971fbf423d52c81",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6286699771881104,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/black_powder_coated_metal_mesh_outdoor_chair/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18056190013885498,
+          "root_z_m": 0.7739825248718262,
+          "head_z_m": 1.3899292945861816,
+          "ankle_z_m": [
+            -0.10519897937774658,
+            -0.10028541088104248
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 1.1920928955078125e-07,
+          "root_z_m": 0.7658951282501221,
+          "head_z_m": 1.2265403270721436,
+          "ankle_z_m": [
+            0.05815327167510986,
+            0.05363929271697998
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__postmodern_1985_memphis_style_geometric_armchair_pastel__002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__postmodern_1985_memphis_style_geometric_armchair_pastel__002.pkl",
+      "recon_sha256": "2907a17a2f6695bd3aaa3ee4fffc8e56bafafcc53708ac9ac04d5a8acaf096f2",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6430277824401855,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/postmodern_1985_memphis_style_geometric_armchair_pastel/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17038273811340332,
+          "root_z_m": 0.7720658779144287,
+          "head_z_m": 1.3852524757385254,
+          "ankle_z_m": [
+            -0.0913267731666565,
+            -0.10277575254440308
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7639784812927246,
+          "head_z_m": 1.2223012447357178,
+          "ankle_z_m": [
+            0.06804323196411133,
+            0.05179703235626221
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__polish_highlander_carved_pine_accent_chair__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__polish_highlander_carved_pine_accent_chair__000.pkl",
+      "recon_sha256": "8ed0e7f455210092d91dd54df6292963c922f57d105f5a35c199a02a09a91a4a",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6091198921203613,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/polish_highlander_carved_pine_accent_chair/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17552810907363892,
+          "root_z_m": 0.7759328484535217,
+          "head_z_m": 1.3894059658050537,
+          "ankle_z_m": [
+            -0.1031309962272644,
+            -0.10285621881484985
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7678454518318176,
+          "head_z_m": 1.2268738746643066,
+          "ankle_z_m": [
+            0.06022101640701294,
+            0.0518261194229126
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__sculpted_carrot_shape_novelty_wooden_chair_orange__003",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__sculpted_carrot_shape_novelty_wooden_chair_orange__003.pkl",
+      "recon_sha256": "172edc97738ef8bc4c01fd87bfd295f42430c070965a30b930e765d2b40f0bea",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6194899082183838,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/sculpted_carrot_shape_novelty_wooden_chair_orange/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17257434129714966,
+          "root_z_m": 0.7813937067985535,
+          "head_z_m": 1.3910019397735596,
+          "ankle_z_m": [
+            -0.09364277124404907,
+            -0.09702640771865845
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7733063101768494,
+          "head_z_m": 1.229233980178833,
+          "ankle_z_m": [
+            0.06900805234909058,
+            0.05786585807800293
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__senegalese_carved_fish_shape_novelty_wooden_chair__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__senegalese_carved_fish_shape_novelty_wooden_chair__000.pkl",
+      "recon_sha256": "364400384056a01000bf5e994b98f9fb8d4df08e146296880d1c4be3739874d4",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.612987756729126,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/senegalese_carved_fish_shape_novelty_wooden_chair/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17421293258666992,
+          "root_z_m": 0.7779684066772461,
+          "head_z_m": 1.393152117729187,
+          "ankle_z_m": [
+            -0.09764617681503296,
+            -0.10114705562591553
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.769881010055542,
+          "head_z_m": 1.2302467823028564,
+          "ankle_z_m": [
+            0.06511533260345459,
+            0.05361294746398926
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__giant_carved_hand_sculptural_accent_chair_red__007",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__giant_carved_hand_sculptural_accent_chair_red__007.pkl",
+      "recon_sha256": "be95057fc7f7130b6e276aa6f8c74c13d234d0c52e9543ebea0963c19d110648",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6417688131332397,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/giant_carved_hand_sculptural_accent_chair_red/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17784416675567627,
+          "root_z_m": 0.7755259275436401,
+          "head_z_m": 1.3882064819335938,
+          "ankle_z_m": [
+            -0.10496783256530762,
+            -0.10248434543609619
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.767438530921936,
+          "head_z_m": 1.226297378540039,
+          "ankle_z_m": [
+            0.05867195129394531,
+            0.05199134349822998
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__caribbean_rum_plantation_chair_carved_mahogany__009",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__caribbean_rum_plantation_chair_carved_mahogany__009.pkl",
+      "recon_sha256": "9e70c5169d62f5f31e1f84292ec29eb8ed217085139517f79647f89e23bec004",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.7669410705566406,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/caribbean_rum_plantation_chair_carved_mahogany/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.16650062799453735,
+          "root_z_m": 0.7123585939407349,
+          "head_z_m": 1.2993879318237305,
+          "ankle_z_m": [
+            -0.0976327657699585,
+            0.004458367824554443
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7042711973190308,
+          "head_z_m": 1.1435229778289795,
+          "ankle_z_m": [
+            0.050850749015808105,
+            0.12598145008087158
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__iraqi_date_palm_wood_traditional_carved_chair__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__iraqi_date_palm_wood_traditional_carved_chair__000.pkl",
+      "recon_sha256": "5c9689a1eeed1e940540b49f20858b0a8a56e5be9d9004413776c2c6578c54d1",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.690659523010254,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/iraqi_date_palm_wood_traditional_carved_chair/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18005460500717163,
+          "root_z_m": 0.7728544473648071,
+          "head_z_m": 1.3857471942901611,
+          "ankle_z_m": [
+            -0.10589402914047241,
+            -0.10140472650527954
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.764767050743103,
+          "head_z_m": 1.223602294921875,
+          "ankle_z_m": [
+            0.05730557441711426,
+            0.05252563953399658
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__sicilian_baroque_armchair_gold_gilt_heavy_carved__006",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__sicilian_baroque_armchair_gold_gilt_heavy_carved__006.pkl",
+      "recon_sha256": "1b29b6deb04b58757c01909efbc87d26740a7189d29c94e8a10c696acc626b98",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6415793895721436,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/sicilian_baroque_armchair_gold_gilt_heavy_carved/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17139941453933716,
+          "root_z_m": 0.7786145806312561,
+          "head_z_m": 1.3891181945800781,
+          "ankle_z_m": [
+            -0.09767621755599976,
+            -0.09736913442611694
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.770527184009552,
+          "head_z_m": 1.227205753326416,
+          "ankle_z_m": [
+            0.06532460451126099,
+            0.05675560235977173
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__slipcovered_classic_armchair_white_cotton_denim__002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__slipcovered_classic_armchair_white_cotton_denim__002.pkl",
+      "recon_sha256": "dc5541cdeb98e8984efe0c1ffe8c87385f8db7d6720ee17200679be82d1c1579",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6648099422454834,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/slipcovered_classic_armchair_white_cotton_denim/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17445051670074463,
+          "root_z_m": 0.7772619724273682,
+          "head_z_m": 1.3914403915405273,
+          "ankle_z_m": [
+            -0.09765243530273438,
+            -0.10076981782913208
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7691745758056641,
+          "head_z_m": 1.2290871143341064,
+          "ankle_z_m": [
+            0.06433439254760742,
+            0.054084956645965576
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__onyx_translucent_sculptural_chair_amber_hue__005",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__onyx_translucent_sculptural_chair_amber_hue__005.pkl",
+      "recon_sha256": "82362e869370d523a6f46fccd13c3f2b973e909cd545df6b4a514d5840dadc9e",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6252702474594116,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/onyx_translucent_sculptural_chair_amber_hue/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17514020204544067,
+          "root_z_m": 0.7826233506202698,
+          "head_z_m": 1.3910400867462158,
+          "ankle_z_m": [
+            -0.09172970056533813,
+            -0.09300738573074341
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7745359539985657,
+          "head_z_m": 1.2294530868530273,
+          "ankle_z_m": [
+            0.07046002149581909,
+            0.06140017509460449
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__stackable_fan_back_plastic_patio_chair_white__003",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__stackable_fan_back_plastic_patio_chair_white__003.pkl",
+      "recon_sha256": "413b40150cea5d525142997cf3fb13f90b8ed138857e4ef96aaa2954a43178dc",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6300733089447021,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/stackable_fan_back_plastic_patio_chair_white/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18194901943206787,
+          "root_z_m": 0.7709140777587891,
+          "head_z_m": 1.3867851495742798,
+          "ankle_z_m": [
+            -0.10699295997619629,
+            -0.10138332843780518
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.762826681137085,
+          "head_z_m": 1.2234474420547485,
+          "ankle_z_m": [
+            0.05642080307006836,
+            0.05187022686004639
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__hand_forged_iron_and_rawhide_accent_chair_brown__001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__hand_forged_iron_and_rawhide_accent_chair_brown__001.pkl",
+      "recon_sha256": "e3e0e34e539d7d3924256f10ffe847ada660107ae32542100c66b78240178605",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6186305284500122,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/hand_forged_iron_and_rawhide_accent_chair_brown/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1807410717010498,
+          "root_z_m": 0.7657787799835205,
+          "head_z_m": 1.3775461912155151,
+          "ankle_z_m": [
+            -0.10525935888290405,
+            -0.08760583400726318
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 1.1920928955078125e-07,
+          "root_z_m": 0.7576913833618164,
+          "head_z_m": 1.21575927734375,
+          "ankle_z_m": [
+            0.05560648441314697,
+            0.061129987239837646
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__shinto_shrine_ceremonial_wooden_seat_pale_cypress__002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__shinto_shrine_ceremonial_wooden_seat_pale_cypress__002.pkl",
+      "recon_sha256": "74c3c63d2a71cade453bdd1b16566a91fdd83e54092d02f57da061bf10659879",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6224031448364258,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/shinto_shrine_ceremonial_wooden_seat_pale_cypress/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17678296566009521,
+          "root_z_m": 0.7760703563690186,
+          "head_z_m": 1.3874037265777588,
+          "ankle_z_m": [
+            -0.1017075777053833,
+            -0.10215228796005249
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7679829597473145,
+          "head_z_m": 1.225475788116455,
+          "ankle_z_m": [
+            0.061433613300323486,
+            0.052396297454833984
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__bulgarian_rose_valley_wooden_chair_embroidered_cushion__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__bulgarian_rose_valley_wooden_chair_embroidered_cushion__000.pkl",
+      "recon_sha256": "6609d022f21c3c557b778054b4a8cfbef3833c14f02c2fbb4db3d47cc17fc036",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6790798902511597,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/bulgarian_rose_valley_wooden_chair_embroidered_cushion/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17458784580230713,
+          "root_z_m": 0.7772268056869507,
+          "head_z_m": 1.3915355205535889,
+          "ankle_z_m": [
+            -0.10140782594680786,
+            -0.10123801231384277
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7691394090652466,
+          "head_z_m": 1.2290337085723877,
+          "ankle_z_m": [
+            0.06169092655181885,
+            0.05353379249572754
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__chinese_qing_dynasty_official_chair_lacquered_red_gold_trim__002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__chinese_qing_dynasty_official_chair_lacquered_red_gold_trim__002.pkl",
+      "recon_sha256": "47879e635840ef0cc2a7f3caab715c6e0450931cb3b20c4cce9bc6d29304af45",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.8021142482757568,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/chinese_qing_dynasty_official_chair_lacquered_red_gold_trim/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17484259605407715,
+          "root_z_m": 0.7788078188896179,
+          "head_z_m": 1.3973605632781982,
+          "ankle_z_m": [
+            -0.0979570746421814,
+            -0.10091215372085571
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7707204222679138,
+          "head_z_m": 1.2333343029022217,
+          "ankle_z_m": [
+            0.06462609767913818,
+            0.05426400899887085
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__synagogue_rabbi_throne_chair_carved_cedar_hebrew_motif__003",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__synagogue_rabbi_throne_chair_carved_cedar_hebrew_motif__003.pkl",
+      "recon_sha256": "1eef82b9bf4df114358b6e94c44e55a1e26d7054d36beb17e2eeb17ea05ec96b",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6194658279418945,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/synagogue_rabbi_throne_chair_carved_cedar_hebrew_motif/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1758819818496704,
+          "root_z_m": 0.7726782560348511,
+          "head_z_m": 1.354551076889038,
+          "ankle_z_m": [
+            0.043003082275390625,
+            -0.10236257314682007
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -1.1920928955078125e-07,
+          "root_z_m": 0.764590859413147,
+          "head_z_m": 1.1995859146118164,
+          "ankle_z_m": [
+            0.17672377824783325,
+            0.054006218910217285
+          ]
+        }
+      }
+    },
+    {
+      "category": "sitting",
+      "sequence_id": "sitting__biedermeier_1830s_satinwood_german_dining_chair__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__biedermeier_1830s_satinwood_german_dining_chair__000.pkl",
+      "recon_sha256": "642dbcefe05e39a8d777ad11fdc905e81d1c036766646e6123d60bdff674f898",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6091959476470947,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/sitting003/generation/mesh/gen_chairs_sitting003/biedermeier_1830s_satinwood_german_dining_chair/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.176683247089386,
+          "root_z_m": 0.7763071060180664,
+          "head_z_m": 1.3907561302185059,
+          "ankle_z_m": [
+            -0.1014636754989624,
+            -0.10141140222549438
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7682197093963623,
+          "head_z_m": 1.228006362915039,
+          "ankle_z_m": [
+            0.061707496643066406,
+            0.052951931953430176
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_000__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_000__000.pkl",
+      "recon_sha256": "d05d6c5a7d6a13eff7e69da0e9e96ab5a79f700bb706611699f0b9c44c9b51ec",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6450023651123047,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_000/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.184106707572937,
+          "root_z_m": 0.7741061449050903,
+          "head_z_m": 1.3877910375595093,
+          "ankle_z_m": [
+            -0.10895240306854248,
+            -0.09859323501586914
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7660187482833862,
+          "head_z_m": 1.2254786491394043,
+          "ankle_z_m": [
+            0.05530393123626709,
+            0.05461466312408447
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_077__002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_077__002.pkl",
+      "recon_sha256": "ec7ff09b215172cf3217510fd00d8fbf1c050167281340ecad9473656846d0eb",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.638202428817749,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_077/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18447118997573853,
+          "root_z_m": 0.7755039930343628,
+          "head_z_m": 1.3899967670440674,
+          "ankle_z_m": [
+            -0.10937786102294922,
+            -0.09702616930007935
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -1.1920928955078125e-07,
+          "root_z_m": 0.7674165964126587,
+          "head_z_m": 1.227475881576538,
+          "ankle_z_m": [
+            0.055364012718200684,
+            0.05610346794128418
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_113__001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_113__001.pkl",
+      "recon_sha256": "134ecb481194a29c8968fb9ad82b90bd1e2f608cb743ec180a41022989740e4c",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6381831169128418,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_113/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18055713176727295,
+          "root_z_m": 0.7735681533813477,
+          "head_z_m": 1.3880488872528076,
+          "ankle_z_m": [
+            -0.10641109943389893,
+            -0.10001349449157715
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7654807567596436,
+          "head_z_m": 1.2252546548843384,
+          "ankle_z_m": [
+            0.057349443435668945,
+            0.053575098514556885
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_158__009",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_158__009.pkl",
+      "recon_sha256": "9eadc7198997c36aa7cb10e70c82dbc62f3ebbd58bc6fe44b4c2f79d1cfa644b",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6482670307159424,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_158/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18342101573944092,
+          "root_z_m": 0.7746011018753052,
+          "head_z_m": 1.3869884014129639,
+          "ankle_z_m": [
+            -0.10850846767425537,
+            -0.09916377067565918
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7665137052536011,
+          "head_z_m": 1.2250168323516846,
+          "ankle_z_m": [
+            0.055761754512786865,
+            0.05419081449508667
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_100__007",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_100__007.pkl",
+      "recon_sha256": "a11d4a630f5ecc1c67753d2fbbe8c2a682cc6386cda6cff552d92b5da065110e",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6206791400909424,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_100/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18452364206314087,
+          "root_z_m": 0.7746394276618958,
+          "head_z_m": 1.3885114192962646,
+          "ankle_z_m": [
+            -0.10732567310333252,
+            -0.09605139493942261
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7665520310401917,
+          "head_z_m": 1.2258636951446533,
+          "ankle_z_m": [
+            0.05682104825973511,
+            0.056989312171936035
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_009__005",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_009__005.pkl",
+      "recon_sha256": "65458f4ced232af9697230f80f2ef555990d7509e01b14c4c2fe12c507fa1d85",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.619938850402832,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_009/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18284016847610474,
+          "root_z_m": 0.7725295424461365,
+          "head_z_m": 1.3892624378204346,
+          "ankle_z_m": [
+            -0.1086990237236023,
+            -0.10062932968139648
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7644421458244324,
+          "head_z_m": 1.2258431911468506,
+          "ankle_z_m": [
+            0.05528968572616577,
+            0.05303049087524414
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_168__001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_168__001.pkl",
+      "recon_sha256": "c187a630e4bd754e606961e39dea44fc820accab058494054116ab0a910b4f88",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.596120834350586,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_168/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1843804121017456,
+          "root_z_m": 0.7742171287536621,
+          "head_z_m": 1.3880977630615234,
+          "ankle_z_m": [
+            -0.10662317276000977,
+            -0.09383749961853027
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.766129732131958,
+          "head_z_m": 1.2253615856170654,
+          "ankle_z_m": [
+            0.05715954303741455,
+            0.05877804756164551
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_135__008",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_135__008.pkl",
+      "recon_sha256": "e27b66fd80f7fbf541c453db63d044694fbc0a915eabffdae5301247e1417f02",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.61639404296875,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_135/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18346405029296875,
+          "root_z_m": 0.7723091840744019,
+          "head_z_m": 1.3859323263168335,
+          "ankle_z_m": [
+            -0.10954946279525757,
+            -0.09995245933532715
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7642217874526978,
+          "head_z_m": 1.2233994007110596,
+          "ankle_z_m": [
+            0.054485321044921875,
+            0.05345994234085083
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_089__003",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_089__003.pkl",
+      "recon_sha256": "5e8e241cb63563e45a9bba9f3c6dcd991f4c5d195866898b0880598f3405d205",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6121339797973633,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_089/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18477880954742432,
+          "root_z_m": 0.7754076719284058,
+          "head_z_m": 1.3882851600646973,
+          "ankle_z_m": [
+            -0.10805022716522217,
+            -0.09136557579040527
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7673202753067017,
+          "head_z_m": 1.226022720336914,
+          "ankle_z_m": [
+            0.056376874446868896,
+            0.06081724166870117
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_146__006",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_146__006.pkl",
+      "recon_sha256": "a914d36e863f62c5a07ddd08838b6b9265f550bdd096fca78613a57f20018ee3",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6259980201721191,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_146/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1846010684967041,
+          "root_z_m": 0.7761191129684448,
+          "head_z_m": 1.3889265060424805,
+          "ankle_z_m": [
+            -0.10932433605194092,
+            -0.09147220849990845
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7680317163467407,
+          "head_z_m": 1.2268354892730713,
+          "ankle_z_m": [
+            0.055464863777160645,
+            0.060614943504333496
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_069__008",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_069__008.pkl",
+      "recon_sha256": "1cfb998e363ba3eea0a4401de55114dd6e2734c4830d5c755bc32a6d90534967",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6061712503433228,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_069/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18445360660552979,
+          "root_z_m": 0.7742741107940674,
+          "head_z_m": 1.3893370628356934,
+          "ankle_z_m": [
+            -0.10835778713226318,
+            -0.09801352024078369
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7661867141723633,
+          "head_z_m": 1.2264339923858643,
+          "ankle_z_m": [
+            0.05609571933746338,
+            0.0554046630859375
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_070__009",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_070__009.pkl",
+      "recon_sha256": "e5c353b2980c446a792cc2a1ba3eb4d5420accc69dee8d34af53ac8a228fae0c",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6208434104919434,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_070/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1844719648361206,
+          "root_z_m": 0.7740556001663208,
+          "head_z_m": 1.3887841701507568,
+          "ankle_z_m": [
+            -0.10874927043914795,
+            -0.09103775024414062
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7659682035446167,
+          "head_z_m": 1.2258892059326172,
+          "ankle_z_m": [
+            0.055607378482818604,
+            0.060918569564819336
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_137__007",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_137__007.pkl",
+      "recon_sha256": "ca83f3515a76f5ee5774d7c2a611932b54b27b59fff6b80ce01587d11aa8887d",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6284760236740112,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_137/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1851205825805664,
+          "root_z_m": 0.7763195037841797,
+          "head_z_m": 1.3924046754837036,
+          "ankle_z_m": [
+            -0.1082720160484314,
+            -0.09019148349761963
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7682321071624756,
+          "head_z_m": 1.2292654514312744,
+          "ankle_z_m": [
+            0.056516408920288086,
+            0.06184542179107666
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_078__003",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_078__003.pkl",
+      "recon_sha256": "9f96cb50af60587a5bdfd779474641e25de1f6d1564b56b11fb7285aff9030c2",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6122417449951172,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_078/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18472707271575928,
+          "root_z_m": 0.774888277053833,
+          "head_z_m": 1.3847198486328125,
+          "ankle_z_m": [
+            -0.10760366916656494,
+            -0.09009325504302979
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7668008804321289,
+          "head_z_m": 1.223196268081665,
+          "ankle_z_m": [
+            0.05663752555847168,
+            0.06168365478515625
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_012__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_012__000.pkl",
+      "recon_sha256": "20479ff4bd235499f36485d5601627dd1ac9c6cdfea8f6f1fc40b12f6c31a83b",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6166458129882812,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_012/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18456220626831055,
+          "root_z_m": 0.7750643491744995,
+          "head_z_m": 1.3898447751998901,
+          "ankle_z_m": [
+            -0.10820519924163818,
+            -0.09116846323013306
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7669769525527954,
+          "head_z_m": 1.2271404266357422,
+          "ankle_z_m": [
+            0.05614292621612549,
+            0.06090116500854492
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_050__004",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_050__004.pkl",
+      "recon_sha256": "7b001bdf85a73a6db2757d0458554abd7e1bc91068887a33e4dfc23f64b8bb43",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6284058094024658,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_050/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18245762586593628,
+          "root_z_m": 0.773209273815155,
+          "head_z_m": 1.3849422931671143,
+          "ankle_z_m": [
+            -0.10873860120773315,
+            -0.10266119241714478
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7651218771934509,
+          "head_z_m": 1.2230912446975708,
+          "ankle_z_m": [
+            0.05529898405075073,
+            0.05129808187484741
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_195__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_195__000.pkl",
+      "recon_sha256": "c0729b9cc44c035d8764a8fb9f9633af3b3b6fb698527dc1d549c5cb6d89d09d",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6289448738098145,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_195/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1848500370979309,
+          "root_z_m": 0.7764026522636414,
+          "head_z_m": 1.3901853561401367,
+          "ankle_z_m": [
+            -0.10910624265670776,
+            -0.0929294228553772
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7683152556419373,
+          "head_z_m": 1.2278099060058594,
+          "ankle_z_m": [
+            0.05578744411468506,
+            0.05943852663040161
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_104__006",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_104__006.pkl",
+      "recon_sha256": "de93edb882e7ad38dc1222043e2fb2aafdc72276cf97f14ba8ae47463c92a139",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6251871585845947,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_104/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18468177318572998,
+          "root_z_m": 0.775762140750885,
+          "head_z_m": 1.391089916229248,
+          "ankle_z_m": [
+            -0.10926264524459839,
+            -0.09362739324569702
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7676747441291809,
+          "head_z_m": 1.2281389236450195,
+          "ankle_z_m": [
+            0.05558902025222778,
+            0.05896991491317749
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_012__008",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_012__008.pkl",
+      "recon_sha256": "d130dec1e491c1482dfd31ce8601c560e039f987a1cc4d50ed3ff10eb572588b",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6537024974822998,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_012/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18445569276809692,
+          "root_z_m": 0.7750915884971619,
+          "head_z_m": 1.3896338939666748,
+          "ankle_z_m": [
+            -0.10896176099777222,
+            -0.09512203931808472
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7670041918754578,
+          "head_z_m": 1.2270622253417969,
+          "ankle_z_m": [
+            0.055622220039367676,
+            0.057597815990448
+          ]
+        }
+      }
+    },
+    {
+      "category": "slope",
+      "sequence_id": "terrain_slopes__slope_101__005",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/slope/recon/terrain_slopes__slope_101__005.pkl",
+      "recon_sha256": "ad6e9993869a8c656eeaa5536d7d3a57b622d9bfaffc0461b5c4acd91cf577c8",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6330986022949219,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/slopes_002/generation/mesh/syn_slope/slope_101/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18323218822479248,
+          "root_z_m": 0.7742434740066528,
+          "head_z_m": 1.387844443321228,
+          "ankle_z_m": [
+            -0.10822641849517822,
+            -0.099598228931427
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7661560773849487,
+          "head_z_m": 1.225705623626709,
+          "ankle_z_m": [
+            0.055933475494384766,
+            0.053915202617645264
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_000__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_000__000.pkl",
+      "recon_sha256": "d56c23d9ec262ad88f688f11829f0a7411b2d30beab353e2daab0377acdb674a",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.606811761856079,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_000/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.17964380979537964,
+          "root_z_m": 0.7770466804504395,
+          "head_z_m": 1.389754295349121,
+          "ankle_z_m": [
+            -0.10299670696258545,
+            -0.0995301604270935
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7689592838287354,
+          "head_z_m": 1.2276926040649414,
+          "ankle_z_m": [
+            0.06065934896469116,
+            0.054547786712646484
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_176__005",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_176__005.pkl",
+      "recon_sha256": "1be594e67f567bef55c637677f51ef9c1142a25be1ee12ef2b3abc554a2e907d",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6125024557113647,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_176/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18389242887496948,
+          "root_z_m": 0.7732570171356201,
+          "head_z_m": 1.3865933418273926,
+          "ankle_z_m": [
+            -0.10831916332244873,
+            -0.09580153226852417
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.765169620513916,
+          "head_z_m": 1.2242624759674072,
+          "ankle_z_m": [
+            0.05568838119506836,
+            0.05700325965881348
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_042__008",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_042__008.pkl",
+      "recon_sha256": "80ef1abdc847df8cb3b5b9f15f54afa26c8d3b94439bd7ffc5ee6b82e9b32775",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6288325786590576,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_042/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18101555109024048,
+          "root_z_m": 0.7744556069374084,
+          "head_z_m": 1.3882603645324707,
+          "ankle_z_m": [
+            -0.10686641931533813,
+            -0.09947806596755981
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7663682103157043,
+          "head_z_m": 1.2259255647659302,
+          "ankle_z_m": [
+            0.0571170449256897,
+            0.05409878492355347
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_035__000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_035__000.pkl",
+      "recon_sha256": "87a98f8098745f748594119db92fc13e0f804354b798cb134fc2a3de3f54cc04",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6165788173675537,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_035/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1844741702079773,
+          "root_z_m": 0.7749019861221313,
+          "head_z_m": 1.3903800249099731,
+          "ankle_z_m": [
+            -0.10835456848144531,
+            -0.09312033653259277
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7668145895004272,
+          "head_z_m": 1.227520227432251,
+          "ankle_z_m": [
+            0.05612826347351074,
+            0.05934661626815796
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_136__003",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_136__003.pkl",
+      "recon_sha256": "4a718284d1e97a5dcab920834614eeb11f3742b84a57eb7bb20b00487bb25a41",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6254782676696777,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_136/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18457376956939697,
+          "root_z_m": 0.7757632732391357,
+          "head_z_m": 1.392066240310669,
+          "ankle_z_m": [
+            -0.10844027996063232,
+            -0.09399163722991943
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7676758766174316,
+          "head_z_m": 1.2289557456970215,
+          "ankle_z_m": [
+            0.05608534812927246,
+            0.05864274501800537
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_036__004",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_036__004.pkl",
+      "recon_sha256": "3a064daf5407bf4203d9ec4c92db8361c2b09e5f8d4f4b48adf47280f1ca7659",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6092760562896729,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_036/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18444329500198364,
+          "root_z_m": 0.7746860980987549,
+          "head_z_m": 1.3886229991912842,
+          "ankle_z_m": [
+            -0.10899657011032104,
+            -0.09563970565795898
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7665987014770508,
+          "head_z_m": 1.2262861728668213,
+          "ankle_z_m": [
+            0.05553841590881348,
+            0.05707859992980957
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_169__001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_169__001.pkl",
+      "recon_sha256": "102d4168d778968df87850e65d1dd8865d7d258a1114b08d171892a0635648db",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6050788164138794,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_169/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18375378847122192,
+          "root_z_m": 0.7729563117027283,
+          "head_z_m": 1.3810312747955322,
+          "ankle_z_m": [
+            -0.10629516839981079,
+            -0.0943499207496643
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7648689150810242,
+          "head_z_m": 1.2198652029037476,
+          "ankle_z_m": [
+            0.05689185857772827,
+            0.05799812078475952
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_102__008",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_102__008.pkl",
+      "recon_sha256": "f4f1f86b3d43a80f3a3d0cb578b9d0e036649e16308195a69aed6949e57bf683",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.615349292755127,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_102/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18425416946411133,
+          "root_z_m": 0.7744039297103882,
+          "head_z_m": 1.3866978883743286,
+          "ankle_z_m": [
+            -0.10992288589477539,
+            -0.09469926357269287
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7663165330886841,
+          "head_z_m": 1.2249424457550049,
+          "ankle_z_m": [
+            0.05478227138519287,
+            0.05768847465515137
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_108__001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_108__001.pkl",
+      "recon_sha256": "d7d2cd3336fdfe7ba0a17198c30c2a1bce1689630d61698d85392677a0181ad4",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6010582447052002,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_108/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1839779019355774,
+          "root_z_m": 0.7734447121620178,
+          "head_z_m": 1.3872358798980713,
+          "ankle_z_m": [
+            -0.10896652936935425,
+            -0.09579521417617798
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7653573155403137,
+          "head_z_m": 1.2246038913726807,
+          "ankle_z_m": [
+            0.055156409740448,
+            0.05687600374221802
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_068__001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_068__001.pkl",
+      "recon_sha256": "fbb25079e1eee3824faf3546d05b55cd2ba7d72abec35d5373c88476bc4021a0",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6062514781951904,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_068/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18470025062561035,
+          "root_z_m": 0.7746619582176208,
+          "head_z_m": 1.3908692598342896,
+          "ankle_z_m": [
+            -0.10862094163894653,
+            -0.09453076124191284
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7665745615959167,
+          "head_z_m": 1.2277300357818604,
+          "ankle_z_m": [
+            0.05606412887573242,
+            0.05811715126037598
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_003__006",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_003__006.pkl",
+      "recon_sha256": "9bca4e5b46a4f0288839906d4b041ae5f7ef52839f152133c3c485754b1b85a0",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6498010158538818,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_003/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18014991283416748,
+          "root_z_m": 0.774764895439148,
+          "head_z_m": 1.3890998363494873,
+          "ankle_z_m": [
+            -0.10533249378204346,
+            -0.10074520111083984
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7666774988174438,
+          "head_z_m": 1.2265410423278809,
+          "ankle_z_m": [
+            0.058372557163238525,
+            0.05317258834838867
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_085__002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_085__002.pkl",
+      "recon_sha256": "6886491a0a9e4a806c9a797d761379f53df937ffc68a1cdd4f4974e919129187",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.607565999031067,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_085/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18443524837493896,
+          "root_z_m": 0.7750853300094604,
+          "head_z_m": 1.389109492301941,
+          "ankle_z_m": [
+            -0.10843217372894287,
+            -0.09404569864273071
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7669979333877563,
+          "head_z_m": 1.2264958620071411,
+          "ankle_z_m": [
+            0.05600684881210327,
+            0.05867666006088257
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_136__001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_136__001.pkl",
+      "recon_sha256": "50fbd0ace85c5b3e56ca5f15dc58b39a84bad61d03c207dc8571e16e8704a8f9",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.5990525484085083,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_136/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18447208404541016,
+          "root_z_m": 0.7751805186271667,
+          "head_z_m": 1.3901240825653076,
+          "ankle_z_m": [
+            -0.1089974045753479,
+            -0.09074169397354126
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7670931220054626,
+          "head_z_m": 1.2272868156433105,
+          "ankle_z_m": [
+            0.055639564990997314,
+            0.061234235763549805
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_103__008",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_103__008.pkl",
+      "recon_sha256": "f9b6cef2a61f6a68ce02d2e4d6a678334d5490ab15500bb6fce5ede5fc1a42a3",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6164522171020508,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_103/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18451011180877686,
+          "root_z_m": 0.775304913520813,
+          "head_z_m": 1.3887200355529785,
+          "ankle_z_m": [
+            -0.10774940252304077,
+            -0.09511065483093262
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7672175168991089,
+          "head_z_m": 1.2265453338623047,
+          "ankle_z_m": [
+            0.05646097660064697,
+            0.05765807628631592
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_197__003",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_197__003.pkl",
+      "recon_sha256": "ed35787395904d0c2915908f80372203eb009b3b8e1bad6c7ee608d77f713dc3",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.627659559249878,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_197/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18352997303009033,
+          "root_z_m": 0.7734265923500061,
+          "head_z_m": 1.3867219686508179,
+          "ankle_z_m": [
+            -0.10922050476074219,
+            -0.09814667701721191
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.765339195728302,
+          "head_z_m": 1.2246930599212646,
+          "ankle_z_m": [
+            0.054750025272369385,
+            0.054776132106781006
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_057__001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_057__001.pkl",
+      "recon_sha256": "160717ebeac25d463e58492c8d839170a8d5d4083208ed8768bd198f04663a96",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.5945258140563965,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_057/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18459033966064453,
+          "root_z_m": 0.7757213115692139,
+          "head_z_m": 1.3872627019882202,
+          "ankle_z_m": [
+            -0.10891151428222656,
+            -0.09628009796142578
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7676339149475098,
+          "head_z_m": 1.225714087486267,
+          "ankle_z_m": [
+            0.05573517084121704,
+            0.056632936000823975
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_144__002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_144__002.pkl",
+      "recon_sha256": "93a6d7d86ee4e4b225b8c6a4a57da47ed9455fbd1754b21a952dd8c69a7da5d2",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.601588487625122,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_144/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1844962239265442,
+          "root_z_m": 0.7745624780654907,
+          "head_z_m": 1.3897485733032227,
+          "ankle_z_m": [
+            -0.10791242122650146,
+            -0.08766072988510132
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -1.1920928955078125e-07,
+          "root_z_m": 0.7664750814437866,
+          "head_z_m": 1.226656198501587,
+          "ankle_z_m": [
+            0.056345224380493164,
+            0.06388622522354126
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_195__004",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_195__004.pkl",
+      "recon_sha256": "1f3b9b6851dbfc2d137a9fbf3424947bf53b64bd5180bec16eff6dd747ca34dd",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6253082752227783,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_195/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1842002272605896,
+          "root_z_m": 0.7740615010261536,
+          "head_z_m": 1.3902517557144165,
+          "ankle_z_m": [
+            -0.1083800196647644,
+            -0.09127432107925415
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7659741044044495,
+          "head_z_m": 1.2269222736358643,
+          "ankle_z_m": [
+            0.055863022804260254,
+            0.06084078550338745
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_148__006",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_148__006.pkl",
+      "recon_sha256": "bd5dc97edb44b91cd8ac9a20fa05aa203baa59a0e830351fd82e888eca7b336b",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.5980066061019897,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_148/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18411368131637573,
+          "root_z_m": 0.7744649648666382,
+          "head_z_m": 1.3875435590744019,
+          "ankle_z_m": [
+            -0.10872483253479004,
+            -0.09568548202514648
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7663775682449341,
+          "head_z_m": 1.2253551483154297,
+          "ankle_z_m": [
+            0.055564284324645996,
+            0.057145774364471436
+          ]
+        }
+      }
+    },
+    {
+      "category": "curb",
+      "sequence_id": "terrain_curbs__curb_125__002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/curb/recon/terrain_curbs__curb_125__002.pkl",
+      "recon_sha256": "97640bcd546f7127e2bd0ab8660aaa357e3be4718cc2464336448a8d655cd4a6",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6201218366622925,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/curbs_002/generation/mesh/syn_curb/curb_125/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1835969090461731,
+          "root_z_m": 0.7728284597396851,
+          "head_z_m": 1.3816996812820435,
+          "ankle_z_m": [
+            -0.10715800523757935,
+            -0.08127111196517944
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 1.1920928955078125e-07,
+          "root_z_m": 0.764741063117981,
+          "head_z_m": 1.220702052116394,
+          "ankle_z_m": [
+            0.056137919425964355,
+            0.06869494915008545
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__aged_terracotta_tile_straight_single_flight_staircase_with_12_warm_orange_steps_in_one_straight_run_no_handrails_no_curves_no_turns__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__aged_terracotta_tile_straight_single_flight_staircase_with_12_warm_orange_steps_in_one_straight_run_no_handrails_no_curves_no_turns__0000.pkl",
+      "recon_sha256": "b5e25480c3143d82c8fb2c07e5c5b3ae3203fcd634b4434e10450f0ad89df45c",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.7184865474700928,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/terrain_gen_stairs_down_1k_hunyuan/generation/mesh/gen_stairs_hunyuan_1k/aged_terracotta_tile_straight_single_flight_staircase_with_12_warm_orange_steps_in_one_straight_run_no_handrails_no_curves_no_turns/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 1.0693655014038086,
+          "root_z_m": 2.024623155593872,
+          "head_z_m": 2.6341359615325928,
+          "ankle_z_m": [
+            1.146194577217102,
+            1.1639816761016846
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 1.2533793449401855,
+          "root_z_m": 2.016535758972168,
+          "head_z_m": 2.4725842475891113,
+          "ankle_z_m": [
+            1.3098342418670654,
+            1.3153780698776245
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0674__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0674__0000.pkl",
+      "recon_sha256": "7da2870cdf4547d787a5696073dfc8578b52a6c9324d92b049ddae16e4175126",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_674/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.045807600021362305,
+          "root_z_m": 0.7731441855430603,
+          "head_z_m": 1.2415592670440674,
+          "ankle_z_m": [
+            0.10252994298934937,
+            0.1036832332611084
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7679055333137512,
+          "head_z_m": 1.227051019668579,
+          "ankle_z_m": [
+            0.060920536518096924,
+            0.05361372232437134
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0062__0001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0062__0001.pkl",
+      "recon_sha256": "574a0669c9a48f86439bc2d8cb76a21f791d10bfb995bd2b556b3395ae52c558",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_062/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.044702351093292236,
+          "root_z_m": 0.7712928056716919,
+          "head_z_m": 1.2409181594848633,
+          "ankle_z_m": [
+            0.10104739665985107,
+            0.10221195220947266
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7660541534423828,
+          "head_z_m": 1.2264420986175537,
+          "ankle_z_m": [
+            0.05967038869857788,
+            0.05230039358139038
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_2061__0001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_2061__0001.pkl",
+      "recon_sha256": "457a3263d6ee5fffa63502699cb2c364a334c8ba1deed5a69e8544a70637aff9",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v2/generation/mesh/SynStairsV2/stairs_069/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04566967487335205,
+          "root_z_m": 0.7706921100616455,
+          "head_z_m": 1.241788387298584,
+          "ankle_z_m": [
+            0.10098570585250854,
+            0.10131651163101196
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7654534578323364,
+          "head_z_m": 1.2271355390548706,
+          "ankle_z_m": [
+            0.0595552921295166,
+            0.05150401592254639
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0646__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0646__0000.pkl",
+      "recon_sha256": "b995b18949442b32f2e615f7d7c73fa48dc177835d6508190011012b0fed8f3a",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_646/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04759782552719116,
+          "root_z_m": 0.7716536521911621,
+          "head_z_m": 1.2433534860610962,
+          "ankle_z_m": [
+            0.10339748859405518,
+            0.10322374105453491
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.766414999961853,
+          "head_z_m": 1.2285358905792236,
+          "ankle_z_m": [
+            0.06171858310699463,
+            0.05321359634399414
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0259__0001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0259__0001.pkl",
+      "recon_sha256": "5e9b32ac1eb3f0e8b3d2d088403042d4aec9a287033892044efd562168758530",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_259/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04781264066696167,
+          "root_z_m": 0.771654486656189,
+          "head_z_m": 1.2416523694992065,
+          "ankle_z_m": [
+            0.10341906547546387,
+            0.10308367013931274
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7664158344268799,
+          "head_z_m": 1.2267646789550781,
+          "ankle_z_m": [
+            0.06188708543777466,
+            0.05312633514404297
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__granite_outdoor_straight_single_flight_staircase_with_15_stone_steps_ascending_in_one_direction_no_handrails_no_curves_no_turns_updown__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__granite_outdoor_straight_single_flight_staircase_with_15_stone_steps_ascending_in_one_direction_no_handrails_no_curves_no_turns_updown__0000.pkl",
+      "recon_sha256": "67ab1edfeb3b83fa06fddf3af92abdcf08176788ca82e2a7219c9038bd17c41c",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.641486644744873,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/terrain_gen_stairs_up_1k_hunyuan/generation/mesh/gen_stairs_hunyuan_1k/granite_outdoor_straight_single_flight_staircase_with_15_stone_steps_ascending_in_one_direction_no_handrails_no_curves_no_turns/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.167769193649292,
+          "root_z_m": 0.7861562967300415,
+          "head_z_m": 1.3993661403656006,
+          "ankle_z_m": [
+            -0.0906495451927185,
+            -0.09416055679321289
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.006888628005981445,
+          "root_z_m": 0.7780689001083374,
+          "head_z_m": 1.237196445465088,
+          "ankle_z_m": [
+            0.07266789674758911,
+            0.060926079750061035
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0892__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0892__0000.pkl",
+      "recon_sha256": "3819943b1a7c0b8a90991d19b805f7a20be49dc41f2a97853315f91a2d8447dd",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_892/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.045557618141174316,
+          "root_z_m": 0.7703857421875,
+          "head_z_m": 1.2408263683319092,
+          "ankle_z_m": [
+            0.10109823942184448,
+            0.1015467643737793
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7651470899581909,
+          "head_z_m": 1.2263216972351074,
+          "ankle_z_m": [
+            0.06005668640136719,
+            0.051666855812072754
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__compact_freestanding_black_basalt_practice_stair_block_with_5_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balustrad_a77f823ffd__0002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__compact_freestanding_black_basalt_practice_stair_block_with_5_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balustrad_a77f823ffd__0002.pkl",
+      "recon_sha256": "a95d123ad47a2483fb835ff7ef196ccca27dad352e6e7eefc9dd7e765845e0c8",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.7628406286239624,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/terrain_gen_stairs_down_1k_hunyuan/generation/mesh/gen_stairs_hunyuan_1k/compact_freestanding_black_basalt_practice_stair_block_with_5_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balustrad_a77f823ffd/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.6233978271484375,
+          "root_z_m": 1.57576584815979,
+          "head_z_m": 2.1906070709228516,
+          "ankle_z_m": [
+            0.6980668306350708,
+            0.7085341811180115
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.8050796985626221,
+          "root_z_m": 1.567678451538086,
+          "head_z_m": 2.0274484157562256,
+          "ankle_z_m": [
+            0.8617969751358032,
+            0.8612034916877747
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0573__0001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0573__0001.pkl",
+      "recon_sha256": "eed2224f14cbb664d35c8bb404c1a05d319b1a4c1f50a0773e5131c1431bceff",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_573/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04506915807723999,
+          "root_z_m": 0.7693408727645874,
+          "head_z_m": 1.2421820163726807,
+          "ankle_z_m": [
+            0.10023689270019531,
+            0.10267329216003418
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7641022205352783,
+          "head_z_m": 1.227125883102417,
+          "ankle_z_m": [
+            0.05882394313812256,
+            0.0529249906539917
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__compact_freestanding_bamboo_laminate_practice_stair_block_with_3_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balust_0c934fca8f__0001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__compact_freestanding_bamboo_laminate_practice_stair_block_with_3_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balust_0c934fca8f__0001.pkl",
+      "recon_sha256": "6c9246642db50b137e2a4d8c704789d488b7ef36f00699a12582e169d2286054",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6495471000671387,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/terrain_gen_stairs_down_1k_hunyuan/generation/mesh/gen_stairs_hunyuan_1k/compact_freestanding_bamboo_laminate_practice_stair_block_with_3_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balust_0c934fca8f/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.35473841428756714,
+          "root_z_m": 1.3090622425079346,
+          "head_z_m": 1.9214314222335815,
+          "ankle_z_m": [
+            0.429135799407959,
+            0.4401974678039551
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.5383429527282715,
+          "root_z_m": 1.3009748458862305,
+          "head_z_m": 1.7591685056686401,
+          "ankle_z_m": [
+            0.5930010080337524,
+            0.5930609703063965
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_2007__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_2007__0000.pkl",
+      "recon_sha256": "2f1965d3897057b8a83c93d3f770c623b750b53af30270bedf69fcd015aface6",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v2/generation/mesh/SynStairsV2/stairs_015/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04775130748748779,
+          "root_z_m": 0.7731729745864868,
+          "head_z_m": 1.2450380325317383,
+          "ankle_z_m": [
+            0.10398948192596436,
+            0.10371679067611694
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7679343223571777,
+          "head_z_m": 1.230139970779419,
+          "ankle_z_m": [
+            0.062418341636657715,
+            0.053611159324645996
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0195__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0195__0000.pkl",
+      "recon_sha256": "80f2e2fb92984dcaf6fb9ae23b660bb74c0c95bf33c3d7b846b35f1571e000de",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_195/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.047810256481170654,
+          "root_z_m": 0.7731369733810425,
+          "head_z_m": 1.244997501373291,
+          "ankle_z_m": [
+            0.10694432258605957,
+            0.10308080911636353
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7678983211517334,
+          "head_z_m": 1.2298641204833984,
+          "ankle_z_m": [
+            0.06526827812194824,
+            0.05321705341339111
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0495__0002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0495__0002.pkl",
+      "recon_sha256": "1ae3b18901c7fff2041a8259a68102f0a1745f18867c0fecb7e6e00c9bf3dabb",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_495/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.047518134117126465,
+          "root_z_m": 0.772080659866333,
+          "head_z_m": 1.2430444955825806,
+          "ankle_z_m": [
+            0.10336178541183472,
+            0.10385894775390625
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7668420076370239,
+          "head_z_m": 1.2282543182373047,
+          "ankle_z_m": [
+            0.06184029579162598,
+            0.054032325744628906
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0412__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0412__0000.pkl",
+      "recon_sha256": "26bc9521a0417ae4f7f12e22aa4ffa0cec000b80b38f80974404dd59031c9e55",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_412/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04782259464263916,
+          "root_z_m": 0.774249255657196,
+          "head_z_m": 1.243984341621399,
+          "ankle_z_m": [
+            0.1062784194946289,
+            0.10412603616714478
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.769010603427887,
+          "head_z_m": 1.2293356657028198,
+          "ankle_z_m": [
+            0.06448608636856079,
+            0.054181575775146484
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0463__0001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0463__0001.pkl",
+      "recon_sha256": "a6a3187da02b6b751c04864cd4b129f77e3865a319d0eed77b6c92da2dc20379",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_463/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04421389102935791,
+          "root_z_m": 0.7694758176803589,
+          "head_z_m": 1.2403514385223389,
+          "ankle_z_m": [
+            0.09975534677505493,
+            0.1029786467552185
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7642371654510498,
+          "head_z_m": 1.2256104946136475,
+          "ankle_z_m": [
+            0.058364272117614746,
+            0.05309724807739258
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__compact_freestanding_dark_walnut_wood_practice_stair_block_with_4_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balus_1082e70fee__0002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__compact_freestanding_dark_walnut_wood_practice_stair_block_with_4_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balus_1082e70fee__0002.pkl",
+      "recon_sha256": "93a826312de7cca82763b35deed1a9a22a0a9d35b4329a8c44aa5a3fd2368ed0",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.8432108163833618,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/terrain_gen_stairs_down_1k_hunyuan/generation/mesh/gen_stairs_hunyuan_1k/compact_freestanding_dark_walnut_wood_practice_stair_block_with_4_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balus_1082e70fee/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.44455504417419434,
+          "root_z_m": 1.3951365947723389,
+          "head_z_m": 2.012572765350342,
+          "ankle_z_m": [
+            0.5165961384773254,
+            0.5260933637619019
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.6273980140686035,
+          "root_z_m": 1.3870491981506348,
+          "head_z_m": 1.848611831665039,
+          "ankle_z_m": [
+            0.6805288791656494,
+            0.6790345907211304
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0112__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0112__0000.pkl",
+      "recon_sha256": "a547e023f0bd1f8e21437666e58dbd867afbc4c73501f400487b565bde612b83",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_112/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.044101059436798096,
+          "root_z_m": 0.7706040143966675,
+          "head_z_m": 1.2405285835266113,
+          "ankle_z_m": [
+            0.10027831792831421,
+            0.10122847557067871
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7653653621673584,
+          "head_z_m": 1.226023554801941,
+          "ankle_z_m": [
+            0.058831214904785156,
+            0.05136537551879883
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__compact_freestanding_black_powder_coated_steel_practice_stair_block_with_6_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_50a8d44124__0002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__compact_freestanding_black_powder_coated_steel_practice_stair_block_with_6_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_50a8d44124__0002.pkl",
+      "recon_sha256": "76aae7b39a5336c1c24e8cea181b072c03a55cb59cd1994da9757f511bc685c1",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6756985187530518,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/terrain_gen_stairs_down_1k_hunyuan/generation/mesh/gen_stairs_hunyuan_1k/compact_freestanding_black_powder_coated_steel_practice_stair_block_with_6_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_50a8d44124/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.8579491376876831,
+          "root_z_m": 1.8145641088485718,
+          "head_z_m": 2.4240024089813232,
+          "ankle_z_m": [
+            0.9359734058380127,
+            0.9513416290283203
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 1.0404582023620605,
+          "root_z_m": 1.8064767122268677,
+          "head_z_m": 2.262425184249878,
+          "ankle_z_m": [
+            1.0995746850967407,
+            1.1031537055969238
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p1",
+      "sequence_id": "terrain_stairs__stairs_0102__0001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p1/recon/terrain_stairs__stairs_0102__0001.pkl",
+      "recon_sha256": "474c07a407c3d66f19c6bc84d0f55459233346b7e3a1c0d7b175f8e4c5fc1b7e",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_terrain/generation/mesh/Terrain/stairs_102/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04345834255218506,
+          "root_z_m": 0.7697628736495972,
+          "head_z_m": 1.240881323814392,
+          "ankle_z_m": [
+            0.09969371557235718,
+            0.10253113508224487
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7645242214202881,
+          "head_z_m": 1.2261285781860352,
+          "ankle_z_m": [
+            0.058150649070739746,
+            0.05263376235961914
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_2064__0001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_2064__0001.pkl",
+      "recon_sha256": "8bd454474b3be8a725585fabea0e369dbb6ad7ada8b5823858c9c3cdae66f448",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v2/generation/mesh/SynStairsV2/stairs_072/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04793602228164673,
+          "root_z_m": 0.7760217785835266,
+          "head_z_m": 1.246800422668457,
+          "ankle_z_m": [
+            0.10953480005264282,
+            0.10471999645233154
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7707831263542175,
+          "head_z_m": 1.2321956157684326,
+          "ankle_z_m": [
+            0.0683411955833435,
+            0.054603517055511475
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__straight_aged_brick_stairs_with_8_steps_no_handrails_no_turns__0002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__straight_aged_brick_stairs_with_8_steps_no_handrails_no_turns__0002.pkl",
+      "recon_sha256": "45a67933305396bb2e1cd76db3a9e44861cb783bb18036fe53241af9559461d6",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6654822826385498,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/terrain_gen_stairs_down_1k_hunyuan/generation/mesh/gen_stairs_hunyuan_1k/straight_aged_brick_stairs_with_8_steps_no_handrails_no_turns/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 1.2609233856201172,
+          "root_z_m": 2.21964955329895,
+          "head_z_m": 2.834927558898926,
+          "ankle_z_m": [
+            1.3412716388702393,
+            1.3557239770889282
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 1.4439048767089844,
+          "root_z_m": 2.211562156677246,
+          "head_z_m": 2.6717286109924316,
+          "ankle_z_m": [
+            1.5054619312286377,
+            1.5081539154052734
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_real__0251",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_real__0251.pkl",
+      "recon_sha256": "e4eb46f7e16b268a667d25e979630e0935795fd72df57c628995d1f9b6a8c0d1",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6282826662063599,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_realstairs_v2/generation/mesh/RealStairs/stairs_000/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.1738649606704712,
+          "root_z_m": 0.7761397361755371,
+          "head_z_m": 1.3935003280639648,
+          "ankle_z_m": [
+            -0.09936827421188354,
+            -0.10158860683441162
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 1.1920928955078125e-07,
+          "root_z_m": 0.768052339553833,
+          "head_z_m": 1.2298961877822876,
+          "ankle_z_m": [
+            0.06376779079437256,
+            0.05305790901184082
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_2841__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_2841__0000.pkl",
+      "recon_sha256": "cce09f54aa75626d00ec9a716f5e701097c03ca7cdfbc6d7f5be1d1c14bbf94f",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v2/generation/mesh/SynStairsV2/stairs_849/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.0445370078086853,
+          "root_z_m": 0.7717598676681519,
+          "head_z_m": 1.242724895477295,
+          "ankle_z_m": [
+            0.10126513242721558,
+            0.1036483645439148
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 1.1920928955078125e-07,
+          "root_z_m": 0.7665212154388428,
+          "head_z_m": 1.2280569076538086,
+          "ankle_z_m": [
+            0.0596843957901001,
+            0.053623199462890625
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__straight_weathered_metal_stairs_with_3_steps_no_handrails_no_turns_updown__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__straight_weathered_metal_stairs_with_3_steps_no_handrails_no_turns_updown__0000.pkl",
+      "recon_sha256": "d830d205f572e9d6760b450567b602a21377c99b2075416faeeccfe8570b5867",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.613159418106079,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/terrain_gen_stairs_up_1k_hunyuan/generation/mesh/gen_stairs_hunyuan_1k/straight_weathered_metal_stairs_with_3_steps_no_handrails_no_turns/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.19002145528793335,
+          "root_z_m": 0.7664380669593811,
+          "head_z_m": 1.3844330310821533,
+          "ankle_z_m": [
+            -0.10700362920761108,
+            -0.11507463455200195
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -0.014419376850128174,
+          "root_z_m": 0.758350670337677,
+          "head_z_m": 1.220560073852539,
+          "ankle_z_m": [
+            0.0553898811340332,
+            0.04057186841964722
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_2867__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_2867__0000.pkl",
+      "recon_sha256": "32fc665c8eb5a8646bd300423b1e0d3cc3702ff63a15057152262e6dab580766",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v2/generation/mesh/SynStairsV2/stairs_875/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.047954261302948,
+          "root_z_m": 0.7755942940711975,
+          "head_z_m": 1.246572494506836,
+          "ankle_z_m": [
+            0.10884964466094971,
+            0.10541975498199463
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7703556418418884,
+          "head_z_m": 1.2318155765533447,
+          "ankle_z_m": [
+            0.06766003370285034,
+            0.05524486303329468
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_2515__0002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_2515__0002.pkl",
+      "recon_sha256": "b3fc7a7db4f826f86daef7da090e9d913d22d08f037c0054f0e33d6796a459b3",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v3/generation/mesh/SynStairsV3/stairs_523/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04985249042510986,
+          "root_z_m": 0.7722892761230469,
+          "head_z_m": 1.2423053979873657,
+          "ankle_z_m": [
+            0.10557746887207031,
+            0.10236507654190063
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7670506238937378,
+          "head_z_m": 1.2275340557098389,
+          "ankle_z_m": [
+            0.06419754028320312,
+            0.05245792865753174
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__straight_coarse_granite_stairs_with_10_steps_no_handrails_no_turns__0002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__straight_coarse_granite_stairs_with_10_steps_no_handrails_no_turns__0002.pkl",
+      "recon_sha256": "06a6eac2920a3d8143f56807812894b330cab219cc6ecd0b93d03cca96b16926",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_genstairs_v1/generation/mesh/GenStairsV1/straight_coarse_granite_stairs_with_10_steps_no_handrails_no_turns/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.047659873962402344,
+          "root_z_m": 0.7740989923477173,
+          "head_z_m": 1.2452980279922485,
+          "ankle_z_m": [
+            0.10609161853790283,
+            0.10495758056640625
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": -5.960464477539063e-08,
+          "root_z_m": 0.7688603401184082,
+          "head_z_m": 1.2304672002792358,
+          "ankle_z_m": [
+            0.06499624252319336,
+            0.055121541023254395
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__straight_coarse_sandstone_stairs_with_5_steps_no_handrails_no_turns__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__straight_coarse_sandstone_stairs_with_5_steps_no_handrails_no_turns__0000.pkl",
+      "recon_sha256": "4ef4775e2de2d45b05c43ff61243b4e168220ed774a7ea1c0719a696795aedd8",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.6039396524429321,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "results_collection/terrain_gen_stairs_down_1k_hunyuan/generation/mesh/gen_stairs_hunyuan_1k/straight_coarse_sandstone_stairs_with_5_steps_no_handrails_no_turns/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.7347186207771301,
+          "root_z_m": 1.6928797960281372,
+          "head_z_m": 2.303859233856201,
+          "ankle_z_m": [
+            0.8212892413139343,
+            0.8317826986312866
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.9177276492118835,
+          "root_z_m": 1.684792399406433,
+          "head_z_m": 2.141451120376587,
+          "ankle_z_m": [
+            0.9838100671768188,
+            0.9830612540245056
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_3439__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_3439__0000.pkl",
+      "recon_sha256": "8d1e9aae286699663ed3bc5549b10c481d7667d3caf45aa8c357e26067b98888",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v4/generation/mesh/SynStairsV4/stairs_468/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04676729440689087,
+          "root_z_m": 0.7717808485031128,
+          "head_z_m": 1.243071436882019,
+          "ankle_z_m": [
+            0.10324215888977051,
+            0.1030089259147644
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7665421962738037,
+          "head_z_m": 1.2283968925476074,
+          "ankle_z_m": [
+            0.061928629875183105,
+            0.053009867668151855
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__straight_polished_sandstone_stairs_with_8_steps_no_handrails_no_turns_v4__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__straight_polished_sandstone_stairs_with_8_steps_no_handrails_no_turns_v4__0000.pkl",
+      "recon_sha256": "644cd93a6d781da8d3e415481b12ab78db27d15f1b4cb9cc55a60de2f09dc694",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_genstairs_v1/generation/mesh/GenStairsV1/straight_polished_sandstone_stairs_with_8_steps_no_handrails_no_turns/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.047958433628082275,
+          "root_z_m": 0.7764815092086792,
+          "head_z_m": 1.2473373413085938,
+          "ankle_z_m": [
+            0.10922706127166748,
+            0.10443854331970215
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7712428569793701,
+          "head_z_m": 1.232551097869873,
+          "ankle_z_m": [
+            0.06767797470092773,
+            0.05427980422973633
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_3007__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_3007__0000.pkl",
+      "recon_sha256": "7701bb626e56a8520fa1ab2698a2f10bc78f67310868dcd2e77864065a470c5f",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v4/generation/mesh/SynStairsV4/stairs_016/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.047562599182128906,
+          "root_z_m": 0.7714866995811462,
+          "head_z_m": 1.2419569492340088,
+          "ankle_z_m": [
+            0.10483443737030029,
+            0.10342234373092651
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7662480473518372,
+          "head_z_m": 1.226972222328186,
+          "ankle_z_m": [
+            0.06315737962722778,
+            0.05376875400543213
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_2492__0001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_2492__0001.pkl",
+      "recon_sha256": "41ea367cd000cbad8aee0280a6d3dfb840dc91370d5e7e2fd9bbdee585b7f1f0",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v2/generation/mesh/SynStairsV2/stairs_500/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04439932107925415,
+          "root_z_m": 0.7694928646087646,
+          "head_z_m": 1.2402199506759644,
+          "ankle_z_m": [
+            0.10040205717086792,
+            0.10366648435592651
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 1.1920928955078125e-07,
+          "root_z_m": 0.7642542123794556,
+          "head_z_m": 1.2256124019622803,
+          "ankle_z_m": [
+            0.05897212028503418,
+            0.05414080619812012
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_2680__0002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_2680__0002.pkl",
+      "recon_sha256": "17216b52ec6253cac204f5b4d1884661bd9d0876a3291163d034b28f599cbd08",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v3/generation/mesh/SynStairsV3/stairs_688/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.047768354415893555,
+          "root_z_m": 0.7724584341049194,
+          "head_z_m": 1.2435787916183472,
+          "ankle_z_m": [
+            0.10458379983901978,
+            0.10345947742462158
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7672197818756104,
+          "head_z_m": 1.228813648223877,
+          "ankle_z_m": [
+            0.06372654438018799,
+            0.05360305309295654
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__straight_rustic_concrete_stairs_with_8_steps_no_handrails_no_turns__0001",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__straight_rustic_concrete_stairs_with_8_steps_no_handrails_no_turns__0001.pkl",
+      "recon_sha256": "babb1db7e312b27e28721772fc9ee5e9fb9ad446bcf78ed0bbe3372ee2fc82ba",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_genstairs_v1/generation/mesh/GenStairsV1/straight_rustic_concrete_stairs_with_8_steps_no_handrails_no_turns/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04779618978500366,
+          "root_z_m": 0.7743214964866638,
+          "head_z_m": 1.245187759399414,
+          "ankle_z_m": [
+            0.10671764612197876,
+            0.10329931974411011
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 5.960464477539063e-08,
+          "root_z_m": 0.7690828442573547,
+          "head_z_m": 1.2305988073349,
+          "ankle_z_m": [
+            0.06527578830718994,
+            0.053378283977508545
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_3434__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_3434__0000.pkl",
+      "recon_sha256": "d501c3df4be33a03518060fdb196b60a00a3a2d3fd05e9bcd4cecacadabf6051",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v4/generation/mesh/SynStairsV4/stairs_462/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04691052436828613,
+          "root_z_m": 0.7703223824501038,
+          "head_z_m": 1.2400164604187012,
+          "ankle_z_m": [
+            0.10211646556854248,
+            0.10179293155670166
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7650837302207947,
+          "head_z_m": 1.2254246473312378,
+          "ankle_z_m": [
+            0.06063133478164673,
+            0.05211830139160156
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_2243__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_2243__0000.pkl",
+      "recon_sha256": "99653abf979309a449f159b724af9c69d4f7340b06184bc3202bd82e5a8573c3",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v2/generation/mesh/SynStairsV2/stairs_251/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.047761619091033936,
+          "root_z_m": 0.7737783193588257,
+          "head_z_m": 1.2436188459396362,
+          "ankle_z_m": [
+            0.10405319929122925,
+            0.10337507724761963
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7685396671295166,
+          "head_z_m": 1.2290619611740112,
+          "ankle_z_m": [
+            0.062423646450042725,
+            0.05317014455795288
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__straight_smooth_wooden_stairs_with_6_steps_no_handrails_no_turns_v4__0002",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__straight_smooth_wooden_stairs_with_6_steps_no_handrails_no_turns_v4__0002.pkl",
+      "recon_sha256": "795f511b5b2aeccf3fb5847e82f2ede1ad9447d8cb5e9e13af63eb74ec93c433",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_genstairs_v1/generation/mesh/GenStairsV1/straight_smooth_wooden_stairs_with_6_steps_no_handrails_no_turns/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04812514781951904,
+          "root_z_m": 0.7751528024673462,
+          "head_z_m": 1.2435911893844604,
+          "ankle_z_m": [
+            0.10589820146560669,
+            0.1037893295288086
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7699141502380371,
+          "head_z_m": 1.2291773557662964,
+          "ankle_z_m": [
+            0.06427311897277832,
+            0.05356156826019287
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_real__0934",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_real__0934.pkl",
+      "recon_sha256": "c9bb5daa88a70fef69ba32daca97f8d13db0614b17a62f64a69876ba003ef182",
+      "raw_scale": 1.0,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": 1.615500569343567,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_realstairs_v2/generation/mesh/RealStairs/stairs_000/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": -0.18075788021087646,
+          "root_z_m": 0.7694075107574463,
+          "head_z_m": 1.383548617362976,
+          "ankle_z_m": [
+            -0.1075751781463623,
+            -0.1003313660621643
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 1.1920928955078125e-07,
+          "root_z_m": 0.7613201141357422,
+          "head_z_m": 1.2207626104354858,
+          "ankle_z_m": [
+            0.05542278289794922,
+            0.052771568298339844
+          ]
+        }
+      }
+    },
+    {
+      "category": "stair_p2",
+      "sequence_id": "terrain_stairs__stairs_3229__0000",
+      "recon_path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_3229__0000.pkl",
+      "recon_sha256": "16534b176ece0c2916c3063693b850930d4c31b50aa18e5110228d597999eae5",
+      "raw_scale": 0.7633275389671326,
+      "raw_model": "smplx",
+      "raw_predicted_body_height": null,
+      "raw_betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "source_object_path": "../results_collection/results_synstairs_v4/generation/mesh/SynStairsV4/stairs_249/model.obj",
+      "results": {
+        "standard": {
+          "first_frame_body_min_z_m": 0.04802459478378296,
+          "root_z_m": 0.7723945379257202,
+          "head_z_m": 1.2417148351669312,
+          "ankle_z_m": [
+            0.10395854711532593,
+            0.102489173412323
+          ]
+        },
+        "g1": {
+          "first_frame_body_min_z_m": 0.0,
+          "root_z_m": 0.7671558856964111,
+          "head_z_m": 1.2272710800170898,
+          "ankle_z_m": [
+            0.06289106607437134,
+            0.05241847038269043
+          ]
+        }
+      }
+    }
+  ],
+  "elapsed_s": 2.9918501377105713
+}
