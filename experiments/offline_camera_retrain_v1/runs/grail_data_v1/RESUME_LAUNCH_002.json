@@ -1,0 +1,35 @@
+{
+  "pid": 8886,
+  "argv": [
+    "nice",
+    "-n",
+    "10",
+    "ionice",
+    "-c",
+    "3",
+    "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+    "-m",
+    "experiments.offline_camera_retrain_v1.ops.grail_prepare",
+    "--inventory",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/grail_data_v1/inventory.jsonl",
+    "--output",
+    "/mnt/d/Datasets/GRAIL/scenemi_recon30_v1",
+    "--scope",
+    "full"
+  ],
+  "launched_epoch_s": 1792485174.0732462,
+  "resumed_at": "2026-10-20T16:32:54.074598+08:00",
+  "resumed_from_completed": 1697,
+  "job_sha256": "c009bab372b516bd70c1a494b2da1dd1cab69e6706f4d4e23455270e215e56eb",
+  "source_hashes_checked": 14,
+  "inventory_sha256": "ae14e90ee5976b2ed92a453b5d27d7a27a6d4a295a1d9e854c74047ce9405295",
+  "immutable_job_unchanged": true,
+  "gpu": false,
+  "cpu_threads": 4,
+  "reason": "Official recon config and paired CPU scene geometry support current template/scale. Continue candidate export; whole-sequence physical QC remains required before training.",
+  "audit_paths": [
+    "runs/grail_data_v1/SOURCE_TEMPLATE_REAUDIT.json",
+    "runs/grail_data_v1/alignment_review/GEOMETRY_ALIGNMENT_AUDIT.json"
+  ],
+  "log": "/mnt/d/Datasets/GRAIL/scenemi_recon30_v1/resume_after_alignment_audit.log"
+}

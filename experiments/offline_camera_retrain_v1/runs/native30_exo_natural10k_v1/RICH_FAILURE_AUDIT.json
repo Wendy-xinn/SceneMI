@@ -1,0 +1,4228 @@
+{
+  "recorded_at": "2026-10-20T16:14:02.548606+08:00",
+  "scope": "Read-only CPU audit of already saved official VAL arrays; no GPU, no new sampling/training, no checkpoint selection change.",
+  "evidence_files": {
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/baseline_validation/validation.jsonl": "15930c54a125980ab888b5d70e679add3a2f9f45bba768ab2bf922f2e0f328d9",
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/fixed_validation/step_008000/validation.jsonl": "153c2e183e1e08516eac2a2f643e99b9ea3c4a6d67ff1569c47234942aa4a3af",
+    "experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/rotating_validation/step_008000/validation.jsonl": "f75bca4c59dd34bbb58e24517844f0f6b4221038f5a9a14ecd8ab736bf6fc32e"
+  },
+  "paired_rich_fixed_windows": [
+    {
+      "recording": "ParkingLot2_014_eating2",
+      "regime": "clean",
+      "case": 0,
+      "identity_sha256": "cc8a5f5c64e6d523c37c78b4fdf91103613a9a04a481b3da49ff4be42079cb99",
+      "hidden_count": 23,
+      "input_stats": {
+        "available_joint_fraction": 0.9945549242424242,
+        "mean_position_confidence": 0.9660440683364868
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 0.48729705810546875,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 0.44110220670700073,
+          "count": 4201
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 8.924888610839844,
+          "count": 23
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 0.48729705810546875,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.0003391058125998825,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.00014571071369573474,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 12.421520233154297,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 13.925346374511719,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.07988147437572479,
+          "count": 307
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 4.560171127319336,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4.394644737243652,
+          "count": 4201
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 34.79383087158203,
+          "count": 23
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 4.560171127319336,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 11.6182279586792,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 2.7218661308288574,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 17.29779815673828,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 17.284664154052734,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.07994772493839264,
+          "count": 307
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 1.2330564260482788,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1.1411187648773193,
+          "count": 4201
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 18.02568244934082,
+          "count": 23
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 1.2330564260482788,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 3.9468371868133545,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.2792086899280548,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 21.272994995117188,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 14.117112159729004,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.08022439479827881,
+          "count": 307
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot2_014_eating2",
+      "regime": "noisy",
+      "case": 0,
+      "identity_sha256": "cc8a5f5c64e6d523c37c78b4fdf91103613a9a04a481b3da49ff4be42079cb99",
+      "hidden_count": 23,
+      "input_stats": {
+        "available_joint_fraction": 0.9945549242424242,
+        "mean_position_confidence": 0.5472397208213806
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 28.254377365112305,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 28.3247127532959,
+          "count": 4201
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 15.406828880310059,
+          "count": 23
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 28.254377365112305,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 24.17218017578125,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 5.882463455200195,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 23.782238006591797,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 21.190692901611328,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.08229303359985352,
+          "count": 307
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 26.848739624023438,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 26.8441219329834,
+          "count": 4201
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 27.691864013671875,
+          "count": 23
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 26.848739624023438,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 34.20338439941406,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 9.506494522094727,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 22.70313835144043,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 21.601268768310547,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.09256342798471451,
+          "count": 307
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 21.681711196899414,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 21.557750701904297,
+          "count": 4201
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 44.32353210449219,
+          "count": 23
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 21.681711196899414,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 18.96265983581543,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 6.284993648529053,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 29.111804962158203,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 21.017982482910156,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.08136250823736191,
+          "count": 307
+        }
+      }
+    },
+    {
+      "recording": "Pavallion_006_yoga1",
+      "regime": "clean",
+      "case": 1,
+      "identity_sha256": "80d3c609913f015b56356e410b326912c4442284f9e0ec3840f85a275d792b0d",
+      "hidden_count": 1016,
+      "input_stats": {
+        "available_joint_fraction": 0.759469696969697,
+        "mean_position_confidence": 0.9555279016494751
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 18.82402992248535,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2.839648962020874,
+          "count": 3208
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 69.29439544677734,
+          "count": 1016
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 18.82402992248535,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.00022061911295168102,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.0,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 14.136749267578125,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 12.995758056640625,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.21120941638946533,
+          "count": 354
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 30.21438980102539,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 7.0125226974487305,
+          "count": 3208
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 103.47382354736328,
+          "count": 1016
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 30.21438980102539,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 12.481773376464844,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 2.9046878814697266,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 20.24535369873047,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 17.880416870117188,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.445121169090271,
+          "count": 354
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 23.89914894104004,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3.3246662616729736,
+          "count": 3208
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 88.86266326904297,
+          "count": 1016
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 23.89914894104004,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 4.996512413024902,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.4122179448604584,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.746841430664062,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 14.440332412719727,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.3251599669456482,
+          "count": 354
+        }
+      }
+    },
+    {
+      "recording": "Pavallion_006_yoga1",
+      "regime": "noisy",
+      "case": 1,
+      "identity_sha256": "80d3c609913f015b56356e410b326912c4442284f9e0ec3840f85a275d792b0d",
+      "hidden_count": 1034,
+      "input_stats": {
+        "available_joint_fraction": 0.7552083333333334,
+        "mean_position_confidence": 0.5629854202270508
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 53.02023696899414,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 39.32972717285156,
+          "count": 3190
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 95.25689697265625,
+          "count": 1034
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 53.02023696899414,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 9.543302536010742,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 13.044398307800293,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 16.076419830322266,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 19.92560577392578,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.2164423167705536,
+          "count": 354
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 161.7918243408203,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 77.10128021240234,
+          "count": 3190
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 423.0711669921875,
+          "count": 1034
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 161.7918243408203,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 78.24951171875,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 34.412254333496094,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 17.44239044189453,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 42.946449279785156,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.7945954203605652,
+          "count": 354
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 204.1637725830078,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 77.62064361572266,
+          "count": 3190
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 594.5628051757812,
+          "count": 1034
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 204.1637725830078,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 68.66008758544922,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 20.309947967529297,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 24.526836395263672,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 49.86164093017578,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.49842584133148193,
+          "count": 354
+        }
+      }
+    },
+    {
+      "recording": "Pavallion_013_sidebalancerun",
+      "regime": "clean",
+      "case": 2,
+      "identity_sha256": "e536a7deabf6cc09f03b0d33566467289b42b54d38c0e32d4f21751233313ecc",
+      "hidden_count": 66,
+      "input_stats": {
+        "available_joint_fraction": 0.984375,
+        "mean_position_confidence": 0.9366444945335388
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 0.22400960326194763,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 0.07905683666467667,
+          "count": 4158
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 9.356035232543945,
+          "count": 66
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 0.22400960326194763,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.000311645504552871,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.000582842854782939,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 23.922300338745117,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 16.201889038085938,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.11116296797990799,
+          "count": 220
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 4.503433704376221,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4.111711502075195,
+          "count": 4158
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 29.181930541992188,
+          "count": 66
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 4.503433704376221,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 10.85345458984375,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 3.1242189407348633,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 28.57638931274414,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 15.241988182067871,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.12348584830760956,
+          "count": 220
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 3.9959425926208496,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3.6818487644195557,
+          "count": 4158
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 23.78386688232422,
+          "count": 66
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 3.9959425926208496,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 8.533345222473145,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.8579980134963989,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 24.482824325561523,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 14.5967378616333,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.11445874720811844,
+          "count": 220
+        }
+      }
+    },
+    {
+      "recording": "Pavallion_013_sidebalancerun",
+      "regime": "noisy",
+      "case": 2,
+      "identity_sha256": "e536a7deabf6cc09f03b0d33566467289b42b54d38c0e32d4f21751233313ecc",
+      "hidden_count": 66,
+      "input_stats": {
+        "available_joint_fraction": 0.984375,
+        "mean_position_confidence": 0.5872424244880676
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 30.959270477294922,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 30.863821029663086,
+          "count": 4158
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 36.97270965576172,
+          "count": 66
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 30.959270477294922,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 9.222146987915039,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 12.577194213867188,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 33.356327056884766,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 25.089723587036133,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.12919947504997253,
+          "count": 220
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 29.00252342224121,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 28.664649963378906,
+          "count": 4158
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 50.28845977783203,
+          "count": 66
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 29.00252342224121,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 44.807464599609375,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 16.653839111328125,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 29.47548484802246,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 21.386127471923828,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.13284476101398468,
+          "count": 220
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 24.93277931213379,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 23.783639907836914,
+          "count": 4158
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 97.32845306396484,
+          "count": 66
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 24.93277931213379,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 20.565353393554688,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 13.349830627441406,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 35.963653564453125,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 25.174165725708008,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.1338624358177185,
+          "count": 220
+        }
+      }
+    },
+    {
+      "recording": "Pavallion_018_sidebalancerun",
+      "regime": "clean",
+      "case": 3,
+      "identity_sha256": "6362c298c4e31cc38901580052dfc0df84f9f41f9eb2c6ae79082323374caf32",
+      "hidden_count": 307,
+      "input_stats": {
+        "available_joint_fraction": 0.9273200757575758,
+        "mean_position_confidence": 0.9252727627754211
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 4.189727783203125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1.9769831895828247,
+          "count": 3917
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 32.42204666137695,
+          "count": 307
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 4.189727783203125,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.000510247889906168,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.0002914214273914695,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 21.60719871520996,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 15.845727920532227,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.15834030508995056,
+          "count": 250
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 7.765020370483398,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4.34598445892334,
+          "count": 3917
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 51.38835144042969,
+          "count": 307
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 7.765020370483398,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 10.7724609375,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 3.677159309387207,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 19.50483512878418,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 14.629884719848633,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.1712384670972824,
+          "count": 250
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 6.001524925231934,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3.6363348960876465,
+          "count": 3917
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 36.17887878417969,
+          "count": 307
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 6.001524925231934,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 9.97134780883789,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 1.0675148963928223,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 19.794490814208984,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 14.167129516601562,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.14264705777168274,
+          "count": 250
+        }
+      }
+    },
+    {
+      "recording": "Pavallion_018_sidebalancerun",
+      "regime": "noisy",
+      "case": 3,
+      "identity_sha256": "6362c298c4e31cc38901580052dfc0df84f9f41f9eb2c6ae79082323374caf32",
+      "hidden_count": 307,
+      "input_stats": {
+        "available_joint_fraction": 0.9273200757575758,
+        "mean_position_confidence": 0.5505740642547607
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 37.675880432128906,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 36.0312614440918,
+          "count": 3917
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 58.659542083740234,
+          "count": 307
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 37.675880432128906,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 14.458765983581543,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 14.955390930175781,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 15.298605918884277,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 25.355358123779297,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.20064407587051392,
+          "count": 250
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 32.15029525756836,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 28.758773803710938,
+          "count": 3917
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 75.42255401611328,
+          "count": 307
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 32.15029525756836,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 40.732582092285156,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 13.24252700805664,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 16.037776947021484,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 21.120853424072266,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.1975029706954956,
+          "count": 250
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 37.119083404541016,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 32.869728088378906,
+          "count": 3917
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 91.33642578125,
+          "count": 307
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 37.119083404541016,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 16.159469604492188,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 16.294214248657227,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 20.883710861206055,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 26.95777130126953,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.3118385970592499,
+          "count": 250
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot1_005_overfence2",
+      "regime": "clean",
+      "case": 4,
+      "identity_sha256": "23850f9420baaf4b0bdd942d576750d3903740230f1b455e36dccb494da58ba3",
+      "hidden_count": 255,
+      "input_stats": {
+        "available_joint_fraction": 0.9396306818181818,
+        "mean_position_confidence": 0.9520561099052429
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 9.775167465209961,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4.399399280548096,
+          "count": 3969
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 93.44741821289062,
+          "count": 255
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 9.775167465209961,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.0003356721717864275,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.0,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 17.195932388305664,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 14.911473274230957,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.07164271920919418,
+          "count": 258
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 12.754148483276367,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 6.9995527267456055,
+          "count": 3969
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 102.32274627685547,
+          "count": 255
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 12.754148483276367,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 13.708318710327148,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 3.307046413421631,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 21.76749038696289,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 15.740478515625,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.08836136013269424,
+          "count": 258
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 7.235073566436768,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2.538644313812256,
+          "count": 3969
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 80.33361053466797,
+          "count": 255
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 7.235073566436768,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 3.783365249633789,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.3559381365776062,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 18.577129364013672,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 13.16632080078125,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.07611429691314697,
+          "count": 258
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot1_005_overfence2",
+      "regime": "noisy",
+      "case": 4,
+      "identity_sha256": "23850f9420baaf4b0bdd942d576750d3903740230f1b455e36dccb494da58ba3",
+      "hidden_count": 255,
+      "input_stats": {
+        "available_joint_fraction": 0.9396306818181818,
+        "mean_position_confidence": 0.5697981715202332
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 47.73502731323242,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 42.246341705322266,
+          "count": 3969
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 133.1648712158203,
+          "count": 255
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 47.73502731323242,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 17.764345169067383,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 12.588655471801758,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 30.92654800415039,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 22.48824119567871,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.07980012148618698,
+          "count": 258
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 35.976932525634766,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 29.750246047973633,
+          "count": 3969
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 132.8935089111328,
+          "count": 255
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 35.976932525634766,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 41.09690856933594,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 16.284603118896484,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 28.646404266357422,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 20.2768611907959,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.10314910113811493,
+          "count": 258
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 31.14141082763672,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 26.198326110839844,
+          "count": 3969
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 108.07906341552734,
+          "count": 255
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 31.14141082763672,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 23.036197662353516,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 11.921735763549805,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 27.595279693603516,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 20.069580078125,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.08277339488267899,
+          "count": 258
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot1_004_eating2",
+      "regime": "clean",
+      "case": 5,
+      "identity_sha256": "85495c7023e217ee34e557349482696b020d5e6362a3150e7cd7caa32057903b",
+      "hidden_count": 0,
+      "input_stats": {
+        "available_joint_fraction": 1.0,
+        "mean_position_confidence": 0.9437171816825867
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 0.00046901984023861587,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 0.00046901984023861587,
+          "count": 4224
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": 0.0007638934766873717,
+          "count": 1
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 0.0004689499910455197,
+          "count": 4223
+        },
+        "root_position_error_mm": {
+          "value": 0.00029415733297355473,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.00014571071369573474,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 10.904930114746094,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": 105.54202270507812,
+          "count": 2
+        },
+        "regular_rotation_deg": {
+          "value": 11.324883460998535,
+          "count": 4222
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.05353912338614464,
+          "count": 369
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 4.699103355407715,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4.699103355407715,
+          "count": 4224
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": 0.008910109288990498,
+          "count": 1
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 4.700213432312012,
+          "count": 4223
+        },
+        "root_position_error_mm": {
+          "value": 13.260753631591797,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 2.569195508956909,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 15.873357772827148,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": 81.37510681152344,
+          "count": 2
+        },
+        "regular_rotation_deg": {
+          "value": 13.699917793273926,
+          "count": 4222
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.05720466375350952,
+          "count": 369
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 1.348988652229309,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1.348988652229309,
+          "count": 4224
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": 0.013050636276602745,
+          "count": 1
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 1.3493050336837769,
+          "count": 4223
+        },
+        "root_position_error_mm": {
+          "value": 5.415976524353027,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.45315858721733093,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 14.482203483581543,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": 100.37040710449219,
+          "count": 2
+        },
+        "regular_rotation_deg": {
+          "value": 12.983500480651855,
+          "count": 4222
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.053344640880823135,
+          "count": 369
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot1_004_eating2",
+      "regime": "noisy",
+      "case": 5,
+      "identity_sha256": "85495c7023e217ee34e557349482696b020d5e6362a3150e7cd7caa32057903b",
+      "hidden_count": 18,
+      "input_stats": {
+        "available_joint_fraction": 0.9957386363636364,
+        "mean_position_confidence": 0.5494105815887451
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 43.836673736572266,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 43.87398147583008,
+          "count": 4206
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 35.1180419921875,
+          "count": 18
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": 60.98231506347656,
+          "count": 1
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 43.83261489868164,
+          "count": 4223
+        },
+        "root_position_error_mm": {
+          "value": 6.331823348999023,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 12.243288040161133,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 22.148300170898438,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": 114.7510986328125,
+          "count": 2
+        },
+        "regular_rotation_deg": {
+          "value": 21.406930923461914,
+          "count": 4222
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.07560918480157852,
+          "count": 369
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 32.76301574707031,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 32.51866149902344,
+          "count": 4206
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 89.86123657226562,
+          "count": 18
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": 86.12928009033203,
+          "count": 1
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 32.7503776550293,
+          "count": 4223
+        },
+        "root_position_error_mm": {
+          "value": 46.80994415283203,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 16.358814239501953,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 21.305418014526367,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": 95.77520751953125,
+          "count": 2
+        },
+        "regular_rotation_deg": {
+          "value": 20.80858039855957,
+          "count": 4222
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.06708866357803345,
+          "count": 369
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 25.695650100708008,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 25.607646942138672,
+          "count": 4206
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 46.25905990600586,
+          "count": 18
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": 42.502262115478516,
+          "count": 1
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 25.691669464111328,
+          "count": 4223
+        },
+        "root_position_error_mm": {
+          "value": 13.522703170776367,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 12.458240509033203,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 32.11650848388672,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": 119.60299682617188,
+          "count": 2
+        },
+        "regular_rotation_deg": {
+          "value": 20.32533073425293,
+          "count": 4222
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.05698521435260773,
+          "count": 369
+        }
+      }
+    },
+    {
+      "recording": "LectureHall_018_wipingtable1",
+      "regime": "clean",
+      "case": 6,
+      "identity_sha256": "a0a6455c2161e8b195af3f187a67b22db3824eec25deb771cef901cf1c5eb4ff",
+      "hidden_count": 785,
+      "input_stats": {
+        "available_joint_fraction": 0.814157196969697,
+        "mean_position_confidence": 0.9234622120857239
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 37.38824462890625,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 15.39011287689209,
+          "count": 3439
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 133.75967407226562,
+          "count": 785
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 37.38824462890625,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 18.881284713745117,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 1.0303173065185547,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 29.45736312866211,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 17.190319061279297,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.22106269001960754,
+          "count": 254
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 40.843204498291016,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 11.388659477233887,
+          "count": 3439
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 169.88037109375,
+          "count": 785
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 40.843204498291016,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 42.38197326660156,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 6.813205718994141,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.69083023071289,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 18.968889236450195,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.19215337932109833,
+          "count": 254
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 21.760643005371094,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4.384418964385986,
+          "count": 3439
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 97.8840103149414,
+          "count": 785
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 21.760643005371094,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 25.9826717376709,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 2.9638538360595703,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 29.978757858276367,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 16.92923355102539,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.154258131980896,
+          "count": 254
+        }
+      }
+    },
+    {
+      "recording": "LectureHall_018_wipingtable1",
+      "regime": "noisy",
+      "case": 6,
+      "identity_sha256": "a0a6455c2161e8b195af3f187a67b22db3824eec25deb771cef901cf1c5eb4ff",
+      "hidden_count": 796,
+      "input_stats": {
+        "available_joint_fraction": 0.8115530303030303,
+        "mean_position_confidence": 0.5445945262908936
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 70.76146697998047,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 48.202449798583984,
+          "count": 3428
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 167.91256713867188,
+          "count": 796
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 70.76146697998047,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 50.36014938354492,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 14.186264038085938,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 24.343244552612305,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 24.154233932495117,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.26529866456985474,
+          "count": 254
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 73.09130859375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 41.149356842041016,
+          "count": 3428
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 210.65036010742188,
+          "count": 796
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 73.09130859375,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 72.38668823242188,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 17.268970489501953,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.97743797302246,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 26.600927352905273,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.22634878754615784,
+          "count": 254
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 52.048431396484375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 30.57808494567871,
+          "count": 3428
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 144.5111846923828,
+          "count": 796
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 52.048431396484375,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 52.277950286865234,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 12.527274131774902,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 22.10366439819336,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 23.326786041259766,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.1629215031862259,
+          "count": 254
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot2_008_eating2",
+      "regime": "clean",
+      "case": 7,
+      "identity_sha256": "3dd16c643b4c071a1341c936ba6fa4249990dd8a681d20fcee0c3a7da2aa43e6",
+      "hidden_count": 1,
+      "input_stats": {
+        "available_joint_fraction": 0.9997632575757576,
+        "mean_position_confidence": 0.9620710611343384
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 0.001134091755375266,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 0.00046519626630470157,
+          "count": 4223
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 2.8258790969848633,
+          "count": 1
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 0.001134091755375266,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.00029019007342867553,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.0,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 18.12759780883789,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 11.87380599975586,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.05956397205591202,
+          "count": 346
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 6.131909370422363,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 6.121644020080566,
+          "count": 4223
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 49.47904586791992,
+          "count": 1
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 6.131909370422363,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 16.239147186279297,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 3.191861867904663,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 18.361310958862305,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 12.944769859313965,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.0598752535879612,
+          "count": 346
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 1.6849536895751953,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1.6848838329315186,
+          "count": 4223
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 1.9800423383712769,
+          "count": 1
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 1.6849536895751953,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 6.496718406677246,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.8341091871261597,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 24.564619064331055,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 11.30466365814209,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.05959230661392212,
+          "count": 346
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot2_008_eating2",
+      "regime": "noisy",
+      "case": 7,
+      "identity_sha256": "3dd16c643b4c071a1341c936ba6fa4249990dd8a681d20fcee0c3a7da2aa43e6",
+      "hidden_count": 19,
+      "input_stats": {
+        "available_joint_fraction": 0.9955018939393939,
+        "mean_position_confidence": 0.5520607233047485
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 40.799922943115234,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 40.81757354736328,
+          "count": 4205
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 36.894195556640625,
+          "count": 19
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 40.799922943115234,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 11.870624542236328,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 12.904722213745117,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 30.890989303588867,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 23.536230087280273,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.059978824108839035,
+          "count": 346
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 32.4208984375,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 32.43729782104492,
+          "count": 4205
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 28.791305541992188,
+          "count": 19
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 32.4208984375,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 45.29887008666992,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 16.33736228942871,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.332359313964844,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 20.53228759765625,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.06689958274364471,
+          "count": 346
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 24.223817825317383,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 24.111080169677734,
+          "count": 4205
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 49.174442291259766,
+          "count": 19
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 24.223817825317383,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 14.153205871582031,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 13.06475830078125,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 37.120819091796875,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 20.926969528198242,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.06777162104845047,
+          "count": 346
+        }
+      }
+    },
+    {
+      "recording": "Pavallion_003_yoga1",
+      "regime": "clean",
+      "case": 8,
+      "identity_sha256": "e9f659d7fc105f715729d8e296d366129e15f878dfbea63988db7a2407d6d5d7",
+      "hidden_count": 57,
+      "input_stats": {
+        "available_joint_fraction": 0.9865056818181818,
+        "mean_position_confidence": 0.9698023796081543
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 0.19653670489788055,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 0.1122211143374443,
+          "count": 4167
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 6.36044979095459,
+          "count": 57
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 0.19653670489788055,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.00017720440519042313,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.0,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 15.282468795776367,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 17.76443099975586,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.0741276815533638,
+          "count": 336
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 4.73687219619751,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 4.117866039276123,
+          "count": 4167
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 49.98944854736328,
+          "count": 57
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 4.73687219619751,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 11.036460876464844,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 3.129040479660034,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 13.40559196472168,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 18.803552627563477,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.07716931402683258,
+          "count": 336
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 1.4648935794830322,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1.1405987739562988,
+          "count": 4167
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 25.172550201416016,
+          "count": 57
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 1.4648935794830322,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 3.158278226852417,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.5524479746818542,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 27.33649253845215,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 20.29602813720703,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.07471620291471481,
+          "count": 336
+        }
+      }
+    },
+    {
+      "recording": "Pavallion_003_yoga1",
+      "regime": "noisy",
+      "case": 8,
+      "identity_sha256": "e9f659d7fc105f715729d8e296d366129e15f878dfbea63988db7a2407d6d5d7",
+      "hidden_count": 75,
+      "input_stats": {
+        "available_joint_fraction": 0.9822443181818182,
+        "mean_position_confidence": 0.5765101313591003
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 36.52131271362305,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 36.717567443847656,
+          "count": 4149
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 25.66436767578125,
+          "count": 75
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 36.52131271362305,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 16.828237533569336,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 12.013940811157227,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 24.44292449951172,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 20.46476936340332,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.0741284042596817,
+          "count": 336
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 27.900066375732422,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 27.67756462097168,
+          "count": 4149
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 40.208805084228516,
+          "count": 75
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 27.900066375732422,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 39.82554244995117,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 12.894248962402344,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 20.540456771850586,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 22.794652938842773,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.08855780959129333,
+          "count": 336
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 21.698535919189453,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 21.467729568481445,
+          "count": 4149
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 34.4665641784668,
+          "count": 75
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 21.698535919189453,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 15.103776931762695,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 11.040693283081055,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 31.457876205444336,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 20.84104347229004,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.07884369790554047,
+          "count": 336
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot1_005_pushup1",
+      "regime": "clean",
+      "case": 9,
+      "identity_sha256": "fa3612f9aa0413e1df8c9575f575bdba7d3fe69b0c12bec00336bc6585f35f9a",
+      "hidden_count": 105,
+      "input_stats": {
+        "available_joint_fraction": 0.9751420454545454,
+        "mean_position_confidence": 0.9276003241539001
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 1.6340774297714233,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 1.3542014360427856,
+          "count": 4119
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 12.613214492797852,
+          "count": 105
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 1.6340774297714233,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.0003919750452041626,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.0,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.159038543701172,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 19.485692977905273,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.18011970818042755,
+          "count": 205
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 9.13350772857666,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 8.653451919555664,
+          "count": 4119
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 27.96539306640625,
+          "count": 105
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 9.13350772857666,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 15.978323936462402,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 5.7032599449157715,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 21.984355926513672,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 17.366071701049805,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.17352399230003357,
+          "count": 205
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 8.766104698181152,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 8.100726127624512,
+          "count": 4119
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 34.867862701416016,
+          "count": 105
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 8.766104698181152,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 19.352989196777344,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 1.786327600479126,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 19.26310920715332,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 17.45595932006836,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.14792895317077637,
+          "count": 205
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot1_005_pushup1",
+      "regime": "noisy",
+      "case": 9,
+      "identity_sha256": "fa3612f9aa0413e1df8c9575f575bdba7d3fe69b0c12bec00336bc6585f35f9a",
+      "hidden_count": 105,
+      "input_stats": {
+        "available_joint_fraction": 0.9751420454545454,
+        "mean_position_confidence": 0.5575155019760132
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 27.479015350341797,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 27.547443389892578,
+          "count": 4119
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 24.794675827026367,
+          "count": 105
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 27.479015350341797,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 14.167448997497559,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 7.897245407104492,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 33.76348114013672,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 26.62643051147461,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.2150251865386963,
+          "count": 205
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 32.84590530395508,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 32.45457458496094,
+          "count": 4119
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 48.197227478027344,
+          "count": 105
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 32.84590530395508,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 44.50225067138672,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 14.378303527832031,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 22.56574249267578,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 24.597105026245117,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.21619512140750885,
+          "count": 205
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 29.596603393554688,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 28.442245483398438,
+          "count": 4119
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 74.88041687011719,
+          "count": 105
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 29.596603393554688,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 17.70836639404297,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 9.99097728729248,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 28.721725463867188,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 24.476613998413086,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.29267632961273193,
+          "count": 205
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot2_016_phonetalk5",
+      "regime": "clean",
+      "case": 10,
+      "identity_sha256": "691f0be5cb4632420234f462f555d05f50c4c6b4addd981d7cb5bc442799874b",
+      "hidden_count": 361,
+      "input_stats": {
+        "available_joint_fraction": 0.9145359848484849,
+        "mean_position_confidence": 0.880425214767456
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 2.6708967685699463,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 0.9161521196365356,
+          "count": 3863
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 21.448122024536133,
+          "count": 361
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 2.6708967685699463,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.00035146885784342885,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.0,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 13.242117881774902,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 19.757165908813477,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.08994176983833313,
+          "count": 279
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 8.747020721435547,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 6.838329315185547,
+          "count": 3863
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 29.171592712402344,
+          "count": 361
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 8.747020721435547,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 13.864095687866211,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 3.838536024093628,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 20.29196548461914,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 17.582727432250977,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.10240424424409866,
+          "count": 279
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 4.159512042999268,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 2.3317582607269287,
+          "count": 3863
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 23.717988967895508,
+          "count": 361
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 4.159512042999268,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 5.013461112976074,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.5929765105247498,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 13.131612777709961,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 18.94025421142578,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.09174451977014542,
+          "count": 279
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot2_016_phonetalk5",
+      "regime": "noisy",
+      "case": 10,
+      "identity_sha256": "691f0be5cb4632420234f462f555d05f50c4c6b4addd981d7cb5bc442799874b",
+      "hidden_count": 367,
+      "input_stats": {
+        "available_joint_fraction": 0.9131155303030303,
+        "mean_position_confidence": 0.5346771478652954
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 30.686845779418945,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 29.211145401000977,
+          "count": 3857
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 46.195762634277344,
+          "count": 367
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 30.686845779418945,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 19.638832092285156,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 8.183502197265625,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 21.876876831054688,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 27.42542266845703,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.09424610435962677,
+          "count": 279
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 33.13995361328125,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 31.220746994018555,
+          "count": 3857
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 53.309940338134766,
+          "count": 367
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 33.13995361328125,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 51.77715301513672,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 14.27656078338623,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.018943786621094,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 24.51581382751465,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.11001460254192352,
+          "count": 279
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 22.6044979095459,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 21.18800163269043,
+          "count": 3857
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 37.49121856689453,
+          "count": 367
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 22.6044979095459,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 20.801254272460938,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 8.135005950927734,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 17.47848129272461,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 26.786874771118164,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.10623446106910706,
+          "count": 279
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot1_004_phonetalk2",
+      "regime": "clean",
+      "case": 11,
+      "identity_sha256": "c533e60e172ca24c4e31845a21af8acbfee1dcf3d104446f74923b353438eae7",
+      "hidden_count": 450,
+      "input_stats": {
+        "available_joint_fraction": 0.8934659090909091,
+        "mean_position_confidence": 0.8912686109542847
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 3.809396743774414,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 3.3007302284240723,
+          "count": 3774
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 8.075413703918457,
+          "count": 450
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 3.809396743774414,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 0.0004138894146308303,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 0.0,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 24.330549240112305,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 31.696962356567383,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.09157142043113708,
+          "count": 342
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 13.350186347961426,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 11.831954002380371,
+          "count": 3774
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 26.083086013793945,
+          "count": 450
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 13.350186347961426,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 24.147201538085938,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 8.371522903442383,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 37.447914123535156,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 30.336185455322266,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.1371053159236908,
+          "count": 342
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 11.895094871520996,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 11.686299324035645,
+          "count": 3774
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 13.64618968963623,
+          "count": 450
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 11.895094871520996,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 23.433197021484375,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 2.6073458194732666,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 31.0596923828125,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 31.522668838500977,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.11826130747795105,
+          "count": 342
+        }
+      }
+    },
+    {
+      "recording": "ParkingLot1_004_phonetalk2",
+      "regime": "noisy",
+      "case": 11,
+      "identity_sha256": "c533e60e172ca24c4e31845a21af8acbfee1dcf3d104446f74923b353438eae7",
+      "hidden_count": 450,
+      "input_stats": {
+        "available_joint_fraction": 0.8934659090909091,
+        "mean_position_confidence": 0.562831461429596
+      },
+      "reference": {
+        "mpjpe_mm": {
+          "value": 30.688386917114258,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 29.02259063720703,
+          "count": 3774
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 44.65885543823242,
+          "count": 450
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 30.688386917114258,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 10.442256927490234,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 11.010226249694824,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 32.75020980834961,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 36.31007766723633,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.09003999084234238,
+          "count": 342
+        }
+      },
+      "control": {
+        "mpjpe_mm": {
+          "value": 48.88378143310547,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 50.3152961730957,
+          "count": 3774
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 36.87812423706055,
+          "count": 450
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 48.88378143310547,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 88.48955535888672,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 24.68349838256836,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 25.845457077026367,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 38.26150894165039,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.19510646164417267,
+          "count": 342
+        }
+      },
+      "adapter8000": {
+        "mpjpe_mm": {
+          "value": 42.44496536254883,
+          "count": 4224
+        },
+        "conditioned_mpjpe_mm": {
+          "value": 40.528175354003906,
+          "count": 3774
+        },
+        "unconditioned_mpjpe_mm": {
+          "value": 58.52043533325195,
+          "count": 450
+        },
+        "candidate_position_mpjpe_mm": {
+          "value": null,
+          "count": 0
+        },
+        "regular_position_mpjpe_mm": {
+          "value": 42.44496536254883,
+          "count": 4224
+        },
+        "root_position_error_mm": {
+          "value": 43.38924789428711,
+          "count": 192
+        },
+        "root_orientation_deg": {
+          "value": 12.586494445800781,
+          "count": 192
+        },
+        "head_orientation_deg": {
+          "value": 32.79523468017578,
+          "count": 192
+        },
+        "candidate_rotation_deg": {
+          "value": null,
+          "count": 0
+        },
+        "regular_rotation_deg": {
+          "value": 36.11862564086914,
+          "count": 4224
+        },
+        "foot_speed_during_GT_stance_m_s": {
+          "value": 0.24181491136550903,
+          "count": 342
+        }
+      }
+    }
+  ],
+  "summary": {
+    "fixed/clean": {
+      "windows": 11,
+      "reference_hidden_mm": 36.22977612235329,
+      "adapter8000_hidden_mm": 40.40484964847565,
+      "worse_than_reference": 8
+    },
+    "fixed/noisy": {
+      "windows": 12,
+      "reference_hidden_mm": 60.0582762559255,
+      "adapter8000_hidden_mm": 115.07780011494954,
+      "worse_than_reference": 9
+    },
+    "rotating/clean": {
+      "windows": 12,
+      "reference_hidden_mm": 56.123108784357704,
+      "adapter8000_hidden_mm": 59.389054934183754,
+      "worse_than_reference": 5
+    },
+    "rotating/noisy": {
+      "windows": 12,
+      "reference_hidden_mm": 89.01408386230469,
+      "adapter8000_hidden_mm": 94.21429268519084,
+      "worse_than_reference": 4
+    }
+  },
+  "yoga_trajectory": [
+    {
+      "step": 0,
+      "regime": "clean",
+      "hidden_mpjpe_mm": 103.47382354736328,
+      "right_knee_local_angle_median_deg": 20.223888397216797,
+      "right_ankle_position_mean_mm": 127.47733306884766,
+      "right_foot_position_mean_mm": 147.3910369873047
+    },
+    {
+      "step": 0,
+      "regime": "noisy",
+      "hidden_mpjpe_mm": 423.0711669921875,
+      "right_knee_local_angle_median_deg": 93.83099365234375,
+      "right_ankle_position_mean_mm": 663.7313842773438,
+      "right_foot_position_mean_mm": 741.25537109375
+    },
+    {
+      "step": 2000,
+      "regime": "clean",
+      "hidden_mpjpe_mm": 447.90118408203125,
+      "right_knee_local_angle_median_deg": 110.6250228881836,
+      "right_ankle_position_mean_mm": 741.976806640625,
+      "right_foot_position_mean_mm": 798.7703247070312
+    },
+    {
+      "step": 2000,
+      "regime": "noisy",
+      "hidden_mpjpe_mm": 587.1498413085938,
+      "right_knee_local_angle_median_deg": 154.45745849609375,
+      "right_ankle_position_mean_mm": 930.8656616210938,
+      "right_foot_position_mean_mm": 993.6658325195312
+    },
+    {
+      "step": 4000,
+      "regime": "clean",
+      "hidden_mpjpe_mm": 74.78843688964844,
+      "right_knee_local_angle_median_deg": 5.351437568664551,
+      "right_ankle_position_mean_mm": 73.37743377685547,
+      "right_foot_position_mean_mm": 84.92620086669922
+    },
+    {
+      "step": 4000,
+      "regime": "noisy",
+      "hidden_mpjpe_mm": 582.17822265625,
+      "right_knee_local_angle_median_deg": 154.45077514648438,
+      "right_ankle_position_mean_mm": 929.9378051757812,
+      "right_foot_position_mean_mm": 1004.5529174804688
+    },
+    {
+      "step": 6000,
+      "regime": "clean",
+      "hidden_mpjpe_mm": 75.3204345703125,
+      "right_knee_local_angle_median_deg": 6.265775680541992,
+      "right_ankle_position_mean_mm": 71.83720397949219,
+      "right_foot_position_mean_mm": 79.51483917236328
+    },
+    {
+      "step": 6000,
+      "regime": "noisy",
+      "hidden_mpjpe_mm": 591.4718017578125,
+      "right_knee_local_angle_median_deg": 154.7061004638672,
+      "right_ankle_position_mean_mm": 938.7444458007812,
+      "right_foot_position_mean_mm": 1008.14794921875
+    },
+    {
+      "step": 8000,
+      "regime": "clean",
+      "hidden_mpjpe_mm": 88.86265563964844,
+      "right_knee_local_angle_median_deg": 7.897116661071777,
+      "right_ankle_position_mean_mm": 85.9720230102539,
+      "right_foot_position_mean_mm": 92.83028411865234
+    },
+    {
+      "step": 8000,
+      "regime": "noisy",
+      "hidden_mpjpe_mm": 594.562744140625,
+      "right_knee_local_angle_median_deg": 155.97589111328125,
+      "right_ankle_position_mean_mm": 941.1882934570312,
+      "right_foot_position_mean_mm": 1012.6133422851562
+    }
+  ],
+  "confirmed_findings": [
+    "All 394 eligible RICH TRAIN windows have been covered repeatedly; natural sampling share alone does not establish absent coverage.",
+    "RICH noisy observed-joint error improves while hidden-joint error can regress severely.",
+    "Fixed panel Pavallion_006_yoga1 noisy is a major outlier but other fixed cases also regress.",
+    "This case has 192/192 missing right ankle and right foot position observations, with visible right knee position.",
+    "Local right-knee rotation has no evidence; reference initializes identity with .05 rotation confidence.",
+    "IK ancestry strength for right-knee rotation is exactly zero, so observation IK cannot directly change that local rotation.",
+    "Source-derived GT right-knee local angle median is8.2deg, max30.3deg; 8k noisy prediction median156deg, clean7.9deg.",
+    "Saved reference CPU recomputation matches within5.1e-6 feature units. Root SVD second singular value stays above.00179, no degenerate fit observed.",
+    "Clean/noisy use the same DDIM seed. Extra noisy gap is right elbow frames18..35; right-leg masks unchanged."
+  ],
+  "limits": [
+    "No proof yet that global scene/feedback versus denoiser itself causes the knee flip; saved arrays do not retain internal DDIM intermediates.",
+    "No cause is established by sample-count statistics alone.",
+    "No full raw-data alignment proof; this audit checks the saved RICH validation paths and reference construction for the identified failure."
+  ],
+  "source_paths": [
+    "native30_input_noise.py:apply_input_noise",
+    "native30_validation.py:validate",
+    "ops/reference_temporal.py:rotation_evidence and reference_from_observations_temporal",
+    "native30_refinement.py:reference_from_observations,confidence_anchor,_core_pass,sample_refinement",
+    "native30_observation_ik.py:position_proximal",
+    "native30_model.py:forward",
+    "native30_losses.py:base_losses,objective"
+  ],
+  "source_sha256": {
+    "experiments/offline_camera_retrain_v1/native30_input_noise.py": "d488fbfeb9d12463fa4632226352a976474f92e69185af6f05bba55897d707bd",
+    "experiments/offline_camera_retrain_v1/native30_validation.py": "e54293aa45b162ed999ba53f361b0d824b1cb18f19cee49f3e104cc7b04cf431",
+    "experiments/offline_camera_retrain_v1/ops/reference_temporal.py": "7f43eb8d9dfcfdcf3dd9060fded13b3cf1112995151f6474939da6af52fae1e7",
+    "experiments/offline_camera_retrain_v1/native30_refinement.py": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6",
+    "experiments/offline_camera_retrain_v1/native30_observation_ik.py": "468d525fbeba5e29a6a9b2c965f2447b74def1aa0a68447f6743c2fc29b1274f",
+    "experiments/offline_camera_retrain_v1/native30_model.py": "8859036ffa34ec07df79cb795ac3f43f3277e411c8ae02e0eabfc58451fc5854",
+    "experiments/offline_camera_retrain_v1/native30_losses.py": "88621f45a809d756cc7af01dd8559c8f57d9522b2d2440a3b1fe186b4a4f09ac",
+    "experiments/offline_camera_retrain_v1/ops/adapter_model.py": "444c737cfcbf6f847ac749982b1db03a7f92b9bfa2671006dc7c021669a5de04",
+    "experiments/offline_camera_retrain_v1/ops/exo_longrun.py": "1e5b7f6303c517df5080c8d0473e777df1892764123091d4b38f3c451b7d3dfa",
+    "experiments/offline_camera_retrain_v1/ops/exo_longrun_panel.py": "62557d93b6943f903cf9d1514df43368ec9bc2f88348bdad31ab85976c0a2e73",
+    "experiments/offline_camera_retrain_v1/ops/window_sampling.py": "fc76d6420167ecb675242f30bf4bf9b084c25490f8645d53d578180fb37cdd1e",
+    "experiments/offline_camera_retrain_v1/native30_observations.py": "a400b12f5bb8e52a4334f230dab2f9fdd1baa5f19141c07f1eb4d96222d589e5",
+    "experiments/offline_camera_retrain_v1/supervision.py": "dff0548ef3f4b8eb44198bde12367e746bd5a8646238bcbcf1666f67b2533e58"
+  },
+  "panel_identity": {
+    "prepared_panels_file_sha256": "e9d31608fff46b799edf78ca42da32d1dc3f00b8888e3368fb3d144186b956fa",
+    "registered_protocol": "natural-window-fixed100-rotating100-exo-val-v1",
+    "registered_seed": 2026102051,
+    "registered_panel_sha256": {
+      "fixed_exo": "298b35dae6ef5be6fe58e48cc27fa128e4a0a5f128da2b25e30b3b7606304a41",
+      "ego_retention": "c0c23724de18e044e447f292e679e9bf188c8228958089018962303804d6d2ef",
+      "regression_exo": "e2498669c80ab802f98bb17e65d6c7965566aef3722d679418677d09b36c0fe8",
+      "rotating_exo": {
+        "2000": "2f0458126a1159c34bf005023dcc77208ec82b5c4644fbf73535d11364711028",
+        "4000": "0163f486014de37d0e42b9ce9bb05ea92ffb9278c9c85aeadfa639ca63742bd4",
+        "6000": "5f21d0e130d86137c4e5c186be35bfee0088963d10babb2e617228909dbfcb88",
+        "8000": "e5368710c2815a16ebcf46f806e0e02d5e03220d84b1fbb54c6d61872404e914",
+        "10000": "5fd2badeb54896e78ff1f4220bb222a779e95fcec81be264f5fd6b86dd05772e"
+      }
+    },
+    "population_sha256": "89ae6c66654f9d5fad4d12537b9b92690bbe25cdf06062c34941506be37daa10",
+    "fixed_exo_identities": [
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 16,
+        "start": 256,
+        "joints": null,
+        "sequence_id": "ParkingLot2_014_eating2",
+        "source_first": 367,
+        "dataset": "rich",
+        "recording": "ParkingLot2_014_eating2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_014_eating2",
+        "case_seed": 3876338614,
+        "case": 0,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "cc8a5f5c64e6d523c37c78b4fdf91103613a9a04a481b3da49ff4be42079cb99"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 23,
+        "start": 640,
+        "joints": null,
+        "sequence_id": "Pavallion_006_yoga1",
+        "source_first": 645,
+        "dataset": "rich",
+        "recording": "Pavallion_006_yoga1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_006_yoga1",
+        "case_seed": 1742430047,
+        "case": 1,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "80d3c609913f015b56356e410b326912c4442284f9e0ec3840f85a275d792b0d"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 24,
+        "start": 192,
+        "joints": null,
+        "sequence_id": "Pavallion_013_sidebalancerun",
+        "source_first": 197,
+        "dataset": "rich",
+        "recording": "Pavallion_013_sidebalancerun",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_013_sidebalancerun",
+        "case_seed": 2821319011,
+        "case": 2,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "e536a7deabf6cc09f03b0d33566467289b42b54d38c0e32d4f21751233313ecc"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 25,
+        "start": 64,
+        "joints": null,
+        "sequence_id": "Pavallion_018_sidebalancerun",
+        "source_first": 69,
+        "dataset": "rich",
+        "recording": "Pavallion_018_sidebalancerun",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_018_sidebalancerun",
+        "case_seed": 3602706727,
+        "case": 3,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "6362c298c4e31cc38901580052dfc0df84f9f41f9eb2c6ae79082323374caf32"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 11,
+        "start": 0,
+        "joints": null,
+        "sequence_id": "ParkingLot1_005_overfence2",
+        "source_first": 5,
+        "dataset": "rich",
+        "recording": "ParkingLot1_005_overfence2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_overfence2",
+        "case_seed": 2801222878,
+        "case": 4,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "23850f9420baaf4b0bdd942d576750d3903740230f1b455e36dccb494da58ba3"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 5,
+        "start": 0,
+        "joints": null,
+        "sequence_id": "ParkingLot1_004_eating2",
+        "source_first": 5,
+        "dataset": "rich",
+        "recording": "ParkingLot1_004_eating2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_eating2",
+        "case_seed": 1845848488,
+        "case": 5,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "85495c7023e217ee34e557349482696b020d5e6362a3150e7cd7caa32057903b"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 1,
+        "start": 768,
+        "joints": null,
+        "sequence_id": "LectureHall_018_wipingtable1",
+        "source_first": 773,
+        "dataset": "rich",
+        "recording": "LectureHall_018_wipingtable1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_018_wipingtable1",
+        "case_seed": 1175857928,
+        "case": 6,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "a0a6455c2161e8b195af3f187a67b22db3824eec25deb771cef901cf1c5eb4ff"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 15,
+        "start": 64,
+        "joints": null,
+        "sequence_id": "ParkingLot2_008_eating2",
+        "source_first": 224,
+        "dataset": "rich",
+        "recording": "ParkingLot2_008_eating2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_008_eating2",
+        "case_seed": 519993341,
+        "case": 7,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "3dd16c643b4c071a1341c936ba6fa4249990dd8a681d20fcee0c3a7da2aa43e6"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 22,
+        "start": 128,
+        "joints": null,
+        "sequence_id": "Pavallion_003_yoga1",
+        "source_first": 133,
+        "dataset": "rich",
+        "recording": "Pavallion_003_yoga1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_003_yoga1",
+        "case_seed": 3535496280,
+        "case": 8,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "e9f659d7fc105f715729d8e296d366129e15f878dfbea63988db7a2407d6d5d7"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 12,
+        "start": 64,
+        "joints": null,
+        "sequence_id": "ParkingLot1_005_pushup1",
+        "source_first": 69,
+        "dataset": "rich",
+        "recording": "ParkingLot1_005_pushup1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_pushup1",
+        "case_seed": 198217277,
+        "case": 9,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "fa3612f9aa0413e1df8c9575f575bdba7d3fe69b0c12bec00336bc6585f35f9a"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 18,
+        "start": 512,
+        "joints": null,
+        "sequence_id": "ParkingLot2_016_phonetalk5",
+        "source_first": 682,
+        "dataset": "rich",
+        "recording": "ParkingLot2_016_phonetalk5",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_016_phonetalk5",
+        "case_seed": 3594313127,
+        "case": 10,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "691f0be5cb4632420234f462f555d05f50c4c6b4addd981d7cb5bc442799874b"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 6,
+        "start": 128,
+        "joints": null,
+        "sequence_id": "ParkingLot1_004_phonetalk2",
+        "source_first": 133,
+        "dataset": "rich",
+        "recording": "ParkingLot1_004_phonetalk2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_phonetalk2",
+        "case_seed": 1485909068,
+        "case": 11,
+        "panel": "fixed",
+        "monitor_round": 0,
+        "identity_sha256": "c533e60e172ca24c4e31845a21af8acbfee1dcf3d104446f74923b353438eae7"
+      }
+    ],
+    "rotating_8000_rich_identities": [
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 23,
+        "start": 448,
+        "joints": null,
+        "sequence_id": "Pavallion_006_yoga1",
+        "source_first": 453,
+        "dataset": "rich",
+        "recording": "Pavallion_006_yoga1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_006_yoga1",
+        "case_seed": 3774643581,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "7fdd9bdcfb2e3032d66dbcbe22c255d1979a6d5b62409aadfb94301abe53002f"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 12,
+        "start": 256,
+        "joints": null,
+        "sequence_id": "ParkingLot1_005_pushup1",
+        "source_first": 261,
+        "dataset": "rich",
+        "recording": "ParkingLot1_005_pushup1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_005_pushup1",
+        "case_seed": 1165477882,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "b096afcbfe4bf44e01bd254b514f6a5bbbb1513a6d13c796e141b7709ec783e7"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 16,
+        "start": 576,
+        "joints": null,
+        "sequence_id": "ParkingLot2_014_eating2",
+        "source_first": 687,
+        "dataset": "rich",
+        "recording": "ParkingLot2_014_eating2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_014_eating2",
+        "case_seed": 497363649,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "7d273d18c3768fb7ae1a9ed2f70560cd239f26afa8e878923a4e325edab3c0c8"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 17,
+        "start": 192,
+        "joints": null,
+        "sequence_id": "ParkingLot2_014_overfence1",
+        "source_first": 287,
+        "dataset": "rich",
+        "recording": "ParkingLot2_014_overfence1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_014_overfence1",
+        "case_seed": 4119714759,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "a072738ca07e64c5daa9c6318c21572ba114a827bc253f1fa616852cc5565595"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 26,
+        "start": 512,
+        "joints": null,
+        "sequence_id": "Pavallion_018_yoga1",
+        "source_first": 517,
+        "dataset": "rich",
+        "recording": "Pavallion_018_yoga1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_018_yoga1",
+        "case_seed": 3831143075,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "c469e18f31370ee7380a7fbf99666e3b4a017f3a4cdf890d79846514cd5966a5"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 2,
+        "start": 704,
+        "joints": null,
+        "sequence_id": "LectureHall_020_wipingchairs1",
+        "source_first": 709,
+        "dataset": "rich",
+        "recording": "LectureHall_020_wipingchairs1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_020_wipingchairs1",
+        "case_seed": 2751936227,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "c4938de90dd8d866d5aa40665aa9200d5e4a929ec6179c979e6ed01424eca4d7"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 19,
+        "start": 448,
+        "joints": null,
+        "sequence_id": "Pavallion_000_yoga1",
+        "source_first": 453,
+        "dataset": "rich",
+        "recording": "Pavallion_000_yoga1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_000_yoga1",
+        "case_seed": 1368497619,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "a12fcfff8ffd9ade7cf38f43fca7515c87432fb42921165749ec88b382b69d81"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 24,
+        "start": 576,
+        "joints": null,
+        "sequence_id": "Pavallion_013_sidebalancerun",
+        "source_first": 581,
+        "dataset": "rich",
+        "recording": "Pavallion_013_sidebalancerun",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/Pavallion_013_sidebalancerun",
+        "case_seed": 1330426254,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "589dab06b94fd58bb4754f63bbed21e2924c2d8e07163caa1c14798e757fc311"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 3,
+        "start": 0,
+        "joints": null,
+        "sequence_id": "ParkingLot1_002_burpee1",
+        "source_first": 5,
+        "dataset": "rich",
+        "recording": "ParkingLot1_002_burpee1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_002_burpee1",
+        "case_seed": 2059984332,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "216f0c3b891e9f0db2023ba660100a5f891692c6ce5c345b61554e1dc3d6695c"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 0,
+        "start": 0,
+        "joints": null,
+        "sequence_id": "LectureHall_003_wipingchairs1",
+        "source_first": 5,
+        "dataset": "rich",
+        "recording": "LectureHall_003_wipingchairs1",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_003_wipingchairs1",
+        "case_seed": 1467732976,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "5ff427cef357c51f2b370a5f57db6928018c669befc804a1a141276253b2ce33"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 9,
+        "start": 0,
+        "joints": null,
+        "sequence_id": "ParkingLot1_004_takingphotos2",
+        "source_first": 5,
+        "dataset": "rich",
+        "recording": "ParkingLot1_004_takingphotos2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_takingphotos2",
+        "case_seed": 2316586630,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "35ec24dd477001abcc0ce9cd339aee644dc43697d0237a480965fb1fd6c25312"
+      },
+      {
+        "group": "rich",
+        "mode": "exo",
+        "member": 8,
+        "start": 192,
+        "joints": null,
+        "sequence_id": "ParkingLot1_004_stretching2",
+        "source_first": 197,
+        "dataset": "rich",
+        "recording": "ParkingLot1_004_stretching2",
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot1_004_stretching2",
+        "case_seed": 1628058687,
+        "panel": "rotating",
+        "monitor_round": 4,
+        "identity_sha256": "9aff9bf64c36feb87d8528661c6dc66175f4db26299156999326244a1cab1911"
+      }
+    ],
+    "fixed_plan_sha256": "b43da90500bdf5207431cd86c8d633ac38cdb0dad25567aedaa5e24b318b3ebe",
+    "rotating_plan_sha256": "b4bfd24d8a718af41558493cbcac059c49e566bdcb05f1c30e6cc20b62a64b65"
+  },
+  "yoga_exclusions": {
+    "CPU_reference_maximum_feature_error": {
+      "clean": 5.0067901611328125e-06,
+      "noisy": 2.086162567138672e-06
+    },
+    "root_SVD_second_singular_value_minimum": {
+      "clean": 0.00179906,
+      "noisy": 0.0018772
+    },
+    "DDIM_case_seed": 1742430047,
+    "same_DDIM_seed_clean_noisy": true,
+    "right_ankle_available_frames": 0,
+    "right_foot_available_frames": 0,
+    "right_knee_position_available_frames": 192,
+    "right_knee_rotation_evidence_frames": 0,
+    "right_knee_reference_rotation_confidence": 0.05,
+    "right_knee_IK_strength_max": 0.0,
+    "noise_extra_gap": {
+      "joint": 19,
+      "name": "right_elbow",
+      "frames_inclusive": [
+        18,
+        35
+      ]
+    },
+    "GT_right_knee_local_angle_median_deg": 8.2,
+    "GT_right_knee_local_angle_maximum_deg": 30.3,
+    "right_knee_clean8k_local_angle_median_deg": 7.9,
+    "right_knee_noisy8k_local_angle_median_deg": 156.0,
+    "right_knee_noisy8k_local_angle_minmax_deg": [
+      147.2,
+      161.2
+    ],
+    "noisy_observed_torso_noise_norm_p0p50p100_m": [
+      0.01653719,
+      0.03667311,
+      0.0624381
+    ],
+    "noisy_torso_anchor_effective_gain_p0p50p100": [
+      0.16092396,
+      0.29541099,
+      0.49514319
+    ]
+  },
+  "future_experiments_not_executed": [
+    {
+      "order": 1,
+      "scope": "CPU/code and single-window inference invariants",
+      "actions": [
+        "Verify exact identity/reference bypass retains original joints and bones.",
+        "Confirm zero-residual denoising x0/reference convention and saved input-mask handling.",
+        "Record same-noise-seed DDIM x0 intermediates; measure right-knee local rotations before scene feedback and before/after observation IK."
+      ]
+    },
+    {
+      "order": 2,
+      "scope": "Same 8k checkpoint, same selected VAL windows and seed; no optimization",
+      "actions": [
+        "Scene ON/OFF on the failed yoga window and all12 RICH fixed windows.",
+        "Confidence/uncertainty perturbation sweep with identical input positions/masks to isolate confidence-driven behavior.",
+        "Diagnostic bound on local SO3 residual relative to reference, checking whether error decreases without sacrificing visible joints; no blanket upright constraint."
+      ]
+    },
+    {
+      "order": 3,
+      "scope": "Only after causal evidence; small registered trial before new longrun",
+      "actions": [
+        "Low-noise x0 fidelity and GT-residual teacher-forced forward at several timesteps; compare DDIM rollout.",
+        "If required, add identity/keep-reference training cases and confidence-aware correction regularization or gate; verify actual hidden improvements, not just unchanged input.",
+        "If a small-window fitting probe cannot learn the labelled right knee with fixed hidden masks, inspect gradient reach and LoRA capacity before broad reweighting."
+      ]
+    }
+  ]
+}

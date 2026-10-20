@@ -1,0 +1,163 @@
+{
+  "protocol": "grail-source-template-reaudit-v1",
+  "reviewed_at": "2026-10-20T16:14:17.111574+08:00",
+  "scope": "Read-only CPU/source audit. No model experiment, source change, job restart or per-motion fitting.",
+  "question": "Does recon inherently require standard adult SMPL-X, making G1 template necessarily wrong?",
+  "answer": "No. Official reconstruction config for terrain and sitting explicitly selects g1_smplx. G1-proportioned SMPL-X is an upstream reconstruction body template, distinct from G1 robot trajectories.",
+  "direct_evidence": [
+    "Official configs/recon_4dhoi/loco_smplx.yaml human_model.body_model=g1_smplx; file describes terrain and sitting reconstruction.",
+    "Official grail/models/g1_smplx_human.py generates a humanoid SMPL-X mesh using a baked G1-proportioned v_template, zero betas, unchanged recon trans, and no post-hoc human_data.scale.",
+    "Official postprocessing/postprocess.py uses the configured human model to put first-frame minimum body vertex on z=0, then offsets human/object; recon files do not save a per-record template tag.",
+    "Current grail_source.body_model_factory mirrors the official baked v_template/shapedirs=0/posedirs*reference_scale model. Current source path uses recon/*.pkl, not robot/*.pkl."
+  ],
+  "independent_limitations": [
+    "Official main is not proof of exact pipeline revision used for every released file. HF pinned data revision was last modified 2026-09-06; some stair records retain human scale .7633275 and no predicted_body_height.",
+    "Existing TEMPLATE_AUDIT compares two model hypotheses by initial body minimum z; this supports but does not prove per-record template identity or body-terrain alignment.",
+    "Mesh/FK consistency proves internal export agreement, not source reconstruction accuracy.",
+    "Original synthetic RGB video is not the released 3D reconstruction or a certified 3D ground truth. Need compare the exact same sequence/frame and measure mesh/terrain contacts.",
+    "Current trainable gate checks body template/native assets/static object/negative terrain minimum but does not check full-sequence foot support or body-terrain penetration."
+  ],
+  "raw_example": {
+    "sequence_id": "terrain_stairs__stairs_2064__0001",
+    "category": "stair_p2",
+    "poses_shape": [
+      241,
+      165
+    ],
+    "source_human_scale": 0.7633275389671326,
+    "source_model": "smplx",
+    "per_record_g1_template_tag": false,
+    "source_betas": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "source_rgb_frame_for_output_216": 172.8,
+    "source_object_path": "../results_collection/results_synstairs_v2/generation/mesh/SynStairsV2/stairs_072/model.obj"
+  },
+  "recommendation": "No confirmed template/scale bug or independent source evidence requires abandoning the current preprocessing. Resume the existing immutable export if the paired scene-geometry review confirms no coordinate error. Treat outputs as reconstruction-derived candidate data, not physics-validated GT. Require whole-sequence foot/terrain support and penetration QC before adding GRAIL to training. Do not switch to standard SMPL-X or add per-frame floor snapping solely to fit a screenshot.",
+  "official_source_references": [
+    {
+      "url": "https://raw.githubusercontent.com/NVlabs/GRAIL/main/configs/recon_4dhoi/loco_smplx.yaml",
+      "local_readonly_cache": "/tmp/grail_source_audit/configs__recon_4dhoi__loco_smplx.yaml",
+      "sha256": "d8b15751022062a21362c207a91fbb081dea46941dfcc83d3325f246af53b886",
+      "line_locations": [
+        1,
+        10,
+        27,
+        34
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/NVlabs/GRAIL/main/grail/models/g1_smplx_human.py",
+      "local_readonly_cache": "/tmp/grail_source_audit/grail__models__g1_smplx_human.py",
+      "sha256": "5b7facebc29beaaf7d1d8e5ec34b2aca7128270c5be0151c88a6cd32a03b8544",
+      "line_locations": [
+        1,
+        7,
+        73,
+        85,
+        215,
+        227,
+        230,
+        257
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/NVlabs/GRAIL/main/grail/postprocessing/postprocess.py",
+      "local_readonly_cache": "/tmp/grail_source_audit/grail__postprocessing__postprocess.py",
+      "sha256": "6ff745c8a76add0988dea243e1ed71c2846ee367f7611abc52039d44bc572e66",
+      "line_locations": [
+        66,
+        81,
+        186,
+        207
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/NVlabs/GRAIL/main/grail/models/smplx_model.py",
+      "local_readonly_cache": "/tmp/grail_source_audit/grail__models__smplx_model.py",
+      "sha256": "0c3e0f07f191a80a80c4227b903b1343def7f6b2ad3439de640003994fb3d664",
+      "line_locations": [
+        171,
+        190
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/NVlabs/GRAIL/main/grail/retargeting/retarget.py",
+      "local_readonly_cache": "/tmp/grail_source_audit/grail__retargeting__retarget.py",
+      "sha256": "f23ab97bfe022e2e329d5561979f1e16b6a6c16cf9b51c9432efb8ee0adfbec9",
+      "line_locations": [
+        441,
+        486
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/NVlabs/GRAIL/main/grail/pipelines/recon_4dhoi.py",
+      "sha256": "8a9229a99b703369ab69e1ede57beea61d2702b0916fb0c26ac7f58d3c92dc42",
+      "local_readonly_cache": "/tmp/grail_source_audit/grail__pipelines__recon_4dhoi.py",
+      "evidence": "step5_filter_hoi_result: post_process_hoi_result runs before cp original src_mesh/* to mesh_dir; copy can overwrite scaled model.obj"
+    }
+  ],
+  "chair_scale_hypothesis_review": {
+    "initial_hypothesis": "post_process exports obj_scale-baked model.obj, retarget converts it to USD, so multiplying released USD by obj_scale again might double scale.",
+    "status": "Not established; paired numeric evidence supports current scale=.8 policy.",
+    "pipeline_counterevidence": "recon_4dhoi.step5 calls post_process_hoi_result and then copies original src_mesh/* into mesh_dir, overwriting the scaled model.obj. Therefore postprocess output alone is not proof of final USD bake.",
+    "example": "sitting__acadian_rustic_wooden_dining_chair_distressed_white__000",
+    "raw_obj_scale": [
+      0.8,
+      0.8,
+      0.8
+    ],
+    "released_usd_local_bbox": [
+      [
+        -0.474481,
+        -0.511412,
+        -0.278764
+      ],
+      [
+        0.472449,
+        0.508588,
+        0.275103
+      ]
+    ],
+    "world_bbox_scale1": [
+      [
+        -0.362364798784256,
+        -0.5184852480888367,
+        -0.10228240489959717
+      ],
+      [
+        0.3606055974960327,
+        0.520979106426239,
+        0.9177176356315613
+      ]
+    ],
+    "world_bbox_scale_point8": [
+      [
+        -0.2898918390274048,
+        -0.41478821635246277,
+        0.0
+      ],
+      [
+        0.28848448395729065,
+        0.41678330302238464,
+        0.8160000443458557
+      ]
+    ],
+    "conclusion": "Do not remove obj_scale based on the postprocess comment. At this paired example, applying the raw .8 scale naturally restores the asset ground datum; removing it introduces 10.2cm negative ground extent.",
+    "limitation": "No original source OBJ independent vertex checksum is available in current local download, so this is code-chain plus geometry evidence, not universal byte-level proof."
+  },
+  "confirmed_implementation_bug": false,
+  "current_job_blocking_evidence": "None confirmed in this source/template/scale audit; paired scene geometry is audited separately.",
+  "revised_claim": "The source-template contract is strongly supported by official reconstruction code and numeric examples, but per-record release provenance and whole-sequence physical quality remain unverified."
+}

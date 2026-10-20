@@ -1,0 +1,383 @@
+{
+  "schema": "grail-independent-scene-geometry-audit-v1",
+  "created_at": "2026-10-20T16:29:12.335347+08:00",
+  "CUDA_used": false,
+  "source_or_training_files_modified": false,
+  "sequence_id": "terrain_stairs__stairs_2064__0001",
+  "scope": "Specified stairs full301frames and one sitting asset; not full17585dataset validation",
+  "source_files": {
+    "recon": {
+      "path": "/mnt/c/Datasets/GRAIL/data/stair_p2/recon/terrain_stairs__stairs_2064__0001.pkl",
+      "sha256": "8bd454474b3be8a725585fabea0e369dbb6ad7ada8b5823858c9c3cdae66f448"
+    },
+    "object_usd": {
+      "path": "/mnt/c/Datasets/GRAIL/data/stair_p2/object_usd/terrain_stairs__stairs_2064__0001.usd",
+      "sha256": "1b0d423ac7715a523a44482a0c453355e3c257df02e4831a6f0d5f414ad1a351"
+    },
+    "meta": {
+      "path": "/mnt/c/Datasets/GRAIL/data/stair_p2/meta/terrain_stairs__stairs_2064__0001.pkl",
+      "sha256": "7d88be608419afd2be127e4ac4c5a8aa1b4863fdf84e86c5ec93356881ee861d"
+    },
+    "body_template_g1_smplx_tpose.obj": {
+      "path": "/home/wenxin/projects/SceneMI/body_models/grail_g1_smplx/g1_smplx_tpose.obj",
+      "sha256": "e410329e7841b2c82099728a96d52de30c25fd40e0a36bba1c127adb903815af"
+    },
+    "body_template_g1_smplx_param.npz": {
+      "path": "/home/wenxin/projects/SceneMI/body_models/grail_g1_smplx/g1_smplx_param.npz",
+      "sha256": "b02c93ad681cb54bcf3b8ba26e64e6661de28059baf04bbdd78f9d46d6df46eb"
+    }
+  },
+  "derived_files": {
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/grail_data_v1/preview_v2/cache/d0e385b5a48ec3b414d8b2315ef45a78a0118861d97b5db68bf1cb442122734f.npz": "36bc81f591234943a1ba35ef03d155ee41f5ca6a8c41f01120d19378df3e74c1",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/grail_data_v1/pilot_v2/train/terrain_stairs__stairs_2064__0001/metadata.json": "edcdae1bbe83b43b0b1849fe6f094d8bca2e77642998cf422142079d7a040740",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/grail_data_v1/pilot_v2/train/terrain_stairs__stairs_2064__0001/scene_object_vertices.npy": "d362512222d13c82d66b9c5acce0ca03c11af671c6f54d32c171638660ac0ec4",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/grail_data_v1/pilot_v2/train/terrain_stairs__stairs_2064__0001/scene_object_faces.npy": "dd6bbf61385b4c4b6376a13f8fa2da54dc53d8bafde09559a4f2ddbb83ecdf9d",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/grail_data_v1/pilot_v2/train/terrain_stairs__stairs_2064__0001/scene_ground_vertices.npy": "07de41487816c8745fa2bd8c6ef91fed73e16a1a9415e9739bc2846c21227b4d",
+    "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/grail_data_v1/pilot_v2/train/terrain_stairs__stairs_2064__0001/scene_ground_faces.npy": "5664930b0bff7574effe640210c5bf9efe2a676d1c7f100fb3218e8791b58ce4"
+  },
+  "body_models": {
+    "standard_neutral_npz": {
+      "path": "/home/wenxin/projects/SceneMI/body_models/smplx/SMPLX_NEUTRAL.npz",
+      "sha256": "376021446ddc86e99acacd795182bbef903e61d33b76b9d8b359c2b0865bd992"
+    },
+    "g1_template": {
+      "model": "smplx",
+      "gender": "neutral",
+      "betas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": 1.0,
+      "template": "grail_g1_baked_v1",
+      "template_sha256": {
+        "g1_smplx_tpose.obj": "e410329e7841b2c82099728a96d52de30c25fd40e0a36bba1c127adb903815af",
+        "g1_smplx_param.npz": "b02c93ad681cb54bcf3b8ba26e64e6661de28059baf04bbdd78f9d46d6df46eb"
+      }
+    }
+  },
+  "stairs_scene": {
+    "usd_prim_transforms": {
+      "meters_per_unit": 1.0,
+      "up_axis": "Z",
+      "prims": [
+        {
+          "path": "/model/geometry/mesh",
+          "vertices": 120,
+          "triangles": 60,
+          "local_to_stage": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "axis_conversion": "prim transforms only; no automatic upAxis rotation"
+    },
+    "raw_to_export_max_abs_vertex_difference_m": 0.0,
+    "export_to_viewer_max_abs_vertex_difference_m": 0.0,
+    "visible_points_to_triangle_distance": {
+      "ego": {
+        "points": 29725,
+        "median_m": 2.731428025981586e-07,
+        "p95_m": 3.0994415283203125e-06,
+        "max_m": 3.221847509848885e-05
+      },
+      "exo": {
+        "points": 11170,
+        "median_m": 1.342260702585918e-06,
+        "p95_m": 3.912171905540163e-06,
+        "max_m": 3.606502286856994e-05
+      }
+    }
+  },
+  "contact_method": {
+    "direction": "vertical downward ray from each foot vertex +10m to highest scene triangle, signed foot_y-support_y",
+    "foot_regions": "SMPL-X LBS mass sum on joints[7,10] or[8,11]>.65,240left and241right vertices",
+    "summary_per_foot_per_frame": "Minimum signed gap across each foot region; swing foot intentionally excluded for contact comparison",
+    "contact_filter": "Source foot_contact_probs linearly resampled at q=.8*output_frame; left[:2]/right[2:] both channels>.8. Official order [L_Ankle,L_foot,R_Ankle,R_foot] confirmed in pose_est/human_pose.py.",
+    "limitations": [
+      "Closest vertical gap can include an edge/toe and is not full sole contact area",
+      "Signed height is vertical support gap, not watertight signed-volume penetration",
+      "No explicit original source-video frame comparison; videos not downloaded locally",
+      "Only one stairs sequence and one chair asset inspected",
+      "Low source contact error does not prove all template/source semantics"
+    ],
+    "official_contact_channel_source": "https://raw.githubusercontent.com/NVlabs/GRAIL/main/grail/pose_est/human_pose.py"
+  },
+  "stairs_frame216": {
+    "output_fps": 30,
+    "source_fps_override": 24,
+    "source_fractional_frame": 172.8,
+    "raw_contact_probabilities_interpolated": [
+      0.96049631,
+      0.98722506,
+      3.4736863e-10,
+      9.2985841e-10
+    ],
+    "left_foot_minimum_clearance_m": 0.008263587951660156,
+    "right_foot_minimum_clearance_m": 0.2317514419555664,
+    "left_foot_joint10_position_m": [
+      -0.24887818098068237,
+      0.5285348892211914,
+      1.2575403451919556
+    ],
+    "right_foot_joint11_position_m": [
+      -0.41823816299438477,
+      0.567343533039093,
+      0.8969429731369019
+    ]
+  },
+  "stairs_all_frames": {
+    "frames": 301,
+    "per_frame_minimum_of_two_feet_quantiles_m": {
+      "min": -0.023778915405273438,
+      "p05": -0.019845008850097656,
+      "p25": -0.007208824157714844,
+      "median": 0.00494384765625,
+      "p75": 0.018550872802734375,
+      "p95": 0.029725074768066406,
+      "max": 0.04692554473876953
+    },
+    "frames_more_than2cm_penetration": 14,
+    "frames_more_than5cm_hover": 0
+  },
+  "stairs_two_body_template_contact_comparison": {
+    "g1": {
+      "left": {
+        "contact_frames": 150,
+        "median_clearance_m": 0.014167308807373047,
+        "mean_abs_clearance_m": 0.01590944267809391,
+        "quantile_m": [
+          -0.012876510620117188,
+          -0.010805797576904298,
+          0.014167308807373047,
+          0.034118461608886694,
+          0.049419403076171875
+        ],
+        "penetration_over2cm_fraction": 0.0,
+        "hover_over5cm_fraction": 0.0
+      },
+      "right": {
+        "contact_frames": 143,
+        "median_clearance_m": -6.771087646484375e-05,
+        "mean_abs_clearance_m": 0.0112523902207613,
+        "quantile_m": [
+          -0.023778915405273438,
+          -0.022110366821289064,
+          -6.771087646484375e-05,
+          0.026108932495117202,
+          0.044632911682128906
+        ],
+        "penetration_over2cm_fraction": 0.0979020979020979,
+        "hover_over5cm_fraction": 0.0
+      },
+      "combined": {
+        "contact_samples": 293,
+        "median_clearance_m": 0.005139350891113281,
+        "mean_abs_clearance_m": 0.013636547140777111,
+        "quantile_m": [
+          -0.023778915405273438,
+          -0.019904136657714844,
+          0.005139350891113281,
+          0.03237533569335935,
+          0.049419403076171875
+        ],
+        "penetration_over2cm_fraction": 0.04778156996587031,
+        "hover_over5cm_fraction": 0.0
+      }
+    },
+    "standard_scaled": {
+      "left": {
+        "contact_frames": 150,
+        "median_clearance_m": 0.053270816802978516,
+        "mean_abs_clearance_m": 0.05098196491599083,
+        "quantile_m": [
+          0.028776168823242188,
+          0.030655717849731444,
+          0.053270816802978516,
+          0.06926784515380859,
+          0.07434940338134766
+        ],
+        "penetration_over2cm_fraction": 0.0,
+        "hover_over5cm_fraction": 0.5866666666666667
+      },
+      "right": {
+        "contact_frames": 143,
+        "median_clearance_m": 0.04786491394042969,
+        "mean_abs_clearance_m": 0.046997155994176865,
+        "quantile_m": [
+          0.02408313751220703,
+          0.025797080993652344,
+          0.04786491394042969,
+          0.07479934692382814,
+          0.09341621398925781
+        ],
+        "penetration_over2cm_fraction": 0.0,
+        "hover_over5cm_fraction": 0.3776223776223776
+      },
+      "combined": {
+        "contact_samples": 293,
+        "median_clearance_m": 0.049202919006347656,
+        "mean_abs_clearance_m": 0.04903716221451759,
+        "quantile_m": [
+          0.02408313751220703,
+          0.027953529357910158,
+          0.049202919006347656,
+          0.06993465423583983,
+          0.09341621398925781
+        ],
+        "penetration_over2cm_fraction": 0.0,
+        "hover_over5cm_fraction": 0.48464163822525597
+      }
+    }
+  },
+  "chair_scale_check": {
+    "sequence_id": "sitting__acadian_rustic_wooden_dining_chair_distressed_white__000",
+    "source_files": {
+      "recon": {
+        "path": "/mnt/c/Datasets/GRAIL/data/sitting/recon/sitting__acadian_rustic_wooden_dining_chair_distressed_white__000.pkl",
+        "sha256": "207a9a116fb0d871b1a8799954f3a90e570f838ace9e1b575f77cc24e7fbce1c"
+      },
+      "meta": {
+        "path": "/mnt/c/Datasets/GRAIL/data/sitting/meta/sitting__acadian_rustic_wooden_dining_chair_distressed_white__000.pkl",
+        "sha256": "7d88be608419afd2be127e4ac4c5a8aa1b4863fdf84e86c5ec93356881ee861d"
+      },
+      "object_usd": {
+        "path": "/mnt/c/Datasets/GRAIL/data/sitting/object_usd/sitting__acadian_rustic_wooden_dining_chair_distressed_white__000.usd",
+        "sha256": "0ffcf639869262b564be781b06b9efc9e8bc92ea16090470a512360ccb0ea278"
+      }
+    },
+    "USD_prim_transforms": {
+      "meters_per_unit": 1.0,
+      "up_axis": "Z",
+      "prims": [
+        {
+          "path": "/model/geometry/mesh",
+          "vertices": 24868,
+          "triangles": 39999,
+          "local_to_stage": [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      ],
+      "axis_conversion": "prim transforms only; no automatic upAxis rotation"
+    },
+    "raw_obj_scale": [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929
+    ],
+    "source_obj_R_first": [
+      [
+        -0.23045122623443604,
+        -8.940696716308594e-08,
+        -0.9730838537216187
+      ],
+      [
+        -0.9730838537216187,
+        5.960464477539063e-08,
+        0.23045125603675842
+      ],
+      [
+        2.9802322387695312e-08,
+        1.0,
+        0.0
+      ]
+    ],
+    "source_obj_t_first": [
+      0.0,
+      0.0,
+      0.40912961959838867
+    ],
+    "world_bounds": {
+      "apply_recon_obj_scale": {
+        "world_min_m": [
+          -0.2898918390274048,
+          0.0,
+          -0.41678330302238464
+        ],
+        "world_max_m": [
+          0.28848448395729065,
+          0.8160000443458557,
+          0.41478821635246277
+        ],
+        "world_dimensions_m": [
+          0.578376293182373,
+          0.8160000443458557,
+          0.8315715193748474
+        ]
+      },
+      "omit_recon_obj_scale": {
+        "world_min_m": [
+          -0.362364798784256,
+          -0.10228240489959717,
+          -0.520979106426239
+        ],
+        "world_max_m": [
+          0.3606055974960327,
+          0.9177176356315613,
+          0.5184852480888367
+        ],
+        "world_dimensions_m": [
+          0.7229703664779663,
+          1.0199999809265137,
+          1.0394643545150757
+        ]
+      }
+    },
+    "interpretation": "Applying recon scale places bottom at y=0 exactly. Omitting scale puts chair bottom10.23cm below plane. Supports unscaled published USD; do not remove obj_scale based only on earlier postprocess export code."
+  },
+  "conclusion": "No scene coordinate mismatch found for audited cases; current G1 has substantially smaller source-contact support gaps than standard SMPL-X with raw uniform scale. G1 source-code provenance must be assessed separately."
+}
