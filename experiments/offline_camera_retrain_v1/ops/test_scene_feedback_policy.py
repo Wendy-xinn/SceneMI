@@ -20,6 +20,7 @@ class _Model(nn.Module):
         self.local_enabled = True
         self._sampling_scene = None
         self.dynamic_condition = nn.Linear(3, 4)
+        self.patch_condition = nn.Linear(3, 4)
         self.summary = torch.randn(1, 8)
         self.patch_tokens = torch.randn(1, 16, 4)
         self.patch_valid = torch.ones(1, 16, dtype=torch.bool)
@@ -39,6 +40,16 @@ class _Model(nn.Module):
 
     def scene_tokens(self, batch):
         return self.summary, self.patch_tokens, self.patch_valid, self.dynamic
+
+    def _core_pass(self, noisy, timestep, batch, scene=None, control_mask=None,
+                   use_scene=True, use_control=True, query_motion=None):
+        if not use_scene:
+            return noisy
+        dynamic = self.dynamic_condition(noisy)
+        return (self.patch_condition(noisy) if self.patch_enabled else torch.zeros_like(dynamic)) + dynamic
+
+    def forward(self, noisy_motion, timestep, batch):
+        return self._core_pass(noisy_motion, timestep, batch)
 
 
 class FeedbackPolicyTests(unittest.TestCase):
@@ -150,6 +161,73 @@ class FeedbackPolicyTests(unittest.TestCase):
             self.assertEqual(paired.PROTOCOL, original_protocol)
             self.assertIs(paired.summarize, original_summary)
             self.assertIs(model.scene_tokens({})[0], model.summary)
+
+    def test_exo_only_patch_policies_preserve_mixed_ego_rows_and_weights(self):
+        for name in ('exo_patch_off', 'exo_static_global_off'):
+            for training in (False, True):
+                model = _Model(); model.train(training)
+                model.summary = torch.randn(2, 8)
+                x = torch.randn(2, 3, 3, requires_grad=training)
+                batch = {'mode': ['ego', 'exo']}
+                original = model._core_pass(x, None, batch)
+                dynamic = model.dynamic_condition(x)
+                weights = copy.deepcopy(model.state_dict())
+                with policy.scene_policy(model, name):
+                    actual = model._core_pass(x, None, batch)
+                    self.assertTrue(torch.equal(actual[0], original[0]))
+                    self.assertTrue(torch.equal(actual[1], dynamic[1]))
+                    summary, tokens, valid, owners = model.scene_tokens(batch)
+                    self.assertTrue(torch.equal(summary[0], model.summary[0]))
+                    if name == 'exo_static_global_off':
+                        self.assertEqual(float(summary[1].abs().sum()), 0.)
+                    else:
+                        self.assertIs(summary, model.summary)
+                    self.assertIs(tokens, model.patch_tokens)
+                    self.assertIs(owners, model.dynamic)
+                    self.assertTrue(model.patch_enabled and model.local_enabled and model.feedback_enabled)
+                    self.assertTrue(all(torch.equal(v, model.state_dict()[k]) for k, v in weights.items()))
+                    if training:
+                        actual.sum().backward()
+                        self.assertTrue(torch.isfinite(x.grad).all())
+                self.assertTrue(torch.equal(model._core_pass(x, None, batch), original))
+                self.assertEqual(len(model.patch_condition._forward_hooks), 0)
+
+    def test_exo_repair_bypasses_ego_only_and_scene_off_exactly(self):
+        for name in ('exo_patch_off', 'exo_static_global_off'):
+            model = _Model(); x = torch.randn(1, 2, 3)
+            batch = {'mode': ['ego']}
+            original = model._core_pass(x, None, batch)
+            with policy.scene_policy(model, name):
+                self.assertTrue(torch.equal(model._core_pass(x, None, batch), original))
+                self.assertIs(model.scene_tokens(batch)[0], model.summary)
+                self.assertIs(model._core_pass(x, None, {'mode': ['exo']}, use_scene=False), x)
+
+    def test_exo_repair_rejects_missing_mode_and_does_not_leak_context(self):
+        model = _Model(); x = torch.randn(1, 2, 3)
+        original = model._core_pass(x, None, {'mode': ['ego']})
+        with policy.scene_policy(model, 'exo_patch_off'):
+            with self.assertRaises((ValueError, AssertionError)):
+                model._core_pass(x, None, {})
+            self.assertTrue(torch.equal(model._core_pass(x, None, {'mode': ['ego']}), original))
+
+    def test_exo_policy_runs_after_real_lora_routing_and_matches_legacy_patch_off(self):
+        from .adapter_model import install_adapters
+        for name in ('exo_patch_off', 'exo_static_global_off'):
+            model = _Model()
+            install_adapters(model, {'rank': 2, 'alpha': 2., 'targets': ['patch_condition']})
+            with torch.no_grad():
+                model.exo_adapters['a0000'].up.weight.fill_(.4)
+            model.eval(); x = torch.randn(2, 3, 3); batch = {'mode': ['ego', 'exo']}
+            with torch.no_grad():
+                baseline = model(x, None, batch)
+                model.patch_enabled = False
+                legacy = model(x, None, batch)
+                model.patch_enabled = True
+                with policy.scene_policy(model, name):
+                    actual = model(x, None, batch)
+                self.assertTrue(torch.equal(actual[0], baseline[0]))
+                self.assertTrue(torch.equal(actual[1], legacy[1]))
+            self.assertIsNone(model._exo_adapter_routing.active.get())
 
 
 if __name__=='__main__':

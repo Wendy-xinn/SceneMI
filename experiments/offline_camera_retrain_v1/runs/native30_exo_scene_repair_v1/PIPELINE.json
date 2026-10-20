@@ -1,0 +1,68 @@
+{
+  "objective": "Improve EXO output without degrading reliable references, visible evidence or EGO generation",
+  "status": "dev_validation_running",
+  "updated_at": "2026-10-21T01:12:38.447296+08:00",
+  "user_authorization": "User explicitly reaffirmed repair goal; continue necessary diagnosis, implementation and paired validation without repeated step approval",
+  "formal_metrics_paused": true,
+  "remote_backup": "local_only_per_user",
+  "checkpoint_parent_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+  "stages": [
+    {
+      "name": "branch_diagnostic",
+      "status": "completed_CPU_verified",
+      "predictions": 24,
+      "windows": 3,
+      "regimes": [
+        "clean",
+        "noisy"
+      ],
+      "policies": [
+        "original",
+        "cls_off",
+        "patch_off",
+        "dynamic_off"
+      ],
+      "report": "branch_diagnostic/BRANCH_COMPARISON_zh.md"
+    },
+    {
+      "name": "repair_implementation",
+      "status": "completed_14_CPU_tests_passed",
+      "candidates": [
+        "exo_patch_off",
+        "exo_static_global_off"
+      ],
+      "preserve": [
+        "EGO original path",
+        "global/local scene except explicitly gated branches",
+        "original weights",
+        "reference construction",
+        "DDIM20"
+      ]
+    },
+    {
+      "name": "paired_validation",
+      "status": "sampling_dev",
+      "scope": "90 DEV predictions; then freeze candidate and48 independent-recording confirmation predictions",
+      "worker_pid": 102715,
+      "session_id": 6084,
+      "confirmed_predictions_at_update": 20
+    }
+  ],
+  "promoted": false,
+  "TEST_used": false,
+  "workspace_free_GiB_before": 98.67201614379883,
+  "observed_evidence": {
+    "yoga_noisy_hidden_mm": {
+      "original": 585.7843627929688,
+      "patch_off": 67.36
+    },
+    "TRUMANS_clean_hidden_mm": {
+      "original": 84.65,
+      "patch_off": 92.14,
+      "CLS_off": 65.1
+    },
+    "interpretation": "patch_off is causal diagnostic improvement on one failure, not validated final repair; combined policy requires real paired validation"
+  },
+  "attribution_record": "ROOT_LOCAL_ATTRIBUTION_zh.md",
+  "local_only": true
+}
