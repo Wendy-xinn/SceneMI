@@ -1,0 +1,764 @@
+{
+  "selection_protocol": "qualitative_positive_examples_not_cohort_estimate",
+  "reference_origin": "Observed EXO position stream + rest skeleton; saved actual reference_motion, not extra GT perturbation. EXO source observations themselves are ideal_GT_position_tracker_simulation_with_firsthit_confidence plus noisy/dropout evaluation protocol.",
+  "fixed_model_checkpoint_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+  "cases": [
+    {
+      "case": 2516,
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "sequence_id": "LectureHall_003_wipingchairs1",
+      "start": 64,
+      "source_first": 69,
+      "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case02516_noisy_scene_on.npz",
+      "input_sha256": "35988ee50acbfb34c87d5a61d381c24a395efd3e0ad85c43df104136080b0b5e",
+      "ref": {
+        "world": 42.65215819277917,
+        "hidden": 131.3243308900823,
+        "visible": 32.55026510068134,
+        "root_relative": 42.83937618293384,
+        "velocity": 127.54214863849619,
+        "accel": 3170.7351142340754,
+        "foot_speed": 0.775954435524521
+      },
+      "pred": {
+        "world": 29.61026011247619,
+        "hidden": 82.27368175021194,
+        "visible": 23.610629799316428,
+        "root_relative": 30.709106288487536,
+        "velocity": 92.57710407106252,
+        "accel": 2720.863988084792,
+        "foot_speed": 0.739104108020029
+      },
+      "missing_fraction": 0.10227272727272728,
+      "root_displacement": 1.2838088978854938,
+      "root_path": 3.773413374105106,
+      "gt_extents": [
+        1.902511578324227,
+        1.6306586069444138,
+        2.245305412991052
+      ],
+      "hidden_gain": 49.05064913987037,
+      "visible_change": -8.939635301364909,
+      "relative_gain": 12.130269894446304,
+      "velocity_gain": 34.965044567433665,
+      "accel_gain": 449.87112614928355,
+      "artifact_sha256": "16c2ee506d7d0e3dade4f621a57e41fb0584e97bdfb7535bdc7412cb82dbf4e4",
+      "reference_sha256": "8c5727fd12ee957bb9450363290cc1d12c09b419ba37de4c1e21bbaad72fe228",
+      "source_array_sha256": {
+        "truth": "bc2702558dd14a942280acae5204e8cd6bb3b1916514da30db62f0ec232e6e29",
+        "rest": "78850a56da8d4750e4e6371d4837dce3e309f4ddcd62aecec4c65d2996b8ccaa",
+        "observations": "81b7ce3706957a2d1b54eded1ac0bf0bd956c8cfbfa39b1ac893ddbe29f4a93b",
+        "observation_meta": "c3796cd8b901f1d269f9d5d9698e23795d6a7175b608d4160b306765cc20480d"
+      },
+      "source_path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_003_wipingchairs1",
+      "reference_provenance_exact_cuda_audit": {
+        "case": 2516,
+        "regime": "noisy",
+        "seed": 3238065943,
+        "mode": "exo",
+        "dataset": "rich",
+        "recording": "LectureHall_003_wipingchairs1",
+        "sequence_id": "LectureHall_003_wipingchairs1",
+        "start": 64,
+        "source_first": 69,
+        "status": "exact_pass",
+        "artifacts": [
+          {
+            "scene_variant": "scene_on",
+            "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case02516_noisy_scene_on.npz",
+            "artifact_sha256": "16c2ee506d7d0e3dade4f621a57e41fb0584e97bdfb7535bdc7412cb82dbf4e4"
+          },
+          {
+            "scene_variant": "scene_off",
+            "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case02516_noisy_scene_off.npz",
+            "artifact_sha256": "2ee7ec8f755171667456590d37d1cf4ee1c993ecce351cf6ead46c40cb048c12"
+          }
+        ],
+        "input_sha256": "35988ee50acbfb34c87d5a61d381c24a395efd3e0ad85c43df104136080b0b5e",
+        "reference_sha256": "8c5727fd12ee957bb9450363290cc1d12c09b419ba37de4c1e21bbaad72fe228",
+        "source_array_sha256": {
+          "truth": "bc2702558dd14a942280acae5204e8cd6bb3b1916514da30db62f0ec232e6e29",
+          "rest": "78850a56da8d4750e4e6371d4837dce3e309f4ddcd62aecec4c65d2996b8ccaa",
+          "observations": "81b7ce3706957a2d1b54eded1ac0bf0bd956c8cfbfa39b1ac893ddbe29f4a93b",
+          "observation_meta": "c3796cd8b901f1d269f9d5d9698e23795d6a7175b608d4160b306765cc20480d"
+        },
+        "source_arrays_exact": true,
+        "input_fingerprint_exact": true,
+        "reference_arrays_exact": true,
+        "checked_scene_artifacts": 2,
+        "audit_plan_sha256": "d90195bc92dcf283a02316d2d37c098a4a170e80240e05e263db9580d43d1c86",
+        "checked_at": "2026-10-21T11:59:29.759367+08:00",
+        "device": "cuda",
+        "elapsed_s": 0.28023092600051314
+      },
+      "missing_total_samples": 432,
+      "missing_frames": 154,
+      "source_firsthit_missing_samples": 432,
+      "noise_additional_missing_samples": 0,
+      "reference_finite": true,
+      "reference_not_equal_gt": true,
+      "reference_missing_positions_finite": true,
+      "reference_missing_positions_nonzero": true,
+      "suggested_viewer_frame": 102,
+      "suggested_frame_range": [
+        72,
+        132
+      ],
+      "missing_joints_ranked": [
+        {
+          "joint": 10,
+          "name": "left_foot",
+          "missing_frames": 44,
+          "source_missing_frames": 44,
+          "reference_missing_error_mm": 265.7946009238632,
+          "prediction_missing_error_mm": 108.44676116943606,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 7,
+          "name": "left_ankle",
+          "missing_frames": 36,
+          "source_missing_frames": 36,
+          "reference_missing_error_mm": 296.13273896102856,
+          "prediction_missing_error_mm": 127.17858348121908,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 19,
+          "name": "right_elbow",
+          "missing_frames": 52,
+          "source_missing_frames": 52,
+          "reference_missing_error_mm": 145.25455000970445,
+          "prediction_missing_error_mm": 67.08530750258417,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 17,
+          "name": "right_shoulder",
+          "missing_frames": 48,
+          "source_missing_frames": 48,
+          "reference_missing_error_mm": 92.52417459497674,
+          "prediction_missing_error_mm": 31.723797073071733,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 12,
+          "name": "neck",
+          "missing_frames": 46,
+          "source_missing_frames": 46,
+          "reference_missing_error_mm": 88.61237575571961,
+          "prediction_missing_error_mm": 51.38159029984665,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 14,
+          "name": "right_collar",
+          "missing_frames": 31,
+          "source_missing_frames": 31,
+          "reference_missing_error_mm": 39.39868273849731,
+          "prediction_missing_error_mm": 7.874377161545168,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 18,
+          "name": "left_elbow",
+          "missing_frames": 4,
+          "source_missing_frames": 4,
+          "reference_missing_error_mm": 128.76008433076504,
+          "prediction_missing_error_mm": 27.15389606004814,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 16,
+          "name": "left_shoulder",
+          "missing_frames": 29,
+          "source_missing_frames": 29,
+          "reference_missing_error_mm": 36.976370529207585,
+          "prediction_missing_error_mm": 30.499518745216065,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 13,
+          "name": "left_collar",
+          "missing_frames": 10,
+          "source_missing_frames": 10,
+          "reference_missing_error_mm": 48.41551222286687,
+          "prediction_missing_error_mm": 33.651703413469825,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 1,
+          "name": "left_hip",
+          "missing_frames": 2,
+          "source_missing_frames": 2,
+          "reference_missing_error_mm": 28.231677295070575,
+          "prediction_missing_error_mm": 24.81179851423305,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 15,
+          "name": "head",
+          "missing_frames": 3,
+          "source_missing_frames": 3,
+          "reference_missing_error_mm": 118.77478261557144,
+          "prediction_missing_error_mm": 119.55505524873304,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 8,
+          "name": "right_ankle",
+          "missing_frames": 41,
+          "source_missing_frames": 41,
+          "reference_missing_error_mm": 123.59545145502538,
+          "prediction_missing_error_mm": 126.5270482767204,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 11,
+          "name": "right_foot",
+          "missing_frames": 43,
+          "source_missing_frames": 43,
+          "reference_missing_error_mm": 140.8872223095803,
+          "prediction_missing_error_mm": 152.46440912049297,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 20,
+          "name": "left_wrist",
+          "missing_frames": 16,
+          "source_missing_frames": 16,
+          "reference_missing_error_mm": 106.92001086530941,
+          "prediction_missing_error_mm": 156.70804778116977,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 21,
+          "name": "right_wrist",
+          "missing_frames": 27,
+          "source_missing_frames": 27,
+          "reference_missing_error_mm": 65.32823408888791,
+          "prediction_missing_error_mm": 95.72193196605728,
+          "missing_reference_joint_nonzero": true
+        }
+      ],
+      "source_exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence"
+    },
+    {
+      "case": 2126,
+      "dataset": "trumans",
+      "recording": "2023-02-18@16-44-19",
+      "sequence_id": "2023-02-18@16-44-19",
+      "start": 64,
+      "source_first": 64,
+      "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case02126_noisy_scene_on.npz",
+      "input_sha256": "bc35a5ce14bafb6d1167bc89cba72bfead3e80d9754cc0bae298b24870694cdc",
+      "ref": {
+        "world": 96.98710950002541,
+        "hidden": 371.12265866292756,
+        "visible": 30.749772224332997,
+        "root_relative": 94.917906673684,
+        "velocity": 81.5128277639258,
+        "accel": 1553.9876023870413,
+        "foot_speed": 0.3199022742577985
+      },
+      "pred": {
+        "world": 49.47145010164818,
+        "hidden": 154.90696420765323,
+        "visible": 23.99584969155524,
+        "root_relative": 47.12050093516752,
+        "velocity": 73.67193053152616,
+        "accel": 1444.0245284677549,
+        "foot_speed": 0.32452659828109415
+      },
+      "missing_fraction": 0.19460227272727273,
+      "root_displacement": 0.9370951332477522,
+      "root_path": 1.4705541663848625,
+      "gt_extents": [
+        1.224485539598828,
+        1.5927633889311417,
+        1.03816100744397
+      ],
+      "hidden_gain": 216.21569445527433,
+      "visible_change": -6.753922532777757,
+      "relative_gain": 47.79740573851648,
+      "velocity_gain": 7.840897232399641,
+      "accel_gain": 109.96307391928644,
+      "artifact_sha256": "263d869ffb12665682918d2314ae7a08410f45ad70b0924da90ff9b5b17aaf14",
+      "reference_sha256": "e4056925db52dd5b3fbb676c72cf29b713b7dd1df115eebd845d727694d569d9",
+      "source_array_sha256": {
+        "truth": "ded29255c13ce6c26d348f6652461d63e9efc0aba91dba5ff2b4dd3cd03bb0a4",
+        "rest": "25605bc1faa13927a216c18c2749b79a11e5579da94788357f03cd22a4df3d5b",
+        "observations": "0c70860d0481f375f1f4635ca2f896364f51f83fdf80433a5055dde9f862da21",
+        "observation_meta": "26922daa3e002f7792f1900f8211c2c74585d52458ae746bc33b907c17daadc6"
+      },
+      "source_path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@16-44-19",
+      "reference_provenance_exact_cuda_audit": {
+        "case": 2126,
+        "regime": "noisy",
+        "seed": 2826765550,
+        "mode": "exo",
+        "dataset": "trumans",
+        "recording": "2023-02-18@16-44-19",
+        "sequence_id": "2023-02-18@16-44-19",
+        "start": 64,
+        "source_first": 64,
+        "status": "exact_pass",
+        "artifacts": [
+          {
+            "scene_variant": "scene_on",
+            "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case02126_noisy_scene_on.npz",
+            "artifact_sha256": "263d869ffb12665682918d2314ae7a08410f45ad70b0924da90ff9b5b17aaf14"
+          },
+          {
+            "scene_variant": "scene_off",
+            "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case02126_noisy_scene_off.npz",
+            "artifact_sha256": "781e2991d2e2bc035361c889a10de57ce9abd2fd777ef9b2f7f5b781b553f0b7"
+          }
+        ],
+        "input_sha256": "bc35a5ce14bafb6d1167bc89cba72bfead3e80d9754cc0bae298b24870694cdc",
+        "reference_sha256": "e4056925db52dd5b3fbb676c72cf29b713b7dd1df115eebd845d727694d569d9",
+        "source_array_sha256": {
+          "truth": "ded29255c13ce6c26d348f6652461d63e9efc0aba91dba5ff2b4dd3cd03bb0a4",
+          "rest": "25605bc1faa13927a216c18c2749b79a11e5579da94788357f03cd22a4df3d5b",
+          "observations": "0c70860d0481f375f1f4635ca2f896364f51f83fdf80433a5055dde9f862da21",
+          "observation_meta": "26922daa3e002f7792f1900f8211c2c74585d52458ae746bc33b907c17daadc6"
+        },
+        "source_arrays_exact": true,
+        "input_fingerprint_exact": true,
+        "reference_arrays_exact": true,
+        "checked_scene_artifacts": 2,
+        "audit_plan_sha256": "d90195bc92dcf283a02316d2d37c098a4a170e80240e05e263db9580d43d1c86",
+        "checked_at": "2026-10-21T12:06:07.038669+08:00",
+        "device": "cuda",
+        "elapsed_s": 0.2617025969993847
+      },
+      "missing_total_samples": 822,
+      "missing_frames": 192,
+      "source_firsthit_missing_samples": 804,
+      "noise_additional_missing_samples": 18,
+      "reference_finite": true,
+      "reference_not_equal_gt": true,
+      "reference_missing_positions_finite": true,
+      "reference_missing_positions_nonzero": true,
+      "suggested_viewer_frame": 106,
+      "suggested_frame_range": [
+        76,
+        136
+      ],
+      "missing_joints_ranked": [
+        {
+          "joint": 10,
+          "name": "left_foot",
+          "missing_frames": 192,
+          "source_missing_frames": 192,
+          "reference_missing_error_mm": 498.18937764330434,
+          "prediction_missing_error_mm": 187.99169802207385,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 7,
+          "name": "left_ankle",
+          "missing_frames": 192,
+          "source_missing_frames": 192,
+          "reference_missing_error_mm": 444.5849133429896,
+          "prediction_missing_error_mm": 180.2448035232608,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 11,
+          "name": "right_foot",
+          "missing_frames": 192,
+          "source_missing_frames": 192,
+          "reference_missing_error_mm": 329.73750377849126,
+          "prediction_missing_error_mm": 147.15372799622094,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 8,
+          "name": "right_ankle",
+          "missing_frames": 183,
+          "source_missing_frames": 183,
+          "reference_missing_error_mm": 318.22698863180216,
+          "prediction_missing_error_mm": 144.80241178685552,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 12,
+          "name": "neck",
+          "missing_frames": 17,
+          "source_missing_frames": 17,
+          "reference_missing_error_mm": 32.790375061968476,
+          "prediction_missing_error_mm": 6.978065275840455,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 16,
+          "name": "left_shoulder",
+          "missing_frames": 16,
+          "source_missing_frames": 16,
+          "reference_missing_error_mm": 48.62304402115297,
+          "prediction_missing_error_mm": 29.730695220591983,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 14,
+          "name": "right_collar",
+          "missing_frames": 18,
+          "source_missing_frames": 0,
+          "reference_missing_error_mm": 40.28072032621478,
+          "prediction_missing_error_mm": 31.863121856210984,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 18,
+          "name": "left_elbow",
+          "missing_frames": 4,
+          "source_missing_frames": 4,
+          "reference_missing_error_mm": 53.7895989603923,
+          "prediction_missing_error_mm": 47.20647061374965,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 13,
+          "name": "left_collar",
+          "missing_frames": 6,
+          "source_missing_frames": 6,
+          "reference_missing_error_mm": 22.366503964596944,
+          "prediction_missing_error_mm": 18.54243349762349,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 20,
+          "name": "left_wrist",
+          "missing_frames": 2,
+          "source_missing_frames": 2,
+          "reference_missing_error_mm": 47.60322028746679,
+          "prediction_missing_error_mm": 205.91211982321244,
+          "missing_reference_joint_nonzero": true
+        }
+      ],
+      "source_exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence"
+    },
+    {
+      "case": 3477,
+      "dataset": "egobody",
+      "recording": "recording_20220315_S21_S30_05",
+      "sequence_id": "recording_20220315_S21_S30_05_camera_wearer_1301-3001_master_full",
+      "start": 256,
+      "source_first": 1557,
+      "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case03477_noisy_scene_on.npz",
+      "input_sha256": "295101e06ee867a9f74b4a6237e47d3fc8e52e9a42aef3532d95b349ac77f6bd",
+      "ref": {
+        "world": 47.68341907621002,
+        "hidden": 227.32951877164626,
+        "visible": 26.741328152158374,
+        "root_relative": 46.66040263911427,
+        "velocity": 82.89763491225844,
+        "accel": 2578.0322090008417,
+        "foot_speed": 0.3498779630777836
+      },
+      "pred": {
+        "world": 30.083265506196977,
+        "hidden": 107.62833136783838,
+        "visible": 21.043515560391047,
+        "root_relative": 30.160618654332797,
+        "velocity": 79.28058754642917,
+        "accel": 2314.278346587107,
+        "foot_speed": 0.3465021841001459
+      },
+      "missing_fraction": 0.10440340909090909,
+      "root_displacement": 0.12988897823285858,
+      "root_path": 1.6625755421438488,
+      "gt_extents": [
+        0.4233993112977277,
+        1.7286654454286365,
+        1.4537739978036406
+      ],
+      "hidden_gain": 119.70118740380788,
+      "visible_change": -5.6978125917673275,
+      "relative_gain": 16.49978398478147,
+      "velocity_gain": 3.617047365829265,
+      "accel_gain": 263.7538624137346,
+      "artifact_sha256": "4c62d6e99a11b61ca73eb57bbb14393e4eacf05bdc92716ceeb43d79aed3d880",
+      "reference_sha256": "4f54f489f7dceda1a08bb9304c91d29e4156e69fcbfa328096b02d0a074ec90d",
+      "source_array_sha256": {
+        "truth": "8c9eca92bb55fbcefcf07c806a2a97ace695d1189ae52be89eed715849e10d4a",
+        "rest": "96b2836f7a86c508cd0be95840fe096a35f5bfc2cc8a4d65afb7602f3ba86f9b",
+        "observations": "37f8c8b5b268538b8872fef0f6fe900508fd7021fa32cc2ec9aa7dcc4352beb7",
+        "observation_meta": "8045844b9f81bdb7635fed198cd8e9605a2c5f9d70c4a9a2f7dab9b25ab600b5"
+      },
+      "source_path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20220315_S21_S30_05_camera_wearer_1301-3001_master_full",
+      "reference_provenance_exact_cuda_audit": {
+        "case": 3477,
+        "regime": "noisy",
+        "seed": 2639779850,
+        "mode": "exo",
+        "dataset": "egobody",
+        "recording": "recording_20220315_S21_S30_05",
+        "sequence_id": "recording_20220315_S21_S30_05_camera_wearer_1301-3001_master_full",
+        "start": 256,
+        "source_first": 1557,
+        "status": "exact_pass",
+        "artifacts": [
+          {
+            "scene_variant": "scene_on",
+            "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case03477_noisy_scene_on.npz",
+            "artifact_sha256": "4c62d6e99a11b61ca73eb57bbb14393e4eacf05bdc92716ceeb43d79aed3d880"
+          },
+          {
+            "scene_variant": "scene_off",
+            "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case03477_noisy_scene_off.npz",
+            "artifact_sha256": "3beaf26579f23fc68d55d298be7aaafe89e69f990dddb58ef398b33660c45c5a"
+          }
+        ],
+        "input_sha256": "295101e06ee867a9f74b4a6237e47d3fc8e52e9a42aef3532d95b349ac77f6bd",
+        "reference_sha256": "4f54f489f7dceda1a08bb9304c91d29e4156e69fcbfa328096b02d0a074ec90d",
+        "source_array_sha256": {
+          "truth": "8c9eca92bb55fbcefcf07c806a2a97ace695d1189ae52be89eed715849e10d4a",
+          "rest": "96b2836f7a86c508cd0be95840fe096a35f5bfc2cc8a4d65afb7602f3ba86f9b",
+          "observations": "37f8c8b5b268538b8872fef0f6fe900508fd7021fa32cc2ec9aa7dcc4352beb7",
+          "observation_meta": "8045844b9f81bdb7635fed198cd8e9605a2c5f9d70c4a9a2f7dab9b25ab600b5"
+        },
+        "source_arrays_exact": true,
+        "input_fingerprint_exact": true,
+        "reference_arrays_exact": true,
+        "checked_scene_artifacts": 2,
+        "audit_plan_sha256": "d90195bc92dcf283a02316d2d37c098a4a170e80240e05e263db9580d43d1c86",
+        "checked_at": "2026-10-21T12:12:26.424184+08:00",
+        "device": "cuda",
+        "elapsed_s": 0.3285573029997977
+      },
+      "missing_total_samples": 441,
+      "missing_frames": 192,
+      "source_firsthit_missing_samples": 441,
+      "noise_additional_missing_samples": 0,
+      "reference_finite": true,
+      "reference_not_equal_gt": true,
+      "reference_missing_positions_finite": true,
+      "reference_missing_positions_nonzero": true,
+      "suggested_viewer_frame": 102,
+      "suggested_frame_range": [
+        72,
+        132
+      ],
+      "missing_joints_ranked": [
+        {
+          "joint": 10,
+          "name": "left_foot",
+          "missing_frames": 180,
+          "source_missing_frames": 180,
+          "reference_missing_error_mm": 294.17606240251257,
+          "prediction_missing_error_mm": 143.78717963996283,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 7,
+          "name": "left_ankle",
+          "missing_frames": 174,
+          "source_missing_frames": 174,
+          "reference_missing_error_mm": 257.33292989764516,
+          "prediction_missing_error_mm": 112.68487268755116,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 17,
+          "name": "right_shoulder",
+          "missing_frames": 57,
+          "source_missing_frames": 57,
+          "reference_missing_error_mm": 26.810866574069703,
+          "prediction_missing_error_mm": 17.19851678092639,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 14,
+          "name": "right_collar",
+          "missing_frames": 14,
+          "source_missing_frames": 14,
+          "reference_missing_error_mm": 31.056606340602738,
+          "prediction_missing_error_mm": 26.066465622807677,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 11,
+          "name": "right_foot",
+          "missing_frames": 6,
+          "source_missing_frames": 6,
+          "reference_missing_error_mm": 26.853074184647646,
+          "prediction_missing_error_mm": 24.396806870912567,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 20,
+          "name": "left_wrist",
+          "missing_frames": 10,
+          "source_missing_frames": 10,
+          "reference_missing_error_mm": 40.05664150551816,
+          "prediction_missing_error_mm": 48.360713393192775,
+          "missing_reference_joint_nonzero": true
+        }
+      ],
+      "source_exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence"
+    },
+    {
+      "case": 2894,
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_02",
+      "sequence_id": "recording_20211002_S03_S18_02_camera_wearer_3811-5111_master_full",
+      "start": 960,
+      "source_first": 4771,
+      "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case02894_noisy_scene_on.npz",
+      "input_sha256": "28ee08c1e2aa2237646b2c4318a0c90174a8ba735c32e230dda6a103f6a5d7c6",
+      "ref": {
+        "world": 50.24262803602096,
+        "hidden": 140.11160066504098,
+        "visible": 31.123216977133843,
+        "root_relative": 54.39551117605046,
+        "velocity": 81.85521040931353,
+        "accel": 3207.877355539275,
+        "foot_speed": 0.28519984923368447
+      },
+      "pred": {
+        "world": 32.45216021284293,
+        "hidden": 83.70876870846111,
+        "visible": 21.547438164248874,
+        "root_relative": 35.49265857041489,
+        "velocity": 79.32258454190051,
+        "accel": 3003.48607927698,
+        "foot_speed": 0.2257887038348406
+      },
+      "missing_fraction": 0.17542613636363635,
+      "root_displacement": 0.7588012633208475,
+      "root_path": 1.3906368290580597,
+      "gt_extents": [
+        0.74749558501924,
+        1.4300016826983801,
+        1.2632053700301613
+      ],
+      "hidden_gain": 56.402831956579874,
+      "visible_change": -9.57577881288497,
+      "relative_gain": 18.902852605635573,
+      "velocity_gain": 2.5326258674130173,
+      "accel_gain": 204.39127626229492,
+      "artifact_sha256": "af43cfd3a100a79d07cb93a49755726f7261292e91977f09aed496f9b4abeff8",
+      "reference_sha256": "3e55b839ae066a0f43351fbf26967a0a4104c6d95318e04b6a168c04c49bd29b",
+      "source_array_sha256": {
+        "truth": "960c74cd88e785f1fdff922c5a80151eddffc309d7c723ef2fe49bc258b1ec5a",
+        "rest": "ec98f9346f3b1cb3323e9522a8763be907d4e31ea9d693610b356315b219ebb7",
+        "observations": "ffe5926eab65af88849d3d3edf9a0fd4059776ba09304db0842fdfe90a0c4193",
+        "observation_meta": "978b4d022ad14e5385dcfc14b791a9b479e33d2679d6ebdd7a96865c9dd505d8"
+      },
+      "source_path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_02_camera_wearer_3811-5111_master_full",
+      "reference_provenance_exact_cuda_audit": {
+        "case": 2894,
+        "regime": "noisy",
+        "seed": 980597034,
+        "mode": "exo",
+        "dataset": "egobody",
+        "recording": "recording_20211002_S03_S18_02",
+        "sequence_id": "recording_20211002_S03_S18_02_camera_wearer_3811-5111_master_full",
+        "start": 960,
+        "source_first": 4771,
+        "status": "exact_pass",
+        "artifacts": [
+          {
+            "scene_variant": "scene_on",
+            "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case02894_noisy_scene_on.npz",
+            "artifact_sha256": "af43cfd3a100a79d07cb93a49755726f7261292e91977f09aed496f9b4abeff8"
+          },
+          {
+            "scene_variant": "scene_off",
+            "artifact": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case02894_noisy_scene_off.npz",
+            "artifact_sha256": "9fa42ce5575cbcb435d068dbb71829ffd93ac4f11e59dfde7034ce14a22f85bd"
+          }
+        ],
+        "input_sha256": "28ee08c1e2aa2237646b2c4318a0c90174a8ba735c32e230dda6a103f6a5d7c6",
+        "reference_sha256": "3e55b839ae066a0f43351fbf26967a0a4104c6d95318e04b6a168c04c49bd29b",
+        "source_array_sha256": {
+          "truth": "960c74cd88e785f1fdff922c5a80151eddffc309d7c723ef2fe49bc258b1ec5a",
+          "rest": "ec98f9346f3b1cb3323e9522a8763be907d4e31ea9d693610b356315b219ebb7",
+          "observations": "ffe5926eab65af88849d3d3edf9a0fd4059776ba09304db0842fdfe90a0c4193",
+          "observation_meta": "978b4d022ad14e5385dcfc14b791a9b479e33d2679d6ebdd7a96865c9dd505d8"
+        },
+        "source_arrays_exact": true,
+        "input_fingerprint_exact": true,
+        "reference_arrays_exact": true,
+        "checked_scene_artifacts": 2,
+        "audit_plan_sha256": "d90195bc92dcf283a02316d2d37c098a4a170e80240e05e263db9580d43d1c86",
+        "checked_at": "2026-10-21T12:03:35.322738+08:00",
+        "device": "cuda",
+        "elapsed_s": 0.27084078500047326
+      },
+      "missing_total_samples": 741,
+      "missing_frames": 192,
+      "source_firsthit_missing_samples": 723,
+      "noise_additional_missing_samples": 18,
+      "reference_finite": true,
+      "reference_not_equal_gt": true,
+      "reference_missing_positions_finite": true,
+      "reference_missing_positions_nonzero": true,
+      "suggested_viewer_frame": 64,
+      "suggested_frame_range": [
+        34,
+        94
+      ],
+      "missing_joints_ranked": [
+        {
+          "joint": 19,
+          "name": "right_elbow",
+          "missing_frames": 182,
+          "source_missing_frames": 182,
+          "reference_missing_error_mm": 302.8349855879119,
+          "prediction_missing_error_mm": 157.12772391435826,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 21,
+          "name": "right_wrist",
+          "missing_frames": 124,
+          "source_missing_frames": 124,
+          "reference_missing_error_mm": 297.3354625383251,
+          "prediction_missing_error_mm": 193.90713840353655,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 17,
+          "name": "right_shoulder",
+          "missing_frames": 192,
+          "source_missing_frames": 192,
+          "reference_missing_error_mm": 33.59278935072491,
+          "prediction_missing_error_mm": 25.95902596173668,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 14,
+          "name": "right_collar",
+          "missing_frames": 185,
+          "source_missing_frames": 185,
+          "reference_missing_error_mm": 17.89345799327834,
+          "prediction_missing_error_mm": 14.65479607445981,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 11,
+          "name": "right_foot",
+          "missing_frames": 33,
+          "source_missing_frames": 33,
+          "reference_missing_error_mm": 41.39228426283889,
+          "prediction_missing_error_mm": 34.552329746323046,
+          "missing_reference_joint_nonzero": true
+        },
+        {
+          "joint": 2,
+          "name": "right_hip",
+          "missing_frames": 25,
+          "source_missing_frames": 7,
+          "reference_missing_error_mm": 28.44322785094942,
+          "prediction_missing_error_mm": 22.038782338431513,
+          "missing_reference_joint_nonzero": true
+        }
+      ],
+      "source_exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence"
+    }
+  ]
+}

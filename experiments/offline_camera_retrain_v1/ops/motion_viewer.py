@@ -4,7 +4,8 @@ One viewer supports trainer ``validation_latest.npz`` files and per-case
 ``motions/caseNN_{clean,noisy}.npz`` exports. Its JSON manifest contains
 ``cases: [{label, archive, case_index?, step?}]``; paths may be absolute or
 relative to the manifest. Per-case evaluators may instead supply explicit
-``archives: {clean: path, noisy: path}`` and ``checkpoint_record``; the latter
+``archives: {clean: path, noisy: path}`` (or a single saved regime) and
+``checkpoint_record``; the latter
 binds a step to each archive's recorded checkpoint SHA without loading weights.
 The original arrays, mesh/FK check, source digests,
 and display-only scenes are frozen in a content-addressed local cache. No
@@ -155,9 +156,10 @@ def load_source(case: dict, base: Path) -> tuple[dict, dict]:
         return path if path.is_absolute() else (base / path).resolve()
 
     archives = case.get("archives")
-    if archives is not None and set(archives) != {"clean", "noisy"}:
-        raise ValueError("Explicit archives must provide exactly clean and noisy")
-    path = resolve(case["archive"] if "archive" in case else archives["clean"])
+    if archives is not None and (not archives or not set(archives).issubset({"clean", "noisy"})):
+        raise ValueError("Explicit archives must provide saved clean and/or noisy regimes")
+    regimes = tuple(regime for regime in ("clean", "noisy") if archives is None or regime in archives)
+    path = resolve(case["archive"] if "archive" in case else archives[regimes[0]])
     checkpoint, checkpoint_meta = None, None
     if case.get("checkpoint_record"):
         record_path = resolve(case["checkpoint_record"])
@@ -169,7 +171,7 @@ def load_source(case: dict, base: Path) -> tuple[dict, dict]:
             step=checkpoint["step"], checkpoint_sha256=checkpoint["checkpoint_sha256"],
             model_tensor_sha256=checkpoint.get("model_tensor_sha256"))
     files, arrays, identity, step = {}, {}, None, None
-    for regime in ("clean", "noisy"):
+    for regime in regimes:
         regime_path = resolve(archives[regime]) if archives is not None else path
         if archives is None and "case_index" not in case:
             regime_path = path.with_name(path.name.replace("_clean.npz", f"_{regime}.npz"))
@@ -220,6 +222,7 @@ def load_source(case: dict, base: Path) -> tuple[dict, dict]:
                 arrays[f"{regime}_reference_motion"] = part["reference_motion"]
         files[regime] = dict(path=str(regime_path), sha256=hashlib.sha256(raw).hexdigest())
     metadata = dict(schema=SCHEMA, step=step, identity=identity, sources=files,
+        regimes=list(regimes),
         label=case["label"], selection_reason=case.get("selection_reason", ""),
         metrics=case.get("metrics", {}),
         generation=dict(parent_step=case.get("parent_step", step),
@@ -255,7 +258,8 @@ def prepare_case(case: dict, base: Path, config: dict, cache_root: Path) -> dict
     identity = meta["identity"]
     mode = identity.get("mode", "ego")
     meta["reference_input"] = {}
-    for regime in ("clean", "noisy"):
+    regimes = tuple(meta["regimes"])
+    for regime in regimes:
         key = f"{regime}_reference_motion"
         if key in arrays:
             meta["reference_input"][regime] = dict(kind="original_saved_observation_reference",
@@ -272,18 +276,20 @@ def prepare_case(case: dict, base: Path, config: dict, cache_root: Path) -> dict
             old_meta = json.loads(str(saved["metadata_json"]))
             if (old_meta["sources"] == meta["sources"] and old_meta["identity"] == identity
                     and old_meta["step"] == meta["step"]):
-                for key in ("truth", "rest", "clean_prediction", "noisy_prediction"):
+                for key in ("truth", "rest") + tuple(regime + "_prediction" for regime in regimes):
                     if not np.array_equal(saved[key], arrays[key]):
                         raise ValueError("Historical mesh cache/source array mismatch: " + key)
-                for key in ("faces", "truth_vertices", "truth_joints", "clean_vertices", "clean_joints",
-                            "noisy_vertices", "noisy_joints"):
+                for key in ("faces", "truth_vertices", "truth_joints") + tuple(
+                        regime + suffix for regime in regimes for suffix in ("_vertices", "_joints")):
                     arrays[key] = np.array(saved[key])
                 max_error = old_meta.get("mesh_fk_max_error_m", 0.)
                 meta["reused_mesh_cache"] = str(old_path)
     model = None
     rest = torch.from_numpy(arrays["rest"])[None]
-    for name, key in (("truth", "truth"), ("clean", "clean_prediction"), ("noisy", "noisy_prediction"),
-                      ("clean_reference", "clean_reference_motion"), ("noisy_reference", "noisy_reference_motion")):
+    decode_layers = [("truth", "truth")]
+    decode_layers.extend((regime, regime + "_prediction") for regime in regimes)
+    decode_layers.extend((regime + "_reference", regime + "_reference_motion") for regime in regimes)
+    for name, key in decode_layers:
         if f"{name}_vertices" in arrays:
             continue
         if model is None:
@@ -365,17 +371,21 @@ def prepare_review_case(case: dict, base: Path, config: dict, cache_root: Path) 
     if case.get("config"):
         path = Path(case["config"])
         config = json.loads((path if path.is_absolute() else base / path).read_text())
-    prepared, originals = [], {}
+    prepared, originals, regimes = [], {}, None
     for entry in case["models"]:
         source_case = entry["case"]
         arrays, metadata = load_source(source_case, base)
+        current_regimes = tuple(metadata.get("regimes", ("clean", "noisy")))
+        if regimes is not None and current_regimes != regimes:
+            raise ValueError("Paired outputs have different observation regimes")
+        regimes = current_regimes
         mode = metadata["identity"].get("mode", "ego")
         if mode in originals:
             previous, identity = originals[mode]
             if metadata["identity"] != identity:
                 raise ValueError("Paired outputs have different observer/window identities")
-            for key in ("truth", "rest", "clean_observations", "noisy_observations",
-                        "clean_observation_meta", "noisy_observation_meta"):
+            for key in ("truth", "rest") + tuple(regime + suffix for regime in regimes
+                    for suffix in ("_observations", "_observation_meta")):
                 if not np.array_equal(arrays[key], previous[key]):
                     raise ValueError("Paired outputs have different conditions: " + key)
         else:
@@ -388,7 +398,7 @@ def prepare_review_case(case: dict, base: Path, config: dict, cache_root: Path) 
         for data, _ in originals.values():
             if not np.array_equal(first["truth"], data["truth"]) or not np.array_equal(first["rest"], data["rest"]):
                 raise ValueError("EGO/EXO panels are not the same anchored target/window")
-    return dict(case, models=prepared, paired_inputs_verified=True)
+    return dict(case, models=prepared, regimes=list(regimes), paired_inputs_verified=True)
 
 
 def validate_prepared_cases(manifest: dict, base: Path) -> list[dict]:
@@ -413,6 +423,7 @@ def validate_prepared_cases(manifest: dict, base: Path) -> list[dict]:
             if not artifact.is_file() or not record.is_file() or artifact.parent.resolve() != record.parent.resolve():
                 raise ValueError("Prepared playback/cache manifest path missing or mismatched")
             arrays, expected = load_source(source, base)
+            regimes = tuple(expected["regimes"])
             with np.load(artifact, allow_pickle=False) as saved:
                 metadata = json.loads(str(saved["metadata_json"]))
                 if metadata != json.loads(record.read_text()):
@@ -420,12 +431,15 @@ def validate_prepared_cases(manifest: dict, base: Path) -> list[dict]:
                 for name in ("sources", "identity", "step"):
                     if metadata[name] != expected[name]:
                         raise ValueError("Prepared cache/source metadata differs: " + name)
-                for name in ("truth", "rest", "clean_prediction", "noisy_prediction",
-                             "clean_observations", "noisy_observations",
-                             "clean_observation_meta", "noisy_observation_meta"):
+                if tuple(metadata.get("regimes", ("clean", "noisy"))) != regimes:
+                    raise ValueError("Prepared cache/source observation regimes differ")
+                if tuple(case.get("regimes", ("clean", "noisy"))) != regimes:
+                    raise ValueError("Prepared UI/source observation regimes differ")
+                for name in ("truth", "rest") + tuple(regime + suffix for regime in regimes
+                        for suffix in ("_prediction", "_observations", "_observation_meta")):
                     if not np.array_equal(saved[name], arrays[name]):
                         raise ValueError("Prepared cache/source array differs: " + name)
-                for regime in ("clean", "noisy"):
+                for regime in regimes:
                     name = regime + "_reference_motion"
                     if name in arrays and not np.array_equal(saved[name], arrays[name]):
                         raise ValueError("Prepared input reference differs from source: " + regime)
@@ -436,8 +450,8 @@ def validate_prepared_cases(manifest: dict, base: Path) -> list[dict]:
                 previous, identity = paired[mode]
                 if expected["identity"] != identity:
                     raise ValueError("Prepared model window identities differ")
-                for name in ("truth", "rest", "clean_observations", "noisy_observations",
-                             "clean_observation_meta", "noisy_observation_meta"):
+                for name in ("truth", "rest") + tuple(regime + suffix for regime in regimes
+                        for suffix in ("_observations", "_observation_meta")):
                     if not np.array_equal(arrays[name], previous[name]):
                         raise ValueError("Prepared paired conditions differ: " + name)
             else:
@@ -515,13 +529,15 @@ class MotionViewer:
         server.gui.add_markdown("## 已保存动作 · 模型对照\n\n蓝：GT · 浅绿：输入参考。"
             "模型：" + "；".join(style["label"] for style in self.styles.values()) + "。"
             "所有人体保留原坐标，可用复选框叠加。选例依据见当前案例说明，不代表测试集平均效果。")
-        self.labels = [f"{case.get('dataset', '').upper()} · {case.get('sequence_id', case['label'])}"
-            + (f" · 起始 {case['start']} 帧" if 'start' in case else '') for case in cases]
+        self.labels = [case.get("display_label") or
+            (f"{case.get('dataset', '').upper()} · {case.get('sequence_id', case['label'])}"
+            + (f" · 起始 {case['start']} 帧" if 'start' in case else '')) for case in cases]
         if len(set(self.labels)) != len(self.labels):
             raise ValueError("Case labels must be unique")
         preferred = next((label for label in self.labels if "20211002_S03_S18_04" in label), self.labels[0])
         self.choice = server.gui.add_dropdown("案例", options=self.labels, initial_value=preferred)
-        self.regime = server.gui.add_dropdown("观测条件", options=("clean", "noisy"), initial_value="clean")
+        regimes = tuple(cases[0].get("regimes", ("clean", "noisy")))
+        self.regime = server.gui.add_dropdown("观测条件", options=regimes, initial_value=regimes[0])
         self.frame = server.gui.add_slider("帧 / 30 Hz", min=0, max=191, step=1, initial_value=0)
         self.play = server.gui.add_checkbox("播放", initial_value=False)
         self.speed = server.gui.add_slider("播放倍速", min=.25, max=2., step=.25, initial_value=.75)
@@ -656,11 +672,17 @@ class MotionViewer:
                 self.play.value = False
                 self.index = self.labels.index(self.choice.value)
                 records = self.read_case(self.index)
+                regimes = tuple(self.cases[self.index].get("regimes", ("clean", "noisy")))
+                self.regime.options = regimes
+                if self.regime.value not in regimes:
+                    self.regime.value = regimes[0]
+                regime = self.regime.value
                 for handle in self.handles:
                     handle.remove()
                 self.handles, self.runtime = [], {}
                 self.frame.max = len(records[0]["data"]["truth_joints"]) - 1
-                self.frame.value = 0
+                self.frame.value = max(0, min(self.frame.max,
+                    int(self.cases[self.index].get("initial_frame", 0))))
                 for mode, panel in self.panels.items():
                     members = [item for item in records if item["entry"]["mode"] == mode]
                     available = bool(members)
@@ -699,7 +721,7 @@ class MotionViewer:
                     prefix = "/" + mode
                     rt = dict(data=data, meta=members[0]["meta"], models=members)
                     rt["gt"] = self.mesh(prefix + "/GT", data["truth_vertices"][0], data["faces"], (45, 120, 220), .28)
-                    rt["reference"] = self.mesh(prefix + "/input_reference", data["clean_reference_vertices"][0],
+                    rt["reference"] = self.mesh(prefix + "/input_reference", data[regime + "_reference_vertices"][0],
                         data["faces"], (100, 180, 145), .55)
                     rt["input"] = self.points(prefix + "/observed_joints", (35, 195, 100), .035)
                     rt["uncertain_joints"] = self.points(prefix + "/reference_confidence_joints", (155, 160, 170), .035)
@@ -728,17 +750,22 @@ class MotionViewer:
                         key = item["entry"]["key"]
                         color = self.styles[key]["color"]
                         model_data = item["data"]
-                        item["mesh"] = self.mesh(prefix + "/models/" + key, model_data["clean_vertices"][0],
+                        item["mesh"] = self.mesh(prefix + "/models/" + key, model_data[regime + "_vertices"][0],
                             model_data["faces"], color, .85)
                         item["path"] = self.lines(prefix + "/paths/" + key,
-                            self.segments(model_data["clean_joints"][:, 0]), color)
+                            self.segments(model_data[regime + "_joints"][:, 0]), color)
                         item["feet"] = [self.lines(prefix + "/feet/" + key + str(foot), np.zeros((0, 2, 3)), color, 3.)
                             for foot in (10, 11)]
                         item["occluded"] = self.points(prefix + "/occlusion/" + key, color, .04)
                     self.runtime[mode] = rt
             finally:
                 self.loading = False
-            self.update()
+            preset = self.cases[self.index].get("initial_comparison")
+            if preset:
+                for mode in self.runtime:
+                    self.comparison(preset, mode)
+            else:
+                self.update()
             self.camera()
 
     def camera(self, client=None) -> None:
