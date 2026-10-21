@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/final_evaluation.py", line 541, in <module>
+    main()
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/final_evaluation.py", line 533, in main
+    print(json.dumps(recheck(args.out)))
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/final_evaluation.py", line 483, in recheck
+    require(np.allclose(known['reference_motion'][0].numpy(), arrays['reference_motion'], rtol=0, atol=2e-5),
+  File "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/final_evaluation.py", line 53, in require
+    raise ValueError(message)
+ValueError: CPU observation-derived reference differs
