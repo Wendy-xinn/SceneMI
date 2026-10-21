@@ -159,6 +159,31 @@ def _atomic(path, text):
     temporary.replace(path)
 
 
+def _source_binding(plan, audit):
+    """Check the parent seal and every additionally declared audit source."""
+    required = plan.get("source_sha256")
+    sources = audit.get("source_sha256")
+    parent = audit.get("parent_source_sha256", sources)
+    if not all(isinstance(value, dict) and value for value in (required, sources, parent)):
+        return dict(passed=False, error="Missing original or audit source manifest")
+    mismatches = [path for path, digest in required.items() if parent.get(path) != digest]
+    mismatches += [path for path, digest in sources.items()
+        if path in parent and parent[path] != digest]
+    declared = dict(parent, **sources)
+    failures = []
+    for path, digest in declared.items():
+        try:
+            if (not isinstance(digest, str) or len(digest) != 64
+                    or _sha(Path(path).read_bytes()) != digest):
+                failures.append(path)
+        except (OSError, TypeError, ValueError):
+            failures.append(path)
+    return dict(passed=not mismatches and not failures,
+        required_original_sources=len(required), checked_source_files=len(declared),
+        additional_audit_sources=len(set(declared) - set(required)),
+        declared_source_mismatches=sorted(set(mismatches)), current_file_mismatches=failures)
+
+
 def _audit(out, name, plan, result, *, selection_field="selection_sha256", model_tensor=True):
     """Expose evidence only when it belongs to this complete, immutable snapshot."""
     path = out / name
@@ -171,12 +196,12 @@ def _audit(out, name, plan, result, *, selection_field="selection_sha256", model
         _require(isinstance(value, dict), "Audit must be an object")
     except (ValueError, TypeError) as error:
         return {}, dict(evidence, status="invalid_evidence", error=str(error))
+    source_checks = _source_binding(plan, value)
     bindings = dict(PLAN=value.get("PLAN_sha256") == result["PLAN_sha256"],
         rows=value.get("rows_sha256") == result["rows_snapshot_sha256"],
         selection=value.get(selection_field) == plan["selection_manifest_sha256"],
         checkpoint=value.get("checkpoint_sha256") == plan["selection"]["checkpoint_sha256"],
-        sources=isinstance(plan.get("source_sha256"), dict) and bool(plan["source_sha256"])
-            and value.get("source_sha256") == plan["source_sha256"],
+        sources=source_checks["passed"],
         full_snapshot=result["completed_predictions"] == result["planned_predictions"]
             and result["ignored_uncommitted_tail_bytes"] == 0)
     if model_tensor:
@@ -184,7 +209,8 @@ def _audit(out, name, plan, result, *, selection_field="selection_sha256", model
             value.get("model_tensor_sha256") == plan["model_tensor_sha256"])
     bound = all(bindings.values())
     evidence.update(status="bound" if bound else "binding_mismatch", binding_matches=bound,
-        binding_checks=bindings, recorded_status=value.get("status"), checked_at=value.get("checked_at"))
+        binding_checks=bindings, source_checks=source_checks,
+        recorded_status=value.get("status"), checked_at=value.get("checked_at"))
     return value, evidence
 
 

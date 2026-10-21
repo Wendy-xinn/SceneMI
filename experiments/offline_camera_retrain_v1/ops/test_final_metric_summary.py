@@ -121,7 +121,10 @@ class OverallTests(unittest.TestCase):
 
     def evidence_fixture(self, out):
         plan, rows = self.fixture()
-        plan.update(source_sha256={"model.py": "e" * 64}, model_tensor_sha256="f" * 64)
+        source = out / "model.py"
+        source.write_bytes(b"# frozen model source\n")
+        source_manifest = {str(source): hashlib.sha256(source.read_bytes()).hexdigest()}
+        plan.update(source_sha256=source_manifest, model_tensor_sha256="f" * 64)
         plan_bytes = json.dumps(plan).encode()
         row_bytes = ("\n".join(json.dumps(row) for row in rows) + "\n").encode()
         (out / "PLAN.json").write_bytes(plan_bytes)
@@ -195,6 +198,43 @@ class OverallTests(unittest.TestCase):
                 self.assertFalse(stages["all_phased_checks_passed"])
             (out / "GPU_INPUTS_RECHECK.json").write_text(json.dumps(dict(gpu, completed_inputs=3)))
             self.assertNotEqual(report(out)["verification_stages"]["original_CUDA_inputs"]["status"], "passed")
+
+    def test_separate_audit_closure_requires_parent_sources_and_hashes_every_extra(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            cpu, gpu = self.evidence_fixture(out)
+            extra = out / "audit_helper.py"
+            extra.write_bytes(b"# independently sealed audit helper\n")
+            extra_manifest = {str(extra): hashlib.sha256(extra.read_bytes()).hexdigest()}
+            gpu.update(parent_source_sha256=cpu["source_sha256"], source_sha256=extra_manifest, status="running")
+            path = out / "GPU_INPUTS_RECHECK.json"
+            path.write_text(json.dumps(gpu))
+            stage = report(out)["verification_stages"]["original_CUDA_inputs"]
+            self.assertEqual(stage["status"], "pending")
+            self.assertEqual(stage["source_checks"]["additional_audit_sources"], 1)
+            gpu["status"] = "completed_exact"
+            path.write_text(json.dumps(gpu))
+            self.assertEqual(report(out)["verification_stages"]["original_CUDA_inputs"]["status"], "passed")
+            extra.write_bytes(b"# changed helper\n")
+            self.assertEqual(report(out)["verification_stages"]["original_CUDA_inputs"]["status"], "binding_mismatch")
+            extra.write_bytes(b"# independently sealed audit helper\n")
+            (out / "model.py").write_bytes(b"# changed original source\n")
+            self.assertEqual(report(out)["verification_stages"]["original_CUDA_inputs"]["status"], "binding_mismatch")
+
+    def test_extra_sources_cannot_substitute_for_missing_parent_or_conflict_with_it(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            cpu, gpu = self.evidence_fixture(out)
+            extra = out / "audit_helper.py"
+            extra.write_bytes(b"# helper\n")
+            extras = {str(extra): hashlib.sha256(extra.read_bytes()).hexdigest()}
+            path = out / "GPU_INPUTS_RECHECK.json"
+            for bad in (dict(gpu, source_sha256=extras),
+                    dict(gpu, parent_source_sha256={}, source_sha256=extras),
+                    dict(gpu, parent_source_sha256=cpu["source_sha256"],
+                        source_sha256=dict(extras, **{str(out / "model.py"): "0" * 64}))):
+                path.write_text(json.dumps(bad))
+                self.assertEqual(report(out)["verification_stages"]["original_CUDA_inputs"]["status"], "binding_mismatch")
 
     def test_changed_tolerance_is_not_accepted_as_independent_pass(self):
         with tempfile.TemporaryDirectory() as directory:
