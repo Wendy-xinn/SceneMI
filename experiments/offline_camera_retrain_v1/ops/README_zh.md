@@ -1,5 +1,9 @@
 # 实验运维
 
+共享机器的后续重任务先运行 `python -m experiments.offline_camera_retrain_v1.ops.resources check`。此检查读取全局 GPU 占用，不把另一发行版中不可见的 PID 当成空闲；有其他计算任务、占用超过空闲阈值或读取失败时拒绝启动。`/tmp` 中旧的排队锁只能协调本发行版。
+
+实际启动复用 `python -m experiments.offline_camera_retrain_v1.ops.resources run --device cuda --memory-gib 12 --cpu-count 4 -- <原训练或评估命令>`。CPU 预处理改为 `--device cpu`。systemd 仅为新任务创建资源限额：默认 RAM 最大 12GiB、80% 时开始回收、最多 1GiB swap；CPU 亲和性限制到四个逻辑核，为共享可用内存保留至少 4GiB。实际程序执行前再次读取自己的 cgroup 核验内存限额；设置失败不会退回无限额执行。不修改既有实验配置或封存源码。该检查不是跨用户的显卡预留，也不能修复共享内核缺陷；不自动等待后抢占资源，不重启 WSL 或干预另一 Ubuntu。
+
 当前实验、曲线、验证和权重统一从 [runs/INDEX_zh.md](../runs/INDEX_zh.md) 进入。
 
 EGO 场景与主干融合实验复用以下模块入口，案例身份放在不可覆盖的 PLAN 中，不在 runs 复制训练或评估脚本：

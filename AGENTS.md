@@ -1,5 +1,11 @@
 # Experiment storage and reproducibility
 
+## Shared WSL host
+
+- Ubuntu-24.04 belongs to another user. Never stop, restart, upgrade, reconfigure, or kill its tasks. WSL-wide shutdown, kernel updates, Windows restarts, GPU resets, global memory/network settings, and cache dropping require a maintenance window coordinated with all affected users; the user explicitly forbids interrupting the other Ubuntu.
+- Before future GPU training, inference, or GPU preprocessing, use `python -m experiments.offline_camera_retrain_v1.ops.resources check`. The old `/tmp` flock coordinates only our distro and does not establish cross-distro GPU exclusivity. A GPU PID absent from local `/proc` still counts as occupied. Do not launch when admission is refused, bypass it through a direct module entry, or queue an automatic start behind another user's work without agreement.
+- Launch future heavy jobs through `python -m experiments.offline_camera_retrain_v1.ops.resources run --device cuda|cpu --memory-gib <budget> --cpu-count <budget> -- <existing command>`. Defaults are 12GiB RAM and four CPU cores for only the new job; no fallback to unbounded execution if systemd limits fail. Check actual model memory requirements before choosing a budget. This preflight is not a GPU reservation and cannot guarantee protection from shared-kernel faults.
+
 The user asks that storage cleanup be part of experiment work, without repeated reminders.
 
 - Inventory disk usage before and after substantial experiments. Checkpoint files consume disk; distinguish this from training RAM/VRAM.
