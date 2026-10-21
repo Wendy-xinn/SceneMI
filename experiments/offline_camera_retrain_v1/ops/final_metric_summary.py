@@ -23,6 +23,8 @@ import time
 DATASETS = ("rich", "trumans", "egobody")
 SCENES = ("scene_on", "scene_off")
 PROTOCOL = "native30-final-metric-overall-summary-v1"
+NUMPY_LIMITS = dict(hidden_mpjpe_mm=.02, visible_mpjpe_mm=.02, mpjpe_mm=.02,
+    mpjve_mm_s=.05, acceleration_error_mm_s2=2., foot_joint_speed_gt_low_m_s=.0001)
 
 
 def _require(condition, message):
@@ -157,6 +159,133 @@ def _atomic(path, text):
     temporary.replace(path)
 
 
+def _audit(out, name, plan, result, *, selection_field="selection_sha256", model_tensor=True):
+    """Expose evidence only when it belongs to this complete, immutable snapshot."""
+    path = out / name
+    if not path.exists():
+        return {}, dict(status="not_available", file=name, binding_matches=False)
+    raw = path.read_bytes()
+    evidence = dict(file=name, sha256=_sha(raw), binding_matches=False)
+    try:
+        value = json.loads(raw)
+        _require(isinstance(value, dict), "Audit must be an object")
+    except (ValueError, TypeError) as error:
+        return {}, dict(evidence, status="invalid_evidence", error=str(error))
+    bindings = dict(PLAN=value.get("PLAN_sha256") == result["PLAN_sha256"],
+        rows=value.get("rows_sha256") == result["rows_snapshot_sha256"],
+        selection=value.get(selection_field) == plan["selection_manifest_sha256"],
+        checkpoint=value.get("checkpoint_sha256") == plan["selection"]["checkpoint_sha256"],
+        sources=isinstance(plan.get("source_sha256"), dict) and bool(plan["source_sha256"])
+            and value.get("source_sha256") == plan["source_sha256"],
+        full_snapshot=result["completed_predictions"] == result["planned_predictions"]
+            and result["ignored_uncommitted_tail_bytes"] == 0)
+    if model_tensor:
+        bindings["model_tensors"] = bool(plan.get("model_tensor_sha256")) and (
+            value.get("model_tensor_sha256") == plan["model_tensor_sha256"])
+    bound = all(bindings.values())
+    evidence.update(status="bound" if bound else "binding_mismatch", binding_matches=bound,
+        binding_checks=bindings, recorded_status=value.get("status"), checked_at=value.get("checked_at"))
+    return value, evidence
+
+
+def verification_stages(out, plan, result):
+    """Keep metric reproduction, independent numerics and source replay separate.
+
+    A combined CPU audit may fail its NumPy gate while proving exact saved
+    metric reproduction. Neither that fact nor a diagnostic waives any gate.
+    """
+    planned = result["planned_predictions"]
+    planned_inputs = len(plan["cases"]) * len(plan["regimes"])
+    saved, evidence = _audit(out, "CPU_SAVED_METRICS_AUDIT.json", plan, result)
+    recognized = saved.get("protocol") == "native30-saved-metrics-independent-CPU-audit-v1" and (
+        saved.get("status") in ("saved_metrics_independent_CPU_passed", "saved_metrics_independent_CPU_FAILED"))
+    complete = (evidence["binding_matches"] and recognized
+        and saved.get("planned_predictions") == planned and saved.get("committed_rows") == planned
+        and saved.get("recomputed_predictions") == planned and saved.get("CUDA_initialized") is False)
+    exact_checks = dict(full_CPU_recompute=complete,
+        metric_values_exact=saved.get("maximum_metric_recompute_difference") == 0.,
+        counts=saved.get("counts_match") is True,
+        artifacts=saved.get("artifact_sha256_checked_by_load_rows") is True,
+        paired_arrays=saved.get("paired_saved_inputs_exact") is True
+            and saved.get("all_pairs_complete") is True and saved.get("complete_ON_OFF_pairs") == planned_inputs,
+        scene_off_guard=saved.get("scene_off_guard_zero") is True,
+        unchanged_snapshot=saved.get("rows_PLAN_selection_unchanged") is True)
+    for key in ("counts_mismatch_rows", "availability_mismatch_rows", "identity_mismatch_rows",
+            "nonfinite_rows", "pair_mismatch_rows", "scene_off_guard_mismatch_rows"):
+        exact_checks[key] = saved.get(key) == []
+    exact_status = "passed" if all(exact_checks.values()) else (
+        "failed" if evidence["binding_matches"] else evidence["status"])
+    cpu = dict(evidence, status=exact_status, checks=exact_checks,
+        recomputed_predictions=saved.get("recomputed_predictions"),
+        maximum_metric_recompute_difference=saved.get("maximum_metric_recompute_difference"),
+        complete_ON_OFF_pairs=saved.get("complete_ON_OFF_pairs"),
+        scope="Exact CPU reproduction of saved metrics/counts and ON/OFF arrays; separate from the independent NumPy gate.")
+    differences = saved.get("independent_numpy_max_difference", {})
+    limits_match = saved.get("independent_tolerances") == NUMPY_LIMITS
+    metric_checks = {}
+    for name, limit in NUMPY_LIMITS.items():
+        value = differences.get(name)
+        finite = isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value) and value >= 0
+        metric_checks[name] = dict(maximum_difference=value, original_tolerance=limit,
+            passed=complete and limits_match and finite and value <= limit)
+    numpy_status = "passed" if (all(item["passed"] for item in metric_checks.values())
+        and saved.get("status") == "saved_metrics_independent_CPU_passed") else (
+        "failed_strict" if complete and limits_match else "invalid_or_incomplete_evidence" if evidence["binding_matches"] else evidence["status"])
+    numpy = dict(evidence, status=numpy_status, checks=metric_checks,
+        recorded_tolerances_match_original=limits_match, tolerance_changed=False)
+
+    gpu, gpu_evidence = _audit(out, "GPU_INPUTS_RECHECK.json", plan, result,
+        selection_field="selection_manifest_sha256")
+    gpu_checks = dict(protocol=gpu.get("protocol") == "selected-native30-exact-input-recheck-v1",
+        completed_exact=gpu.get("status") == "completed_exact" and gpu.get("complete") is True,
+        inputs=gpu.get("completed_inputs") == planned_inputs and gpu.get("planned_inputs") == planned_inputs,
+        scene_artifacts=gpu.get("checked_scene_artifacts") == planned,
+        source_arrays=gpu.get("all_source_arrays_exact") is True,
+        input_fingerprints=gpu.get("all_input_fingerprints_exact") is True,
+        reference_arrays=gpu.get("all_reference_arrays_exact") is True,
+        device=gpu.get("device") == "cuda")
+    gpu_status = "passed" if gpu_evidence["binding_matches"] and all(gpu_checks.values()) else (
+        "failed" if gpu.get("status") == "failed" and gpu_evidence["binding_matches"] else
+        "pending" if gpu_evidence["binding_matches"] and gpu.get("status") == "running" else
+        "invalid_or_incomplete_evidence" if gpu_evidence["binding_matches"] else gpu_evidence["status"])
+    gpu_stage = dict(gpu_evidence, status=gpu_status, checks=gpu_checks,
+        completed_inputs=gpu.get("completed_inputs", 0), planned_inputs=planned_inputs,
+        checked_scene_artifacts=gpu.get("checked_scene_artifacts", 0), failure=gpu.get("failure"),
+        scope="Original singleton CUDA input/reference reconstruction only; no new motion prediction.")
+
+    foot, foot_evidence = _audit(out, "CPU_FOOT_BOUNDARY_AUDIT.json", plan, result, model_tensor=False)
+    foot_valid = (foot_evidence["binding_matches"]
+        and foot.get("protocol") == "native30-saved-foot-threshold-boundary-CPU-audit-v1"
+        and foot.get("status") == "boundary_diagnosis_not_a_tolerance_waiver"
+        and foot.get("computed_predictions") == planned and foot.get("CUDA_initialized") is False
+        and foot.get("previous_saved_metric_audit_sha256") == evidence.get("sha256")
+        and foot.get("original_tolerance_m_s") == NUMPY_LIMITS["foot_joint_speed_gt_low_m_s"]
+        and foot.get("tolerance_changed") is False and foot.get("original_full_audits_not_overridden") is True)
+    foot_stage = dict(foot_evidence, status="documented_boundary_exception" if foot_valid else
+        "invalid_or_incomplete_evidence" if foot_evidence["binding_matches"] else foot_evidence["status"],
+        strict_numpy_gate_overridden=False)
+    if foot_valid:
+        foot_stage.update(over_tolerance_rows=foot.get("over_tolerance_rows"),
+            over_tolerance_unique_cases=foot.get("over_tolerance_unique_cases"),
+            GT_speed_threshold_m_s=foot.get("GT_speed_threshold_m_s"), summary=foot.get("summary"),
+            interpretation=foot.get("interpretation"))
+    original_attempt = {}
+    attempt_path = out / "OVERALL_CPU_RECHECK.json"
+    if attempt_path.exists():
+        raw = attempt_path.read_bytes()
+        attempt = json.loads(raw)
+        original_attempt = dict(file=attempt_path.name, sha256=_sha(raw), recorded_status=attempt.get("status"),
+            binding_matches=attempt.get("PLAN_sha256") == result["PLAN_sha256"]
+                and attempt.get("rows_sha256") == result["rows_snapshot_sha256"], returncode=attempt.get("returncode"))
+    return dict(generation=dict(status="complete" if result["completed_predictions"] == planned else "partial",
+            completed_predictions=result["completed_predictions"], planned_predictions=planned),
+        CPU_saved_metric_recomputation=cpu, independent_NumPy_FK=numpy,
+        original_CUDA_inputs=gpu_stage, foot_threshold_boundary_diagnostic=foot_stage,
+        original_CPU_gate=dict(result["CPU_recheck"], attempt=original_attempt, overridden=False),
+        all_phased_checks_passed=all(item == "passed" for item in (exact_status, numpy_status, gpu_status)),
+        strict_tolerances_changed=False, original_CPU_gate_overridden=False)
+
+
 def render_markdown(result):
     def number(value):
         return "—" if value is None else f"{value:.3f}"
@@ -184,7 +313,30 @@ def render_markdown(result):
         lines.append(f"| {key} ({group['status']}) | {group['completed_windows']}/{group['planned_windows']} | {pair['mismatched_input_windows']} | "
             + " | ".join(metric(group, name) for name in ("w_mpjpe_mm", "hidden_mpjpe_mm", "visible_mpjpe_mm")) + " |")
     cpu = result.get("CPU_recheck", {})
-    lines += ["", "CPU独立校验：" + cpu.get("status", "not_checked") + "。",
+    lines += ["", "原整体CPU校验：" + cpu.get("status", "not_checked") + "；原失败记录和阈值保留。"]
+    verification = result.get("verification_stages", {})
+    if verification:
+        exact, numpy, gpu = (verification[name] for name in
+            ("CPU_saved_metric_recomputation", "independent_NumPy_FK", "original_CUDA_inputs"))
+        lines += [f"CPU保存指标重算：{exact['status']}；重算 {exact.get('recomputed_predictions')}/{result['planned_predictions']}，"
+            f"最大差 {exact.get('maximum_metric_recompute_difference')}；ON/OFF完整配对 {exact.get('complete_ON_OFF_pairs')}。",
+            f"独立NumPy FK严格校验：{numpy['status']}；原阈值未改。",
+            f"原CUDA输入精确重建：{gpu['status']}；{gpu['completed_inputs']}/{gpu['planned_inputs']} 个窗口，"
+            f"覆盖 {gpu['checked_scene_artifacts']}/{result['planned_predictions']} 份场景结果。"]
+        if numpy["binding_matches"]:
+            failures = [(name, item) for name, item in numpy["checks"].items() if not item["passed"]]
+            for name, item in failures:
+                lines.append(f"独立数值异常 {name}：最大差 {item['maximum_difference']}，原容差 {item['original_tolerance']}。")
+        foot = verification["foot_threshold_boundary_diagnostic"]
+        if foot["status"] == "documented_boundary_exception":
+            value = foot.get("summary", {}).get("NumPy_on_original_mask_max_foot_difference_m_s")
+            lines.append(f"足速边界补证：{foot.get('over_tolerance_rows')} 份结果、{foot.get('over_tolerance_unique_cases')} 个重叠窗口"
+                f"在GT足速0.2m/s硬边界出现选帧差异；使用原选帧时独立最大差 {value}m/s。"
+                "[CPU_FOOT_BOUNDARY_AUDIT.json](CPU_FOOT_BOUNDARY_AUDIT.json) 仅解释该异常，不将原严格失败改为通过。")
+        attempt = verification["original_CPU_gate"]["attempt"]
+        if attempt.get("binding_matches"):
+            lines.append("原整体CPU校验尝试状态：" + str(attempt.get("recorded_status")) + "；分阶段报告不覆盖原门。")
+    lines += [
         "全部评估指标及有效样本加权数值见 OVERALL_SUMMARY.json；不自动选择模型，不声明与其他论文输入/训练协议一致。",
         "EGO与EXO按不同输入协议分列；若启用combined_modes，该合并只作异质输入描述。", "", result["disclosure"]]
     if result.get("ignored_uncommitted_tail_bytes"):
@@ -198,7 +350,8 @@ def report(out, *, combined_modes=False):
     raw = (out / "rows.jsonl").read_bytes() if (out / "rows.jsonl").exists() else b""
     committed = raw if not raw or raw.endswith(b"\n") else raw[:raw.rfind(b"\n") + 1]
     rows = [json.loads(line) for line in committed.splitlines() if line.strip()]
-    result = build_summary(json.loads(plan_bytes), rows, combined_modes=combined_modes)
+    plan = json.loads(plan_bytes)
+    result = build_summary(plan, rows, combined_modes=combined_modes)
     source = Path(__file__).resolve()
     result.update(PLAN_sha256=_sha(plan_bytes), rows_snapshot_sha256=_sha(committed),
         rows_snapshot_bytes=len(committed), ignored_uncommitted_tail_bytes=len(raw) - len(committed),
@@ -218,6 +371,7 @@ def report(out, *, combined_modes=False):
         and len(rows) == result["planned_predictions"])
     result["CPU_recheck"] = dict(status="completed_verified_for_this_snapshot" if verified else "not_completed_for_this_snapshot",
         recorded_status=cpu.get("status"), recorded_complete=cpu.get("complete"), snapshot_sha256_matches=matches)
+    result["verification_stages"] = verification_stages(out, plan, result)
     _atomic(out / "OVERALL_SUMMARY.json", json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + "\n")
     _atomic(out / "OVERALL_REPORT_zh.md", render_markdown(result))
     return result

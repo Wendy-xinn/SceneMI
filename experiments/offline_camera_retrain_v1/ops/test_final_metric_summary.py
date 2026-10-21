@@ -1,12 +1,13 @@
 """Numerical coverage and paired-estimator tests, using hand-computable data."""
 from copy import deepcopy
+import hashlib
 import json
 from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
 
-from .final_metric_summary import build_summary, report, recheck_ready, _sampler_alive
+from .final_metric_summary import build_summary, report, recheck_ready, _sampler_alive, NUMPY_LIMITS
 
 
 class OverallTests(unittest.TestCase):
@@ -117,6 +118,122 @@ class OverallTests(unittest.TestCase):
         with patch.object(Path, "read_text", return_value="123 (python worker) R " + "0 " * 18 + "556"):
             self.assertFalse(_sampler_alive(123, expected_start_ticks=555))
             self.assertTrue(_sampler_alive(123, expected_start_ticks=556))
+
+    def evidence_fixture(self, out):
+        plan, rows = self.fixture()
+        plan.update(source_sha256={"model.py": "e" * 64}, model_tensor_sha256="f" * 64)
+        plan_bytes = json.dumps(plan).encode()
+        row_bytes = ("\n".join(json.dumps(row) for row in rows) + "\n").encode()
+        (out / "PLAN.json").write_bytes(plan_bytes)
+        (out / "rows.jsonl").write_bytes(row_bytes)
+        binding = dict(PLAN_sha256=hashlib.sha256(plan_bytes).hexdigest(),
+            rows_sha256=hashlib.sha256(row_bytes).hexdigest(), selection_sha256="b" * 64,
+            checkpoint_sha256="a" * 64, model_tensor_sha256="f" * 64,
+            source_sha256=plan["source_sha256"])
+        cpu = dict(binding, protocol="native30-saved-metrics-independent-CPU-audit-v1",
+            status="saved_metrics_independent_CPU_passed", planned_predictions=8, committed_rows=8,
+            recomputed_predictions=8, CUDA_initialized=False, maximum_metric_recompute_difference=0.,
+            counts_match=True, artifact_sha256_checked_by_load_rows=True, paired_saved_inputs_exact=True,
+            all_pairs_complete=True, complete_ON_OFF_pairs=4, scene_off_guard_zero=True,
+            rows_PLAN_selection_unchanged=True, independent_tolerances=NUMPY_LIMITS,
+            independent_numpy_max_difference=dict.fromkeys(NUMPY_LIMITS, 0.))
+        for name in ("counts_mismatch_rows", "availability_mismatch_rows", "identity_mismatch_rows",
+                "nonfinite_rows", "pair_mismatch_rows", "scene_off_guard_mismatch_rows"):
+            cpu[name] = []
+        gpu = dict(binding, protocol="selected-native30-exact-input-recheck-v1", status="completed_exact",
+            complete=True, completed_inputs=4, planned_inputs=4, checked_scene_artifacts=8,
+            all_source_arrays_exact=True, all_input_fingerprints_exact=True,
+            all_reference_arrays_exact=True, device="cuda", selection_manifest_sha256="b" * 64)
+        return cpu, gpu
+
+    def test_missing_or_wrong_snapshot_evidence_cannot_pass(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            cpu, gpu = self.evidence_fixture(out)
+            missing = report(out)["verification_stages"]
+            self.assertEqual(missing["CPU_saved_metric_recomputation"]["status"], "not_available")
+            self.assertFalse(missing["all_phased_checks_passed"])
+            for key in ("PLAN_sha256", "rows_sha256", "selection_manifest_sha256",
+                    "checkpoint_sha256", "model_tensor_sha256", "source_sha256"):
+                bad = dict(gpu, **{key: {} if key == "source_sha256" else "0" * 64})
+                (out / "GPU_INPUTS_RECHECK.json").write_text(json.dumps(bad))
+                stage = report(out)["verification_stages"]["original_CUDA_inputs"]
+                self.assertEqual(stage["status"], "binding_mismatch", key)
+                self.assertFalse(stage["binding_matches"], key)
+
+    def test_exact_CPU_metrics_and_strict_NumPy_failure_remain_separate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            cpu, gpu = self.evidence_fixture(out)
+            cpu["status"] = "saved_metrics_independent_CPU_FAILED"
+            cpu["independent_numpy_max_difference"]["foot_joint_speed_gt_low_m_s"] = .00027
+            (out / "CPU_SAVED_METRICS_AUDIT.json").write_text(json.dumps(cpu))
+            (out / "GPU_INPUTS_RECHECK.json").write_text(json.dumps(gpu))
+            attempt_bytes = json.dumps(dict(status="failed", PLAN_sha256=cpu["PLAN_sha256"],
+                rows_sha256=cpu["rows_sha256"], returncode=1)).encode()
+            (out / "OVERALL_CPU_RECHECK.json").write_bytes(attempt_bytes)
+            result = report(out)
+            stages = result["verification_stages"]
+            self.assertEqual(stages["CPU_saved_metric_recomputation"]["status"], "passed")
+            self.assertEqual(stages["independent_NumPy_FK"]["status"], "failed_strict")
+            self.assertEqual(stages["original_CUDA_inputs"]["status"], "passed")
+            self.assertFalse(stages["all_phased_checks_passed"])
+            self.assertEqual(result["CPU_recheck"]["status"], "not_completed_for_this_snapshot")
+            self.assertEqual((out / "OVERALL_CPU_RECHECK.json").read_bytes(), attempt_bytes)
+            self.assertFalse((out / "CPU_RECHECK.json").exists())
+            self.assertIn("0.00027", (out / "OVERALL_REPORT_zh.md").read_text())
+
+    def test_GPU_FAILED_or_running_never_passes_even_with_exact_flags(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            cpu, gpu = self.evidence_fixture(out)
+            (out / "CPU_SAVED_METRICS_AUDIT.json").write_text(json.dumps(cpu))
+            for status, expected in (("failed", "failed"), ("running", "pending")):
+                (out / "GPU_INPUTS_RECHECK.json").write_text(json.dumps(dict(gpu, status=status)))
+                stages = report(out)["verification_stages"]
+                self.assertEqual(stages["original_CUDA_inputs"]["status"], expected)
+                self.assertFalse(stages["all_phased_checks_passed"])
+            (out / "GPU_INPUTS_RECHECK.json").write_text(json.dumps(dict(gpu, completed_inputs=3)))
+            self.assertNotEqual(report(out)["verification_stages"]["original_CUDA_inputs"]["status"], "passed")
+
+    def test_changed_tolerance_is_not_accepted_as_independent_pass(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            cpu, gpu = self.evidence_fixture(out)
+            cpu["independent_tolerances"] = dict(NUMPY_LIMITS, foot_joint_speed_gt_low_m_s=1.)
+            (out / "CPU_SAVED_METRICS_AUDIT.json").write_text(json.dumps(cpu))
+            (out / "GPU_INPUTS_RECHECK.json").write_text(json.dumps(gpu))
+            stages = report(out)["verification_stages"]
+            self.assertEqual(stages["CPU_saved_metric_recomputation"]["status"], "passed")
+            self.assertEqual(stages["independent_NumPy_FK"]["status"], "invalid_or_incomplete_evidence")
+            self.assertFalse(stages["all_phased_checks_passed"])
+
+    def test_bound_foot_diagnostic_explains_but_does_not_waive_strict_failure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            cpu, gpu = self.evidence_fixture(out)
+            cpu["status"] = "saved_metrics_independent_CPU_FAILED"
+            cpu["independent_numpy_max_difference"]["foot_joint_speed_gt_low_m_s"] = .00027
+            raw = json.dumps(cpu).encode()
+            (out / "CPU_SAVED_METRICS_AUDIT.json").write_bytes(raw)
+            foot = {key: cpu[key] for key in ("PLAN_sha256", "rows_sha256", "selection_sha256",
+                "checkpoint_sha256", "source_sha256")}
+            foot.update(protocol="native30-saved-foot-threshold-boundary-CPU-audit-v1",
+                status="boundary_diagnosis_not_a_tolerance_waiver", computed_predictions=8,
+                CUDA_initialized=False, previous_saved_metric_audit_sha256=hashlib.sha256(raw).hexdigest(),
+                original_tolerance_m_s=.0001, tolerance_changed=False, original_full_audits_not_overridden=True,
+                over_tolerance_rows=2, over_tolerance_unique_cases=1, GT_speed_threshold_m_s=.2,
+                summary={"NumPy_on_original_mask_max_foot_difference_m_s": .000003})
+            path = out / "CPU_FOOT_BOUNDARY_AUDIT.json"
+            path.write_text(json.dumps(foot))
+            stages = report(out)["verification_stages"]
+            self.assertEqual(stages["foot_threshold_boundary_diagnostic"]["status"], "documented_boundary_exception")
+            self.assertEqual(stages["independent_NumPy_FK"]["status"], "failed_strict")
+            self.assertFalse(stages["all_phased_checks_passed"])
+            foot["previous_saved_metric_audit_sha256"] = "0" * 64
+            path.write_text(json.dumps(foot))
+            self.assertNotEqual(report(out)["verification_stages"]["foot_threshold_boundary_diagnostic"]["status"],
+                "documented_boundary_exception")
 
 
 if __name__ == "__main__":
