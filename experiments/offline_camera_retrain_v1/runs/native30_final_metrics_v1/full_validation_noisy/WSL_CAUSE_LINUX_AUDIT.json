@@ -1,0 +1,74 @@
+{
+  "protocol": "wsl-cause-linux-and-host-panic-corroboration-v1",
+  "checked_at_CST": "2026-10-21T11:14:21.748376+08:00",
+  "conclusion": "WSL kernel fatal exception is directly documented at the evaluation interruption; ordinary terminal closure, idle termination, and Linux OOM kill are not supported as the proximate cause.",
+  "confidence": "confirmed kernel panic; underlying kernel defect/triggering workload remains unestablished",
+  "linux": {
+    "old_boot_id": "b30a448e-16b5-4f78-a7fb-d9cecbf4b39b",
+    "new_boot_id": "8db142fc-4ad6-4cf8-aa6c-6e21b312d2d0",
+    "new_boot_start_CST": "2026-10-21T10:14:35+08:00",
+    "previous_journal_last_entry_CST": "2026-10-21T08:41:13+08:00",
+    "last_entry": "systemd-resolved: Clock change detected. Flushing caches.",
+    "journal_oom_kill_matches": 0,
+    "journal_normal_shutdown_matches_0820_0900": 0,
+    "journal_logind_or_user_manager_events_since_midnight": 0,
+    "wtmp_old_interactive_session": "Oct20 14:53 to Oct21 10:14 marked crash; new boot logged at10:14",
+    "interpretation": "Previous persistent journal ends before the panic and did not preserve its message; absence in journal is not evidence against the independently captured panic."
+  },
+  "host_panic_corroboration": {
+    "path": "/mnt/c/Users/BNU/AppData/Local/Temp/wsl-crashes/kernel-panic-1792543315-{2b83bd0d-d5a8-4a49-a276-016aa1bc57f1}.txt",
+    "sha256": "07a3bf281905e3fcd970a9a28b31f85ea5f3ec346daaf31f2df96c9abc382514",
+    "bytes": 4143,
+    "mtime_CST": "2026-10-21T08:41:55.727237700+08:00",
+    "VM_id": "2b83bd0d-d5a8-4a49-a276-016aa1bc57f1",
+    "panic_line": 56,
+    "panic_message": "[64614.120327] Kernel panic - not syncing: Fatal exception",
+    "fault_location": "__list_del_entry_valid_or_report+0xf9/0x100",
+    "call_chain": [
+      "ext4_es_scan",
+      "do_shrink_slab",
+      "shrink_slab",
+      "shrink_node",
+      "do_try_to_free_pages",
+      "try_to_free_pages",
+      "__alloc_pages_slowpath",
+      "anonymous page allocation/page fault"
+    ],
+    "VM_NIC_delete_CST": "2026-10-21T08:41:55.738/743+08:00",
+    "evaluation_last_commit_CST": "2026-10-21T08:41:55+08:00",
+    "VM_id_and_time_match": true,
+    "interpretation": "The exception arose in ext4 extent-status reclamation during a page-allocation reclaim path. This shows reclamation was active, but does not establish exhausted RAM, an OOM kill, physical disk corruption, the initiating process, or a specific kernel version regression."
+  },
+  "configuration_snapshot": {
+    "wslconfig_path": "/mnt/c/Users/BNU/.wslconfig",
+    "wslconfig_sha256": "4e212d0d20ee8a43ecd641cf0edb9f3bc620f595e30a95afa1865bf0fbd6c136",
+    "wslconfig_mtime_CST": "2026-07-17T16:09:11.639128900+08:00",
+    "explicit_values": {
+      "networkingMode": "Mirrored",
+      "processors": 20
+    },
+    "explicit_vmIdleTimeout_memory_swap_autoMemoryReclaim_settings": false,
+    "wsl_conf": {
+      "boot.systemd": true,
+      "user.default": "wenxin"
+    },
+    "current_user_linger": false,
+    "current_user_manager": "active/running",
+    "current_linux_timers": "No shutdown/reboot timer present in the12 listed timers",
+    "old_cron_hourly_directory_empty": true,
+    "scope_limit": "Current config/linger/timers do not establish their state at the crash and are not attributed as its cause. Current pressure/cgroup counters were not used to infer pre-crash RAM state."
+  },
+  "scope": {
+    "queries": "Read-only journal/wtmp/config/systemd/timer and existing host panic evidence inspection",
+    "no_system_or_evaluation_changes": true,
+    "no_GPU_or_sampler_started": true,
+    "shutdown_command_history_search": "Stopped before execution after decisive panic evidence was found; no conclusion about command-history absence is claimed",
+    "only_new_output": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/WSL_CAUSE_LINUX_AUDIT.json"
+  },
+  "prior_audit": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/WSL_INTERRUPTION_AUDIT.json",
+    "sha256": "d78655fb6308dbe408682327c35f67e0ec4838d2ee1f5049a218956d8cae859b",
+    "retained_unchanged": true
+  },
+  "related_host_audit": "WSL_CAUSE_WINDOWS_AUDIT.json"
+}

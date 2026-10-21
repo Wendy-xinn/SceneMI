@@ -1,0 +1,77 @@
+{
+  "protocol": "readonly-wsl-update-channel-audit-v1",
+  "checked_at": "2026-10-21T11:12:27.493089+08:00",
+  "target_local_time": "2026-10-21T08:41:55+08:00",
+  "planned_window_local": [
+    "2026-10-21T08:30:00+08:00",
+    "2026-10-21T08:45:00+08:00"
+  ],
+  "status": "stopped_after_other_auditor_found_matching_VM_kernel_panic_dump",
+  "scope": "Read-only Windows event-channel metadata and current WSL AppX package identity; no system changes, diagnostics tracing, service operations, or evaluation intervention.",
+  "wsl_package_current": {
+    "Name": "MicrosoftCorporationII.WindowsSubsystemForLinux",
+    "Version": "2.7.10.0",
+    "Status": 0,
+    "InstallLocation": "C:\\Program Files\\WindowsApps\\MicrosoftCorporationII.WindowsSubsystemForLinux_2.7.10.0_x64__8wekyb3d8bbwe",
+    "install_or_update_timestamp": null,
+    "package_install_or_update_time_proven": false
+  },
+  "event_channels": [
+    {
+      "name": "Microsoft-Windows-AppxPackaging/Operational",
+      "enabled": true,
+      "record_count": 1931
+    },
+    {
+      "name": "Microsoft-Windows-AppXDeploymentServer/Operational",
+      "enabled": true,
+      "record_count": 8690
+    },
+    {
+      "name": "Microsoft-Windows-AppXDeployment/Operational",
+      "enabled": true,
+      "record_count": 370
+    },
+    {
+      "name": "Microsoft-Windows-AppXDeployment-Server/Operational",
+      "enabled": true,
+      "record_count": 101
+    },
+    {
+      "name": "Microsoft-Windows-Store/Operational",
+      "enabled": true,
+      "record_count": 26711
+    },
+    {
+      "name": "Microsoft-Windows-TaskScheduler/Operational",
+      "enabled": false,
+      "record_count": null
+    },
+    {
+      "name": "Microsoft-Windows-TaskScheduler/Maintenance",
+      "enabled": true,
+      "record_count": 1228
+    },
+    {
+      "name": "Microsoft-Windows-WindowsUpdateClient/Operational",
+      "enabled": true,
+      "record_count": 1881
+    }
+  ],
+  "target_window_event_query_completed": false,
+  "update_causation_supported_by_this_audit": false,
+  "conclusion": "This limited audit does not establish or exclude an update at the incident time. Event-channel availability and the current package version are not evidence of an update-triggered restart. Stop was requested after the other Windows auditor found a kernel panic dump matching the terminated VM GUID.",
+  "external_evidence_reported_by_root_not_independently_read_here": {
+    "path_suffix": "Windows Temp/wsl-crashes/kernel-panic-1792543315-{2b83bd0d-d5a8-4a49-a276-016aa1bc57f1}.txt",
+    "reported_stack_symbols": [
+      "__list_del_entry_valid_or_report",
+      "ext4_es_scan",
+      "shrink_slab",
+      "try_to_free_pages"
+    ]
+  },
+  "system_modified": false,
+  "services_restarted": false,
+  "GPU_used": false,
+  "evaluation_touched": false
+}
