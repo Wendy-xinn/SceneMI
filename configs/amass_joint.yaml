@@ -1,0 +1,82 @@
+version: amass-joint-generation-repair-v1
+seed: 2026102702
+reference_config: configs/amass_ego128.yaml
+index: runs/amass128/index/complete.json
+base:
+  checkpoint: runs/amass_ego128/training/last.pt
+  step: 55000
+  sha256: 50a061e0d40fd0acd866b3806620cfe98255394f1e4c32c7828a542aae4a3305
+boundary_parent:
+  checkpoint: runs/amass_exo_completion128/boundary/selection/best.pt
+  step: 6000
+  sha256: 4fbf1c2bdf85f5e0b8e72b44c2764bc703e318610392401c4e5a262ff823b4eb
+  cumulative_exo_updates: 42000
+baselines:
+  ego: runs/amass_ego128/selection/step_055000/RESULT.json
+  exo: runs/amass_exo_completion128/boundary/selection/step_006000/RESULT.json
+  exo_rows: runs/amass_exo_completion128/boundary/selection/step_006000/metrics.jsonl
+model:
+  hidden: 128
+  root_limit_m: 0.5
+  rotation_limit_rad: 1.2
+  residual_gain: 5.0
+frontend:
+  probabilities: [0.2, 0.35, 0.25, 0.2]
+  beta_sigma: 0.15
+  pose_sigma_rad: [0.015, 0.04]
+  occluded_pose_sigma_rad: [0.12, 0.25]
+  pose_rho: 0.85
+  root_sigma_m: [0.01, 0.04]
+  root_rho: 0.95
+  gap_frames: [8, 32]
+training:
+  batch_size: 8
+  sample_order: [ego, exo, ego, exo, ego, exo, ego, exo]
+  optimizer_step: equal_weight_two_homogeneous_microbatches
+  checkpoint_every: 500
+  log_every: 50
+  scene: false
+  exo_shape: estimated_native_parameters
+  ego_shape: predicted_from_camera_only
+  sampling: uniform_family_then_variant_then_all_valid_starts_with_replacement
+optimizer:
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 300
+  lr_floor_fraction: 0.1
+diffusion:
+  start_timestep: 200
+  ddim_steps: 8
+  seed: 777
+validation:
+  split: val
+  ego_ddim_steps: 20
+  ego_batch_size: 4
+  batch_size: 8
+  conditions: [identity, tracking, occlusion, gap]
+  identity_max_change_mm: 0.001
+  visible_noninferiority_mm: 1.0
+  required_improvement_conditions: [occlusion, gap]
+  warm_ego_max_regression_mm: 0.0
+  warm_exo_region_max_regression_mm: 1.0
+  selection: equal_weight_baseline_normalized_ego_tracking_occlusion_gap
+  test_used: false
+runtime:
+  allocator_gib: 5.5
+  memory_gib: 10
+  cpu_count: 2
+variants:
+  warm:
+    initialization: ego55k_plus_exo42k_boundary
+    output: runs/amass_joint128/warm
+    updates: 20000
+    backbone_lr: 0.00001
+    adapter_lr: 0.00003
+    full_validation_every: 5000
+  scratch:
+    initialization: from_scratch_no_pretrained_weights
+    output: runs/amass_joint128/scratch
+    updates: 110000
+    backbone_lr: 0.0001
+    adapter_lr: 0.0001
+    full_validation_every: 10000

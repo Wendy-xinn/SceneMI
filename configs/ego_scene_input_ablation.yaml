@@ -1,0 +1,17 @@
+version: ego-scene-input-ablation-v1
+checkpoint: runs/ego_scene_adaptation/selection/best.pt
+checkpoint_sha256: dc3b89544ea1e5b00568e64b11783e54b92c0b22855406a827d62d591abd368d
+checkpoint_step: 17000
+validation_manifest: runs/ego_scene_adaptation/VALIDATION_MANIFEST.json
+validation_manifest_sha256: b33baf2feab1e53c0fabf736dfad5b12f6e248ac5d55db34e0653c2af14394fa
+reference_metrics: runs/ego_scene_adaptation/selection/full_step_017000.json
+output: runs/ego_scene_adaptation/input_ablation
+conditions: [matched, disabled, empty, mismatched]
+donor_seed: 20261104
+donor_policy: same_dataset_different_scene_and_family
+scene_coordinates: donor_camera_start_local_yup_meters
+amass_policy: unchanged_empty_scene_no_donor
+bootstrap_samples: 2000
+runtime:
+  memory_gib: 12
+  cpu_count: 4

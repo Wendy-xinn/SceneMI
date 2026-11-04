@@ -1,0 +1,215 @@
+{
+  "recorded_at_utc": "2026-10-22T09:43:02.591883+00:00",
+  "state": "training",
+  "formal_training_started": true,
+  "automatic_gpu_launch": false,
+  "configuration": {
+    "ego_input": "virtual_camera",
+    "ego_joints": [
+      15
+    ],
+    "exo_input": "estimated_3d_body_or_joints",
+    "body_shape": "predicted_from_observations",
+    "ground_truth_shape_as_input": false,
+    "mode_probabilities": {
+      "ego": 0.5,
+      "exo": 0.5
+    },
+    "exo_mask": "synthetic_body_part_temporal_dropout",
+    "input_noise": "disabled_clean_baseline",
+    "temporal_dropout": {
+      "protocol": "temporal-observation-gaps-v1",
+      "probabilities": {
+        "ego": 0.0,
+        "exo": 0.5
+      },
+      "gap_frames": [
+        8,
+        32
+      ],
+      "placements": [
+        "prefix",
+        "interior",
+        "suffix"
+      ],
+      "minimum_observed_frames": 96
+    }
+  },
+  "training_contract_sha256": "62a17cc931bac0575149834b2f3e6f58c17e678d0b1e285c2baa05744630d213",
+  "frozen_index_sha256": "d78005fefe21c2646398db087432995d20b7320dd416a69460735bc6b03de6ca",
+  "prepared_source_seal_unchanged": true,
+  "sources": {
+    "configs/amass128.yaml": "70dc5a94bd686da8bd42cca94ba4bee3b7fdda5bda8edb2aa683cbe53799d745",
+    "scenemi/resources.py": "2aab36b2ea7121278808d85d07ea91156646d85ae4057435fd6c0e6e41558c8c",
+    "scenemi/config.py": "c8996ae51c425ce0bd6c4177c2f87c635584a3b9619b195a3ab6e2f3471c28f7",
+    "scenemi/data/observation_gaps.py": "396e0e610bff81b6c7d36421e568dfe72b13b62484511a6ca9cf46278422e7bd",
+    "scenemi/data/amass_dataset.py": "4b7989095f0b9e7400bfcc4067395c9d4286253fa1d2b16d2afa7a0bc388ff55",
+    "scenemi/training.py": "84fed7ab0ea855a19717f9f0d4aa3e37a4d102d927610b9cc9cc6ea8f32b0bff",
+    "tests/test_resources.py": "4dbacdef6649920a9acfd317f8cddf82a481f3a83e18087df66f27d13c78ba29",
+    "tests/test_observation_gaps.py": "c88b32c5ae4a48ff7469ae95ce4f79615c0f4505c7833ca1409ef83a212c8a1b"
+  },
+  "regression": {
+    "command": "python -m unittest tests.test_resources tests.test_observation_gaps tests.test_amass_training tests.test_amass_model tests.test_amass_contract -v",
+    "passed": 27,
+    "skipped": 0,
+    "elapsed_seconds": 10.872,
+    "device": "cpu",
+    "memory_limit_gib": 4,
+    "cpu_cores": 2
+  },
+  "cpu_preflight": {
+    "record": "runs/amass128/preflight/complete_cpu/RESULT.json",
+    "batch_size": 8,
+    "updates_executed": 3,
+    "resume_bitwise_exact": true,
+    "isolation": {
+      "label_poison_invariant": true,
+      "ego_joint_track_poison_invariant": true,
+      "masked_observation_poison_invariant": true,
+      "observation_only_shape": true,
+      "finite_output": true
+    },
+    "forced_gap_isolation": {
+      "label_poison_invariant": true,
+      "ego_joint_track_poison_invariant": true,
+      "masked_observation_poison_invariant": true,
+      "observation_only_shape": true,
+      "finite_output": true
+    },
+    "ddim_conditions": [
+      {
+        "mode": "ego",
+        "condition": "clean",
+        "missing_frames": 0
+      },
+      {
+        "mode": "exo",
+        "condition": "clean",
+        "missing_frames": 0
+      },
+      {
+        "mode": "exo",
+        "condition": "temporal_gap",
+        "missing_frames": 22
+      }
+    ],
+    "elapsed_seconds": 15.170222090993775,
+    "peak_cuda_bytes": null
+  },
+  "gpu_admission": {
+    "device": "cuda",
+    "available_memory_bytes": 23244464128,
+    "memory_max_bytes": 12884901888,
+    "shared_memory_reserve_bytes": 4294967296,
+    "reservation": false,
+    "other_processes_modified": false,
+    "memory_admitted": true,
+    "admitted": true,
+    "gpu": {
+      "memory_used_mib": 14707,
+      "utilization_percent": 51,
+      "compute_pids": [
+        22051
+      ],
+      "admitted": true,
+      "policy": "Explicit user-authorized sharing; free memory must cover allocator cap, CUDA allowance and reserve",
+      "exclusive_admitted": false,
+      "memory_total_mib": 24455,
+      "memory_free_mib": 9329,
+      "required_free_mib": 9216,
+      "runtime": {
+        "gpu_mode": "shared_user_authorized",
+        "pytorch_memory_limit_gib": 6,
+        "cuda_runtime_allowance_gib": 1,
+        "free_reserve_gib": 2
+      }
+    }
+  },
+  "limitations": [
+    "CPU/CUDA preflights and initial finite updates verify implementation, not generation quality or convergence.",
+    "EXO gaps are synthetic; rate and duration are initial settings, not measured tracker statistics.",
+    "EGO has no synthetic frame gaps. Original clock and full motion/shape supervision are retained.",
+    "Existing AMASS viewer shows source windows without online whole-frame dropout.",
+    "PyTorch allocator cap excludes CUDA context/runtime. Launch headroom is not a shared-resource reservation."
+  ],
+  "runtime": {
+    "gpu_mode": "shared_user_authorized",
+    "pytorch_memory_limit_gib": 6,
+    "cuda_runtime_allowance_gib": 1,
+    "free_reserve_gib": 2
+  },
+  "cuda_preflight": {
+    "batch_size": 8,
+    "updates_executed": 3,
+    "resume_bitwise_exact": true,
+    "isolation": {
+      "label_poison_invariant": true,
+      "ego_joint_track_poison_invariant": true,
+      "masked_observation_poison_invariant": true,
+      "observation_only_shape": true,
+      "finite_output": true
+    },
+    "forced_gap_isolation": {
+      "label_poison_invariant": true,
+      "ego_joint_track_poison_invariant": true,
+      "masked_observation_poison_invariant": true,
+      "observation_only_shape": true,
+      "finite_output": true
+    },
+    "gpu_limits": {
+      "pytorch_allocator_limit_bytes": 6442450944,
+      "device_total_bytes": 25642467328,
+      "memory_fraction": 0.25124146056589647,
+      "cuda_context_included": false,
+      "launch_time_reserve_gib": 2
+    },
+    "peak_cuda_bytes": 1649108480,
+    "peak_cuda_reserved_bytes": 1761607680,
+    "elapsed_seconds": 8.924550026000361
+  },
+  "training": {
+    "status": "runs/amass128/training/STATUS.json",
+    "launch": "runs/amass128/training/LAUNCH.json",
+    "initialization": "runs/amass128/training/INITIALIZATION.json",
+    "pid": 308498,
+    "observed_at_utc": "2026-10-22T09:43:02.591883+00:00",
+    "completed_updates": 1340,
+    "checked_log_updates": 1350,
+    "finite_losses": true,
+    "mode_counts_checked": {
+      "ego": 5350,
+      "exo": 5450
+    },
+    "whole_frame_outage_windows_checked": {
+      "ego": 0,
+      "exo": 2681
+    },
+    "peak_cuda_bytes": 1648932864,
+    "disk_free_gib": 173.82331085205078,
+    "updates_per_second": 2.159395435483476,
+    "eta_hours": 6.902652154684346
+  },
+  "first_checkpoint": {
+    "verified_at_utc": "2026-10-22T09:41:53.624371+00:00",
+    "checkpoint": "runs/amass128/training/last.pt",
+    "step": 1000,
+    "bytes": 1026933815,
+    "sha256": "da7dacaddc7a651551597926b5dabfb424cb200448891462b2b57b2b35f2183f",
+    "optimizer_entries": 183,
+    "cuda_rng_retained": true,
+    "contract_sha256": "62a17cc931bac0575149834b2f3e6f58c17e678d0b1e285c2baa05744630d213",
+    "mode_counts": {
+      "ego": 3986,
+      "exo": 4014
+    },
+    "validation_step": 1000,
+    "validation_cases": 12,
+    "validation_finite": true,
+    "disk_after": {
+      "total": 1081101176832,
+      "used": 840003424256,
+      "free": 186105397248
+    },
+    "scope": "First formal checkpoint can be loaded with its optimizer/RNG; CUDA exact-next-update equivalence was separately checked by preflight. No generation-quality claim."
+  }
+}

@@ -1,0 +1,2537 @@
+{
+  "scope": "51 TRAIN examples; 10/category uniformly drawn plus known TRAIN stairs anomaly",
+  "selection": {
+    "seed": 20261022,
+    "scope": "10 visibility-eligible TRAIN cases per category plus previously identified TRAIN stairs failure; no test/validation calibration",
+    "sequences": [
+      "terrain_curbs__curb_102__000",
+      "terrain_curbs__curb_170__001",
+      "terrain_curbs__curb_084__002",
+      "terrain_curbs__curb_050__006",
+      "terrain_curbs__curb_016__003",
+      "terrain_curbs__curb_073__000",
+      "terrain_curbs__curb_070__003",
+      "terrain_curbs__curb_071__005",
+      "terrain_curbs__curb_000__005",
+      "terrain_curbs__curb_160__005",
+      "sitting__caribbean_rum_plantation_chair_carved_mahogany__006",
+      "sitting__barnwood_reclaimed_plank_chair_iron_fasteners__004",
+      "sitting__chinese_tang_dynasty_round_backed_armchair_rosewood__006",
+      "sitting__chinese_qing_dynasty_official_chair_lacquered_red_gold_trim__009",
+      "sitting__gothic_cathedral_high_back_carved_oak_chair__004",
+      "sitting__sheraton_painted_satinwood_side_chair_urn_splat__002",
+      "sitting__synagogue_rabbi_throne_chair_carved_cedar_hebrew_motif__001",
+      "sitting__single_form_fiberglass_shell_chair_black_tapered_base__000",
+      "sitting__sculpted_seahorse_fiberglass_single_seat_aqua__002",
+      "sitting__bulgarian_rose_valley_wooden_chair_embroidered_cushion__001",
+      "terrain_slopes__slope_059__009",
+      "terrain_slopes__slope_043__004",
+      "terrain_slopes__slope_143__009",
+      "terrain_slopes__slope_034__001",
+      "terrain_slopes__slope_066__007",
+      "terrain_slopes__slope_168__006",
+      "terrain_slopes__slope_130__004",
+      "terrain_slopes__slope_002__000",
+      "terrain_slopes__slope_168__004",
+      "terrain_slopes__slope_033__009",
+      "terrain_stairs__stairs_0839__0001",
+      "terrain_stairs__stairs_0025__0002",
+      "terrain_stairs__stairs_0769__0001",
+      "terrain_stairs__stairs_1843__0000",
+      "terrain_stairs__compact_freestanding_green_marble_practice_stair_block_with_6_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balustrad_a3ba72f052_updown__0000",
+      "terrain_stairs__compact_freestanding_honey_beech_wood_practice_stair_block_with_5_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balus_3db5984abf_updown__0000",
+      "terrain_stairs__stairs_0050__0000",
+      "terrain_stairs__stairs_0044__0003",
+      "terrain_stairs__stairs_1602__0000",
+      "terrain_stairs__compact_freestanding_matte_black_painted_wood_practice_stair_block_with_4_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_1c445fcc28_updown__0000",
+      "terrain_stairs__straight_smooth_granite_stairs_with_9_steps_no_handrails_no_turns__0001",
+      "terrain_stairs__stairs_2268__0000",
+      "terrain_stairs__stairs_3326__0000",
+      "terrain_stairs__stairs_2478__0001",
+      "terrain_stairs__stairs_3080__0000",
+      "terrain_stairs__straight_smooth_limestone_stairs_with_5_steps_no_handrails_no_turns_v4__0003",
+      "terrain_stairs__stairs_3083__0000",
+      "terrain_stairs__stairs_2680__0000",
+      "terrain_stairs__stairs_2242__0000",
+      "terrain_stairs__straight_polished_limestone_stairs_with_9_steps_no_handrails_no_turns__0000",
+      "terrain_stairs__stairs_2708__0001"
+    ]
+  },
+  "config_sha256": "32926af2fca571db930d6271e4c244e8caad9f3e862ce53db2471736175d67e2",
+  "subset_vertices": 661,
+  "foot_vertices": [
+    240,
+    241
+  ],
+  "seat_vertices": 180,
+  "max_full_fk_vertex_error_m": 4.76837158203125e-07,
+  "max_exported_joint_error_m": 4.76837158203125e-07,
+  "cases": [
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.0825689435005188,
+        "p05": -0.05535966157913208,
+        "median": -0.01294088363647461,
+        "p95": 0.02019941806793213,
+        "max": 0.048941850662231445
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.03511607646942139,
+        "p05": -0.026466280221939087,
+        "median": -0.008364498615264893,
+        "p95": 0.0019925564527511533,
+        "max": 0.025387167930603027
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_curbs__curb_102__000",
+      "category": "curb",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 4.76837158203125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 4.76837158203125e-07,
+      "elapsed_seconds": 1.8908093890058808
+    },
+    {
+      "events": {
+        "estimated_stance_sliding_0": [
+          [
+            51,
+            59
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          45,
+          65
+        ]
+      ],
+      "flagged_frames": 21,
+      "lower_foot_gap_m": {
+        "min": -0.08355259895324707,
+        "p05": -0.03518575429916382,
+        "median": -0.005485057830810547,
+        "p95": 0.03128325939178467,
+        "max": 0.04049164056777954
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.03589057922363281,
+        "p05": -0.02908109426498413,
+        "median": -0.0003782510757446289,
+        "p95": 0.025201719999313338,
+        "max": 0.04049164056777954
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_curbs__curb_170__001",
+      "category": "curb",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.1920928955078125e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.21166324900696054
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_0": [
+          [
+            64,
+            95
+          ]
+        ],
+        "deep_foot_volume_overlap_1": [
+          [
+            56,
+            69
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          50,
+          101
+        ]
+      ],
+      "flagged_frames": 52,
+      "lower_foot_gap_m": {
+        "min": -0.08917230367660522,
+        "p05": -0.06822723150253296,
+        "median": -0.012160778045654297,
+        "p95": 0.006078243255615234,
+        "max": 0.02793484926223755
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.07066076993942261,
+        "p05": -0.052056300640106204,
+        "median": -0.00960606336593628,
+        "p95": 0.004596656560897814,
+        "max": 0.012685060501098633
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_curbs__curb_084__002",
+      "category": "curb",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.1920928955078125e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.2049913900118554
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.0660211443901062,
+        "p05": -0.04439067840576172,
+        "median": -0.004051089286804199,
+        "p95": 0.021102726459503174,
+        "max": 0.032167673110961914
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.03154575824737549,
+        "p05": -0.02669561505317688,
+        "median": -0.0020059943199157715,
+        "p95": 0.026805698871612525,
+        "max": 0.033945322036743164
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_curbs__curb_050__006",
+      "category": "curb",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.2047355160029838
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_0": [
+          [
+            107,
+            116
+          ],
+          [
+            251,
+            259
+          ]
+        ],
+        "deep_foot_volume_overlap_1": [
+          [
+            250,
+            277
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          101,
+          122
+        ],
+        [
+          244,
+          283
+        ]
+      ],
+      "flagged_frames": 62,
+      "lower_foot_gap_m": {
+        "min": -0.1098552942276001,
+        "p05": -0.06608366966247559,
+        "median": -0.009467840194702148,
+        "p95": 0.0065274834632873535,
+        "max": 0.02189236879348755
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.05347275733947754,
+        "p05": -0.046586066484451294,
+        "median": -0.00621485710144043,
+        "p95": 0.0029783248901367188,
+        "max": 0.02189236879348755
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_curbs__curb_016__003",
+      "category": "curb",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 4.76837158203125e-07,
+      "elapsed_seconds": 0.2040273220045492
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_0": [
+          [
+            94,
+            103
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          88,
+          109
+        ]
+      ],
+      "flagged_frames": 22,
+      "lower_foot_gap_m": {
+        "min": -0.10481828451156616,
+        "p05": -0.06366240978240967,
+        "median": 0.0002238154411315918,
+        "p95": 0.03212696313858032,
+        "max": 0.04572451114654541
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.04309356212615967,
+        "p05": -0.021768438816070556,
+        "median": 0.005197465419769287,
+        "p95": 0.0324276566505432,
+        "max": 0.051851749420166016
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_curbs__curb_073__000",
+      "category": "curb",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20003455098776612
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_1": [
+          [
+            95,
+            108
+          ],
+          [
+            177,
+            185
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          89,
+          114
+        ],
+        [
+          171,
+          191
+        ]
+      ],
+      "flagged_frames": 47,
+      "lower_foot_gap_m": {
+        "min": -0.10484153032302856,
+        "p05": -0.07069694995880127,
+        "median": -0.007353782653808594,
+        "p95": 0.021643340587615967,
+        "max": 0.024966716766357422
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.028478145599365234,
+        "p05": -0.026573240756988525,
+        "median": -0.002418011426925659,
+        "p95": 0.02187187969684601,
+        "max": 0.02563577890396118
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_curbs__curb_070__003",
+      "category": "curb",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.1920928955078125e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.1945620990009047
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_0": [
+          [
+            229,
+            248
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          223,
+          254
+        ]
+      ],
+      "flagged_frames": 32,
+      "lower_foot_gap_m": {
+        "min": -0.09117239713668823,
+        "p05": -0.06532073020935059,
+        "median": -0.006778359413146973,
+        "p95": 0.004437446594238281,
+        "max": 0.010714709758758545
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.07102066278457642,
+        "p05": -0.05435227155685425,
+        "median": -0.006390750408172607,
+        "p95": 0.003043067455291746,
+        "max": 0.010521292686462402
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_curbs__curb_071__005",
+      "category": "curb",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.1920928955078125e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.2038231140031712
+    },
+    {
+      "events": {
+        "unsupported_both_feet": [
+          [
+            144,
+            152
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          138,
+          158
+        ]
+      ],
+      "flagged_frames": 21,
+      "lower_foot_gap_m": {
+        "min": -0.07520943880081177,
+        "p05": -0.03257858753204346,
+        "median": 0.00421983003616333,
+        "p95": 0.04374873638153076,
+        "max": 0.09367084503173828
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.01068127155303955,
+        "p05": 0.00012119710445404055,
+        "median": 0.005549103021621704,
+        "p95": 0.022385808825492858,
+        "max": 0.026701748371124268
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_curbs__curb_000__005",
+      "category": "curb",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.1920928955078125e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20234176999656484
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_0": [
+          [
+            191,
+            199
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          185,
+          205
+        ]
+      ],
+      "flagged_frames": 21,
+      "lower_foot_gap_m": {
+        "min": -0.08501017093658447,
+        "p05": -0.04031777381896973,
+        "median": -0.008887231349945068,
+        "p95": 0.005609631538391113,
+        "max": 0.026578545570373535
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.035907864570617676,
+        "p05": -0.03132913112640381,
+        "median": -0.0028762221336364746,
+        "p95": 0.00929362773895262,
+        "max": 0.023228943347930908
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_curbs__curb_160__005",
+      "category": "curb",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20210362800571602
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.011407434940338135,
+        "p05": -0.003198683261871338,
+        "median": 0.0191422700881958,
+        "p95": 0.05491003394126892,
+        "max": 0.06125450134277344
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.011407434940338135,
+        "p05": -0.0005265951156616212,
+        "median": 0.04280269145965576,
+        "p95": 0.08376560211181641,
+        "max": 0.08548480272293091
+      },
+      "seat_gap_during_stable_pose_m": {
+        "min": -0.0020389050245285035,
+        "p05": -0.001510105729103088,
+        "median": 0.002850776910781863,
+        "p95": 0.009907385706901549,
+        "max": 0.020352715253829957
+      },
+      "seated_frames": 57,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "sitting__caribbean_rum_plantation_chair_carved_mahogany__006",
+      "category": "sitting",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          38,
+          75,
+          112,
+          150
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 1.7881393432617188e-07,
+      "elapsed_seconds": 0.22983550401113462
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.007748723030090332,
+        "p05": -0.003930717706680298,
+        "median": 0.042324721813201904,
+        "p95": 0.09945422410964966,
+        "max": 0.11078441143035889
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.006101250648498535,
+        "p05": -0.0026936084032058716,
+        "median": 0.035973548889160156,
+        "p95": 0.06130777299404144,
+        "max": 0.10992592573165894
+      },
+      "seat_gap_during_stable_pose_m": {
+        "min": -0.007855111360549926,
+        "p05": -0.007455868721008301,
+        "median": -0.006039561331272125,
+        "p95": 0.030585914552211775,
+        "max": 0.050417983531951906
+      },
+      "seated_frames": 72,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "sitting__barnwood_reclaimed_plank_chair_iron_fasteners__004",
+      "category": "sitting",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          38,
+          75,
+          112,
+          150
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 1.7881393432617188e-07,
+      "elapsed_seconds": 0.23666414400213398
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.006430149078369141,
+        "p05": -0.0016481876373291016,
+        "median": 0.0192643404006958,
+        "p95": 0.09977346658706665,
+        "max": 0.10280090570449829
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.006430149078369141,
+        "p05": -0.0008490085601806641,
+        "median": 0.06556588411331177,
+        "p95": 0.12665371596813202,
+        "max": 0.13269871473312378
+      },
+      "seat_gap_during_stable_pose_m": {
+        "min": -0.04367930293083191,
+        "p05": -0.0059198297560215,
+        "median": 0.008980029821395874,
+        "p95": 0.021199066936969758,
+        "max": 0.02160967290401459
+      },
+      "seated_frames": 56,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "sitting__chinese_tang_dynasty_round_backed_armchair_rosewood__006",
+      "category": "sitting",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          38,
+          75,
+          112,
+          150
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.086162567138672e-07,
+      "elapsed_seconds": 0.22174514600192197
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.6412334442138672,
+        "p05": -0.33654341101646423,
+        "median": 0.001276850700378418,
+        "p95": 0.09818647801876068,
+        "max": 0.10193759202957153
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.02189844846725464,
+        "p05": -0.020055776834487914,
+        "median": 0.004465222358703613,
+        "p95": 0.09749795943498611,
+        "max": 0.10159137845039368
+      },
+      "seat_gap_during_stable_pose_m": {
+        "min": -0.004548943042755126,
+        "p05": -0.004176399111747741,
+        "median": 0.0031841516494750992,
+        "p95": 0.006027179956436158,
+        "max": 0.006389498710632324
+      },
+      "seated_frames": 41,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "sitting__chinese_qing_dynasty_official_chair_lacquered_red_gold_trim__009",
+      "category": "sitting",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          38,
+          75,
+          112,
+          150
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.31191935800598003
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.03731638193130493,
+        "p05": -0.03189936280250549,
+        "median": -0.009445786476135254,
+        "p95": 0.007027685642242432,
+        "max": 0.010174214839935303
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.03731638193130493,
+        "p05": -0.02968708276748657,
+        "median": -0.007849156856536865,
+        "p95": 0.0047752201557159394,
+        "max": 0.011920034885406494
+      },
+      "seat_gap_during_stable_pose_m": {
+        "min": -0.00878109633922577,
+        "p05": -0.008400025963783263,
+        "median": -0.0042479008436203,
+        "p95": 0.027333778142929078,
+        "max": 0.04204592704772949
+      },
+      "seated_frames": 61,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "sitting__gothic_cathedral_high_back_carved_oak_chair__004",
+      "category": "sitting",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          38,
+          75,
+          112,
+          150
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 1.7881393432617188e-07,
+      "elapsed_seconds": 0.2289568260021042
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.0055741071701049805,
+        "p05": -0.0009717345237731934,
+        "median": 0.004915714263916016,
+        "p95": 0.023022383451461792,
+        "max": 0.023406267166137695
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.0014597773551940918,
+        "p05": -0.00042837262153625486,
+        "median": 0.009225964546203613,
+        "p95": 0.023635518550872803,
+        "max": 0.03137695789337158
+      },
+      "seat_gap_during_stable_pose_m": {
+        "min": -0.010501444339752197,
+        "p05": -0.0104017473757267,
+        "median": -0.00841211676597595,
+        "p95": 0.004036672711372344,
+        "max": 0.023091661930084228
+      },
+      "seated_frames": 54,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "sitting__sheraton_painted_satinwood_side_chair_urn_splat__002",
+      "category": "sitting",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          38,
+          75,
+          112,
+          150
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.4901161193847656e-07
+      },
+      "exported_joint_max_error_m": 1.7881393432617188e-07,
+      "elapsed_seconds": 0.23850632600078825
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.008008778095245361,
+        "p05": -0.005407989025115967,
+        "median": 0.011115074157714844,
+        "p95": 0.060391634702682495,
+        "max": 0.06644821166992188
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.008008778095245361,
+        "p05": -0.004996061325073242,
+        "median": 0.037334978580474854,
+        "p95": 0.08057624101638794,
+        "max": 0.08589410781860352
+      },
+      "seat_gap_during_stable_pose_m": {
+        "min": -0.008251628279685974,
+        "p05": -0.005904756784439086,
+        "median": -0.004305171966552733,
+        "p95": -0.003036118149757384,
+        "max": 0.006495022773742676
+      },
+      "seated_frames": 57,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "sitting__synagogue_rabbi_throne_chair_carved_cedar_hebrew_motif__001",
+      "category": "sitting",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          38,
+          75,
+          112,
+          150
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 1.7881393432617188e-07,
+      "elapsed_seconds": 0.22845616000995506
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.3238452672958374,
+        "p05": -0.3221222460269928,
+        "median": 0.006576418876647949,
+        "p95": 0.03109756112098694,
+        "max": 0.034133970737457275
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.3238452672958374,
+        "p05": -0.31983034014701844,
+        "median": 0.003192424774169922,
+        "p95": 0.03797869682312012,
+        "max": 0.04469114542007446
+      },
+      "seat_gap_during_stable_pose_m": {
+        "min": -0.003992712497711181,
+        "p05": -0.003688256740570068,
+        "median": -0.0001019269227981566,
+        "p95": 0.029718352556228622,
+        "max": 0.04569989144802093
+      },
+      "seated_frames": 55,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "sitting__single_form_fiberglass_shell_chair_black_tapered_base__000",
+      "category": "sitting",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          38,
+          75,
+          112,
+          150
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 1.7881393432617188e-07,
+      "elapsed_seconds": 0.2569576899986714
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.002571702003479004,
+        "p05": -0.001134425401687622,
+        "median": 0.027960896492004395,
+        "p95": 0.07847395539283752,
+        "max": 0.08197438716888428
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.002571702003479004,
+        "p05": -3.7327408790588027e-05,
+        "median": 0.06852352619171143,
+        "p95": 0.0862288326025009,
+        "max": 0.08847242593765259
+      },
+      "seat_gap_during_stable_pose_m": {
+        "min": -0.01748092770576477,
+        "p05": -0.0173416730761528,
+        "median": -0.009188507497310639,
+        "p95": 0.03377320900559421,
+        "max": 0.06155158877372742
+      },
+      "seated_frames": 64,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "sitting__sculpted_seahorse_fiberglass_single_seat_aqua__002",
+      "category": "sitting",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          38,
+          75,
+          112,
+          150
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 1.7881393432617188e-07,
+      "elapsed_seconds": 0.22602191599435173
+    },
+    {
+      "events": {
+        "seated_surface_overlap": [
+          [
+            115,
+            150
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          109,
+          150
+        ]
+      ],
+      "flagged_frames": 42,
+      "lower_foot_gap_m": {
+        "min": -0.4687807559967041,
+        "p05": -0.0008404552936553955,
+        "median": 0.03167480230331421,
+        "p95": 0.04351300001144409,
+        "max": 0.04847830533981323
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.0009703636169433594,
+        "p05": -0.0004136562347412109,
+        "median": 0.03774425387382507,
+        "p95": 0.062414884567260735,
+        "max": 0.07766181230545044
+      },
+      "seat_gap_during_stable_pose_m": {
+        "min": -0.054127478599548334,
+        "p05": -0.05381989777088165,
+        "median": -0.048433682322502135,
+        "p95": -0.005312222391366965,
+        "max": 0.013786745071411135
+      },
+      "seated_frames": 58,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "sitting__bulgarian_rose_valley_wooden_chair_embroidered_cushion__001",
+      "category": "sitting",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          38,
+          75,
+          112,
+          150
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.086162567138672e-07,
+      "elapsed_seconds": 0.2383365190034965
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.02386575937271118,
+        "p05": -0.015023767948150635,
+        "median": 0.00518423318862915,
+        "p95": 0.02577817440032959,
+        "max": 0.035816073417663574
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.02213948965072632,
+        "p05": -0.01424646973609924,
+        "median": 0.0044651031494140625,
+        "p95": 0.029594528675079192,
+        "max": 0.03628045320510864
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_slopes__slope_059__009",
+      "category": "slope",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.19690466699830722
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.041824162006378174,
+        "p05": -0.029007315635681152,
+        "median": 0.000516355037689209,
+        "p95": 0.01774728298187256,
+        "max": 0.023395240306854248
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.041824162006378174,
+        "p05": -0.02938786745071411,
+        "median": 0.00039058923721313477,
+        "p95": 0.01910653710365295,
+        "max": 0.02559000253677368
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_slopes__slope_043__004",
+      "category": "slope",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.19926657401083503
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.009905040264129639,
+        "p05": -0.005013585090637207,
+        "median": 0.022069156169891357,
+        "p95": 0.03505384922027588,
+        "max": 0.049926698207855225
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.00707930326461792,
+        "p05": -0.004417848587036133,
+        "median": 0.023264646530151367,
+        "p95": 0.03599346280097961,
+        "max": 0.04165619611740112
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_slopes__slope_143__009",
+      "category": "slope",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.19116928899893537
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.06132024526596069,
+        "p05": -0.021392464637756348,
+        "median": -0.0012906789779663086,
+        "p95": 0.019529521465301514,
+        "max": 0.021930396556854248
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.02546846866607666,
+        "p05": -0.020397156476974487,
+        "median": 0.001022040843963623,
+        "p95": 0.021791890263557434,
+        "max": 0.036827683448791504
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_slopes__slope_034__001",
+      "category": "slope",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 1.7881393432617188e-07,
+      "elapsed_seconds": 0.19709683999826666
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.05241650342941284,
+        "p05": -0.03690767288208008,
+        "median": -0.01245814561843872,
+        "p95": 0.011864781379699707,
+        "max": 0.023784935474395752
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.039328813552856445,
+        "p05": -0.0302781343460083,
+        "median": -0.0046201348304748535,
+        "p95": 0.011095678806304927,
+        "max": 0.013451218605041504
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_slopes__slope_066__007",
+      "category": "slope",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.19552375499915797
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.06636989116668701,
+        "p05": -0.04633563756942749,
+        "median": -0.012906134128570557,
+        "p95": 0.006499767303466797,
+        "max": 0.01927006244659424
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.048047661781311035,
+        "p05": -0.03822263777256012,
+        "median": -0.0037870407104492188,
+        "p95": 0.006518581509590144,
+        "max": 0.018454432487487793
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_slopes__slope_168__006",
+      "category": "slope",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.19862462300807238
+    },
+    {
+      "events": {
+        "unsupported_both_feet": [
+          [
+            129,
+            169
+          ],
+          [
+            191,
+            204
+          ],
+          [
+            212,
+            222
+          ],
+          [
+            240,
+            252
+          ],
+          [
+            262,
+            273
+          ]
+        ],
+        "estimated_contact_floating_0": [
+          [
+            131,
+            151
+          ],
+          [
+            191,
+            201
+          ],
+          [
+            240,
+            251
+          ]
+        ],
+        "estimated_contact_floating_1": [
+          [
+            155,
+            176
+          ],
+          [
+            212,
+            227
+          ],
+          [
+            262,
+            273
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          123,
+          182
+        ],
+        [
+          185,
+          279
+        ]
+      ],
+      "flagged_frames": 155,
+      "lower_foot_gap_m": {
+        "min": -0.008979618549346924,
+        "p05": -0.0023037195205688477,
+        "median": 0.02810382843017578,
+        "p95": 0.062442779541015625,
+        "max": 0.06887519359588623
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.008979618549346924,
+        "p05": -0.0023317933082580566,
+        "median": 0.027838826179504395,
+        "p95": 0.06922158598899841,
+        "max": 0.08135569095611572
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_slopes__slope_130__004",
+      "category": "slope",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20524075999855995
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.02763807773590088,
+        "p05": -0.015603244304656982,
+        "median": 0.003853321075439453,
+        "p95": 0.03281116485595703,
+        "max": 0.03705054521560669
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.016681551933288574,
+        "p05": -0.012095218896865845,
+        "median": 0.00904536247253418,
+        "p95": 0.03445726633071897,
+        "max": 0.04975759983062744
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_slopes__slope_002__000",
+      "category": "slope",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.19640185599564575
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.11963659524917603,
+        "p05": -0.048344552516937256,
+        "median": 0.0008320808410644531,
+        "p95": 0.016121864318847656,
+        "max": 0.10758960247039795
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.05381721258163452,
+        "p05": -0.03085991144180298,
+        "median": 0.0021674633026123047,
+        "p95": 0.011660188436508172,
+        "max": 0.02903670072555542
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_slopes__slope_168__004",
+      "category": "slope",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.19544434000272304
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.07994449138641357,
+        "p05": -0.012913823127746582,
+        "median": 0.0033916234970092773,
+        "p95": 0.02980053424835205,
+        "max": 0.05422455072402954
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.01345449686050415,
+        "p05": -0.005430799722671509,
+        "median": 0.007548093795776367,
+        "p95": 0.02965172529220581,
+        "max": 0.0761306881904602
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_slopes__slope_033__009",
+      "category": "slope",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.2027866529970197
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.06900358200073242,
+        "p05": -0.05380749702453613,
+        "median": -0.01921367645263672,
+        "p95": 0.0033829212188720703,
+        "max": 0.020516693592071533
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.058125972747802734,
+        "p05": -0.04665734767913818,
+        "median": -0.01846146583557129,
+        "p95": 0.00558375120162962,
+        "max": 0.020845890045166016
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_0839__0001",
+      "category": "stair_p1",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.1920928955078125e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.21015705200261436
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_1": [
+          [
+            273,
+            300
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          267,
+          300
+        ]
+      ],
+      "flagged_frames": 34,
+      "lower_foot_gap_m": {
+        "min": -0.061066269874572754,
+        "p05": -0.06048691272735596,
+        "median": -0.018100976943969727,
+        "p95": 0.01461881399154663,
+        "max": 0.02508866786956787
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.061066269874572754,
+        "p05": -0.06055656671524048,
+        "median": -0.018755078315734863,
+        "p95": 0.012401187419891359,
+        "max": 0.02744358777999878
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_0025__0002",
+      "category": "stair_p1",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20898862199101131
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.044229865074157715,
+        "p05": -0.036763668060302734,
+        "median": -0.020295381546020508,
+        "p95": 0.012952744960784912,
+        "max": 0.017733097076416016
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.03442728519439697,
+        "p05": -0.03038734197616577,
+        "median": -0.003224670886993408,
+        "p95": 0.012156844139099121,
+        "max": 0.03482210636138916
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_0769__0001",
+      "category": "stair_p1",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20239766499435063
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.08234286308288574,
+        "p05": -0.03906381130218506,
+        "median": 0.0070479512214660645,
+        "p95": 0.02374553680419922,
+        "max": 0.029445171356201172
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.03998851776123047,
+        "p05": -0.027278363704681396,
+        "median": 0.010338783264160156,
+        "p95": 0.022825574874877932,
+        "max": 0.04569661617279053
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_1843__0000",
+      "category": "stair_p1",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20380865200422704
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_0": [
+          [
+            70,
+            79
+          ],
+          [
+            85,
+            95
+          ],
+          [
+            109,
+            116
+          ],
+          [
+            148,
+            158
+          ]
+        ],
+        "deep_foot_volume_overlap_1": [
+          [
+            129,
+            138
+          ],
+          [
+            179,
+            188
+          ],
+          [
+            218,
+            225
+          ],
+          [
+            255,
+            262
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          64,
+          101
+        ],
+        [
+          103,
+          164
+        ],
+        [
+          173,
+          194
+        ],
+        [
+          212,
+          231
+        ],
+        [
+          249,
+          268
+        ]
+      ],
+      "flagged_frames": 162,
+      "lower_foot_gap_m": {
+        "min": -0.23886752128601074,
+        "p05": -0.19492489099502563,
+        "median": -0.03786247968673706,
+        "p95": 0.004349410533905029,
+        "max": 0.04845774173736572
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.04672956466674805,
+        "p05": -0.044719597697257994,
+        "median": -0.005014240741729736,
+        "p95": 0.008230859041213989,
+        "max": 0.008268237113952637
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__compact_freestanding_green_marble_practice_stair_block_with_6_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balustrad_a3ba72f052_updown__0000",
+      "category": "stair_p1",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.2738982189912349
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_0": [
+          [
+            164,
+            171
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          158,
+          177
+        ]
+      ],
+      "flagged_frames": 20,
+      "lower_foot_gap_m": {
+        "min": -0.07749509811401367,
+        "p05": -0.040814876556396484,
+        "median": 0.003170788288116455,
+        "p95": 0.024611353874206543,
+        "max": 0.04320889711380005
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.020565688610076904,
+        "p05": -0.017407208681106567,
+        "median": 0.005388349294662476,
+        "p95": 0.02609384953975677,
+        "max": 0.044649720191955566
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__compact_freestanding_honey_beech_wood_practice_stair_block_with_5_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balus_3db5984abf_updown__0000",
+      "category": "stair_p1",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 1.7881393432617188e-07,
+      "elapsed_seconds": 0.2818446899909759
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_1": [
+          [
+            92,
+            120
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          86,
+          126
+        ]
+      ],
+      "flagged_frames": 41,
+      "lower_foot_gap_m": {
+        "min": -0.13272017240524292,
+        "p05": -0.06139308214187622,
+        "median": -0.022966384887695312,
+        "p95": 0.015427768230438232,
+        "max": 0.028365790843963623
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.13272017240524292,
+        "p05": -0.04825432896614074,
+        "median": -0.00775301456451416,
+        "p95": 0.018741172552108748,
+        "max": 0.030130207538604736
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_0050__0000",
+      "category": "stair_p1",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.2086373369966168
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_1": [
+          [
+            147,
+            154
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          141,
+          160
+        ]
+      ],
+      "flagged_frames": 20,
+      "lower_foot_gap_m": {
+        "min": -0.06765317916870117,
+        "p05": -0.05148506164550781,
+        "median": -0.013712882995605469,
+        "p95": 0.009996771812438965,
+        "max": 0.014389514923095703
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.04603254795074463,
+        "p05": -0.03994476795196533,
+        "median": -0.004469037055969238,
+        "p95": 0.01026461124420166,
+        "max": 0.013608276844024658
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_0044__0003",
+      "category": "stair_p1",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20286431899876334
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.04072451591491699,
+        "p05": -0.03571796417236328,
+        "median": -0.008478164672851562,
+        "p95": 0.016344428062438965,
+        "max": 0.03323781490325928
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.03821897506713867,
+        "p05": -0.03477645814418793,
+        "median": -0.009269773960113525,
+        "p95": 0.015956076979637145,
+        "max": 0.01716482639312744
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_1602__0000",
+      "category": "stair_p1",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20294778699462768
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.043874144554138184,
+        "p05": -0.027799606323242188,
+        "median": -0.005480766296386719,
+        "p95": 0.021462321281433105,
+        "max": 0.09985208511352539
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.016001522541046143,
+        "p05": -0.015050065517425538,
+        "median": 0.000615239143371582,
+        "p95": 0.01843299865722656,
+        "max": 0.025997281074523926
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__compact_freestanding_matte_black_painted_wood_practice_stair_block_with_4_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_1c445fcc28_updown__0000",
+      "category": "stair_p1",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.2775855759973638
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_1": [
+          [
+            51,
+            61
+          ],
+          [
+            98,
+            110
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          45,
+          67
+        ],
+        [
+          92,
+          116
+        ]
+      ],
+      "flagged_frames": 48,
+      "lower_foot_gap_m": {
+        "min": -0.08041918277740479,
+        "p05": -0.04935497045516968,
+        "median": -0.01167762279510498,
+        "p95": 0.029333651065826416,
+        "max": 0.033118486404418945
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.04908275604248047,
+        "p05": -0.04450484812259674,
+        "median": 0.004653602838516235,
+        "p95": 0.03361544907093048,
+        "max": 0.03794163465499878
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__straight_smooth_granite_stairs_with_9_steps_no_handrails_no_turns__0001",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.2636874599993462
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.014359712600708008,
+        "p05": -0.011022806167602539,
+        "median": 0.016844511032104492,
+        "p95": 0.036550283432006836,
+        "max": 0.04610395431518555
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.014359712600708008,
+        "p05": -0.01159358024597168,
+        "median": 0.014924764633178711,
+        "p95": 0.03137649297714233,
+        "max": 0.05747377872467041
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_2268__0000",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.19548347700037993
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.01851654052734375,
+        "p05": -0.016386449337005615,
+        "median": 0.0029717683792114258,
+        "p95": 0.021046221256256104,
+        "max": 0.02754843235015869
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.01851654052734375,
+        "p05": -0.014814460277557371,
+        "median": 0.006887197494506836,
+        "p95": 0.028261566162109363,
+        "max": 0.04677248001098633
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_3326__0000",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20188698399579152
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_1": [
+          [
+            81,
+            105
+          ],
+          [
+            146,
+            168
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          75,
+          111
+        ],
+        [
+          140,
+          174
+        ]
+      ],
+      "flagged_frames": 72,
+      "lower_foot_gap_m": {
+        "min": -0.05818694829940796,
+        "p05": -0.04939216375350952,
+        "median": -0.009231507778167725,
+        "p95": 0.01728057861328125,
+        "max": 0.022995412349700928
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.049766480922698975,
+        "p05": -0.04773244559764862,
+        "median": 0.00034499168395996094,
+        "p95": 0.02870526015758514,
+        "max": 0.03521263599395752
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_2478__0001",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 1.1920928955078125e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20101576099114027
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.027694344520568848,
+        "p05": -0.024597525596618652,
+        "median": -0.008424937725067139,
+        "p95": 0.008927106857299805,
+        "max": 0.027253806591033936
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.027694344520568848,
+        "p05": -0.02359628677368164,
+        "median": -0.0014442205429077148,
+        "p95": 0.01304471492767334,
+        "max": 0.03456920385360718
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_3080__0000",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.19706635200418532
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_1": [
+          [
+            190,
+            203
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          184,
+          209
+        ]
+      ],
+      "flagged_frames": 26,
+      "lower_foot_gap_m": {
+        "min": -0.0869397521018982,
+        "p05": -0.037848591804504395,
+        "median": -0.011083424091339111,
+        "p95": 0.017569541931152344,
+        "max": 0.02749258279800415
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.030790627002716064,
+        "p05": -0.01899619698524475,
+        "median": 0.0025613903999328613,
+        "p95": 0.01785193085670471,
+        "max": 0.027336299419403076
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__straight_smooth_limestone_stairs_with_5_steps_no_handrails_no_turns_v4__0003",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.2528934540023329
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.05765634775161743,
+        "p05": -0.043396949768066406,
+        "median": -0.0018770694732666016,
+        "p95": 0.01631826162338257,
+        "max": 0.022219538688659668
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.028635621070861816,
+        "p05": -0.01656348705291748,
+        "median": 0.007026791572570801,
+        "p95": 0.026458609104156487,
+        "max": 0.028421640396118164
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_3083__0000",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.1966241719928803
+    },
+    {
+      "events": {
+        "deep_foot_volume_overlap_0": [
+          [
+            129,
+            139
+          ]
+        ],
+        "deep_foot_volume_overlap_1": [
+          [
+            82,
+            113
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          76,
+          119
+        ],
+        [
+          123,
+          145
+        ]
+      ],
+      "flagged_frames": 67,
+      "lower_foot_gap_m": {
+        "min": -0.092041015625,
+        "p05": -0.0650709867477417,
+        "median": -0.0023446083068847656,
+        "p95": 0.018625736236572266,
+        "max": 0.029628872871398926
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.027386128902435303,
+        "p05": -0.017696237564086913,
+        "median": 0.007555127143859863,
+        "p95": 0.023463690280914294,
+        "max": 0.0339239239692688
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_2680__0000",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20352881398866884
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.03656959533691406,
+        "p05": -0.026559293270111084,
+        "median": -0.007940173149108887,
+        "p95": 0.01716434955596924,
+        "max": 0.030555129051208496
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.03656959533691406,
+        "p05": -0.024941742420196533,
+        "median": -0.00021284818649291992,
+        "p95": 0.010127544403076172,
+        "max": 0.027119755744934082
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_2242__0000",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.1920928955078125e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.20718915200268384
+    },
+    {
+      "events": {},
+      "bad_frame_ranges": [],
+      "flagged_frames": 0,
+      "lower_foot_gap_m": {
+        "min": -0.21936416625976562,
+        "p05": -0.21652460098266602,
+        "median": -0.009287476539611816,
+        "p95": 0.014399051666259766,
+        "max": 0.022539496421813965
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.21936416625976562,
+        "p05": -0.2164379119873047,
+        "median": -0.009029865264892578,
+        "p95": 0.0172057032585144,
+        "max": 0.04134601354598999
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__straight_polished_limestone_stairs_with_9_steps_no_handrails_no_turns__0000",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 1.1920928955078125e-07,
+        "joint_max_error_m": 1.7881393432617188e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.2578754120040685
+    },
+    {
+      "events": {
+        "unsupported_both_feet": [
+          [
+            204,
+            222
+          ]
+        ],
+        "estimated_contact_floating_1": [
+          [
+            214,
+            224
+          ]
+        ]
+      },
+      "bad_frame_ranges": [
+        [
+          198,
+          230
+        ]
+      ],
+      "flagged_frames": 33,
+      "lower_foot_gap_m": {
+        "min": -0.024746179580688477,
+        "p05": -0.021933913230895996,
+        "median": 0.0015050768852233887,
+        "p95": 0.11064237356185913,
+        "max": 0.17103183269500732
+      },
+      "source_estimated_contact_gap_m": {
+        "min": -0.023709356784820557,
+        "p05": -0.021970105171203614,
+        "median": 6.145238876342773e-05,
+        "p95": 0.10831414461135865,
+        "max": 0.1663075089454651
+      },
+      "seat_gap_during_stable_pose_m": null,
+      "seated_frames": null,
+      "object_watertight": true,
+      "support_measure": "Terrain vertical gap plus nearest distance; closed-object occupancy for deep overlap, open-object overlap withheld for review; seat nearest horizontal patch",
+      "sequence_id": "terrain_stairs__stairs_2708__0001",
+      "category": "stair_p2",
+      "split": "train",
+      "full_fk_equivalence": {
+        "frames": [
+          0,
+          75,
+          150,
+          225,
+          300
+        ],
+        "vertex_max_error_m": 2.384185791015625e-07,
+        "joint_max_error_m": 2.384185791015625e-07
+      },
+      "exported_joint_max_error_m": 2.384185791015625e-07,
+      "elapsed_seconds": 0.19388226799492259
+    }
+  ],
+  "geometry_tests": {
+    "module": "tests.test_grail_contact",
+    "passed": 4
+  },
+  "real_source_resume_integration": {
+    "state": "passed",
+    "cases": 2,
+    "scope": "Two real TRAIN sequences; full measurement, intersection, publication and truncated-tail resume",
+    "resume_output_hashes_identical": true,
+    "known_stairs_retained_start_ranges": [
+      [
+        0,
+        70
+      ]
+    ],
+    "known_stairs_rejected_start_ranges": [
+      [
+        71,
+        173
+      ]
+    ],
+    "sources_modified": false
+  }
+}

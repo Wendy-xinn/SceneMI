@@ -1,0 +1,91 @@
+[
+  {
+    "resumed_at": "2026-10-21T10:27:56.668739+08:00",
+    "reason": "WSL reboot stopped evaluator and CPU watcher",
+    "boot_id": "8db142fc-4ad6-4cf8-aa6c-6e21b312d2d0",
+    "previous_job": {
+      "status": "running_noisy_only",
+      "started_at": "2026-10-21T02:40:29.108241+08:00",
+      "pid": 150466,
+      "manager_pid": 149548,
+      "command": [
+        "/home/wenxin/miniconda3/envs/scenemi/bin/python",
+        "-u",
+        "-m",
+        "experiments.offline_camera_retrain_v1.ops.final_evaluation_batch",
+        "evaluate",
+        "--out",
+        "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy",
+        "--device",
+        "cuda",
+        "--resume",
+        "--memory-fraction",
+        "0.7",
+        "--status-every",
+        "8",
+        "--batch-size",
+        "4"
+      ],
+      "detached": true,
+      "planned_predictions": 7082,
+      "regimes": [
+        "noisy"
+      ],
+      "scene_variants": [
+        "scene_on",
+        "scene_off"
+      ],
+      "checkpoint_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+      "previous_worker_pid": 118275,
+      "execution_module": "experiments.offline_camera_retrain_v1.ops.final_evaluation_batch",
+      "fallback": false,
+      "TEST_used": false
+    },
+    "previous_status": {
+      "protocol": "selected-native30-final-metrics-v1",
+      "status": "sampling",
+      "checked_at": "2026-10-21T08:41:55.239624+08:00",
+      "pid": 150466,
+      "optimizer_updates": 0,
+      "automatic_model_selection": false,
+      "execution_protocol": "selected-native30-per-window-seeded-batch-v1",
+      "scene_variant": "scene_off",
+      "current_cases": [
+        2513,
+        3428,
+        708,
+        2514
+      ],
+      "completed_predictions": 6348,
+      "planned_predictions": 7082,
+      "logical_batch_size": 4
+    },
+    "previous_watcher": {
+      "protocol": "native30-final-metric-overall-watcher-v1",
+      "pid": 146814,
+      "started_at": "2026-10-21T02:37:27.549431+08:00",
+      "status": "running",
+      "cpu_only": true,
+      "source": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/final_metric_summary.py",
+      "source_sha256": "8c01f2c3845a85dbb099dc104457d9867e09154766cf26afc06d310850fc9477",
+      "poll_seconds": 30.0,
+      "every_predictions": 10,
+      "recheck_on_complete": true,
+      "waits_for_sampler_exit": true,
+      "output": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/OVERALL_SUMMARY.json",
+      "new_model_inference": false,
+      "current_sampler": {
+        "pid": 150466,
+        "start_ticks": 3895215
+      }
+    },
+    "worker_pid": 2326,
+    "watcher_pid": 2327,
+    "durable_predictions_before_resume": 6348,
+    "remaining_predictions": 734,
+    "runtime_source": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12",
+    "runtime_sha256": "43731e24cd89e3749826304f304e8aa11fbecf1188715271b1f5018d6212b5e6",
+    "checkpoint_unchanged": true,
+    "protocol_unchanged": true
+  }
+]

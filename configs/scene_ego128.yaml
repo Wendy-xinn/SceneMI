@@ -1,0 +1,46 @@
+version: native-scene-ego128-v2
+seed: 20261023
+base_config: configs/amass128.yaml
+prior_checkpoint: runs/amass128/training/last.pt
+prior_sha256: 2b74d1b52cb059bc8c48f562d5c6610f8aef6c40f455836e5f5089cd03fe4f9e
+output: runs/scene_ego128
+data:
+  datasets: [egobody, trumans, grail]
+  excluded_datasets: [rich]
+  modes: [ego]
+  frames: 128
+  fps: 30
+  sampling: uniform_dataset_then_family_then_recording_then_window
+  scene_history: observed_static_prefix_through_window_start
+  current_scene: actual_per_frame_first_hit_points
+  frame_points: 64
+  history_voxel_m: 0.05
+  intrinsics_scale_pixels: 256.0
+  synthetic_chairs: train_only_selected400
+  individual_shape_input: false
+model:
+  body_format: native_predicted_shape_and_template
+  scene: zero_initialized_global_and_patch_attention
+  local_skin_feedback: disabled_until_predicted_skin_supported
+training:
+  batch_size: 8
+  planned_updates: 30000
+  checkpoint_every: 1000
+  validation_every: 5000
+optimizer:
+  lr: 0.00005
+  weight_decay: 0.01
+  warmup_updates: 500
+  clip_norm: 1.0
+validation:
+  families_per_dataset: 32
+  windows_per_family: 2
+  seed: 777
+  ddim_steps: 20
+  primary: dataset_macro_family_mpjpe_mm
+  synthetic_chairs: false
+  test_used: false
+runtime:
+  allocator_gib: 8
+  memory_gib: 12
+  cpu_count: 2

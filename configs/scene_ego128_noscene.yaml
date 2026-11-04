@@ -1,0 +1,70 @@
+version: native-scene-ego128-none-v1
+seed: 20261023
+base_config: configs/amass128.yaml
+prior_checkpoint: runs/amass_ego128/selection/best.pt
+prior_sha256: 0c30ba25dc42c568a8e2fcefae2e39a142930ff26d7a39bd7ff446eaf4e9710f
+prior_step: 50000
+prior_config: configs/amass_ego128.yaml
+prior_contract: runs/amass_ego128/training/CONTRACT.json
+output: runs/scene_ego128_noscene
+data:
+  datasets:
+  - egobody
+  - trumans
+  - grail
+  excluded_datasets:
+  - rich
+  modes:
+  - ego
+  frames: 128
+  fps: 30
+  sampling: uniform_dataset_then_family_then_recording_then_window
+  scene_history: observed_static_prefix_through_window_start
+  current_scene: actual_per_frame_first_hit_points
+  frame_points: 64
+  history_voxel_m: 0.05
+  intrinsics_scale_pixels: 256.0
+  synthetic_chairs: train_only_selected400
+  individual_shape_input: false
+model:
+  body_format: native_predicted_shape_and_template
+  scene: disabled
+  local_skin_feedback: disabled
+training:
+  batch_size: 8
+  planned_updates: 30000
+  checkpoint_every: 1000
+  validation_every: 1000
+optimizer:
+  lr: 5.0e-05
+  weight_decay: 0.01
+  warmup_updates: 500
+  clip_norm: 1.0
+validation:
+  manifest: all_native_recordings_and_stratified_grail_then_all_families
+  quick_grail_families_per_category: 20
+  comprehensive_windows_per_unit: 2
+  finalists: quick_top3_plus_final
+  seed: 777
+  ddim_steps: 20
+  primary: dataset_macro_grail_category_family_mpjpe_mm
+  checkpoint_retention: every1000_until_selection_review
+  synthetic_chairs: false
+  test_used: false
+runtime:
+  allocator_gib: 6
+  memory_gib: 10
+  cpu_count: 2
+grail_review: accepted
+local:
+  history_points: 8192
+  frame_points: 512
+  neighbours: 8
+  query_radius_m: 0.6
+  feedback_radius_m: 0.25
+  root_limit_m: 0.04
+  rotation_limit_rad: 0.06
+control:
+  kind: scene_free_adaptation
+  reference_config: configs/scene_ego128_local.yaml
+  reference_run: runs/scene_ego128_local

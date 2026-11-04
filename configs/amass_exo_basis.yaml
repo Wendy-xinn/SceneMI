@@ -1,0 +1,51 @@
+version: amass-exo-initialization-repair-pilot-v1
+backend: temporal_basis_mixture_with_frozen_prior_features
+output: runs/amass_exo_basis128
+seed: 20261026
+base:
+  checkpoint: runs/amass_ego128/training/last.pt
+  step: 55000
+  sha256: 50a061e0d40fd0acd866b3806620cfe98255394f1e4c32c7828a542aae4a3305
+model:
+  hidden: 128
+  root_limit_m: 0.25
+  rotation_limit_rad: 0.6
+frontend:
+  probabilities: [0.2, 0.35, 0.25, 0.2]
+  beta_sigma: 0.15
+  pose_sigma_rad: [0.015, 0.04]
+  occluded_pose_sigma_rad: [0.12, 0.25]
+  pose_rho: 0.85
+  root_sigma_m: [0.01, 0.04]
+  root_rho: 0.95
+  gap_frames: [8, 32]
+training:
+  updates: 2000
+  batch_size: 8
+  checkpoint_every: 250
+  log_every: 50
+optimizer:
+  lr: 0.0003
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 100
+diffusion:
+  start_timestep: 200
+  ddim_steps: 8
+  seed: 777
+validation:
+  split: val
+  conditions: [identity, tracking, occlusion, gap]
+  families_per_corpus: 16
+  subset_steps: [0, 1000, 2000]
+  final_full_validation: true
+  batch_size: 8
+  checkpoint_selection: fixed_final_2000
+  identity_max_change_mm: 0.001
+  visible_noninferiority_mm: 1.0
+  required_improvement_conditions: [occlusion, gap]
+  test_used: false
+runtime:
+  allocator_gib: 4
+  memory_gib: 8
+  cpu_count: 2

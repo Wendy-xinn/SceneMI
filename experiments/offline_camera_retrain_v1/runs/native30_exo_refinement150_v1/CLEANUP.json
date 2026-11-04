@@ -1,0 +1,3397 @@
+{
+  "protocol": "rejected_exo_refinement150_records_only_cleanup_v1",
+  "status": "completed_records_only",
+  "started_at": "2026-10-20T23:34:47.488454+08:00",
+  "authorization": "Explicit root instruction: both150-step candidates rejected without planned reuse; delete only inventoried two last.pt plus trial paired_validation{,_cuda}/motions npz after retained10k/dependency verification.",
+  "inventory_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/CLEANUP_INVENTORY.json",
+  "inventory_sha256": "d0c02a953a1f5990c2b194980af48377750898ae4d685795e07b813752219cb6",
+  "decision": "No candidate promotion; formal metrics remain paused.",
+  "disk_usage_before": {
+    "total_bytes": 1081101176832,
+    "used_bytes": 921279664128,
+    "free_bytes": 104829157376
+  },
+  "candidate_file_count": 176,
+  "candidate_logical_bytes": 1121319156,
+  "candidate_allocated_bytes": 1121677312,
+  "deleted_files": [
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/control/last.pt",
+      "relative_to_trial": "control/last.pt",
+      "kind": "rejected_trial_weight",
+      "size_bytes": 519867891,
+      "sha256": "aa93280c64fee145013a292df52619e487de0d9e3ea6ee3ee6edbb170dc9615e",
+      "device": 2096,
+      "inode": 2352437,
+      "nlink": 1,
+      "mtime_ns": 1792507089281375123,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/control/RESULT.json",
+          "type": "historical_completed_training_identity"
+        }
+      ],
+      "allocated_bytes_before": 519872512
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/nondegradation/last.pt",
+      "relative_to_trial": "nondegradation/last.pt",
+      "kind": "rejected_trial_weight",
+      "size_bytes": 519867891,
+      "sha256": "97f00582d9dc67a8fd11968abce26f111f6504c928de80654d1c2a1b1ecc275a",
+      "device": 2096,
+      "inode": 1722924,
+      "nlink": 1,
+      "mtime_ns": 1792507732922109172,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/nondegradation/RESULT.json",
+          "type": "historical_completed_training_identity"
+        }
+      ],
+      "allocated_bytes_before": 519872512
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case000_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case000_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 483359,
+      "sha256": "d383ff22700af15c5e426782e212ac7503ff608b933acdc48acb1696ea016cba",
+      "device": 2096,
+      "inode": 2352497,
+      "nlink": 1,
+      "mtime_ns": 1792503192207476628,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 2,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case000_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case000_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 483428,
+      "sha256": "7191ac5247dbf61badc2f762eddb7ba345ae0cad2910c6ff85f71dcfc9aed5f3",
+      "device": 2096,
+      "inode": 2352490,
+      "nlink": 1,
+      "mtime_ns": 1792502830508171575,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 1,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case000_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case000_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 497783,
+      "sha256": "c4dcf681c7e1b696379cb2f8e34dceec27792526db18158e48a413830d6d4e0c",
+      "device": 2096,
+      "inode": 2352502,
+      "nlink": 1,
+      "mtime_ns": 1792503239231108331,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 4,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case000_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case000_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 497901,
+      "sha256": "b9a138e6f5ab5c6328a35ce89730774bd6291670255798637e9c7f60a2fcf942",
+      "device": 2096,
+      "inode": 2348745,
+      "nlink": 1,
+      "mtime_ns": 1792503235539390723,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 3,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case004_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case004_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 462222,
+      "sha256": "f87b16c6d20ed0cc97f9158d519a5d0218865d169f63796acece0cf6891401cf",
+      "device": 2096,
+      "inode": 2352504,
+      "nlink": 1,
+      "mtime_ns": 1792503295408627846,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 6,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case004_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case004_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 462295,
+      "sha256": "3ab2e109a4f47832c5214c7448e4878793aa417d5d902a5dc5b52bc874287ef0",
+      "device": 2096,
+      "inode": 2352503,
+      "nlink": 1,
+      "mtime_ns": 1792503288293994612,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 5,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case004_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case004_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 474265,
+      "sha256": "f10c199dd52860170762390d45a8d3f015e307145c7cebdadf01e47d97fd3679",
+      "device": 2096,
+      "inode": 2352506,
+      "nlink": 1,
+      "mtime_ns": 1792503347356788659,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 8,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case004_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case004_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 474307,
+      "sha256": "2310938af1fc79f7938b0ae6e67fc61503816c309cdb3f76159f00f8dd44e9c7",
+      "device": 2096,
+      "inode": 2352505,
+      "nlink": 1,
+      "mtime_ns": 1792503344197645499,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 7,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case008_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case008_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 480437,
+      "sha256": "5917cfe2a29cc60152d89204c59e620d2bd5d4e99de9e8f35734285547877810",
+      "device": 2096,
+      "inode": 2352508,
+      "nlink": 1,
+      "mtime_ns": 1792503381475716324,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 10,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case008_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case008_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 480474,
+      "sha256": "2308b72d7cc612d08d2a159685c9ab9a1e054d4e6ef8eb163556d199db419278",
+      "device": 2096,
+      "inode": 2352507,
+      "nlink": 1,
+      "mtime_ns": 1792503378288768543,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 9,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case008_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case008_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 494148,
+      "sha256": "b3ed6ece974ac5576acf0fb779ade91748e2ede30c243fc32f4ed2cc4cd6c9c4",
+      "device": 2096,
+      "inode": 2352510,
+      "nlink": 1,
+      "mtime_ns": 1792503415166394391,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 12,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 495616
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/motions/base10k/case008_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation/motions/base10k/case008_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 494139,
+      "sha256": "4ec37317c78e9f03cf5d0d1a268df56e576a2898cd56222c600466e122ae2102",
+      "device": 2096,
+      "inode": 2352509,
+      "nlink": 1,
+      "mtime_ns": 1792503411909602741,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation/rows.jsonl",
+          "row_1based": 11,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 495616
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case000_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case000_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 488940,
+      "sha256": "1461c3db53e5c01b00abec8029a8a29f0d55e28ac30c4e8e95a6ce7129b82ecf",
+      "device": 2096,
+      "inode": 2352483,
+      "nlink": 1,
+      "mtime_ns": 1792507760823836857,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 2,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case000_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case000_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 488871,
+      "sha256": "aa7d7dfca04ef72f4c16b75f3e3026bf4d2ea24a2555f20c5bdb83c7d039393f",
+      "device": 2096,
+      "inode": 2352485,
+      "nlink": 1,
+      "mtime_ns": 1792507755705290814,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 1,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case000_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case000_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 503066,
+      "sha256": "e4d9785e4a4ad81c167199feb02c16a81ecaee28efb9a1eaa2853972481e7e17",
+      "device": 2096,
+      "inode": 2352514,
+      "nlink": 1,
+      "mtime_ns": 1792507773183849846,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 4,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case000_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case000_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 503194,
+      "sha256": "a78a767ace68d429cedbab6bd4bfed68c6f78a3ccc2e5662dc42054c9b8e7252",
+      "device": 2096,
+      "inode": 2352489,
+      "nlink": 1,
+      "mtime_ns": 1792507769412279378,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 3,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case001_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case001_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 460817,
+      "sha256": "18ed2ebcd34bae61270a46799556eff74f02078c2570f7d385a50653d54178c4",
+      "device": 2096,
+      "inode": 2352519,
+      "nlink": 1,
+      "mtime_ns": 1792507789574047950,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 6,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case001_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case001_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 460816,
+      "sha256": "1f97713ceb30dc09030d07964fe545c769eb75ec608818271eaa1b3cf4aec16f",
+      "device": 2096,
+      "inode": 2352518,
+      "nlink": 1,
+      "mtime_ns": 1792507780802277481,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 5,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case001_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case001_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 472634,
+      "sha256": "8ef6cdd21721c290da9e92a7b399b2f7362ba8fac8389aa31ad156ad2a25ecf1",
+      "device": 2096,
+      "inode": 2352521,
+      "nlink": 1,
+      "mtime_ns": 1792507800193358626,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 8,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case001_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case001_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 472243,
+      "sha256": "cb25b10660b7fdc4ebe7eecb5030e8422a377f749f8c8f144a066bfecfc8dcc7",
+      "device": 2096,
+      "inode": 2352520,
+      "nlink": 1,
+      "mtime_ns": 1792507796474059795,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 7,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case002_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case002_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 487054,
+      "sha256": "743a56c35e681f3d5b49893fa9a8c36528937e6ac2fe563c8706d1e6227d19ff",
+      "device": 2096,
+      "inode": 2352524,
+      "nlink": 1,
+      "mtime_ns": 1792507813376749937,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 10,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case002_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case002_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 486968,
+      "sha256": "07fb5392fc927e4830f122618f28148039a6d4c0b59e370d313de5535a16389c",
+      "device": 2096,
+      "inode": 2352522,
+      "nlink": 1,
+      "mtime_ns": 1792507809030501179,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 9,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case002_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case002_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 501726,
+      "sha256": "399c44f199e584e89168d9cac7f0595c8af6f28ea219c44ef386f9a73d72b044",
+      "device": 2096,
+      "inode": 2352526,
+      "nlink": 1,
+      "mtime_ns": 1792507829858234224,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 12,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case002_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case002_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 501696,
+      "sha256": "e44cfb9767a35d2ef64a0fedd9cf3173f0a2c63866144d4796e2676f9d4b73ae",
+      "device": 2096,
+      "inode": 2352525,
+      "nlink": 1,
+      "mtime_ns": 1792507825800563469,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 11,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case003_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case003_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 483090,
+      "sha256": "0e2de8d7f41ef96b28caf1d863058e5e4d258b6b0591d141a9a20aa38c197259",
+      "device": 2096,
+      "inode": 2352533,
+      "nlink": 1,
+      "mtime_ns": 1792507842333096045,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 14,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case003_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case003_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 483103,
+      "sha256": "bfc0596508850faf89f8e4bca09833a4adcef36ca068f63bf3cbf443a9ef0829",
+      "device": 2096,
+      "inode": 2352532,
+      "nlink": 1,
+      "mtime_ns": 1792507838612301841,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 13,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case003_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case003_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 496524,
+      "sha256": "42ebda65fceeb0d929999394487d77e1ec7ffb501d7d19a88267a90aa03e9adc",
+      "device": 2096,
+      "inode": 2352536,
+      "nlink": 1,
+      "mtime_ns": 1792507858038676970,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 16,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case003_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case003_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 496495,
+      "sha256": "e8d95b1adf83036699a459d3936f1d2fa089acff26ebd93b169349c3e4f864c0",
+      "device": 2096,
+      "inode": 2352534,
+      "nlink": 1,
+      "mtime_ns": 1792507850604311180,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 15,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case004_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case004_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467178,
+      "sha256": "6d6524a410d024eeeb1421258475ee2f05ef08051f9d35c0b417e431d84773be",
+      "device": 2096,
+      "inode": 2352581,
+      "nlink": 1,
+      "mtime_ns": 1792507871481050367,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 18,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case004_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case004_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467196,
+      "sha256": "b392efdf3d13ea4e4a3f25facc41aa9dba9b4093a07cbd1c036a957d4a6f8349",
+      "device": 2096,
+      "inode": 2352538,
+      "nlink": 1,
+      "mtime_ns": 1792507866120275744,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 17,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case004_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case004_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479420,
+      "sha256": "47ac716680564cc713843d71b3255dc38d6ec50681cde159ae17c4bb816bb318",
+      "device": 2096,
+      "inode": 2352565,
+      "nlink": 1,
+      "mtime_ns": 1792507886002667489,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 20,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case004_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case004_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479360,
+      "sha256": "80c0e530cdd7acb9908bfb9c296f7450b0db042e54c892dbbb86fbfd56503f2f",
+      "device": 2096,
+      "inode": 2352465,
+      "nlink": 1,
+      "mtime_ns": 1792507880904975083,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 19,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case005_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case005_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 474829,
+      "sha256": "80bfca3c79d73373e2438d060c81019cde3ccd64336e3e2ffccef4e3dc2f5e2e",
+      "device": 2096,
+      "inode": 2352566,
+      "nlink": 1,
+      "mtime_ns": 1792507903968016794,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 22,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case005_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case005_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 474716,
+      "sha256": "dc46d22e043386e91fb88fe6da7d94d718d950b853c1563f0c32b25fafb055fd",
+      "device": 2096,
+      "inode": 2352562,
+      "nlink": 1,
+      "mtime_ns": 1792507899514416265,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 21,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case005_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case005_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 487685,
+      "sha256": "ac64965d268ad2073e70fcda62ee4c1138156819671db35569e84b6a01d07ed1",
+      "device": 2096,
+      "inode": 2352568,
+      "nlink": 1,
+      "mtime_ns": 1792507917075922806,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 24,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case005_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case005_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 487627,
+      "sha256": "965bb3e9a0fd4a686fcf87230f415562dbc9dacb16af0713ebaa377dc95377c9",
+      "device": 2096,
+      "inode": 2352580,
+      "nlink": 1,
+      "mtime_ns": 1792507913311144266,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 23,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case006_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case006_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 462581,
+      "sha256": "65a124e5875faf3b3918b3e9a2a59e72cefa70aa339c4e442b59c52b18e15c19",
+      "device": 2096,
+      "inode": 2352583,
+      "nlink": 1,
+      "mtime_ns": 1792507933944106071,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 26,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case006_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case006_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 462657,
+      "sha256": "8e5fe37da670fb2fc2e1d6e87fbd514d89166f0dcec3b5f83fc32ae6b6159294",
+      "device": 2096,
+      "inode": 2352582,
+      "nlink": 1,
+      "mtime_ns": 1792507929194585569,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 25,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case006_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case006_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 473358,
+      "sha256": "476d9df25fe3c6fbe0658ca42a9d786bebd4e0190202c1c660343afb86932d05",
+      "device": 2096,
+      "inode": 2352585,
+      "nlink": 1,
+      "mtime_ns": 1792507946460221986,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 28,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case006_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case006_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 473303,
+      "sha256": "792df20ca7621987a9f76f95f8c45a62de8af14c4011f7270782e3f0c22d36ac",
+      "device": 2096,
+      "inode": 2352584,
+      "nlink": 1,
+      "mtime_ns": 1792507941750188527,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 27,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case007_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case007_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 448023,
+      "sha256": "35d1660b4e72e799d4b28de0655165251283d6304ee9965a96aed33f815972c7",
+      "device": 2096,
+      "inode": 2352587,
+      "nlink": 1,
+      "mtime_ns": 1792507958441055493,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 30,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 450560
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case007_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case007_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 448104,
+      "sha256": "5d907fa0bde7853b57195342979fe059acccb3d4bc1c039dc410457c0da98213",
+      "device": 2096,
+      "inode": 2352586,
+      "nlink": 1,
+      "mtime_ns": 1792507954198286084,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 29,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 450560
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case007_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case007_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 457261,
+      "sha256": "cb2e52d20fd54462547f3a90abe0a22ac7bed5fa27be6f9fab614769e8df51fc",
+      "device": 2096,
+      "inode": 2352590,
+      "nlink": 1,
+      "mtime_ns": 1792507975291753111,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 32,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 458752
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case007_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case007_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 457271,
+      "sha256": "415f304f24ddee0fa6ac521a90f0020ec6fcfcbfa52335edabc8e0e4ea6428cb",
+      "device": 2096,
+      "inode": 2352589,
+      "nlink": 1,
+      "mtime_ns": 1792507971178742895,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 31,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 458752
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case008_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case008_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 485327,
+      "sha256": "85a35d438ccdf4f445491f02edb4c6484fffa72f91dd97941c01f6f6c9354953",
+      "device": 2096,
+      "inode": 2352592,
+      "nlink": 1,
+      "mtime_ns": 1792507988209273966,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 34,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case008_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case008_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 485478,
+      "sha256": "fa123060d9ce7eda0b2df4c1f6122bdc45f36b344fe2da9a48fddd2ede20b63b",
+      "device": 2096,
+      "inode": 2352591,
+      "nlink": 1,
+      "mtime_ns": 1792507984010544707,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 33,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case008_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case008_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 499085,
+      "sha256": "dea47b99230264440dbf8021a8305e076af25981a3bf4e97001271619e4e5246",
+      "device": 2096,
+      "inode": 2352594,
+      "nlink": 1,
+      "mtime_ns": 1792508005253192562,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 36,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case008_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case008_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 498999,
+      "sha256": "3dfdfa689d87dd2847254b41d6dd7d0b71b7fa62cc7728e93169d8d87a0f37a4",
+      "device": 2096,
+      "inode": 2352593,
+      "nlink": 1,
+      "mtime_ns": 1792508000930415511,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 35,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case009_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case009_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 484951,
+      "sha256": "7b8ef300d45b61428f2a09abab1c9559749d90d78a39e2738e6a741eec821eff",
+      "device": 2096,
+      "inode": 2352596,
+      "nlink": 1,
+      "mtime_ns": 1792508019039939579,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 38,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case009_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case009_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 484947,
+      "sha256": "006873a8d29ffa2920fd0bba91befb2e03b70195b40061ca6938361b0571ea3b",
+      "device": 2096,
+      "inode": 2352595,
+      "nlink": 1,
+      "mtime_ns": 1792508014550165757,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 37,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case009_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case009_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 499905,
+      "sha256": "9b7e18e0e230b8be37c4bf4f10e356f0319b4d5020fecc5a64b9b6aaf1d31d6c",
+      "device": 2096,
+      "inode": 2352598,
+      "nlink": 1,
+      "mtime_ns": 1792508032225390718,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 40,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case009_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case009_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 500043,
+      "sha256": "b02643ac0fbd3f5bc6aeb11c32dc728a48ff5f2847b278c2c5721112dcdd41e9",
+      "device": 2096,
+      "inode": 2352597,
+      "nlink": 1,
+      "mtime_ns": 1792508027420303721,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 39,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case010_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case010_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 486766,
+      "sha256": "5029e3be968fa7de45f99b84b849ede812094815034e85be8821c11bf4c76ba4",
+      "device": 2096,
+      "inode": 2352600,
+      "nlink": 1,
+      "mtime_ns": 1792508050260340005,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 42,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case010_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case010_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 486824,
+      "sha256": "0837d87e391fdd61349fdae570341dd33f20dda6ce5f4bb5d0df0b233e9a32a0",
+      "device": 2096,
+      "inode": 2352599,
+      "nlink": 1,
+      "mtime_ns": 1792508045749420899,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 41,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case010_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case010_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 502050,
+      "sha256": "3936b59a9fc0ea5e5e4a0d5f179449ff373f97c9b138c57858dcad446e1e5fd9",
+      "device": 2096,
+      "inode": 2352602,
+      "nlink": 1,
+      "mtime_ns": 1792508063232758937,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 44,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case010_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case010_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 502139,
+      "sha256": "9f15f426f42a0d6ad4a17e6a194d5da42afb2b9a89a40e1796dbf5adc8080563",
+      "device": 2096,
+      "inode": 2352601,
+      "nlink": 1,
+      "mtime_ns": 1792508058858563000,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 43,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case011_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case011_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467847,
+      "sha256": "b5c1fa3a981534080c9cff1d9ae076a74f876951f18b686604bcaa691390a4bf",
+      "device": 2096,
+      "inode": 2352604,
+      "nlink": 1,
+      "mtime_ns": 1792508080296910239,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 46,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case011_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case011_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467849,
+      "sha256": "284540b897dbf0570e90d672812fb38fde48c74f0c3f802d0337ca9482c02324",
+      "device": 2096,
+      "inode": 2352603,
+      "nlink": 1,
+      "mtime_ns": 1792508075472504510,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 45,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case011_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case011_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479036,
+      "sha256": "8f565b59cc4c336f06e193a05f1f61776c1b279074247444381ca16b7f5da40c",
+      "device": 2096,
+      "inode": 2352606,
+      "nlink": 1,
+      "mtime_ns": 1792508092616830048,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 48,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 479232
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case011_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case011_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479044,
+      "sha256": "8194c014e8f9e00baf13327c49d10adae63749355d0db3067258b054bdeccb2c",
+      "device": 2096,
+      "inode": 2352605,
+      "nlink": 1,
+      "mtime_ns": 1792508088510937964,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 47,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 479232
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case100_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case100_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 360689,
+      "sha256": "1074fe0f9df7d31bd12416635eb40446e8e8d36bb098d2c9984ecd5a5e8e83fa",
+      "device": 2096,
+      "inode": 2352607,
+      "nlink": 1,
+      "mtime_ns": 1792508099919278077,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 49,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case100_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case100_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 362302,
+      "sha256": "ef4be30c2bbba4a613ce76204f7f093247cd3e54ae4bae623dae058cbfbfe2eb",
+      "device": 2096,
+      "inode": 2352608,
+      "nlink": 1,
+      "mtime_ns": 1792508112178652613,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 50,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case101_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case101_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 361499,
+      "sha256": "e9551d70f485a9a75bdb0497b425412fc5fc3ae3de1e098979cafa591f854615",
+      "device": 2096,
+      "inode": 2352609,
+      "nlink": 1,
+      "mtime_ns": 1792508120642295702,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 51,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case101_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case101_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 362189,
+      "sha256": "ff86f4ced3e290e25c67e3ed302b8d04eff4f8cedd90673e2fe18df2096406ae",
+      "device": 2096,
+      "inode": 2352610,
+      "nlink": 1,
+      "mtime_ns": 1792508129341063483,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 52,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case102_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case102_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 359676,
+      "sha256": "67cdb424a2d03555fb67e27e35e8e75b537308f1df3fbcb75bea438808fe5c08",
+      "device": 2096,
+      "inode": 2352611,
+      "nlink": 1,
+      "mtime_ns": 1792508135054714415,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 53,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 360448
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/base10k/case102_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/base10k/case102_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 360815,
+      "sha256": "231b08387521b63ddc0fd1d2ed91d89f8bac08d90706e70112d7758bf0b0cc25",
+      "device": 2096,
+      "inode": 2352612,
+      "nlink": 1,
+      "mtime_ns": 1792508145045139941,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 54,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case000_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case000_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 488998,
+      "sha256": "de880e8d65595a9e3c05ceb75c7c55bb9b09d4044794bf77628271b78a12a395",
+      "device": 2096,
+      "inode": 2352617,
+      "nlink": 1,
+      "mtime_ns": 1792508169967395645,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 56,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case000_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case000_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 488935,
+      "sha256": "66990b7a236e47568d515eb9d0e4aa92cfa7ebcba8401f2aaeb09fde0707c79c",
+      "device": 2096,
+      "inode": 2352561,
+      "nlink": 1,
+      "mtime_ns": 1792508165101736034,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 55,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case000_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case000_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 503119,
+      "sha256": "6d64f759903f3ce9046ee676a29e71233008cbb38af3bb0f5c5b1fd7550181e4",
+      "device": 2096,
+      "inode": 2352619,
+      "nlink": 1,
+      "mtime_ns": 1792508185970722903,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 58,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case000_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case000_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 503263,
+      "sha256": "6a3a6053deaf456118399798763099db25d7352de3b0e719f7755c0242f5648d",
+      "device": 2096,
+      "inode": 2352618,
+      "nlink": 1,
+      "mtime_ns": 1792508181950215624,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 57,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case001_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case001_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 460852,
+      "sha256": "23649c2e7519ab50ee39ad5971f66608f7518fb0a78482de83762dc21757647e",
+      "device": 2096,
+      "inode": 2352621,
+      "nlink": 1,
+      "mtime_ns": 1792508197635173098,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 60,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case001_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case001_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 460802,
+      "sha256": "45dae7aedbf7e24d33dc8d0eddb47fa4ea2550a0774942be87f88e267595530d",
+      "device": 2096,
+      "inode": 2352620,
+      "nlink": 1,
+      "mtime_ns": 1792508193902332099,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 59,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case001_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case001_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 472609,
+      "sha256": "578e0d38269c02fb534733bccb6d2807bb8e5bb25b46944c56007173cc856524",
+      "device": 2096,
+      "inode": 2352540,
+      "nlink": 1,
+      "mtime_ns": 1792508209715005098,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 62,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case001_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case001_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 472264,
+      "sha256": "5d6fd2dc0a62bdc1ad58c11b8cb1a3647c1477eec2b9cf72633b3a473e98bdc0",
+      "device": 2096,
+      "inode": 2352491,
+      "nlink": 1,
+      "mtime_ns": 1792508204494920374,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 61,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case002_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case002_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 487101,
+      "sha256": "b083346d965b4320ec51bdb554e7c7aa38a0eb44bcd18746418d504e7ff0a5d5",
+      "device": 2096,
+      "inode": 2352623,
+      "nlink": 1,
+      "mtime_ns": 1792508226967237360,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 64,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case002_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case002_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 486931,
+      "sha256": "231019be67b6dbaa6fdecdda7626d6d8856831653a6cebba27fd530e404911ea",
+      "device": 2096,
+      "inode": 2352496,
+      "nlink": 1,
+      "mtime_ns": 1792508222725056311,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 63,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case002_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case002_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 501704,
+      "sha256": "e0775c585f5a23de836971b9d9d42a88b2d38a1f36d7abd6050751434c2fd9f3",
+      "device": 2096,
+      "inode": 2352625,
+      "nlink": 1,
+      "mtime_ns": 1792508240260168096,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 66,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case002_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case002_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 501725,
+      "sha256": "6bea64ca3dec5bd0f1f723e43ad91c8ff7a19acf0929df29ff5b2f707e80ddc0",
+      "device": 2096,
+      "inode": 2352624,
+      "nlink": 1,
+      "mtime_ns": 1792508234804807203,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 65,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case003_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case003_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 483165,
+      "sha256": "2135e2574016a2fedafd56855cafb2c83e3f9f2fd60eb9619dc8570965d010ac",
+      "device": 2096,
+      "inode": 2352627,
+      "nlink": 1,
+      "mtime_ns": 1792508257636339906,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 68,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case003_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case003_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 483168,
+      "sha256": "833d4cbd8b91c58930f5e42ec27516e53f17c9a9ec6d40f0a78d5da66054ace7",
+      "device": 2096,
+      "inode": 2352648,
+      "nlink": 1,
+      "mtime_ns": 1792508252675685032,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 67,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case003_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case003_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 496522,
+      "sha256": "e837560c84f0c7e7dc40fb99caed6f9b1753c5afffa23a6bd67908b173746388",
+      "device": 2096,
+      "inode": 2352628,
+      "nlink": 1,
+      "mtime_ns": 1792508269848440841,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 70,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case003_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case003_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 496490,
+      "sha256": "2496ccde6a21b736a5785eae19ab7454d0f5a42a8301b963f8b94793e07e7913",
+      "device": 2096,
+      "inode": 2352626,
+      "nlink": 1,
+      "mtime_ns": 1792508264853272690,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 69,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case004_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case004_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467210,
+      "sha256": "3c30760b6a4ccab54d5cb931cd4edc688b88523789c5333832d55a203f1ef591",
+      "device": 2096,
+      "inode": 2352630,
+      "nlink": 1,
+      "mtime_ns": 1792508281862659972,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 72,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case004_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case004_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467242,
+      "sha256": "e47c4b9a2276da9bd5411015aceb3fdbaeca3d07a83e4fce204e9947a34b66dd",
+      "device": 2096,
+      "inode": 2352629,
+      "nlink": 1,
+      "mtime_ns": 1792508277870096379,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 71,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case004_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case004_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479406,
+      "sha256": "bd84167870410316f0e85db4dc9a3eb65cb11c4c9976ebda45b2e66301e9eed1",
+      "device": 2096,
+      "inode": 2352632,
+      "nlink": 1,
+      "mtime_ns": 1792508298602837157,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 74,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case004_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case004_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479264,
+      "sha256": "995912a601f236837292fbd3f8e463afbefda2af7952a0c06bf676771d4d2678",
+      "device": 2096,
+      "inode": 2352631,
+      "nlink": 1,
+      "mtime_ns": 1792508294542267157,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 73,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case005_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case005_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 474869,
+      "sha256": "faf6ab937a46c594f855b7c1e6fc49e470f20c3537138cdf6b1ec3ac71f0ef2c",
+      "device": 2096,
+      "inode": 2352634,
+      "nlink": 1,
+      "mtime_ns": 1792508311995756263,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 76,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case005_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case005_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 474780,
+      "sha256": "7b247310bbc2ebac0c473135511d4c4a9ce7e047442513c5e1ac2f432069a786",
+      "device": 2096,
+      "inode": 2352633,
+      "nlink": 1,
+      "mtime_ns": 1792508307210645744,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 75,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case005_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case005_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 487727,
+      "sha256": "49d98384c93635763bbd2d54398c2192577fde147d3946043d342a21aa18751a",
+      "device": 2096,
+      "inode": 2352636,
+      "nlink": 1,
+      "mtime_ns": 1792508328615673973,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 78,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case005_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case005_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 487630,
+      "sha256": "11dd9d1110e089292f76356bb4edc62b3991eef4bdfbc94a81267a2667bbaa51",
+      "device": 2096,
+      "inode": 2352635,
+      "nlink": 1,
+      "mtime_ns": 1792508324015214765,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 77,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case006_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case006_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 462640,
+      "sha256": "5cad33b0dfa9d6721b01a39b2f2c3426075ef9f55aa256ce604145879b466cc1",
+      "device": 2096,
+      "inode": 2352638,
+      "nlink": 1,
+      "mtime_ns": 1792508342812854252,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 80,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case006_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case006_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 462721,
+      "sha256": "5517c43281abab1807c9428f1f3710f61462b8f92376f6492daa09ecd32994e0",
+      "device": 2096,
+      "inode": 2352637,
+      "nlink": 1,
+      "mtime_ns": 1792508338230580410,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 79,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case006_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case006_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 473339,
+      "sha256": "29c65a11da84c3b621db79b2f96a5a080934ba75c6da3fb0d5ac1fbee6c4f209",
+      "device": 2096,
+      "inode": 2352640,
+      "nlink": 1,
+      "mtime_ns": 1792508360533889146,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 82,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case006_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case006_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 473310,
+      "sha256": "83ee9b4906827fc37396a65e51180e56c31974d1484929df0ac2cc9c2686b4ff",
+      "device": 2096,
+      "inode": 2352639,
+      "nlink": 1,
+      "mtime_ns": 1792508351640408560,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 81,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case007_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case007_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 448100,
+      "sha256": "5a8be927aaa6e80ec68c545a1c5cc5c6e8c24f0c07d022d8e4a3ab1c038be377",
+      "device": 2096,
+      "inode": 2352642,
+      "nlink": 1,
+      "mtime_ns": 1792508372611597051,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 84,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 450560
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case007_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case007_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 448007,
+      "sha256": "b6882a7bac76612a7f774404630b889382be52f125085063784c5cddbc7c6d0c",
+      "device": 2096,
+      "inode": 2352641,
+      "nlink": 1,
+      "mtime_ns": 1792508368327038432,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 83,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 450560
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case007_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case007_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 457232,
+      "sha256": "d52f74f319a67d8ac5b993803b25dd407e15ecaaa5541189c089743072ca8242",
+      "device": 2096,
+      "inode": 2352644,
+      "nlink": 1,
+      "mtime_ns": 1792508385035979373,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 86,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 458752
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case007_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case007_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 457159,
+      "sha256": "feb01b164245808b750bb300e47abe38e95b477d681a7ad0856b032801662867",
+      "device": 2096,
+      "inode": 2352643,
+      "nlink": 1,
+      "mtime_ns": 1792508380505107896,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 85,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 458752
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case008_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case008_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 485365,
+      "sha256": "dbe7c40e7f0677a6d17c75155dfa9c3f16e0a1bcce41e2d56e272b9832c79a44",
+      "device": 2096,
+      "inode": 2352646,
+      "nlink": 1,
+      "mtime_ns": 1792508403896794414,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 88,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case008_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case008_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 485536,
+      "sha256": "ce386fe27b83a6e2bcdec2957071562e64cf6211d23266be211b46a6dd51a499",
+      "device": 2096,
+      "inode": 2352541,
+      "nlink": 1,
+      "mtime_ns": 1792508398538846458,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 87,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case008_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case008_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 499013,
+      "sha256": "85946ffc3abbdee13673b29e89a2dcec315df421b130bc36b598540ee7c7a073",
+      "device": 2096,
+      "inode": 2352647,
+      "nlink": 1,
+      "mtime_ns": 1792508416399414173,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 90,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case008_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case008_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 499050,
+      "sha256": "f3c153db73dd3708ea4e2846720ce262ebe95147371e9428217cbd9155deadd4",
+      "device": 2096,
+      "inode": 2352645,
+      "nlink": 1,
+      "mtime_ns": 1792508412222681636,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 89,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case009_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case009_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 485005,
+      "sha256": "bb89dcfc7ae6882995000eb2e1d0f4ec3ec958ab45dbf3758d7734b83f1627dc",
+      "device": 2096,
+      "inode": 2352650,
+      "nlink": 1,
+      "mtime_ns": 1792508432734802021,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 92,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case009_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case009_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 485010,
+      "sha256": "25db139cde5c4ff6643b9c9e4c795ed51a55be510efb51e8c6c9e62a739ae5d2",
+      "device": 2096,
+      "inode": 2352649,
+      "nlink": 1,
+      "mtime_ns": 1792508424606413415,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 91,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case009_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case009_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 499900,
+      "sha256": "01f7e8b08420404addfc886203550f5ff33e9eac91bc5d82e10fc550f34b3a29",
+      "device": 2096,
+      "inode": 2352652,
+      "nlink": 1,
+      "mtime_ns": 1792508444308394491,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 94,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case009_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case009_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 500036,
+      "sha256": "442532200e687adf6d920a8567536e1df0ce09ce2a0a937ffb563645bc2474eb",
+      "device": 2096,
+      "inode": 2352651,
+      "nlink": 1,
+      "mtime_ns": 1792508440300626423,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 93,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case010_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case010_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 486793,
+      "sha256": "b34d55a848cdbbc66ce512725156b70828e57a14eb8c829fee454e9002702cd0",
+      "device": 2096,
+      "inode": 2352654,
+      "nlink": 1,
+      "mtime_ns": 1792508458454642808,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 96,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case010_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case010_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 486909,
+      "sha256": "a46594853df805bb514aa923611aa0907b0f819d37aa9d070f2f205722dc1e6b",
+      "device": 2096,
+      "inode": 2352653,
+      "nlink": 1,
+      "mtime_ns": 1792508454442095504,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 95,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case010_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case010_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 502031,
+      "sha256": "dffee9d3ea8126a47ddc581585f646f5874a254bbb4ce4d864eb209bb5a0ce75",
+      "device": 2096,
+      "inode": 2352656,
+      "nlink": 1,
+      "mtime_ns": 1792508476418566960,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 98,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case010_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case010_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 502169,
+      "sha256": "db430094a19bb82bfe4bb99e5fed9f2271a0b38f48ac7409094dba64a5426236",
+      "device": 2096,
+      "inode": 2352655,
+      "nlink": 1,
+      "mtime_ns": 1792508471501787587,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 97,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case011_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case011_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467887,
+      "sha256": "70787d5f3bc9d0edbef4f011c5ead71aa91e5d602ddf6be13cab894d20606bd6",
+      "device": 2096,
+      "inode": 2352658,
+      "nlink": 1,
+      "mtime_ns": 1792508489036947414,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 100,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case011_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case011_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467880,
+      "sha256": "bd109b6d8b370892337521d83d5100b376f2e025a84073525c6d31083ee19a3c",
+      "device": 2096,
+      "inode": 2352657,
+      "nlink": 1,
+      "mtime_ns": 1792508484255824634,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 99,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case011_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case011_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479117,
+      "sha256": "74ee91adcc124654a85537a062e8290675bb3fdea714b2c478846c716ce59376",
+      "device": 2096,
+      "inode": 2352660,
+      "nlink": 1,
+      "mtime_ns": 1792508506301279606,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 102,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 479232
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case011_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case011_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479100,
+      "sha256": "76de8af21cb934f8de3b8a58a379c076ddb99159ce86b9ab2799324a7cdbc697",
+      "device": 2096,
+      "inode": 2352662,
+      "nlink": 1,
+      "mtime_ns": 1792508498451644452,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 101,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 479232
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case100_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case100_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 360689,
+      "sha256": "9d6bbae1af8fbda23c6d11fb9d26abb1ac89ac17f3f18fb832bfe07c23f0ed48",
+      "device": 2096,
+      "inode": 2352663,
+      "nlink": 1,
+      "mtime_ns": 1792508514091765154,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 103,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case100_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case100_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 362302,
+      "sha256": "c42125f1f30b2308eaa036ace0bd38de78539e6ed5cad12851996b3460eabf6f",
+      "device": 2096,
+      "inode": 2352664,
+      "nlink": 1,
+      "mtime_ns": 1792508521414214920,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 104,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case101_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case101_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 361499,
+      "sha256": "5337bf5763cdb85fb84c14346bbaa0dda1e2f313fabc61d7b230801c8a9409d8",
+      "device": 2096,
+      "inode": 2352665,
+      "nlink": 1,
+      "mtime_ns": 1792508529951668785,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 105,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case101_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case101_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 362189,
+      "sha256": "86dfa0b2729835ac771ec0d904e392718429cbc9f1776a011784b505dfe4275b",
+      "device": 2096,
+      "inode": 2352622,
+      "nlink": 1,
+      "mtime_ns": 1792508541997197464,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 106,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case102_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case102_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 359676,
+      "sha256": "f12f49e7ecf5773e41f07e47e90a9c30323aaf5d35a921042c26061c8f384374",
+      "device": 2096,
+      "inode": 2352667,
+      "nlink": 1,
+      "mtime_ns": 1792508547881397334,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 107,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 360448
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/control/case102_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/control/case102_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 360815,
+      "sha256": "dcdf74bfe426b87e37e6d7bc6dea27cf0aeb89217bb86d0f7843066005ce9f5d",
+      "device": 2096,
+      "inode": 2352669,
+      "nlink": 1,
+      "mtime_ns": 1792508553970130147,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 108,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case000_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case000_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 489017,
+      "sha256": "1232b0f0e51a4d3b8610f51709ff9964fbebbb64ce5094c3ef938b704e672075",
+      "device": 2096,
+      "inode": 2352673,
+      "nlink": 1,
+      "mtime_ns": 1792508579084636181,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 110,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case000_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case000_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 489008,
+      "sha256": "8b102fda861aa1c1907d98866336b78f7bbaa0ab44ecda0c8dc2f5cab211654d",
+      "device": 2096,
+      "inode": 2352613,
+      "nlink": 1,
+      "mtime_ns": 1792508575000226629,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 109,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case000_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case000_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 503119,
+      "sha256": "4416adcf9444c3ae1359ac5aaad5d8c0e720704143b43473b5af423d3f2d952a",
+      "device": 2096,
+      "inode": 2352675,
+      "nlink": 1,
+      "mtime_ns": 1792508590578707621,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 112,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case000_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case000_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 503320,
+      "sha256": "a0b203a162c2acd66d9ba51ef76600383b08e25f6683546e5aea87dbf88cc12d",
+      "device": 2096,
+      "inode": 2352674,
+      "nlink": 1,
+      "mtime_ns": 1792508586350409893,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 111,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case001_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case001_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 460911,
+      "sha256": "eb3dd3230c43f9d48bb431226875e0c694fc366110b77b2f56d42bc0d2935a3e",
+      "device": 2096,
+      "inode": 2352677,
+      "nlink": 1,
+      "mtime_ns": 1792508603375827539,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 114,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case001_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case001_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 460749,
+      "sha256": "348c2d99e7b31d3526df8100c6212cc4e385485e2992bce1521e5aa803b51d4f",
+      "device": 2096,
+      "inode": 2352676,
+      "nlink": 1,
+      "mtime_ns": 1792508598751904949,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 113,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case001_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case001_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 472610,
+      "sha256": "34b36ca743939024cde5cf36c5ba43be5b745bc72e00111e5d511420b065ee22",
+      "device": 2096,
+      "inode": 2352679,
+      "nlink": 1,
+      "mtime_ns": 1792508617717926190,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 116,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case001_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case001_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 472347,
+      "sha256": "f44b02e21efb35175d558ec08baff19b536547696230c33bb07bdc87cadde1b5",
+      "device": 2096,
+      "inode": 2352678,
+      "nlink": 1,
+      "mtime_ns": 1792508613670950506,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 115,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case002_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case002_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 487104,
+      "sha256": "2c931cccac7acd16652befbf2e18a3e8b88c82e4b3aea200dacfcdc3770f7b57",
+      "device": 2096,
+      "inode": 2352681,
+      "nlink": 1,
+      "mtime_ns": 1792508629832419163,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 118,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case002_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case002_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 486937,
+      "sha256": "3a2dc8952ef35d3ef3b4df9b41c6781f3a91fbf17796911e90f21c231ebcabdf",
+      "device": 2096,
+      "inode": 2352680,
+      "nlink": 1,
+      "mtime_ns": 1792508625785954883,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 117,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case002_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case002_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 501830,
+      "sha256": "ce09ca569165f8b304a8b2b6a0e9db6ec27dd3acdc2911d355356c22ea36d78d",
+      "device": 2096,
+      "inode": 2352567,
+      "nlink": 1,
+      "mtime_ns": 1792508647030769191,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 120,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case002_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case002_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 501767,
+      "sha256": "e60ee2ce57bca69a99af2c9c4f5615dd7c2b1473f879abefa36bd75ad3123515",
+      "device": 2096,
+      "inode": 2352682,
+      "nlink": 1,
+      "mtime_ns": 1792508638473979410,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 119,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case003_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case003_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 483107,
+      "sha256": "8c02e1fa81fa7dc97c2d52e47abd173634d0363a7a5533211b12992ffbd93e3e",
+      "device": 2096,
+      "inode": 2352569,
+      "nlink": 1,
+      "mtime_ns": 1792508660634520457,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 122,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case003_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case003_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 483136,
+      "sha256": "94ed0c31e3faac525361e53e12130b5f9163579b0fcf07810ac69ac8b0f554b1",
+      "device": 2096,
+      "inode": 2352576,
+      "nlink": 1,
+      "mtime_ns": 1792508656706209331,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 121,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case003_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case003_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 496579,
+      "sha256": "aeb4589447d631b18bedc75b07a3abca80633a1143fb826dfa2719896c527caa",
+      "device": 2096,
+      "inode": 2352683,
+      "nlink": 1,
+      "mtime_ns": 1792508674126277963,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 124,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case003_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case003_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 496506,
+      "sha256": "91c1385ad8806183d908720946d78378e6137f1ba8c3a33f035dd3fe8401284d",
+      "device": 2096,
+      "inode": 2352579,
+      "nlink": 1,
+      "mtime_ns": 1792508669113325321,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 123,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case004_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case004_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467168,
+      "sha256": "4859969c6824d53f70d9ed6556b07c5afbd3f384d8e0fef009e0f63f9f62fd99",
+      "device": 2096,
+      "inode": 2352685,
+      "nlink": 1,
+      "mtime_ns": 1792508691361389876,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 126,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case004_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case004_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467214,
+      "sha256": "632c38bf588ae6488b470fd1593a2a68b6dd99c0cfed57dbaeba5d19af397fd7",
+      "device": 2096,
+      "inode": 2352684,
+      "nlink": 1,
+      "mtime_ns": 1792508686380814514,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 125,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case004_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case004_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479436,
+      "sha256": "ace0134eb783c2c6e4b4bfb125d2f4a546b8b4890a03fbaf3d01de385ec09cc2",
+      "device": 2096,
+      "inode": 2352686,
+      "nlink": 1,
+      "mtime_ns": 1792508702855898131,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 128,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case004_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case004_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479317,
+      "sha256": "77e935d0cb05d877bb1c7879403ac111613e96884d35529f70d7f5cbecbf6a03",
+      "device": 2096,
+      "inode": 2352687,
+      "nlink": 1,
+      "mtime_ns": 1792508698989709198,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 127,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 483328
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case005_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case005_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 474981,
+      "sha256": "9e8c8ea487d0a2060b02015e1afac2c269315b19078be559bbe494a5512483e1",
+      "device": 2096,
+      "inode": 2352689,
+      "nlink": 1,
+      "mtime_ns": 1792508719516017122,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 130,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case005_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case005_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 474731,
+      "sha256": "61a4505cd614bc5a5cd0c2616f6694a4b57817a3b8af8027e0bd51e56f10e293",
+      "device": 2096,
+      "inode": 2352688,
+      "nlink": 1,
+      "mtime_ns": 1792508711273153699,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 129,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case005_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case005_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 487701,
+      "sha256": "d3691743075dd22494faf5052a7fd91e099fc4e069c20c454c5bf378b31f0349",
+      "device": 2096,
+      "inode": 2352691,
+      "nlink": 1,
+      "mtime_ns": 1792508732787109245,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 132,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case005_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case005_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 487570,
+      "sha256": "39c0e83acdaa2b43b4c96234ab822766e12debc39c676ec9fb8174a18049ae2b",
+      "device": 2096,
+      "inode": 2352690,
+      "nlink": 1,
+      "mtime_ns": 1792508728518269323,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 131,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 491520
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case006_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case006_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 462675,
+      "sha256": "3589941ba2bbad44927a44c3c80f55714771383e309c73269defe3c89542cde0",
+      "device": 2096,
+      "inode": 2352693,
+      "nlink": 1,
+      "mtime_ns": 1792508745733481813,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 134,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case006_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case006_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 462711,
+      "sha256": "c431556b296a3be49d51b76eb7e29c1d2d401542a91bb614eb8504390efc39af",
+      "device": 2096,
+      "inode": 2352692,
+      "nlink": 1,
+      "mtime_ns": 1792508740411788244,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 133,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 462848
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case006_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case006_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 473445,
+      "sha256": "695190cf11c56ff50ee036e5b42cca26fcf20183c3289f617f71b97fa0341e5c",
+      "device": 2096,
+      "inode": 2352695,
+      "nlink": 1,
+      "mtime_ns": 1792508762223944792,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 136,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case006_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case006_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 473378,
+      "sha256": "ab77fffd31b4a5dd09f920a3bb2ed431144f6834db756024551b868f78c3f360",
+      "device": 2096,
+      "inode": 2352694,
+      "nlink": 1,
+      "mtime_ns": 1792508757187450064,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 135,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 475136
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case007_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case007_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 448077,
+      "sha256": "4cb84e663de67e302262573e17bf9e8b1dd9537d75cbe15876b0c707b7e11fec",
+      "device": 2096,
+      "inode": 2352697,
+      "nlink": 1,
+      "mtime_ns": 1792508775390874505,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 138,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 450560
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case007_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case007_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 448000,
+      "sha256": "097f41eac98da8543bd9e3aa556f2798fbced86a45cd566e6f4dc45cb489be93",
+      "device": 2096,
+      "inode": 2352696,
+      "nlink": 1,
+      "mtime_ns": 1792508770727805216,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 137,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 450560
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case007_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case007_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 457220,
+      "sha256": "90e25c811f819f0a07129e156f3bab52c0c0e6234662dba60c7f24c56507f048",
+      "device": 2096,
+      "inode": 2352699,
+      "nlink": 1,
+      "mtime_ns": 1792508791987819216,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 140,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 458752
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case007_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case007_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 457213,
+      "sha256": "14d6efa1451db35ac25c01d75271173023c314b4cec9931f9f087313db4f0a36",
+      "device": 2096,
+      "inode": 2352698,
+      "nlink": 1,
+      "mtime_ns": 1792508783638767638,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 139,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 458752
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case008_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case008_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 485437,
+      "sha256": "4c2083a898c8db07ee5e08d56221bc03f114dec902c5b499bea402d5f3efc8b3",
+      "device": 2096,
+      "inode": 2352701,
+      "nlink": 1,
+      "mtime_ns": 1792508805058147099,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 142,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case008_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case008_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 485611,
+      "sha256": "d5f4b1a1f558f303f85d1bf7e735b2fc67d54c4008cc5d944d8288e7ae2e36bd",
+      "device": 2096,
+      "inode": 2352700,
+      "nlink": 1,
+      "mtime_ns": 1792508800159585566,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 141,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case008_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case008_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 499133,
+      "sha256": "11acf86cb153b6bf929957654ec274d9fd8ce2f867a2d5ba4f1c22933575dae8",
+      "device": 2096,
+      "inode": 2352703,
+      "nlink": 1,
+      "mtime_ns": 1792508819231192179,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 144,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case008_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case008_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 499050,
+      "sha256": "ca6d1394de57fe63e1c95a7a1e503e3815d8bcacb809430ca0b0daff0b0fe238",
+      "device": 2096,
+      "inode": 2352702,
+      "nlink": 1,
+      "mtime_ns": 1792508813389578601,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 143,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 499712
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case009_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case009_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 484937,
+      "sha256": "22a365ec3d8bab38734418678dab9ea891b88ff55a20928a00317ad6e067a72b",
+      "device": 2096,
+      "inode": 2352705,
+      "nlink": 1,
+      "mtime_ns": 1792508836007992048,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 146,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case009_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case009_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 484957,
+      "sha256": "7d2f237393656f8684d1c56176bd7ad4fafebfcbb6690969e800fd699fc7fac9",
+      "device": 2096,
+      "inode": 2352704,
+      "nlink": 1,
+      "mtime_ns": 1792508830616031733,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 145,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case009_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case009_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 500021,
+      "sha256": "dfd87d24afeef67dcc41b7cbe6691e553b2396e4accec2635265838f0406ac23",
+      "device": 2096,
+      "inode": 2352707,
+      "nlink": 1,
+      "mtime_ns": 1792508848473206117,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 148,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case009_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case009_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 500084,
+      "sha256": "abdd903c80b5456f31622fb60cc90574254967ce306847e53337a318dcc8ce09",
+      "device": 2096,
+      "inode": 2352706,
+      "nlink": 1,
+      "mtime_ns": 1792508843865067682,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 147,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case010_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case010_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 486799,
+      "sha256": "8e5edea12c10a605a64f0b03a0d5619d857cbec413de0b87f9d44bccca575b11",
+      "device": 2096,
+      "inode": 2352709,
+      "nlink": 1,
+      "mtime_ns": 1792508863344472038,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 150,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case010_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case010_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 486871,
+      "sha256": "5c416983173777539b7e4b0375a9cac1188fd74753d67a8c160deb44ceb41d78",
+      "device": 2096,
+      "inode": 2352708,
+      "nlink": 1,
+      "mtime_ns": 1792508856048074884,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 149,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 487424
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case010_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case010_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 502030,
+      "sha256": "d9fcc36f5dc99f54c226f395a790a5db84b29098b32c6ce2b27cdf8db55d9d87",
+      "device": 2096,
+      "inode": 2352711,
+      "nlink": 1,
+      "mtime_ns": 1792508878174473003,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 152,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case010_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case010_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 502222,
+      "sha256": "bfead2784bfb4196b44b51732a56f51f9bb9ad5dc18eaf099212cec500687e52",
+      "device": 2096,
+      "inode": 2352666,
+      "nlink": 1,
+      "mtime_ns": 1792508872136167437,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 151,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 503808
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case011_clean_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case011_clean_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467934,
+      "sha256": "df1aa95fa4b514ec439fe167c221861e45e041e213ade2f7da25898a7e58e7d3",
+      "device": 2096,
+      "inode": 2352713,
+      "nlink": 1,
+      "mtime_ns": 1792508890239479904,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 154,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case011_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case011_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 467935,
+      "sha256": "62789a770d7990a9ca37e04e748b601486b68d2b40dd2adfbabf8c589ff88854",
+      "device": 2096,
+      "inode": 2352712,
+      "nlink": 1,
+      "mtime_ns": 1792508886332698397,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 153,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 471040
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case011_noisy_scene_off.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case011_noisy_scene_off.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 478989,
+      "sha256": "8a68cc344a4fc5e4a14a6b3dfcac140c337638c42db45571bfea09d91b873e94",
+      "device": 2096,
+      "inode": 2352715,
+      "nlink": 1,
+      "mtime_ns": 1792508905864101394,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 156,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 479232
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case011_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case011_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 479043,
+      "sha256": "3fed461ab9bcf93f533f65de74db156452cdc2c4c1060518626675280187cbf9",
+      "device": 2096,
+      "inode": 2352714,
+      "nlink": 1,
+      "mtime_ns": 1792508901409185372,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 155,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 479232
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case100_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case100_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 360687,
+      "sha256": "e751742e830b4ee5ce895d07b59d589c0d92bb15c7c06543687eb416da5f62c4",
+      "device": 2096,
+      "inode": 2352716,
+      "nlink": 1,
+      "mtime_ns": 1792508913182551344,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 157,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case100_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case100_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 362300,
+      "sha256": "9e760223275cae7edb32ddfc4ee896e4d3ada3f9ce607ca981a5166d45e5f532",
+      "device": 2096,
+      "inode": 2352717,
+      "nlink": 1,
+      "mtime_ns": 1792508919958125988,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 158,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case101_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case101_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 361497,
+      "sha256": "1b04f2b75fe08142763aa0ecd94018a8a34303e07b8f1e10f0611aebe961ba05",
+      "device": 2096,
+      "inode": 2352718,
+      "nlink": 1,
+      "mtime_ns": 1792508931641337978,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 159,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case101_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case101_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 362187,
+      "sha256": "780996ba7183542200374d14737d1cd2b24f3a34d768c8c217ce28745993732f",
+      "device": 2096,
+      "inode": 2352719,
+      "nlink": 1,
+      "mtime_ns": 1792508939837973257,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 160,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case102_clean_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case102_clean_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 359674,
+      "sha256": "7fb149fe99b5481a9e03149161370ac78ba0389516e172f53863e30917d0f76c",
+      "device": 2096,
+      "inode": 2352720,
+      "nlink": 1,
+      "mtime_ns": 1792508946934159035,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 161,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 360448
+    },
+    {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/motions/nondegradation/case102_noisy_scene_on.npz",
+      "relative_to_trial": "paired_validation_cuda/motions/nondegradation/case102_noisy_scene_on.npz",
+      "kind": "rebuildable_prediction_array",
+      "size_bytes": 360813,
+      "sha256": "dfc75a1dfa1b972dd4cd901833adf5848d54991657b09af46c78d376067b8d46",
+      "device": 2096,
+      "inode": 2352721,
+      "nlink": 1,
+      "mtime_ns": 1792508953864446652,
+      "references": [
+        {
+          "file": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/rows.jsonl",
+          "row_1based": 162,
+          "type": "historical_per_prediction_metric_and_identity"
+        }
+      ],
+      "allocated_bytes_before": 364544
+    }
+  ],
+  "retained_model_verification": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/checkpoints/step_010000.pt",
+    "size_bytes": 519851763,
+    "sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+    "exists": true,
+    "expected_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+    "verification": "Full file SHA256 matches selected raw10k; earlier strict loader and paired baseline/CPU audit retained. No model loaded during cleanup."
+  },
+  "host_dependency_audit": {
+    "observed_at": "immediately before inventory",
+    "method": "Read-only host /proc cmdline and fd scan; own process and ancestors excluded.",
+    "inspected_processes": 31,
+    "matching_trial_worker_or_visor_or_evaluator_processes": [],
+    "open_trial_file_descriptors": [],
+    "signals_sent": false
+  },
+  "historical_audits_notice": "All retained CPU checks, rows and direction reviews describe pre-cleanup artifacts; their existing SHA fields remain historical evidence. Re-running checks after cleanup requires reconstructing arrays and/or retraining removed candidates.",
+  "guard_directory_action": "Entire guard_review_window_step010000 retained: two compact records and zero arrays.",
+  "source_and_data_action": "No source, seal, dataset, data cache, formal/official checkpoint, original10k or runtime library touched.",
+  "model_loaded": false,
+  "GPU_used": false,
+  "signals_sent": false,
+  "completed_at": "2026-10-20T23:34:47.735131+08:00",
+  "deleted_file_count": 176,
+  "deleted_logical_bytes": 1121319156,
+  "disk_usage_after": {
+    "total_bytes": 1081101176832,
+    "used_bytes": 920158150656,
+    "free_bytes": 105950670848
+  },
+  "retained_raw10k_post_cleanup_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+  "all_original_status_fields_preserved": true,
+  "STATUS_sha256": "e4f8d0331894e718e5fbf7eea80f1608d4b4b89d260a0023207eed475d9478ca",
+  "remaining_trial_npz_count": 0,
+  "remaining_trial_pt_count": 0,
+  "disk_free_increase_bytes": 1121513472
+}

@@ -1,0 +1,129 @@
+{
+  "state": "training",
+  "checked_at_utc": "2026-10-23T11:30:04.425458+00:00",
+  "contract_sha256": "d4cfffc42c4cb5d0c2c7ba8e7809495b8859944489e3a946f72741d7e321c089",
+  "reference_contract_sha256": "00db83c0f5c00322731898b8c9ef0fed3b49398390cb261084e2190d1265ed2a",
+  "config": "configs/scene_ego128_noscene.yaml",
+  "entry": "python -m scenemi.benchmark train-control",
+  "prior": {
+    "step": 50000,
+    "sha256": "0c30ba25dc42c568a8e2fcefae2e39a142930ff26d7a39bd7ff446eaf4e9710f",
+    "kind": "AMASS EGO-only validation selected"
+  },
+  "shared_settings": [
+    "seed",
+    "training",
+    "optimizer",
+    "data",
+    "validation",
+    "loss",
+    "local",
+    "prior_checkpoint",
+    "prior_sha256"
+  ],
+  "only_design_difference": "All scene geometry paths off; native shape adapter and camera conditioning preserved.",
+  "resource_difference": {
+    "allocator_gib": 6,
+    "memory_gib": 10,
+    "cpu_count": 2
+  },
+  "train_datasets": [
+    "egobody",
+    "trumans",
+    "grail"
+  ],
+  "mode": "ego",
+  "rich_excluded": true,
+  "ground_truth_shape_input": false,
+  "validation_coverage": {
+    "quick": {
+      "windows": 176,
+      "per_dataset": {
+        "egobody": 45,
+        "trumans": 33,
+        "grail": 98
+      },
+      "families": {
+        "egobody": 16,
+        "trumans": 33,
+        "grail": 98
+      },
+      "grail_category_windows": {
+        "stair_p2": 20,
+        "stair_p1": 20,
+        "sitting": 20,
+        "curb": 20,
+        "slope": 18
+      }
+    },
+    "comprehensive": {
+      "windows": 1416,
+      "per_dataset": {
+        "egobody": 90,
+        "trumans": 66,
+        "grail": 1260
+      },
+      "families": {
+        "egobody": 16,
+        "trumans": 33,
+        "grail": 630
+      },
+      "grail_category_windows": {
+        "stair_p2": 610,
+        "stair_p1": 518,
+        "sitting": 46,
+        "curb": 50,
+        "slope": 36
+      }
+    }
+  },
+  "same_validation_manifest": true,
+  "preflights": {
+    "cpu": {
+      "state": "passed",
+      "exact_resume": true,
+      "scene_and_label_poison_invariant": true,
+      "initial_weights_bitwise_equal_to_local": true,
+      "frozen_scene_gradients_absent": true,
+      "resumable_checkpoint_bytes": 1029465309,
+      "peak_cuda_bytes": 0,
+      "elapsed_seconds": 28.603022670009523
+    },
+    "cuda": {
+      "state": "passed",
+      "exact_resume": true,
+      "scene_and_label_poison_invariant": true,
+      "initial_weights_bitwise_equal_to_local": true,
+      "frozen_scene_gradients_absent": true,
+      "resumable_checkpoint_bytes": 1029476953,
+      "peak_cuda_bytes": 2451084288,
+      "elapsed_seconds": 26.440268631005893
+    }
+  },
+  "regression_tests_passed": 15,
+  "selection": "Every1k quick176; top3 plus final on1416, independently selected.",
+  "checkpoints_and_arrays_local_only": true,
+  "reference_sealed_sources_unchanged": 74,
+  "limitations": [
+    "Controls the complete scene path; does not isolate global/local/explicit feedback components.",
+    "Paired data exposure and update budget; GPU time and training wall time need not match.",
+    "Quick selection is provisional until comprehensive finalist validation."
+  ],
+  "formal_training_started": true,
+  "optimizer_updates_started": true,
+  "completed_updates_at_check": 40,
+  "pid": 101458,
+  "initial_validation": {
+    "windows": 176,
+    "score_mm": 800.4893040985658,
+    "all_reference_identities_equal": true,
+    "max_metric_difference": 0.0,
+    "elapsed_seconds": 164.05458848000853
+  },
+  "matched_training_identities": {
+    "verified_updates": 20,
+    "verified_examples": 160,
+    "exactly_equal": true
+  },
+  "status_path": "runs/scene_ego128_noscene/training/STATUS.json"
+}

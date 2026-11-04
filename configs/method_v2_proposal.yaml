@@ -1,0 +1,573 @@
+# Review-only specification. No current trainer implements this schema.
+schema: method-v2-review-proposal-v2
+status:
+  implementation: not_implemented
+  cpu_acceptance: not_run
+  cuda_acceptance: not_run
+  launch_allowed: false
+  performance_claims: none
+  revision: 2026-10-29-user-review-noise-sampling-anchor-fallback
+documents:
+  method: docs/METHOD_V2_REVIEW_zh.md
+  experiments: docs/METHOD_V2_EXPERIMENTS_zh.md
+data:
+  frames: 128
+  fps: 30
+  joints: 22
+  coordinates: right_handed_y_up_meters
+  amass_split: configs/amass_splits.json
+  native_selection: configs/scene_data_current.json
+  native_selection_check: runs/data_inventory/CURRENT_SELECTION_CHECK.json
+  exo_payload_adapter_ready: false
+  excluded_datasets:
+  - rich
+  test_used_for_selection: false
+  position_scale_m: 2.0
+  shape:
+    ego: predicted_from_observations
+    exo: decoded_estimated_frontend_shape
+    ground_truth_shape_input: false
+    query_and_final_fk_share_estimated_shape: true
+model:
+  diffusion_state_dim: 201
+  kinematic_readout_dim: 135
+  position_output: derived_by_fk_only
+  temporal_unet:
+    base_width: 256
+    width_multipliers:
+    - 1
+    - 2
+    - 4
+    temporal_resolutions:
+    - 128
+    - 64
+    - 32
+    normalization: groupnorm_adagn
+    shared_encoder: true
+    shared_decoder: true
+  observation:
+    mode_dispatch: explicit_enum
+    separate_ego_exo_weights: true
+    hidden: 128
+    temporal_kernel: 5
+    temporal_dilations:
+    - 1
+    - 2
+    - 4
+    exo_joint_features: 22
+    joint_id_dim: 16
+    exo_joint_mlp:
+    - 38
+    - 64
+    - 32
+    observer_metadata: optional_exo_condition_not_target_head
+    exo_raw_joint_features: 13
+    exo_reference_joint_features: 9
+  boundary:
+    enabled: true
+    mode: exo
+    retrieval: per_joint_per_position_rotation_modality
+    keys:
+    - left_position
+    - right_position
+    - left_rotation
+    - right_rotation
+    - null
+    actual_visible_valid_estimates_only: true
+    filled_values_are_observations: false
+    endpoint_features: 16
+    joint_id_dim: 16
+    endpoint_mlp:
+    - 32
+    - 64
+    - 32
+    attention_heads: 1
+    null_value: fixed_zero
+    apply_to: missing_or_occluded_joint_tokens
+    output_projection_initialization: zeros
+  readout:
+    separate_ego_exo_weights: true
+    final:
+      channels_in: 256
+      channels_out: 135
+      temporal_kernel: 1
+      prediction:
+        ego: absolute_clean_kinematics
+        exo: unbounded_reference_relative_kinematics_then_absolute_clean_decode
+    coarse:
+      channels_in: 1024
+      channels_out: 135
+      temporal_kernel: 1
+      temporal_upsample: linear_32_to_128
+      purpose: same_forward_scene_query
+      query_detached: true
+      final_prediction_bounded_by_coarse: false
+      prediction: same_mode_parameterization_as_final
+  removed:
+    temporal_mixture_anchor: true
+    adapted_minus_reference: true
+    reliability_state_replacement: true
+    output_repair_radius: true
+    independent_raw_position_head: true
+  reference_anchor:
+    mode: exo
+    filter: single_symmetric_triangular
+    frames: 5
+    kernel:
+    - 1
+    - 2
+    - 3
+    - 2
+    - 1
+    kernel_normalizer: 9
+    modalities:
+    - root_position
+    - local_rotations
+    normalization: per_modality_valid_confidence
+    rotation_mean: project_weighted_matrix_mean_to_SO3
+    global_positions: same_shape_fk_only
+    interior_missing: linear_root_slerp_rotation
+    prefix_suffix: nearest_valid_hold
+    no_valid_endpoint: neutral_and_null
+    filled_values_are_observations: false
+    raw_estimate_also_encoded: true
+    used_as: residual_readout_reference_not_radius
+    gradient: false
+scene:
+  one_shared_parameter_instance: true
+  enabled_in_stages:
+  - C
+  history_points: 8192
+  current_points_per_frame: 512
+  history_voxel_m: 0.05
+  neighbours: 8
+  query_radius_m: 0.6
+  surface_anchors: 67
+  body_regions: 22
+  relation_dim: 12
+  coarse_body_state_dim: 12
+  region_id_dim: 8
+  token_mlp:
+  - 32
+  - 64
+  - 64
+  frame_projection_dim: 128
+  temporal_kernels:
+  - 3
+  - 3
+  inject_at:
+  - decoder_64
+  - decoder_128
+  projection_initialization: zeros
+  noise_gate: sqrt_alpha_bar
+  require_surface_or_measured_free_evidence: true
+  final_zero_gate_for_unknown: true
+  scene_dropout_probability: 0.2
+  query_from: current_forward_coarse_kinematics
+  full_backbone_forwards_per_diffusion_step: 1
+  future_scene_input: false
+  hidden_complete_mesh_input: false
+  signed_closed_surface_sdf: false
+  reuse_observed_neighbourhood_trees_within_window: true
+diffusion:
+  train_target: absolute_clean_motion
+  timesteps: 1000
+  schedule: cosine
+  train_timestep_range:
+    ego:
+    - 0
+    - 999
+    exo:
+    - 0
+    - 999
+  observed_motion_in_forward_clean_target: false
+  inference_start: gaussian_noise
+  ddim_steps:
+    ego: 20
+    exo: 20
+  ddim_eta: 0.0
+  classifier_free_guidance: false
+loss:
+  huber_delta: 1.0
+  reduction_order:
+  - per_sample
+  - per_source
+  - per_mode
+  mode_weights:
+    ego: 0.5
+    exo: 0.5
+  root:
+    weight: 1.0
+    position_scale_m: 0.1
+  pose:
+    weight: 1.0
+    position_scale_m: 0.1
+    root_relative: true
+    exclude_root: true
+  rotation:
+    weight: 0.5
+    metric: local_matrix_frobenius_squared_div_6
+  velocity:
+    weight: 0.1
+    scale_m_per_s: 1.0
+    signal_gate: alpha_bar
+  observed:
+    weight: 0.1
+    signal_gate: alpha_bar
+    position_scale_m: 0.02
+    rotation_scale_rad: 0.1
+    sensor_mapping: per_mode
+    unobserved_estimates_preservation_loss: false
+  shape:
+    weight: 0.1
+    ego_only: true
+    rest_scale_m: 0.05
+    beta_scale: train_standard_deviation
+    inner_template_ce_weight: 0.1
+  coarse:
+    weight: 0.25
+    components:
+      root: 1.0
+      pose: 1.0
+      rotation: 0.5
+    enabled_for_gradient_in_stages:
+    - A
+    - B
+  exo_region_reduction:
+    terms:
+    - pose
+    - rotation
+    - velocity
+    - acceleration
+    visible_hidden_weights_when_both_present:
+    - 0.5
+    - 0.5
+    single_present_group_weight: 1.0
+  acceleration:
+    weight: 0.05
+    exo_only: true
+    scale_m_per_s2: 2.0
+    signal_gate: alpha_bar
+    target: acceleration_error_against_ground_truth_not_zero_acceleration
+    stencil_frames: 3
+frontend:
+  condition_probabilities:
+    identity: 0.2
+    tracking: 0.35
+    occlusion: 0.25
+    gap: 0.2
+  beta_sigma: 0.15
+  pose_sigma_rad:
+  - 0.015
+  - 0.04
+  occluded_pose_sigma_rad:
+  - 0.12
+  - 0.25
+  root_sigma_m:
+  - 0.01
+  - 0.04
+  pose_ar: 0.85
+  root_ar: 0.95
+  total_gap_frames:
+  - 8
+  - 32
+  placements:
+  - prefix
+  - interior
+  - suffix
+  multiple_gap_fraction_within_gap_condition: 0.5
+  multiple_gap_count: 2
+  each_multiple_gap_frames:
+  - 4
+  - 16
+  valid_nonidentity_confidence_jitter_uniform:
+  - -0.1
+  - 0.1
+  confidence_uses_actual_target_error: false
+  gap_fill: linear_root_slerp_rotation_nearest_end_hold
+  gap_fill_mask_remains_missing: true
+  ego_observation_noise:
+    clean_probability: 0.5
+    noise_space: SE3_measurement_perturbation
+    position_control_point_sigma_m:
+    - 0.001
+    - 0.005
+    rotation_control_point_sigma_deg:
+    - 0.1
+    - 0.5
+    control_point_spacing_seconds:
+    - 0.2
+    - 0.5
+    interpolation: smooth_error_curve
+    recompute_all_derived_features: true
+    confidence_from_declared_noise_not_realized_error: true
+    real_sensor_calibrated: false
+    calibration_required_before_formal_training: true
+    dropout_in_main_training: false
+    correlated_camera_scene_error_requires_consistent_frame_contract: true
+  temporal_noise_review:
+    legacy_AR_retained_for_matched_pilot: true
+    legacy_validation_not_made_easier: true
+    real_frontend_temporal_distribution_validated: false
+    calibration_required_before_formal_training: true
+    candidate: low_frequency_drift_plus_small_high_frequency_jitter
+    candidate_scales: pending_train_frontend_calibration
+optimizer:
+  name: AdamW
+  betas:
+  - 0.9
+  - 0.999
+  weight_decay: 0.01
+  no_decay:
+  - bias
+  - normalization
+  - embedding
+  warmup_fraction: 0.05
+  decay: cosine
+  lr_floor_fraction: 0.1
+  precision: fp32
+  tf32: false
+  pcgrad: false
+training:
+  effective_batch: 128
+  mode_batch:
+    ego: 64
+    exo: 64
+  training_seeds:
+  - 270701
+  - 270702
+  - 270703
+  pilot_updates: 512
+  pilot_observation_windows: 65536
+  pilot_updates_retained_for_formal_training: false
+  stages:
+    A:
+      initialize: random_no_prior_learned_weights
+      sources:
+      - amass
+      updates: 10000
+      observation_windows: 1280000
+      distinct_motion_draws_per_update: 64
+      paired_ego_exo_motion_crops: true
+      microbatch_per_mode: 16
+      accumulate_per_mode: 4
+      train:
+      - observation_encoders
+      - boundary
+      - trunk
+      - coarse_heads
+      - final_heads
+      - ego_shape
+      freeze:
+      - scene
+      lr:
+        all_trainable: 0.0001
+      gradient_clip_norm: 1.0
+      gradient_clip_scope: all_trainable
+      full_validation_updates:
+      - 2000
+      - 4000
+      - 6000
+      - 8000
+      - 10000
+    B:
+      initialize: selected_A_model_only
+      sources:
+      - amass
+      - egobody
+      - trumans
+      - grail
+      updates: 6000
+      observation_windows: 768000
+      microbatch_per_mode: 16
+      accumulate_per_mode: 4
+      train:
+      - observation_encoders
+      - boundary
+      - coarse_heads
+      - final_heads
+      - ego_shape
+      freeze:
+      - trunk
+      - scene
+      lr:
+        observation_boundary: 0.0001
+        task_coarse_final_heads: 5.0e-05
+        ego_shape: 0.0001
+      gradient_clip_norm: 1.0
+      gradient_clip_scope: independently_per_mode_parameter_set
+      reset_optimizer_scheduler: true
+      full_validation_updates:
+      - 0
+      - 1500
+      - 3000
+      - 4500
+      - 6000
+      source_weights_by_mode:
+        ego:
+        - 0.25
+        - 0.12828133815951853
+        - 0.29314876822123853
+        - 0.32856989361924294
+        exo:
+        - 0.25
+        - 0.1369151745322299
+        - 0.28907779745418527
+        - 0.32400702801358483
+      source_quota_allocation: cumulative_deficit_rounding_to_64_per_mode
+      source_capacity_proxy: verified_nonoverlapping_128_frame_windows_per_sequence
+      family_sampling_within_source: uniform_family_then_variant_then_valid_start
+      source_loss_weights: same_as_declared_mode_specific_source_objective_not_multiplied_twice
+      updates_are_predeclared_upper_budget_not_convergence_claim: true
+    C:
+      initialize: selected_B_model_only
+      sources:
+      - egobody
+      - trumans
+      - grail
+      updates: 3000
+      observation_windows: 384000
+      microbatch_per_mode: 8
+      accumulate_per_mode: 8
+      train:
+      - shared_scene_encoder
+      - shared_scene_projections
+      freeze:
+      - observation_encoders
+      - boundary
+      - trunk
+      - coarse_heads
+      - final_heads
+      - ego_shape
+      frozen_decoder_input_gradients_required: true
+      lr:
+        all_trainable: 0.0001
+      gradient_clip_norm: 1.0
+      gradient_clip_scope: all_trainable
+      reset_optimizer_scheduler: true
+      full_validation_updates:
+      - 0
+      - 750
+      - 1500
+      - 2250
+      - 3000
+      source_weights_by_mode:
+        ego:
+        - 0.17104178421269137
+        - 0.3908650242949847
+        - 0.43809319149232395
+        exo:
+        - 0.1825535660429732
+        - 0.385437063272247
+        - 0.4320093706847798
+      source_quota_allocation: cumulative_deficit_rounding_to_64_per_mode
+      source_capacity_proxy: verified_nonoverlapping_128_frame_windows_per_sequence
+      family_sampling_within_source: uniform_family_then_variant_then_valid_start
+      source_loss_weights: same_as_declared_mode_specific_source_objective_not_multiplied_twice
+  formal_main_model_total_updates: 19000
+  formal_main_model_observation_windows: 2432000
+validation:
+  stride: 128
+  include_end_aligned_tail: true
+  ddim_steps: 20
+  seed: 777
+  noise_identity: per_case_independent_of_batch_partition
+  test_used: false
+  score:
+    normalization_mm: 100.0
+    ego_metric: mpjpe_mm
+    exo_equal_weight_metrics:
+    - tracking_mpjpe_mm
+    - occlusion_region_mpjpe_mm
+    - gap_region_mpjpe_mm
+    equal_mode_weights: true
+    stage_source_weights_match_training: false
+    selection_source_weights:
+      A:
+        amass: 1.0
+      B:
+        amass: 0.25
+        egobody: 0.25
+        trumans: 0.25
+        grail: 0.25
+      C:
+        egobody: 0.3333333333333333
+        trumans: 0.3333333333333333
+        grail: 0.3333333333333333
+  proposed_gates_mm:
+    exo_visible_vs_input: 1.0
+    joint_ego_vs_single_task: 5.0
+    joint_exo_vs_single_task: 1.0
+    B_amass_vs_A: 5.0
+    C_ego_each_source_vs_B: 1.0
+    C_exo_visible_each_source_vs_B: 1.0
+    C_exo_occlusion_gap_macro_vs_B: 0.0
+  exact_identity_copy_claim: false
+  short_screen_selects_checkpoint: false
+  stage_zero_validation_is_baseline_only: true
+  empty_evidence_equals_base:
+    applies_to:
+    - shared_scene
+    - separate_scene
+    exception: motion_only_control_intentionally_uses_body_evidence
+experiments:
+  required_A:
+  - joint
+  - ego_only
+  - exo_only
+  - joint_no_boundary
+  required_B:
+  - joint
+  - ego_only
+  - exo_only
+  required_C:
+  - shared_scene
+  - motion_only
+  - separate_scene
+  single_mode_effective_batch: 64
+  single_mode_loss_multiplier: 0.5
+  comparisons_match: per_mode_observation_exposure_and_validation_budget
+  single_vs_joint_total_compute_matched: false
+  separate_scene_parameter_count_matches_shared: false
+  first_seed_minimum_matrix:
+    A_branches: 4
+    B_branches: 3
+    C_branches: 3
+    total_optimizer_updates: 67000
+    total_observation_windows: 6528000
+    includes_main_model_path: true
+    excludes:
+    - pilots
+    - optional_branches
+    - historical_architecture_retraining
+    - evaluation
+    - additional_seeds
+  pilot_diagnostics:
+  - legacy_multiscale_reference
+  - single5_reference
+  - raw_reference
+  - without_exo_acceleration_loss
+  additional_full_budget_if_component_contribution_claimed:
+  - reference_filter_ablation
+  - exo_acceleration_loss_ablation
+runtime:
+  measured_for_v2: false
+  ram_gib: 12
+  ram_max_within_existing_user_limit_gib: 16
+  cpu_cores: 4
+  gpu_physical_reserve_gib: 4
+  cuda_allowance_gib: 1
+  allocator_policy: derive_after_new_admission_check
+  microbatch_may_change_after_profile: true
+  effective_batch_may_silently_change: false
+checkpoint:
+  last_every_updates: 100
+  write: atomic_replace
+  save_complete_model: true
+  save_optimizer_scheduler_and_all_rng: true
+  reset_optimizer_between_stages: true
+  keep_after_selection:
+  - selected
+  - last
+  history_is_not_runtime_dependency: true
+  existing_fallback_preserved: runs/preserved/current_joint_conditioning_20261029_165943/PRESERVATION.json

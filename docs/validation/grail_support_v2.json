@@ -1,0 +1,122 @@
+{
+  "state": "passed",
+  "protocol": "grail-ego-support-filter-v2",
+  "checked_sequences": 10910,
+  "metadata_identities_rechecked": 10910,
+  "retained_sequences": 7011,
+  "excluded_sequences": 3899,
+  "retained_windows": 580871,
+  "windows_by_category": {
+    "curb": 56492,
+    "sitting": 0,
+    "slope": 96890,
+    "stair_p1": 186945,
+    "stair_p2": 240544
+  },
+  "synthetic_chair_candidates": 694,
+  "synthetic_inputs_materialized": false,
+  "known_frame82_regression_passed": true,
+  "canonical_evaluation_unchanged": true,
+  "exo_selection_unchanged": true,
+  "source_data_deleted": false,
+  "physics_validity_proven": false,
+  "job_sha256": "e519a86c25963757e935bdcaf78a17eeca57457f6bbaa4227e5949b5943fc796",
+  "records_sha256": "674d4346b2795a86083c1fedf6c939a4d5f8d21e5edf71da2628dbbd66b3e3d7",
+  "summary": {
+    "curb": {
+      "baseline_sequences": 1179,
+      "retained_sequences": 804,
+      "baseline_windows": 138014,
+      "retained_windows": 56492
+    },
+    "all": {
+      "baseline_sequences": 10910,
+      "retained_sequences": 7011,
+      "baseline_windows": 1431583,
+      "retained_windows": 580871
+    },
+    "sitting": {
+      "baseline_sequences": 694,
+      "retained_sequences": 0,
+      "baseline_windows": 16573,
+      "retained_windows": 0
+    },
+    "slope": {
+      "baseline_sequences": 1386,
+      "retained_sequences": 1031,
+      "baseline_windows": 204530,
+      "retained_windows": 96890
+    },
+    "stair_p1": {
+      "baseline_sequences": 3853,
+      "retained_sequences": 2503,
+      "baseline_windows": 530857,
+      "retained_windows": 186945
+    },
+    "stair_p2": {
+      "baseline_sequences": 3798,
+      "retained_sequences": 2673,
+      "baseline_windows": 541609,
+      "retained_windows": 240544
+    }
+  },
+  "source_sha256": {
+    "scenemi/data/grail_filter.py": "0742613e8d1b1ab7ff3c2ad41f7eb1a02f25ec5f64a00c9673ddce44b5705216",
+    "scenemi/data/grail_filter_audit.py": "63ba219c76f97c67f8bfb350bc7ef8f011a38232bc8be0f2a4568d9a8077b437",
+    "scenemi/data/grail_chair.py": "7f617d5dbc70c450cc5bc72c242175292cacbd956ac2e58f1aff99df72fb2e71",
+    "scenemi/data/grail_support.py": "8827dd7f5d0937f2ce6250dd6ee404901c6520adc87fcf0f9094f66c578fc619",
+    "scenemi/data/grail_augmentation.py": "4f2a0c2d86c13aef56e881284bbf404248319605bbb00d45c66b853c5399e124"
+  },
+  "tests": {
+    "sole_chair_and_v1_contact": 8,
+    "augmentation_sampling_and_causality": 2,
+    "all_passed": true
+  },
+  "real_pilot_sources": 8,
+  "synthetic_context_prototypes": 2,
+  "augmentation_implementation_sha256": "4f2a0c2d86c13aef56e881284bbf404248319605bbb00d45c66b853c5399e124",
+  "formal_training_integrated": false,
+  "fk_equivalence": {
+    "frames": [
+      0,
+      75,
+      150,
+      225,
+      300
+    ],
+    "vertex_max_error_m": 2.384185791015625e-07,
+    "joint_max_error_m": 2.384185791015625e-07
+  },
+  "known_case82": {
+    "sequence_id": "terrain_stairs__straight_aged_wood_stairs_with_8_steps_no_handrails_no_turns__0002",
+    "frame": 82,
+    "sole_gap_q10_m": [
+      0.16578912734985352,
+      0.20052385330200195
+    ],
+    "sole_supported_fraction": [
+      0.0,
+      0.0
+    ],
+    "foot_speed_mps": [
+      0.02370774745941162,
+      0.5074950456619263
+    ],
+    "source_estimated_contact_probability": [
+      0.9940610289573669,
+      0.00013263742584968056
+    ],
+    "bad_frame_ranges": [
+      [
+        62,
+        118
+      ],
+      [
+        134,
+        188
+      ]
+    ],
+    "eligible_windows": 0,
+    "regression_pass": true
+  }
+}

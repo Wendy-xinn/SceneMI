@@ -56,6 +56,11 @@ class PairingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "different observer/window identities"):
             self.prepare([self.arrays(), self.arrays()], [self.metadata(), after])
 
+    def test_paired_outputs_cannot_mix_single_and_dual_regimes(self):
+        after = dict(self.metadata(), regimes=["noisy"])
+        with self.assertRaisesRegex(ValueError, "different observation regimes"):
+            self.prepare([self.arrays(), self.arrays()], [self.metadata(), after])
+
     def test_dual_mode_same_anchored_target_allowed_but_different_gt_or_rest_rejected(self):
         result = self.prepare([self.arrays(), self.arrays()], [self.metadata("ego", 41000), self.metadata("exo", 1000)])
         self.assertEqual([entry["mode"] for entry in result["models"]], ["ego", "exo"])
@@ -81,9 +86,10 @@ class ArchiveTests(unittest.TestCase):
             observation_meta=np.zeros((2, 22, 5), np.float32),
             checkpoint_sha256=np.asarray(self.sha), step=np.asarray(1000))
 
-    def write_case(self, *, step=1000, checkpoint=True, references=True, overrides=None):
+    def write_case(self, *, step=1000, checkpoint=True, references=True, overrides=None,
+                   regimes=("clean", "noisy")):
         archives = {}
-        for index, regime in enumerate(("clean", "noisy")):
+        for index, regime in enumerate(regimes):
             values = dict(self.common)
             values["step"] = np.asarray(step)
             if references:
@@ -98,6 +104,20 @@ class ArchiveTests(unittest.TestCase):
             record.write_text(json.dumps(dict(step=step, checkpoint_sha256=self.sha)))
             case["checkpoint_record"] = record.name
         return case
+
+    def test_noisy_only_source_has_no_clean_arrays_or_alias(self):
+        case = self.write_case(regimes=("noisy",))
+        arrays, metadata = viewer.load_source(case, self.root)
+        self.assertEqual(metadata["regimes"], ["noisy"])
+        self.assertEqual(set(metadata["sources"]), {"noisy"})
+        self.assertIn("noisy_reference_motion", arrays)
+        self.assertFalse(any(key.startswith("clean_") for key in arrays))
+
+    def test_explicit_archive_regimes_must_be_nonempty_known_names(self):
+        case = self.write_case()
+        for archives in ({}, {"clean_alias": "noisy.npz"}):
+            with self.subTest(archives=archives), self.assertRaisesRegex(ValueError, "saved clean and/or noisy"):
+                viewer.load_source(dict(case, archives=archives), self.root)
 
     def test_saved_reference_motion_fields_are_preserved_for_both_regimes(self):
         case = self.write_case()
@@ -173,8 +193,8 @@ class ArchiveTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "manifest guidance differs"):
             viewer.load_source(case, self.root)
 
-    def prepared_fixture(self):
-        source = self.write_case()
+    def prepared_fixture(self, regimes=("clean", "noisy")):
+        source = self.write_case(regimes=regimes)
         arrays, metadata = viewer.load_source(source, self.root)
         folder = self.root / "cache"
         folder.mkdir(exist_ok=True)
@@ -183,7 +203,7 @@ class ArchiveTests(unittest.TestCase):
         np.savez(cache, **arrays, metadata_json=np.asarray(json.dumps(metadata)))
         record.write_text(json.dumps(metadata))
         source.update(cache=str(cache), cache_manifest=str(record))
-        manifest = dict(schema=viewer.SCHEMA, cases=[dict(label="prepared fixture",
+        manifest = dict(schema=viewer.SCHEMA, cases=[dict(label="prepared fixture", regimes=list(regimes),
             paired_inputs_verified=True, models=[dict(key="base41k", label="base", mode="exo", case=source)])])
         return manifest, arrays, metadata
 
@@ -191,6 +211,13 @@ class ArchiveTests(unittest.TestCase):
         manifest, _, _ = self.prepared_fixture()
         result = viewer.validate_prepared_cases(manifest, self.root)
         self.assertIs(result, manifest["cases"])
+
+    def test_prepared_noisy_only_accepts_exact_regime_and_rejects_false_clean_ui(self):
+        manifest, _, _ = self.prepared_fixture(regimes=("noisy",))
+        self.assertIs(viewer.validate_prepared_cases(manifest, self.root), manifest["cases"])
+        manifest["cases"][0]["regimes"] = ["clean", "noisy"]
+        with self.assertRaisesRegex(ValueError, "UI/source observation regimes differ"):
+            viewer.validate_prepared_cases(manifest, self.root)
 
     def test_serve_prepared_rejects_changed_source_or_cache_motion_or_reference(self):
         for kind in ("source", "prediction", "reference"):

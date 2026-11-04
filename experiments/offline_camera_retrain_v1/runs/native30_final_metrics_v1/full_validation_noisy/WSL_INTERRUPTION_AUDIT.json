@@ -1,0 +1,62 @@
+{
+  "protocol": "native30-wsl-interruption-factual-audit-v1",
+  "checked_at_CST": "2026-10-21T10:30:41.367794+08:00",
+  "evaluation_last_commit_before_interruption": "2026-10-21T08:41:55+08:00",
+  "completed_predictions_before_interruption": 6348,
+  "planned_predictions": 7082,
+  "linux": {
+    "current_boot_started": "2026-10-21T10:14:35+08:00",
+    "current_boot_id": "8db142fc-4ad6-4cf8-aa6c-6e21b312d2d0",
+    "previous_boot_id": "b30a448e-16b5-4f78-a7fb-d9cecbf4b39b",
+    "previous_journal_last_entry": "2026-10-21T08:41:13+08:00",
+    "previous_journal_last_message": "systemd-resolved: Clock change detected. Flushing caches.",
+    "normal_shutdown_record_at_interruption_found": false,
+    "OOM_kill_or_kernel_panic_record_at_interruption_found": false
+  },
+  "windows": {
+    "LastBootUpTime": "2026-10-20T10:57:58.5764610+08:00",
+    "host_reboot_during_interruption": false,
+    "provider": "Microsoft-Windows-Hyper-V-VmSwitch",
+    "old_VM_id": "2B83BD0D-D5A8-4A49-A276-016AA1BC57F1",
+    "old_VM_NIC_disconnect_and_delete_events": [
+      {
+        "time": "2026-10-21T08:41:55.7380025+08:00",
+        "id": 234
+      },
+      {
+        "time": "2026-10-21T08:41:55.7383409+08:00",
+        "id": 233
+      },
+      {
+        "time": "2026-10-21T08:41:55.7431804+08:00",
+        "id": 234
+      },
+      {
+        "time": "2026-10-21T08:41:55.7432471+08:00",
+        "id": 233
+      }
+    ],
+    "old_ports_deleted_at": [
+      "2026-10-21T08:41:57.6620073+08:00",
+      "2026-10-21T08:41:57.6706519+08:00"
+    ],
+    "port_delete_event_ids": [
+      69,
+      71
+    ],
+    "new_VM_id": "051C5223-FB3B-4197-886A-3107332CA952",
+    "new_VM_NIC_creation_time": "2026-10-21T10:14:35+08:00",
+    "checked_event_interval": [
+      "2026-10-21T08:30:00+08:00",
+      "2026-10-21T10:25:00+08:00"
+    ],
+    "matching_power_restart_or_application_crash_event_found": false,
+    "matching_resource_exhaustion_event_found": false
+  },
+  "conclusion": "The WSL VM stopped around08:41:55 and booted again10:14:35; the evaluation process interruption accompanied the VM stop. Windows host remained in the same boot.",
+  "trigger": "unknown: the inspected logs do not identify the caller or cause of the VM stop",
+  "attribution_to_proxy_training_memory_or_agent_action_supported": false,
+  "system_configuration_changed": false,
+  "system_restart_or_shutdown_requested_by_audit": false,
+  "scope": "Read-only Linux journal/kernel and Windows event/CIM queries; this JSON is the only audit output file."
+}

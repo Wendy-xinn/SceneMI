@@ -1,0 +1,27 @@
+{
+  "protocol": "amass-ego128-frozen-test-v1",
+  "seed": 777,
+  "ddim_steps": 20,
+  "batch_size": 1,
+  "output": "runs/amass_ego128/evaluation",
+  "models": [
+    {
+      "name": "ego_best50k",
+      "checkpoint": "runs/amass_ego128/selection/best.pt",
+      "checkpoint_sha256": "0c30ba25dc42c568a8e2fcefae2e39a142930ff26d7a39bd7ff446eaf4e9710f",
+      "step": 50000,
+      "config": "configs/amass_ego128.yaml",
+      "contract": "runs/amass_ego128/training/CONTRACT.json",
+      "role": "Primary: selected on full validation before test"
+    },
+    {
+      "name": "ego_final55k",
+      "checkpoint": "runs/amass_ego128/training/last.pt",
+      "checkpoint_sha256": "50a061e0d40fd0acd866b3806620cfe98255394f1e4c32c7828a542aae4a3305",
+      "step": 55000,
+      "config": "configs/amass_ego128.yaml",
+      "contract": "runs/amass_ego128/training/CONTRACT.json",
+      "role": "Secondary: fixed-budget final, never selected using test"
+    }
+  ]
+}

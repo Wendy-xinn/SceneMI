@@ -1,0 +1,119 @@
+{
+  "protocol": "native30-wsl-windows-cause-audit-v1",
+  "checked_at_CST": "2026-10-21T11:13:33.362968+08:00",
+  "conclusion": "The2026-10-21 08:41:55 WSL interruption has direct evidence of a Linux kernel fatal exception/panic. The saved stack is in ext4 slab reclaim/page allocation.",
+  "confidence_direct_cause": "confirmed by Windows-side panic capture, exact VM GUID and timestamp match",
+  "deeper_root_cause": "not established: this capture does not identify why the kernel list validation failed, an exact kernel defect, hardware defect, or an originating user process",
+  "evidence": {
+    "panic_capture": {
+      "path": "/mnt/c/Users/BNU/AppData/Local/Temp/wsl-crashes/kernel-panic-1792543315-{2b83bd0d-d5a8-4a49-a276-016aa1bc57f1}.txt",
+      "sha256": "07a3bf281905e3fcd970a9a28b31f85ea5f3ec346daaf31f2df96c9abc382514",
+      "size_bytes": 4143,
+      "LastWriteTime_CST_from_DrvFS_stat": "2026-10-21T08:41:55.727237700+08:00",
+      "VM_GUID": "2b83bd0d-d5a8-4a49-a276-016aa1bc57f1",
+      "name_epoch_time_CST": "2026-10-21T08:41:55+08:00",
+      "RIP_line": "[64614.106610] RIP: 0010:__list_del_entry_valid_or_report+0xf9/0x100",
+      "call_trace": [
+        "[64614.110049]  ext4_es_scan+0x103/0x3c0",
+        "[64614.110342]  do_shrink_slab+0x145/0x350",
+        "[64614.110585]  shrink_slab+0xd5/0x3c0",
+        "[64614.110797]  shrink_node+0x333/0x890",
+        "[64614.111031]  do_try_to_free_pages+0xb9/0x550",
+        "[64614.111219]  try_to_free_pages+0xe2/0x1f0",
+        "[64614.111341]  __alloc_pages_slowpath.constprop.0+0x4c5/0xe30",
+        "[64614.112110]  __alloc_frozen_pages_noprof+0x31c/0x330",
+        "[64614.112318]  alloc_pages_mpol+0x7e/0x170",
+        "[64614.112527]  vma_alloc_folio_noprof+0x67/0xd0",
+        "[64614.112744]  vma_alloc_anon_folio_pmd+0x37/0xe0",
+        "[64614.112998]  do_huge_pmd_anonymous_page+0xba/0x5d0",
+        "[64614.113149]  __handle_mm_fault+0x8f2/0x910",
+        "[64614.113317]  handle_mm_fault+0x168/0x2c0",
+        "[64614.113420]  do_user_addr_fault+0x179/0x710"
+      ],
+      "fatal_line": "[64614.120327] Kernel panic - not syncing: Fatal exception",
+      "line_count": 57,
+      "capture_starts_at_RIP_and_has_no_PID_header": true,
+      "preserved_copy": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/diagnostics/wsl_kernel_panic_oct21.txt",
+      "preserved_copy_sha256": "07a3bf281905e3fcd970a9a28b31f85ea5f3ec346daaf31f2df96c9abc382514",
+      "preserved_copy_bytes_exact": true
+    },
+    "windows_event_correlation": {
+      "log": "System",
+      "provider": "Microsoft-Windows-Hyper-V-VmSwitch",
+      "NIC_delete_event_233_times_CST": [
+        "2026-10-21T08:41:55.7383409+08:00",
+        "2026-10-21T08:41:55.7432471+08:00"
+      ],
+      "NIC_disconnect_event_234_times_CST": [
+        "2026-10-21T08:41:55.7380025+08:00",
+        "2026-10-21T08:41:55.7431804+08:00"
+      ],
+      "NIC_VM_GUID": "2B83BD0D-D5A8-4A49-A276-016AA1BC57F1",
+      "capture_GUID_matches_event_GUID": true,
+      "ports_deleted_event_ids": [
+        69,
+        71
+      ],
+      "ports_deleted_by": "2026-10-21T08:41:57.6706696+08:00",
+      "new_VM_NIC_created": "2026-10-21T10:14:35+08:00",
+      "new_VM_GUID": "051C5223-FB3B-4197-886A-3107332CA952"
+    },
+    "host_last_boot_CST": "2026-10-20T10:57:58.5764610+08:00",
+    "Linux_new_boot_CST": "2026-10-21T10:14:35+08:00",
+    "previous_Linux_journal_last_entry_CST": "2026-10-21T08:41:13+08:00"
+  },
+  "additional_existing_panic_captures": [
+    {
+      "path": "/mnt/c/Users/BNU/AppData/Local/Temp/wsl-crashes/kernel-panic-1792245904-{61d86780-7cb9-4e2e-9fd0-fe864f0171d7}.txt",
+      "sha256": "02cbc2dd62d81ae4e27347c2748e2a54310660906488e03661d023f09c9808e1",
+      "name_epoch_time_CST": "2026-10-17T22:05:04+08:00",
+      "fatal_line": "[212162.893823] Kernel panic - not syncing: Fatal exception",
+      "RIP": "[212162.890415] RIP: 0010:_raw_spin_lock+0x17/0x40"
+    },
+    {
+      "path": "/mnt/c/Users/BNU/AppData/Local/Temp/wsl-crashes/kernel-panic-1792478693-{b314c97a-b922-4741-ad22-6ce5797951a0}.txt",
+      "sha256": "81051faaf355359d89f820a70e8a85d9f10ed0d6dd4af8c69eaecb2c473fc98f",
+      "name_epoch_time_CST": "2026-10-20T14:44:53+08:00",
+      "fatal_line": "[13550.020341] Kernel panic - not syncing: Fatal exception in interrupt",
+      "RIP": "[13550.008188] RIP: 0010:__timekeeping_advance.constprop.0+0x4a6/0x560"
+    }
+  ],
+  "additional_captures_interpretation": "Prior panic captures establish recurrent kernel-level failures, but their different stack locations do not establish a common deeper cause.",
+  "focused_event_checks": {
+    "interval_CST": [
+      "2026-10-21T08:39:00+08:00",
+      "2026-10-21T08:44:00+08:00"
+    ],
+    "logs_checked": [
+      "System",
+      "Application",
+      "Windows PowerShell",
+      "Microsoft-Windows-PowerShell/Operational",
+      "Microsoft-Windows-TerminalServices-LocalSessionManager/Operational",
+      "Microsoft-Windows-TaskScheduler/Maintenance",
+      "Security4688/4689/4624/4647/4634"
+    ],
+    "matching_SCM_service_stop_PowerShell_shutdown_or_security_process_event_found": false,
+    "WSL_Lxss_HyperV_Compute_dedicated_event_channels_available_in_enumeration": false,
+    "service_state_at_inspection": {
+      "WSLService": "Running",
+      "vmcompute": "Running",
+      "HNS": "Running"
+    },
+    "service_state_is_not_proof_of_historical_state": true
+  },
+  "interpretation_limits": [
+    "The ext4/reclaim stack shows the path at the fatal exception; it does not prove the filesystem was corrupted or establish a named kernel bug.",
+    "The allocation slowpath/reclaim trace is not an OOM-killer report and does not quantify memory usage.",
+    "No evidence attributes this interruption to a proxy, user shutdown command, or deliberate agent stop.",
+    "The earlier Linux-journal-only absence of a panic did not exclude a panic that failed to reach the journal; the Windows-side capture resolves that uncertainty."
+  ],
+  "previous_audit_kept_unchanged": "WSL_INTERRUPTION_AUDIT.json",
+  "system_configuration_changed": false,
+  "restart_or_shutdown_requested": false,
+  "evaluation_or_GPU_touched": false,
+  "outputs_written": [
+    "WSL_CAUSE_WINDOWS_AUDIT.json",
+    "diagnostics/wsl_kernel_panic_oct21.txt"
+  ]
+}

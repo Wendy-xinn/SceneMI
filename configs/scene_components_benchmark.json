@@ -1,0 +1,21 @@
+{
+  "protocol": "native-scene-components-v1",
+  "config": "configs/scene_ego128_local.yaml",
+  "contract": "runs/scene_ego128_local/training/CONTRACT.json",
+  "contract_sha256": "00db83c0f5c00322731898b8c9ef0fed3b49398390cb261084e2190d1265ed2a",
+  "checkpoint": "runs/scene_ego128_local/selection/best.pt",
+  "checkpoint_sha256": "32fb7fb0c2cb382579fb44837e48f75d7062032499fb5fed9c7f086f664bb9d1",
+  "step": 27000,
+  "validation_tier": "quick",
+  "seed": 777,
+  "ddim_steps": 20,
+  "output": "runs/scene_ego128_local/evaluation/components",
+  "variants": [
+    "global_only",
+    "local_without_feedback"
+  ],
+  "reference": "runs/scene_ego128_local/selection/quick/step_027000.json",
+  "reference_sha256": "5709ee49c727558a6b852cec79847eabc3b44cd806a63bda5cacbc5f5aaf36ac",
+  "control_reference": "runs/scene_ego128_noscene/selection/quick/step_030000.json",
+  "control_reference_sha256": "3169fe136064095ac05a798e1437c339848fb684a911ae0c60126a2e547d48dc"
+}

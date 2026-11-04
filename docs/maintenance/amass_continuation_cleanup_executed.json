@@ -1,0 +1,52 @@
+{
+  "protocol": "explicit-retirement-v1",
+  "status": "executed",
+  "plan": "/home/wenxin/projects/SceneMI/docs/maintenance/amass_continuation_cleanup_plan.json",
+  "plan_sha256": "8e57f0063d545908f7117bd3622f9a36605efe5d76233fd9b0bc3efc355ff989",
+  "deleted": [
+    {
+      "path": "runs/amass_joint128/warm/selection/best.pt",
+      "bytes": 504180985,
+      "allocated_bytes": 504188928,
+      "sha256": "ab26d9e4a363061878358e67ae68e498d7bd5ee900d785e87dd5c1f9c50488bc",
+      "device": 2096,
+      "inode": 2979517,
+      "links": 1,
+      "mtime_ns": 1793069745859072272,
+      "reason": "unselected_or_rejected_artifact; configuration and evaluation evidence retained"
+    },
+    {
+      "path": "runs/amass_joint128/warm/training/last.pt",
+      "bytes": 1043792147,
+      "allocated_bytes": 1043800064,
+      "sha256": "b065de5bc1e25fa4f73d9a9e304d04d0e9a1b14605cc7a0caf3fc03736ad36d0",
+      "device": 2096,
+      "inode": 2979544,
+      "links": 1,
+      "mtime_ns": 1793070471462986647,
+      "reason": "unselected_or_rejected_artifact; configuration and evaluation evidence retained"
+    },
+    {
+      "path": "runs/scene_ego128_noscene_low_lr/training/recovery/step_001000.pt",
+      "bytes": 1029533849,
+      "allocated_bytes": 1029541888,
+      "sha256": "0435ce3493d461a1f681b428ca9ef97ea8eb4bad7a92ce4d3002ebf251c781c3",
+      "device": 2096,
+      "inode": 2418241,
+      "links": 1,
+      "mtime_ns": 1792914971299188842,
+      "reason": "unselected_or_rejected_artifact; configuration and evaluation evidence retained"
+    }
+  ],
+  "deleted_count": 3,
+  "source_bundle": {
+    "path": "experiments/offline_camera_retrain_v1/archive/source_bundles/pre_amass_cleanup_source.tar.gz",
+    "sha256": "b3d312755ecfea96c29da78fa15760bafe3ed92259e565b9d0da9d63ca83da06",
+    "files": 363,
+    "bytes": 1058433
+  },
+  "protected_files_verified": 110,
+  "free_disk_before": 81374883840,
+  "free_disk_after": 83952369664,
+  "historical_evidence": "Retired reports and audits describe pre-cleanup assets; use the relocation index and source bundle for recovery."
+}

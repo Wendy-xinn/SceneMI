@@ -1,0 +1,31 @@
+{
+  "protocol": "reference-nondegradation-direction-review-v1",
+  "declared_at": "2026-10-20T22:50:30.937406+08:00",
+  "checkpoint_tuning": false,
+  "scope": "Predeclared12primary VAL windows +3 EGO anchors; direction check, not final paper acceptance",
+  "models": [
+    "base10k",
+    "control",
+    "nondegradation"
+  ],
+  "conditions": [
+    "clean",
+    "noisy"
+  ],
+  "scene_variants": [
+    "scene_on",
+    "scene_off"
+  ],
+  "decision": "Consider further development only when paired treatment improves hidden error beyond ordinary continuation without material visible/temporal regressions. No automatic promotion or new long training.",
+  "diagnostic_thresholds": {
+    "hidden_mean_each_dataset_regime": "<=base+max(5mm,5%); compare pairedcontrol separately",
+    "visible_mean": "<=base/control+max(1mm,2%)",
+    "stance_foot_speed": "<=base/control+max(0.01m/s,5%)",
+    "acceleration_error": "<=base/control+max(1mm/s2,5%)",
+    "ego": "all retained EGO outputs exactly equal",
+    "hidden_macro": "Report clean/noisy and sceneON/OFF separately; >=3% beyond both base/control treated as promising direction, not validation of final model",
+    "catastrophic_windows": "Report reference-worse>=50mm counts and known yoga case; average alone insufficient"
+  },
+  "TEST_used": false,
+  "formal_metrics_paused": true
+}

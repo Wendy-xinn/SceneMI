@@ -1,0 +1,25 @@
+version: source-contact-reliability-v1
+stage: future_scene_adaptation
+status: component_preparation_only
+fps: 30
+source_evidence_is_model_input: false
+prediction_changes_source_weights: false
+current_training_changed: false
+source:
+  minimum_stance_probability: 0.8
+  full_weight_gap_m: 0.02
+  zero_weight_gap_m: 0.05
+  minimum_supported_fraction: 0.2
+  full_weight_speed_mps: 0.2
+  zero_weight_speed_mps: 0.3
+loss:
+  distance_tolerance_m: 0.02
+  distance_scale_m: 0.02
+  sliding_tolerance_mps: 0.02
+  sliding_scale_mps: 0.1
+  reduction: nominal_stance_count
+  temporal_weight: minimum_of_both_endpoints
+  unknown_surface_weight: 0.0
+  preserve_swing_motion_supervision: true
+# Select coefficients in a separately sealed scene-stage protocol.
+geometry_coefficients: null

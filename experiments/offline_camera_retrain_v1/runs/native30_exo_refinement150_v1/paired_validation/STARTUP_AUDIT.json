@@ -1,0 +1,39 @@
+{
+  "protocol": "frozen-reference-refinement-paired-VAL-startup-audit-v1",
+  "checked_at": "2026-10-20T21:20:08.719993+08:00",
+  "optimizer_updates": 0,
+  "TEST_used": false,
+  "completed_predictions": 0,
+  "weights_changed": false,
+  "attempts": [
+    {
+      "pid": 89240,
+      "result": "failed_before_first_prediction",
+      "reason": "deterministic SVD requires CUBLAS_WORKSPACE_CONFIG",
+      "returncode": 1
+    },
+    {
+      "pid": 89400,
+      "result": "failed_before_first_prediction",
+      "reason": "ld.so elf_machine_rela_relative R_X86_64_RELATIVE assertion",
+      "returncode": 127,
+      "process_environment": {
+        "TORCH_USE_RTLD_GLOBAL": "1",
+        "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "2"
+      }
+    }
+  ],
+  "numpy_independent_probe": {
+    "source": "native30_exo_natural10k_v1/fixed_validation/step_010000/validation_latest.npz",
+    "case": 0,
+    "regime": "noisy",
+    "maximum_mpjpe_mm_difference": 2.758362107613266e-06,
+    "mpjve_mm_s_difference": 1.3245865279287727e-05,
+    "acceleration_mm_s2_difference": 0.003383590452358476,
+    "foot_m_s_difference": 4.4923014097530967e-07
+  },
+  "limitation": "No current10k sceneON/OFF population result exists. Historical adapter and8k failed-case evidence cannot be relabeled as current10k paired metrics."
+}

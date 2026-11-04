@@ -1,0 +1,28 @@
+version: pretrained-ego-validation-v1
+output: runs/pretrained_ego_baselines
+reference_config: configs/native_ego4_from_scratch_v2.yaml
+manifest: runs/native_ego4_from_scratch_v2/VALIDATION_MANIFEST.json
+reference_metrics: runs/native_ego4_from_scratch_v2/selection/full_step_014000
+ours_checkpoint: runs/native_ego4_from_scratch_v2/selection/best.pt
+egoallo_checkpoint: runs/amass_ego128/evaluation/baselines/egoallo/egoallo_checkpoint_april13/checkpoints_3000000
+egogvae_checkpoint: runs/amass_ego128/evaluation/baselines/egogvae/_latest.pth
+egoallo_repository: ../egoallo
+egogvae_repository: ../EgoGVAE_release
+smplh_model: /mnt/e/Datasets/human/AGORA/smplh/neutral/model.npz
+seed: 777
+frames: 128
+fps: 30
+batch_size: 16
+expected_windows: {amass: 2222, egobody: 401, trumans: 540, grail: 2530}
+input: same_clean_camera_observations_fixed_neutral_calibration
+initial_delta: repeat_first_observation_no_extra_context
+egoallo_guidance: no_hands_post_only
+fine_tuning: false
+test_used: false
+runtime:
+  memory_gib: 12
+  cpu_count: 4
+  torch_allocator_gib: 6
+  jax_allocator_gib: 4
+  cuda_allowance_gib: 1
+  physical_free_reserve_gib: 4

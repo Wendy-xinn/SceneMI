@@ -1,0 +1,29 @@
+version: replay-configuration-screen-v1
+output: runs/replay_pilot
+seed: 2026102804
+parent_run: runs/amass_joint128/scratch
+native_reference: configs/scene_joint128_noscene_batch32.yaml
+source_weights: [0.25, 0.125, 0.28125, 0.34375]
+pilot:
+  windows: 8192
+  validation_families_per_source: 8
+  checkpoint_every: 32
+  candidates:
+    - {name: reference32, batch: 32, lr_multiplier: 1.0}
+    - {name: batch128_lr1, batch: 128, lr_multiplier: 1.0}
+    - {name: batch128_lr2, batch: 128, lr_multiplier: 2.0}
+formal_training:
+  sampled_windows: 256000
+  warmup_windows: 2400
+  validation_windows: [0, 16384, 65536, 131072, 196608, 256000]
+  parent_requires_completed_final_selection: true
+  automatic_launch: false
+runtime:
+  memory_gib: 12
+  cpu_count: 4
+  cpu_affinity: [14, 15, 16, 17]
+  gpu_physical_reserve_gib: 4
+precision: fp32_no_tf32
+scene: false
+test_used: false
+rich_excluded: true

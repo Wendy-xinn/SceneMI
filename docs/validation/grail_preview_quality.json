@@ -1,0 +1,1742 @@
+{
+  "schema": "grail-preview-quality-audit-v1",
+  "created_at_utc": "2026-10-22T02:27:32.461315+00:00",
+  "implementation_sha256": "090c2b83d9127a3a427a1b398cb4911f20c984ca6e9a03732d9cf4821940260b",
+  "cpu_only": true,
+  "data_modified": false,
+  "automatic_filtering": false,
+  "method": {
+    "foot_vertices": [
+      240,
+      241
+    ],
+    "foot_region": "SMPL-X LBS weights on [7,10] / [8,11] sum > .65",
+    "support": "Highest vertical scene intersection; minimum signed skin gap per foot",
+    "contact": "Source estimated probabilities, both channels per side > .8; not validated contact GT",
+    "thresholds": "2cm penetration / 5cm gap are descriptive audit bins, not approved rejection thresholds",
+    "limitations": [
+      "A swing foot can be high without an error; inspect support/contact separately",
+      "Vertical height is not watertight signed-volume collision or sole contact area",
+      "No visibility is not invalid motion; scene-conditioned eligibility is task-specific",
+      "Subset inspection does not certify full-dataset physical quality"
+    ]
+  },
+  "selection": {
+    "seed": 2897015926,
+    "method": "Python random.Random(seed).sample(sorted category sequences, 2); no rejection/resampling",
+    "per_category": 2,
+    "total": 10,
+    "scope": "All completed sequences, all splits; data inspection only, not model selection",
+    "selected_manifest_sha256": "6fc85ded32df9fa96225f83c36815c56a754b4238bc1edb2c7ba855f05b6b5b5"
+  },
+  "full_local_report_sha256": "9957635913f65412a308d7a130bdf2b9427c919af12c727e3d6a7da61453ae64",
+  "cases": [
+    {
+      "sequence_id": "sitting__steam_bent_hardwood_captain_chair_with_armrests__008",
+      "label": "01 · 坐下 · 随机样本 1（5 秒）",
+      "category": "sitting",
+      "split": "train",
+      "frames": 151,
+      "source_metadata_sha256": "99e14914b6934d2c6539d14526af26b270bce29e4d6addc29e42d03d6d351e4a",
+      "cache_sha256": "3149ee7388a2a7adab751d460ffeeb7065718ed587d74de7e08f254ad3df5e6e",
+      "raw_to_export_object_max_error_m": 5.960464477539063e-08,
+      "export_to_viewer_object_max_error_m": 0.0,
+      "object_bbox_m": [
+        [
+          -0.30535054206848145,
+          2.9802322387695312e-08,
+          -0.2722078561782837
+        ],
+        [
+          0.27202337980270386,
+          0.7200000286102295,
+          0.323525995016098
+        ]
+      ],
+      "ego_visibility": {
+        "object_above_y3mm_frames": 0,
+        "object_above_y3mm_ranges": [],
+        "max_object_pixels": 0,
+        "total_pixels": 12288,
+        "object_pixel_fraction_max": 0.0,
+        "frames_chair_in_frustum_without_body": 0
+      },
+      "independent_raw_fk": {
+        "checked_shared_timepoints": 31,
+        "max_abs_vertex_error_m": 0.0,
+        "raw_frame_stride": 4,
+        "output_frame_stride": 5
+      }
+    },
+    {
+      "sequence_id": "sitting__sandstone_mexican_carved_chair_desert_ochre__005",
+      "label": "02 · 坐下 · 随机样本 2（5 秒）",
+      "category": "sitting",
+      "split": "train",
+      "frames": 151,
+      "source_metadata_sha256": "d39b2c4187381e31e88240c14fcb6ed81d1c121ccf92e9c171bd9801bcc1c859",
+      "cache_sha256": "5a504c6552c6ae9b31fcbff7bfa0e2a6455e360e16c56f4bb8342d034f7988bd",
+      "raw_to_export_object_max_error_m": 1.1920928955078125e-07,
+      "export_to_viewer_object_max_error_m": 0.0,
+      "object_bbox_m": [
+        [
+          -0.331658273935318,
+          0.0,
+          -0.3247087001800537
+        ],
+        [
+          0.3225395977497101,
+          0.8000000715255737,
+          0.3307000398635864
+        ]
+      ],
+      "ego_visibility": {
+        "object_above_y3mm_frames": 13,
+        "object_above_y3mm_ranges": [
+          [
+            22,
+            23
+          ],
+          [
+            35,
+            40
+          ],
+          [
+            95,
+            99
+          ]
+        ],
+        "max_object_pixels": 30,
+        "total_pixels": 12288,
+        "object_pixel_fraction_max": 0.00244140625,
+        "frames_chair_in_frustum_without_body": 16
+      },
+      "independent_raw_fk": {
+        "checked_shared_timepoints": 31,
+        "max_abs_vertex_error_m": 0.0,
+        "raw_frame_stride": 4,
+        "output_frame_stride": 5
+      }
+    },
+    {
+      "sequence_id": "terrain_slopes__slope_098__000",
+      "label": "03 · 坡道 · 随机样本 1（10 秒）",
+      "category": "slope",
+      "split": "test",
+      "frames": 301,
+      "source_metadata_sha256": "7c08f004e5135d3e31835591e2fe24c8ab196b45ad30dbb4210c5bcfea5990d2",
+      "cache_sha256": "64fd1149b751703899d166ccee0918d6a7283513e018403e1029b4794e4fd508",
+      "raw_to_export_object_max_error_m": 2.384185791015625e-07,
+      "export_to_viewer_object_max_error_m": 0.0,
+      "object_bbox_m": [
+        [
+          -0.895700991153717,
+          6.321656087493466e-09,
+          -2.135517433998757e-07
+        ],
+        [
+          0.8957013487815857,
+          0.1471281796693802,
+          3.086923122406006
+        ]
+      ],
+      "ego_visibility": {
+        "object_above_y3mm_frames": 155,
+        "object_above_y3mm_ranges": [
+          [
+            0,
+            116
+          ],
+          [
+            169,
+            206
+          ]
+        ],
+        "max_object_pixels": 3377,
+        "total_pixels": 12288,
+        "object_pixel_fraction_max": 0.2748209635416667
+      },
+      "terrain_support": {
+        "range_frame_stride": 1,
+        "per_foot_minimum_gap_m": {
+          "min": -0.042315781116485596,
+          "p05": -0.030315396189689637,
+          "median": 0.003695189952850342,
+          "p95": 0.04503774344921108,
+          "max": 0.08611857891082764
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.042315781116485596,
+          "p05": -0.0354190468788147,
+          "median": -0.0034375786781311035,
+          "p95": 0.017925739288330078,
+          "max": 0.04249292612075806
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 52,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            24,
+            32
+          ],
+          [
+            142,
+            143
+          ],
+          [
+            183,
+            188
+          ],
+          [
+            236,
+            239
+          ],
+          [
+            251,
+            256
+          ],
+          [
+            267,
+            269
+          ],
+          [
+            279,
+            300
+          ]
+        ],
+        "source_contact_foot_frames": 205,
+        "source_contact_gap_m": {
+          "min": -0.04014408588409424,
+          "p05": -0.033157169818878174,
+          "median": -0.00218278169631958,
+          "p95": 0.015558862686157216,
+          "max": 0.02654588222503662
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 23,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [
+            [
+              287,
+              300
+            ]
+          ],
+          "right": [
+            [
+              24,
+              32
+            ]
+          ]
+        },
+        "nearest_triangle_distance_during_both_feet_high_m": null
+      },
+      "terrain_support_at_exact_raw_times": {
+        "range_frame_stride": 5,
+        "per_foot_minimum_gap_m": {
+          "min": -0.042315781116485596,
+          "p05": -0.03107917308807373,
+          "median": 0.002758592367172241,
+          "p95": 0.0452261686325073,
+          "max": 0.07517272233963013
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.042315781116485596,
+          "p05": -0.037765324115753174,
+          "median": -0.0025573372840881348,
+          "p95": 0.016791164875030518,
+          "max": 0.033516883850097656
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 9,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            25,
+            30
+          ],
+          [
+            185,
+            185
+          ],
+          [
+            255,
+            255
+          ],
+          [
+            280,
+            300
+          ]
+        ],
+        "source_contact_foot_frames": 43,
+        "source_contact_gap_m": {
+          "min": -0.03830432891845703,
+          "p05": -0.03155941367149353,
+          "median": -0.0005614757537841797,
+          "p95": 0.014754790067672727,
+          "max": 0.018338680267333984
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 5,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [
+            [
+              290,
+              300
+            ]
+          ],
+          "right": [
+            [
+              25,
+              30
+            ]
+          ]
+        }
+      },
+      "independent_raw_fk": {
+        "checked_shared_timepoints": 61,
+        "max_abs_vertex_error_m": 0.0,
+        "raw_frame_stride": 4,
+        "output_frame_stride": 5
+      }
+    },
+    {
+      "sequence_id": "terrain_slopes__slope_133__002",
+      "label": "04 · 坡道 · 随机样本 2（10 秒）",
+      "category": "slope",
+      "split": "train",
+      "frames": 301,
+      "source_metadata_sha256": "d8aa1fb6345667b1bed56f88d522704f4f1173b138214e9c0c4d83047448bbd8",
+      "cache_sha256": "040aa45ae27354ad1c949873613b50d30a06bc9bbc390158c6b7a97cee110259",
+      "raw_to_export_object_max_error_m": 7.105427357601002e-15,
+      "export_to_viewer_object_max_error_m": 0.0,
+      "object_bbox_m": [
+        [
+          -0.8083258867263794,
+          4.758444305252851e-09,
+          -4.0880337337512174e-08
+        ],
+        [
+          0.8083261251449585,
+          0.16600508987903595,
+          2.3552188873291016
+        ]
+      ],
+      "ego_visibility": {
+        "object_above_y3mm_frames": 150,
+        "object_above_y3mm_ranges": [
+          [
+            0,
+            93
+          ],
+          [
+            165,
+            220
+          ]
+        ],
+        "max_object_pixels": 4472,
+        "total_pixels": 12288,
+        "object_pixel_fraction_max": 0.3639322916666667
+      },
+      "terrain_support": {
+        "range_frame_stride": 1,
+        "per_foot_minimum_gap_m": {
+          "min": -0.032553017139434814,
+          "p05": -0.024683716893196105,
+          "median": -0.0011920630931854248,
+          "p95": 0.05811841189861296,
+          "max": 0.09402143955230713
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.032553017139434814,
+          "p05": -0.025590479373931885,
+          "median": -0.01091623306274414,
+          "p95": 0.02939140796661377,
+          "max": 0.056470632553100586
+        },
+        "both_feet_above_5cm_frames": 4,
+        "both_feet_above_5cm_ranges": [
+          [
+            142,
+            145
+          ]
+        ],
+        "any_foot_below_surface_2cm_frames": 85,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            25,
+            39
+          ],
+          [
+            50,
+            57
+          ],
+          [
+            67,
+            81
+          ],
+          [
+            86,
+            89
+          ],
+          [
+            181,
+            200
+          ],
+          [
+            265,
+            282
+          ],
+          [
+            285,
+            289
+          ]
+        ],
+        "source_contact_foot_frames": 246,
+        "source_contact_gap_m": {
+          "min": -0.028757870197296143,
+          "p05": -0.025348857045173645,
+          "median": -0.008844643831253052,
+          "p95": 0.04412029683589935,
+          "max": 0.06005740165710449
+        },
+        "source_contact_above_5cm_foot_frames": 7,
+        "source_contact_below_surface_2cm_foot_frames": 66,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [
+            [
+              142,
+              145
+            ],
+            [
+              167,
+              169
+            ]
+          ],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [
+            [
+              50,
+              57
+            ],
+            [
+              88,
+              89
+            ]
+          ],
+          "right": [
+            [
+              25,
+              38
+            ],
+            [
+              68,
+              81
+            ],
+            [
+              181,
+              196
+            ],
+            [
+              269,
+              280
+            ]
+          ]
+        },
+        "nearest_triangle_distance_during_both_feet_high_m": {
+          "min": 0.04934963211417198,
+          "p05": 0.050066033378243446,
+          "median": 0.054459383711218834,
+          "p95": 0.05894305147230625,
+          "max": 0.06001380831003189
+        }
+      },
+      "terrain_support_at_exact_raw_times": {
+        "range_frame_stride": 5,
+        "per_foot_minimum_gap_m": {
+          "min": -0.028054893016815186,
+          "p05": -0.023901373147964478,
+          "median": -8.496642112731934e-05,
+          "p95": 0.05670669674873349,
+          "max": 0.09402143955230713
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.028054893016815186,
+          "p05": -0.02494180202484131,
+          "median": -0.011102914810180664,
+          "p95": 0.017763137817382812,
+          "max": 0.051419198513031006
+        },
+        "both_feet_above_5cm_frames": 1,
+        "both_feet_above_5cm_ranges": [
+          [
+            145,
+            145
+          ]
+        ],
+        "any_foot_below_surface_2cm_frames": 17,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            25,
+            35
+          ],
+          [
+            50,
+            55
+          ],
+          [
+            70,
+            80
+          ],
+          [
+            185,
+            200
+          ],
+          [
+            265,
+            285
+          ]
+        ],
+        "source_contact_foot_frames": 54,
+        "source_contact_gap_m": {
+          "min": -0.028054893016815186,
+          "p05": -0.024969381093978883,
+          "median": -0.007991611957550049,
+          "p95": 0.04193774163722988,
+          "max": 0.06005740165710449
+        },
+        "source_contact_above_5cm_foot_frames": 1,
+        "source_contact_below_surface_2cm_foot_frames": 14,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [
+            [
+              145,
+              145
+            ]
+          ],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [
+            [
+              50,
+              55
+            ]
+          ],
+          "right": [
+            [
+              25,
+              35
+            ],
+            [
+              70,
+              80
+            ],
+            [
+              185,
+              195
+            ],
+            [
+              270,
+              280
+            ]
+          ]
+        }
+      },
+      "independent_raw_fk": {
+        "checked_shared_timepoints": 61,
+        "max_abs_vertex_error_m": 0.0,
+        "raw_frame_stride": 4,
+        "output_frame_stride": 5
+      }
+    },
+    {
+      "sequence_id": "terrain_curbs__curb_142__002",
+      "label": "05 · 路沿 · 随机样本 1（10 秒）",
+      "category": "curb",
+      "split": "test",
+      "frames": 301,
+      "source_metadata_sha256": "3fe35112a987c9acc7b7b42130defb67a6245435ce5e2c2cee5776f46b385d50",
+      "cache_sha256": "78837554e918d1d5ac27e89fe037c186679bf10d0ec81cc8cd1c5374fad41367",
+      "raw_to_export_object_max_error_m": 3.552713678800501e-15,
+      "export_to_viewer_object_max_error_m": 0.0,
+      "object_bbox_m": [
+        [
+          -0.5840859413146973,
+          -4.116330387660128e-09,
+          -4.210760451428541e-08
+        ],
+        [
+          0.6888470649719238,
+          0.2677830457687378,
+          1.776432991027832
+        ]
+      ],
+      "ego_visibility": {
+        "object_above_y3mm_frames": 67,
+        "object_above_y3mm_ranges": [
+          [
+            10,
+            76
+          ]
+        ],
+        "max_object_pixels": 1438,
+        "total_pixels": 12288,
+        "object_pixel_fraction_max": 0.11702473958333333
+      },
+      "terrain_support": {
+        "range_frame_stride": 1,
+        "per_foot_minimum_gap_m": {
+          "min": -0.04705160856246948,
+          "p05": -0.038583749532699586,
+          "median": 0.004104703664779663,
+          "p95": 0.10385852754116008,
+          "max": 0.28026825189590454
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.04705160856246948,
+          "p05": -0.039847731590270996,
+          "median": -0.0033921003341674805,
+          "p95": 0.018126249313354492,
+          "max": 0.044104158878326416
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 55,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            50,
+            59
+          ],
+          [
+            145,
+            150
+          ],
+          [
+            191,
+            195
+          ],
+          [
+            250,
+            250
+          ],
+          [
+            260,
+            265
+          ],
+          [
+            274,
+            300
+          ]
+        ],
+        "source_contact_foot_frames": 327,
+        "source_contact_gap_m": {
+          "min": -0.04705160856246948,
+          "p05": -0.04044085144996643,
+          "median": -0.00037157535552978516,
+          "p95": 0.021434718370437613,
+          "max": 0.057917654514312744
+        },
+        "source_contact_above_5cm_foot_frames": 2,
+        "source_contact_below_surface_2cm_foot_frames": 56,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [
+            [
+              197,
+              198
+            ]
+          ],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [
+            [
+              147,
+              150
+            ],
+            [
+              260,
+              265
+            ],
+            [
+              290,
+              300
+            ]
+          ],
+          "right": [
+            [
+              50,
+              59
+            ],
+            [
+              276,
+              300
+            ]
+          ]
+        },
+        "nearest_triangle_distance_during_both_feet_high_m": null
+      },
+      "terrain_support_at_exact_raw_times": {
+        "range_frame_stride": 5,
+        "per_foot_minimum_gap_m": {
+          "min": -0.04705160856246948,
+          "p05": -0.03870810568332672,
+          "median": 0.0032142996788024902,
+          "p95": 0.1223262548446652,
+          "max": 0.28026825189590454
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.04705160856246948,
+          "p05": -0.04030251502990723,
+          "median": -0.0028974413871765137,
+          "p95": 0.01705092191696167,
+          "max": 0.03798413276672363
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 14,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            50,
+            55
+          ],
+          [
+            145,
+            150
+          ],
+          [
+            195,
+            195
+          ],
+          [
+            250,
+            250
+          ],
+          [
+            260,
+            265
+          ],
+          [
+            275,
+            300
+          ]
+        ],
+        "source_contact_foot_frames": 65,
+        "source_contact_gap_m": {
+          "min": -0.04705160856246948,
+          "p05": -0.04128639698028565,
+          "median": -0.0015260577201843262,
+          "p95": 0.021137225627899155,
+          "max": 0.03798413276672363
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 13,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [
+            [
+              150,
+              150
+            ],
+            [
+              260,
+              265
+            ],
+            [
+              290,
+              300
+            ]
+          ],
+          "right": [
+            [
+              50,
+              55
+            ],
+            [
+              280,
+              300
+            ]
+          ]
+        }
+      },
+      "independent_raw_fk": {
+        "checked_shared_timepoints": 61,
+        "max_abs_vertex_error_m": 0.0,
+        "raw_frame_stride": 4,
+        "output_frame_stride": 5
+      }
+    },
+    {
+      "sequence_id": "terrain_curbs__curb_133__006",
+      "label": "06 · 路沿 · 随机样本 2（10 秒）",
+      "category": "curb",
+      "split": "test",
+      "frames": 301,
+      "source_metadata_sha256": "ac8a9f7d32dc01c8410264acfe85355daec7f2f42da98e2b0532b0d0c53ad460",
+      "cache_sha256": "4f7a92a01c4cda1ea00ac3c17d2d9ce38fe5ff4caf6220850e17b4ec6d235c93",
+      "raw_to_export_object_max_error_m": 4.76837158203125e-07,
+      "export_to_viewer_object_max_error_m": 0.0,
+      "object_bbox_m": [
+        [
+          -0.6934971213340759,
+          -1.6662214941121078e-09,
+          -1.2946922822720808e-07
+        ],
+        [
+          0.7095915079116821,
+          0.3359701633453369,
+          3.841454029083252
+        ]
+      ],
+      "ego_visibility": {
+        "object_above_y3mm_frames": 286,
+        "object_above_y3mm_ranges": [
+          [
+            0,
+            220
+          ],
+          [
+            223,
+            231
+          ],
+          [
+            245,
+            300
+          ]
+        ],
+        "max_object_pixels": 4377,
+        "total_pixels": 12288,
+        "object_pixel_fraction_max": 0.356201171875
+      },
+      "terrain_support": {
+        "range_frame_stride": 1,
+        "per_foot_minimum_gap_m": {
+          "min": -0.07592236995697021,
+          "p05": -0.03451357185840607,
+          "median": 0.0036154091358184814,
+          "p95": 0.11436612010002065,
+          "max": 0.26205599308013916
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.07592236995697021,
+          "p05": -0.04163390398025513,
+          "median": -0.0038791894912719727,
+          "p95": 0.017102420330047607,
+          "max": 0.02614802122116089
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 67,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            48,
+            90
+          ],
+          [
+            180,
+            191
+          ],
+          [
+            194,
+            205
+          ]
+        ],
+        "source_contact_foot_frames": 233,
+        "source_contact_gap_m": {
+          "min": -0.03654366731643677,
+          "p05": -0.03343600034713745,
+          "median": -0.00331038236618042,
+          "p95": 0.0175936222076416,
+          "max": 0.026154160499572754
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 28,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [
+            [
+              48,
+              61
+            ]
+          ],
+          "right": [
+            [
+              67,
+              78
+            ],
+            [
+              194,
+              195
+            ]
+          ]
+        },
+        "nearest_triangle_distance_during_both_feet_high_m": null
+      },
+      "terrain_support_at_exact_raw_times": {
+        "range_frame_stride": 5,
+        "per_foot_minimum_gap_m": {
+          "min": -0.07070308923721313,
+          "p05": -0.03353757262229919,
+          "median": 0.003087341785430908,
+          "p95": 0.07256904244422906,
+          "max": 0.21083062887191772
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.07070308923721313,
+          "p05": -0.03538393974304199,
+          "median": -0.0037803053855895996,
+          "p95": 0.018915891647338867,
+          "max": 0.021480262279510498
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 15,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            50,
+            90
+          ],
+          [
+            180,
+            205
+          ]
+        ],
+        "source_contact_foot_frames": 49,
+        "source_contact_gap_m": {
+          "min": -0.036211252212524414,
+          "p05": -0.03283131122589111,
+          "median": -0.0033319592475891113,
+          "p95": 0.019245409965515135,
+          "max": 0.02139502763748169
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 6,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [
+            [
+              50,
+              60
+            ]
+          ],
+          "right": [
+            [
+              70,
+              75
+            ],
+            [
+              195,
+              195
+            ]
+          ]
+        }
+      },
+      "independent_raw_fk": {
+        "checked_shared_timepoints": 61,
+        "max_abs_vertex_error_m": 0.0,
+        "raw_frame_stride": 4,
+        "output_frame_stride": 5
+      }
+    },
+    {
+      "sequence_id": "terrain_stairs__compact_freestanding_polished_granite_practice_stair_block_with_5_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balus_63c62617b4__0002",
+      "label": "07 · 楼梯 p1 · 随机样本 1（10 秒）",
+      "category": "stair_p1",
+      "split": "train",
+      "frames": 301,
+      "source_metadata_sha256": "020a73ef8ee6c88c820b074de94d5d94be9a5d91e874943ec2c99c3dbcf92065",
+      "cache_sha256": "ee82340783dfcd14d262e5e3f3d6c17084f41d3f9705b9e3ddd63d8f86018d8c",
+      "raw_to_export_object_max_error_m": 8.881784197001252e-16,
+      "export_to_viewer_object_max_error_m": 0.0,
+      "object_bbox_m": [
+        [
+          -0.6305928230285645,
+          -8.940696716308594e-08,
+          -0.7143834829330444
+        ],
+        [
+          0.6343040466308594,
+          0.8504760265350342,
+          0.7181309461593628
+        ]
+      ],
+      "ego_visibility": {
+        "object_above_y3mm_frames": 41,
+        "object_above_y3mm_ranges": [
+          [
+            41,
+            81
+          ]
+        ],
+        "max_object_pixels": 984,
+        "total_pixels": 12288,
+        "object_pixel_fraction_max": 0.080078125
+      },
+      "terrain_support": {
+        "range_frame_stride": 1,
+        "per_foot_minimum_gap_m": {
+          "min": -0.06317496299743652,
+          "p05": -0.0050040602684020994,
+          "median": 0.018868327140808105,
+          "p95": 0.21595737040042878,
+          "max": 0.2478729486465454
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.06317496299743652,
+          "p05": -0.027804136276245117,
+          "median": 0.008893251419067383,
+          "p95": 0.028884291648864746,
+          "max": 0.03450345993041992
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 19,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            175,
+            184
+          ],
+          [
+            226,
+            234
+          ]
+        ],
+        "source_contact_foot_frames": 298,
+        "source_contact_gap_m": {
+          "min": -0.02244192361831665,
+          "p05": 0.0024732053279876713,
+          "median": 0.015589594841003418,
+          "p95": 0.028291124105453466,
+          "max": 0.042654991149902344
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 1,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [],
+          "right": [
+            [
+              226,
+              226
+            ]
+          ]
+        },
+        "nearest_triangle_distance_during_both_feet_high_m": null
+      },
+      "terrain_support_at_exact_raw_times": {
+        "range_frame_stride": 5,
+        "per_foot_minimum_gap_m": {
+          "min": -0.06263011693954468,
+          "p05": -0.004363438487052916,
+          "median": 0.019034206867218018,
+          "p95": 0.2157779514789581,
+          "max": 0.24778568744659424
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.06263011693954468,
+          "p05": -0.01847708225250244,
+          "median": 0.008893251419067383,
+          "p95": 0.03171050548553467,
+          "max": 0.03450345993041992
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 3,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            175,
+            180
+          ],
+          [
+            230,
+            230
+          ]
+        ],
+        "source_contact_foot_frames": 64,
+        "source_contact_gap_m": {
+          "min": -0.017056524753570557,
+          "p05": 0.0026309847831726073,
+          "median": 0.015819191932678223,
+          "p95": 0.030904358625411958,
+          "max": 0.042654991149902344
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 0,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        }
+      },
+      "independent_raw_fk": {
+        "checked_shared_timepoints": 61,
+        "max_abs_vertex_error_m": 0.0,
+        "raw_frame_stride": 4,
+        "output_frame_stride": 5
+      }
+    },
+    {
+      "sequence_id": "terrain_stairs__compact_freestanding_green_marble_practice_stair_block_with_6_visible_steps_straight_single_flight_training_prop_largest_dimension_under_150_cm_no_handrails_no_balustrad_4238ea02b5__0000",
+      "label": "08 · 楼梯 p1 · 随机样本 2（10 秒）",
+      "category": "stair_p1",
+      "split": "train",
+      "frames": 301,
+      "source_metadata_sha256": "198c2e69e58f818ff1abb28942a2a51d885bb26858645f7c9969d0cb6f9239bc",
+      "cache_sha256": "ea66b8b76492d268410a7cc6f47a026b6af96c01e3a6032da4668fce548ba9da",
+      "raw_to_export_object_max_error_m": 0.0,
+      "export_to_viewer_object_max_error_m": 0.0,
+      "object_bbox_m": [
+        [
+          -0.6982640624046326,
+          -5.960464477539063e-08,
+          -0.9229066371917725
+        ],
+        [
+          0.7032638788223267,
+          1.1138920783996582,
+          0.928081750869751
+        ]
+      ],
+      "ego_visibility": {
+        "object_above_y3mm_frames": 60,
+        "object_above_y3mm_ranges": [
+          [
+            20,
+            50
+          ],
+          [
+            83,
+            105
+          ],
+          [
+            121,
+            126
+          ]
+        ],
+        "max_object_pixels": 1963,
+        "total_pixels": 12288,
+        "object_pixel_fraction_max": 0.15974934895833334
+      },
+      "terrain_support": {
+        "range_frame_stride": 1,
+        "per_foot_minimum_gap_m": {
+          "min": -0.10838460922241211,
+          "p05": -0.06963858604431153,
+          "median": 0.01021432876586914,
+          "p95": 0.23072877824306479,
+          "max": 0.2776859998703003
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.10838460922241211,
+          "p05": -0.08550196886062622,
+          "median": -0.0033288002014160156,
+          "p95": 0.013291716575622559,
+          "max": 0.03547030687332153
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 89,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            46,
+            54
+          ],
+          [
+            143,
+            158
+          ],
+          [
+            180,
+            202
+          ],
+          [
+            226,
+            237
+          ],
+          [
+            259,
+            270
+          ],
+          [
+            284,
+            300
+          ]
+        ],
+        "source_contact_foot_frames": 187,
+        "source_contact_gap_m": {
+          "min": -0.03646880388259888,
+          "p05": -0.028463125228881836,
+          "median": 0.005675792694091797,
+          "p95": 0.020500123500823975,
+          "max": 0.021596670150756836
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 14,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [],
+          "right": [
+            [
+              287,
+              300
+            ]
+          ]
+        },
+        "nearest_triangle_distance_during_both_feet_high_m": null
+      },
+      "terrain_support_at_exact_raw_times": {
+        "range_frame_stride": 5,
+        "per_foot_minimum_gap_m": {
+          "min": -0.10808205604553223,
+          "p05": -0.06310073435306549,
+          "median": 0.010078370571136475,
+          "p95": 0.1982261776924132,
+          "max": 0.25514674186706543
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.10808205604553223,
+          "p05": -0.08914560079574585,
+          "median": -0.004302263259887695,
+          "p95": 0.01302039623260498,
+          "max": 0.02288830280303955
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 18,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            50,
+            50
+          ],
+          [
+            145,
+            155
+          ],
+          [
+            180,
+            200
+          ],
+          [
+            230,
+            235
+          ],
+          [
+            260,
+            270
+          ],
+          [
+            285,
+            300
+          ]
+        ],
+        "source_contact_foot_frames": 38,
+        "source_contact_gap_m": {
+          "min": -0.03646880388259888,
+          "p05": -0.028032585978507996,
+          "median": 0.0050882697105407715,
+          "p95": 0.020602744817733765,
+          "max": 0.021596670150756836
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 3,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [],
+          "right": [
+            [
+              290,
+              300
+            ]
+          ]
+        }
+      },
+      "independent_raw_fk": {
+        "checked_shared_timepoints": 61,
+        "max_abs_vertex_error_m": 0.0,
+        "raw_frame_stride": 4,
+        "output_frame_stride": 5
+      }
+    },
+    {
+      "sequence_id": "terrain_stairs__straight_natural_granite_stairs_with_7_steps_no_handrails_no_turns_v4__0003",
+      "label": "09 · 楼梯 p2 · 随机样本 1（10 秒）",
+      "category": "stair_p2",
+      "split": "validation",
+      "frames": 301,
+      "source_metadata_sha256": "d94a9c6cb80cc1308a8cbcf3c5d04da02c07f36bedb288a682b1b6422d13d3aa",
+      "cache_sha256": "a8446bfabfe3840efb36bc7a9d7d70919f8068a18a3409f79164b51d2baf6b7d",
+      "raw_to_export_object_max_error_m": 1.1920928955078125e-07,
+      "export_to_viewer_object_max_error_m": 0.0,
+      "object_bbox_m": [
+        [
+          -0.8789734840393066,
+          0.013749301433563232,
+          -1.316892385482788
+        ],
+        [
+          0.8867655396461487,
+          1.3132184743881226,
+          1.3237948417663574
+        ]
+      ],
+      "ego_visibility": {
+        "object_above_y3mm_frames": 244,
+        "object_above_y3mm_ranges": [
+          [
+            0,
+            243
+          ]
+        ],
+        "max_object_pixels": 10502,
+        "total_pixels": 12288,
+        "object_pixel_fraction_max": 0.8546549479166666
+      },
+      "terrain_support": {
+        "range_frame_stride": 1,
+        "per_foot_minimum_gap_m": {
+          "min": -0.17622947692871094,
+          "p05": -0.031210577487945555,
+          "median": -0.0030551254749298096,
+          "p95": 0.14716156721115103,
+          "max": 0.29580891132354736
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.17622947692871094,
+          "p05": -0.0406719446182251,
+          "median": -0.013981819152832031,
+          "p95": 0.0140419602394104,
+          "max": 0.020809292793273926
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 110,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            53,
+            59
+          ],
+          [
+            87,
+            97
+          ],
+          [
+            129,
+            142
+          ],
+          [
+            187,
+            201
+          ],
+          [
+            208,
+            215
+          ],
+          [
+            221,
+            237
+          ],
+          [
+            243,
+            247
+          ],
+          [
+            258,
+            260
+          ],
+          [
+            271,
+            300
+          ]
+        ],
+        "source_contact_foot_frames": 298,
+        "source_contact_gap_m": {
+          "min": -0.16964375972747803,
+          "p05": -0.025815755128860474,
+          "median": -0.008487462997436523,
+          "p95": 0.01418384313583374,
+          "max": 0.026994407176971436
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 64,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [
+            [
+              89,
+              97
+            ],
+            [
+              213,
+              214
+            ],
+            [
+              221,
+              234
+            ]
+          ],
+          "right": [
+            [
+              59,
+              59
+            ],
+            [
+              142,
+              142
+            ],
+            [
+              198,
+              201
+            ],
+            [
+              244,
+              247
+            ],
+            [
+              272,
+              300
+            ]
+          ]
+        },
+        "nearest_triangle_distance_during_both_feet_high_m": null
+      },
+      "terrain_support_at_exact_raw_times": {
+        "range_frame_stride": 5,
+        "per_foot_minimum_gap_m": {
+          "min": -0.1753893494606018,
+          "p05": -0.03095729351043701,
+          "median": -0.002532362937927246,
+          "p95": 0.14263564348220814,
+          "max": 0.29580891132354736
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.1753893494606018,
+          "p05": -0.0406719446182251,
+          "median": -0.013434886932373047,
+          "p95": 0.013264656066894531,
+          "max": 0.015539467334747314
+        },
+        "both_feet_above_5cm_frames": 0,
+        "both_feet_above_5cm_ranges": [],
+        "any_foot_below_surface_2cm_frames": 22,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            55,
+            55
+          ],
+          [
+            90,
+            95
+          ],
+          [
+            130,
+            140
+          ],
+          [
+            190,
+            200
+          ],
+          [
+            210,
+            215
+          ],
+          [
+            225,
+            235
+          ],
+          [
+            245,
+            245
+          ],
+          [
+            260,
+            260
+          ],
+          [
+            275,
+            300
+          ]
+        ],
+        "source_contact_foot_frames": 61,
+        "source_contact_gap_m": {
+          "min": -0.03516244888305664,
+          "p05": -0.025719404220581055,
+          "median": -0.008296787738800049,
+          "p95": 0.013264656066894531,
+          "max": 0.015539467334747314
+        },
+        "source_contact_above_5cm_foot_frames": 0,
+        "source_contact_below_surface_2cm_foot_frames": 12,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [],
+          "right": []
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [
+            [
+              90,
+              95
+            ],
+            [
+              225,
+              230
+            ]
+          ],
+          "right": [
+            [
+              200,
+              200
+            ],
+            [
+              245,
+              245
+            ],
+            [
+              275,
+              300
+            ]
+          ]
+        }
+      },
+      "independent_raw_fk": {
+        "checked_shared_timepoints": 61,
+        "max_abs_vertex_error_m": 0.0,
+        "raw_frame_stride": 4,
+        "output_frame_stride": 5
+      }
+    },
+    {
+      "sequence_id": "terrain_stairs__stairs_2708__0001",
+      "label": "10 · 楼梯 p2 · 随机样本 2（10 秒）",
+      "category": "stair_p2",
+      "split": "train",
+      "frames": 301,
+      "source_metadata_sha256": "c78f527bfb62dc461d21cb03ccb01dcebdc62bd521fc2959d9eaead46a5be9bc",
+      "cache_sha256": "df2bbe645df3d44394391000796a0007756b731e5293dacdebce6f98f9da5c0e",
+      "raw_to_export_object_max_error_m": 4.76837158203125e-07,
+      "export_to_viewer_object_max_error_m": 0.0,
+      "object_bbox_m": [
+        [
+          -1.157526969909668,
+          0.02182917483150959,
+          -2.0698178104794351e-07
+        ],
+        [
+          1.1575260162353516,
+          0.752632200717926,
+          5.55217981338501
+        ]
+      ],
+      "ego_visibility": {
+        "object_above_y3mm_frames": 301,
+        "object_above_y3mm_ranges": [
+          [
+            0,
+            300
+          ]
+        ],
+        "max_object_pixels": 11101,
+        "total_pixels": 12288,
+        "object_pixel_fraction_max": 0.9034016927083334
+      },
+      "terrain_support": {
+        "range_frame_stride": 1,
+        "per_foot_minimum_gap_m": {
+          "min": -0.024746298789978027,
+          "p05": -0.019610759615898133,
+          "median": 0.01180422306060791,
+          "p95": 0.2178000599145883,
+          "max": 0.39256107807159424
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.024746298789978027,
+          "p05": -0.021934032440185547,
+          "median": 0.001505136489868164,
+          "p95": 0.11064231395721436,
+          "max": 0.17103183269500732
+        },
+        "both_feet_above_5cm_frames": 25,
+        "both_feet_above_5cm_ranges": [
+          [
+            198,
+            222
+          ]
+        ],
+        "any_foot_below_surface_2cm_frames": 29,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            250,
+            252
+          ],
+          [
+            258,
+            265
+          ],
+          [
+            283,
+            300
+          ]
+        ],
+        "source_contact_foot_frames": 249,
+        "source_contact_gap_m": {
+          "min": -0.023709356784820557,
+          "p05": -0.02197011709213257,
+          "median": 6.145238876342773e-05,
+          "p95": 0.10831393003463745,
+          "max": 0.16630733013153076
+        },
+        "source_contact_above_5cm_foot_frames": 16,
+        "source_contact_below_surface_2cm_foot_frames": 25,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [
+            [
+              199,
+              203
+            ]
+          ],
+          "right": [
+            [
+              214,
+              224
+            ]
+          ]
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [],
+          "right": [
+            [
+              258,
+              264
+            ],
+            [
+              283,
+              300
+            ]
+          ]
+        },
+        "nearest_triangle_distance_during_both_feet_high_m": {
+          "min": 0.014115276746451855,
+          "p05": 0.030281405802816155,
+          "median": 0.10089676827192307,
+          "p95": 0.21888555735349652,
+          "max": 0.22832417488098145
+        }
+      },
+      "terrain_support_at_exact_raw_times": {
+        "range_frame_stride": 5,
+        "per_foot_minimum_gap_m": {
+          "min": -0.022502899169921875,
+          "p05": -0.020979699492454526,
+          "median": 0.011583209037780762,
+          "p95": 0.21934947371482838,
+          "max": 0.2893986701965332
+        },
+        "lower_of_two_feet_gap_m": {
+          "min": -0.022502899169921875,
+          "p05": -0.021743178367614746,
+          "median": 0.0008383393287658691,
+          "p95": 0.10888147354125977,
+          "max": 0.17103183269500732
+        },
+        "both_feet_above_5cm_frames": 5,
+        "both_feet_above_5cm_ranges": [
+          [
+            200,
+            220
+          ]
+        ],
+        "any_foot_below_surface_2cm_frames": 7,
+        "any_foot_below_surface_2cm_ranges": [
+          [
+            250,
+            250
+          ],
+          [
+            260,
+            265
+          ],
+          [
+            285,
+            300
+          ]
+        ],
+        "source_contact_foot_frames": 49,
+        "source_contact_gap_m": {
+          "min": -0.022502899169921875,
+          "p05": -0.021893775463104247,
+          "median": 0.0,
+          "p95": 0.07505664825439406,
+          "max": 0.16207504272460938
+        },
+        "source_contact_above_5cm_foot_frames": 3,
+        "source_contact_below_surface_2cm_foot_frames": 5,
+        "source_contact_above_5cm_ranges_by_side": {
+          "left": [
+            [
+              200,
+              200
+            ]
+          ],
+          "right": [
+            [
+              215,
+              220
+            ]
+          ]
+        },
+        "source_contact_below_2cm_ranges_by_side": {
+          "left": [],
+          "right": [
+            [
+              260,
+              260
+            ],
+            [
+              285,
+              300
+            ]
+          ]
+        }
+      },
+      "independent_raw_fk": {
+        "checked_shared_timepoints": 61,
+        "max_abs_vertex_error_m": 0.0,
+        "raw_frame_stride": 4,
+        "output_frame_stride": 5
+      }
+    }
+  ]
+}

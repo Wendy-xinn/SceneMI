@@ -1,36 +1,28 @@
-# SceneMI：头部轨迹与可见场景条件的动作生成
+# 既有 EGO/EXO 实验与兼容实现
 
-当前主线为30 Hz、192帧窗口的 reference-residual 扩散，恢复逐脚步态监督，持续目标55,000步。旧对照为 `runs/native_dynamic_scene20_contact_55k_oct07`，不是其他名字带55k的目录。
+本目录保存已训练的 30 Hz / 192 帧模型、数据导出、评估和运维工具。新 AMASS 128 帧阶段从仓库顶层 [scenemi/](../../scenemi/) 和 [configs/amass128.yaml](../../configs/amass128.yaml) 进入；[代码导航](../../docs/CODE_MAP_zh.md) 说明两者边界。
 
-[当前实验、训练进度、best和评估入口](runs/INDEX_zh.md) · [方法有效性证据](ops/EVIDENCE_STATUS_zh.md) · [TensorBoard](http://localhost:6006/#custom_scalars) · [Viser动作回放](http://localhost:8800)
+## 常用入口
 
-## 统一命令
+- [当前模型、评测和 GRAIL 状态](runs/INDEX_zh.md)
+- [完整 noisy 验证总报告](runs/native30_final_metrics_v1/full_validation_noisy/OVERALL_REPORT_zh.md)
+- [指标表](runs/native30_final_metrics_v1/full_validation_noisy/METRIC_TABLES_zh.md)
+- [运维说明](ops/README_zh.md)
+- [本轮清理记录](../../docs/maintenance/README_zh.md)
 
-在 SceneMI 仓库根目录，使用 `scenemi` 环境：
-
-```bash
-python -m experiments.offline_camera_retrain_v1.ops status
-python -m experiments.offline_camera_retrain_v1.ops view
-python -m experiments.offline_camera_retrain_v1.ops best --help
-python -m experiments.offline_camera_retrain_v1.ops scene-check --help
-```
-
-后台已经有训练、best守护和登记的评估任务，查看状态即可。Viser读取已有预测，不执行新推理；默认打开已经冻结的案例。新增案例修改 `runs/native30_live_monitor_oct16/visuals/viser/CASES.json`，用 `view --manifest <案例清单>` 重新准备/启动同一个查看器，不复制Python文件。
+已有模型、报告和 GRAIL 任务保留原路径。运行配置以 run 内冻结文件为准，不把顶层 AMASS YAML 用于旧训练器。新配置通过验证不表示真实数据已准备完成。
 
 ## 目录职责
 
-| 目录 | 内容 |
+| 位置 | 职责 |
 |---|---|
-| `ops/` | 可复用的运维、评估复核和可视化工具；通过模块CLI调用 |
-| `runs/` | 当前训练/评估的数据、配置、指标和本地模型；从索引进入 |
-| `data/`、`configs/` | 数据入口与配置资产；不作为失败实验输出清理 |
-| `archive/` | 已退役实验与历史记录；精确恢复路径随清理记录保存 |
-| 根目录Python模块 | 当前封存实现和历史遗留实现，暂不可随意移动 |
+| `ops/` | 既有可复用 CLI、资源检查、评估、可视化与 GRAIL；新任务继续复用 |
+| `runs/` | 八组受保护的模型/评测/数据任务，以及因冻结路径需要保留的历史小记录 |
+| `data/`、`configs/` | 旧阶段的有效数据与配置资产，不能当实验输出清理 |
+| `archive/` | 历史记录及精确源码恢复包；退役权重和可重建数组已删除 |
+| 根目录 `*.py` | 67 个封存兼容文件；新实现不再向这里平铺 |
+| 顶层 `tests/legacy/` | 本轮迁移的 22 个回归测试和恢复的旧配置夹具 |
 
-此前根README描述的5 Hz pilot与旧实验索引已原样移到 [历史记录](archive/retired_runs_oct16/root_records/)，不再作为当前运行说明。当前配置以各run内部的冻结配置为准。
+本轮永久删除 157 个退役源文件及其清单内生成资产，根源码 246 → 89；再将 22 个非封存测试移至顶层，根源码变为 67。保留的源码/模型 212 项已逐一 SHA256 复验；还有一个测试属于封存依赖，保留原路径。当前模型依赖解除前，不为目录整洁改写其封印。
 
-## 根源码整理的实际限制
-
-旧准备程序 `code_hashes()` 将根目录全部352份Python文件纳入359项源码封存，并没有只收集真实依赖。直接删旧脚本会破坏当前训练恢复、best保存和全RICH评估的校验，因此本轮没有改动这些源码，也没有通过隐藏文件来冒充清理。
-
-已经删除14份结束日志，归档24份旧配置/记录/启动文件。[执行记录](ops/cleanup_oct16_evening/ROOT_NONPY_EXECUTED.json)。106份明确关联退役实验的脚本已列入 [后续归档清单](ops/cleanup_oct16_evening/ROOT_DEFERRED_ARCHIVE_PLAN.json)。下一次实现版本应按显式依赖集合封存，保留当前完整源码恢复包后再移出旧脚本；不改写当前实验身份。[依赖审计](ops/cleanup_oct16_evening/ROOT_CLEANUP_REVIEW_zh.md)。
+历史审计描述的是清理前状态。退役运行的权重和预测已不存在，旧菜单、旧 resumable 标记不代表仍可直接运行；查看当前资产请使用新索引和清理记录。

@@ -1,0 +1,176 @@
+{
+  "windows": 1416,
+  "source_families": 679,
+  "stratum_family_counts": {
+    "egobody/egobody": 16,
+    "grail/curb": 25,
+    "grail/sitting": 23,
+    "grail/slope": 18,
+    "grail/stair_p1": 259,
+    "grail/stair_p2": 305,
+    "trumans/trumans": 33
+  },
+  "per_dataset": {
+    "egobody": {
+      "baseline": {
+        "mpjpe_mm": 161.85262117581215,
+        "pa_mpjpe_mm": 90.06459961062785,
+        "root_error_mm": 109.49750951802729,
+        "head_error_mm": 68.52244159371604
+      },
+      "candidate": {
+        "mpjpe_mm": 157.21734899651915,
+        "pa_mpjpe_mm": 89.64098333228827,
+        "root_error_mm": 106.85897390478245,
+        "head_error_mm": 72.47340530536525
+      },
+      "baseline_minus_candidate": {
+        "mpjpe_mm": 4.635272179292997,
+        "pa_mpjpe_mm": 0.4236162783395798,
+        "root_error_mm": 2.6385356132448408,
+        "head_error_mm": -3.9509637116492087
+      },
+      "paired_family_bootstrap_95pct": {
+        "mpjpe_mm": [
+          -3.2616948147655394,
+          12.810596512321242
+        ],
+        "pa_mpjpe_mm": [
+          -0.9684779273623714,
+          1.8115665314730653
+        ],
+        "root_error_mm": [
+          -7.627131610967601,
+          12.926099260173016
+        ],
+        "head_error_mm": [
+          -14.668649261431568,
+          7.030544338717332
+        ]
+      }
+    },
+    "trumans": {
+      "baseline": {
+        "mpjpe_mm": 111.20164613256699,
+        "pa_mpjpe_mm": 64.34591441320923,
+        "root_error_mm": 92.03795536701206,
+        "head_error_mm": 50.46002914120527
+      },
+      "candidate": {
+        "mpjpe_mm": 109.5560256195634,
+        "pa_mpjpe_mm": 62.89500759156851,
+        "root_error_mm": 91.48131746592308,
+        "head_error_mm": 48.989431280153966
+      },
+      "baseline_minus_candidate": {
+        "mpjpe_mm": 1.6456205130035926,
+        "pa_mpjpe_mm": 1.4509068216407215,
+        "root_error_mm": 0.5566379010889762,
+        "head_error_mm": 1.4705978610513029
+      },
+      "paired_family_bootstrap_95pct": {
+        "mpjpe_mm": [
+          -2.6939084621138396,
+          6.498640939297023
+        ],
+        "pa_mpjpe_mm": [
+          -0.14302129603876176,
+          3.0696724280379164
+        ],
+        "root_error_mm": [
+          -5.024950302777763,
+          6.275499351094968
+        ],
+        "head_error_mm": [
+          -4.658976936677432,
+          8.088201825998528
+        ]
+      }
+    },
+    "grail": {
+      "baseline": {
+        "mpjpe_mm": 68.32556575385851,
+        "pa_mpjpe_mm": 31.212667395333632,
+        "root_error_mm": 55.09684935613454,
+        "head_error_mm": 44.85437768860045
+      },
+      "candidate": {
+        "mpjpe_mm": 68.55414296869971,
+        "pa_mpjpe_mm": 31.154029095127935,
+        "root_error_mm": 55.450805972844556,
+        "head_error_mm": 44.259604039241765
+      },
+      "baseline_minus_candidate": {
+        "mpjpe_mm": -0.2285772148411951,
+        "pa_mpjpe_mm": 0.058638300205696936,
+        "root_error_mm": -0.35395661671001477,
+        "head_error_mm": 0.5947736493586859
+      },
+      "paired_family_bootstrap_95pct": {
+        "mpjpe_mm": [
+          -0.6379325697022061,
+          0.17532368728772396
+        ],
+        "pa_mpjpe_mm": [
+          -0.07718899737983025,
+          0.27518259515700805
+        ],
+        "root_error_mm": [
+          -0.7813046462577717,
+          0.06265615707130104
+        ],
+        "head_error_mm": [
+          0.07575428224818039,
+          1.0924220796993824
+        ]
+      }
+    }
+  },
+  "dataset_macro": {
+    "baseline": {
+      "mpjpe_mm": 113.79327768741257,
+      "pa_mpjpe_mm": 61.87439380639024,
+      "root_error_mm": 85.54410474705797,
+      "head_error_mm": 54.612282807840586
+    },
+    "candidate": {
+      "mpjpe_mm": 111.77583919492741,
+      "pa_mpjpe_mm": 61.230006672994904,
+      "root_error_mm": 84.59703244785003,
+      "head_error_mm": 55.24081354158699
+    },
+    "baseline_minus_candidate": {
+      "mpjpe_mm": 2.017438492485155,
+      "pa_mpjpe_mm": 0.6443871333953339,
+      "root_error_mm": 0.9470722992079459,
+      "head_error_mm": -0.6285307337464019
+    },
+    "paired_family_bootstrap_95pct": {
+      "mpjpe_mm": [
+        -0.9167943272202573,
+        5.193916037544201
+      ],
+      "pa_mpjpe_mm": [
+        -0.08430903506496222,
+        1.3680799736204619
+      ],
+      "root_error_mm": [
+        -2.854792128833252,
+        4.831241753821766
+      ],
+      "head_error_mm": [
+        -4.806735233970941,
+        3.628994986408191
+      ]
+    }
+  },
+  "bootstrap": {
+    "draws": 5000,
+    "seed": 20261025,
+    "unit": "paired source families within fixed corpus/action strata",
+    "scope": "Conditional selected-checkpoint validation uncertainty; no selection-bias adjustment, independent test or training-seed inference."
+  },
+  "provisional_candidate_comparison": true,
+  "final_selection_complete": false,
+  "candidate_step": 3000
+}

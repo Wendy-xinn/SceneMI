@@ -1,0 +1,4134 @@
+{
+  "schema": "scenemi-runs-inventory-v1",
+  "recorded_at_beijing": "2026-11-02T15:53:56.904674+08:00",
+  "scope": "50 immediate child directories of SceneMI/runs; no experiment files modified",
+  "report": "docs/maintenance/runs_inventory_20261102_zh.md",
+  "size_definition": "allocated file blocks, unique inode within each directory; totals deduplicate across directories; directory-entry blocks not included",
+  "total_allocated_bytes": 60518711296,
+  "active_scene_mi_training_process": {
+    "pid": 322224,
+    "command": "python -u -m scenemi.native_ego4_training train --config configs/native_ego4_from_scratch_v2.yaml --resume",
+    "verified_read_only": true
+  },
+  "current_training_snapshot": {
+    "state": "training",
+    "completed_updates": 12645,
+    "planned_updates": 14000,
+    "effective_batch_size": 128,
+    "microbatch_size": 32,
+    "updates_per_second": 0.11982140479335925,
+    "best": {
+      "step": 12288,
+      "selection_score_mm": 112.95770454929713,
+      "checkpoint": "/home/wenxin/projects/SceneMI/runs/native_ego4_from_scratch_v2/selection/best.pt",
+      "metrics": "/home/wenxin/projects/SceneMI/runs/native_ego4_from_scratch_v2/selection/full_step_012288.json"
+    },
+    "updated_at_utc": "2026-11-02T07:53:53.821396+00:00"
+  },
+  "directories": [
+    {
+      "name": "amass128",
+      "allocated_bytes_unique_within_directory": 15361667072,
+      "exclusive_reclaim_bytes": 15361667072,
+      "group": "当前训练与共用数据：优先保留",
+      "description": "第一代 AMASS EGO/EXO 混合先验，55k 已完成；**同时存放共享 AMASS 预处理数据和索引**",
+      "connections_and_retention": "当前训练读取 `index/complete.json` 和 `verified_data/`。约 13 GiB 是数据，`training/last.pt` 才是旧模型。不能把整个目录当作旧实验删除。旧 `scene_ego128` 还依赖其 55k 权重。",
+      "file_count": 15760,
+      "largest_files_by_apparent_bytes": [
+        [
+          "training/last.pt",
+          1026935863
+        ],
+        [
+          "training/updates.jsonl",
+          386877126
+        ],
+        [
+          "verified_data/manifest.jsonl",
+          21361548
+        ],
+        [
+          "index/complete.json",
+          16449336
+        ],
+        [
+          "preview/review_index.json",
+          16448941
+        ],
+        [
+          "verified_data/neutral/DanceDB/20140506_AnnaCortesi/AnnaCortesi_BellyDance2_C3D_poses_reflect.npz",
+          13640286
+        ]
+      ]
+    },
+    {
+      "name": "amass_ego128",
+      "allocated_bytes_unique_within_directory": 2867404800,
+      "exclusive_reclaim_bytes": 2867404800,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "AMASS-only EGO 从零训练 55k，验证选中 50k；保存 best50k、final55k 和基线评测",
+      "connections_and_retention": "best50k 是 `scene_ego128_local` / `scene_ego128_noscene` 的父模型；final55k 是旧 EXO 适配器的冻结主干。此前约定保留的旧基线。",
+      "file_count": 765,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/best.pt",
+          1026933943
+        ],
+        [
+          "training/last.pt",
+          1026933943
+        ],
+        [
+          "training/updates.jsonl",
+          383982507
+        ],
+        [
+          "evaluation/baselines/egoallo/egoallo_checkpoint_april13/checkpoints_3000000/model.safetensors",
+          201810968
+        ],
+        [
+          "evaluation/baselines/egogvae/_latest.pth",
+          83431474
+        ],
+        [
+          "selection/step_015000/metrics.jsonl",
+          2557299
+        ]
+      ]
+    },
+    {
+      "name": "amass_exo128",
+      "allocated_bytes_unique_within_directory": 199069696,
+      "exclusive_reclaim_bytes": 199069696,
+      "group": "EXO 修复系列：多数目录已经很小",
+      "description": "冻结 EGO55k 的早期 EXO 条件适配器，15k 训练/选模",
+      "connections_and_retention": "需要 `amass_ego128/training/last.pt`；anchor 诊断引用它。与后来的 denoise 方案不同。",
+      "file_count": 56,
+      "largest_files_by_apparent_bytes": [
+        [
+          "training/updates.jsonl",
+          139307981
+        ],
+        [
+          "selection/best.pt",
+          14197891
+        ],
+        [
+          "training/last.pt",
+          14197891
+        ],
+        [
+          "selection/step_015000/noisy_gap.jsonl",
+          3604965
+        ],
+        [
+          "selection/step_012000/noisy_gap.jsonl",
+          3604765
+        ],
+        [
+          "selection/step_003000/noisy_gap.jsonl",
+          3604497
+        ]
+      ]
+    },
+    {
+      "name": "amass_exo128_anchor",
+      "allocated_bytes_unique_within_directory": 14839808,
+      "exclusive_reclaim_bytes": 14839808,
+      "group": "EXO 修复系列：多数目录已经很小",
+      "description": "早期 EXO 观测保持/时间锚点诊断；已完成",
+      "connections_and_retention": "固定 `amass_exo128` 的参考适配器，含 `REFERENCE.pt`；是诊断，不是又一轮长训练。",
+      "file_count": 6,
+      "largest_files_by_apparent_bytes": [
+        [
+          "REFERENCE.pt",
+          14197891
+        ],
+        [
+          "metrics.jsonl",
+          563647
+        ],
+        [
+          "PROTOCOL.json",
+          17286
+        ],
+        [
+          "RUN.log",
+          16925
+        ],
+        [
+          "STATUS.json",
+          12828
+        ],
+        [
+          "RESULT.json",
+          12828
+        ]
+      ]
+    },
+    {
+      "name": "amass_exo_basis128",
+      "allocated_bytes_unique_within_directory": 92712960,
+      "exclusive_reclaim_bytes": 92712960,
+      "group": "EXO 修复系列：多数目录已经很小",
+      "description": "时间基函数/初始化修复 2k 对照，完整验证通过当时门槛",
+      "connections_and_retention": "保留约 8 MiB 适配器；其 `full_validation/metrics.jsonl` 被 denoise 配置作为已训练时间对照读取。",
+      "file_count": 42,
+      "largest_files_by_apparent_bytes": [
+        [
+          "full_validation/metrics.jsonl",
+          46553347
+        ],
+        [
+          "training/updates.jsonl",
+          19184044
+        ],
+        [
+          "untrained_full_validation/metrics.jsonl",
+          12976212
+        ],
+        [
+          "training/last.pt",
+          8379173
+        ],
+        [
+          "validation/step_001000/metrics.jsonl",
+          1329062
+        ],
+        [
+          "validation/step_002000/metrics.jsonl",
+          1329050
+        ]
+      ]
+    },
+    {
+      "name": "amass_exo_completion128",
+      "allocated_bytes_unique_within_directory": 91381760,
+      "exclusive_reclaim_bytes": 91381760,
+      "group": "EXO 修复系列：多数目录已经很小",
+      "description": "从 denoise36k 做两组各 6k 的等预算对照：原方案继续、增加缺帧边界条件",
+      "connections_and_retention": "boundary 分支的 `selection/best.pt` 是 continue 的父模型；control/boundary 结果应成对理解。",
+      "file_count": 41,
+      "largest_files_by_apparent_bytes": [
+        [
+          "boundary/selection/step_006000/metrics.jsonl",
+          75192262
+        ],
+        [
+          "boundary/selection/best.pt",
+          14155883
+        ],
+        [
+          "boundary/PROTOCOL.json",
+          561566
+        ],
+        [
+          "control/PROTOCOL.json",
+          561550
+        ],
+        [
+          "boundary/SERVICE.log",
+          204591
+        ],
+        [
+          "control/SERVICE.log",
+          204200
+        ]
+      ]
+    },
+    {
+      "name": "amass_exo_continue128",
+      "allocated_bytes_unique_within_directory": 93982720,
+      "exclusive_reclaim_bytes": 93982720,
+      "group": "EXO 修复系列：多数目录已经很小",
+      "description": "从选中的 boundary6k 继续 EXO-only 20k，选中额外 15k",
+      "connections_and_retention": "是旧三源 joint 无场景适配的 EXO 初始化；旧 EGO55k 主干仍冻结。",
+      "file_count": 40,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/step_015000/metrics.jsonl",
+          75191843
+        ],
+        [
+          "selection/best.pt",
+          14156907
+        ],
+        [
+          "training/FILE_IO_TRACE_001.log",
+          2770695
+        ],
+        [
+          "SERVICE.log",
+          596814
+        ],
+        [
+          "PROTOCOL.json",
+          562569
+        ],
+        [
+          "preflight/diagnostic_cuda/metrics.jsonl",
+          82943
+        ]
+      ]
+    },
+    {
+      "name": "amass_exo_denoise128",
+      "allocated_bytes_unique_within_directory": 93310976,
+      "exclusive_reclaim_bytes": 93310976,
+      "group": "EXO 修复系列：多数目录已经很小",
+      "description": "在扩散网络内部注入 EXO 条件，36k 完成并选中 36k",
+      "connections_and_retention": "冻结 EGO55k；比较 `amass_exo_basis128`；又是 completion 两分支的父适配器。",
+      "file_count": 63,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/step_036000/metrics.jsonl",
+          75192154
+        ],
+        [
+          "selection/best.pt",
+          13258645
+        ],
+        [
+          "SERVICE.log",
+          1235191
+        ],
+        [
+          "PROTOCOL.json",
+          560156
+        ],
+        [
+          "preparation_revision_004/PROTOCOL.json",
+          560156
+        ],
+        [
+          "preparation_revision_001/PROTOCOL.json",
+          560101
+        ]
+      ]
+    },
+    {
+      "name": "amass_exo_repair128",
+      "allocated_bytes_unique_within_directory": 70512640,
+      "exclusive_reclaim_bytes": 70512640,
+      "group": "EXO 修复系列：多数目录已经很小",
+      "description": "初始化残差修复 2k 小试；改善门槛未全部通过",
+      "connections_and_retention": "checkpoint 已退役；留下逐窗口指标、日志、协议和 `CHECKPOINT_RETIREMENT.json`。",
+      "file_count": 24,
+      "largest_files_by_apparent_bytes": [
+        [
+          "full_validation/metrics.jsonl",
+          46553717
+        ],
+        [
+          "training/updates.jsonl",
+          19177269
+        ],
+        [
+          "validation/step_000000/metrics.jsonl",
+          1329803
+        ],
+        [
+          "validation/step_002000/metrics.jsonl",
+          1329039
+        ],
+        [
+          "validation/step_001000/metrics.jsonl",
+          1328984
+        ],
+        [
+          "PROTOCOL.json",
+          574541
+        ]
+      ]
+    },
+    {
+      "name": "amass_joint128",
+      "allocated_bytes_unique_within_directory": 1149190144,
+      "exclusive_reclaim_bytes": 105390080,
+      "group": "联合 EGO/EXO、回放与联合场景系列",
+      "description": "`scratch` 从零训练 AMASS EGO/EXO 共享模型，110k 完成，完整验证选中 100k",
+      "connections_and_retention": "replay 和几个 pilot 的父模型。scratch 的权重不是继承上面 EXO 适配器；配置中的旧结果还用于基线比较。约 995 MiB 的 best 与其他四处路径共享 inode。",
+      "file_count": 89,
+      "largest_files_by_apparent_bytes": [
+        [
+          "scratch/selection/best.pt",
+          1043792787
+        ],
+        [
+          "scratch/selection/step_110000/exo/metrics.jsonl",
+          46553574
+        ],
+        [
+          "scratch/selection/step_100000/exo/metrics.jsonl",
+          46553537
+        ],
+        [
+          "scratch/training/FILE_IO_TRACE_001.log",
+          3215740
+        ],
+        [
+          "scratch/SERVICE.log",
+          2598572
+        ],
+        [
+          "scratch/selection/step_110000/ego/metrics.jsonl",
+          2554971
+        ]
+      ]
+    },
+    {
+      "name": "data_inventory",
+      "allocated_bytes_unique_within_directory": 5779456,
+      "exclusive_reclaim_bytes": 5779456,
+      "group": "当前训练与共用数据：优先保留",
+      "description": "当前 EGO/EXO 数据量、抽样覆盖与合同验收记录",
+      "connections_and_retention": "`CURRENT_SELECTION_CHECK.json` 是后续准备/训练的前置验收证据，配置和旧协议会引用。体积很小，建议保留。",
+      "file_count": 14,
+      "largest_files_by_apparent_bytes": [
+        [
+          "sampling_coverage/sequence_coverage.csv",
+          5630701
+        ],
+        [
+          "sampling_coverage/RESULT.json",
+          52132
+        ],
+        [
+          "DATASET_DISTRIBUTION.json",
+          14077
+        ],
+        [
+          "CONSOLE.log",
+          13051
+        ],
+        [
+          "EXO_FRAME_COUNTS.json",
+          10955
+        ],
+        [
+          "DATASET_DISTRIBUTION_zh.md",
+          6724
+        ]
+      ]
+    },
+    {
+      "name": "exo_preparation",
+      "allocated_bytes_unique_within_directory": 10158133248,
+      "exclusive_reclaim_bytes": 10158133248,
+      "group": "当前训练与共用数据：优先保留",
+      "description": "EXO 数据准备；主要是 TRUMANS 移动相机观测与场景点，另有对齐后的 GRAIL 清单",
+      "connections_and_retention": "**不是 9.46 GiB 的模型试验权重。** 当前 EGO 的通用数据合同仍校验 `trumans_moving/manifest.jsonl` 和 `grail_ego_aligned/train/selection.jsonl`。大部分 `trumans_moving/data/` 数组供 EXO 使用，当前 EGO 不靠这些 EXO 数组训练；若决定彻底放弃旧 EXO/场景复现，可单独重新评估这部分，不能连清单一起整目录删。",
+      "file_count": 7075,
+      "largest_files_by_apparent_bytes": [
+        [
+          "trumans_moving/data/train/2023-02-12@12-07-11/exo_frame_points_world.npy",
+          23851136
+        ],
+        [
+          "trumans_moving/data/train/2023-02-13@16-54-24/exo_frame_points_world.npy",
+          23765120
+        ],
+        [
+          "trumans_moving/data/train/2023-02-11@22-08-37/exo_frame_points_world.npy",
+          23476352
+        ],
+        [
+          "trumans_moving/data/train/2023-02-12@14-32-33/exo_frame_points_world.npy",
+          23113856
+        ],
+        [
+          "trumans_moving/data/train/2023-02-11@20-59-52/exo_frame_points_world.npy",
+          23003264
+        ],
+        [
+          "trumans_moving/data/train/2023-02-17@22-22-57/exo_frame_points_world.npy",
+          22874240
+        ]
+      ]
+    },
+    {
+      "name": "grail_ego_contact",
+      "allocated_bytes_unique_within_directory": 37392384,
+      "exclusive_reclaim_bytes": 37392384,
+      "group": "旧筛选与人工预览缓存",
+      "description": "第一版接触筛选、校准和集成检查",
+      "connections_and_retention": "后来发现漏筛，不能作为最终质量保证；quality_v2 的审计还会引用其案例。当前合同不直接把它当作最终训练清单。",
+      "file_count": 137,
+      "largest_files_by_apparent_bytes": [
+        [
+          "full/CONTACT_RECORDS.jsonl",
+          16814921
+        ],
+        [
+          "full/train/windows.jsonl",
+          15473776
+        ],
+        [
+          "full/train/manifest.jsonl",
+          2212661
+        ],
+        [
+          "full/train/excluded.jsonl",
+          1341145
+        ],
+        [
+          "calibration_refined/PILOT.json",
+          76489
+        ],
+        [
+          "calibration/PILOT.json",
+          74023
+        ]
+      ]
+    },
+    {
+      "name": "grail_ego_filter",
+      "allocated_bytes_unique_within_directory": 55832576,
+      "exclusive_reclaim_bytes": 55832576,
+      "group": "旧筛选与人工预览缓存",
+      "description": "第一代 EGO 可见性/窗口筛选及统计",
+      "connections_and_retention": "旧 contact/preview 的来源；当前训练的正式训练清单来自 quality_v2。保留历史筛选解释即可。",
+      "file_count": 9,
+      "largest_files_by_apparent_bytes": [
+        [
+          "visibility_statistics.jsonl",
+          38781834
+        ],
+        [
+          "train/windows.jsonl",
+          9625716
+        ],
+        [
+          "evaluation_coverage_audit.jsonl",
+          3432609
+        ],
+        [
+          "train/manifest.jsonl",
+          2392713
+        ],
+        [
+          "train/excluded.jsonl",
+          1551023
+        ],
+        [
+          "DISTRIBUTION.json",
+          14444
+        ]
+      ]
+    },
+    {
+      "name": "grail_ego_quality_v2",
+      "allocated_bytes_unique_within_directory": 55910400,
+      "exclusive_reclaim_bytes": 55910400,
+      "group": "当前训练与共用数据：优先保留",
+      "description": "GRAIL 第二版训练片段质量筛选、400 个椅子条件和支撑异常审计",
+      "connections_and_retention": "当前数据合同直接读取 `full/train/windows.jsonl`、`chair400/SELECTION.jsonl`、`chair400/conditions/PROTOTYPES.json`。这些不是模型输出缓存。",
+      "file_count": 442,
+      "largest_files_by_apparent_bytes": [
+        [
+          "full/RECORDS.jsonl",
+          15900656
+        ],
+        [
+          "full/train/windows.jsonl",
+          9986122
+        ],
+        [
+          "full/train/excluded.jsonl",
+          5914534
+        ],
+        [
+          "full/train/manifest.jsonl",
+          1393337
+        ],
+        [
+          "full/augmentation/sitting_candidates.jsonl",
+          1290602
+        ],
+        [
+          "chair400/SELECTION.jsonl",
+          786260
+        ]
+      ]
+    },
+    {
+      "name": "grail_heldout_quality_v1",
+      "allocated_bytes_unique_within_directory": 21557248,
+      "exclusive_reclaim_bytes": 21557248,
+      "group": "当前训练与共用数据：优先保留",
+      "description": "GRAIL validation/test 的质量筛选和分割检查",
+      "connections_and_retention": "当前数据合同校验 validation/test 清单及 `full/STATUS.json`、`full/VALIDATION.json` 的哈希；即使不读取 test 动作数组，也会校验 test 清单文件。不能删除清单。",
+      "file_count": 23,
+      "largest_files_by_apparent_bytes": [
+        [
+          "full/RECORDS.jsonl",
+          9410010
+        ],
+        [
+          "full/test/selection.jsonl",
+          4350154
+        ],
+        [
+          "full/validation/selection.jsonl",
+          2390070
+        ],
+        [
+          "full/JOB.json",
+          2004667
+        ],
+        [
+          "full/validation/excluded.jsonl",
+          1373222
+        ],
+        [
+          "full/test/excluded.jsonl",
+          1296564
+        ]
+      ]
+    },
+    {
+      "name": "grail_preview",
+      "allocated_bytes_unique_within_directory": 1015640064,
+      "exclusive_reclaim_bytes": 1015640064,
+      "group": "旧筛选与人工预览缓存",
+      "description": "原始、筛选后、随机类别、支撑 v2 的人工查看页面和几何缓存",
+      "connections_and_retention": "约 964 MiB 是 `.npz` 预览数组。保留选择清单、复核结论、必要截图后，缓存可重建；清缓存后旧查看器会需要重新准备。当前训练不读取此预览目录。",
+      "file_count": 125,
+      "largest_files_by_apparent_bytes": [
+        [
+          "filtered_ego_review/cache/f1a17d7f2102cb2505da9899379f4d7ed4971b00060c3d08ec3d368e8c63e8a9.npz",
+          37883256
+        ],
+        [
+          "random_per_category_v1/cache/5073ba9f9edd1ee2595235d2ee45b37f1c2a39e2cef2799811739ad7393b344b.npz",
+          37879230
+        ],
+        [
+          "support_v2_review/cache/6776b911420074e2ca4aa6993ad651703052da47a70d17b1c431b0905ef1d272.npz",
+          37859906
+        ],
+        [
+          "support_v2_review/cache/773d54dff9966e59c1892eb851d50c7ca4192c989aee0c4b3463e5f867583c0e.npz",
+          37835859
+        ],
+        [
+          "random_per_category_v1/cache/5e7005470672f7d2e0843f7d90908b0f1f9a0c3a3114ee3ec496704089c4493c.npz",
+          37829017
+        ],
+        [
+          "random_per_category_v1/cache/a9987feb3cf06400f7fe6b70fc2ffbb5a0b244e784bfcd5c946f19f084babc7d.npz",
+          37744506
+        ]
+      ]
+    },
+    {
+      "name": "maintenance",
+      "allocated_bytes_unique_within_directory": 4096,
+      "exclusive_reclaim_bytes": 4096,
+      "group": "性能探针、短试和新版前期开发",
+      "description": "2026-10-29 的清理记录",
+      "connections_and_retention": "不训练模型。说明文件不值得为节省空间优先删除。",
+      "file_count": 1,
+      "largest_files_by_apparent_bytes": [
+        [
+          "cleanup_20261029.json",
+          1372
+        ]
+      ]
+    },
+    {
+      "name": "method_v2_validation",
+      "allocated_bytes_unique_within_directory": 97337344,
+      "exclusive_reclaim_bytes": 97337344,
+      "group": "性能探针、短试和新版前期开发",
+      "description": "新方法前期 CPU/CUDA 小试、精确恢复、2k 级开发训练、源读取故障诊断",
+      "connections_and_retention": "不是当前 EGO 主训练。已完成开发试验的权重此前清掉了；主要保留协议、输入/质量审计和故障证据。",
+      "file_count": 240,
+      "largest_files_by_apparent_bytes": [
+        [
+          "amass_training/deadline2048_kinematic/full_review/validation_002048.json",
+          14956091
+        ],
+        [
+          "read_path_audit/shared_resume_full_refresh/a6180b3af1d4ee2dacb6663b18e84039d87be6aa1a4c76f4c200334ea46b6a13.read.bin",
+          9155102
+        ],
+        [
+          "read_path_audit/shared_resume_full_refresh/5f081a1c24c322407a16d169e781762b37952a1324bfcc869d7df09dfc92ee16.read.bin",
+          5961230
+        ],
+        [
+          "read_path_audit/shared_resume_full_refresh/20f177219266a9e4ee29898bd7c841ac45a480035face39a92ba88ddc0474d27.read.bin",
+          5465350
+        ],
+        [
+          "recovery_deadline/KIT_1226_Trial_05_poses.npz.regenerated.corrupted.npz",
+          5394510
+        ],
+        [
+          "recovery_deadline/KIT_1226_Trial_05_poses.npz.regenerated.npz",
+          5394510
+        ]
+      ]
+    },
+    {
+      "name": "native30_verified_cache",
+      "allocated_bytes_unique_within_directory": 210493440,
+      "exclusive_reclaim_bytes": 210493440,
+      "group": "旧筛选与人工预览缓存",
+      "description": "以哈希命名的 NPY 读取镜像缓存",
+      "connections_and_retention": "本次未发现当前配置和源码对 **这个 runs 路径**的直接引用。当前配置的 `verified_cache` 实际在 `experiments/offline_camera_retrain_v1/data/native30_verified_read_cache_v1`，是另一个目录。前者可列为重建缓存候选，不要误删后者或源数组。",
+      "file_count": 435,
+      "largest_files_by_apparent_bytes": [
+        [
+          "e761453d9eadc7e019f803c1dca0222b9fdaf38b2a955911e6ddc00851eb3ef8.npy",
+          1849472
+        ],
+        [
+          "032b8a73e755de2e767c2c6daa807ef3de8f8fff5c537e2f0dd3148bda4b3022.npy",
+          1849472
+        ],
+        [
+          "66db19c1e83290a2b5d6dccb6630694658f772720502d890ba1c42b43956d22b.npy",
+          1849472
+        ],
+        [
+          "ec8f53383f358fff4d288e4818c7120204b6d3634b37be693d4dde78572fd5f7.npy",
+          1849472
+        ],
+        [
+          "6e44ab57caecf77f68d3e328e141290fe2904c88d7c49d9da644763d22a6ff92.npy",
+          1849472
+        ],
+        [
+          "479fd19a9c26803b9e81ec67347299314b92652999c57a0492bf1f466bf7afad.npy",
+          1849472
+        ]
+      ]
+    },
+    {
+      "name": "native_batch_benchmark",
+      "allocated_bytes_unique_within_directory": 5632000,
+      "exclusive_reclaim_bytes": 5632000,
+      "group": "性能探针、短试和新版前期开发",
+      "description": "原生三源联合训练的 microbatch/吞吐与基线复用测试",
+      "connections_and_retention": "引用旧 joint 无场景初始化和零步基线；性能记录，不是一个新训练模型。",
+      "file_count": 5,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/step_000000/ego/metrics.jsonl",
+          3593090
+        ],
+        [
+          "PROTOCOL.json",
+          1897415
+        ],
+        [
+          "THROUGHPUT.json",
+          125602
+        ],
+        [
+          "selection/step_000000/ego/RESULT.json",
+          2477
+        ],
+        [
+          "BASELINE_REUSE.json",
+          410
+        ]
+      ]
+    },
+    {
+      "name": "native_ego4_from_scratch",
+      "allocated_bytes_unique_within_directory": 994828288,
+      "exclusive_reclaim_bytes": 994828288,
+      "group": "性能探针、短试和新版前期开发",
+      "description": "当前 v2 之前的首次四源 EGO 初始化目录",
+      "connections_and_retention": "只有零步候选、last、合同和验证清单，没有成功优化更新日志/状态；v2 不从它加载权重。是优先检查的未继续使用产物。",
+      "file_count": 7,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/candidates/step_000000.pt",
+          496673029
+        ],
+        [
+          "training/last.pt",
+          496650490
+        ],
+        [
+          "VALIDATION_MANIFEST.json",
+          1278310
+        ],
+        [
+          "preflight/cuda.json",
+          99552
+        ],
+        [
+          "preflight/cpu.json",
+          99552
+        ],
+        [
+          "CONTRACT.json",
+          2794
+        ]
+      ]
+    },
+    {
+      "name": "native_ego4_from_scratch_v2",
+      "allocated_bytes_unique_within_directory": 8646406144,
+      "exclusive_reclaim_bytes": 8646406144,
+      "group": "当前训练与共用数据：优先保留",
+      "description": "当前四源 AMASS/EgoBody/TRUMANS/GRAIL EGO-only，从零训练，14,000 步预算；无场景输入",
+      "connections_and_retention": "唯一活动训练。保留整个目录到最终验证和选模结束；目前最佳是 12,288 步。",
+      "file_count": 75,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/best.pt",
+          1027044735
+        ],
+        [
+          "selection/candidates/step_002048.pt",
+          1027044735
+        ],
+        [
+          "selection/candidates/step_008192.pt",
+          1027044735
+        ],
+        [
+          "selection/candidates/step_006144.pt",
+          1027044735
+        ],
+        [
+          "selection/candidates/step_004096.pt",
+          1027044735
+        ],
+        [
+          "selection/candidates/step_012288.pt",
+          1027044735
+        ]
+      ]
+    },
+    {
+      "name": "preserved",
+      "allocated_bytes_unique_within_directory": 1935609856,
+      "exclusive_reclaim_bytes": 1935609856,
+      "group": "联合 EGO/EXO、回放与联合场景系列",
+      "description": "2026-10-29 明确要求保留的联合模型回退包",
+      "connections_and_retention": "含独立 AMASS100k 父模型、replay2000、scene1000、早期适配器、源码/配置/协议快照；与原路径是独立文件，**不是这次发现的硬链接组**。保留依据是用户指定的回退需求；需要你决定放弃该回退时再改变。",
+      "file_count": 24,
+      "largest_files_by_apparent_bytes": [
+        [
+          "current_joint_conditioning_20261029_165943/joint_amass100k_parent.pt",
+          1043792787
+        ],
+        [
+          "current_joint_conditioning_20261029_165943/replay_parent.pt",
+          814898871
+        ],
+        [
+          "current_joint_conditioning_20261029_165943/joint_scene_adapter_step1000.pt",
+          32377285
+        ],
+        [
+          "current_joint_conditioning_20261029_165943/scene_adapter.pt",
+          32377093
+        ],
+        [
+          "current_joint_conditioning_20261029_165943/git_diff.txt",
+          7613696
+        ],
+        [
+          "current_joint_conditioning_20261029_165943/sources.tar.gz",
+          3360696
+        ]
+      ]
+    },
+    {
+      "name": "replay_benchmark",
+      "allocated_bytes_unique_within_directory": 421888,
+      "exclusive_reclaim_bytes": 421888,
+      "group": "性能探针、短试和新版前期开发",
+      "description": "四源回放吞吐、预取张量一致性、批量指标验证",
+      "connections_and_retention": "测试更新丢弃；留下源码和性能证据。没有大权重。",
+      "file_count": 10,
+      "largest_files_by_apparent_bytes": [
+        [
+          "sources.tar.gz",
+          283729
+        ],
+        [
+          "DATA_PARITY.json",
+          35111
+        ],
+        [
+          "attempt_map_limit/DATA_PARITY.json",
+          35111
+        ],
+        [
+          "THROUGHPUT.json",
+          22619
+        ],
+        [
+          "attempt_map_limit/THROUGHPUT.json",
+          14721
+        ],
+        [
+          "METRICS.json",
+          6244
+        ]
+      ]
+    },
+    {
+      "name": "replay_benchmark_large",
+      "allocated_bytes_unique_within_directory": 348160,
+      "exclusive_reclaim_bytes": 348160,
+      "group": "性能探针、短试和新版前期开发",
+      "description": "replay 更大 batch（256/512）的吞吐探针",
+      "connections_and_retention": "同上，纯性能测量。",
+      "file_count": 4,
+      "largest_files_by_apparent_bytes": [
+        [
+          "sources.tar.gz",
+          285576
+        ],
+        [
+          "DATA_PARITY.json",
+          35111
+        ],
+        [
+          "THROUGHPUT.json",
+          20425
+        ],
+        [
+          "SOURCE_ARCHIVE.json",
+          246
+        ]
+      ]
+    },
+    {
+      "name": "replay_pilot",
+      "allocated_bytes_unique_within_directory": 1054138368,
+      "exclusive_reclaim_bytes": 10338304,
+      "group": "性能探针、短试和新版前期开发",
+      "description": "8k 抽样窗口的 batch/学习率短筛，多组小试已完成",
+      "connections_and_retention": "父模型是 AMASS joint100k；retention/horizon 复用其固定基线。parent.pt 是共享硬链接，不能当作额外近 1 GiB。",
+      "file_count": 32,
+      "largest_files_by_apparent_bytes": [
+        [
+          "parent.pt",
+          1043792787
+        ],
+        [
+          "TRAIN_IDENTITIES.jsonl",
+          7582907
+        ],
+        [
+          "batch128_lr2/metrics.jsonl",
+          482520
+        ],
+        [
+          "baseline/metrics.jsonl",
+          482463
+        ],
+        [
+          "batch128_lr1/metrics.jsonl",
+          482443
+        ],
+        [
+          "reference32/metrics.jsonl",
+          482420
+        ]
+      ]
+    },
+    {
+      "name": "replay_pilot_horizon",
+      "allocated_bytes_unique_within_directory": 1060470784,
+      "exclusive_reclaim_bytes": 16670720,
+      "group": "性能探针、短试和新版前期开发",
+      "description": "将提高回放权重的一组延长到 16k 抽样窗口，检查训练时长",
+      "connections_and_retention": "与 retention/pilot 对照相连，门槛仍未全部通过；parent.pt 同样共享。",
+      "file_count": 20,
+      "largest_files_by_apparent_bytes": [
+        [
+          "parent.pt",
+          1043792787
+        ],
+        [
+          "TRAIN_IDENTITIES.jsonl",
+          15164050
+        ],
+        [
+          "baseline/metrics.jsonl",
+          482463
+        ],
+        [
+          "replay_weighted/metrics.jsonl",
+          482430
+        ],
+        [
+          "sources.tar.gz",
+          302024
+        ],
+        [
+          "replay_weighted/updates.jsonl",
+          36417
+        ]
+      ]
+    },
+    {
+      "name": "replay_pilot_retention",
+      "allocated_bytes_unique_within_directory": 1045819392,
+      "exclusive_reclaim_bytes": 2019328,
+      "group": "性能探针、短试和新版前期开发",
+      "description": "降低主干学习率/增加回放 loss 权重，检查遗忘是否改善",
+      "connections_and_retention": "复用 pilot 清单/对照及同一个父模型；短筛门槛未全部通过，不能当作正式通过模型。",
+      "file_count": 20,
+      "largest_files_by_apparent_bytes": [
+        [
+          "parent.pt",
+          1043792787
+        ],
+        [
+          "baseline/metrics.jsonl",
+          482463
+        ],
+        [
+          "slow_prior/metrics.jsonl",
+          482439
+        ],
+        [
+          "replay_weighted/metrics.jsonl",
+          482416
+        ],
+        [
+          "sources.tar.gz",
+          302050
+        ],
+        [
+          "replay_weighted/RESULT.json",
+          29398
+        ]
+      ]
+    },
+    {
+      "name": "scene_contact_reliability_preparation",
+      "allocated_bytes_unique_within_directory": 28672,
+      "exclusive_reclaim_bytes": 28672,
+      "group": "当前训练与共用数据：优先保留",
+      "description": "后续场景阶段的脚接触可靠性组件：四类真实 GRAIL 窗口验收",
+      "connections_and_retention": "状态为“组件已验收，尚未集成训练”。没有在这里训练新模型，也没有修改当前 EGO 损失。是后续准备记录，建议保留。",
+      "file_count": 6,
+      "largest_files_by_apparent_bytes": [
+        [
+          "acceptance/RESULT.json",
+          7124
+        ],
+        [
+          "acceptance/slope.npz",
+          1657
+        ],
+        [
+          "acceptance/stair_p2.npz",
+          1618
+        ],
+        [
+          "acceptance/curb.npz",
+          1533
+        ],
+        [
+          "acceptance/stair_p1.npz",
+          1526
+        ],
+        [
+          "STATUS.json",
+          1041
+        ]
+      ]
+    },
+    {
+      "name": "scene_ego128",
+      "allocated_bytes_unique_within_directory": 2950512640,
+      "exclusive_reclaim_bytes": 2950512640,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "最早的三原生数据集 EGO 场景训练：全局/patch 场景条件，30k 完成，选中 25k",
+      "connections_and_retention": "从 `amass128/training/last.pt` 的混合 55k 先验起步。不是后面 local/conditioning 五组的父模型。若不再需要这一代场景结果，可作为整条旧分支评估。",
+      "file_count": 186,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/best.pt",
+          1463264922
+        ],
+        [
+          "training/last.pt",
+          1463264922
+        ],
+        [
+          "training/updates.jsonl",
+          10995007
+        ],
+        [
+          "selection/step_015000.json",
+          278177
+        ],
+        [
+          "selection/step_005000.json",
+          278141
+        ],
+        [
+          "selection/step_000000.json",
+          278053
+        ]
+      ]
+    },
+    {
+      "name": "scene_ego128_conditioning",
+      "allocated_bytes_unique_within_directory": 269041664,
+      "exclusive_reclaim_bytes": 269041664,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "冻结同一无场景 30k 基座，五组各 3k：full、motion_only、points_only、late_only、ungated；两套完整评测已完成",
+      "connections_and_retention": "每组 `last.pt` 仅约 9.2 MiB，**都需要无场景 30k 基座**。末端注入在该旧验证协议上最好；不是当前模型的消融。",
+      "file_count": 102,
+      "largest_files_by_apparent_bytes": [
+        [
+          "points_only/updates.jsonl",
+          27726185
+        ],
+        [
+          "full/updates.jsonl",
+          27724259
+        ],
+        [
+          "late_only/updates.jsonl",
+          27719969
+        ],
+        [
+          "ungated/updates.jsonl",
+          27718149
+        ],
+        [
+          "motion_only/updates.jsonl",
+          26422714
+        ],
+        [
+          "points_only/last.pt",
+          9640077
+        ]
+      ]
+    },
+    {
+      "name": "scene_ego128_local",
+      "allocated_bytes_unique_within_directory": 3344855040,
+      "exclusive_reclaim_bytes": 3344855040,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "预测人体皮肤的局部场景反馈，30k 完成，选中 27k；包含场景消融/回归评测",
+      "connections_and_retention": "从 AMASS EGO best50k 起步；与 `scene_ego128_noscene` 配对作有/无场景对照。删它会失去这一代局部反馈模型及可视化，不影响当前从零训练。",
+      "file_count": 1519,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/best.pt",
+          1482110756
+        ],
+        [
+          "training/last.pt",
+          1482110756
+        ],
+        [
+          "selection/candidates/step_027000.pt",
+          1482110756
+        ],
+        [
+          "training/updates.jsonl",
+          260837829
+        ],
+        [
+          "selection/comprehensive/step_030000.json",
+          2736605
+        ],
+        [
+          "selection/comprehensive/step_027000.json",
+          2736578
+        ]
+      ]
+    },
+    {
+      "name": "scene_ego128_noscene",
+      "allocated_bytes_unique_within_directory": 2332975104,
+      "exclusive_reclaim_bytes": 2332975104,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "三原生数据集 EGO 无场景适配对照，30k 完成并选中 30k",
+      "connections_and_retention": "**旧 EGO 场景改进系列的核心基座**：residual、五组 conditioning、两种继续训练都要用它。想保留这些适配器可运行，就应保留其 `selection/best.pt` 及合同。",
+      "file_count": 83,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/best.pt",
+          1029476953
+        ],
+        [
+          "training/last.pt",
+          1029476953
+        ],
+        [
+          "selection/candidates/step_030000.pt",
+          1029476953
+        ],
+        [
+          "training/updates.jsonl",
+          253809563
+        ],
+        [
+          "selection/comprehensive/step_030000.json",
+          2736264
+        ],
+        [
+          "selection/comprehensive/step_021000.json",
+          2736196
+        ]
+      ]
+    },
+    {
+      "name": "scene_ego128_noscene_continue",
+      "allocated_bytes_unique_within_directory": 14217216,
+      "exclusive_reclaim_bytes": 14217216,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "较激进的无场景继续训练，计划 8k，约 1188 步停止",
+      "connections_and_retention": "与 residual_checks 的预算/学习率诊断相连；现在没有 `.pt`，主要是训练与恢复记录。",
+      "file_count": 18,
+      "largest_files_by_apparent_bytes": [
+        [
+          "training/updates.jsonl",
+          10047139
+        ],
+        [
+          "training/interrupted_tail_000000_f49664e6e48f.jsonl",
+          2462037
+        ],
+        [
+          "selection/quick/step_001000.json",
+          348289
+        ],
+        [
+          "selection/quick/step_000000.json",
+          348050
+        ],
+        [
+          "PREPARED_CONTRACT.json",
+          329469
+        ],
+        [
+          "training/CONTRACT.json",
+          329469
+        ]
+      ]
+    },
+    {
+      "name": "scene_ego128_noscene_low_lr",
+      "allocated_bytes_unique_within_directory": 1058881536,
+      "exclusive_reclaim_bytes": 1058881536,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "无场景 30k 基座的低学习率保守续训，额外 3k 已完成",
+      "connections_and_retention": "作为 residual 的同预算优化对照；保留约 982 MiB 的 final checkpoint。放弃这组对照即可评估去掉其权重。",
+      "file_count": 22,
+      "largest_files_by_apparent_bytes": [
+        [
+          "training/last.pt",
+          1029533849
+        ],
+        [
+          "training/updates.jsonl",
+          25141363
+        ],
+        [
+          "evaluation/METRICS.json",
+          2736494
+        ],
+        [
+          "evaluation/quick/step_002000.json",
+          347948
+        ],
+        [
+          "evaluation/quick/step_003000.json",
+          347913
+        ],
+        [
+          "PREPARED_CONTRACT.json",
+          328572
+        ]
+      ]
+    },
+    {
+      "name": "scene_ego128_rejected_intrinsics",
+      "allocated_bytes_unique_within_directory": 684032,
+      "exclusive_reclaim_bytes": 684032,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "早期相机内参错误的废弃试跑，158 步停止",
+      "connections_and_retention": "权重已退役，保留 `RETIREMENT.json`、旧合同与源码归档。基本不占空间。",
+      "file_count": 11,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/step_000000.json",
+          278134
+        ],
+        [
+          "SEALED_SOURCES.zip",
+          212269
+        ],
+        [
+          "training/updates.jsonl",
+          51569
+        ],
+        [
+          "training/CONTRACT.json",
+          35405
+        ],
+        [
+          "preflight/cuda.json",
+          32681
+        ],
+        [
+          "preflight/cpu.json",
+          32678
+        ]
+      ]
+    },
+    {
+      "name": "scene_ego128_relations",
+      "allocated_bytes_unique_within_directory": 9584640,
+      "exclusive_reclaim_bytes": 9584640,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "从 residual3k 开始的 500 步观测表面关系小试；快评完成，未提升为正式候选",
+      "connections_and_retention": "当前无权重，主要保留失败/恢复、几何审计和快评证据。文档引用 residual，不代表当前训练读取它。",
+      "file_count": 68,
+      "largest_files_by_apparent_bytes": [
+        [
+          "training/updates.jsonl",
+          4652413
+        ],
+        [
+          "evaluation/quick/RESULT.json",
+          347988
+        ],
+        [
+          "evaluation/recovered/RESULT.json",
+          339121
+        ],
+        [
+          "PREPARED_CONTRACT.json",
+          331563
+        ],
+        [
+          "training/CONTRACT.json",
+          331563
+        ],
+        [
+          "preparation_attempts/cpu_cross_device_parity/PREPARED_CONTRACT.json",
+          331563
+        ]
+      ]
+    },
+    {
+      "name": "scene_ego128_residual",
+      "allocated_bytes_unique_within_directory": 1440485376,
+      "exclusive_reclaim_bytes": 1440485376,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "冻结无场景 30k 基座，只训练残差场景适配器；8k 完成，选中 3k",
+      "connections_and_retention": "依赖 `scene_ego128_noscene/selection/best.pt`。`scene_ego128_relations` 又从其 3k 适配器起步；不是独立完整模型。",
+      "file_count": 53,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/best.pt",
+          679126779
+        ],
+        [
+          "training/last.pt",
+          679126779
+        ],
+        [
+          "selection/candidates/step_003000.pt",
+          679126779
+        ],
+        [
+          "training/updates.jsonl",
+          69643217
+        ],
+        [
+          "selection/comprehensive/step_005000.json",
+          2736356
+        ],
+        [
+          "selection/comprehensive/step_003000.json",
+          2736306
+        ]
+      ]
+    },
+    {
+      "name": "scene_ego128_residual_checks",
+      "allocated_bytes_unique_within_directory": 3694592,
+      "exclusive_reclaim_bytes": 3694592,
+      "group": "较早的 EGO 与场景适配实验",
+      "description": "residual 的正确/错配场景检查、几何误差分布、后续控制实验汇总",
+      "connections_and_retention": "不训练一个新基座。关联 residual、relations、两种无场景续训及五组 conditioning；主要是结果记录。",
+      "file_count": 21,
+      "largest_files_by_apparent_bytes": [
+        [
+          "metrics.jsonl",
+          667996
+        ],
+        [
+          "geometry_arrays/0110.npz",
+          291133
+        ],
+        [
+          "geometry_arrays/0117.npz",
+          290582
+        ],
+        [
+          "geometry_arrays/0079.npz",
+          290574
+        ],
+        [
+          "geometry_arrays/0080.npz",
+          290556
+        ],
+        [
+          "geometry_arrays/0140.npz",
+          290482
+        ]
+      ]
+    },
+    {
+      "name": "scene_exo128_noscene_repair",
+      "allocated_bytes_unique_within_directory": 0,
+      "exclusive_reclaim_bytes": 0,
+      "group": "EXO 修复系列：多数目录已经很小",
+      "description": "三原生数据集 EXO 修复预留输出",
+      "connections_and_retention": "没有实际训练产物，没有释放空间的意义。",
+      "file_count": 0,
+      "largest_files_by_apparent_bytes": []
+    },
+    {
+      "name": "scene_joint128_comparison",
+      "allocated_bytes_unique_within_directory": 2905976832,
+      "exclusive_reclaim_bytes": 2905976832,
+      "group": "联合 EGO/EXO、回放与联合场景系列",
+      "description": "旧 scene1000 与 replay2000 的完整对照和 CPU/GPU/内参一致性检查；最终 GPU 完整比较已完成",
+      "connections_and_retention": "同时依赖上述两个旧权重及 replay 验证清单。约 **2.45 GiB 是 `.npz` 预测数组**；保留汇总和逐例指标可记录结论，删除预测数组后相应可视化和某些复核需重算。它不是新训练。",
+      "file_count": 36796,
+      "largest_files_by_apparent_bytes": [
+        [
+          "step_001000_full_gpu/PROTOCOL.json",
+          9943332
+        ],
+        [
+          "step_001000_full_hybrid/PROTOCOL.json",
+          9943282
+        ],
+        [
+          "step_001000_batch_cpu_probe/PROTOCOL.json",
+          9943226
+        ],
+        [
+          "step_001000_full_cuda/PROTOCOL.json",
+          9943220
+        ],
+        [
+          "step_001000_full_cpu/PROTOCOL.json",
+          9943076
+        ],
+        [
+          "step_001000_full_gpu/comparison_gpu.log",
+          7500833
+        ]
+      ]
+    },
+    {
+      "name": "scene_joint128_conditioning",
+      "allocated_bytes_unique_within_directory": 32727040,
+      "exclusive_reclaim_bytes": 32727040,
+      "group": "联合 EGO/EXO、回放与联合场景系列",
+      "description": "第一版联合场景适配器，停在 1000 / 3000 步，存在 EXO 内参重复缩放及分支学习率问题",
+      "connections_and_retention": "依赖 replay step2000。是旧完整比较的 scene 模型；不再活动。此前要求保留的回退版本。",
+      "file_count": 10,
+      "largest_files_by_apparent_bytes": [
+        [
+          "training/last.pt",
+          32377285
+        ],
+        [
+          "training/updates.jsonl",
+          240216
+        ],
+        [
+          "training/updates.crash_tail_after_step_500.jsonl",
+          51901
+        ],
+        [
+          "training/updates.crash_tail_after_step_500.attempt2.jsonl",
+          23397
+        ],
+        [
+          "training/resume_stdout.log",
+          4475
+        ],
+        [
+          "DIAGNOSIS.json",
+          1728
+        ]
+      ]
+    },
+    {
+      "name": "scene_joint128_conditioning_corrected",
+      "allocated_bytes_unique_within_directory": 677752832,
+      "exclusive_reclaim_bytes": 677752832,
+      "group": "联合 EGO/EXO、回放与联合场景系列",
+      "description": "修正 EXO 内参和分支学习率，从同一 replay2000 重新训练，3k 已完成；完整验证已完成",
+      "connections_and_retention": "**重新初始化场景适配器，不继承旧 scene1000。** `training/last.pt` 约 31 MiB，需要 replay2000 才能构成可用模型。还混有 GRAIL 源输入审计、官方/重建数据复核、RICH 单独评测、整段导出和预览。",
+      "file_count": 521,
+      "largest_files_by_apparent_bytes": [
+        [
+          "validation_step_003000_full/rows.jsonl",
+          70219798
+        ],
+        [
+          "training/last.pt",
+          32400555
+        ],
+        [
+          "performance/geometry_migration/source/last.pt",
+          32400555
+        ],
+        [
+          "performance/recovery_source/last.pt",
+          32400363
+        ],
+        [
+          "sequence_scene_exports_step003000_fk_consistent/shared_motion_viewer_cache/sequence_20261026T102929_739309Z_exo_exo_scene.npz",
+          6342670
+        ],
+        [
+          "sequence_scene_exports_step003000_fk_consistent/shared_motion_viewer_cache/sequence_20261026T102929_739309Z_exo_exo_lower_only.npz",
+          6341771
+        ]
+      ]
+    },
+    {
+      "name": "scene_joint128_conditioning_optimizer_check",
+      "allocated_bytes_unique_within_directory": 0,
+      "exclusive_reclaim_bytes": 0,
+      "group": "联合 EGO/EXO、回放与联合场景系列",
+      "description": "联合场景优化器检查的预留目录",
+      "connections_and_retention": "没有产物。",
+      "file_count": 0,
+      "largest_files_by_apparent_bytes": []
+    },
+    {
+      "name": "scene_joint128_noscene",
+      "allocated_bytes_unique_within_directory": 88010752,
+      "exclusive_reclaim_bytes": 88010752,
+      "group": "联合 EGO/EXO、回放与联合场景系列",
+      "description": "较早的三原生数据集无场景联合适配方案，不含 AMASS 回放；当前记录为失败，已有失败/保留能力诊断",
+      "connections_and_retention": "旧 EGO55k + EXO continue15k 初始化。当前无 `.pt`，主要是零步评测和失败记录；不要当作正在跑的 joint 模型。",
+      "file_count": 34,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/step_000000/exo/metrics.jsonl",
+          80041684
+        ],
+        [
+          "selection/step_000000/ego/metrics.jsonl",
+          3593090
+        ],
+        [
+          "PROTOCOL.json",
+          1895996
+        ],
+        [
+          "preparation_revision_001/PROTOCOL.json",
+          1895896
+        ],
+        [
+          "preflight/evaluator_smoke_cuda/exo/metrics.jsonl",
+          86136
+        ],
+        [
+          "preflight/evaluator_smoke_cpu/exo/metrics.jsonl",
+          86127
+        ]
+      ]
+    },
+    {
+      "name": "scene_joint128_noscene_multigap",
+      "allocated_bytes_unique_within_directory": 6041600,
+      "exclusive_reclaim_bytes": 6041600,
+      "group": "联合 EGO/EXO、回放与联合场景系列",
+      "description": "多缺帧条件的联合无场景准备/验收分支",
+      "connections_and_retention": "使用同样旧初始化，复用前一目录的零步基线；未见完成的正式训练权重。",
+      "file_count": 25,
+      "largest_files_by_apparent_bytes": [
+        [
+          "selection/step_000000/ego/metrics.jsonl",
+          3593090
+        ],
+        [
+          "PROTOCOL.json",
+          1897334
+        ],
+        [
+          "preflight/evaluator_smoke_cuda/exo/metrics.jsonl",
+          86136
+        ],
+        [
+          "preflight/evaluator_smoke_cpu/exo/metrics.jsonl",
+          86127
+        ],
+        [
+          "preflight/evaluator_smoke_cuda/exo/STATUS.json",
+          69178
+        ],
+        [
+          "preflight/evaluator_smoke_cuda/exo/RESULT.json",
+          69178
+        ]
+      ]
+    },
+    {
+      "name": "scene_joint128_replay",
+      "allocated_bytes_unique_within_directory": 2931908608,
+      "exclusive_reclaim_bytes": 1888108544,
+      "group": "联合 EGO/EXO、回放与联合场景系列",
+      "description": "四源无场景联合适配，含 AMASS 回放，2k / 256k 抽样窗口已完成",
+      "connections_and_retention": "从 AMASS joint best100k 起步；step2000 是两代联合场景模型的父权重。已完成训练不等于全部保留能力门槛通过。保留旧场景模型运行能力就需要它的候选权重。",
+      "file_count": 141,
+      "largest_files_by_apparent_bytes": [
+        [
+          "parent.pt",
+          1043792787
+        ],
+        [
+          "candidates/step_002000.pt",
+          814898871
+        ],
+        [
+          "training/last.pt",
+          814898871
+        ],
+        [
+          "training/updates.jsonl",
+          238237990
+        ],
+        [
+          "visualization/case_06.npz",
+          47306864
+        ],
+        [
+          "visualization/case_04.npz",
+          46711230
+        ]
+      ]
+    },
+    {
+      "name": "trumans_exo_moving_review",
+      "allocated_bytes_unique_within_directory": 98799616,
+      "exclusive_reclaim_bytes": 98799616,
+      "group": "旧筛选与人工预览缓存",
+      "description": "TRUMANS 移动相机预览与验收",
+      "connections_and_retention": "对应 `exo_preparation/trumans_moving` 的准备结果；预览本身可以重建，正式观测数据不在这里。",
+      "file_count": 87,
+      "largest_files_by_apparent_bytes": [
+        [
+          "2023-02-17@10-53-45_000480.npz",
+          32277457
+        ],
+        [
+          "2023-02-18@16-46-38_000110.npz",
+          19870072
+        ],
+        [
+          "2023-02-18@22-16-27_002190.npz",
+          19787444
+        ],
+        [
+          "2023-02-13@22-31-47_000030.npz",
+          18599693
+        ],
+        [
+          "PREVIEW.png",
+          888661
+        ],
+        [
+          "MOVING_CAMERA_LATER.png",
+          788675
+        ]
+      ]
+    },
+    {
+      "name": "trumans_exo_review",
+      "allocated_bytes_unique_within_directory": 91852800,
+      "exclusive_reclaim_bytes": 91852800,
+      "group": "旧筛选与人工预览缓存",
+      "description": "早期固定 EXO 相机/遮挡预览",
+      "connections_and_retention": "人工查看产物，不是正式 EXO 数据源；与 moving_review 共享案例选择。",
+      "file_count": 15,
+      "largest_files_by_apparent_bytes": [
+        [
+          "2023-02-17@10-53-45_000480.npz",
+          32027655
+        ],
+        [
+          "2023-02-18@16-46-38_000110.npz",
+          19811997
+        ],
+        [
+          "2023-02-18@22-16-27_002190.npz",
+          19688686
+        ],
+        [
+          "2023-02-13@22-31-47_000030.npz",
+          18499734
+        ],
+        [
+          "OCCLUDED_CASE.png",
+          899012
+        ],
+        [
+          "PREVIEW.png",
+          844940
+        ]
+      ]
+    }
+  ],
+  "curated_dependencies": [
+    {
+      "source": "native_ego4_from_scratch_v2",
+      "target": "amass128",
+      "kind": "current_data",
+      "evidence": "configs/native_ego4_from_scratch_v2.yaml; configs/paths.local.yaml",
+      "note": "Uses index/complete.json and verified_data, not historical amass128 model weights."
+    },
+    {
+      "source": "native_ego4_from_scratch_v2",
+      "target": "grail_ego_quality_v2",
+      "kind": "current_selection_contract",
+      "evidence": "configs/scene_data_current.json; scenemi/data/checked_scene_dataset.py:SceneSelection.__init__",
+      "note": "grail_train_main, grail_train_chairs, chair_prototypes; all pinned files are hashed at initialization; metadata hash checks do not imply test motion arrays are used."
+    },
+    {
+      "source": "native_ego4_from_scratch_v2",
+      "target": "grail_heldout_quality_v1",
+      "kind": "current_selection_contract",
+      "evidence": "configs/scene_data_current.json; scenemi/data/checked_scene_dataset.py:SceneSelection.__init__",
+      "note": "grail_validation, grail_test, quality_status, quality_validation; all pinned files are hashed at initialization; metadata hash checks do not imply test motion arrays are used."
+    },
+    {
+      "source": "native_ego4_from_scratch_v2",
+      "target": "exo_preparation",
+      "kind": "current_selection_contract",
+      "evidence": "configs/scene_data_current.json; scenemi/data/checked_scene_dataset.py:SceneSelection.__init__",
+      "note": "trumans_exo_manifest, grail_train_exo; all pinned files are hashed at initialization; metadata hash checks do not imply test motion arrays are used."
+    },
+    {
+      "source": "scene_ego128",
+      "target": "amass128",
+      "kind": "historical_weight_parent",
+      "evidence": "configs/scene_ego128.yaml",
+      "note": "Mixed prior final55k."
+    },
+    {
+      "source": "scene_ego128_local",
+      "target": "amass_ego128",
+      "kind": "historical_weight_parent",
+      "evidence": "configs/scene_ego128_local.yaml",
+      "note": "EGO best50k."
+    },
+    {
+      "source": "scene_ego128_noscene",
+      "target": "amass_ego128",
+      "kind": "historical_weight_parent",
+      "evidence": "configs/scene_ego128_noscene.yaml",
+      "note": "EGO best50k."
+    },
+    {
+      "source": "scene_ego128_residual",
+      "target": "scene_ego128_noscene",
+      "kind": "historical_weight_parent",
+      "evidence": "configs/scene_ego128_residual.yaml",
+      "note": "Frozen no-scene30k base; adapters are not standalone full models."
+    },
+    {
+      "source": "scene_ego128_conditioning",
+      "target": "scene_ego128_noscene",
+      "kind": "historical_weight_parent",
+      "evidence": "configs/scene_conditioning.yaml; configs/scene_ego128_residual.yaml",
+      "note": "Frozen no-scene30k base; adapters are not standalone full models."
+    },
+    {
+      "source": "scene_ego128_noscene_low_lr",
+      "target": "scene_ego128_noscene",
+      "kind": "historical_weight_parent",
+      "evidence": "configs/scene_noscene_continue.yaml",
+      "note": "Frozen no-scene30k base; adapters are not standalone full models."
+    },
+    {
+      "source": "scene_ego128_noscene_continue",
+      "target": "scene_ego128_noscene",
+      "kind": "historical_weight_parent",
+      "evidence": "runs/scene_ego128_noscene_continue/PREPARED_CONTRACT.json",
+      "note": "Frozen no-scene30k base; adapters are not standalone full models."
+    },
+    {
+      "source": "scene_ego128_relations",
+      "target": "scene_ego128_residual",
+      "kind": "historical_weight_parent",
+      "evidence": "configs/scene_relations.yaml",
+      "note": "Residual best3k; relations weights have already been retired."
+    },
+    {
+      "source": "amass_exo128",
+      "target": "amass_ego128",
+      "kind": "historical_frozen_backbone",
+      "evidence": "configs/amass_exo128.yaml",
+      "note": "EGO final55k."
+    },
+    {
+      "source": "amass_exo_repair128",
+      "target": "amass_ego128",
+      "kind": "historical_frozen_backbone",
+      "evidence": "configs/amass_exo_repair.yaml",
+      "note": "EGO final55k."
+    },
+    {
+      "source": "amass_exo_basis128",
+      "target": "amass_ego128",
+      "kind": "historical_frozen_backbone",
+      "evidence": "configs/amass_exo_basis.yaml",
+      "note": "EGO final55k."
+    },
+    {
+      "source": "amass_exo_denoise128",
+      "target": "amass_ego128",
+      "kind": "historical_frozen_backbone",
+      "evidence": "configs/amass_exo_denoise.yaml",
+      "note": "EGO final55k."
+    },
+    {
+      "source": "amass_exo128_anchor",
+      "target": "amass_exo128",
+      "kind": "historical_reference_adapter",
+      "evidence": "configs/exo_observation_anchor.yaml",
+      "note": "Pinned reference adapter for diagnostics."
+    },
+    {
+      "source": "amass_exo_denoise128",
+      "target": "amass_exo_basis128",
+      "kind": "historical_metric_control",
+      "evidence": "configs/amass_exo_denoise.yaml",
+      "note": "Uses saved full-validation control metrics, not a denoise weight initialization."
+    },
+    {
+      "source": "amass_exo_completion128",
+      "target": "amass_exo_denoise128",
+      "kind": "historical_weight_parent",
+      "evidence": "configs/amass_exo_completion.yaml",
+      "note": "Denoise best36k."
+    },
+    {
+      "source": "amass_exo_continue128",
+      "target": "amass_exo_completion128",
+      "kind": "historical_weight_parent",
+      "evidence": "configs/amass_exo_continue.yaml",
+      "note": "Boundary best6k."
+    },
+    {
+      "source": "scene_joint128_noscene",
+      "target": "amass_ego128",
+      "kind": "historical_weight_initializer",
+      "evidence": "configs/scene_joint128_noscene.yaml",
+      "note": "Old EGO55k initializer."
+    },
+    {
+      "source": "scene_joint128_noscene",
+      "target": "amass_exo_continue128",
+      "kind": "historical_weight_initializer",
+      "evidence": "configs/scene_joint128_noscene.yaml",
+      "note": "Old EXO best15k initializer."
+    },
+    {
+      "source": "scene_joint128_noscene_multigap",
+      "target": "amass_ego128",
+      "kind": "historical_weight_initializer",
+      "evidence": "configs/scene_joint128_noscene_multigap.yaml",
+      "note": "Old EGO55k initializer."
+    },
+    {
+      "source": "scene_joint128_noscene_multigap",
+      "target": "amass_exo_continue128",
+      "kind": "historical_weight_initializer",
+      "evidence": "configs/scene_joint128_noscene_multigap.yaml",
+      "note": "Old EXO best15k initializer."
+    },
+    {
+      "source": "scene_joint128_replay",
+      "target": "amass_joint128",
+      "kind": "historical_weight_parent",
+      "evidence": "runs/scene_joint128_replay/PARENT.json",
+      "note": "Scratch best100k, pinned at replay/parent.pt; shared inode."
+    },
+    {
+      "source": "scene_joint128_conditioning",
+      "target": "scene_joint128_replay",
+      "kind": "historical_required_full_parent",
+      "evidence": "configs/scene_joint128_conditioning.yaml",
+      "note": "Requires replay candidates/step_002000.pt; scene checkpoint is adapter-only."
+    },
+    {
+      "source": "scene_joint128_conditioning_corrected",
+      "target": "scene_joint128_replay",
+      "kind": "historical_required_full_parent",
+      "evidence": "configs/scene_joint128_conditioning_corrected.yaml",
+      "note": "Requires replay candidates/step_002000.pt; scene checkpoint is adapter-only."
+    },
+    {
+      "source": "scene_joint128_comparison",
+      "target": "scene_joint128_conditioning",
+      "kind": "historical_evaluation_model",
+      "evidence": "configs/scene_joint128_comparison_gpu.yaml",
+      "note": "Old scene1000 vs replay2000 complete comparison; complete."
+    },
+    {
+      "source": "scene_joint128_comparison",
+      "target": "scene_joint128_replay",
+      "kind": "historical_evaluation_model",
+      "evidence": "configs/scene_joint128_comparison_gpu.yaml",
+      "note": "Old scene1000 vs replay2000 complete comparison; complete."
+    },
+    {
+      "source": "preserved",
+      "target": "amass_joint128",
+      "kind": "independent_recovery_copy",
+      "evidence": "runs/preserved/current_joint_conditioning_20261029_165943/PRESERVATION.json; NOSCENE_PARENT.json; SCENE_STEP1000.json",
+      "note": "Independent file copy, not a hardlink. Original code/config paths still need a restoration plan."
+    },
+    {
+      "source": "preserved",
+      "target": "scene_joint128_replay",
+      "kind": "independent_recovery_copy",
+      "evidence": "runs/preserved/current_joint_conditioning_20261029_165943/PRESERVATION.json; NOSCENE_PARENT.json; SCENE_STEP1000.json",
+      "note": "Independent file copy, not a hardlink. Original code/config paths still need a restoration plan."
+    },
+    {
+      "source": "preserved",
+      "target": "scene_joint128_conditioning",
+      "kind": "independent_recovery_copy",
+      "evidence": "runs/preserved/current_joint_conditioning_20261029_165943/PRESERVATION.json; NOSCENE_PARENT.json; SCENE_STEP1000.json",
+      "note": "Independent file copy, not a hardlink. Original code/config paths still need a restoration plan."
+    },
+    {
+      "source": "replay_pilot",
+      "target": "amass_joint128",
+      "kind": "historical_shared_parent",
+      "evidence": "runs/replay_pilot/PARENT.json",
+      "note": "parent.pt is a hardlink to the selected AMASS joint parent."
+    },
+    {
+      "source": "replay_pilot_retention",
+      "target": "amass_joint128",
+      "kind": "historical_shared_parent",
+      "evidence": "runs/replay_pilot_retention/PARENT.json",
+      "note": "parent.pt is a hardlink to the selected AMASS joint parent."
+    },
+    {
+      "source": "replay_pilot_horizon",
+      "target": "amass_joint128",
+      "kind": "historical_shared_parent",
+      "evidence": "runs/replay_pilot_horizon/PARENT.json",
+      "note": "parent.pt is a hardlink to the selected AMASS joint parent."
+    },
+    {
+      "source": "replay_pilot_retention",
+      "target": "replay_pilot",
+      "kind": "historical_control_reference",
+      "evidence": "configs/scene_joint128_replay_retention.yaml",
+      "note": "Fixed baseline/case reuse; pilots already complete."
+    },
+    {
+      "source": "replay_pilot_horizon",
+      "target": "replay_pilot",
+      "kind": "historical_control_reference",
+      "evidence": "configs/scene_joint128_replay_horizon.yaml",
+      "note": "Fixed baseline/case reuse; pilots already complete."
+    }
+  ],
+  "shared_files": [
+    {
+      "paths": [
+        "runs/scene_joint128_replay/parent.pt",
+        "runs/replay_pilot_retention/parent.pt",
+        "runs/replay_pilot/parent.pt",
+        "runs/replay_pilot_horizon/parent.pt",
+        "runs/amass_joint128/scratch/selection/best.pt"
+      ],
+      "bytes": 1043792787,
+      "allocated_bytes": 1043800064,
+      "nlink": 5
+    }
+  ],
+  "symlinks": [
+    [
+      "runs/amass128/verified_data/neutral/Transitions_mocap",
+      "/mnt/e/Datasets/human/AMASS/egoallo_neutral30_v1/neutral/Transitions_mocap"
+    ],
+    [
+      "runs/amass128/verified_data/neutral/SSM_synced",
+      "/mnt/e/Datasets/human/AMASS/egoallo_neutral30_v1/neutral/SSM_synced"
+    ]
+  ],
+  "recorded_cross_references": [
+    {
+      "source": "amass128",
+      "target": "amass_ego128",
+      "reference_count": 6,
+      "examples": [
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/active_experiment/readiness",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_ego128/READINESS.json"
+        },
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/active_experiment/training_status",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_ego128/training/STATUS.json"
+        }
+      ]
+    },
+    {
+      "source": "amass128",
+      "target": "amass_exo_continue128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass128/VALIDATION_COVERAGE.json",
+          "field": "/manifest_match/1/path",
+          "value": "runs/amass_exo_continue128/PROTOCOL.json"
+        }
+      ]
+    },
+    {
+      "source": "amass128",
+      "target": "amass_joint128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass128/VALIDATION_COVERAGE.json",
+          "field": "/manifest_match/2/path",
+          "value": "runs/amass_joint128/scratch/PROTOCOL.json"
+        }
+      ]
+    },
+    {
+      "source": "amass128",
+      "target": "grail_preview",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/grail_review_manifest",
+          "value": "/home/wenxin/projects/SceneMI/runs/grail_preview/support_v2_review/PREPARED_CASES.json"
+        }
+      ]
+    },
+    {
+      "source": "amass128",
+      "target": "scene_ego128",
+      "reference_count": 6,
+      "examples": [
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/concurrent_scene_control/readiness",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_ego128/READINESS.json"
+        },
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/concurrent_scene_control/status",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_ego128/training/STATUS.json"
+        }
+      ]
+    },
+    {
+      "source": "amass128",
+      "target": "scene_ego128_local",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/active_scene_branch/readiness",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_ego128_local/READINESS.json"
+        },
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/active_scene_branch/status",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_ego128_local/training/STATUS.json"
+        }
+      ]
+    },
+    {
+      "source": "amass128",
+      "target": "scene_ego128_noscene",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/concurrent_scene_free_control/readiness",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_ego128_noscene/READINESS.json"
+        },
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/concurrent_scene_free_control/status",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_ego128_noscene/training/STATUS.json"
+        }
+      ]
+    },
+    {
+      "source": "amass128",
+      "target": "scene_ego128_noscene_low_lr",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/scene_followup/conservative_control",
+          "value": "runs/scene_ego128_noscene_low_lr/training/STATUS.json"
+        }
+      ]
+    },
+    {
+      "source": "amass128",
+      "target": "scene_ego128_relations",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/scene_followup/status",
+          "value": "runs/scene_ego128_relations/training/STATUS.json"
+        }
+      ]
+    },
+    {
+      "source": "amass128",
+      "target": "scene_ego128_residual",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/scene_repair/status",
+          "value": "runs/scene_ego128_residual/training/STATUS.json"
+        },
+        {
+          "file": "runs/amass128/READINESS.json",
+          "field": "/scene_repair/readiness",
+          "value": "runs/scene_ego128_residual/READINESS.json"
+        }
+      ]
+    },
+    {
+      "source": "amass_ego128",
+      "target": "amass128",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/amass_ego128/CONTROL.json",
+          "field": "/baseline/checkpoint",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass128/training/last.pt"
+        },
+        {
+          "file": "runs/amass_ego128/CONTROL.json",
+          "field": "/baseline/index",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass128/index/complete.json"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo128",
+      "target": "amass_ego128",
+      "reference_count": 9,
+      "examples": [
+        {
+          "file": "runs/amass_exo128/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        },
+        {
+          "file": "runs/amass_exo128/PROTOCOL.json",
+          "field": "/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo128_anchor",
+      "target": "amass_exo128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass_exo128_anchor/PROTOCOL.json",
+          "field": "/config/reference_adapter/source",
+          "value": "runs/amass_exo128/selection/best.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_basis128",
+      "target": "amass_ego128",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/amass_exo_basis128/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        },
+        {
+          "file": "runs/amass_exo_basis128/preparation_revision_001/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_completion128",
+      "target": "amass_ego128",
+      "reference_count": 8,
+      "examples": [
+        {
+          "file": "runs/amass_exo_completion128/COMPARISON.json",
+          "field": "/variants/control/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        },
+        {
+          "file": "runs/amass_exo_completion128/COMPARISON.json",
+          "field": "/variants/boundary/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_completion128",
+      "target": "amass_exo_basis128",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/amass_exo_completion128/control/PROTOCOL.json",
+          "field": "/config/validation/control_metrics",
+          "value": "runs/amass_exo_basis128/full_validation/metrics.jsonl"
+        },
+        {
+          "file": "runs/amass_exo_completion128/boundary/PROTOCOL.json",
+          "field": "/config/validation/control_metrics",
+          "value": "runs/amass_exo_basis128/full_validation/metrics.jsonl"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_completion128",
+      "target": "amass_exo_denoise128",
+      "reference_count": 14,
+      "examples": [
+        {
+          "file": "runs/amass_exo_completion128/control/PROTOCOL.json",
+          "field": "/config/validation/parent_metrics",
+          "value": "runs/amass_exo_denoise128/selection/step_036000/RESULT.json"
+        },
+        {
+          "file": "runs/amass_exo_completion128/control/PROTOCOL.json",
+          "field": "/config/parent/checkpoint",
+          "value": "runs/amass_exo_denoise128/selection/best.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_continue128",
+      "target": "amass128",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/amass_exo_continue128/STARTUP_STATUS.json",
+          "field": "/data_integrity_verified",
+          "value": "runs/amass128/integrity_recovery/recurrence/LOCAL_POST_RESUME_AUDIT.json"
+        },
+        {
+          "file": "runs/amass_exo_continue128/STARTUP_STATUS.json",
+          "field": "/data_root",
+          "value": "runs/amass128/verified_data"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_continue128",
+      "target": "amass_ego128",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/amass_exo_continue128/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        },
+        {
+          "file": "runs/amass_exo_continue128/EGO_ROUTE_AND_STAGE_REVIEW.json",
+          "field": "/base_checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_continue128",
+      "target": "amass_exo_basis128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass_exo_continue128/PROTOCOL.json",
+          "field": "/config/validation/control_metrics",
+          "value": "runs/amass_exo_basis128/full_validation/metrics.jsonl"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_continue128",
+      "target": "amass_exo_completion128",
+      "reference_count": 8,
+      "examples": [
+        {
+          "file": "runs/amass_exo_continue128/PROTOCOL.json",
+          "field": "/config/validation/parent_metrics",
+          "value": "runs/amass_exo_completion128/boundary/selection/step_006000/RESULT.json"
+        },
+        {
+          "file": "runs/amass_exo_continue128/PROTOCOL.json",
+          "field": "/config/parent/checkpoint",
+          "value": "runs/amass_exo_completion128/boundary/selection/best.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_continue128",
+      "target": "amass_joint128",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/amass_exo_continue128/LAUNCH.json",
+          "field": "/scratch_resume_argv/5",
+          "value": "--property=StandardOutput=append:/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/SERVICE.log"
+        },
+        {
+          "file": "runs/amass_exo_continue128/LAUNCH.json",
+          "field": "/scratch_resume_argv/6",
+          "value": "--property=StandardError=append:/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/SERVICE.log"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_denoise128",
+      "target": "amass_ego128",
+      "reference_count": 7,
+      "examples": [
+        {
+          "file": "runs/amass_exo_denoise128/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        },
+        {
+          "file": "runs/amass_exo_denoise128/STATUS.json",
+          "field": "/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_denoise128",
+      "target": "amass_exo_basis128",
+      "reference_count": 5,
+      "examples": [
+        {
+          "file": "runs/amass_exo_denoise128/PROTOCOL.json",
+          "field": "/config/validation/control_metrics",
+          "value": "runs/amass_exo_basis128/full_validation/metrics.jsonl"
+        },
+        {
+          "file": "runs/amass_exo_denoise128/preparation_revision_001/PROTOCOL.json",
+          "field": "/config/validation/control_metrics",
+          "value": "runs/amass_exo_basis128/full_validation/metrics.jsonl"
+        }
+      ]
+    },
+    {
+      "source": "amass_exo_repair128",
+      "target": "amass_ego128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass_exo_repair128/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "amass128",
+      "reference_count": 10,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/variants/scratch/data_root",
+          "value": "runs/amass128/verified_data"
+        },
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/variants/exo_only_frozen/data_root",
+          "value": "runs/amass128/verified_data"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "amass_ego128",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/scratch/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        },
+        {
+          "file": "runs/amass_joint128/scratch/PROTOCOL.json",
+          "field": "/config/baselines/ego",
+          "value": "runs/amass_ego128/selection/step_055000/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "amass_exo_completion128",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/CORRECTION.json",
+          "field": "/intended_restart_parent",
+          "value": "runs/amass_exo_completion128/boundary/selection/best.pt"
+        },
+        {
+          "file": "runs/amass_joint128/scratch/PROTOCOL.json",
+          "field": "/config/boundary_parent/checkpoint",
+          "value": "runs/amass_exo_completion128/boundary/selection/best.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "amass_exo_continue128",
+      "reference_count": 6,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/variants/warm/replacement",
+          "value": "runs/amass_exo_continue128"
+        },
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/variants/exo_only_frozen/startup",
+          "value": "runs/amass_exo_continue128/STARTUP_STATUS.json"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "native_batch_benchmark",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/three_corpus/benchmark",
+          "value": "runs/native_batch_benchmark/THROUGHPUT.json"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "replay_benchmark",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/replay_preparation/benchmark",
+          "value": "runs/replay_benchmark/THROUGHPUT.json"
+        },
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/replay_preparation/gpu_metric_parity",
+          "value": "runs/replay_benchmark/METRICS.json"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "replay_benchmark_large",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/replay_preparation/benchmark_large",
+          "value": "runs/replay_benchmark_large/THROUGHPUT.json"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "replay_pilot",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/replay_preparation/first_pilot_result",
+          "value": "runs/replay_pilot/RESULT.json"
+        },
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/replay_preparation/configuration_comparison",
+          "value": "runs/replay_pilot/COMPARISON.json"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "replay_pilot_horizon",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/replay_preparation/pilot_status",
+          "value": "runs/replay_pilot_horizon/STATUS.json"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "replay_pilot_retention",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/replay_preparation/retention_pilot_result",
+          "value": "runs/replay_pilot_retention/RESULT.json"
+        },
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/replay_preparation/retained_evaluation_candidate",
+          "value": "runs/replay_pilot_retention/replay_weighted/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "scene_joint128_noscene",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/three_corpus/failure_review",
+          "value": "runs/scene_joint128_noscene/FAILURE_REVIEW.json"
+        }
+      ]
+    },
+    {
+      "source": "amass_joint128",
+      "target": "scene_joint128_noscene_multigap",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/amass_joint128/PIPELINE_STATUS.json",
+          "field": "/three_corpus/successor",
+          "value": "runs/scene_joint128_noscene_multigap"
+        }
+      ]
+    },
+    {
+      "source": "data_inventory",
+      "target": "amass128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/data_inventory/SAMPLING_RUNTIME_AUDIT.json",
+          "field": "/reports/0/log_path",
+          "value": "runs/amass128/training/updates.jsonl"
+        }
+      ]
+    },
+    {
+      "source": "data_inventory",
+      "target": "amass_ego128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/data_inventory/SAMPLING_RUNTIME_AUDIT.json",
+          "field": "/reports/1/log_path",
+          "value": "runs/amass_ego128/training/updates.jsonl"
+        }
+      ]
+    },
+    {
+      "source": "data_inventory",
+      "target": "exo_preparation",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/data_inventory/EXO_FRAME_COUNTS.json",
+          "field": "/exo/train/grail/selection_file",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/grail_ego_aligned/train/selection.jsonl"
+        },
+        {
+          "file": "runs/data_inventory/EXO_FRAME_COUNTS.json",
+          "field": "/grail_alignment_policy/output",
+          "value": "runs/exo_preparation/grail_ego_aligned"
+        }
+      ]
+    },
+    {
+      "source": "data_inventory",
+      "target": "grail_ego_quality_v2",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/data_inventory/EXO_FRAME_COUNTS.json",
+          "field": "/grail_alignment_policy/train_sources/0",
+          "value": "runs/grail_ego_quality_v2/full/train/windows.jsonl"
+        },
+        {
+          "file": "runs/data_inventory/EXO_FRAME_COUNTS.json",
+          "field": "/grail_alignment_policy/train_sources/1",
+          "value": "runs/grail_ego_quality_v2/chair400/SELECTION.jsonl"
+        }
+      ]
+    },
+    {
+      "source": "data_inventory",
+      "target": "grail_heldout_quality_v1",
+      "reference_count": 7,
+      "examples": [
+        {
+          "file": "runs/data_inventory/GRAIL_HELDOUT_QUALITY.json",
+          "field": "/status",
+          "value": "runs/grail_heldout_quality_v1/full/STATUS.json"
+        },
+        {
+          "file": "runs/data_inventory/GRAIL_HELDOUT_QUALITY.json",
+          "field": "/validation",
+          "value": "runs/grail_heldout_quality_v1/full/VALIDATION.json"
+        }
+      ]
+    },
+    {
+      "source": "data_inventory",
+      "target": "scene_ego128_noscene",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/data_inventory/SAMPLING_RUNTIME_AUDIT.json",
+          "field": "/reports/2/log_path",
+          "value": "runs/scene_ego128_noscene/training/updates.jsonl"
+        }
+      ]
+    },
+    {
+      "source": "exo_preparation",
+      "target": "amass_ego128",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/exo_preparation/three_corpus_repair/model_probe/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        },
+        {
+          "file": "runs/exo_preparation/three_corpus_repair/model_probe/preparation_revision_001/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "exo_preparation",
+      "target": "amass_exo128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/exo_preparation/three_corpus_repair/SHARING_AUTHORIZATION.json",
+          "field": "/prior_memory_based_sharing_authorization",
+          "value": "runs/amass_exo128/SHARING_AUTHORIZATION.json"
+        }
+      ]
+    },
+    {
+      "source": "exo_preparation",
+      "target": "amass_exo_denoise128",
+      "reference_count": 5,
+      "examples": [
+        {
+          "file": "runs/exo_preparation/three_corpus_repair/READINESS.json",
+          "field": "/diagnostic_initialization/parent_run",
+          "value": "runs/amass_exo_denoise128"
+        },
+        {
+          "file": "runs/exo_preparation/three_corpus_repair/model_probe/PROTOCOL.json",
+          "field": "/config/parent_run",
+          "value": "runs/amass_exo_denoise128"
+        }
+      ]
+    },
+    {
+      "source": "grail_ego_contact",
+      "target": "grail_ego_filter",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/grail_ego_contact/full/STATUS.json",
+          "field": "/visibility_selection",
+          "value": "/home/wenxin/projects/SceneMI/runs/grail_ego_filter"
+        }
+      ]
+    },
+    {
+      "source": "grail_ego_contact",
+      "target": "grail_preview",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/grail_ego_contact/full/QUALITY_HOLD.json",
+          "field": "/evidence",
+          "value": "runs/grail_preview/filtered_ego_review/CASE10_CONTACT_CAMERA_AUDIT.json"
+        }
+      ]
+    },
+    {
+      "source": "grail_ego_quality_v2",
+      "target": "grail_ego_contact",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/grail_ego_quality_v2/pilot/JOB.json",
+          "field": "/baseline",
+          "value": "/home/wenxin/projects/SceneMI/runs/grail_ego_contact/full"
+        },
+        {
+          "file": "runs/grail_ego_quality_v2/full/JOB.json",
+          "field": "/baseline",
+          "value": "/home/wenxin/projects/SceneMI/runs/grail_ego_contact/full"
+        }
+      ]
+    },
+    {
+      "source": "grail_preview",
+      "target": "grail_ego_contact",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/grail_preview/filtered_ego_review/SELECTION.json",
+          "field": "/source_windows",
+          "value": "/home/wenxin/projects/SceneMI/runs/grail_ego_contact/full/train/windows.jsonl"
+        }
+      ]
+    },
+    {
+      "source": "grail_preview",
+      "target": "grail_ego_quality_v2",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/grail_preview/support_v2_review/PREPARED_CASES.json",
+          "field": "/cases/8/review_condition/synthetic_provenance/condition_file",
+          "value": "/home/wenxin/projects/SceneMI/runs/grail_ego_quality_v2/chair400/conditions/sitting__aluminum_bistro_patio_chair_perforated_metal_seat_fixed_splayed_legs__004.npz"
+        },
+        {
+          "file": "runs/grail_preview/support_v2_review/PREPARED_CASES.json",
+          "field": "/cases/9/review_condition/synthetic_provenance/condition_file",
+          "value": "/home/wenxin/projects/SceneMI/runs/grail_ego_quality_v2/chair400/conditions/sitting__panton_s_shaped_molded_plastic_chair_red__006.npz"
+        }
+      ]
+    },
+    {
+      "source": "maintenance",
+      "target": "amass_joint128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/maintenance/cleanup_20261029.json",
+          "field": "/deletions/0/path",
+          "value": "runs/amass_joint128/warm"
+        }
+      ]
+    },
+    {
+      "source": "maintenance",
+      "target": "scene_ego128_relations",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/maintenance/cleanup_20261029.json",
+          "field": "/files/0/path",
+          "value": "runs/scene_ego128_relations/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "maintenance",
+      "target": "scene_joint128_replay",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/maintenance/cleanup_20261029.json",
+          "field": "/verification/current_training_parent",
+          "value": "runs/scene_joint128_replay/candidates/step_002000.pt"
+        }
+      ]
+    },
+    {
+      "source": "method_v2_validation",
+      "target": "amass128",
+      "reference_count": 13,
+      "examples": [
+        {
+          "file": "runs/method_v2_validation/AMASS_READ_FAILURE_CHECK.json",
+          "field": "/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass128/verified_data/neutral/CMU/143/143_04_poses.npz"
+        },
+        {
+          "file": "runs/method_v2_validation/integrity_deadline_recheck/AMASS_TRAIN_VAL_INTEGRITY.json",
+          "field": "/failures/0/path",
+          "value": "/home/wenxin/projects/SceneMI-method-v2/runs/amass128/verified_data/neutral/KIT/1226/Trial_05_poses_reflect.npz"
+        }
+      ]
+    },
+    {
+      "source": "method_v2_validation",
+      "target": "exo_preparation",
+      "reference_count": 39,
+      "examples": [
+        {
+          "file": "runs/method_v2_validation/CUDA_ACCEPTANCE.json",
+          "field": "/native_scene_case/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-02-16@11-22-32"
+        },
+        {
+          "file": "runs/method_v2_validation/NATIVE_MOTION_INPUT_PROFILE.json",
+          "field": "/identities/89/identity/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-02-19@16-35-27"
+        }
+      ]
+    },
+    {
+      "source": "method_v2_validation",
+      "target": "scene_joint128_conditioning",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/method_v2_validation/ASSESSMENT.json",
+          "field": "/old_scene_run_observation/log",
+          "value": "runs/scene_joint128_conditioning/training/resume_stdout.log"
+        },
+        {
+          "file": "runs/method_v2_validation/ASSESSMENT_1792.json",
+          "field": "/old_scene_run_observation/log",
+          "value": "runs/scene_joint128_conditioning/training/resume_stdout.log"
+        }
+      ]
+    },
+    {
+      "source": "native_batch_benchmark",
+      "target": "amass_ego128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/native_batch_benchmark/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "native_batch_benchmark",
+      "target": "amass_exo_continue128",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/native_batch_benchmark/PROTOCOL.json",
+          "field": "/config/parent/checkpoint",
+          "value": "runs/amass_exo_continue128/selection/best.pt"
+        },
+        {
+          "file": "runs/native_batch_benchmark/PROTOCOL.json",
+          "field": "/config/parent/protocol",
+          "value": "runs/amass_exo_continue128/PROTOCOL.json"
+        }
+      ]
+    },
+    {
+      "source": "native_batch_benchmark",
+      "target": "exo_preparation",
+      "reference_count": 12,
+      "examples": [
+        {
+          "file": "runs/native_batch_benchmark/THROUGHPUT.json",
+          "field": "/rows/0/identities/1/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-02-16@14-01-26"
+        },
+        {
+          "file": "runs/native_batch_benchmark/THROUGHPUT.json",
+          "field": "/rows/0/identities/3/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-01-15@23-27-33"
+        }
+      ]
+    },
+    {
+      "source": "native_batch_benchmark",
+      "target": "scene_joint128_noscene",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/native_batch_benchmark/PROTOCOL.json",
+          "field": "/config/recovery/checkpoint",
+          "value": "runs/scene_joint128_noscene/training/last.pt"
+        },
+        {
+          "file": "runs/native_batch_benchmark/PROTOCOL.json",
+          "field": "/config/recovery/protocol",
+          "value": "runs/scene_joint128_noscene/PROTOCOL.json"
+        }
+      ]
+    },
+    {
+      "source": "native_ego4_from_scratch",
+      "target": "amass128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/native_ego4_from_scratch/CONTRACT.json",
+          "field": "/config/amass_index",
+          "value": "runs/amass128/index/complete.json"
+        }
+      ]
+    },
+    {
+      "source": "native_ego4_from_scratch_v2",
+      "target": "amass128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/native_ego4_from_scratch_v2/CONTRACT.json",
+          "field": "/config/amass_index",
+          "value": "runs/amass128/index/complete.json"
+        }
+      ]
+    },
+    {
+      "source": "preserved",
+      "target": "amass128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/joint_amass100k_PROTOCOL.json",
+          "field": "/config/index",
+          "value": "runs/amass128/index/complete.json"
+        }
+      ]
+    },
+    {
+      "source": "preserved",
+      "target": "amass_ego128",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/joint_amass100k_PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        },
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/joint_amass100k_PROTOCOL.json",
+          "field": "/config/baselines/ego",
+          "value": "runs/amass_ego128/selection/step_055000/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "preserved",
+      "target": "amass_exo_completion128",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/joint_amass100k_PROTOCOL.json",
+          "field": "/config/boundary_parent/checkpoint",
+          "value": "runs/amass_exo_completion128/boundary/selection/best.pt"
+        },
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/joint_amass100k_PROTOCOL.json",
+          "field": "/config/baselines/exo",
+          "value": "runs/amass_exo_completion128/boundary/selection/step_006000/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "preserved",
+      "target": "amass_joint128",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/joint_amass100k_PROTOCOL.json",
+          "field": "/config/output",
+          "value": "runs/amass_joint128/scratch"
+        },
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/NOSCENE_PARENT.json",
+          "field": "/source",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/selection/best.pt"
+        }
+      ]
+    },
+    {
+      "source": "preserved",
+      "target": "data_inventory",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/PRESERVATION.json",
+          "field": "/records/runs/data_inventory/CURRENT_SELECTION_CHECK.json/snapshot_file",
+          "value": "records/runs/data_inventory/CURRENT_SELECTION_CHECK.json"
+        }
+      ]
+    },
+    {
+      "source": "preserved",
+      "target": "scene_joint128_conditioning",
+      "reference_count": 5,
+      "examples": [
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/PRESERVATION.json",
+          "field": "/checkpoints/0/original_path",
+          "value": "runs/scene_joint128_conditioning/training/last.pt"
+        },
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/PRESERVATION.json",
+          "field": "/records/runs/scene_joint128_conditioning/training/STATUS.json/snapshot_file",
+          "value": "records/runs/scene_joint128_conditioning/training/STATUS.json"
+        }
+      ]
+    },
+    {
+      "source": "preserved",
+      "target": "scene_joint128_replay",
+      "reference_count": 7,
+      "examples": [
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/PRESERVATION.json",
+          "field": "/checkpoints/1/original_path",
+          "value": "runs/scene_joint128_replay/candidates/step_002000.pt"
+        },
+        {
+          "file": "runs/preserved/current_joint_conditioning_20261029_165943/PRESERVATION.json",
+          "field": "/records/runs/scene_joint128_replay/PROTOCOL.json/snapshot_file",
+          "value": "records/runs/scene_joint128_replay/PROTOCOL.json"
+        }
+      ]
+    },
+    {
+      "source": "replay_benchmark",
+      "target": "amass_joint128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/replay_benchmark/PROTECTED_RUN_CHECK.json",
+          "field": "/protected_run",
+          "value": "runs/amass_joint128/scratch"
+        }
+      ]
+    },
+    {
+      "source": "replay_benchmark",
+      "target": "exo_preparation",
+      "reference_count": 8,
+      "examples": [
+        {
+          "file": "runs/replay_benchmark/DATA_PARITY.json",
+          "field": "/identities/17/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-02-17@11-52-06"
+        },
+        {
+          "file": "runs/replay_benchmark/DATA_PARITY.json",
+          "field": "/identities/19/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-02-17@22-26-32"
+        }
+      ]
+    },
+    {
+      "source": "replay_benchmark",
+      "target": "scene_joint128_noscene",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/replay_benchmark/THROUGHPUT.json",
+          "field": "/checkpoint",
+          "value": "runs/scene_joint128_noscene/training/last.pt"
+        },
+        {
+          "file": "runs/replay_benchmark/attempt_map_limit/THROUGHPUT.json",
+          "field": "/checkpoint",
+          "value": "runs/scene_joint128_noscene/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "replay_benchmark_large",
+      "target": "exo_preparation",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/replay_benchmark_large/DATA_PARITY.json",
+          "field": "/identities/17/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-02-17@11-52-06"
+        },
+        {
+          "file": "runs/replay_benchmark_large/DATA_PARITY.json",
+          "field": "/identities/19/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-02-17@22-26-32"
+        }
+      ]
+    },
+    {
+      "source": "replay_benchmark_large",
+      "target": "scene_joint128_noscene",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/replay_benchmark_large/THROUGHPUT.json",
+          "field": "/checkpoint",
+          "value": "runs/scene_joint128_noscene/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot",
+      "target": "amass_ego128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/replay_pilot/INPUTS_PINNED.json",
+          "field": "/actual_native_configuration/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot",
+      "target": "amass_exo_continue128",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/replay_pilot/INPUTS_PINNED.json",
+          "field": "/actual_native_configuration/parent/checkpoint",
+          "value": "runs/amass_exo_continue128/selection/best.pt"
+        },
+        {
+          "file": "runs/replay_pilot/INPUTS_PINNED.json",
+          "field": "/actual_native_configuration/parent/protocol",
+          "value": "runs/amass_exo_continue128/PROTOCOL.json"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot",
+      "target": "amass_joint128",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/replay_pilot/PARENT.json",
+          "field": "/checkpoint",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/selection/best.pt"
+        },
+        {
+          "file": "runs/replay_pilot/PARENT.json",
+          "field": "/metrics",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/selection/step_100000/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot",
+      "target": "exo_preparation",
+      "reference_count": 8,
+      "examples": [
+        {
+          "file": "runs/replay_pilot/PILOT_CASES.json",
+          "field": "/cases/40/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-18@22-13-25"
+        },
+        {
+          "file": "runs/replay_pilot/PILOT_CASES.json",
+          "field": "/cases/41/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-18@16-52-11"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot",
+      "target": "native_batch_benchmark",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/replay_pilot/INPUTS_PINNED.json",
+          "field": "/actual_native_configuration/batching/benchmark",
+          "value": "runs/native_batch_benchmark/THROUGHPUT.json"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot",
+      "target": "replay_benchmark",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/replay_pilot/TIMING_ESTIMATE.json",
+          "field": "/sources/0",
+          "value": "runs/replay_benchmark/THROUGHPUT.json"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot",
+      "target": "replay_pilot_horizon",
+      "reference_count": 129,
+      "examples": [
+        {
+          "file": "runs/replay_pilot/CLEANUP.json",
+          "field": "/removed/68/path",
+          "value": "runs/replay_pilot_horizon/train_cache/0000.pt"
+        },
+        {
+          "file": "runs/replay_pilot/CLEANUP.json",
+          "field": "/removed/69/path",
+          "value": "runs/replay_pilot_horizon/train_cache/0001.pt"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot",
+      "target": "replay_pilot_retention",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/replay_pilot/CLEANUP.json",
+          "field": "/removed/67/path",
+          "value": "runs/replay_pilot_retention/slow_prior/last.pt"
+        },
+        {
+          "file": "runs/replay_pilot/CLEANUP.json",
+          "field": "/retained_candidate",
+          "value": "runs/replay_pilot_retention/replay_weighted/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot",
+      "target": "scene_joint128_noscene",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/replay_pilot/INPUTS_PINNED.json",
+          "field": "/actual_native_configuration/recovery/checkpoint",
+          "value": "runs/scene_joint128_noscene/training/last.pt"
+        },
+        {
+          "file": "runs/replay_pilot/INPUTS_PINNED.json",
+          "field": "/actual_native_configuration/recovery/protocol",
+          "value": "runs/scene_joint128_noscene/PROTOCOL.json"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot_horizon",
+      "target": "amass_joint128",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/replay_pilot_horizon/PARENT.json",
+          "field": "/checkpoint",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/selection/best.pt"
+        },
+        {
+          "file": "runs/replay_pilot_horizon/PARENT.json",
+          "field": "/metrics",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/selection/step_100000/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot_horizon",
+      "target": "exo_preparation",
+      "reference_count": 8,
+      "examples": [
+        {
+          "file": "runs/replay_pilot_horizon/PILOT_CASES.json",
+          "field": "/cases/40/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-18@22-13-25"
+        },
+        {
+          "file": "runs/replay_pilot_horizon/PILOT_CASES.json",
+          "field": "/cases/41/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-18@16-52-11"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot_horizon",
+      "target": "replay_pilot",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/replay_pilot_horizon/PROTOCOL.json",
+          "field": "/config/baseline_source",
+          "value": "runs/replay_pilot"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot_retention",
+      "target": "amass_joint128",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/replay_pilot_retention/PARENT.json",
+          "field": "/checkpoint",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/selection/best.pt"
+        },
+        {
+          "file": "runs/replay_pilot_retention/PARENT.json",
+          "field": "/metrics",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/selection/step_100000/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot_retention",
+      "target": "exo_preparation",
+      "reference_count": 8,
+      "examples": [
+        {
+          "file": "runs/replay_pilot_retention/PILOT_CASES.json",
+          "field": "/cases/40/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-18@22-13-25"
+        },
+        {
+          "file": "runs/replay_pilot_retention/PILOT_CASES.json",
+          "field": "/cases/41/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-18@16-52-11"
+        }
+      ]
+    },
+    {
+      "source": "replay_pilot_retention",
+      "target": "replay_pilot",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/replay_pilot_retention/PROTOCOL.json",
+          "field": "/config/cache_source",
+          "value": "runs/replay_pilot/train_cache"
+        },
+        {
+          "file": "runs/replay_pilot_retention/PROTOCOL.json",
+          "field": "/config/baseline_source",
+          "value": "runs/replay_pilot"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128",
+      "target": "amass128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/scene_ego128/training/CONTRACT.json",
+          "field": "/config/prior_checkpoint",
+          "value": "runs/amass128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128",
+      "target": "scene_ego128_rejected_intrinsics",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/scene_ego128/READINESS.json",
+          "field": "/rejected_branch",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_ego128_rejected_intrinsics/RETIREMENT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_conditioning",
+      "target": "amass_ego128",
+      "reference_count": 12,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_conditioning/PREPARED_CONTRACT.json",
+          "field": "/config/prior_checkpoint",
+          "value": "runs/amass_ego128/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_conditioning/PREPARED_CONTRACT.json",
+          "field": "/config/prior_contract",
+          "value": "runs/amass_ego128/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_conditioning",
+      "target": "scene_ego128_noscene",
+      "reference_count": 24,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_conditioning/PREPARED_CONTRACT.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/scene_ego128_noscene/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_conditioning/PREPARED_CONTRACT.json",
+          "field": "/config/base/contract",
+          "value": "runs/scene_ego128_noscene/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_local",
+      "target": "amass_ego128",
+      "reference_count": 5,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_local/READINESS.json",
+          "field": "/prior_checkpoint",
+          "value": "runs/amass_ego128/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_local/PREPARED_CONTRACT.json",
+          "field": "/config/prior_checkpoint",
+          "value": "runs/amass_ego128/selection/best.pt"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_local",
+      "target": "scene_ego128_noscene",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_local/evaluation/components/PROTOCOL.json",
+          "field": "/policy/control_reference",
+          "value": "runs/scene_ego128_noscene/selection/quick/step_030000.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_noscene",
+      "target": "amass_ego128",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_noscene/PREPARED_CONTRACT.json",
+          "field": "/config/prior_checkpoint",
+          "value": "runs/amass_ego128/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_noscene/PREPARED_CONTRACT.json",
+          "field": "/config/prior_contract",
+          "value": "runs/amass_ego128/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_noscene",
+      "target": "scene_ego128_local",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_noscene/READINESS.json",
+          "field": "/reference_run",
+          "value": "runs/scene_ego128_local"
+        },
+        {
+          "file": "runs/scene_ego128_noscene/PREPARED_CONTRACT.json",
+          "field": "/config/control/reference_run",
+          "value": "runs/scene_ego128_local"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_noscene_continue",
+      "target": "amass_ego128",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_noscene_continue/PREPARED_CONTRACT.json",
+          "field": "/config/prior_checkpoint",
+          "value": "runs/amass_ego128/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_noscene_continue/PREPARED_CONTRACT.json",
+          "field": "/config/prior_contract",
+          "value": "runs/amass_ego128/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_noscene_continue",
+      "target": "scene_ego128_noscene",
+      "reference_count": 18,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_noscene_continue/PREPARED_CONTRACT.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/scene_ego128_noscene/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_noscene_continue/PREPARED_CONTRACT.json",
+          "field": "/config/base/contract",
+          "value": "runs/scene_ego128_noscene/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_noscene_low_lr",
+      "target": "amass_ego128",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_noscene_low_lr/PREPARED_CONTRACT.json",
+          "field": "/config/prior_checkpoint",
+          "value": "runs/amass_ego128/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_noscene_low_lr/PREPARED_CONTRACT.json",
+          "field": "/config/prior_contract",
+          "value": "runs/amass_ego128/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_noscene_low_lr",
+      "target": "scene_ego128_local",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_noscene_low_lr/PREPARED_CONTRACT.json",
+          "field": "/config/control/reference_run",
+          "value": "runs/scene_ego128_local"
+        },
+        {
+          "file": "runs/scene_ego128_noscene_low_lr/training/CONTRACT.json",
+          "field": "/config/control/reference_run",
+          "value": "runs/scene_ego128_local"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_noscene_low_lr",
+      "target": "scene_ego128_noscene",
+      "reference_count": 5,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_noscene_low_lr/PREPARED_CONTRACT.json",
+          "field": "/config/continuation/parent_checkpoint",
+          "value": "runs/scene_ego128_noscene/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_noscene_low_lr/PREPARED_CONTRACT.json",
+          "field": "/config/continuation/parent_contract",
+          "value": "runs/scene_ego128_noscene/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_noscene_low_lr",
+      "target": "scene_ego128_residual",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_noscene_low_lr/evaluation/COMPARISON.json",
+          "field": "/models/frozen_scene_selected_3k/metrics",
+          "value": "runs/scene_ego128_residual/selection/comprehensive/step_003000.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_rejected_intrinsics",
+      "target": "amass128",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_rejected_intrinsics/RETIREMENT.json",
+          "field": "/protected_prior",
+          "value": "runs/amass128/training/last.pt"
+        },
+        {
+          "file": "runs/scene_ego128_rejected_intrinsics/training/CONTRACT.json",
+          "field": "/config/prior_checkpoint",
+          "value": "runs/amass128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_rejected_intrinsics",
+      "target": "scene_ego128",
+      "reference_count": 6,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_rejected_intrinsics/READINESS.json",
+          "field": "/status",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_ego128/training/STATUS.json"
+        },
+        {
+          "file": "runs/scene_ego128_rejected_intrinsics/READINESS.json",
+          "field": "/best",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_ego128/selection/BEST.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_relations",
+      "target": "amass_ego128",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_relations/PREPARED_CONTRACT.json",
+          "field": "/config/prior_checkpoint",
+          "value": "runs/amass_ego128/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_relations/PREPARED_CONTRACT.json",
+          "field": "/config/prior_contract",
+          "value": "runs/amass_ego128/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_relations",
+      "target": "scene_ego128_noscene",
+      "reference_count": 8,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_relations/PREPARED_CONTRACT.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/scene_ego128_noscene/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_relations/PREPARED_CONTRACT.json",
+          "field": "/config/base/contract",
+          "value": "runs/scene_ego128_noscene/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_relations",
+      "target": "scene_ego128_residual",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_relations/PREPARED_CONTRACT.json",
+          "field": "/config/relation_pilot/parent_checkpoint",
+          "value": "runs/scene_ego128_residual/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_relations/PREPARED_CONTRACT.json",
+          "field": "/config/relation_pilot/parent_contract",
+          "value": "runs/scene_ego128_residual/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_residual",
+      "target": "amass_ego128",
+      "reference_count": 4,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_residual/PREPARED_CONTRACT.json",
+          "field": "/config/prior_checkpoint",
+          "value": "runs/amass_ego128/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_residual/PREPARED_CONTRACT.json",
+          "field": "/config/prior_contract",
+          "value": "runs/amass_ego128/training/CONTRACT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_residual",
+      "target": "scene_ego128_noscene",
+      "reference_count": 10,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_residual/PAPER_CANDIDATE.json",
+          "field": "/weights/frozen_base/path",
+          "value": "runs/scene_ego128_noscene/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_ego128_residual/PREPARED_CONTRACT.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/scene_ego128_noscene/selection/best.pt"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_residual_checks",
+      "target": "scene_ego128_conditioning",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_residual_checks/PIPELINE_STATUS.json",
+          "field": "/latest_adapter_readout/report",
+          "value": "runs/scene_ego128_conditioning/PROGRESS_REPORT_zh.md"
+        },
+        {
+          "file": "runs/scene_ego128_residual_checks/PIPELINE_STATUS.json",
+          "field": "/latest_adapter_readout/verification",
+          "value": "runs/scene_ego128_conditioning/recovery/INTERRUPTION_002.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_residual_checks",
+      "target": "scene_ego128_noscene_continue",
+      "reference_count": 6,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_residual_checks/PIPELINE_STATUS.json",
+          "field": "/rejected_control",
+          "value": "runs/scene_ego128_noscene_continue/CONTROL_REVIEW.json"
+        },
+        {
+          "file": "runs/scene_ego128_residual_checks/PROTOCOL.json",
+          "field": "/policy/budget_output",
+          "value": "runs/scene_ego128_noscene_continue"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_residual_checks",
+      "target": "scene_ego128_noscene_low_lr",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_residual_checks/PIPELINE_STATUS.json",
+          "field": "/completed_checks/conservative_noscene_continuation",
+          "value": "runs/scene_ego128_noscene_low_lr/evaluation/COMPARISON.json"
+        },
+        {
+          "file": "runs/scene_ego128_residual_checks/PIPELINE_STATUS.json",
+          "field": "/continuation_result/report",
+          "value": "runs/scene_ego128_noscene_low_lr/evaluation/REPORT_zh.md"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_residual_checks",
+      "target": "scene_ego128_relations",
+      "reference_count": 5,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_residual_checks/PIPELINE_STATUS.json",
+          "field": "/completed_checks/cross_corpus_observed_geometry",
+          "value": "runs/scene_ego128_relations/geometry_audit/RESULT.json"
+        },
+        {
+          "file": "runs/scene_ego128_residual_checks/PIPELINE_STATUS.json",
+          "field": "/completed_checks/scene_relation_pilot",
+          "value": "runs/scene_ego128_relations/evaluation/recovered/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_ego128_residual_checks",
+      "target": "scene_ego128_residual",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_ego128_residual_checks/PROTOCOL.json",
+          "field": "/policy/repair_run",
+          "value": "runs/scene_ego128_residual"
+        },
+        {
+          "file": "runs/scene_ego128_residual_checks/RESULT.json",
+          "field": "/protocol/policy/repair_run",
+          "value": "runs/scene_ego128_residual"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_comparison",
+      "target": "exo_preparation",
+      "reference_count": 16,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_comparison/step_001000_full_gpu/PAIRED_COMPARISON.json",
+          "field": "/diagnostics/5/job/case/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-18@22-08-43"
+        },
+        {
+          "file": "runs/scene_joint128_comparison/step_001000_full_gpu/PAIRED_COMPARISON.json",
+          "field": "/diagnostics/5/identities/0/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-18@22-08-43"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_comparison",
+      "target": "scene_joint128_conditioning",
+      "reference_count": 7,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_comparison/step_001000_full_cuda/EVALUATOR_SEAL.json",
+          "field": "/config/scene_checkpoint",
+          "value": "runs/scene_joint128_conditioning/training/last.pt"
+        },
+        {
+          "file": "runs/scene_joint128_comparison/step_001000_full_gpu/EVALUATOR_SEAL.json",
+          "field": "/config/scene_checkpoint",
+          "value": "runs/scene_joint128_conditioning/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_comparison",
+      "target": "scene_joint128_replay",
+      "reference_count": 21,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_comparison/step_001000_full_cuda/EVALUATOR_SEAL.json",
+          "field": "/config/replay_checkpoint",
+          "value": "runs/scene_joint128_replay/candidates/step_002000.pt"
+        },
+        {
+          "file": "runs/scene_joint128_comparison/step_001000_full_cuda/EVALUATOR_SEAL.json",
+          "field": "/config/case_manifest",
+          "value": "runs/scene_joint128_replay/VALIDATION_CASES.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_conditioning",
+      "target": "scene_joint128_conditioning_corrected",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_conditioning/training/STATUS.json",
+          "field": "/replacement_run",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_joint128_conditioning_corrected"
+        },
+        {
+          "file": "runs/scene_joint128_conditioning/training/STATUS.json",
+          "field": "/replacement_status_file",
+          "value": "/home/wenxin/projects/SceneMI/runs/scene_joint128_conditioning_corrected/training/STATUS.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_conditioning_corrected",
+      "target": "exo_preparation",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_conditioning_corrected/INPUT_AUDIT.json",
+          "field": "/rows/3/identity/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-01-14@22-06-10"
+        },
+        {
+          "file": "runs/scene_joint128_conditioning_corrected/INPUT_AUDIT.json",
+          "field": "/rows/9/identity/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-13@22-31-47"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_conditioning_corrected",
+      "target": "grail_heldout_quality_v1",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_conditioning_corrected/grail_alignment_audit/RESULT.json",
+          "field": "/selection",
+          "value": "runs/grail_heldout_quality_v1/full/validation/selection.jsonl"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_conditioning_corrected",
+      "target": "native_ego4_from_scratch_v2",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_conditioning_corrected/grail_source_input_audit/FOLLOWUP.json",
+          "field": "/training_run",
+          "value": "/home/wenxin/projects/SceneMI/runs/native_ego4_from_scratch_v2"
+        },
+        {
+          "file": "runs/scene_joint128_conditioning_corrected/grail_source_input_audit/FOLLOWUP.json",
+          "field": "/stair_diagnostic",
+          "value": "/home/wenxin/projects/SceneMI/runs/native_ego4_from_scratch_v2/diagnostics/stairs_step_004096/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_conditioning_corrected",
+      "target": "scene_joint128_replay",
+      "reference_count": 9,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_conditioning_corrected/SEAL.json",
+          "field": "/config/parent/checkpoint",
+          "value": "runs/scene_joint128_replay/candidates/step_002000.pt"
+        },
+        {
+          "file": "runs/scene_joint128_conditioning_corrected/input_audit_sources/SEAL.json",
+          "field": "/config/parent/checkpoint",
+          "value": "runs/scene_joint128_replay/candidates/step_002000.pt"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_noscene",
+      "target": "amass_ego128",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_noscene/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        },
+        {
+          "file": "runs/scene_joint128_noscene/preparation_revision_001/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_noscene",
+      "target": "amass_exo_continue128",
+      "reference_count": 6,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_noscene/PROTOCOL.json",
+          "field": "/config/parent/checkpoint",
+          "value": "runs/amass_exo_continue128/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_joint128_noscene/PROTOCOL.json",
+          "field": "/config/parent/protocol",
+          "value": "runs/amass_exo_continue128/PROTOCOL.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_noscene",
+      "target": "exo_preparation",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_noscene/preflight/cuda.json",
+          "field": "/real_batch_identities/3/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-01-14@22-06-10"
+        },
+        {
+          "file": "runs/scene_joint128_noscene/preflight/cpu.json",
+          "field": "/real_batch_identities/3/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-01-14@22-06-10"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_noscene",
+      "target": "native_batch_benchmark",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_noscene/FAILURE_REVIEW.json",
+          "field": "/batch_benchmark",
+          "value": "runs/native_batch_benchmark/THROUGHPUT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_noscene_multigap",
+      "target": "amass_ego128",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_noscene_multigap/PROTOCOL.json",
+          "field": "/config/base/checkpoint",
+          "value": "runs/amass_ego128/training/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_noscene_multigap",
+      "target": "amass_exo_continue128",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_noscene_multigap/PROTOCOL.json",
+          "field": "/config/parent/checkpoint",
+          "value": "runs/amass_exo_continue128/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_joint128_noscene_multigap/PROTOCOL.json",
+          "field": "/config/parent/protocol",
+          "value": "runs/amass_exo_continue128/PROTOCOL.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_noscene_multigap",
+      "target": "exo_preparation",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_noscene_multigap/preflight/cuda.json",
+          "field": "/real_batch_identities/3/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-01-14@22-06-10"
+        },
+        {
+          "file": "runs/scene_joint128_noscene_multigap/preflight/cpu.json",
+          "field": "/real_batch_identities/3/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/train/2023-01-14@22-06-10"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_noscene_multigap",
+      "target": "scene_joint128_noscene",
+      "reference_count": 5,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_noscene_multigap/PROTOCOL.json",
+          "field": "/config/recovery/checkpoint",
+          "value": "runs/scene_joint128_noscene/training/last.pt"
+        },
+        {
+          "file": "runs/scene_joint128_noscene_multigap/PROTOCOL.json",
+          "field": "/config/recovery/protocol",
+          "value": "runs/scene_joint128_noscene/PROTOCOL.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_replay",
+      "target": "amass_joint128",
+      "reference_count": 3,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_replay/PARENT.json",
+          "field": "/checkpoint",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/selection/best.pt"
+        },
+        {
+          "file": "runs/scene_joint128_replay/PARENT.json",
+          "field": "/metrics",
+          "value": "/home/wenxin/projects/SceneMI/runs/amass_joint128/scratch/selection/step_100000/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_replay",
+      "target": "exo_preparation",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_replay/visualization/CASES.json",
+          "field": "/cases/5/case/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-18@22-08-43"
+        },
+        {
+          "file": "runs/scene_joint128_replay/visualization/CASES.json",
+          "field": "/cases/5/original_identity/path",
+          "value": "/home/wenxin/projects/SceneMI/runs/exo_preparation/trumans_moving/data/validation/2023-02-18@22-08-43"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_replay",
+      "target": "replay_pilot",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_replay/PROTOCOL.json",
+          "field": "/config/resolution/first_pilot",
+          "value": "runs/replay_pilot/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_replay",
+      "target": "replay_pilot_horizon",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_replay/PROTOCOL.json",
+          "field": "/config/resolution/horizon_result",
+          "value": "runs/replay_pilot_horizon/RESULT.json"
+        }
+      ]
+    },
+    {
+      "source": "scene_joint128_replay",
+      "target": "replay_pilot_retention",
+      "reference_count": 2,
+      "examples": [
+        {
+          "file": "runs/scene_joint128_replay/PROTOCOL.json",
+          "field": "/config/resolution/retention_pilot",
+          "value": "runs/replay_pilot_retention/RESULT.json"
+        },
+        {
+          "file": "runs/scene_joint128_replay/PROTOCOL.json",
+          "field": "/config/resolution/retained_evaluation_candidate",
+          "value": "runs/replay_pilot_retention/replay_weighted/last.pt"
+        }
+      ]
+    },
+    {
+      "source": "trumans_exo_moving_review",
+      "target": "trumans_exo_review",
+      "reference_count": 5,
+      "examples": [
+        {
+          "file": "runs/trumans_exo_moving_review/PREPARED_CASES.json",
+          "field": "/source_manifest",
+          "value": "/home/wenxin/projects/SceneMI/runs/trumans_exo_review/PREPARED_CASES.json"
+        },
+        {
+          "file": "runs/trumans_exo_moving_review/PREPARED_CASES.json",
+          "field": "/cases/1/models/0/case/cache",
+          "value": "/home/wenxin/projects/SceneMI/runs/trumans_exo_review/2023-02-13@22-31-47_000030.npz"
+        }
+      ]
+    },
+    {
+      "source": "trumans_exo_review",
+      "target": "trumans_exo_moving_review",
+      "reference_count": 1,
+      "examples": [
+        {
+          "file": "runs/trumans_exo_review/SERVER.json",
+          "field": "/replacement_server",
+          "value": "/home/wenxin/projects/SceneMI/runs/trumans_exo_moving_review/SERVER.json"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Raw cross-references include historical audit/source references; they are not all runtime dependencies.",
+    "No binary checkpoint deserialization or deletion rehearsal was performed.",
+    "Active training writes continue and sizes/status are a moving snapshot.",
+    "The original file count excludes following directory symlinks and may include per-path hardlink duplicates."
+  ]
+}

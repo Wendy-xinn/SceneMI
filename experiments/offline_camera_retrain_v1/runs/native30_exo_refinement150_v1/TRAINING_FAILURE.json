@@ -1,0 +1,25 @@
+{
+  "protocol": "native30-paired-reference-nondegradation-trial-v1",
+  "status": "not_trained_runtime_loader_failure",
+  "recorded_at": "2026-10-20T21:22:26.821883+08:00",
+  "completed_updates": {
+    "control": 0,
+    "nondegradation": 0
+  },
+  "calibration_batches_completed": 0,
+  "calibration_record_exists": false,
+  "actual_exit_code": 127,
+  "failure": "ld.so elf_machine_rela_relative relocation assertion R_X86_64_RELATIVE; process terminated before first TRAIN calibration batch or optimizer update",
+  "log": "experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/training.log",
+  "log_sha256": "9097a29eb8b478ca90c333f9380af58948cff16bee7f9af7dd2c84e93167bee8",
+  "plan_sha256": "e03db71f544c31797beebf0884f2242b839663808e8ed2e19955ba717f9cd40c",
+  "checkpoint_created": false,
+  "new_model_effectiveness_claimed": false,
+  "source_parent_10k_modified": false,
+  "retry_stopped_by_deadline": true,
+  "notes": [
+    "Standalone CUDA tensor probe succeeded; actual model/data pipeline still failed in the dynamic loader.",
+    "No global shared libraries, WSL settings, daemons or original experiment source files were changed.",
+    "Prepared code and CPU loss tests are retained; two-arm comparison has no training or evaluation result."
+  ]
+}

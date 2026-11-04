@@ -1,0 +1,2255 @@
+{
+  "protocol": "frozen-scene-policy-dev-select-confirmation-review-v1",
+  "frozen_at": "2026-10-21T01:25:24.020359+08:00",
+  "identities": {
+    "selection_sha256": "5f4adc45b00a194d67bf70552e7039cf29f1270d16bff8180fba8ac8237a98ca",
+    "acceptance_sha256": "54156d504d52233dc4159c8aa60e648bc1cea1a9cf5d1171fb038a19023d5b28",
+    "review_source_sha256": "b25196b390381acefd9415aff90a38e168d9cdb3c444cfd0ef03f82c350c2c3b"
+  },
+  "status": "dev_NO",
+  "selected_label": null,
+  "selected_policy": null,
+  "baseline_label": "original",
+  "metrics_read_scope": [
+    "dev",
+    "ego_retention"
+  ],
+  "confirmation_metrics_read": false,
+  "selected_rows_sha256": "e7008ca5a76960624a93057be522542816173e00236fee0abe3726a7f8f61637",
+  "rows_used": 90,
+  "natural_dataset_weights": {
+    "rich": 0.11873198847262248,
+    "trumans": 0.4086455331412104,
+    "egobody": 0.47262247838616717
+  },
+  "candidates": {
+    "exo_patch_off": {
+      "passed": false,
+      "candidate_label": "exo_patch_off",
+      "phase": "dev",
+      "baseline_summary": {
+        "groups": {
+          "rich/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 35.75798177719116,
+                "p90": 57.08850212097168,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 2.468903511762619,
+                "p90": 3.0176980018615724,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 7.019541501998901,
+                "p90": 14.052244997024538,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.14440959033533113,
+                "p90": 0.21284618469167743,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 33.19970884745043,
+                "p90": 63.576860768649496,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1137.7869058115161,
+                "p90": 1993.6381141050379,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 29.999347448349
+          },
+          "rich/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 203.53011798858643,
+                "p90": 437.62785263061534,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 36.09155559539795,
+                "p90": 58.3046335220337,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 69.0610179901123,
+                "p90": 147.98980407714845,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.2593617814670454,
+                "p90": 0.45547453436018026,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 102.47113560497908,
+                "p90": 167.03796083316675,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 3829.7402547848296,
+                "p90": 6419.793939513446,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 51.57399368286133
+          },
+          "trumans/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 150.77712154388428,
+                "p90": 240.8393127441406,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 4.058610916137695,
+                "p90": 9.161220347881319,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 37.02225458621979,
+                "p90": 66.4387794494629,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.16945101122518624,
+                "p90": 0.21923405948397287,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 50.768042685268824,
+                "p90": 65.58479244275307,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1503.510118059256,
+                "p90": 2091.5129933415355,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 186.8798246383667
+          },
+          "trumans/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 198.67760372161865,
+                "p90": 337.114013671875,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 26.772026538848877,
+                "p90": 35.12497177124024,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 65.48020648956299,
+                "p90": 104.39635848999023,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.19789967838067635,
+                "p90": 0.2587094180452046,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 75.28844178824201,
+                "p90": 89.24455985887951,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 2067.3709635918044,
+                "p90": 2614.9437049578196,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 213.37708377838135
+          },
+          "egobody/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 23.639432579278946,
+                "p90": 53.161523628234875,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 2.0082838386297226,
+                "p90": 2.67223539352417,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 5.831634730100632,
+                "p90": 12.748197031021121,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.12659947154371923,
+                "p90": 0.24550956273611035,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 41.177261178309976,
+                "p90": 81.74501960143559,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1521.644070086946,
+                "p90": 2702.2313250977422,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 26.74544196153147
+          },
+          "egobody/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 45.12101888656616,
+                "p90": 76.65336837768555,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 26.756669521331787,
+                "p90": 29.28204402923584,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 30.667871475219727,
+                "p90": 35.430412673950194,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.14493345248186615,
+                "p90": 0.2757798542367602,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 75.78715142738233,
+                "p90": 125.48031688914861,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 2765.8000844228536,
+                "p90": 4204.488145267931,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 54.61962604522705
+          }
+        },
+        "natural_primary": {
+          "clean": 77.03254071223289,
+          "noisy": 126.67945869236927,
+          "combined": 101.85599970230108
+        },
+        "equal_dataset_secondary": {
+          "clean": 70.05817863345146,
+          "noisy": 149.10958019892374,
+          "combined": 109.5838794161876
+        }
+      },
+      "candidate_summary": {
+        "groups": {
+          "rich/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 34.0768609046936,
+                "p90": 52.05148735046387,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 1.6400790512561798,
+                "p90": 1.845915746688843,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 5.838046163320541,
+                "p90": 12.225275230407718,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.1456734909741616,
+                "p90": 0.21505851230095072,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 32.062124762073886,
+                "p90": 62.44734015249276,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1113.8408473319903,
+                "p90": 2005.3369302782219,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 29.999347448349
+          },
+          "rich/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 67.83862590789795,
+                "p90": 84.31629714965821,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 22.104776859283447,
+                "p90": 24.312589263916017,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 26.35234260559082,
+                "p90": 31.793316650390626,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.1667418810758674,
+                "p90": 0.2362173953593976,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 76.29597603312509,
+                "p90": 112.4438418602862,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 2576.4862320624943,
+                "p90": 3856.932660260354,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 51.57399368286133
+          },
+          "trumans/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 155.82630348205566,
+                "p90": 246.56914520263672,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 4.173735663294792,
+                "p90": 9.3281520485878,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 38.31068193912506,
+                "p90": 68.48741111755372,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.17197229172619888,
+                "p90": 0.22074687743556565,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 51.69504580891741,
+                "p90": 66.83280143643992,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1529.0282986463592,
+                "p90": 2111.734560540923,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 186.8798246383667
+          },
+          "trumans/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 196.8497953414917,
+                "p90": 325.07501831054685,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 26.72549533843994,
+                "p90": 35.5621223449707,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 65.41250514984131,
+                "p90": 106.03155593872071,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.19782103398271242,
+                "p90": 0.2721056146557198,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 76.07843986094313,
+                "p90": 93.13765187867496,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 2101.220927794835,
+                "p90": 2671.502861793139,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 213.37708377838135
+          },
+          "egobody/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 24.102455034852028,
+                "p90": 54.522270393371585,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 2.020969435572624,
+                "p90": 2.6969372987747193,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 5.952963784337044,
+                "p90": 13.067607665061953,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.12858925494166284,
+                "p90": 0.25058833083106563,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 41.674858679781074,
+                "p90": 83.46175522601948,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1535.1266116742252,
+                "p90": 2756.2629968381757,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 26.74544196153147
+          },
+          "egobody/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 47.628740310668945,
+                "p90": 80.47057456970215,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 27.30741262435913,
+                "p90": 29.099697494506835,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 31.531137466430664,
+                "p90": 35.98989009857178,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.15120722103749512,
+                "p90": 0.288944993749348,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 77.36323451410297,
+                "p90": 128.3852280819466,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 2814.1749977763525,
+                "p90": 4272.162663652264,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 54.61962604522705
+          }
+        },
+        "natural_primary": {
+          "clean": 79.11509835373084,
+          "noisy": 111.00681780339661,
+          "combined": 95.06095807856373
+        },
+        "equal_dataset_secondary": {
+          "clean": 71.3352064738671,
+          "noisy": 104.10572052001953,
+          "combined": 87.72046349694332
+        }
+      },
+      "checks": [
+        {
+          "name": "rich/clean/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 35.75798177719116,
+          "candidate": 34.0768609046936,
+          "limit": 40.75798177719116
+        },
+        {
+          "name": "rich/clean/visible_mpjpe_mm",
+          "passed": true,
+          "original": 2.468903511762619,
+          "candidate": 1.6400790512561798,
+          "limit": 3.468903511762619
+        },
+        {
+          "name": "rich/clean/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.14440959033533113,
+          "candidate": 0.1456734909741616,
+          "limit": 0.15440959033533114
+        },
+        {
+          "name": "rich/clean/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 1137.7869058115161,
+          "candidate": 1113.8408473319903,
+          "limit": 1194.676251102092
+        },
+        {
+          "name": "rich/noisy/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 203.53011798858643,
+          "candidate": 67.83862590789795,
+          "limit": 213.70662388801574
+        },
+        {
+          "name": "rich/noisy/visible_mpjpe_mm",
+          "passed": true,
+          "original": 36.09155559539795,
+          "candidate": 22.104776859283447,
+          "limit": 37.09155559539795
+        },
+        {
+          "name": "rich/noisy/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.2593617814670454,
+          "candidate": 0.1667418810758674,
+          "limit": 0.2723298705403977
+        },
+        {
+          "name": "rich/noisy/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 3829.7402547848296,
+          "candidate": 2576.4862320624943,
+          "limit": 4021.227267524071
+        },
+        {
+          "name": "trumans/clean/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 150.77712154388428,
+          "candidate": 155.82630348205566,
+          "limit": 158.3159776210785
+        },
+        {
+          "name": "trumans/clean/visible_mpjpe_mm",
+          "passed": true,
+          "original": 4.058610916137695,
+          "candidate": 4.173735663294792,
+          "limit": 5.058610916137695
+        },
+        {
+          "name": "trumans/clean/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.16945101122518624,
+          "candidate": 0.17197229172619888,
+          "limit": 0.17945101122518625
+        },
+        {
+          "name": "trumans/clean/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 1503.510118059256,
+          "candidate": 1529.0282986463592,
+          "limit": 1578.6856239622189
+        },
+        {
+          "name": "trumans/noisy/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 198.67760372161865,
+          "candidate": 196.8497953414917,
+          "limit": 208.61148390769958
+        },
+        {
+          "name": "trumans/noisy/visible_mpjpe_mm",
+          "passed": true,
+          "original": 26.772026538848877,
+          "candidate": 26.72549533843994,
+          "limit": 27.772026538848877
+        },
+        {
+          "name": "trumans/noisy/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.19789967838067635,
+          "candidate": 0.19782103398271242,
+          "limit": 0.20789967838067636
+        },
+        {
+          "name": "trumans/noisy/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 2067.3709635918044,
+          "candidate": 2101.220927794835,
+          "limit": 2170.7395117713945
+        },
+        {
+          "name": "egobody/clean/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 23.639432579278946,
+          "candidate": 24.102455034852028,
+          "limit": 28.639432579278946
+        },
+        {
+          "name": "egobody/clean/visible_mpjpe_mm",
+          "passed": true,
+          "original": 2.0082838386297226,
+          "candidate": 2.020969435572624,
+          "limit": 3.0082838386297226
+        },
+        {
+          "name": "egobody/clean/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.12659947154371923,
+          "candidate": 0.12858925494166284,
+          "limit": 0.13659947154371924
+        },
+        {
+          "name": "egobody/clean/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 1521.644070086946,
+          "candidate": 1535.1266116742252,
+          "limit": 1597.7262735912932
+        },
+        {
+          "name": "egobody/noisy/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 45.12101888656616,
+          "candidate": 47.628740310668945,
+          "limit": 50.12101888656616
+        },
+        {
+          "name": "egobody/noisy/visible_mpjpe_mm",
+          "passed": true,
+          "original": 26.756669521331787,
+          "candidate": 27.30741262435913,
+          "limit": 27.756669521331787
+        },
+        {
+          "name": "egobody/noisy/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.14493345248186615,
+          "candidate": 0.15120722103749512,
+          "limit": 0.15493345248186616
+        },
+        {
+          "name": "egobody/noisy/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 2765.8000844228536,
+          "candidate": 2814.1749977763525,
+          "limit": 2904.0900886439963
+        },
+        {
+          "name": "natural_primary/clean/nonworsening",
+          "passed": false,
+          "original": 77.03254071223289,
+          "candidate": 79.11509835373084
+        },
+        {
+          "name": "natural_primary/noisy/nonworsening",
+          "passed": true,
+          "original": 126.67945869236927,
+          "candidate": 111.00681780339661
+        },
+        {
+          "name": "natural_primary/combined/gain3percent",
+          "passed": true,
+          "relative_gain": 0.06671223731147413,
+          "original": 101.85599970230108,
+          "candidate": 95.06095807856373
+        },
+        {
+          "name": "no_new_original_plus50mm",
+          "passed": true,
+          "cases": []
+        },
+        {
+          "name": "reference_plus50_count/clean",
+          "passed": true,
+          "original": 0,
+          "candidate": 0
+        },
+        {
+          "name": "reference_plus50_count/noisy",
+          "passed": true,
+          "original": 2,
+          "candidate": 0
+        },
+        {
+          "name": "known_yoga/clean",
+          "passed": true,
+          "original": 66.92817687988281,
+          "candidate": 60.1546745300293,
+          "reference": 69.29439544677734
+        },
+        {
+          "name": "known_yoga/noisy",
+          "passed": true,
+          "original": 585.7843627929688,
+          "candidate": 67.36300659179688,
+          "reference": 95.25690460205078
+        },
+        {
+          "name": "ego6_exact",
+          "passed": true,
+          "results": [
+            {
+              "model": "exo_patch_off",
+              "case": 100,
+              "regime": "clean",
+              "exact": true
+            },
+            {
+              "model": "exo_patch_off",
+              "case": 100,
+              "regime": "noisy",
+              "exact": true
+            },
+            {
+              "model": "exo_patch_off",
+              "case": 101,
+              "regime": "clean",
+              "exact": true
+            },
+            {
+              "model": "exo_patch_off",
+              "case": 101,
+              "regime": "noisy",
+              "exact": true
+            },
+            {
+              "model": "exo_patch_off",
+              "case": 102,
+              "regime": "clean",
+              "exact": true
+            },
+            {
+              "model": "exo_patch_off",
+              "case": 102,
+              "regime": "noisy",
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "failed_checks": [
+        {
+          "name": "natural_primary/clean/nonworsening",
+          "passed": false,
+          "original": 77.03254071223289,
+          "candidate": 79.11509835373084
+        }
+      ],
+      "severe_reference50_counts": {
+        "clean": {
+          "original": 0,
+          "candidate": 0
+        },
+        "noisy": {
+          "original": 2,
+          "candidate": 0
+        }
+      },
+      "paired_hidden": [
+        {
+          "case": 7,
+          "dataset": "trumans",
+          "regime": "noisy",
+          "sequence_id": "2023-02-18@22-16-27",
+          "start": 1664,
+          "original_hidden_mm": 301.16937255859375,
+          "candidate_hidden_mm": 314.6861877441406,
+          "reference_hidden_mm": 298.37518310546875,
+          "candidate_minus_original_mm": 13.516815185546875,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 7,
+          "dataset": "trumans",
+          "regime": "clean",
+          "sequence_id": "2023-02-18@22-16-27",
+          "start": 1664,
+          "original_hidden_mm": 231.3798065185547,
+          "candidate_hidden_mm": 239.88546752929688,
+          "reference_hidden_mm": 268.7699890136719,
+          "candidate_minus_original_mm": 8.505661010742188,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 4,
+          "dataset": "trumans",
+          "regime": "clean",
+          "sequence_id": "2023-02-18@22-06-51",
+          "start": 576,
+          "original_hidden_mm": 84.64791107177734,
+          "candidate_hidden_mm": 92.14413452148438,
+          "reference_hidden_mm": 63.50175476074219,
+          "candidate_minus_original_mm": 7.496223449707031,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 6,
+          "dataset": "trumans",
+          "regime": "clean",
+          "sequence_id": "2023-02-18@16-44-19",
+          "start": 64,
+          "original_hidden_mm": 244.8933868408203,
+          "candidate_hidden_mm": 249.43357849121094,
+          "reference_hidden_mm": 373.487060546875,
+          "candidate_minus_original_mm": 4.540191650390625,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 11,
+          "dataset": "egobody",
+          "regime": "noisy",
+          "sequence_id": "recording_20220218_S23_S02_02_interactee_1301-3701_master_full",
+          "start": 512,
+          "original_hidden_mm": 88.02991485595703,
+          "candidate_hidden_mm": 92.48906707763672,
+          "reference_hidden_mm": 97.18416595458984,
+          "candidate_minus_original_mm": 4.4591522216796875,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 10,
+          "dataset": "egobody",
+          "regime": "noisy",
+          "sequence_id": "recording_20210923_S03_S14_01_camera_wearer_1211-3251_master_full",
+          "start": 192,
+          "original_hidden_mm": 22.465938568115234,
+          "candidate_hidden_mm": 25.862548828125,
+          "reference_hidden_mm": 14.66020393371582,
+          "candidate_minus_original_mm": 3.3966102600097656,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 4,
+          "dataset": "trumans",
+          "regime": "noisy",
+          "sequence_id": "2023-02-18@22-06-51",
+          "start": 576,
+          "original_hidden_mm": 77.54302978515625,
+          "candidate_hidden_mm": 80.78777313232422,
+          "reference_hidden_mm": 78.72637939453125,
+          "candidate_minus_original_mm": 3.2447433471679688,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 9,
+          "dataset": "egobody",
+          "regime": "noisy",
+          "sequence_id": "recording_20220215_S21_S22_01_camera_wearer_1901-4901_master_full",
+          "start": 640,
+          "original_hidden_mm": 50.10809326171875,
+          "candidate_hidden_mm": 52.427425384521484,
+          "reference_hidden_mm": 75.35808563232422,
+          "candidate_minus_original_mm": 2.3193321228027344,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 11,
+          "dataset": "egobody",
+          "regime": "clean",
+          "sequence_id": "recording_20220218_S23_S02_02_interactee_1301-3701_master_full",
+          "start": 512,
+          "original_hidden_mm": 65.94974517822266,
+          "candidate_hidden_mm": 67.91497802734375,
+          "reference_hidden_mm": 93.34781646728516,
+          "candidate_minus_original_mm": 1.9652328491210938,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 2,
+          "dataset": "rich",
+          "regime": "clean",
+          "sequence_id": "Pavallion_013_sidebalancerun",
+          "start": 192,
+          "original_hidden_mm": 21.065074920654297,
+          "candidate_hidden_mm": 22.47410011291504,
+          "reference_hidden_mm": 9.356048583984375,
+          "candidate_minus_original_mm": 1.4090251922607422,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 8,
+          "dataset": "egobody",
+          "regime": "clean",
+          "sequence_id": "recording_20220218_S23_S02_01_interactee_1551-3951_master_full",
+          "start": 2176,
+          "original_hidden_mm": 4.7576117515563965,
+          "candidate_hidden_mm": 4.743138313293457,
+          "reference_hidden_mm": 2.1582000255584717,
+          "candidate_minus_original_mm": -0.014473438262939453,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 10,
+          "dataset": "egobody",
+          "regime": "clean",
+          "sequence_id": "recording_20210923_S03_S14_01_camera_wearer_1211-3251_master_full",
+          "start": 192,
+          "original_hidden_mm": 0.5280333757400513,
+          "candidate_hidden_mm": 0.4790845513343811,
+          "reference_hidden_mm": 0.00032086469582282007,
+          "candidate_minus_original_mm": -0.048948824405670166,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 9,
+          "dataset": "egobody",
+          "regime": "clean",
+          "sequence_id": "recording_20220215_S21_S22_01_camera_wearer_1901-4901_master_full",
+          "start": 640,
+          "original_hidden_mm": 23.32234001159668,
+          "candidate_hidden_mm": 23.272619247436523,
+          "reference_hidden_mm": 11.475430488586426,
+          "candidate_minus_original_mm": -0.04972076416015625,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 8,
+          "dataset": "egobody",
+          "regime": "noisy",
+          "sequence_id": "recording_20220218_S23_S02_01_interactee_1551-3951_master_full",
+          "start": 2176,
+          "original_hidden_mm": 19.880128860473633,
+          "candidate_hidden_mm": 19.735919952392578,
+          "reference_hidden_mm": 31.27604866027832,
+          "candidate_minus_original_mm": -0.1442089080810547,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 0,
+          "dataset": "rich",
+          "regime": "noisy",
+          "sequence_id": "ParkingLot2_014_eating2",
+          "start": 256,
+          "original_hidden_mm": 45.26284408569336,
+          "candidate_hidden_mm": 45.101680755615234,
+          "reference_hidden_mm": 15.40682601928711,
+          "candidate_minus_original_mm": -0.161163330078125,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 5,
+          "dataset": "trumans",
+          "regime": "clean",
+          "sequence_id": "2023-02-18@16-56-45",
+          "start": 448,
+          "original_hidden_mm": 42.187381744384766,
+          "candidate_hidden_mm": 41.84203338623047,
+          "reference_hidden_mm": 41.760494232177734,
+          "candidate_minus_original_mm": -0.3453483581542969,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 3,
+          "dataset": "rich",
+          "regime": "noisy",
+          "sequence_id": "Pavallion_018_sidebalancerun",
+          "start": 64,
+          "original_hidden_mm": 91.92932891845703,
+          "candidate_hidden_mm": 91.58199310302734,
+          "reference_hidden_mm": 58.6595458984375,
+          "candidate_minus_original_mm": -0.3473358154296875,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 0,
+          "dataset": "rich",
+          "regime": "clean",
+          "sequence_id": "ParkingLot2_014_eating2",
+          "start": 256,
+          "original_hidden_mm": 20.909414291381836,
+          "candidate_hidden_mm": 20.534618377685547,
+          "reference_hidden_mm": 8.924891471862793,
+          "candidate_minus_original_mm": -0.37479591369628906,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 3,
+          "dataset": "rich",
+          "regime": "clean",
+          "sequence_id": "Pavallion_018_sidebalancerun",
+          "start": 64,
+          "original_hidden_mm": 34.1292610168457,
+          "candidate_hidden_mm": 33.14405059814453,
+          "reference_hidden_mm": 32.422054290771484,
+          "candidate_minus_original_mm": -0.9852104187011719,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 5,
+          "dataset": "trumans",
+          "regime": "noisy",
+          "sequence_id": "2023-02-18@16-56-45",
+          "start": 448,
+          "original_hidden_mm": 63.47915267944336,
+          "candidate_hidden_mm": 62.39784622192383,
+          "reference_hidden_mm": 56.26211929321289,
+          "candidate_minus_original_mm": -1.0813064575195312,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 1,
+          "dataset": "rich",
+          "regime": "clean",
+          "sequence_id": "Pavallion_006_yoga1",
+          "start": 640,
+          "original_hidden_mm": 66.92817687988281,
+          "candidate_hidden_mm": 60.1546745300293,
+          "reference_hidden_mm": 69.29439544677734,
+          "candidate_minus_original_mm": -6.773502349853516,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 6,
+          "dataset": "trumans",
+          "regime": "noisy",
+          "sequence_id": "2023-02-18@16-44-19",
+          "start": 64,
+          "original_hidden_mm": 352.51885986328125,
+          "candidate_hidden_mm": 329.5273742675781,
+          "reference_hidden_mm": 420.1446533203125,
+          "candidate_minus_original_mm": -22.991485595703125,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 2,
+          "dataset": "rich",
+          "regime": "noisy",
+          "sequence_id": "Pavallion_013_sidebalancerun",
+          "start": 192,
+          "original_hidden_mm": 91.14393615722656,
+          "candidate_hidden_mm": 67.30782318115234,
+          "reference_hidden_mm": 36.97269821166992,
+          "candidate_minus_original_mm": -23.83611297607422,
+          "original_worse_reference50": true,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 1,
+          "dataset": "rich",
+          "regime": "noisy",
+          "sequence_id": "Pavallion_006_yoga1",
+          "start": 640,
+          "original_hidden_mm": 585.7843627929688,
+          "candidate_hidden_mm": 67.36300659179688,
+          "reference_hidden_mm": 95.25690460205078,
+          "candidate_minus_original_mm": -518.4213562011719,
+          "original_worse_reference50": true,
+          "candidate_worse_reference50": false
+        }
+      ]
+    },
+    "exo_static_global_off": {
+      "passed": false,
+      "candidate_label": "exo_static_global_off",
+      "phase": "dev",
+      "baseline_summary": {
+        "groups": {
+          "rich/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 35.75798177719116,
+                "p90": 57.08850212097168,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 2.468903511762619,
+                "p90": 3.0176980018615724,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 7.019541501998901,
+                "p90": 14.052244997024538,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.14440959033533113,
+                "p90": 0.21284618469167743,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 33.19970884745043,
+                "p90": 63.576860768649496,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1137.7869058115161,
+                "p90": 1993.6381141050379,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 29.999347448349
+          },
+          "rich/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 203.53011798858643,
+                "p90": 437.62785263061534,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 36.09155559539795,
+                "p90": 58.3046335220337,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 69.0610179901123,
+                "p90": 147.98980407714845,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.2593617814670454,
+                "p90": 0.45547453436018026,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 102.47113560497908,
+                "p90": 167.03796083316675,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 3829.7402547848296,
+                "p90": 6419.793939513446,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 51.57399368286133
+          },
+          "trumans/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 150.77712154388428,
+                "p90": 240.8393127441406,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 4.058610916137695,
+                "p90": 9.161220347881319,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 37.02225458621979,
+                "p90": 66.4387794494629,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.16945101122518624,
+                "p90": 0.21923405948397287,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 50.768042685268824,
+                "p90": 65.58479244275307,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1503.510118059256,
+                "p90": 2091.5129933415355,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 186.8798246383667
+          },
+          "trumans/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 198.67760372161865,
+                "p90": 337.114013671875,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 26.772026538848877,
+                "p90": 35.12497177124024,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 65.48020648956299,
+                "p90": 104.39635848999023,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.19789967838067635,
+                "p90": 0.2587094180452046,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 75.28844178824201,
+                "p90": 89.24455985887951,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 2067.3709635918044,
+                "p90": 2614.9437049578196,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 213.37708377838135
+          },
+          "egobody/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 23.639432579278946,
+                "p90": 53.161523628234875,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 2.0082838386297226,
+                "p90": 2.67223539352417,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 5.831634730100632,
+                "p90": 12.748197031021121,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.12659947154371923,
+                "p90": 0.24550956273611035,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 41.177261178309976,
+                "p90": 81.74501960143559,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1521.644070086946,
+                "p90": 2702.2313250977422,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 26.74544196153147
+          },
+          "egobody/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 45.12101888656616,
+                "p90": 76.65336837768555,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 26.756669521331787,
+                "p90": 29.28204402923584,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 30.667871475219727,
+                "p90": 35.430412673950194,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.14493345248186615,
+                "p90": 0.2757798542367602,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 75.78715142738233,
+                "p90": 125.48031688914861,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 2765.8000844228536,
+                "p90": 4204.488145267931,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 54.61962604522705
+          }
+        },
+        "natural_primary": {
+          "clean": 77.03254071223289,
+          "noisy": 126.67945869236927,
+          "combined": 101.85599970230108
+        },
+        "equal_dataset_secondary": {
+          "clean": 70.05817863345146,
+          "noisy": 149.10958019892374,
+          "combined": 109.5838794161876
+        }
+      },
+      "candidate_summary": {
+        "groups": {
+          "rich/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 33.48641300201416,
+                "p90": 50.60446357727051,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 1.481903076171875,
+                "p90": 1.7168235540390016,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 5.566041857004166,
+                "p90": 11.600658798217776,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.13688467728881865,
+                "p90": 0.1912079387375496,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 30.05572972333463,
+                "p90": 58.20712529853202,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 990.4809202250224,
+                "p90": 1716.6999082254074,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 29.999347448349
+          },
+          "rich/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 61.40766429901123,
+                "p90": 69.14063949584961,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 21.64771032333374,
+                "p90": 23.155892753601073,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 25.30509901046753,
+                "p90": 30.010237884521484,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.14863475385645972,
+                "p90": 0.20204371043273217,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 69.89645952826453,
+                "p90": 99.0545707327607,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 2284.9316846607444,
+                "p90": 3292.0909999153682,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 51.57399368286133
+          },
+          "trumans/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 152.8830108642578,
+                "p90": 266.85796203613285,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 4.3799088299274445,
+                "p90": 10.022971093654634,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 37.052539229393005,
+                "p90": 65.4856315612793,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.16799165220904835,
+                "p90": 0.21312773164895524,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 50.17836181579975,
+                "p90": 63.49963792848402,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1413.8746236612321,
+                "p90": 1951.3252474947851,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 186.8798246383667
+          },
+          "trumans/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 191.35611724853516,
+                "p90": 338.4286560058594,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 26.077287197113037,
+                "p90": 34.89069366455078,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 62.98800086975098,
+                "p90": 100.28943023681641,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.18662865659324349,
+                "p90": 0.23819368992994067,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 71.65763228904322,
+                "p90": 84.15121492739969,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1919.4311217452196,
+                "p90": 2383.9747927483413,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 213.37708377838135
+          },
+          "egobody/clean": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 26.488110065460205,
+                "p90": 60.19644451141358,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 2.0869359970092773,
+                "p90": 3.03302857875824,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 6.437627598643303,
+                "p90": 14.384089851379397,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.13858467477677922,
+                "p90": 0.27840821421523315,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 42.79284634722483,
+                "p90": 88.37946655628825,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 1519.5431977506314,
+                "p90": 2806.7299997987857,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 26.74544196153147
+          },
+          "egobody/noisy": {
+            "windows": 4,
+            "metrics": {
+              "hidden_mpjpe_mm": {
+                "mean": 47.05381727218628,
+                "p90": 82.66748123168946,
+                "valid_windows": 4
+              },
+              "visible_mpjpe_mm": {
+                "mean": 26.343353271484375,
+                "p90": 28.402496910095216,
+                "valid_windows": 4
+              },
+              "mpjpe_mm": {
+                "mean": 30.7654070854187,
+                "p90": 36.369411087036134,
+                "valid_windows": 4
+              },
+              "foot_joint_speed_gt_low_m_s": {
+                "mean": 0.15384832077094382,
+                "p90": 0.30442065405149143,
+                "valid_windows": 4
+              },
+              "mpjve_mm_s": {
+                "mean": 75.21340460118756,
+                "p90": 129.07012961544785,
+                "valid_windows": 4
+              },
+              "acceleration_error_mm_s2": {
+                "mean": 2636.9978024663596,
+                "p90": 4157.002926370263,
+                "valid_windows": 4
+              }
+            },
+            "reference_hidden_mean_mm": 54.61962604522705
+          }
+        },
+        "natural_primary": {
+          "clean": 78.9697441123061,
+          "noisy": 107.726568379251,
+          "combined": 93.34815624577855
+        },
+        "equal_dataset_secondary": {
+          "clean": 70.95251131057739,
+          "noisy": 99.93919960657756,
+          "combined": 85.44585545857748
+        }
+      },
+      "checks": [
+        {
+          "name": "rich/clean/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 35.75798177719116,
+          "candidate": 33.48641300201416,
+          "limit": 40.75798177719116
+        },
+        {
+          "name": "rich/clean/visible_mpjpe_mm",
+          "passed": true,
+          "original": 2.468903511762619,
+          "candidate": 1.481903076171875,
+          "limit": 3.468903511762619
+        },
+        {
+          "name": "rich/clean/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.14440959033533113,
+          "candidate": 0.13688467728881865,
+          "limit": 0.15440959033533114
+        },
+        {
+          "name": "rich/clean/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 1137.7869058115161,
+          "candidate": 990.4809202250224,
+          "limit": 1194.676251102092
+        },
+        {
+          "name": "rich/noisy/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 203.53011798858643,
+          "candidate": 61.40766429901123,
+          "limit": 213.70662388801574
+        },
+        {
+          "name": "rich/noisy/visible_mpjpe_mm",
+          "passed": true,
+          "original": 36.09155559539795,
+          "candidate": 21.64771032333374,
+          "limit": 37.09155559539795
+        },
+        {
+          "name": "rich/noisy/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.2593617814670454,
+          "candidate": 0.14863475385645972,
+          "limit": 0.2723298705403977
+        },
+        {
+          "name": "rich/noisy/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 3829.7402547848296,
+          "candidate": 2284.9316846607444,
+          "limit": 4021.227267524071
+        },
+        {
+          "name": "trumans/clean/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 150.77712154388428,
+          "candidate": 152.8830108642578,
+          "limit": 158.3159776210785
+        },
+        {
+          "name": "trumans/clean/visible_mpjpe_mm",
+          "passed": true,
+          "original": 4.058610916137695,
+          "candidate": 4.3799088299274445,
+          "limit": 5.058610916137695
+        },
+        {
+          "name": "trumans/clean/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.16945101122518624,
+          "candidate": 0.16799165220904835,
+          "limit": 0.17945101122518625
+        },
+        {
+          "name": "trumans/clean/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 1503.510118059256,
+          "candidate": 1413.8746236612321,
+          "limit": 1578.6856239622189
+        },
+        {
+          "name": "trumans/noisy/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 198.67760372161865,
+          "candidate": 191.35611724853516,
+          "limit": 208.61148390769958
+        },
+        {
+          "name": "trumans/noisy/visible_mpjpe_mm",
+          "passed": true,
+          "original": 26.772026538848877,
+          "candidate": 26.077287197113037,
+          "limit": 27.772026538848877
+        },
+        {
+          "name": "trumans/noisy/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.19789967838067635,
+          "candidate": 0.18662865659324349,
+          "limit": 0.20789967838067636
+        },
+        {
+          "name": "trumans/noisy/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 2067.3709635918044,
+          "candidate": 1919.4311217452196,
+          "limit": 2170.7395117713945
+        },
+        {
+          "name": "egobody/clean/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 23.639432579278946,
+          "candidate": 26.488110065460205,
+          "limit": 28.639432579278946
+        },
+        {
+          "name": "egobody/clean/visible_mpjpe_mm",
+          "passed": true,
+          "original": 2.0082838386297226,
+          "candidate": 2.0869359970092773,
+          "limit": 3.0082838386297226
+        },
+        {
+          "name": "egobody/clean/foot_joint_speed_gt_low_m_s",
+          "passed": false,
+          "original": 0.12659947154371923,
+          "candidate": 0.13858467477677922,
+          "limit": 0.13659947154371924
+        },
+        {
+          "name": "egobody/clean/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 1521.644070086946,
+          "candidate": 1519.5431977506314,
+          "limit": 1597.7262735912932
+        },
+        {
+          "name": "egobody/noisy/hidden_mpjpe_mm",
+          "passed": true,
+          "original": 45.12101888656616,
+          "candidate": 47.05381727218628,
+          "limit": 50.12101888656616
+        },
+        {
+          "name": "egobody/noisy/visible_mpjpe_mm",
+          "passed": true,
+          "original": 26.756669521331787,
+          "candidate": 26.343353271484375,
+          "limit": 27.756669521331787
+        },
+        {
+          "name": "egobody/noisy/foot_joint_speed_gt_low_m_s",
+          "passed": true,
+          "original": 0.14493345248186615,
+          "candidate": 0.15384832077094382,
+          "limit": 0.15493345248186616
+        },
+        {
+          "name": "egobody/noisy/acceleration_error_mm_s2",
+          "passed": true,
+          "original": 2765.8000844228536,
+          "candidate": 2636.9978024663596,
+          "limit": 2904.0900886439963
+        },
+        {
+          "name": "natural_primary/clean/nonworsening",
+          "passed": false,
+          "original": 77.03254071223289,
+          "candidate": 78.9697441123061
+        },
+        {
+          "name": "natural_primary/noisy/nonworsening",
+          "passed": true,
+          "original": 126.67945869236927,
+          "candidate": 107.726568379251
+        },
+        {
+          "name": "natural_primary/combined/gain3percent",
+          "passed": true,
+          "relative_gain": 0.08352815230706845,
+          "original": 101.85599970230108,
+          "candidate": 93.34815624577855
+        },
+        {
+          "name": "no_new_original_plus50mm",
+          "passed": true,
+          "cases": []
+        },
+        {
+          "name": "reference_plus50_count/clean",
+          "passed": true,
+          "original": 0,
+          "candidate": 0
+        },
+        {
+          "name": "reference_plus50_count/noisy",
+          "passed": true,
+          "original": 2,
+          "candidate": 0
+        },
+        {
+          "name": "known_yoga/clean",
+          "passed": true,
+          "original": 66.92817687988281,
+          "candidate": 57.71564483642578,
+          "reference": 69.29439544677734
+        },
+        {
+          "name": "known_yoga/noisy",
+          "passed": true,
+          "original": 585.7843627929688,
+          "candidate": 63.35560607910156,
+          "reference": 95.25690460205078
+        },
+        {
+          "name": "ego6_exact",
+          "passed": true,
+          "results": [
+            {
+              "model": "exo_static_global_off",
+              "case": 100,
+              "regime": "clean",
+              "exact": true
+            },
+            {
+              "model": "exo_static_global_off",
+              "case": 100,
+              "regime": "noisy",
+              "exact": true
+            },
+            {
+              "model": "exo_static_global_off",
+              "case": 101,
+              "regime": "clean",
+              "exact": true
+            },
+            {
+              "model": "exo_static_global_off",
+              "case": 101,
+              "regime": "noisy",
+              "exact": true
+            },
+            {
+              "model": "exo_static_global_off",
+              "case": 102,
+              "regime": "clean",
+              "exact": true
+            },
+            {
+              "model": "exo_static_global_off",
+              "case": 102,
+              "regime": "noisy",
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "failed_checks": [
+        {
+          "name": "egobody/clean/foot_joint_speed_gt_low_m_s",
+          "passed": false,
+          "original": 0.12659947154371923,
+          "candidate": 0.13858467477677922,
+          "limit": 0.13659947154371924
+        },
+        {
+          "name": "natural_primary/clean/nonworsening",
+          "passed": false,
+          "original": 77.03254071223289,
+          "candidate": 78.9697441123061
+        }
+      ],
+      "severe_reference50_counts": {
+        "clean": {
+          "original": 0,
+          "candidate": 0
+        },
+        "noisy": {
+          "original": 2,
+          "candidate": 0
+        }
+      },
+      "paired_hidden": [
+        {
+          "case": 6,
+          "dataset": "trumans",
+          "regime": "clean",
+          "sequence_id": "2023-02-18@16-44-19",
+          "start": 64,
+          "original_hidden_mm": 244.8933868408203,
+          "candidate_hidden_mm": 291.3746032714844,
+          "reference_hidden_mm": 373.487060546875,
+          "candidate_minus_original_mm": 46.48121643066406,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 6,
+          "dataset": "trumans",
+          "regime": "noisy",
+          "sequence_id": "2023-02-18@16-44-19",
+          "start": 64,
+          "original_hidden_mm": 352.51885986328125,
+          "candidate_hidden_mm": 365.2623596191406,
+          "reference_hidden_mm": 420.1446533203125,
+          "candidate_minus_original_mm": 12.743499755859375,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 11,
+          "dataset": "egobody",
+          "regime": "clean",
+          "sequence_id": "recording_20220218_S23_S02_02_interactee_1301-3701_master_full",
+          "start": 512,
+          "original_hidden_mm": 65.94974517822266,
+          "candidate_hidden_mm": 75.04242706298828,
+          "reference_hidden_mm": 93.34781646728516,
+          "candidate_minus_original_mm": 9.092681884765625,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 11,
+          "dataset": "egobody",
+          "regime": "noisy",
+          "sequence_id": "recording_20220218_S23_S02_02_interactee_1301-3701_master_full",
+          "start": 512,
+          "original_hidden_mm": 88.02991485595703,
+          "candidate_hidden_mm": 96.34727478027344,
+          "reference_hidden_mm": 97.18416595458984,
+          "candidate_minus_original_mm": 8.317359924316406,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 9,
+          "dataset": "egobody",
+          "regime": "clean",
+          "sequence_id": "recording_20220215_S21_S22_01_camera_wearer_1901-4901_master_full",
+          "start": 640,
+          "original_hidden_mm": 23.32234001159668,
+          "candidate_hidden_mm": 25.555818557739258,
+          "reference_hidden_mm": 11.475430488586426,
+          "candidate_minus_original_mm": 2.233478546142578,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 0,
+          "dataset": "rich",
+          "regime": "clean",
+          "sequence_id": "ParkingLot2_014_eating2",
+          "start": 256,
+          "original_hidden_mm": 20.909414291381836,
+          "candidate_hidden_mm": 22.139402389526367,
+          "reference_hidden_mm": 8.924891471862793,
+          "candidate_minus_original_mm": 1.2299880981445312,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 5,
+          "dataset": "trumans",
+          "regime": "clean",
+          "sequence_id": "2023-02-18@16-56-45",
+          "start": 448,
+          "original_hidden_mm": 42.187381744384766,
+          "candidate_hidden_mm": 43.06092834472656,
+          "reference_hidden_mm": 41.760494232177734,
+          "candidate_minus_original_mm": 0.8735466003417969,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 9,
+          "dataset": "egobody",
+          "regime": "noisy",
+          "sequence_id": "recording_20220215_S21_S22_01_camera_wearer_1901-4901_master_full",
+          "start": 640,
+          "original_hidden_mm": 50.10809326171875,
+          "candidate_hidden_mm": 50.747962951660156,
+          "reference_hidden_mm": 75.35808563232422,
+          "candidate_minus_original_mm": 0.6398696899414062,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 10,
+          "dataset": "egobody",
+          "regime": "clean",
+          "sequence_id": "recording_20210923_S03_S14_01_camera_wearer_1211-3251_master_full",
+          "start": 192,
+          "original_hidden_mm": 0.5280333757400513,
+          "candidate_hidden_mm": 0.5878243446350098,
+          "reference_hidden_mm": 0.00032086469582282007,
+          "candidate_minus_original_mm": 0.059790968894958496,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 8,
+          "dataset": "egobody",
+          "regime": "clean",
+          "sequence_id": "recording_20220218_S23_S02_01_interactee_1551-3951_master_full",
+          "start": 2176,
+          "original_hidden_mm": 4.7576117515563965,
+          "candidate_hidden_mm": 4.7663702964782715,
+          "reference_hidden_mm": 2.1582000255584717,
+          "candidate_minus_original_mm": 0.008758544921875,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 0,
+          "dataset": "rich",
+          "regime": "noisy",
+          "sequence_id": "ParkingLot2_014_eating2",
+          "start": 256,
+          "original_hidden_mm": 45.26284408569336,
+          "candidate_hidden_mm": 45.18779373168945,
+          "reference_hidden_mm": 15.40682601928711,
+          "candidate_minus_original_mm": -0.07505035400390625,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 3,
+          "dataset": "rich",
+          "regime": "clean",
+          "sequence_id": "Pavallion_018_sidebalancerun",
+          "start": 64,
+          "original_hidden_mm": 34.1292610168457,
+          "candidate_hidden_mm": 34.0117073059082,
+          "reference_hidden_mm": 32.422054290771484,
+          "candidate_minus_original_mm": -0.1175537109375,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 10,
+          "dataset": "egobody",
+          "regime": "noisy",
+          "sequence_id": "recording_20210923_S03_S14_01_camera_wearer_1211-3251_master_full",
+          "start": 192,
+          "original_hidden_mm": 22.465938568115234,
+          "candidate_hidden_mm": 22.151504516601562,
+          "reference_hidden_mm": 14.66020393371582,
+          "candidate_minus_original_mm": -0.3144340515136719,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 8,
+          "dataset": "egobody",
+          "regime": "noisy",
+          "sequence_id": "recording_20220218_S23_S02_01_interactee_1551-3951_master_full",
+          "start": 2176,
+          "original_hidden_mm": 19.880128860473633,
+          "candidate_hidden_mm": 18.96852684020996,
+          "reference_hidden_mm": 31.27604866027832,
+          "candidate_minus_original_mm": -0.9116020202636719,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 2,
+          "dataset": "rich",
+          "regime": "clean",
+          "sequence_id": "Pavallion_013_sidebalancerun",
+          "start": 192,
+          "original_hidden_mm": 21.065074920654297,
+          "candidate_hidden_mm": 20.07889747619629,
+          "reference_hidden_mm": 9.356048583984375,
+          "candidate_minus_original_mm": -0.9861774444580078,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 4,
+          "dataset": "trumans",
+          "regime": "noisy",
+          "sequence_id": "2023-02-18@22-06-51",
+          "start": 576,
+          "original_hidden_mm": 77.54302978515625,
+          "candidate_hidden_mm": 71.37539672851562,
+          "reference_hidden_mm": 78.72637939453125,
+          "candidate_minus_original_mm": -6.167633056640625,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 1,
+          "dataset": "rich",
+          "regime": "clean",
+          "sequence_id": "Pavallion_006_yoga1",
+          "start": 640,
+          "original_hidden_mm": 66.92817687988281,
+          "candidate_hidden_mm": 57.71564483642578,
+          "reference_hidden_mm": 69.29439544677734,
+          "candidate_minus_original_mm": -9.212532043457031,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 5,
+          "dataset": "trumans",
+          "regime": "noisy",
+          "sequence_id": "2023-02-18@16-56-45",
+          "start": 448,
+          "original_hidden_mm": 63.47915267944336,
+          "candidate_hidden_mm": 52.97003173828125,
+          "reference_hidden_mm": 56.26211929321289,
+          "candidate_minus_original_mm": -10.50912094116211,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 4,
+          "dataset": "trumans",
+          "regime": "clean",
+          "sequence_id": "2023-02-18@22-06-51",
+          "start": 576,
+          "original_hidden_mm": 84.64791107177734,
+          "candidate_hidden_mm": 67.44404602050781,
+          "reference_hidden_mm": 63.50175476074219,
+          "candidate_minus_original_mm": -17.20386505126953,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 7,
+          "dataset": "trumans",
+          "regime": "clean",
+          "sequence_id": "2023-02-18@22-16-27",
+          "start": 1664,
+          "original_hidden_mm": 231.3798065185547,
+          "candidate_hidden_mm": 209.6524658203125,
+          "reference_hidden_mm": 268.7699890136719,
+          "candidate_minus_original_mm": -21.727340698242188,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 3,
+          "dataset": "rich",
+          "regime": "noisy",
+          "sequence_id": "Pavallion_018_sidebalancerun",
+          "start": 64,
+          "original_hidden_mm": 91.92932891845703,
+          "candidate_hidden_mm": 70.0361557006836,
+          "reference_hidden_mm": 58.6595458984375,
+          "candidate_minus_original_mm": -21.893173217773438,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 2,
+          "dataset": "rich",
+          "regime": "noisy",
+          "sequence_id": "Pavallion_013_sidebalancerun",
+          "start": 192,
+          "original_hidden_mm": 91.14393615722656,
+          "candidate_hidden_mm": 67.05110168457031,
+          "reference_hidden_mm": 36.97269821166992,
+          "candidate_minus_original_mm": -24.09283447265625,
+          "original_worse_reference50": true,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 7,
+          "dataset": "trumans",
+          "regime": "noisy",
+          "sequence_id": "2023-02-18@22-16-27",
+          "start": 1664,
+          "original_hidden_mm": 301.16937255859375,
+          "candidate_hidden_mm": 275.8166809082031,
+          "reference_hidden_mm": 298.37518310546875,
+          "candidate_minus_original_mm": -25.352691650390625,
+          "original_worse_reference50": false,
+          "candidate_worse_reference50": false
+        },
+        {
+          "case": 1,
+          "dataset": "rich",
+          "regime": "noisy",
+          "sequence_id": "Pavallion_006_yoga1",
+          "start": 640,
+          "original_hidden_mm": 585.7843627929688,
+          "candidate_hidden_mm": 63.35560607910156,
+          "reference_hidden_mm": 95.25690460205078,
+          "candidate_minus_original_mm": -522.4287567138672,
+          "original_worse_reference50": true,
+          "candidate_worse_reference50": false
+        }
+      ]
+    }
+  },
+  "independent_CPU": {
+    "status": "independent_CPU_passed",
+    "rows": 90,
+    "maximum_difference": {
+      "hidden_mpjpe_mm": 0.00015188270504040702,
+      "visible_mpjpe_mm": 2.2006416744879687e-05,
+      "mpjpe_mm": 4.0748896992681694e-05,
+      "foot_joint_speed_gt_low_m_s": 8.584020002311288e-07,
+      "mpjve_mm_s": 0.0007493831048961397,
+      "acceleration_error_mm_s2": 0.054904125093543144
+    },
+    "tolerances": {
+      "hidden_mpjpe_mm": 0.02,
+      "visible_mpjpe_mm": 0.02,
+      "mpjpe_mm": 0.02,
+      "foot_joint_speed_gt_low_m_s": 0.0001,
+      "mpjve_mm_s": 0.05,
+      "acceleration_error_mm_s2": 2.0
+    },
+    "paired_saved_inputs_exact": true,
+    "EGO_retention": [
+      {
+        "model": "exo_patch_off",
+        "case": 100,
+        "regime": "clean",
+        "exact": true
+      },
+      {
+        "model": "exo_patch_off",
+        "case": 100,
+        "regime": "noisy",
+        "exact": true
+      },
+      {
+        "model": "exo_patch_off",
+        "case": 101,
+        "regime": "clean",
+        "exact": true
+      },
+      {
+        "model": "exo_patch_off",
+        "case": 101,
+        "regime": "noisy",
+        "exact": true
+      },
+      {
+        "model": "exo_patch_off",
+        "case": 102,
+        "regime": "clean",
+        "exact": true
+      },
+      {
+        "model": "exo_patch_off",
+        "case": 102,
+        "regime": "noisy",
+        "exact": true
+      },
+      {
+        "model": "exo_static_global_off",
+        "case": 100,
+        "regime": "clean",
+        "exact": true
+      },
+      {
+        "model": "exo_static_global_off",
+        "case": 100,
+        "regime": "noisy",
+        "exact": true
+      },
+      {
+        "model": "exo_static_global_off",
+        "case": 101,
+        "regime": "clean",
+        "exact": true
+      },
+      {
+        "model": "exo_static_global_off",
+        "case": 101,
+        "regime": "noisy",
+        "exact": true
+      },
+      {
+        "model": "exo_static_global_off",
+        "case": 102,
+        "regime": "clean",
+        "exact": true
+      },
+      {
+        "model": "exo_static_global_off",
+        "case": 102,
+        "regime": "noisy",
+        "exact": true
+      }
+    ],
+    "CUDA_used": false,
+    "source_sha256": {
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/refinement_guard.py": "0903a41d5b230b4d614b7980ef7859faabcfd5ceba26c16f05aece64bb2bd7fb",
+      "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/refinement_evaluation.py": "f4fc856c4a4bbbf37a722565b2e0710e125708a02de0e4b370e9b6ef0b52955a"
+    }
+  },
+  "TEST_used": false,
+  "optimizer_updates": 0,
+  "automatic_promotion": false
+}

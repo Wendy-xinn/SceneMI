@@ -1,0 +1,105 @@
+# EGO-only ablation: fresh AMASS weights, same total compute as the unified prior.
+version: amass128-stage-a-v1
+seed: 20261021
+data:
+  source: amass
+  fps: 30
+  frames: 128
+  split_definition: configs/amass_splits.json
+  splits:
+    train: [train]
+    validation: [val]
+    test: [test]
+  preprocessing: egoallo_0a_neutral_crop80_floor30_reflect
+  body_model: smplh
+  num_betas: 16
+  coordinate_frame: right_handed_y_up_meters
+  representation: 201d_common_neutral_pelvis_v1
+  sampling: uniform_family_then_variant_and_window
+  exo_camera: unavailable_in_amass
+model:
+  architecture: native30
+  latent_dim: 256
+  dim_mults: [1, 2, 4]
+  initialization: from_scratch
+  checkpoint: null
+  diffusion_target: absolute_x0
+  diffusion_steps: 1000
+  shape_betas: 16
+scene:
+  enabled: false
+  geometry_losses: false
+observation:
+  ego_input: virtual_camera
+  ego_joints: [15]
+  exo_input: estimated_3d_body_or_joints
+  body_shape: predicted_from_observations
+  ground_truth_shape_as_input: false
+  # One AMASS prior with two observation modes.
+  mode_probabilities: {ego: 1.0, exo: 0.0}
+  exo_mask: synthetic_body_part_temporal_dropout
+  # Synthetic masks must be labelled as such; they are not rendered occlusion.
+  input_noise: disabled_clean_baseline
+  # EXO whole-frame tracking outages, in addition to the body-part masks.
+  # EGO camera/scene trajectories remain continuous by deployment policy.
+  # Keep the original 128-frame clock and full clean motion supervision.
+  temporal_dropout:
+    protocol: temporal-observation-gaps-v1
+    probabilities: {ego: 0.0, exo: 0.5}
+    gap_frames: [8, 32]
+    placements: [prefix, interior, suffix]
+    minimum_observed_frames: 96
+loss:
+  supervise_hidden_joints: true
+  profile: native30_predicted_shape_v1
+  coefficients:
+    x0: 1.0
+    raw_x0: 0.5
+    rotation: 0.2
+    position: 2.0
+    head_position: 1.0
+    velocity: 0.025
+    acceleration: 0.0000125
+    root_orientation: 0.25
+    head_orientation: 0.5
+    neck_orientation: 0.25
+    head_root_coordination: 0.1
+    turning: 0.02
+    foot_velocity: 0.075
+    planting: 0.1
+    raw_consistency: 0.5
+    shape_betas: 0.05
+    shape_rest: 0.5
+    camera_position: 2.0
+    camera_rotation: 0.5
+    observed_position: 0.01
+optimizer:
+  name: AdamW
+  lr: 0.0001
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 500
+  lr_floor_fraction: 0.1
+training:
+  implementation: observation_shape_v1
+  batch_size: 8
+  precision: fp32
+  planned_updates: 55000
+  checkpoint_policy: atomic_resumable_last
+  checkpoint_every: 1000
+  log_every: 20
+# User explicitly authorized sharing on 2026-10-22. This is an allocator cap,
+# with extra launch-time headroom for CUDA and the other user's workload.
+runtime:
+  gpu_mode: shared_user_authorized
+  pytorch_memory_limit_gib: 6
+  cuda_runtime_allowance_gib: 1
+  free_reserve_gib: 2
+validation:
+  conditions: [clean, temporal_gap]
+  ddim_steps: 20
+  mode: [ego, exo]
+  fixed_seeds: [777]
+  report_hidden_and_visible_separately: true
+  every_updates: 1000
+  families_per_corpus: 1

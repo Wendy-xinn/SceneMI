@@ -1,0 +1,17 @@
+{
+  "protocol": "grail-heldout-contact-support-v1",
+  "splits": ["validation", "test"],
+  "contact_config": "configs/grail_ego_contact.json",
+  "support_config": "configs/grail_ego_support_v2.json",
+  "paths_config": "configs/scene_paths.local.yaml",
+  "frames": 128,
+  "fps": 30,
+  "geometry_rules": "Reuse training contact-v1 and sole-support-v2 thresholds without tuning",
+  "visibility_policy": "Diagnostic only; do not reject motion because a camera cannot see it",
+  "sitting_policy": "Apply contact-v1 seat checks; no synthetic chair and no pre-sit visibility requirement",
+  "authorization": "User explicitly requested GRAIL val/test data-quality inspection on 2026-10-26",
+  "test_use": "Source geometry quality only; no model inference, checkpoint selection or threshold tuning",
+  "source_splits_unchanged": true,
+  "historical_evaluation_unchanged": true,
+  "training_integration": false
+}

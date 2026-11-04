@@ -1,0 +1,277 @@
+{
+  "protocol": "frozen-EXO-scene-fusion-source-audit-v1",
+  "created_at": "2026-10-20T23:29:22.666402+08:00",
+  "scope": "Read source and existing paired VAL results only. No model/inference/training/GPU execution. Only this JSON and its Chinese report are newly written.",
+  "checkpoint": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_natural10k_v1/training/checkpoints/step_010000.pt",
+    "sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5",
+    "stage_step": 10000,
+    "weights_modified": false,
+    "automatic_promotion": false
+  },
+  "sources": {
+    "native_scene": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_model.py",
+      "sha256": "8859036ffa34ec07df79cb795ac3f43f3277e411c8ae02e0eabfc58451fc5854",
+      "line_references": {
+        "flags": 87,
+        "patch_centres": 84,
+        "scene_tokens": 138,
+        "cls_summary": 143,
+        "post_transformer_patch_mask": 146,
+        "core_pass": 158,
+        "patch_attention": 163,
+        "dynamic_attention": 171,
+        "cached_global_summary_injection": 185,
+        "local_geometry": 193,
+        "proposal_before_local_query": 246,
+        "local_condition": 251,
+        "learned_feedback": 267
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    },
+    "core": {
+      "path": "/home/wenxin/projects/SceneMI/model/mdm_scene_unet.py",
+      "sha256": "9f5ead721987fb73169a1975c4f9b7185f2a34feff4cbc197f66673abe30f606",
+      "line_references": {
+        "adagn_projection": 207,
+        "adagn_apply": 210,
+        "unet_condition_mlp": 328,
+        "vit_init": 755,
+        "scene_summary": 879,
+        "global_summary_plus_timestep": 897,
+        "local_frame_condition": 919,
+        "observation_and_scene_condition_channels": 939
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    },
+    "observations": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_observations.py",
+      "sha256": "a400b12f5bb8e52a4334f230dab2f9fdd1baa5f19141c07f1eb4d96222d589e5",
+      "line_references": {
+        "shared_origin_anchor": 95,
+        "exo_positions_half_metres": 102,
+        "exo_scene_metres": 108,
+        "ego_scene_metres": 124,
+        "occupancy": 164
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    },
+    "occupancy": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/unified_geometry.py",
+      "sha256": "ace4f37c11bffcf6f7d2ef76675b0e45a2e1c102c32719c2e29343303c248733",
+      "line_references": {
+        "occupancy_from_points": 190,
+        "YXZ_index_order": 196
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    },
+    "canonical_surface": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_surface_cache.py",
+      "sha256": "5c1176cdf3aaf1d6327de052be08275179765799a54dcacb69fe29b572f5e102",
+      "line_references": {
+        "canonical_origin_anchor": 50,
+        "canonical_points": 68,
+        "yaw_alignment": 84
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    },
+    "yaw_surface": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_overnight.py",
+      "sha256": "d0743ba6fd719fedbf1a66b1f8519ec03ac29b212b5c7d57907935ec84fe6d6d",
+      "line_references": {
+        "yaw_surface": 129,
+        "points_rotation": 133,
+        "dynamic_rotation": 134,
+        "query_inverse_and_return_rotation": 143
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    },
+    "geometry": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_geometry.py",
+      "sha256": "15812909d3fea996db7ac4fdf8fbfd4ac92f535e6a164917b73455b0089ed942",
+      "line_references": {
+        "target_excluded_check": 24,
+        "dynamic_summary_features": 79
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    },
+    "refinement": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_refinement.py",
+      "sha256": "06f8f5bdb0940bc7e3ccb4e55efa710b591a7185f84814b1a3f9e75f97baf5a6",
+      "line_references": {
+        "reference_condition": 216,
+        "proposal_query_reference_plus_noisy": 230,
+        "absolute_proposal": 232,
+        "sampling_cache": 245
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    },
+    "relations": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/native30_scene_relations.py",
+      "sha256": "09f207d1afc0e93e029254299f6631c7a4f24d49b1c242c69bfc69564e9b08e3",
+      "line_references": {
+        "relation_query": 17,
+        "local_query_centres_metric": 100,
+        "metric_scene_delta": 107
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    },
+    "offline_core_adapter": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/scene_model.py",
+      "sha256": "19882da0e640d089fb8068213c7b76bea11c5ef561936492f9a3fe15e4354f9e",
+      "line_references": {
+        "current_backbone_init": 17,
+        "uncond_flag": 53,
+        "local_bps_mask": 60
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    },
+    "existing_process_scoped_extension": {
+      "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/ops/scene_feedback_policy.py",
+      "sha256": "8c6948643aaed735b61bd98640095c242a962f3761f5d218155e090ed709c7d2",
+      "line_references": {
+        "policy_apply": 31,
+        "process_scoped_evaluator": 63
+      },
+      "in_trial_source_seal": false,
+      "matches_trial_source_seal": null
+    },
+    "vit": {
+      "path": "/home/wenxin/miniconda3/envs/scenemi/lib/python3.9/site-packages/vit_pytorch/vit.py",
+      "sha256": "09635453c0dd71a0a02fe28a15a3bafe2a14db968f0fe71db028c3bf18981718",
+      "line_references": {
+        "patch_flatten_order": 96,
+        "cls_token": 103,
+        "transformer": 106
+      },
+      "in_trial_source_seal": true,
+      "matches_trial_source_seal": true
+    }
+  },
+  "verified_from_source": [
+    "use_scene=False disables global CLS, static patch attention, dynamic attention, local query/region condition/BPS, learned feedback, and enabled analytical guidance together. It does not isolate one scene mechanism.",
+    "First proposal _core_pass receives global CLS, static patch and dynamic attention before local_geometry runs. Local physical feedback therefore cannot alone explain an already-corrupted first core proposal.",
+    "Global CLS is added to timestep embedding and enters U-Net AdaGN blocks. Its magnitude is not explicitly limited by observed/reference confidence or timestep.",
+    "Patch/dynamic scene projections are added to the observation/camera/reference condition. Validity masks are present, but there is no explicit reference-preservation, per-joint distance/uncertainty or diffusion-timestep gate on these additions.",
+    "Occupancy is indexed [Y,X,Z]; ViT token flatten is [Xpatch,Zpatch]; valid mask and patch_centres use the same order. Grid is 24x48x48, metric range X/Z [-6.4,6.4), Y [-3.1,1.7), centres Y=-0.7.",
+    "EXO observation positions and scene points share origin/yaw anchor. Positions are m/2 and local queries restore x2; scene points and FK vertices are metric. Canonical cache yaw conversion and local frame delta use matching rotations.",
+    "Zero-occupancy patches receive normal ViT embeddings/positions and participate in transformer before the patch output mask. CLS has no separate observed-coverage/unknown gate.",
+    "There is no global/dynamic branch-specific public config flag in this model. patch_enabled, local_enabled and feedback_enabled have distinct narrower scopes."
+  ],
+  "not_established": [
+    "No definite axis/order/metre-versus-half-metre code defect was found in the paths statically traced. This is not an end-to-end proof that every released/calibrated source bundle aligns.",
+    "No single branch is proven to cause the noisy yoga collapse. Full scene ON/OFF changes several branches simultaneously.",
+    "Unknown/empty patch semantics and unbounded scene/reference competition are architectural risks, not verified root causes.",
+    "Frozen-backbone EXO versus EGO camera-centred occupancy distributions may differ; no distribution analysis or data-level realignment check was run here.",
+    "Turning a branch off can cause an out-of-distribution condition. A gain on the known failure alone would not validate deployment or a paper result."
+  ],
+  "branch_isolation_proposal_only": {
+    "status": "NOT_IMPLEMENTED_NOT_EXECUTED",
+    "weights": "Original frozen natural10k step10000 only; do not use short-trial candidate or retrain",
+    "preserve": "use_scene=True, all observation/reference/camera inputs, analytical guidance disabled as in the existing run, local query/region/BPS/feedback enabled unless separately declared",
+    "single_branch_arms": [
+      {
+        "name": "CLS_off",
+        "change": "Process-scoped scene_tokens wrapper: replace tuple[0] by zeros_like(summary), preserve tuple[1:4]. Install before sample_refinement fills _sampling_scene.",
+        "preserves": "static patch attention, dynamic attention, local query/region/BPS, learned feedback"
+      },
+      {
+        "name": "static_patch_off",
+        "change": "Temporarily model.patch_enabled=False; restore in finally.",
+        "preserves": "global CLS, dynamic attention, local query/region/BPS, learned feedback"
+      },
+      {
+        "name": "dynamic_summary_off",
+        "change": "Temporary forward hook on model.dynamic_condition returns zeros_like(output); remove in finally.",
+        "preserves": "global CLS, static patch attention, local dynamic/static surface queries, region/BPS, learned feedback"
+      }
+    ],
+    "followup_only_if_needed": "If no single branch explains it, combine the three removals to isolate local-scene-only generation. A first-core-only version can then separate a corrupted proposal from final-core conditioning. These are separate declared variants, not the first minimum diagnostic.",
+    "reuse": "Follow process-scoped evaluator/contextmanager pattern in ops/scene_feedback_policy.py; extend paired frozen evaluator once in an unsealed ops module, do not edit sealed model files or create per-case scripts.",
+    "controls": "Require empty _sampling_scene before/after; same checkpoint SHA, exact known inputs/reference/scene and DDIM seed; restore hooks/flags even on error. No GT consulted for gating; GT only in existing metric computation.",
+    "acceptance": "Use existing predeclared clean/noisy VAL identities across all three datasets, including yoga and wipingchairs. Compare hidden/visible MPJPE, reference degradation count, stance-foot speed, acceleration, and first-core raw/FK pose diagnostics. No selection on the single known bad window. No additional evaluation was run by this audit."
+  },
+  "existing_validation_evidence": {
+    "path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/paired_validation_cuda/DIRECTION_REVIEW.json",
+    "sha256": "8dc5379e1e0b85972b253fef2c7383bcd2ec6de7a09c879d45be07f7bc461110",
+    "scope": "12 predeclared EXO VAL windows (4 distinct recordings per corpus), clean/noisy and sceneON/OFF;3 EGO retention anchors;162 predictions. Not full20/fixed100/VAL or TEST.",
+    "noisy_yoga": [
+      {
+        "model": "base10k",
+        "scene": "scene_on",
+        "regime": "noisy",
+        "hidden": 585.7843627929688,
+        "visible": 70.20559692382812,
+        "reference_hidden": 95.25690460205078,
+        "foot": 0.5218579773295285,
+        "acceleration": 7139.516704905142
+      },
+      {
+        "model": "base10k",
+        "scene": "scene_off",
+        "regime": "noisy",
+        "hidden": 68.82540130615234,
+        "visible": 20.842214584350586,
+        "reference_hidden": 95.25690460205078,
+        "foot": 0.22216849918880335,
+        "acceleration": 2616.348459369778
+      },
+      {
+        "model": "control",
+        "scene": "scene_on",
+        "regime": "noisy",
+        "hidden": 582.1354370117188,
+        "visible": 68.77009582519531,
+        "reference_hidden": 95.25690460205078,
+        "foot": 0.534258804800705,
+        "acceleration": 7258.557893750226
+      },
+      {
+        "model": "control",
+        "scene": "scene_off",
+        "regime": "noisy",
+        "hidden": 69.54554748535156,
+        "visible": 20.460573196411133,
+        "reference_hidden": 95.25690460205078,
+        "foot": 0.22410573476337134,
+        "acceleration": 2597.895144582484
+      },
+      {
+        "model": "nondegradation",
+        "scene": "scene_on",
+        "regime": "noisy",
+        "hidden": 581.4570922851562,
+        "visible": 67.9633560180664,
+        "reference_hidden": 95.25690460205078,
+        "foot": 0.5507425022288741,
+        "acceleration": 7375.013599766106
+      },
+      {
+        "model": "nondegradation",
+        "scene": "scene_off",
+        "regime": "noisy",
+        "hidden": 67.78816986083984,
+        "visible": 20.396896362304688,
+        "reference_hidden": 95.25690460205078,
+        "foot": 0.22268121092907975,
+        "acceleration": 2569.753040964763
+      }
+    ],
+    "interpretation": "The TRAIN-only position nondegradation loss did not repair the large scene-ON yoga failure; foot-speed and acceleration also worsen versus baseline in this case. No candidate is promoted by this report."
+  },
+  "TEST_used": false,
+  "optimizer_updates": 0,
+  "additional_predictions": 0,
+  "source_files_modified": false
+}

@@ -1,0 +1,15 @@
+protocol: trumans-exo-moving-synthetic-optics-v1
+trajectory: paired_smplx_camera_to_world
+# A fixed optical convention, never a per-frame look-at computed from GT.
+# The recovered body-coordinate camera has the subject at negative Z, Y up.
+# This is an explicit simulation assumption; original RGB calibration is unverified.
+optical_from_release: [1, -1, -1]
+image_size: [192, 108]
+horizontal_fov_deg: 66.56
+square_pixels: true
+near_m: 0.1
+far_m: 12.0
+environment_samples: 512
+benchmark_camera_verified: false
+tracking_noise: none_during_camera_acceptance
+history: past_observations_only

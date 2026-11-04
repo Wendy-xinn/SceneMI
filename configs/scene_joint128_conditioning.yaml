@@ -1,0 +1,90 @@
+version: replay-scene-joint-v1
+output: runs/scene_joint128_conditioning
+seed: 2026102901
+parent:
+  checkpoint: runs/scene_joint128_replay/candidates/step_002000.pt
+  sha256: a46122d40c572be8ac82b55ca7d421e7c64a4de690c7ae369091064ba1b9260c
+  step: 2000
+data:
+  datasets: [egobody, trumans, grail]
+  excluded_datasets: [rich]
+  modes: [ego, exo]
+  frames: 128
+  fps: 30
+  minimum_tracked_frames_per_window: 34
+  intrinsics_scale_pixels: 256.0
+  frame_points: 512
+  history_voxel_m: 0.05
+  sampling: equal_mode_halves_per_update
+  scene_history: observed_static_prefix_through_window_start
+  current_scene: actual_per_frame_first_hit_points
+  individual_shape_input: false
+local:
+  history_points: 8192
+  frame_points: 512
+  neighbours: 8
+  query_radius_m: 0.6
+  feedback_radius_m: 0.25
+  root_limit_m: 0.04
+  rotation_limit_rad: 0.06
+adapter:
+  hidden: 128
+  noise_gate_power: 0.5
+  root_limit_m: 0.15
+  rotation_6d_limit: 0.5
+  head_consistency_weight: 2.0
+  root_consistency_weight: 1.0
+  geometry:
+    neighbours: 16
+    query_radius_m: 0.6
+    plane_radius_m: 0.15
+    minimum_points: 6
+    maximum_planarity_ratio: 0.03
+    minimum_spread_m: 0.005
+    reliability_distance_m: 0.3
+    ray_tube_m: 0.015
+    ray_endpoint_margin_m: 0.05
+    ray_minimum_depth_m: 0.1
+exo:
+  root_limit_m: 0.5
+  rotation_limit_rad: 1.2
+  residual_gain: 5.0
+frontend:
+  probabilities: [0.2, 0.35, 0.25, 0.2]
+  beta_sigma: 0.15
+  pose_sigma_rad: [0.015, 0.04]
+  occluded_pose_sigma_rad: [0.12, 0.25]
+  pose_rho: 0.85
+  root_sigma_m: [0.01, 0.04]
+  root_rho: 0.95
+  gap_frames: [8, 32]
+training:
+  batch_size: 128
+  ego_batch_size: 64
+  exo_batch_size: 64
+  planned_updates: 3000
+  checkpoint_every: 500
+  log_every: 20
+optimizer:
+  lr_ego: 0.0001
+  lr_exo: 0.00003
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 250
+validation:
+  stride: 128
+  include_end_aligned_tail: true
+  ddim_steps: 20
+  seed: 777
+  test_used: false
+runtime:
+  memory_gib: 12
+  cpu_count: 4
+  allocator_gib: 4
+  gpu_physical_reserve_gib: 4
+  cuda_allowance_gib: 1
+  cpu_affinity: [14, 15, 16, 17]
+paths:
+  selection: configs/scene_data_current.json
+  scene_paths: configs/scene_paths.local.yaml
+  loss: configs/amass_ego128.yaml

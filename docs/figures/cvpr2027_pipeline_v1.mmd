@@ -1,0 +1,36 @@
+flowchart LR
+  subgraph FRONT["A. Fixed upstream models · available components"]
+    RGB["RGB video + target identity"]
+    DET["GroundingDINO + SAM2\npeople / masks / tracks"]
+    BODY["ViTPose + VIMO\n2D confidence + SMPL initialization"]
+    GEO["MegaSam\nUniDepth / DepthAnything / RAFT\ncameras + depth + world points"]
+    ALIGN["MegaHunter + GeoCalib\nshared scale / frame / gravity\nretain original timestamps"]
+    RGB --> DET --> BODY --> ALIGN
+    RGB --> GEO --> ALIGN
+    DET --> GEO
+  end
+  subgraph MODEL["B. Conditional motion diffusion · existing EGO / proposed unified extension"]
+    EGO["EGO target = camera wearer\ncamera trajectory + calibration"]
+    EXO["EXO target = observed person\nestimated 3D joints + validity / confidence\nproposed integration"]
+    OBS["Task-specific observation / shape adapters\nEGO existing; EXO requires training + validation"]
+    SCENE["Observed static prefix + current surfaces\nremove target body; unknown stays unknown"]
+    XT["Noisy motion x_t + timestep t"]
+    PROP["Shared denoiser · call 1\nscene-free motion proposal"]
+    QUERY["Predicted body / FK / skin anchors\nbody-relative observed-geometry query"]
+    REFINE["Shared denoiser · call 2\nscene-conditioned refinement\n+ bounded correction"]
+    DDIM["DDIM update → x_(t-1)\none chain · 20 sampling steps"]
+    OUT["Full-body motion\nroot trajectory + native body decode"]
+    EGO --> OBS
+    EXO -.-> OBS
+    OBS --> PROP
+    OBS --> REFINE
+    XT --> PROP --> QUERY --> REFINE --> DDIM --> OUT
+    SCENE --> QUERY
+    SCENE --> REFINE
+    DDIM -->|"repeat until t = 0"| XT
+  end
+  ALIGN -.-> EGO
+  ALIGN -.-> EXO
+  ALIGN -.-> SCENE
+  classDef proposed fill:#fff5e8,stroke:#bc792a,stroke-width:2px,stroke-dasharray:6 4;
+  class EXO proposed;

@@ -1,0 +1,29 @@
+version: scene-joint-paired-validation-v1
+output: runs/scene_joint128_comparison/step_001000_full_cpu
+scene_config: configs/scene_joint128_conditioning.yaml
+replay_config: configs/scene_joint128_replay.yaml
+scene_checkpoint: runs/scene_joint128_conditioning/training/last.pt
+scene_step: 1000
+scene_sha256: deccf721d4170ca8970ebe1cfaaacf73fbd66f5a671905023cb647c077530f18
+replay_checkpoint: runs/scene_joint128_replay/candidates/step_002000.pt
+replay_sha256: a46122d40c572be8ac82b55ca7d421e7c64a4de690c7ae369091064ba1b9260c
+case_manifest: runs/scene_joint128_replay/VALIDATION_CASES.json
+case_manifest_sha256: 117b8d42308ed59019b09502d0926be553131f955cd2f5f9ac0169720d9d616c
+diagnostic_manifest: runs/scene_joint128_replay/visualization/CASES.json
+selection_seed: 2026103001
+scope: all_eligible_validation_windows
+intrinsics_policy: common_normalized_plus_historical_control
+sources: [egobody, trumans, grail]
+exo_conditions: [identity, tracking, occlusion, gap]
+observation_seed_base: 777
+diffusion_seed: 777
+ego_ddim_steps: 20
+exo_ddim_steps: 8
+exo_start_timestep: 200
+test_used: false
+full_validation: true
+runtime:
+  memory_gib: 8
+  cpu_count: 4
+  allocator_gib: 4
+  gpu_reserve_gib: 4

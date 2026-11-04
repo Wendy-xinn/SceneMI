@@ -1,0 +1,60 @@
+{
+  "protocol": "native30-paired-reference-nondegradation-trial-v1",
+  "status": "completed_direction_rejected",
+  "updated_at": "2026-10-20T23:20:54.845246+08:00",
+  "pid": 91835,
+  "TEST_used": false,
+  "automatic_extension": false,
+  "results": {
+    "control": {
+      "protocol": "native30-paired-reference-nondegradation-trial-v1",
+      "arm": "control",
+      "status": "completed",
+      "updates": 150,
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/control/last.pt",
+      "checkpoint_sha256": "aa93280c64fee145013a292df52619e487de0d9e3ea6ee3ee6edbb170dc9615e",
+      "base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+      "adapter_sha256": "b55578accc15ba67cc8afb5c895acbe74241168d28bfe2aa3c24c4e4feba823f",
+      "elapsed_training_s": 692.1602903579987,
+      "plan_sha256": "e03db71f544c31797beebf0884f2242b839663808e8ed2e19955ba717f9cd40c",
+      "calibration_sha256": "e0f98ba5b7315fa28b81a7d9cb1c4437a8c6fd16657bf2d5c10912c33103b1db"
+    },
+    "nondegradation": {
+      "protocol": "native30-paired-reference-nondegradation-trial-v1",
+      "arm": "nondegradation",
+      "status": "completed",
+      "updates": 150,
+      "checkpoint": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/nondegradation/last.pt",
+      "checkpoint_sha256": "97f00582d9dc67a8fd11968abce26f111f6504c928de80654d1c2a1b1ecc275a",
+      "base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+      "adapter_sha256": "75304379a16afcda1ff39cab3725c51e95e58e18ef0fe7362277646f4539fac7",
+      "elapsed_training_s": 578.4342968000019,
+      "plan_sha256": "e03db71f544c31797beebf0884f2242b839663808e8ed2e19955ba717f9cd40c",
+      "calibration_sha256": "e0f98ba5b7315fa28b81a7d9cb1c4437a8c6fd16657bf2d5c10912c33103b1db"
+    }
+  },
+  "paired_inputs_exact": true,
+  "frozen_base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+  "running": false,
+  "training_completed_updates_per_arm": 150,
+  "paired_validation_predictions": 162,
+  "paired_validation_scope": "12 predeclared EXO VAL windows (4 distinct recordings per corpus), clean/noisy and sceneON/OFF;3 EGO retention anchors;162 predictions. Not full20/fixed100/VAL or TEST.",
+  "independent_CPU_verification": "passed",
+  "candidate_promoted": false,
+  "formal_metrics_paused": true,
+  "TEST_predictions": 0,
+  "decision_record": "paired_validation_cuda/DIRECTION_REVIEW.json",
+  "decision_record_sha256": "8dc5379e1e0b85972b253fef2c7383bcd2ec6de7a09c879d45be07f7bc461110",
+  "conclusion": "150-step nondegradation objective did not meet predeclared promising-direction thresholds; no model promotion",
+  "artifact_retention": {
+    "policy": "records_only",
+    "status": "completed",
+    "cleanup_record": "CLEANUP.json",
+    "inventory_record": "CLEANUP_INVENTORY.json",
+    "removed_rejected_checkpoint_files": 2,
+    "removed_prediction_arrays": 174,
+    "removed_logical_bytes": 1121319156,
+    "historical_audits": "pre_cleanup_evidence",
+    "original10k_preserved_sha256": "3247383297ca2d7129755c6cd96c82eb2009cb2758aa8e22b6e5d0acb04c66b5"
+  }
+}

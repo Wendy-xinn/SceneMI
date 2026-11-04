@@ -1,0 +1,293 @@
+{
+  "protocol": "paired-EXO-short-trial-training-audit-v1",
+  "audited_at": "2026-10-20T22:59:47.914020+08:00",
+  "status": "completed_training_audit",
+  "audit_execution": "CPU metadata/tensor/trace checks only; no GPU context initialized; no worker interruption or sealed-source change",
+  "cuda_initialized": false,
+  "PLAN_sha256": "e03db71f544c31797beebf0884f2242b839663808e8ed2e19955ba717f9cd40c",
+  "CALIBRATION_sha256": "e0f98ba5b7315fa28b81a7d9cb1c4437a8c6fd16657bf2d5c10912c33103b1db",
+  "arms": {
+    "control": {
+      "completed_trace_updates": 150,
+      "steps_exact_contiguous": true,
+      "planned_updates": 150,
+      "presented_training_windows": 1200,
+      "expected_windows_at_current_update": 1200,
+      "all_rows_batch8": true,
+      "unique_source_windows": 1200,
+      "duplicate_window_presentations": 0,
+      "unique_recordings": 476,
+      "datasets": {
+        "rich": 31,
+        "trumans": 923,
+        "egobody": 246
+      },
+      "dataset_proportions": {
+        "rich": 0.025833333333333333,
+        "trumans": 0.7691666666666667,
+        "egobody": 0.205
+      },
+      "groups": {
+        "rich": 31,
+        "trumans": 923,
+        "camera_wearer": 115,
+        "interactee": 131
+      },
+      "TRAIN_only": true,
+      "EXO_only": true,
+      "no_TEST_or_VAL_optimization_identities": true,
+      "all_numeric_trace_values_finite": true,
+      "incomplete_json_lines_ignored": 0,
+      "nondegradation_nonzero_updates": 150,
+      "mean_base_loss": 0.31289904137452446,
+      "mean_nondegradation_loss": 0.5645762353142103,
+      "mean_update_s": 4.561681625219983,
+      "exact_constant_lr": true,
+      "exact_constant_nondegradation_weight": true,
+      "last_logged_step": 150,
+      "checkpoint": {
+        "path": "experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/control/last.pt",
+        "checkpoint_sha256": "aa93280c64fee145013a292df52619e487de0d9e3ea6ee3ee6edbb170dc9615e",
+        "matches_RESULT_sha256": true,
+        "step": 150,
+        "planned_steps": 150,
+        "strict_150_step_metadata": true,
+        "actual_frozen_base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+        "expected_frozen_base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+        "frozen_base_exact": true,
+        "all_serialized_model_values_finite": true,
+        "all_optimizer_steps_150": false,
+        "optimizer_parameter_states": 90,
+        "parent_step": 10000,
+        "parent_checkpoint_sha256_matches_PLAN": true,
+        "PLAN_and_calibration_hashes_match": true,
+        "optimizer_step_histogram": {
+          "150": 84,
+          "137": 6
+        },
+        "scene_ON_updates": 137,
+        "scene_OFF_updates": 13,
+        "optimizer_counters_match_branch_usage": true,
+        "conditional_parameters_with_fewer_updates": [
+          {
+            "parameter": "exo_adapters.a0042.down.weight",
+            "target": "patch_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          },
+          {
+            "parameter": "exo_adapters.a0042.up.weight",
+            "target": "patch_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          },
+          {
+            "parameter": "exo_adapters.a0043.down.weight",
+            "target": "dynamic_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          },
+          {
+            "parameter": "exo_adapters.a0043.up.weight",
+            "target": "dynamic_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          },
+          {
+            "parameter": "exo_adapters.a0044.down.weight",
+            "target": "region_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          },
+          {
+            "parameter": "exo_adapters.a0044.up.weight",
+            "target": "region_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          }
+        ],
+        "optimizer_notes": "150 global optimizer calls; 84 always-used adapter tensors have step150. Six adapter tensors in patch_condition/dynamic_condition/region_condition receive gradients only for the137 sceneON updates, so step137 is expected, not missing training. Counter means gradient present, not necessarily nonzero gradient."
+      },
+      "checkpoint_sampler": {
+        "population_windows": 15319,
+        "draws": 1200,
+        "cursor": 1200,
+        "cycle": 0,
+        "unique_windows_seen": 1200,
+        "maximum_presentations": 1,
+        "total_presentations": 1200,
+        "fingerprint": "7a4bca0fa323f86368447526c6e597be1f6cc13c4d8ac38875b3ec845ff436ea",
+        "matches_inherited_population": true
+      }
+    },
+    "nondegradation": {
+      "completed_trace_updates": 150,
+      "steps_exact_contiguous": true,
+      "planned_updates": 150,
+      "presented_training_windows": 1200,
+      "expected_windows_at_current_update": 1200,
+      "all_rows_batch8": true,
+      "unique_source_windows": 1200,
+      "duplicate_window_presentations": 0,
+      "unique_recordings": 476,
+      "datasets": {
+        "rich": 31,
+        "trumans": 923,
+        "egobody": 246
+      },
+      "dataset_proportions": {
+        "rich": 0.025833333333333333,
+        "trumans": 0.7691666666666667,
+        "egobody": 0.205
+      },
+      "groups": {
+        "rich": 31,
+        "trumans": 923,
+        "camera_wearer": 115,
+        "interactee": 131
+      },
+      "TRAIN_only": true,
+      "EXO_only": true,
+      "no_TEST_or_VAL_optimization_identities": true,
+      "all_numeric_trace_values_finite": true,
+      "incomplete_json_lines_ignored": 0,
+      "nondegradation_nonzero_updates": 150,
+      "mean_base_loss": 0.3129408360520999,
+      "mean_nondegradation_loss": 0.5136522001028061,
+      "mean_update_s": 3.807286606966639,
+      "exact_constant_lr": true,
+      "exact_constant_nondegradation_weight": true,
+      "last_logged_step": 150,
+      "checkpoint": {
+        "path": "experiments/offline_camera_retrain_v1/runs/native30_exo_refinement150_v1/nondegradation/last.pt",
+        "checkpoint_sha256": "97f00582d9dc67a8fd11968abce26f111f6504c928de80654d1c2a1b1ecc275a",
+        "matches_RESULT_sha256": true,
+        "step": 150,
+        "planned_steps": 150,
+        "strict_150_step_metadata": true,
+        "actual_frozen_base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+        "expected_frozen_base_sha256": "c6760c61c937d371a76e59ffc08a47dd6d8d0ff415c20a2aae66cfd82555e9f6",
+        "frozen_base_exact": true,
+        "all_serialized_model_values_finite": true,
+        "all_optimizer_steps_150": false,
+        "optimizer_parameter_states": 90,
+        "parent_step": 10000,
+        "parent_checkpoint_sha256_matches_PLAN": true,
+        "PLAN_and_calibration_hashes_match": true,
+        "optimizer_step_histogram": {
+          "150": 84,
+          "137": 6
+        },
+        "scene_ON_updates": 137,
+        "scene_OFF_updates": 13,
+        "optimizer_counters_match_branch_usage": true,
+        "conditional_parameters_with_fewer_updates": [
+          {
+            "parameter": "exo_adapters.a0042.down.weight",
+            "target": "patch_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          },
+          {
+            "parameter": "exo_adapters.a0042.up.weight",
+            "target": "patch_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          },
+          {
+            "parameter": "exo_adapters.a0043.down.weight",
+            "target": "dynamic_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          },
+          {
+            "parameter": "exo_adapters.a0043.up.weight",
+            "target": "dynamic_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          },
+          {
+            "parameter": "exo_adapters.a0044.down.weight",
+            "target": "region_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          },
+          {
+            "parameter": "exo_adapters.a0044.up.weight",
+            "target": "region_condition",
+            "optimizer_updates": 137,
+            "expected_updates": 137
+          }
+        ],
+        "optimizer_notes": "150 global optimizer calls; 84 always-used adapter tensors have step150. Six adapter tensors in patch_condition/dynamic_condition/region_condition receive gradients only for the137 sceneON updates, so step137 is expected, not missing training. Counter means gradient present, not necessarily nonzero gradient."
+      },
+      "checkpoint_sampler": {
+        "population_windows": 15319,
+        "draws": 1200,
+        "cursor": 1200,
+        "cycle": 0,
+        "unique_windows_seen": 1200,
+        "maximum_presentations": 1,
+        "total_presentations": 1200,
+        "fingerprint": "7a4bca0fa323f86368447526c6e597be1f6cc13c4d8ac38875b3ec845ff436ea",
+        "matches_inherited_population": true
+      }
+    }
+  },
+  "calibration": {
+    "batches": 10,
+    "all_TRAIN_only": true,
+    "all_finite": true,
+    "coefficient": 0.010742026840931776,
+    "achieved_gradient_ratio": 0.20000000000000004,
+    "optimizer_updates": 0,
+    "calibration_inputs_equal_first_control_inputs": true
+  },
+  "paired_comparison": {
+    "paired_steps_checked": 150,
+    "all_input_fingerprints_exact": true,
+    "all_identities_timesteps_scene_gates_exact": true,
+    "same_input_control_mean_base_loss": 0.31289904137452446,
+    "treatment_mean_base_loss": 0.3129408360520999,
+    "same_input_control_mean_raw_FK_nondegradation": 0.5645762353142103,
+    "treatment_mean_raw_FK_nondegradation": 0.5136522001028061,
+    "first_update_base_loss_exact": true,
+    "interpretation": "TRAIN monitoring on replayed inputs only; not held-out validation, not checkpoint selection, and not proof of generalization.",
+    "nondegradation_training_change_percent": -9.019868713223978,
+    "optimizer_parameter_step_counters_exact_between_arms": true
+  },
+  "TEST_used": false,
+  "validation_result_claimed": false,
+  "checkpoint_selected_by_training_loss": false,
+  "peak_rss_MiB": 1466.36328125,
+  "sampling_explanation": {
+    "policy": "Inherited natural TRAIN eligible-window population; shuffle once per epoch without replacement, not VAL corpus weights.",
+    "population_windows": 15319,
+    "eligible_windows_by_group": {
+      "camera_wearer": 1661,
+      "interactee": 1661,
+      "rich": 394,
+      "trumans": 11603
+    },
+    "inherited_TRAIN_dataset_probabilities": {
+      "rich": 0.025719694497029832,
+      "trumans": 0.7574254194137998,
+      "egobody": 0.2168548860891703
+    },
+    "parent_VAL_dataset_probabilities": {
+      "rich": 0.11873198847262248,
+      "trumans": 0.4086455331412104,
+      "egobody": 0.47262247838616717
+    },
+    "actual_presentations_per_arm": {
+      "rich": 31,
+      "trumans": 923,
+      "egobody": 246
+    },
+    "expected_RICH_presentations_in1200": 30.863633396435798,
+    "actual_RICH_presentations": 31,
+    "RICH_presentation_fraction": 0.025833333333333333,
+    "interpretation": "31 RICH windows is consistent with394/15319 natural TRAIN population share; it is not evidence of a sampling bug. This150-step trial offers limited RICH-specific learning and cannot establish that RICH failure is solved. TRAIN and VAL dataset sizes differ, so their natural weights differ."
+  },
+  "audit_correction": "Earlier informal report said all optimizer counters were150; corrected here: global updates150, always-used parameter counters150, six scene-gated parameter counters137. Both arms have the identical expected distribution."
+}

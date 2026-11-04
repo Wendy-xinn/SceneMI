@@ -1,0 +1,951 @@
+{
+  "method": "Full VAL saved-prediction post-hoc presentation selection; not new evaluation or unbiased random sample. Same noisy inputs/seed; scene ON vs OFF.",
+  "candidates": [
+    {
+      "case": 959,
+      "mode": "ego",
+      "dataset": "trumans",
+      "recording": "2023-02-18@22-22-08",
+      "sequence_id": "2023-02-18@22-22-08",
+      "start": 1664,
+      "source_first": 1664,
+      "seed": 737906818,
+      "input_sha256": "abae1685103d7f0da98292fdf2cf693741a6e6ad1f8b030d1addbb6703447203",
+      "scene_on_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case00959_noisy_scene_on.npz",
+      "scene_off_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case00959_noisy_scene_off.npz",
+      "scene_on_sha256": "f794ba70186f2ec8106a29b4ff02b86f672a99a96b6a6691ead6dffd74fba731",
+      "scene_off_sha256": "5ab934a37305a1569fd2e289a7b32dccb7973b11bc6e885d942c740cba719a2f",
+      "identity": {
+        "protocol": "native30-observer-target-v1-raw-firsthit",
+        "export_fingerprint": {
+          "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+          "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+          "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+          "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+          "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+          "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+        },
+        "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+        "sequence_id": "2023-02-18@22-22-08",
+        "bundle_id": "2023-02-18@22-22-08",
+        "split": "validation",
+        "group": "trumans",
+        "dataset": "trumans",
+        "fps": 30,
+        "frames": 2038,
+        "source_first": 0,
+        "source_last": 2037,
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "scale": 1.0
+        },
+        "actual_virtual_mount": {
+          "rotation": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "translation_m": [
+            -0.01384733584818413,
+            0.04659120260477058,
+            0.09885277388744435
+          ],
+          "position_p90_m": 0.0,
+          "rotation_p90_rad": 0.0,
+          "source": "actual fixed raw30 virtual mount"
+        },
+        "diagnostic_only": false,
+        "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+        "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+        "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+        "input_sha256": "73a02ff171ca0b5e224f4cd73d5cfb6e5ef53fc146f71cdbef889a870a2aed81",
+        "elapsed_s": 64.34960674901959,
+        "split_protocol": "egobody-official-recording-v2",
+        "recording": null,
+        "scene_id": "4abcb667-c57f-4d8f-940a-d964152329d5",
+        "pose_profile_split": "validation",
+        "allowed_modes": [
+          "ego",
+          "exo"
+        ],
+        "exo_protocol": "three-corpus-calibrated-or-explicit-synthetic-firsthit-v1",
+        "exo_camera": {
+          "kind": "synthetic_training_observer",
+          "view_id": "synthetic_at_first_release_camera",
+          "selection": "fixed first released camera centre; synthetic look-at recording centre; no visibility selection",
+          "position": [
+            2.5405908777551254,
+            1.4000018623417443,
+            0.4729691632112185
+          ],
+          "rotation": [
+            [
+              0.03922040552581642,
+              0.17314965759916157,
+              -0.9841143002028188
+            ],
+            [
+              0.0,
+              -0.9848720766403213,
+              -0.1732829843180836
+            ],
+            [
+              -0.9992305838946236,
+              0.0067962289156789256,
+              -0.03862708223688635
+            ]
+          ],
+          "K": [
+            [
+              146.25726438668818,
+              0.0,
+              96.0
+            ],
+            [
+              0.0,
+              146.25726438668818,
+              54.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "distortion": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "source_size": [
+            192,
+            108
+          ],
+          "size": [
+            192,
+            108
+          ],
+          "calibration": null,
+          "near": 0.1,
+          "far": 12.0,
+          "benchmark_camera_verified": false,
+          "release_camera_status": "paired extrinsics recovered with native rest pivot; K and optical axes unverified",
+          "release_camera_sources": [
+            "/home/wenxin/projects/TRUMANS/smplx_result/2023-02-18@22-22-08_smplx_results.pkl",
+            "/home/wenxin/projects/TRUMANS/smplx_result_in_cam/2023-02-18@22-22-08_smplx_results.pkl"
+          ]
+        },
+        "exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence",
+        "exo_visibility_statistics": {
+          "reference": 3156060,
+          "visible": 0,
+          "person": 0,
+          "static": 3156060,
+          "rigid": 0
+        },
+        "exo_mean_available_joints": 0.0,
+        "world_frame_id": "34b31e626f6fba4a87f179e9a43432f1f8cacfb6d6f43634481d023c9aa8c3b9",
+        "output_sha256": {
+          "camera_intrinsics_128x96.npy": "0fec425ff4bb0250a6b21c86378255ce2809d0bdc2262b998b913f702d9ef3a0",
+          "camera_position_scenemi_yup.npy": "53fba628f7dd2a23c02172bf29e71b8cff5f59be410f348fbd19113568e347fd",
+          "camera_rotation_scenemi_yup.npy": "87173bf883c4b70892005301083c5d3cdb22218e2f62e60e6cbb95854238a066",
+          "exo_frame_owner.npy": "1e7e78b415fa9f8270f084282b421e968a761b3bcdb43441fd44247e961623dd",
+          "exo_frame_points_world.npy": "46a4e23e91f03af1f0bc711a1fd56051f17441215e7859fecb3464f6fba1e4a2",
+          "exo_intrinsics.npy": "94dd0a431eec652e583a75ef4e1101368df3b67b909a445eb6340adfab960dce",
+          "exo_person_counts.npy": "0ab1d05585bdefd50d42ac5c6f4c40567ae8382823287bb7e806922f1c0fe4fe",
+          "exo_position_available.npy": "8a01be80fed586b67ac9b797f3d53306e68a2f08af6c81430196b92182d38622",
+          "exo_position_confidence.npy": "fddfc4227acf4b954341b26403a9d88cbaecca2871c2b818ccde8ee283291b2f",
+          "exo_reference_counts.npy": "407b2a0c9489acf1fbdabd986123937f9de61072a96b766c822f88d1176c5e43",
+          "exo_rigid_counts.npy": "0ab1d05585bdefd50d42ac5c6f4c40567ae8382823287bb7e806922f1c0fe4fe",
+          "exo_sensor_to_world.npy": "1d6489a100a64f4575dc6ae684d744e03b0bd6ce87d6d8fd4fe1670b471ff3ff",
+          "exo_static_counts.npy": "407b2a0c9489acf1fbdabd986123937f9de61072a96b766c822f88d1176c5e43",
+          "exo_trajectory_world.npy": "1e14eecf945a260fd331d23cbaecbdb3a4f79e3edb8ad4b0ed4619ecd553e94e",
+          "exo_visible_counts.npy": "0ab1d05585bdefd50d42ac5c6f4c40567ae8382823287bb7e806922f1c0fe4fe",
+          "motion_world.npy": "fd2a5b3f735993ec00eedd27462a4a0147aee9390346cf3a9f999bcdcdf487ae",
+          "object_positions.npy": "686097d3ae9c19f56dce8a4e3d2f7a9153b8c9b915f71a7a1c1590dba7801113",
+          "object_rotations.npy": "bbc4f567863c30401353bbcda8668eacb0ba446fa3602362f607c819b5485986",
+          "object_valid.npy": "f97e5da4f40e679fbb1d19b9d915a3160464bc2f951f893dd390d92472448843",
+          "observation_valid.npy": "cafe8c6478211820a00c64740d9c9484459bb36106bcabe55f548dbbeb18e77f",
+          "rest.npy": "91b1839a3b5e71c13223d744b6cad262e3c401414d5b10ae0186d35b13755066",
+          "source_frame_ids.npy": "dd908282aa6a8b1df011d5c00a4bf84f9a47143e8b5cdf46327e807890bd74ca",
+          "trumans_released_camera_to_world_reference.npy": "dfad814e2cffe5f53950ff35ec7d8dcb32571d5ee1fdecd7f86e81fc576e6a6c",
+          "visible_frame_owner.npy": "e2500066c40825fa6ca1055a14158c8bda50a3859513bb8636e9ad887b32f3a9",
+          "visible_frame_points_scenemi_yup.npy": "c817fe6fdb2fef17e5d356cb135e1e4039e143ac4c7a1e9203aee8c050c86196"
+        },
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/2023-02-18@22-22-08",
+        "start": 1664,
+        "source_start_30fps": 1664,
+        "origin": [
+          0.886765718460083,
+          1.5385363101959229,
+          -1.4521465301513672
+        ],
+        "anchor": [
+          [
+            0.9741606712341309,
+            0.0,
+            -0.22585608065128326
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.22585608065128326,
+            0.0,
+            0.9741606712341309
+          ]
+        ],
+        "yaw_augmentation_rad": 0.0,
+        "mode": "ego",
+        "window_stride": 64
+      },
+      "metrics": {
+        "scene_on": {
+          "mpjpe_mm": 78.8858642578125,
+          "root_relative_mpjpe_mm": 69.31864056032573,
+          "hidden_mpjpe_mm": 81.54011535644531,
+          "visible_mpjpe_mm": 17.105955123901367,
+          "foot_joint_speed_gt_low_m_s": 0.2610139441299792,
+          "foot_joint_y_abs_error_mm": 60.2296224484841,
+          "mpjve_mm_s": 248.9308719371391,
+          "acceleration_error_mm_s2": 5910.276927270148
+        },
+        "scene_off": {
+          "mpjpe_mm": 289.3948669433594,
+          "root_relative_mpjpe_mm": 259.6071486504193,
+          "hidden_mpjpe_mm": 301.0359191894531,
+          "visible_mpjpe_mm": 18.437793731689453,
+          "foot_joint_speed_gt_low_m_s": 0.6865346248543561,
+          "foot_joint_y_abs_error_mm": 617.1360964265963,
+          "mpjve_mm_s": 374.901276512519,
+          "acceleration_error_mm_s2": 6611.004944657301
+        }
+      },
+      "gt_root_horizontal_path_m": 3.11313813692493,
+      "gt_root_displacement_m": 2.7760954656716423,
+      "scene_on_off_root_relative_pose_difference_mm": 239.45524691435654,
+      "recommended_local_frame": 57,
+      "improvement_frame_fraction": 1.0,
+      "note": "首选场景收益：明显走动，有场景显著改变骨盆相对姿态并减小脚高误差。"
+    },
+    {
+      "case": 1311,
+      "mode": "ego",
+      "dataset": "egobody",
+      "recording": "recording_20211002_S03_S18_02",
+      "sequence_id": "recording_20211002_S03_S18_02_interactee_3811-5071",
+      "start": 256,
+      "source_first": 4067,
+      "seed": 3145196025,
+      "input_sha256": "5bbbf8e0e0f81c01e03416f2046167c218f89ca8f9dbf366933d6f1113871706",
+      "scene_on_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case01311_noisy_scene_on.npz",
+      "scene_off_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case01311_noisy_scene_off.npz",
+      "scene_on_sha256": "17fa9c4fd6f5e9f65408660982f421a1eb90686885fe293a599c0944f606408a",
+      "scene_off_sha256": "fefdc073645b9c444093fb5f85dbf1d1e11a166da15370dc14e1e72c0c557f96",
+      "identity": {
+        "protocol": "native30-observer-target-v1-raw-firsthit",
+        "export_fingerprint": {
+          "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+          "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+          "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+          "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+          "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+          "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+        },
+        "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+        "sequence_id": "recording_20211002_S03_S18_02_interactee_3811-5071",
+        "bundle_id": "recording_20211002_S03_S18_02_interactee_3811-5071",
+        "split": "validation",
+        "group": "interactee",
+        "dataset": "egobody",
+        "fps": 30,
+        "frames": 1260,
+        "source_first": 3811,
+        "source_last": 5070,
+        "native_body": {
+          "model": "smpl",
+          "gender": "male",
+          "betas": [
+            1.2938692569732666,
+            0.25143229961395264,
+            0.6255391836166382,
+            0.6326417922973633,
+            0.5965955257415771,
+            -0.06368162482976913,
+            0.7176763415336609,
+            -0.4482762813568115,
+            0.6022710204124451,
+            -1.031610369682312
+          ],
+          "scale": 1.0
+        },
+        "actual_virtual_mount": {
+          "rotation": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "translation_m": [
+            0.001493255986173689,
+            0.08982867513590172,
+            0.0842035626813878
+          ],
+          "position_p90_m": 0.0,
+          "rotation_p90_rad": 0.0,
+          "source": "actual fixed raw30 virtual mount"
+        },
+        "diagnostic_only": false,
+        "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+        "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+        "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+        "input_sha256": "91e357742332b41f8c3e98ef43bcfb071abc03f94bc4a729daff03d97b41ed9a",
+        "elapsed_s": 15.355517473013606,
+        "split_protocol": "egobody-official-recording-v2",
+        "recording": "recording_20211002_S03_S18_02",
+        "scene_id": "cab_g_benches",
+        "pose_profile_split": "train",
+        "allowed_modes": [
+          "ego"
+        ],
+        "official_split_csv_sha256": "196a9953e118f378b929ec303cd42b4af3719507dc75ef650c8372dbb577a639",
+        "world_frame_id": "c0070286a0d86193e6f09f98471faffa84239a80d6e7aec159c753510e8288e6",
+        "output_sha256": {
+          "camera_intrinsics_128x96.npy": "0ba6daa769c477acb397671292da41e59e765d08dca6214cae008b3f4a5df977",
+          "camera_position_scenemi_yup.npy": "ec76269a8f3f63528680fca2c0cd97348cf3344ed95bbefc9c0fd169198c4443",
+          "camera_rotation_scenemi_yup.npy": "3bcb2f82db3aea29386d91cb56f24033ada0202317df48e2c6f6e22ff32844f4",
+          "motion_world.npy": "79bb40c87bb2a7a3261691cbac96a18d3fc0be760e287ec05d851012ba3a1057",
+          "observation_valid.npy": "f361ef5fef7f90446341192f8a1713f1fb7e79db3620821a0f26c1eb66b9e9be",
+          "rest.npy": "3ecbc59bd03b220f11b54ece70ed9b54bdf5ba2557b9a0b900b15925f52f534e",
+          "source_frame_ids.npy": "2e436502ccb77c1af2762fef282ee48e357bfaf14cba591e93d989f2250eca9c",
+          "visible_frame_owner.npy": "7ea7df6a5ecf04a651fdf1b2c63e39206403eb7142278e103fbc4a1576ef9ac8",
+          "visible_frame_points_scenemi_yup.npy": "0993285ed77284d7bcf0308fe5fbe0e2e31e599c73f4a02820031fbed36be8f0"
+        },
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/recording_20211002_S03_S18_02_interactee_3811-5071",
+        "start": 256,
+        "source_start_30fps": 4067,
+        "origin": [
+          -1.5824908018112183,
+          1.4057350158691406,
+          -0.8029565811157227
+        ],
+        "anchor": [
+          [
+            0.5050146579742432,
+            0.0,
+            -0.8631107807159424
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.8631107807159424,
+            0.0,
+            0.5050146579742432
+          ]
+        ],
+        "yaw_augmentation_rad": 0.0,
+        "mode": "ego",
+        "window_stride": 64
+      },
+      "metrics": {
+        "scene_on": {
+          "mpjpe_mm": 94.79328918457031,
+          "root_relative_mpjpe_mm": 73.27024882547482,
+          "hidden_mpjpe_mm": 98.4488296508789,
+          "visible_mpjpe_mm": 18.026880264282227,
+          "foot_joint_speed_gt_low_m_s": 0.2637824073576359,
+          "foot_joint_y_abs_error_mm": 29.256926849484444,
+          "mpjve_mm_s": 223.81161668318285,
+          "acceleration_error_mm_s2": 6313.926124194827
+        },
+        "scene_off": {
+          "mpjpe_mm": 213.9607696533203,
+          "root_relative_mpjpe_mm": 203.6985512038751,
+          "hidden_mpjpe_mm": 222.9011688232422,
+          "visible_mpjpe_mm": 26.212326049804688,
+          "foot_joint_speed_gt_low_m_s": 0.5904487426311184,
+          "foot_joint_y_abs_error_mm": 384.4420351088047,
+          "mpjve_mm_s": 328.7935477056644,
+          "acceleration_error_mm_s2": 10793.384793759466
+        }
+      },
+      "gt_root_horizontal_path_m": 1.772534330759981,
+      "gt_root_displacement_m": 1.4169488658847325,
+      "scene_on_off_root_relative_pose_difference_mm": 173.91415424659215,
+      "recommended_local_frame": 15,
+      "improvement_frame_fraction": 1.0,
+      "note": "首选场景收益：正常走动，非仅平移改善，脚高与相对姿态显著更近GT。"
+    },
+    {
+      "case": 965,
+      "mode": "ego",
+      "dataset": "rich",
+      "recording": "LectureHall_003_wipingchairs1",
+      "sequence_id": "LectureHall_003_wipingchairs1",
+      "start": 192,
+      "source_first": 197,
+      "seed": 3065444846,
+      "input_sha256": "479b18c07157672662f98352f22bfc22e589a647d3d7eb6f4aadc5c187c980e9",
+      "scene_on_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case00965_noisy_scene_on.npz",
+      "scene_off_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case00965_noisy_scene_off.npz",
+      "scene_on_sha256": "7d8ecc78909b0934735204e308464e1c246a1b25d66b0eb6e18d8826d949860e",
+      "scene_off_sha256": "1999de00f20559ae79b30e7daa3fc44b3c11350789dd2be0c18220eced1a4c65",
+      "identity": {
+        "protocol": "native30-observer-target-v1-raw-firsthit",
+        "export_fingerprint": {
+          "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+          "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+          "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+          "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+          "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+          "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+        },
+        "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+        "sequence_id": "LectureHall_003_wipingchairs1",
+        "bundle_id": "LectureHall_003_wipingchairs1",
+        "split": "validation",
+        "group": "rich",
+        "dataset": "rich",
+        "fps": 30,
+        "frames": 700,
+        "source_first": 5,
+        "source_last": 704,
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            -0.34659865498542786,
+            -0.3736152648925781,
+            -0.17872750759124756,
+            -1.9578384160995483,
+            1.5789836645126343,
+            0.2062685191631317,
+            0.6446425914764404,
+            0.10404720157384872,
+            -0.5467309951782227,
+            0.2934948801994324
+          ],
+          "scale": 1.006566842415469
+        },
+        "actual_virtual_mount": {
+          "rotation": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "translation_m": [
+            -0.015265621947190668,
+            0.045173192362888345,
+            0.0965824611120512
+          ],
+          "position_p90_m": 0.0,
+          "rotation_p90_rad": 0.0,
+          "source": "actual fixed raw30 virtual mount"
+        },
+        "diagnostic_only": false,
+        "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+        "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+        "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+        "input_sha256": "7a51873fd511366010fa45af7b9cb003c7a732d1face9a965cee2f78d020f777",
+        "elapsed_s": 28.72905467398232,
+        "split_protocol": "egobody-official-recording-v2",
+        "recording": null,
+        "scene_id": "LectureHall",
+        "pose_profile_split": "validation",
+        "allowed_modes": [
+          "ego",
+          "exo"
+        ],
+        "exo_protocol": "three-corpus-calibrated-or-explicit-synthetic-firsthit-v1",
+        "exo_camera": {
+          "kind": "released_calibrated",
+          "view_id": "rich_001",
+          "selection": "SHA256(sequence_id) modulo released calibrated views; no pose selection",
+          "available_views": [
+            "000",
+            "001",
+            "002",
+            "003",
+            "004",
+            "005",
+            "006"
+          ],
+          "position": [
+            -9.25747099381168,
+            0.016152477305623913,
+            -3.7403961564094654
+          ],
+          "rotation": [
+            [
+              -0.06174302330771159,
+              -0.12733488696618958,
+              0.9899361712159358
+            ],
+            [
+              -0.004620853088916445,
+              -0.9917814161828432,
+              -0.12786042475188394
+            ],
+            [
+              0.9980813782994351,
+              -0.012468847375844238,
+              0.060647202751093206
+            ]
+          ],
+          "K": [
+            [
+              3573.5578272315015,
+              0.0,
+              1943.0950962396687
+            ],
+            [
+              0.0,
+              3573.5578272315015,
+              1487.6015124473788
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "distortion": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "source_size": [
+            4112,
+            3008
+          ],
+          "size": [
+            256,
+            192
+          ],
+          "calibration": "/home/wenxin/projects/RICH/extracted/scan_calibration/LectureHall/calibration/001.xml",
+          "near": 0.1,
+          "far": 20.0,
+          "benchmark_camera_verified": true
+        },
+        "exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence",
+        "exo_visibility_statistics": {
+          "reference": 1168474,
+          "visible": 1146961,
+          "person": 0,
+          "static": 21513,
+          "rigid": 0
+        },
+        "exo_mean_available_joints": 20.385714285714286,
+        "world_frame_id": "e19792cc6615fe68ae80b05588a05b7d937b196b99c668d5a70fc389c7e994f4",
+        "output_sha256": {
+          "camera_intrinsics_128x96.npy": "4e5240415e03fc707a3d0045071a7fbc22becb560ac852f328f6923773ee37da",
+          "camera_position_scenemi_yup.npy": "1077977344e0fc7c3cd1e096027271757fcdd77a2f5fc0605d1b6fb69eeb8b77",
+          "camera_rotation_scenemi_yup.npy": "466e1b699f33e4f0d647f2a545188cf40191599995c90ef7049d178cb9060f87",
+          "contact_target.npy": "4a20f151372975590005d4a73284c6d618804bd4a2ff061d9c6bef91116cd5a9",
+          "contact_valid.npy": "c76bfe7b2cb61f08769926a487366165080c7892c7c13924e5cb9af2f806b050",
+          "exo_frame_owner.npy": "ae871c0525a820e164782929c732a15f74f038696ba81146132e7fbd3d41af9b",
+          "exo_frame_points_world.npy": "4ebcc6e28ac21f890693dc9fb2b8fc0b482a808a9c6855302eb2300b2a9ccbfa",
+          "exo_intrinsics.npy": "07341ed77331c48e989f1c90af00e5a9d8daa69e478c335c96a3c83b7ef9ff99",
+          "exo_person_counts.npy": "c183ac0b535190c80bfca85adc64658ab56082c6649a01902d93fe378d2e2b8b",
+          "exo_position_available.npy": "f34db962ec93ee736a30e1dc986cd88656b137651f4db7923752937210de0a4a",
+          "exo_position_confidence.npy": "9743ec6bf20d742ebac84fc81c546d4598b0b275ddd7bc63fe588a66d9678a03",
+          "exo_reference_counts.npy": "f20d7589bb8d1b0a433c9f33f9133df2d007564e78674e1dfa29e7c735cf8445",
+          "exo_rigid_counts.npy": "c183ac0b535190c80bfca85adc64658ab56082c6649a01902d93fe378d2e2b8b",
+          "exo_sensor_to_world.npy": "4799623da0152c4086b9dbe62e159afe84b1144f69c04030d8b3fecfc10b6cf8",
+          "exo_static_counts.npy": "dda17875e6d387f1055e2374617358524586d9447f7923c068d2af8fea781511",
+          "exo_trajectory_world.npy": "5e8c28be127b906dcf780129e923f56edcc41d58a679d9f0c15b339643d26759",
+          "exo_visible_counts.npy": "d39c28dc01272bfb8d20098a9dbccedfe09c7c43ebf2d3392a629f19b077c402",
+          "motion_world.npy": "c2e3b89f658e20ea5ec6cbb43ab81d8a36445ab0292bfbfe95a89b0f8839ce37",
+          "observation_valid.npy": "b8f15e721bcd50d13c0c34f8c671d3216746dd813a60f142da19e6496861aa60",
+          "rest.npy": "bedcc2dab0192a2fd19d55ec8632f74cf62fe4b81f66c817e76b8404c9ec28f0",
+          "source_frame_ids.npy": "6bf2c673bbca5b7ba29ea723ab8f04e3c8a5a5180a50ed59ac96732453115b62",
+          "visible_frame_owner.npy": "b825914d86616b61772eb5040ad337d6f4420e88e7976c516587a0c774af41cd",
+          "visible_frame_points_scenemi_yup.npy": "050773bba3cc877a75afcd0db8782f0b267cd36adf3e8cb024f381e94e3f31c8"
+        },
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/LectureHall_003_wipingchairs1",
+        "start": 192,
+        "source_start_30fps": 197,
+        "origin": [
+          -6.08291482925415,
+          -0.45150521397590637,
+          -2.3881022930145264
+        ],
+        "anchor": [
+          [
+            -0.9970071911811829,
+            0.0,
+            -0.07730859518051147
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.07730859518051147,
+            0.0,
+            -0.9970071911811829
+          ]
+        ],
+        "yaw_augmentation_rad": 0.0,
+        "mode": "ego",
+        "window_stride": 64
+      },
+      "metrics": {
+        "scene_on": {
+          "mpjpe_mm": 110.97518920898438,
+          "root_relative_mpjpe_mm": 95.88271177513059,
+          "hidden_mpjpe_mm": 115.01744079589844,
+          "visible_mpjpe_mm": 26.087732315063477,
+          "foot_joint_speed_gt_low_m_s": 0.26132483704011716,
+          "foot_joint_y_abs_error_mm": 29.704980241755646,
+          "mpjve_mm_s": 352.6701603092207,
+          "acceleration_error_mm_s2": 7086.420446326906
+        },
+        "scene_off": {
+          "mpjpe_mm": 161.64613342285156,
+          "root_relative_mpjpe_mm": 144.3692278131478,
+          "hidden_mpjpe_mm": 168.07540893554688,
+          "visible_mpjpe_mm": 26.631187438964844,
+          "foot_joint_speed_gt_low_m_s": 0.6379224863621522,
+          "foot_joint_y_abs_error_mm": 167.78481844812632,
+          "mpjve_mm_s": 461.66011910119676,
+          "acceleration_error_mm_s2": 9349.238409835829
+        }
+      },
+      "gt_root_horizontal_path_m": 3.407344688947643,
+      "gt_root_displacement_m": 2.446749189191768,
+      "scene_on_off_root_relative_pose_difference_mm": 126.43994310987932,
+      "recommended_local_frame": 70,
+      "improvement_frame_fraction": 0.875,
+      "note": "RICH正常走动/擦椅子：脚速0.638→0.261m/s，脚高误差168→30mm；仍不可宣称彻底消除滑步。"
+    },
+    {
+      "case": 1059,
+      "mode": "ego",
+      "dataset": "rich",
+      "recording": "ParkingLot2_014_overfence1",
+      "sequence_id": "ParkingLot2_014_overfence1",
+      "start": 64,
+      "source_first": 159,
+      "seed": 1702050596,
+      "input_sha256": "fc6f630c7cfad43645d8052b2c19758a73dc4aa38336ad6651eafe9f55f52dc1",
+      "scene_on_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case01059_noisy_scene_on.npz",
+      "scene_off_path": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_final_metrics_v1/full_validation_noisy/motions/case01059_noisy_scene_off.npz",
+      "scene_on_sha256": "feef8041d1a2a9a3ca5ab484711361227ec8847f72c90c0814270463a41f822e",
+      "scene_off_sha256": "390a01461516ffbf0d19cff9e1e233c632b30bc1a7d82974fff11d9db5b58e11",
+      "identity": {
+        "protocol": "native30-observer-target-v1-raw-firsthit",
+        "export_fingerprint": {
+          "native30_export.py": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+          "native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+          "native30_splits.py": "af38d995e5d3ddfc465dc7922d5a9c40b0fe8a9884a2b7f6ac5ffd73775e03d5",
+          "scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+          "export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+          "export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+          "prepare_trumans_dynamic_v2.py": "49c7ca9a905a0db9e41f7a6e01eff66ef2681e62728a17f8930442754b90d23f"
+        },
+        "export_code_sha256": "7b1df897a26a16fd72291b5d707e829929790a568e418bbccbaa1a9d448784f9",
+        "sequence_id": "ParkingLot2_014_overfence1",
+        "bundle_id": "ParkingLot2_014_overfence1",
+        "split": "validation",
+        "group": "rich",
+        "dataset": "rich",
+        "fps": 30,
+        "frames": 400,
+        "source_first": 95,
+        "source_last": 494,
+        "native_body": {
+          "model": "smplx",
+          "gender": "male",
+          "betas": [
+            -0.3263680934906006,
+            -1.1241958141326904,
+            -0.5137174725532532,
+            1.6506445407867432,
+            -1.0772907733917236,
+            -2.1106178760528564,
+            -2.5846385955810547,
+            -0.35385245084762573,
+            -1.6236333847045898,
+            -0.012638942338526249
+          ],
+          "scale": 1.0057461176830529
+        },
+        "actual_virtual_mount": {
+          "rotation": [
+            [
+              1.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              1.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "translation_m": [
+            -0.013372821898851308,
+            0.046907857900365904,
+            0.10244342565009366
+          ],
+          "position_p90_m": 0.0,
+          "rotation_p90_rad": 0.0,
+          "source": "actual fixed raw30 virtual mount"
+        },
+        "diagnostic_only": false,
+        "observation_budget": "consumer selects recording observed-static union or prefix; current-frame dynamics",
+        "scene_unknown_policy": "observed surface occupancy only; absence of points means unknown",
+        "dynamic_velocity_protocol": "source-known rigid object poses; partner velocities unavailable",
+        "input_sha256": "1317668448281988fdb5dff2c94dd98bdc11b842fad2845fadef0bd34e099641",
+        "elapsed_s": 26.714977033028845,
+        "split_protocol": "egobody-official-recording-v2",
+        "recording": null,
+        "scene_id": "ParkingLot2",
+        "pose_profile_split": "validation",
+        "allowed_modes": [
+          "ego",
+          "exo"
+        ],
+        "exo_protocol": "three-corpus-calibrated-or-explicit-synthetic-firsthit-v1",
+        "exo_camera": {
+          "kind": "released_calibrated",
+          "view_id": "rich_000",
+          "selection": "SHA256(sequence_id) modulo released calibrated views; no pose selection",
+          "available_views": [
+            "000",
+            "001",
+            "002",
+            "003",
+            "004",
+            "005"
+          ],
+          "position": [
+            7.220217227935791,
+            -0.2525087594985962,
+            -2.0041048526763916
+          ],
+          "rotation": [
+            [
+              -0.032780010253190994,
+              0.12915800511837006,
+              -0.9910820722579956
+            ],
+            [
+              -0.044325366616249084,
+              -0.990827202796936,
+              -0.12765872478485107
+            ],
+            [
+              -0.9984791874885559,
+              0.03974542021751404,
+              0.03820430114865303
+            ]
+          ],
+          "K": [
+            [
+              3575.3914696766756,
+              0.0,
+              1949.9169418349077
+            ],
+            [
+              0.0,
+              3575.3914696766756,
+              1469.6301639541166
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "distortion": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "source_size": [
+            4112,
+            3008
+          ],
+          "size": [
+            256,
+            192
+          ],
+          "calibration": "/home/wenxin/projects/RICH/extracted/scan_calibration/ParkingLot2/calibration/000.xml",
+          "near": 0.1,
+          "far": 20.0,
+          "benchmark_camera_verified": true
+        },
+        "exo_input_kind": "ideal_GT_position_tracker_simulation_with_firsthit_confidence",
+        "exo_visibility_statistics": {
+          "reference": 768518,
+          "visible": 728135,
+          "person": 0,
+          "static": 40383,
+          "rigid": 0
+        },
+        "exo_mean_available_joints": 20.1325,
+        "world_frame_id": "703114b1db645866f055ce2fa9b5dda4f73cd8021cf9bdd7a19f4509c5d5b8b0",
+        "output_sha256": {
+          "camera_intrinsics_128x96.npy": "a33a62be04ec093be25e64f998aa3f9b0371f119ddea7fc1e8a760c5ffff6c0b",
+          "camera_position_scenemi_yup.npy": "afde3b217ebdb861061fc3fdd8895518dfdf696eef913fbe9e604721d21c37cb",
+          "camera_rotation_scenemi_yup.npy": "1575cdcefcd6ad3982cadab74ef5af49a2edee96e9801e7ca91ff7cdd6af98d0",
+          "contact_target.npy": "9736644ac77b73304d2ee246b6a8164b76a7512c767cfba1299493aa28c2d6f0",
+          "contact_valid.npy": "254ba265fe7886bbe1693ba5a8c6325c1e580164ff0f7a3780f2c29976f39fc3",
+          "exo_frame_owner.npy": "8af4086d0d62cc2d15c1b92cf93a283a506d3aba7331bcf3b2042abcc952e22e",
+          "exo_frame_points_world.npy": "fcef6e0b300b1ecc577b668bfcf5d54952aff50dc2aaf4098da09f83691652ff",
+          "exo_intrinsics.npy": "fcade6a67530e5e03da08d72cca500491f53f601c1b2d9f157f744cab63a7c31",
+          "exo_person_counts.npy": "b6b81f14e6c8d344a8b877f154e8e61db080f11b7f879dbd1c13fb24a1ac55aa",
+          "exo_position_available.npy": "1330aecbfc88ed5ee60e6d02d3799318ef4cfdfb5eee2ac0672fb1423bd88e36",
+          "exo_position_confidence.npy": "81312a9fdf2e52f57bebe15357122cd986cc7e8d62129fd5b45d14c012eff7c4",
+          "exo_reference_counts.npy": "1ff77b8491b57385a1c57542ae70e75c3b9531d8163194e0dc535e63887eea88",
+          "exo_rigid_counts.npy": "b6b81f14e6c8d344a8b877f154e8e61db080f11b7f879dbd1c13fb24a1ac55aa",
+          "exo_sensor_to_world.npy": "4d8bd048e3af5d5d306861da92c901c5ae612fbda6a552bf86f541a12e06cd73",
+          "exo_static_counts.npy": "60de080d9fc52e754d8f5f9f4f9ba71687fcccb794e0c64c45d4b54867dfd1d5",
+          "exo_trajectory_world.npy": "e7c9404c53e83a589eb7016a6924c8e08a74da415b09f49c50fa8c4109f6eb22",
+          "exo_visible_counts.npy": "a6b677e737de0b3cfc1e829c3b67194ea54541e95a04fc55e7de82c986cafe8a",
+          "motion_world.npy": "3ddc8c6825f8dbf5fe04181def0733a3bf965523e81847151d9b2e2d5959377f",
+          "observation_valid.npy": "36214502ec4f8e0ed5a37b104bf03f710d628eaf6c9041836b1f762ea29fcdc0",
+          "rest.npy": "5f9520abc29b53ed74e91aa2683efda69b4f778f8de51e1f368097b95d44b1e7",
+          "source_frame_ids.npy": "79bbded7b5d4c110712a6df6ff667130cb08f89f00d6df421c2b5842c5d0799f",
+          "visible_frame_owner.npy": "8af4086d0d62cc2d15c1b92cf93a283a506d3aba7331bcf3b2042abcc952e22e",
+          "visible_frame_points_scenemi_yup.npy": "ad39a5473f9cbee00c8b16131afecf83f29b88cd3b94ff99f71f552b19da0ec9"
+        },
+        "path": "/mnt/e/Projects/SceneMI/cache/native30_official_ego_exo_v3/validation/ParkingLot2_014_overfence1",
+        "start": 64,
+        "source_start_30fps": 159,
+        "origin": [
+          2.937688112258911,
+          0.11482866108417511,
+          -1.911865472793579
+        ],
+        "anchor": [
+          [
+            0.2893529534339905,
+            0.0,
+            -0.9572224617004395
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.9572224617004395,
+            0.0,
+            0.2893529534339905
+          ]
+        ],
+        "yaw_augmentation_rad": 0.0,
+        "mode": "ego",
+        "window_stride": 64
+      },
+      "metrics": {
+        "scene_on": {
+          "mpjpe_mm": 161.87474060058594,
+          "root_relative_mpjpe_mm": 129.63006446640574,
+          "hidden_mpjpe_mm": 167.40711975097656,
+          "visible_mpjpe_mm": 45.694580078125,
+          "foot_joint_speed_gt_low_m_s": 0.18148474380726626,
+          "foot_joint_y_abs_error_mm": 101.6027641793092,
+          "mpjve_mm_s": 356.76977369597375,
+          "acceleration_error_mm_s2": 5214.8942491516345
+        },
+        "scene_off": {
+          "mpjpe_mm": 255.39903259277344,
+          "root_relative_mpjpe_mm": 242.4794200894721,
+          "hidden_mpjpe_mm": 265.6922912597656,
+          "visible_mpjpe_mm": 39.23971939086914,
+          "foot_joint_speed_gt_low_m_s": 0.42979132967727834,
+          "foot_joint_y_abs_error_mm": 443.1736382345359,
+          "mpjve_mm_s": 449.62263219767357,
+          "acceleration_error_mm_s2": 7111.215894134387
+        }
+      },
+      "gt_root_horizontal_path_m": 1.8250087871043255,
+      "gt_root_displacement_m": 1.4334407059475467,
+      "scene_on_off_root_relative_pose_difference_mm": 208.18342295320818,
+      "recommended_local_frame": 39,
+      "improvement_frame_fraction": 0.9739583333333334,
+      "note": "备选RICH过栏案例：有场景脚速0.430→0.181m/s；需先人工播放确认动作/GT质量。"
+    }
+  ]
+}

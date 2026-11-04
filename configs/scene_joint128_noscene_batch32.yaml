@@ -1,0 +1,151 @@
+version: native-joint-motion-prior-v1
+output: runs/scene_joint128_noscene_batch32
+seed: 2026102703
+reference_config: configs/amass_ego128.yaml
+selection: configs/scene_data_current.json
+base:
+  checkpoint: runs/amass_ego128/training/last.pt
+  sha256: 50a061e0d40fd0acd866b3806620cfe98255394f1e4c32c7828a542aae4a3305
+  step: 55000
+parent:
+  checkpoint: runs/amass_exo_continue128/selection/best.pt
+  sha256: 8b861a2ac607dc4b372e3db2e5ce24fb42dec014f836a4af4241702ca4119dab
+  step: 15000
+  cumulative_exo_updates: 57000
+  protocol: runs/amass_exo_continue128/PROTOCOL.json
+  result: runs/amass_exo_continue128/selection/step_015000/RESULT.json
+  historical_occlusion_control_gate_passed: false
+  transition_authorization: user_requested_joint_three_corpus_training_with_partial_unfreeze_20261027
+model:
+  hidden: 128
+  root_limit_m: 0.5
+  rotation_limit_rad: 1.2
+  residual_gain: 5.0
+data:
+  datasets:
+  - egobody
+  - trumans
+  - grail
+  excluded_datasets:
+  - rich
+  modes:
+  - ego
+  - exo
+  scene: false
+  frames: 128
+  fps: 30
+  minimum_tracked_frames_per_window: 34
+  history_voxel_m: 0.05
+  frame_points: 64
+  sampling: uniform_dataset_then_family_then_recording_then_all_valid_starts_with_replacement
+frontend:
+  probabilities:
+  - 0.2
+  - 0.35
+  - 0.25
+  - 0.2
+  beta_sigma: 0.15
+  pose_sigma_rad:
+  - 0.015
+  - 0.04
+  occluded_pose_sigma_rad:
+  - 0.12
+  - 0.25
+  pose_rho: 0.85
+  root_sigma_m:
+  - 0.01
+  - 0.04
+  root_rho: 0.95
+  gap_frames:
+  - 8
+  - 32
+training:
+  updates: 6000
+  sample_order:
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  - ego
+  - exo
+  checkpoint_every: 125
+  log_every: 12
+optimizer:
+  backbone_lr: 1.0e-05
+  native_shape_lr: 5.0e-05
+  exo_lr: 3.0e-05
+  warmup_updates: 75
+  weight_decay: 0.01
+  clip_norm: 1.0
+  trainable_backbone_prefixes:
+  - core.unet.mid_block1.
+  - core.unet.mid_attn.
+  - core.unet.mid_block2.
+  - core.unet.ups.
+  - core.unet.final_conv.
+  - camera_encoder.
+  - body_encoder.
+  - shape_encoder.
+diffusion:
+  start_timestep: 200
+  ddim_steps: 8
+  seed: 777
+validation:
+  every_updates: 1500
+  batch_size: 8
+  ego_batch_size: 4
+  ego_ddim_steps: 20
+  stride: 128
+  include_end_aligned_tail: true
+  identity_max_change_mm: 0.001
+  visible_noninferiority_mm: 1.0
+  ego_dataset_max_regression_mm: 0.0
+  amass_ego_max_regression_mm: 5.0
+  selection: equal_mode_baseline_normalized_native_ego_and_exo
+  test_used: false
+  early_updates:
+  - 500
+runtime:
+  allocator_gib: 5.5
+  memory_gib: 10
+  cpu_count: 2
+recovery:
+  reason: Separate every actual tracking outage; the original single-outage assumption
+    merges prefix/interior/suffix gaps and can index frame 128.
+  checkpoint: runs/scene_joint128_noscene/training/last.pt
+  checkpoint_sha256: b3091d9ccfca8e135e34b403efc866100c5d64fad9d5e45683208684eb99757a
+  protocol: runs/scene_joint128_noscene/PROTOCOL.json
+  ego_result: runs/scene_joint128_noscene/selection/step_000000/ego/RESULT.json
+  ego_metrics: runs/scene_joint128_noscene/selection/step_000000/ego/metrics.jsonl
+batching:
+  baseline_config: configs/scene_joint128_noscene_multigap.yaml
+  benchmark: runs/native_batch_benchmark/THROUGHPUT.json
+  reason: Measured real batch32 throughput +37.6%; keep 192000 sampled windows, original
+    LRs and full validation, add predeclared early full validation.
+  performance_guaranteed: false

@@ -1,0 +1,159 @@
+{
+  "updated_at_utc": "2026-10-23T06:10:31.664907+00:00",
+  "amass_test": {
+    "state": "complete",
+    "results": "runs/amass_ego128/evaluation/RESULTS.json",
+    "independent_audit": "runs/amass_ego128/evaluation/INDEPENDENT_AUDIT.json",
+    "windows_per_model": 344,
+    "independent_families": 113,
+    "baseline_checkpoints_run": false
+  },
+  "local_feedback": {
+    "state": "training",
+    "updated_at_utc": "2026-10-23T06:10:31.664907+00:00",
+    "formal_training_started": true,
+    "grail_review": "accepted",
+    "datasets": [
+      "egobody",
+      "trumans",
+      "grail"
+    ],
+    "excluded_datasets": [
+      "rich"
+    ],
+    "modes": [
+      "ego"
+    ],
+    "config": "configs/scene_ego128_local.yaml",
+    "contract_sha256": "00db83c0f5c00322731898b8c9ef0fed3b49398390cb261084e2190d1265ed2a",
+    "cpu_preflight": "passed",
+    "cuda_preflight": "passed",
+    "cuda_peak_allocated_gib": 4.356797218322754,
+    "exact_resume": true,
+    "predicted_native_skin": true,
+    "ground_truth_individual_shape_input": false,
+    "observed_surfaces_only": true,
+    "explicit_feedback_enabled": true,
+    "formal_training_hold": null,
+    "documentation": "docs/SCENE_LOCAL_zh.md",
+    "protocol": "native-scene-ego128-local-v3",
+    "prior_checkpoint": "runs/amass_ego128/selection/best.pt",
+    "prior_step": 50000,
+    "prior_training_modes": {
+      "ego": 1.0,
+      "exo": 0.0
+    },
+    "prior_sha256": "0c30ba25dc42c568a8e2fcefae2e39a142930ff26d7a39bd7ff446eaf4e9710f",
+    "future_stages": [
+      {
+        "stage": "ego_scene_local",
+        "parent": "amass_ego_only_val_best50k",
+        "state": "training"
+      },
+      {
+        "stage": "ego_exo_scene",
+        "parent": "future_ego_scene_best",
+        "state": "not_started",
+        "keep_ego_replay": true
+      },
+      {
+        "stage": "exo_only_control",
+        "state": "not_started",
+        "scope": "full_exo_only_from_fresh_amass_pretraining_through_scene_training",
+        "parent": "fresh_random_initialization",
+        "scheduling": "defer_until_time_budget_review",
+        "user_confirmed": true
+      }
+    ],
+    "contact_teacher_proposal": {
+      "state": "researched_not_implemented_or_enabled",
+      "candidate": "VideoMimic_BSTRO",
+      "recommended_initial_scope": "future_exo_video_left_right_foot_weak_supervision",
+      "upstream_rich_pretraining_allowed": true,
+      "upstream_pretraining_provenance_required": true,
+      "rich_samples_in_scenemi_training_or_selection": false,
+      "current_training_config_changed": false,
+      "labels_are_ground_truth": false,
+      "documentation": "docs/SCENE_LOCAL_zh.md"
+    },
+    "selection_protocol": "every1000_quick_then_top3_plus_final_all_validation_families",
+    "experiment_plan": "docs/EXPERIMENT_PLAN_zh.md",
+    "historical_v2_contract_sha256": "e19cd6fb3cbf61f35a8e771056c7861d5f53d552b323970f0c870cf6f557421f",
+    "optimizer_updates_started": true,
+    "phase_at_last_check": "training",
+    "completed_updates_at_last_check": 240,
+    "training_pid": 69175,
+    "training_status": "runs/scene_ego128_local/training/STATUS.json",
+    "training_log": "runs/scene_ego128_local/training_launch.log",
+    "validation_coverage": {
+      "quick": {
+        "windows": 176,
+        "per_dataset": {
+          "egobody": 45,
+          "trumans": 33,
+          "grail": 98
+        },
+        "families": {
+          "egobody": 16,
+          "trumans": 33,
+          "grail": 98
+        },
+        "grail_category_windows": {
+          "stair_p2": 20,
+          "stair_p1": 20,
+          "sitting": 20,
+          "curb": 20,
+          "slope": 18
+        }
+      },
+      "comprehensive": {
+        "windows": 1416,
+        "per_dataset": {
+          "egobody": 90,
+          "trumans": 66,
+          "grail": 1260
+        },
+        "families": {
+          "egobody": 16,
+          "trumans": 33,
+          "grail": 630
+        },
+        "grail_category_windows": {
+          "stair_p2": 610,
+          "stair_p1": 518,
+          "sitting": 46,
+          "curb": 50,
+          "slope": 36
+        }
+      }
+    },
+    "regression_tests_passed": 36,
+    "storage_policy": "All every1000 resumable candidates retained for selection review; audited cleanup afterwards",
+    "candidate_disk_upper_estimate_gib": 47.06902129538358,
+    "timing_estimate": "runs/scene_ego128_local/training/TIMING_ESTIMATE.json"
+  },
+  "regression": {
+    "passed": 36,
+    "new_checkpoint_selection_tests": 7,
+    "validation_interruption_resume_rechecked": true,
+    "records": "tests/test_scene_selection.py"
+  },
+  "report_links_verified": true,
+  "local_contract_digest_recomputed": true,
+  "unchanged_source_seals": {
+    "amass_ego": 57,
+    "scene_global": 67,
+    "scene_local": 74
+  },
+  "storage": {
+    "test_evaluation_before_archive_cleanup": "910 MiB",
+    "test_evaluation_after_archive_cleanup": "384 MiB",
+    "redundant_official_download_archive_removed_bytes": 551881091,
+    "selected_scene_parent_checkpoint": "hard-linked useful initializer; preserved",
+    "local_preparation_after_retiring_old_initializer": "compact records only; no additional persistent model weights",
+    "local_training_candidates": "Active selection dependencies; retained until review, estimated upper bound 47.1 GiB."
+  },
+  "baseline_selection_evidence": "docs/BASELINE_CHECKPOINTS_zh.md",
+  "grail_review": "runs/grail_preview/support_v2_review/AUDIT.json",
+  "grail_viewer_validation": "runs/grail_preview/support_v2_review/VIEWER_VALIDATION.json"
+}

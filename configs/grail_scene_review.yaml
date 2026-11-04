@@ -1,0 +1,31 @@
+version: grail-scene-review-v1
+selection: configs/scene_data_current.json
+splits: [train, validation]
+fps: 30
+window_frames: 128
+support:
+  stance_probability: 0.8
+  maximum_stance_speed_mps: 0.3
+  severe_gap_m: 0.10
+  maximum_supported_fraction: 0.05
+  minimum_event_frames: 15
+seat:
+  minimum_normal_y: 0.7
+  minimum_surface_height_m: 0.15
+  maximum_horizontal_distance_m: 0.04
+  minimum_skin_coverage: 0.2
+  severe_overlap_m: 0.08
+  severe_gap_m: 0.10
+  minimum_event_frames: 15
+  severe_volume_depth_m: 0.05
+  minimum_inside_fraction: 0.2
+manual_scene_quarantine:
+  - split: train
+    sequence_id: sitting__iranian_safavid_mosaic_tile_inlay_throne_form__001
+    reason: user_review_source_case_105
+    scope: recording_pending_frame_localization
+reference_annotations: runs/data_inventory/grail_scene_review/excluded_blind_review/ANNOTATIONS.jsonl
+reference_case_index: 25
+training_only: true
+validation_membership_changed: false
+source_arrays_modified: false

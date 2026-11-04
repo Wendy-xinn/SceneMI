@@ -1,0 +1,18 @@
+{
+  "protocol": "grail-ego-causal-visibility-filter-v1",
+  "frames": 128,
+  "fps": 30,
+  "image_size": [128, 96],
+  "selected_profile": "standard",
+  "selection_basis": "Predeclared basic observability heuristic; sensitivity reported on train, not selected by validation/test performance",
+  "memory": "same_recording_causal_static_history",
+  "min_ready_frames_per_window": 16,
+  "profiles": {
+    "lenient": {"min_object_pixel_fraction": 0.005, "min_observed_frames": 8, "min_consecutive_frames": 4},
+    "standard": {"min_object_pixel_fraction": 0.01, "min_observed_frames": 16, "min_consecutive_frames": 8},
+    "strict": {"min_object_pixel_fraction": 0.02, "min_observed_frames": 32, "min_consecutive_frames": 16}
+  },
+  "mode": "ego",
+  "training_only_selection": true,
+  "physics_quality_checked": false
+}

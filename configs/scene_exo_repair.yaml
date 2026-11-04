@@ -1,0 +1,60 @@
+version: native-exo-denoising-adaptation-v1
+output: runs/scene_exo128_noscene_repair
+seed: 20261027
+base:
+  checkpoint: runs/amass_ego128/training/last.pt
+  step: 55000
+  sha256: 50a061e0d40fd0acd866b3806620cfe98255394f1e4c32c7828a542aae4a3305
+parent_run: runs/amass_exo_denoise128
+selection: configs/scene_data_current.json
+model:
+  hidden: 128
+  root_limit_m: 0.5
+  rotation_limit_rad: 1.2
+  residual_gain: 5.0
+frontend:
+  probabilities: [0.2, 0.35, 0.25, 0.2]
+  beta_sigma: 0.15
+  pose_sigma_rad: [0.015, 0.04]
+  occluded_pose_sigma_rad: [0.12, 0.25]
+  pose_rho: 0.85
+  root_sigma_m: [0.01, 0.04]
+  root_rho: 0.95
+  gap_frames: [8, 32]
+data:
+  datasets: [egobody, trumans, grail]
+  excluded_datasets: [rich]
+  modes: [exo]
+  scene: false
+  minimum_tracked_frames_per_window: 34
+training:
+  updates: 24000
+  batch_size: 8
+  checkpoint_every: 500
+  log_every: 50
+optimizer:
+  lr: 0.00005
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 300
+diffusion:
+  start_timestep: 200
+  ddim_steps: 8
+  seed: 777
+validation:
+  split: validation
+  conditions: [identity, tracking, occlusion, gap]
+  every_updates: 3000
+  batch_size: 8
+  stride: 128
+  include_end_aligned_tail: true
+  identity_max_change_mm: 0.001
+  visible_noninferiority_mm: 1.0
+  required_improvement_conditions: [occlusion, gap]
+  aggregation: equal_dataset_then_equal_family
+  test_used: false
+runtime:
+  allocator_gib: 5.5
+  memory_gib: 10
+  cpu_count: 2
+  stop_training_at: '2026-10-28T07:30:00+08:00'

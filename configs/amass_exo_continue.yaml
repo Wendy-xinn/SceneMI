@@ -1,0 +1,27 @@
+version: exo-boundary-frozen-continuation-v1
+reference_config: configs/amass_exo_denoise.yaml
+output: runs/amass_exo_continue128
+seed: 2026102703
+parent:
+  checkpoint: runs/amass_exo_completion128/boundary/selection/best.pt
+  step: 6000
+  cumulative_exo_updates: 42000
+  sha256: 4fbf1c2bdf85f5e0b8e72b44c2764bc703e318610392401c4e5a262ff823b4eb
+  protocol: runs/amass_exo_completion128/boundary/PROTOCOL.json
+  metrics: runs/amass_exo_completion128/boundary/selection/step_006000/RESULT.json
+training:
+  updates: 20000
+  batch_size: 8
+  checkpoint_every: 500
+  log_every: 50
+optimizer:
+  lr: 0.00003
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 100
+validation_every_updates: 5000
+runtime:
+  allocator_gib: 5.5
+  memory_gib: 10
+  cpu_count: 2
+  stop_training_at: '2026-10-28T18:00:00+08:00'

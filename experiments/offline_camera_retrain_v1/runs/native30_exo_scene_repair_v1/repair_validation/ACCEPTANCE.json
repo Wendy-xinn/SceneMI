@@ -1,0 +1,134 @@
+{
+  "protocol": "exo-scene-patch-repair-dev-select-confirmation-guard-v1",
+  "declared_at": "2026-10-21T00:41:58.991182+08:00",
+  "selection_manifest": "/home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_scene_repair_v1/repair_validation/SELECTION.json",
+  "selection_manifest_sha256": "5f4adc45b00a194d67bf70552e7039cf29f1270d16bff8180fba8ac8237a98ca",
+  "selection_sha256": "17401b7aa98f0c63e806cb92018d90ec84df7b9d806d0c05ff36ed4248044434",
+  "baseline_policy": "original",
+  "candidate_policies": [
+    "exo_patch_off",
+    "exo_static_global_off"
+  ],
+  "model_weights": "Same frozen natural10k checkpoint for all policies; zero optimizer updates",
+  "scene_variants_for_selection": [
+    "scene_on"
+  ],
+  "regimes": [
+    "clean",
+    "noisy"
+  ],
+  "TEST_used": false,
+  "optimizer_updates": 0,
+  "formal_metrics_paused": true,
+  "automatic_promotion": false,
+  "stage": "Limited official VAL repair-direction acceptance; not whole-VAL or paper-final certification",
+  "predeclaration_scope": "Known branch diagnostic already motivated these two policies. The new12 confirmation identities were chosen by identity order, not outcomes. New repair dev and confirmation predictions must not determine thresholds.",
+  "required_pairing": [
+    "Same selected group/mode/member/sequence/start/source_first, original case_seed, observation/reference input SHA256 and frames for all policies.",
+    "Same frozen checkpoint SHA256, DDIM20 and numerical runtime; analytical physics remains disabled.",
+    "Reference comparison is reporting only. No GT/reference error may select a per-window output or enter inference routing.",
+    "Compute every predeclared window and both regimes; incomplete panels cannot pass. Hidden-empty windows are excluded from hidden means only and their count is reported."
+  ],
+  "aggregation": {
+    "window_metric": "Use the existing FK-based hidden/visible MPJPE, GT-low-speed-foot speed, MPJVE and acceleration definitions.",
+    "group": "Within each panel, dataset and regime: arithmetic mean of valid window means; preserve window P90 and valid count.",
+    "regime_macro": "PRIMARY: natural-size weighted rich/trumans/egobody dataset hidden means using natural_dataset_weights. SECONDARY: equal-dataset macro, reported without selecting policies.",
+    "combined_macro": "PRIMARY: equal clean/noisy average of natural-size weighted regime means. SECONDARY: equal clean/noisy/equal-dataset six-group macro.",
+    "paired": "Report candidate-minus-original per window and group, and reference comparison for every window.",
+    "natural_dataset_weights": {
+      "rich": 0.11873198847262248,
+      "trumans": 0.4086455331412104,
+      "egobody": 0.47262247838616717
+    },
+    "natural_weights_source": "Original SELECTION.source_manifest natural_dataset_weights; source file sha256 bound by SELECTION."
+  },
+  "shared_panel_guards": {
+    "hidden_mean_each_dataset_regime": "candidate <= original + max(5mm,0.05*original)",
+    "visible_mean_each_dataset_regime": "candidate <= original + max(1mm,0.02*original)",
+    "foot_gt_low_speed_each_dataset_regime": "candidate <= original + max(0.01m/s,0.05*original)",
+    "acceleration_error_each_dataset_regime": "candidate <= original + max(1mm/s2,0.05*original)",
+    "catastrophic_new_vs_original": "No window-regime hidden error may worsen by50mm or more against original.",
+    "catastrophic_vs_reference": "Count of window-regime hidden error >= reference+50mm must not increase versus original, checked separately for clean/noisy.",
+    "hidden_p90": "Report window-mean P90 per dataset/regime and paired change. Four windows per group is too small for a stable tail claim; no independent P90-based candidate tuning.",
+    "clean_and_noisy_macro": "Each regime PRIMARY natural-size weighted hidden mean must not exceed original; equal-dataset macro is reported separately.",
+    "combined_hidden_gain": "PRIMARY combined clean/noisy natural-size weighted hidden mean must improve by at least3% relative to original."
+  },
+  "ego_guards": {
+    "required_predictions": 6,
+    "anchors": 3,
+    "regimes": [
+      "clean",
+      "noisy"
+    ],
+    "check": "Every candidate EGO prediction must be bitwise array_equal to original for the same anchor/regime; input/reference hash equality also required.",
+    "failure": "Any EGO mismatch fails the policy; a tolerance-based replacement is not permitted."
+  },
+  "dev": {
+    "cases": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "selection_role": "dev",
+    "known_yoga": {
+      "sequence_id": "Pavallion_006_yoga1",
+      "start": 640,
+      "case": 1,
+      "noisy": "hidden <= reference+50mm AND hidden <= 0.5*original hidden",
+      "clean": "hidden <= original hidden+5mm"
+    },
+    "eligible": "All shared_panel_guards, ego_guards and known_yoga checks must pass.",
+    "choice": "Among eligible policies choose smallest dev PRIMARY combined natural-size weighted hidden mean. If difference is <1mm, choose simpler exo_patch_off. If none is eligible, declare NO and do not use confirmation to rescue or switch policy.",
+    "freeze": "Before reading candidate confirmation metrics, write a dated immutable DEV_CHOICE with dev evidence and chosen policy, or NO. Prefer run all policies dev first, then selected confirmation."
+  },
+  "confirmation": {
+    "cases": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "selection_role": "confirmation",
+    "recording_disjoint_from_exo_dev": true,
+    "decision": "Apply the same shared_panel_guards to the one frozen DEV_CHOICE policy; confirmation is pass/fail only.",
+    "prohibited": "Do not select the runner-up, mix policies per window, change thresholds, or tune coefficients using confirmation results.",
+    "on_failure": "Keep repair unaccepted and formal metrics paused; report exact failing dataset/regime/window instead of promoting the other candidate.",
+    "disclosure": "The rotating10000 identities were monitored historically. This recording-disjoint confirmation is not a blind holdout or TEST."
+  },
+  "after_pass": "Keep the winning policy fixed, then run paired sceneOFF for24 EXO windows x2 regimes=48 predictions. This scene ablation does not reselect the repair policy.",
+  "required_reporting": [
+    "Dev/confirmation separate, all three datasets separate, clean/noisy separate; paired macro and group changes.",
+    "Hidden mean/P90, visible error, foot speed, acceleration, MPJVE, reference hidden mean and severe counts.",
+    "Known yoga result plus every new >=50mm regression, not just average gains.",
+    "EGO6 exact checks, checkpoint/selection/input identities, completed prediction counts and independent CPU FK recheck.",
+    "No claim that this54-prediction-per-policy diagnostic is the full100-window panel or final paper metric."
+  ],
+  "pre_evaluation_revision": {
+    "at": "2026-10-21T00:44:33.263158+08:00",
+    "prior_file_sha256": "612883256dd15e963c4a7b15729da76e5831cf72f06ea867d944048c94a8e4bc",
+    "reason": "Root clarified primary selection must use original natural-size dataset weights. This revision precedes PLAN and repair predictions.",
+    "changed_fields": [
+      "aggregation",
+      "dev.choice",
+      "shared_panel_guards.combined_hidden_gain",
+      "shared_panel_guards.clean_and_noisy_macro"
+    ]
+  }
+}

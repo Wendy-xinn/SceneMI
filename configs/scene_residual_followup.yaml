@@ -1,0 +1,11 @@
+version: scene-residual-followup-v1
+repair_config: configs/scene_ego128_residual.yaml
+repair_run: runs/scene_ego128_residual
+output: runs/scene_ego128_residual_checks
+budget_output: runs/scene_ego128_noscene_continue
+budget_updates: 8000
+validation_tier: quick
+variants: [empty, mismatched]
+geometry_cases_per_category: 2
+geometry_seed: 20261025
+test_used: false

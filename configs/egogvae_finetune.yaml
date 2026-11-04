@@ -1,0 +1,44 @@
+version: egogvae-native-joint-adaptation-v1
+output: runs/egogvae_finetune
+seed: 20261104
+reference_config: configs/native_ego4_from_scratch_v2.yaml
+baseline_config: configs/pretrained_ego_baselines.yaml
+checkpoint_sha256: 5745e4899e8a5d789ff1fdb8a2e02bb369817ccb9ed7352b0a090681b759be69
+validation_manifest: runs/native_ego4_from_scratch_v2/VALIDATION_MANIFEST.json
+validation_manifest_sha256: b33baf2feab1e53c0fabf736dfad5b12f6e248ac5d55db34e0653c2af14394fa
+data:
+  datasets: [amass, egobody, trumans, grail]
+  frames: 128
+  fps: 30
+  sampling: equal_dataset_then_equal_family
+  output_body: unchanged_neutral_smplh_16betas
+  native_joint_truth: preserved
+  beta_supervision: amass_only
+  contact_supervision: released_amass_only
+  test_used: false
+training:
+  planned_updates: 3000
+  budget_kind: initial_adaptation_trial_not_matched_scratch_budget
+  effective_batch_size: 128
+  microbatch_size: 32
+  checkpoint_every: 100
+  log_every: 10
+optimizer:
+  lr: 0.00001
+  weight_decay: 0.0001
+  clip_norm: 1.0
+loss:
+  keypoints: 1.0
+  theta: 1.0
+  kl: 0.01
+  betas: 0.001
+  contacts: 0.001
+  velocity: 0.001
+validation:
+  seed: 777
+  full_steps: [0, 1000, 2000, 3000]
+  primary: equal_dataset_family_macro_mpjpe_mm
+runtime:
+  memory_gib: 10
+  cpu_count: 4
+  allocator_gib: 6

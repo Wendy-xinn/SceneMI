@@ -1,0 +1,127 @@
+{
+  "state": "complete",
+  "protocol": "native-scene-input-paired-v1",
+  "updated_at_utc": "2026-10-23T09:48:32.582517+00:00",
+  "checkpoint": {
+    "step": 25000,
+    "sha256": "71b0bcab57484aabb6e0efd91aaa1910dc0fbd06680c9dff9578e224b967434e",
+    "contract_sha256": "f2f762d6242bbced83cdda1d3c971611864d1f18d9fdf3485c8827ac4ce58690"
+  },
+  "completed_updates": 30000,
+  "final_30k_selection_score_mm": 120.12622051796099,
+  "selected_25k_selection_score_mm": 117.07810826018404,
+  "windows": 160,
+  "families": 80,
+  "split": "validation",
+  "test_used": false,
+  "inference_intervention_only": true,
+  "training_ablation": false,
+  "seed": 777,
+  "ddim_steps": 20,
+  "samples_per_window": 1,
+  "known_person_shape_input": false,
+  "rich_excluded": true,
+  "synthetic_chair_validation": false,
+  "aggregation": "family macro within each corpus, then equal corpus macro; legacy GRAIL has no category weighting",
+  "per_dataset": {
+    "egobody": {
+      "scene_on": {
+        "mpjpe_mm": 178.57229574349452,
+        "pa_mpjpe_mm": 87.49617866972793,
+        "root_error_mm": 129.61784304279752,
+        "head_error_mm": 98.72665336537166,
+        "root_relative_mpjpe_mm": 134.38850498196123
+      },
+      "scene_off": {
+        "mpjpe_mm": 264.0708560498658,
+        "pa_mpjpe_mm": 101.40908866805864,
+        "root_error_mm": 233.36637170049596,
+        "head_error_mm": 180.06672205794283,
+        "root_relative_mpjpe_mm": 158.31267776806288
+      }
+    },
+    "trumans": {
+      "scene_on": {
+        "mpjpe_mm": 114.49705165552768,
+        "pa_mpjpe_mm": 67.04912895455794,
+        "root_error_mm": 93.86579373475925,
+        "head_error_mm": 53.130844450587986,
+        "root_relative_mpjpe_mm": 89.61652660113906
+      },
+      "scene_off": {
+        "mpjpe_mm": 140.0531803222383,
+        "pa_mpjpe_mm": 72.03047584668623,
+        "root_error_mm": 117.08313044124594,
+        "head_error_mm": 96.54753306279551,
+        "root_relative_mpjpe_mm": 98.95973175720552
+      }
+    },
+    "grail": {
+      "scene_on": {
+        "mpjpe_mm": 58.16497738152991,
+        "pa_mpjpe_mm": 25.36006608608864,
+        "root_error_mm": 48.29522242716452,
+        "head_error_mm": 40.00929399040366,
+        "root_relative_mpjpe_mm": 30.924369937625116
+      },
+      "scene_off": {
+        "mpjpe_mm": 101.16329483345092,
+        "pa_mpjpe_mm": 25.481856853719517,
+        "root_error_mm": 93.56773530359297,
+        "head_error_mm": 87.53473965055144,
+        "root_relative_mpjpe_mm": 31.632043447653665
+      }
+    }
+  },
+  "dataset_macro": {
+    "scene_on": {
+      "mpjpe_mm": 117.07810826018404,
+      "pa_mpjpe_mm": 59.968457903458166,
+      "root_error_mm": 90.59295306824043,
+      "head_error_mm": 63.95559726878778,
+      "root_relative_mpjpe_mm": 84.97646717357513
+    },
+    "scene_off": {
+      "mpjpe_mm": 168.42911040185166,
+      "pa_mpjpe_mm": 66.30714045615478,
+      "root_error_mm": 148.00574581511162,
+      "head_error_mm": 121.38299825709659,
+      "root_relative_mpjpe_mm": 96.30148432430735
+    },
+    "off_minus_on": {
+      "mpjpe_mm": 51.35100214166762,
+      "pa_mpjpe_mm": 6.338682552696618,
+      "root_error_mm": 57.41279274687119,
+      "head_error_mm": 57.42740098830881,
+      "root_relative_mpjpe_mm": 11.325017150732222
+    }
+  },
+  "scene_on_reproduced_windows": 3,
+  "independent_array_audit": {
+    "state": "passed",
+    "windows": 160,
+    "independent_implementation": "NumPy row-vector SVD Procrustes + Euclidean distances",
+    "max_abs_metric_difference_mm": {
+      "mpjpe_mm": 1.7053025658242404e-13,
+      "pa_mpjpe_mm": 5.684341886080802e-14,
+      "root_error_mm": 5.684341886080802e-14
+    },
+    "array_hashes_checked": 160,
+    "source_result_sha256": "309d996cb9e5efd2fc72a1833bc46569fe171f3d38aaebce3199ac9067d3c421"
+  },
+  "evaluator_sources": {
+    "scenemi/scene_evaluation.py": "e71ed957d3c396c6074418e55b24e34763365654110946a18e45c2d1609427d5",
+    "scenemi/benchmark.py": "1f099d9a7309af6d18e8b948cbbc411843f6277e8bf1ff05b04d528dca04715f",
+    "scenemi/runtime.py": "1989612b038f6a00c4c2b633da125155c896d7d732828f97b36814dbb0ad485d"
+  },
+  "policy": "configs/scene_input_benchmark.json",
+  "result": "runs/scene_ego128/evaluation/scene_input/RESULT.json",
+  "report": "runs/scene_ego128/evaluation/scene_input/REPORT_zh.md",
+  "regression_tests_passed": 4,
+  "limitations": [
+    "Selection validation subset, not independent test or all validation.",
+    "Turning off a trained scene path changes inference distribution; it is not no-scene training.",
+    "No contact, penetration or sit-versus-squat improvement established by position metrics alone.",
+    "Global control and active local branch have different AMASS parents and selection protocols."
+  ]
+}
