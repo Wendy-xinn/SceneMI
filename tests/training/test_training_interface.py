@@ -23,7 +23,7 @@ class TrainingInterfaceTests(unittest.TestCase):
         with patch.dict(os.environ, {'XDG_RUNTIME_DIR': '/missing/ide/session'}), \
              patch('scenemi.execution.Path.is_socket', return_value=True), \
              patch('scenemi.execution.Path.stat') as info, \
-             patch('experiments.offline_camera_retrain_v1.ops.resources.main',
+             patch('scenemi.resource_runner.main',
                    side_effect=lambda argv: seen.append((argv, os.environ['XDG_RUNTIME_DIR']))), \
              patch('sys.stderr', io.StringIO()):
             info.return_value.st_uid = os.getuid()

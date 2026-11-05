@@ -463,6 +463,14 @@ def train(c, device, resume=False):
 
 def main(argv=None):
     import argparse
+    import sys
+    raw = list(sys.argv[1:] if argv is None else argv)
+    peek = argparse.ArgumentParser(add_help=False)
+    peek.add_argument('--config', type=Path, default=CONFIG)
+    known, _ = peek.parse_known_args(raw)
+    if known.config.exists() and yaml.safe_load(known.config.read_text()).get('version') == 'ego-observed-geometry-v1':
+        from scenemi.scene_geometry_training import main as geometry_main
+        return geometry_main(raw)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=('preflight', 'train'))
     parser.add_argument('--config', type=Path, default=CONFIG)

@@ -1,0 +1,46 @@
+# Manual training only; preserved 24k initializer, +2000 updates, batch 128.
+version: ego-anchored-geometry-adaptation-v1
+reference_config: configs/ego_scene_geometry_22k.yaml
+output: runs/ego_anchor_b_frozen
+seed: 20261105
+initialization:
+  checkpoint: runs/ego_scene_geometry_22k/selection/best.pt
+  step: 24000
+  validation_manifest: runs/ego_scene_geometry_22k/VALIDATION_MANIFEST.json
+  reference_result: runs/ego_scene_geometry_22k/diagnostics/head_anchor/RESULT.json
+  reference_method: b_acc0.03_jerk0.03
+  checkpoint_sha256: df8fdf48ddd5c0da97ee00b1116d7f8032f35d25d4e09dfe0aaa4ca3ddb529b7
+  validation_manifest_sha256: b33baf2feab1e53c0fabf736dfad5b12f6e248ac5d55db34e0653c2af14394fa
+  reference_result_sha256: 4511dd3bdad0ade471c92198b445294ba33a3a6437b6994dc9ce50ed381a8c36
+anchor:
+  data_loss: l2
+  data_weight: 1.0
+  acceleration_weight: 8.099999999999999e-07
+  jerk_weight: 7.289999999999999e-10
+  confidence_source: uniform_available_frames
+  huber_delta_m: 0.02
+  irls_iterations: 5
+  missing_ridge: 1.0e-08
+adaptation:
+  backbone_prefixes: []
+  query_after_anchor: true
+  final_readout_after_sampling: true
+  geometry_loss_after_anchor: true
+mix:
+  native_scene_fraction: 0.5
+training:
+  effective_batch_size: 128
+  microbatch_size: 128
+  planned_updates: 26000
+  checkpoint_every: 128
+  quick_validation_every: 500
+  full_validation_steps:
+  - 25000
+  - 26000
+optimizer:
+  lr: 0.0001
+  backbone_lr: 1.0e-05
+  warmup_updates: 200
+validation:
+  jerk_ratio_max: 1.1
+  tie_tolerance_mm: 0.1
