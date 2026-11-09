@@ -24,7 +24,6 @@ import sys
 import threading
 import time
 
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "")
 os.environ.setdefault("OMP_NUM_THREADS", "1")
 os.environ.setdefault("MKL_NUM_THREADS", "1")
 REPO = Path(__file__).resolve().parents[3]
@@ -534,8 +533,14 @@ class MotionViewer:
             + (f" · 起始 {case['start']} 帧" if 'start' in case else '')) for case in cases]
         if len(set(self.labels)) != len(self.labels):
             raise ValueError("Case labels must be unique")
+        groups = tuple(dict.fromkeys(case.get('visualization_group', '已有模型对照') for case in cases))
+        self.case_group = (server.gui.add_dropdown('可视化内容', options=groups,
+            initial_value=groups[-1]) if any('visualization_group' in c for c in cases) else None)
         preferred = next((label for label in self.labels if "20211002_S03_S18_04" in label), self.labels[0])
-        self.choice = server.gui.add_dropdown("案例", options=self.labels, initial_value=preferred)
+        choices = self.labels if self.case_group is None else [label for label, case in zip(self.labels, cases)
+            if case.get('visualization_group', '已有模型对照') == self.case_group.value]
+        self.choice = server.gui.add_dropdown("案例", options=choices,
+            initial_value=preferred if preferred in choices else choices[0])
         regimes = tuple(cases[0].get("regimes", ("clean", "noisy")))
         self.regime = server.gui.add_dropdown("观测条件", options=regimes, initial_value=regimes[0])
         self.frame = server.gui.add_slider("帧 / 30 Hz", min=0, max=191, step=1, initial_value=0)
@@ -583,9 +588,10 @@ class MotionViewer:
                 panel["info"] = server.gui.add_markdown("")
                 self.panels[mode] = panel
         self.follow = server.gui.add_checkbox("跟随 GT 人体", initial_value=False)
+        self.camera_view = server.gui.add_dropdown('观察视角', options=('斜视', '俯视 · 沿重力向下'), initial_value='斜视')
         self.reset = server.gui.add_button("重置视角")
         self.info = server.gui.add_markdown("")
-        server.gui.add_markdown("输入参考人体是模型原有的关节观测初始化，并非真实 tracker 的完整 mesh。"
+        self.help = server.gui.add_markdown("输入参考人体是模型原有的关节观测初始化，并非真实 tracker 的完整 mesh。"
             "绿：输入置信度1；橙：0到1之间；灰：未提供。红点来自原始 first-hit 遮挡证据，"
             "部分遮挡与非零输入可以并存。缺失、噪声丢点与遮挡分开解释。\n\n"
             "完整场景为仅供参考的静态扫描，按面采样显示；当前案例的静态输入是整段录制的"
@@ -593,16 +599,27 @@ class MotionViewer:
             "当前帧为导出时的512个first-hit环境采样，不是稠密画面。"
             "显示过程不追加贴地、对齐或物理修正；原生成是否使用物理引导见各案例说明。")
         self.choice.on_update(lambda _: self.load_case())
+        if self.case_group is not None:
+            self.case_group.on_update(lambda _: self.select_group())
         controls = [self.regime, self.frame, self.opacity]
         for panel in self.panels.values():
             controls += [value for key, value in panel.items() if key not in ("status", "info", "models")]
             controls += list(panel["models"].values())
         for control in controls:
             control.on_update(lambda _: self.update())
-        self.follow.on_update(lambda _: self.camera())
+        self.follow.on_update(lambda _: self.camera() if self.follow.value else None)
+        self.camera_view.on_update(lambda _: self.camera())
         self.reset.on_click(lambda _: self.camera())
         server.on_client_connect(lambda client: self.camera(client))
         self.load_case()
+
+    def select_group(self):
+        """Filter navigation only; case identities and saved arrays stay fixed."""
+        choices = [label for label, case in zip(self.labels, self.cases)
+                   if case.get('visualization_group', '已有模型对照') == self.case_group.value]
+        self.choice.options = choices
+        if self.choice.value not in choices:
+            self.choice.value = choices[0]
 
     def comparison(self, kind: str, mode: str = "exo") -> None:
         """Change only display layers while preserving the exact case and frame."""
@@ -768,7 +785,7 @@ class MotionViewer:
                 self.update()
             self.camera()
 
-    def camera(self, client=None) -> None:
+    def camera(self, client=None, *, follow_only=False) -> None:
         with self.lock:
             if not self.runtime:
                 return
@@ -777,11 +794,37 @@ class MotionViewer:
             if self.follow.value:
                 center = data["truth_joints"][int(self.frame.value), 0].astype(float) + [0, .3, 0]
             radius = max(2.6, min(7., float(data["radius"]) * 1.4))
-            offset = np.asarray([.7, .40, .85]) * radius
-            self.server.initial_camera.position = tuple(center + offset)
-            self.server.initial_camera.look_at = tuple(center)
+            top = getattr(getattr(self, 'camera_view', None), 'value', '斜视') != '斜视'
+            # Stay just off the orbit pole and preserve world gravity as up.
+            # Switching the orbit up axis to -Z makes mouse drags surprising.
+            offset = np.asarray([0., 1.35, .06] if top else [.7, .40, .85]) * radius
+            up = (0., 1., 0.)
+            if not follow_only:
+                self.server.initial_camera.position = tuple(center + offset)
+                self.server.initial_camera.look_at = tuple(center)
+                self.server.initial_camera.up = up
+            if not hasattr(self, '_follow_centres'):
+                self._follow_centres = {}
             for target in ([client] if client is not None else self.server.get_clients().values()):
-                target.camera.position, target.camera.look_at = tuple(center + offset), tuple(center)
+                key = id(target)
+                previous = self._follow_centres.get(key)
+                self._follow_centres[key] = center.copy()
+                if follow_only:
+                    if previous is None or np.array_equal(center, previous):
+                        continue
+                    # Translate the user's current view without resetting its
+                    # rotation, pan, zoom or up direction on each frame/layer.
+                    delta = center - previous
+                    position = np.asarray(target.camera.position) + delta
+                    look_at = np.asarray(target.camera.look_at) + delta
+                    with self.server.atomic():
+                        target.camera.position = tuple(position)
+                        target.camera.look_at = tuple(look_at)
+                else:
+                    with self.server.atomic():
+                        target.camera.position = tuple(center + offset)
+                        target.camera.look_at = tuple(center)
+                        target.camera.up_direction = up
 
     def update(self) -> None:
         from .viewer_observation import observation_classes, masked_joint_metrics
@@ -896,7 +939,7 @@ class MotionViewer:
                 self.info.content = (f"**第 {t} 帧 · {t / 30:.2f} 秒 · {regime}**\n\n"
                     + case.get("selection_reason", "") + ("\n\n不可用图层：" + "；".join(errors) if errors else ""))
                 if self.follow.value:
-                    self.camera()
+                    self.camera(follow_only=True)
 
     def run(self) -> None:
         while True:
@@ -905,6 +948,9 @@ class MotionViewer:
                 self.frame.value = (int(self.frame.value) + 1) % (int(self.frame.max) + 1)
 
 def main() -> None:
+    # CPU playback is an entry-point policy, not an import-time side effect:
+    # GPU exporters reuse this viewer's mesh helpers before serving on CPU.
+    os.environ.setdefault("CUDA_VISIBLE_DEVICES", "")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, default=DEFAULT_CACHE.parent / "PREPARED_CASES.json")
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)

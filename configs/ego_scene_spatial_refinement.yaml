@@ -1,0 +1,44 @@
+# New model/input version; manually launched, with the selected motion+shape prior frozen.
+version: ego-spatial-scene-refinement-v1
+reference_config: configs/ego_scene_refinement.yaml
+output: runs/ego_scene_spatial_refinement_phase_b
+spatial:
+  policy: configs/ego_scene_spatial_query.yaml
+  prior: configs/ego_scene_spatial_prior_phase_b.yaml
+  train_maps: runs/ego_scene_video_maps/train/MANIFEST.json
+  validation_maps: runs/ego_scene_video_maps/validation/MANIFEST.json
+training:
+  planned_updates: 500
+  checkpoint_every: 10
+  quick_validation_every: 100
+  full_validation_steps: [250, 500]
+  scene_dropout: 0.25
+optimizer:
+  warmup_updates: 50
+# Four objective groups. Internal motion/geometry coefficients retain the
+# accepted v1 scales, without counting lower-body FK a second time.
+spatial_loss:
+  weights: {motion: 1.0, contact: 0.05, geometry: 0.01, residual: 0.001}
+  motion:
+    rotation: 0.5
+    position: 1.0
+    lower_velocity: 0.05
+    head_position: 0.1
+    head_orientation: 0.1
+  position_scale_m: 0.5
+  velocity_scale_mps: 1.0
+  head_position_scale_m: 0.05
+  geometry: {penetration: 1.0, support: 0.5, sliding: 0.1}
+  residual:
+    magnitude: 1.0
+    first_difference: 0.1
+    second_difference: 0.1
+    # Frame differences at 30 Hz, divided by each joint's angular bound.
+    # No dt^-2/dt^-4 multipliers; this regularizes the new correction only.
+  contact:
+    positive_gap_m: 0.03
+    negative_gap_m: 0.06
+    positive_speed_mps: 0.2
+    negative_speed_mps: 0.3
+    support_normal_y: 0.8
+    positive_class_weight: 2.0

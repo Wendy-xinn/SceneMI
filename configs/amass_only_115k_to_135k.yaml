@@ -1,0 +1,36 @@
+# AMASS-only：从 115,000 步续训到 135,000 步，本轮新增 20,000 次更新。
+# 第一次更新为 115,001；使用上轮 last.pt 的模型、AdamW 状态和随机状态。
+# 相机输入，128 帧 / 30 Hz；只用 AMASS/train 训练、AMASS/val 选优。
+# 学习率保持常数 2e-5，不重启 warmup；有效 batch 为 128。
+# 每 1k 快速验证、每 5k 完整验证；checkpoint 和 TensorBoard 写到下方 output。
+version: amass-optimizer-branch-v1
+reference_config: configs/amass_only_batch128_continue.yaml
+
+# 本轮起止步数和输出目录。
+parent_step: 115000
+end_step: 135000
+additional_updates: 20000
+output: training_outputs/amass_only_115k_to_135k
+
+# 续训起点：上一轮的最终 checkpoint，不回退到较早的 best。
+parent_checkpoint: training_outputs/amass_ego_shape_anchor_batch128_continue/training/last.pt
+# 已复核文件完整性、原训练合同和历史验证；校验值核对记录：
+# training_outputs/amass_only_115k_to_135k/preflight/parent_identity/RESULT.json
+parent_sha256: b8e893bf9e753d773edba8cbf7e3c650a1f393d6c3a67350daa82954d7249376
+
+# 本轮训练参数。
+learning_rate: 2.0e-5
+training:
+  batch_size: 128
+
+# 保留 110k 的历史最佳成绩 120.9253 mm，后续完整验证优于它才更新 best。
+parent_selection:
+  checkpoint: training_outputs/amass_ego_shape_anchor_batch128_continue/selection/best.pt
+  sha256: d33e99c04dbedfb4890938d45933588cfc3890d5af4184ef008aea081fe707e7
+
+# 统一 run 入口的源码兼容记录；训练实现和旧 checkpoint 保持原有哈希。
+source_migration:
+  kind: unified_run_cli_dispatch_only
+  source: scenemi/__main__.py
+  parent_sha256: ed1d388304d1e38631f6640e3f4d4af5f5e0a1ae8e52442a987f6c05206dc86c
+  current_sha256: dac2e7ca9856555e8664b4bb767724efc09b2dace82d015ffe32766a245922b6

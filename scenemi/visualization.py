@@ -152,6 +152,9 @@ def prepared_playback(manifest):
         viewer = ReplayViewer
     elif protocol == 'ego-prediction-preview-v1':
         viewer = ego_prediction_viewer()
+    elif protocol == 'scene-query-diagnostic-preview-v1':
+        from .refinement.visualization import QueryDiagnosticViewer
+        viewer = QueryDiagnosticViewer
     else:
         raise ValueError(f'Unsupported prepared playback schema/protocol: {schema!r}/{protocol!r}')
     if not value.get('cases'):
@@ -159,6 +162,13 @@ def prepared_playback(manifest):
     for case in value['cases']:
         if not case.get('models'):
             raise ValueError('Prepared case has no model entries')
+        asset = case.get('scene_query_video_asset')
+        if asset:
+            path = Path(asset['path'])
+            path = path if path.is_absolute() else manifest.parent/path
+            if sha256(path) != asset['sha256']:
+                raise ValueError('Original-video preview map changed')
+            asset['path'] = str(path.resolve())
         for entry in case['models']:
             source = entry['case']
             path = Path(source['cache'])
@@ -634,6 +644,9 @@ def main(argv=None):
         args = parser.parse_args(argv[1:])
         print(prepare_ego_preview(args.checkpoint.resolve(), args.output.resolve()))
         return
+    if argv and argv[0] == 'refiner':
+        from .refinement.visualization import main as refiner_main
+        return refiner_main(argv[1:])
     if argv and argv[0] == 'serve':
         return serve_prepared(argv[1:])
     if argv and argv[0] == 'grail-review':

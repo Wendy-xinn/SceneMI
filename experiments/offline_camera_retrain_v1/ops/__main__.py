@@ -12,6 +12,7 @@ import time
 BASE = Path(__file__).resolve().parents[1]
 DEFAULT_RUN = BASE / "runs/native30_gait_v2_ego55k_oct15"
 COMMANDS = {
+    "refiner-check": ("scenemi.refinement.diagnostics", "冻结 Refiner 的场景消融、查询 Oracle 和覆盖诊断"),
     "rich-test": ("rich_test", "准备独立 RICH TEST、冻结模型评估和 CPU 复算"),
     "adapt": ("adapt", "从选定EGO扩散权重进行有预算的EXO适配并保留EGO replay"),
     "view": ("motion_viewer", "查看已有预测、GT 和场景，不运行模型推理"),
@@ -93,7 +94,8 @@ def main(argv: list[str] | None = None) -> None:
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return
     module_name = COMMANDS[args.command][0]
-    module = importlib.import_module(f"{__package__}.{module_name}")
+    module = importlib.import_module(module_name if module_name.startswith('scenemi.')
+                                     else f"{__package__}.{module_name}")
     previous = sys.argv
     sys.argv = [f"{parser.prog} {args.command}", *remaining]
     try:

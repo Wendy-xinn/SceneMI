@@ -1,0 +1,11 @@
+version: ego-pose-oracles-v1
+output: runs/ego_body_diagnostics_26k/root_orientation
+reference_evaluation: configs/heldout_rich_26k.yaml
+reference_diagnostics: runs/ego_body_diagnostics_26k
+interventions: [root_orientation]
+local_motion_origins: [readout, conditioned]
+sampling_seed: 777
+ddim_steps: 20
+batch_size: 16
+bootstrap_seed: 617
+bootstrap_samples: 2000

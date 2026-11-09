@@ -1,0 +1,99 @@
+version: ego-generalization-abc-v1
+output: runs/ego_generalization_abc
+seed: 20261106
+model:
+  latent_dim: 256
+  dim_mults: [1, 2, 4]
+  scene_modules_trainable: false
+data:
+  datasets: [amass, egobody, trumans, grail]
+  excluded_datasets: [rich]
+  frames: 128
+  fps: 30
+  source_quota_per_update: 32
+  scene: disabled
+initialization:
+  checkpoint: runs/ego_only_clean_extension/selection/best.pt
+  sha256: 256054240c57e8494fe48ef9efc1cb68262405f1a0b7c4f6e2e84da75655c18e
+comparisons:
+  22k: runs/ego_only_clean_extension/selection/best.pt
+  26k: runs/ego_anchor_b_partial/selection/best.pt
+reference_data_config: configs/ego_only_clean_extension.yaml
+reference_loss_config: configs/amass_ego128.yaml
+selection: configs/scene_data_current.json
+selection_check: runs/data_inventory/CURRENT_SELECTION_CHECK.json
+amass_cache: runs/ego_scene_geometry_data_v1/amass
+validation_manifest: runs/ego_only_clean_extension/VALIDATION_MANIFEST.json
+budget:
+  hours: 24
+  phase_a_fraction: 0.15
+  phase_bc_fraction_each: 0.40
+  overhead_fraction: 0.05
+  timing_safety_factor: 1.08
+  warmup_updates: 2
+  measured_updates: 8
+training:
+  effective_batch_size: 128
+  source_quota: 32
+  microbatch_size: 32
+  checkpoint_minutes: 10
+  validation_checks: 4
+  prefetch_depth: 2
+  log_every: 10
+  precision: fp32
+optimizer:
+  shape_lr: 1.0e-5
+  motion_lr: 5.0e-6
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 200
+  lr_floor_fraction: 0.1
+motion_prefixes:
+  - core.unet.mid_block1
+  - core.unet.mid_block2
+  - core.unet.ups.1
+  - core.unet.final_conv
+shape_loss:
+  bone_scale_m: 0.1
+  height_scale_m: 0.25
+  weights:
+    shape_rest: 0.5
+    native_shape_betas: 0.05
+    native_template: 0.01
+    amass_shape_betas: 0.05
+    bone_length: 0.05
+    skeleton_height: 0.05
+focused_loss:
+  max_timestep: 600
+  root_strength: 1.25
+  position_scale_m: 0.5
+  velocity_scale_m_s: 1.0
+  weights:
+    torso_chain_rad2: 0.05
+    lower_position_normalized: 0.1
+    lower_local_rad2: 0.05
+    lower_velocity_normalized: 0.025
+anchor:
+  data_loss: l2
+  data_weight: 1.0
+  acceleration_weight: 8.099999999999999e-7
+  jerk_weight: 7.289999999999999e-10
+  huber_delta_m: 0.02
+  irls_iterations: 5
+  missing_ridge: 1.0e-8
+evaluation:
+  seed: 777
+  ddim_steps: 20
+  batch_size: 32
+  rich_batch_size: 16
+  # Selection is four-source macro MPJPE. Guards are independently reported;
+  # never hide a stability regression by changing the selection protocol.
+  head_regression_tolerance_mm: 2.0
+  jerk_ratio_max: 1.1
+  rich_after_selection: true
+  rich_protocol: configs/heldout_rich_26k.yaml
+logging:
+  tensorboard: true
+runtime:
+  memory_gib: 12
+  cpu_count: 4

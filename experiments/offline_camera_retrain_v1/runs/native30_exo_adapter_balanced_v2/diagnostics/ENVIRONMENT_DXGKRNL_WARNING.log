@@ -1,0 +1,53 @@
+[Sun Oct 18 14:07:10 2026] ------------[ cut here ]------------
+[Sun Oct 18 14:07:10 2026] memcpy: detected field-spanning write (size 4) of single field "current_pos" at drivers/hv/dxgkrnl/dxgvmbus.c:3095 (size 0)
+[Sun Oct 18 14:07:10 2026] WARNING: CPU: 19 PID: 3031 at drivers/hv/dxgkrnl/dxgvmbus.c:3095 dxgvmb_send_wait_sync_object_gpu+0x271/0x290
+[Sun Oct 18 14:07:10 2026] Modules linked in: intel_rapl_msr intel_rapl_common kvm_amd kvm irqbypass sch_fq_codel autofs4 br_netfilter bridge stp llc ip_tables tun
+[Sun Oct 18 14:07:10 2026] CPU: 19 UID: 1000 PID: 3031 Comm: python Not tainted 6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[Sun Oct 18 14:07:10 2026] RIP: 0010:dxgvmb_send_wait_sync_object_gpu+0x271/0x290
+[Sun Oct 18 14:07:10 2026] Code: a2 fe ff ff b8 ea ff ff ff eb 8d 31 c9 48 c7 c2 98 45 a8 86 4c 89 ee 48 c7 c7 60 d3 9b 86 c6 05 44 72 6a 01 01 e8 cf a4 25 ff <0f> 0b 4c 8b 85 60 ff ff ff e9 9f fe ff ff e8 fc d3 31 00 66 66 2e
+[Sun Oct 18 14:07:10 2026] RSP: 0018:ffffcfdb4cff7c18 EFLAGS: 00010282
+[Sun Oct 18 14:07:10 2026] RAX: 0000000000000000 RBX: ffffcfdb48f39038 RCX: 0000000000000027
+[Sun Oct 18 14:07:10 2026] RDX: ffff8aa0dc6dcd08 RSI: 0000000000000001 RDI: ffff8aa0dc6dcd00
+[Sun Oct 18 14:07:10 2026] RBP: ffffcfdb4cff7cd0 R08: 0000000000000000 R09: 0000000000000003
+[Sun Oct 18 14:07:10 2026] R10: ffffcfdb4cff7a88 R11: ffffffff87553708 R12: 0000000000000001
+[Sun Oct 18 14:07:10 2026] R13: 0000000000000004 R14: 0000000000000008 R15: 0000000000000008
+[Sun Oct 18 14:07:10 2026] FS:  000079ad5be33440(0000) GS:ffff8aa154a87000(0000) knlGS:0000000000000000
+[Sun Oct 18 14:07:10 2026] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[Sun Oct 18 14:07:10 2026] CR2: 00000000131e6000 CR3: 00000002ee307000 CR4: 0000000000350ef0
+[Sun Oct 18 14:07:10 2026] Call Trace:
+[Sun Oct 18 14:07:10 2026]  <TASK>
+[Sun Oct 18 14:07:10 2026]  dxgkio_submit_wait_to_hwqueue+0x133/0x2e0
+[Sun Oct 18 14:07:10 2026]  dxgk_ioctl+0x66/0x110
+[Sun Oct 18 14:07:10 2026]  dxgk_unlocked_ioctl+0x12/0x20
+[Sun Oct 18 14:07:10 2026]  __x64_sys_ioctl+0xa1/0xf0
+[Sun Oct 18 14:07:10 2026]  ? __secure_computing+0x7d/0xd0
+[Sun Oct 18 14:07:10 2026]  x64_sys_call+0x102c/0x20f0
+[Sun Oct 18 14:07:10 2026]  do_syscall_64+0x73/0x990
+[Sun Oct 18 14:07:10 2026]  ? dxgk_ioctl+0x66/0x110
+[Sun Oct 18 14:07:10 2026]  ? srso_return_thunk+0x5/0x5f
+[Sun Oct 18 14:07:10 2026]  ? srso_return_thunk+0x5/0x5f
+[Sun Oct 18 14:07:10 2026]  ? exit_to_user_mode_loop+0xc4/0x100
+[Sun Oct 18 14:07:10 2026]  ? srso_return_thunk+0x5/0x5f
+[Sun Oct 18 14:07:10 2026]  ? do_syscall_64+0x28a/0x990
+[Sun Oct 18 14:07:10 2026]  ? srso_return_thunk+0x5/0x5f
+[Sun Oct 18 14:07:10 2026]  ? handle_mm_fault+0xc3/0x2c0
+[Sun Oct 18 14:07:10 2026]  ? srso_return_thunk+0x5/0x5f
+[Sun Oct 18 14:07:10 2026]  ? do_user_addr_fault+0x179/0x710
+[Sun Oct 18 14:07:10 2026]  ? srso_return_thunk+0x5/0x5f
+[Sun Oct 18 14:07:10 2026]  ? irqentry_exit+0x3f/0x50
+[Sun Oct 18 14:07:10 2026]  ? srso_return_thunk+0x5/0x5f
+[Sun Oct 18 14:07:10 2026]  ? exc_page_fault+0x7f/0x170
+[Sun Oct 18 14:07:10 2026]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[Sun Oct 18 14:07:10 2026] RIP: 0033:0x79ad5bd1aa9f
+[Sun Oct 18 14:07:10 2026] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <41> 89 c0 3d 00 f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+[Sun Oct 18 14:07:10 2026] RSP: 002b:00007ffd840d3790 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[Sun Oct 18 14:07:10 2026] RAX: ffffffffffffffda RBX: 0000000000000001 RCX: 000079ad5bd1aa9f
+[Sun Oct 18 14:07:10 2026] RDX: 00007ffd840d3820 RSI: 00000000c0184736 RDI: 0000000000000005
+[Sun Oct 18 14:07:10 2026] RBP: 00007ffd840d3870 R08: 0000000000000001 R09: 00007ffd840d38a8
+[Sun Oct 18 14:07:10 2026] R10: 000000000000004c R11: 0000000000000246 R12: 000000001259e250
+[Sun Oct 18 14:07:10 2026] R13: 000000001259f5e0 R14: 0000000012709010 R15: 000000000f4c4b40
+[Sun Oct 18 14:07:10 2026]  </TASK>
+[Sun Oct 18 14:07:10 2026] ---[ end trace 0000000000000000 ]---
+[Sun Oct 18 14:11:44 2026] ptrace attach of "/home/wenxin/miniconda3/envs/scenemi/bin/python -u -m experiments.offline_camera_retrain_v1.ops.adapter_stage train --resume --run /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2"[3031] was attempted by "strace -f -p 2028 -e trace=openat,read,futex -s 160 -o /tmp/scenemi-exo-resume-strace.log"[3518]
+[Sun Oct 18 14:12:23 2026] ptrace attach of "/home/wenxin/miniconda3/envs/scenemi/bin/python -u -m experiments.offline_camera_retrain_v1.ops.adapter_stage train --resume --run /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2"[3031] was attempted by "cat /proc/2028/syscall"[3587]
+[Sun Oct 18 14:13:06 2026] ptrace attach of "/home/wenxin/miniconda3/envs/scenemi/bin/python -u -m experiments.offline_camera_retrain_v1.ops.adapter_stage train --resume --run /home/wenxin/projects/SceneMI/experiments/offline_camera_retrain_v1/runs/native30_exo_adapter_balanced_v2"[3031] was attempted by "cat /proc/2028/syscall"[3654]

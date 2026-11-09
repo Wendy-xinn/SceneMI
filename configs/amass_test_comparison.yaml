@@ -1,0 +1,29 @@
+version: amass-test-camera-comparison-v1
+output: runs/amass_test_comparison
+manifest: runs/amass128/evaluation/ego128/PROTOCOL.json
+manifest_sha256: 8ec4cfe1687c8ff48e71f1f8991b31c853f8b6b4a957f88b2ff7399341c2cb55
+amass_index: runs/amass128/index/complete.json
+paths: configs/paths.local.yaml
+ours_config: configs/amass_only_continue.yaml
+ours_checkpoint: training_outputs/amass_ego_shape_anchor_continue/selection/best.pt
+ours_sha256: f4ed3083799f425add7ccb4ea77b1f2b1ffe9bc2f212b15c8e35d58c070b7985
+ours_step: 80000
+egogvae_checkpoint: runs/amass_ego128/evaluation/baselines/egogvae/_latest.pth
+egogvae_sha256: 5745e4899e8a5d789ff1fdb8a2e02bb369817ccb9ed7352b0a090681b759be69
+egoallo_checkpoint: runs/amass_ego128/evaluation/baselines/egoallo/egoallo_checkpoint_april13/checkpoints_3000000
+egoallo_sha256: 36915c1dc30c5e27dff276c39e746ac03b92143eef794eea73ec237f22c85d62
+egoallo_repository: ../egoallo
+egogvae_repository: ../EgoGVAE_release
+smplh_model: /mnt/e/Datasets/human/AGORA/smplh/neutral/model.npz
+seed: 777
+frames: 128
+fps: 30
+ddim_steps: 20
+ours_batch_size: 1
+batch_size: 16
+expected_windows: 344
+expected_families: 113
+expected_corpora: {SSM_synced: 28, Transitions_mocap: 316}
+samples_per_window: 1
+primary_aggregation: window_mean
+runtime: {memory_gib: 12, cpu_count: 4}

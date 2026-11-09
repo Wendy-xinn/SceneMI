@@ -1,0 +1,38 @@
+# AMASS-only base: fresh motion + shape training, without a learned checkpoint.
+version: amass-ego-shape-anchor-v1
+reference_config: configs/amass_ego128.yaml
+output: training_outputs/amass_ego_shape_anchor
+seed: 20261108
+amass_index: runs/amass128/index/complete.json
+amass_cache: runs/ego_scene_geometry_data_v1/amass
+training:
+  batch_size: 8
+  planned_updates: 55000
+  checkpoint_every: 1000
+  log_every: 20
+  precision: fp32
+validation:
+  mode: [ego]
+  conditions: [clean]
+  every_updates: 1000
+  full_every_updates: 5000
+  quick_families_per_corpus: 8
+  batch_size: 8
+  ddim_steps: 20
+  seed: 777
+  primary: anchored_family_macro_mpjpe_mm
+  test_used: false
+anchor:
+  enabled: true
+  data_loss: l2
+  data_weight: 1.0
+  acceleration_weight: 8.099999999999999e-7
+  jerk_weight: 7.289999999999999e-10
+  huber_delta_m: 0.02
+  irls_iterations: 5
+  missing_ridge: 1.0e-8
+logging:
+  tensorboard: true
+runtime:
+  memory_gib: 12
+  cpu_count: 4

@@ -1,0 +1,15 @@
+# New geometry protocol, retaining the network, optimizer schedule and samples.
+# Preparation and acceptance do not start formal training.
+version: ego-cached-support-refinement-v1
+base_config: configs/ego_scene_spatial_refinement_stable.yaml
+output: runs/ego_scene_support_refinement
+support:
+  policy: configs/ego_scene_support.yaml
+  cache: runs/ego_scene_support_surfaces
+  train_manifest: runs/ego_scene_support_surfaces/train/MANIFEST.json
+  validation_manifest: runs/ego_scene_support_surfaces/validation/MANIFEST.json
+  initialization:
+    checkpoint: runs/ego_scene_support_refinement/initialization/parent.pt
+    sha256: 4936d0d0e8d1278f10036f431e3a11ef9aaf577435dd7640ee6b9d1c4389a05b
+    step: 206
+    source_checkpoint: runs/ego_scene_spatial_refinement_stable/training/last.pt

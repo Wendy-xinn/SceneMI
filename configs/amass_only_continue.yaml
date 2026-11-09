@@ -1,0 +1,9 @@
+# Continue the completed 55k AMASS prior at its saved final learning rate.
+version: amass-ego-shape-anchor-continuation-v1
+reference_config: configs/amass_only_base.yaml
+output: training_outputs/amass_ego_shape_anchor_continue
+parent_checkpoint: training_outputs/amass_ego_shape_anchor/training/last.pt
+parent_sha256: 1ff23b607a482c76263dfc17516211f45dd10ca5676ebde59910ef09f3424d9c
+parent_step: 55000
+planned_updates: 85000
+learning_rate: 1.0e-5

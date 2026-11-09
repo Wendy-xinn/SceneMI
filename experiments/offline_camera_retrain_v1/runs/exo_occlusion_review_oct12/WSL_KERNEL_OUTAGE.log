@@ -1,0 +1,715 @@
+[    0.000000] Linux version 6.18.33.2-microsoft-standard-WSL2 (root@f1bbfb02316b) (gcc (GCC) 13.2.0, GNU ld (GNU Binutils) 2.41) #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026
+[    0.000000] Command line: initrd=\initrd.img WSL_ROOT_INIT=1 panic=-1 nr_cpus=20 hv_utils.timesync_implicit=1 console=hvc0 debug pty.legacy_count=0 WSL_ENABLE_CRASH_DUMP=1
+[    0.000000] KERNEL supported cpus:
+[    0.000000]   Intel GenuineIntel
+[    0.000000]   AMD AuthenticAMD
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009ffff] usable
+[    0.000000] BIOS-e820: [mem 0x00000000000e0000-0x00000000000e0fff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x00000000001fffff] ACPI data
+[    0.000000] BIOS-e820: [mem 0x0000000000200000-0x00000000f7ffffff] usable
+[    0.000000] BIOS-e820: [mem 0x0000000100000000-0x00000007bb7fffff] usable
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] APIC: Static calls initialized
+[    0.000000] DMI not present or invalid.
+[    0.000000] Hypervisor detected: Microsoft Hyper-V
+[    0.000000] Hyper-V: privilege flags low 0xae7f, high 0x3b8030, ext 0x2, hints 0x900c2c, misc 0xe4bed7b6
+[    0.000000] Hyper-V: Nested features: 0x4a0000
+[    0.000000] Hyper-V: LAPIC Timer Frequency: 0xc3500
+[    0.000000] Hyper-V: Using hypercall for remote TLB flush
+[    0.000000] clocksource: hyperv_clocksource_tsc_page: mask: 0xffffffffffffffff max_cycles: 0x24e6a1710, max_idle_ns: 440795202120 ns
+[    0.000000] clocksource: hyperv_clocksource_msr: mask: 0xffffffffffffffff max_cycles: 0x24e6a1710, max_idle_ns: 440795202120 ns
+[    0.000000] tsc: Detected 4291.827 MHz processor
+[    0.000046] e820: update [mem 0x00000000-0x00000fff] usable ==> reserved
+[    0.000049] e820: remove [mem 0x000a0000-0x000fffff] usable
+[    0.000051] last_pfn = 0x7bb800 max_arch_pfn = 0x400000000
+[    0.000068] MTRR map: 5 entries (4 fixed + 1 variable; max 20), built from 8 variable MTRRs
+[    0.000070] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+[    0.000099] last_pfn = 0xf8000 max_arch_pfn = 0x400000000
+[    0.000105] Using GB pages for direct mapping
+[    0.000149] RAMDISK: [mem 0x04beb000-0x04e9ffff]
+[    0.000150] ACPI: Early table checksum verification disabled
+[    0.000152] ACPI: RSDP 0x00000000000E0000 000024 (v02 VRTUAL)
+[    0.000154] ACPI: XSDT 0x0000000000100000 000044 (v01 VRTUAL MICROSFT 00000001 MSFT 00000001)
+[    0.000157] ACPI: FACP 0x0000000000101000 000114 (v06 VRTUAL MICROSFT 00000001 MSFT 00000001)
+[    0.000160] ACPI: DSDT 0x00000000001011B8 01E11C (v02 MSFTVM DSDT01   00000001 INTL 20230628)
+[    0.000161] ACPI: FACS 0x0000000000101114 000040
+[    0.000162] ACPI: OEM0 0x0000000000101154 000064 (v01 VRTUAL MICROSFT 00000001 MSFT 00000001)
+[    0.000163] ACPI: SRAT 0x000000000011F2D4 0003F0 (v02 VRTUAL MICROSFT 00000001 MSFT 00000001)
+[    0.000164] ACPI: APIC 0x000000000011F6C4 0000E8 (v04 VRTUAL MICROSFT 00000001 MSFT 00000001)
+[    0.000164] ACPI: Reserving FACP table memory at [mem 0x101000-0x101113]
+[    0.000165] ACPI: Reserving DSDT table memory at [mem 0x1011b8-0x11f2d3]
+[    0.000165] ACPI: Reserving FACS table memory at [mem 0x101114-0x101153]
+[    0.000165] ACPI: Reserving OEM0 table memory at [mem 0x101154-0x1011b7]
+[    0.000166] ACPI: Reserving SRAT table memory at [mem 0x11f2d4-0x11f6c3]
+[    0.000166] ACPI: Reserving APIC table memory at [mem 0x11f6c4-0x11f7ab]
+[    0.000186] ACPI: SRAT: Node 0 PXM 0 [mem 0x00000000-0xf7ffffff] hotplug
+[    0.000187] ACPI: SRAT: Node 0 PXM 0 [mem 0x100000000-0x7bb7fffff] hotplug
+[    0.000187] ACPI: SRAT: Node 0 PXM 0 [mem 0x7bb800000-0x9ffdfffff] hotplug
+[    0.000187] ACPI: SRAT: Node 0 PXM 0 [mem 0x1000000000-0xfcffffffff] hotplug
+[    0.000188] ACPI: SRAT: Node 0 PXM 0 [mem 0x10000000000-0x1ffffffffff] hotplug
+[    0.000188] ACPI: SRAT: Node 0 PXM 0 [mem 0x20000000000-0x3ffffffffff] hotplug
+[    0.000188] ACPI: SRAT: Node 0 PXM 0 [mem 0x40000000000-0x7ffffffffff] hotplug
+[    0.000189] ACPI: SRAT: Node 0 PXM 0 [mem 0x80000000000-0xfffffffffff] hotplug
+[    0.000189] ACPI: SRAT: Node 0 PXM 0 [mem 0x100000000000-0x1fffffffffff] hotplug
+[    0.000189] ACPI: SRAT: Node 0 PXM 0 [mem 0x200000000000-0x3fffffffffff] hotplug
+[    0.000190] ACPI: SRAT: Node 0 PXM 0 [mem 0x400000000000-0x7fffffffffff] hotplug
+[    0.000190] ACPI: SRAT: Node 0 PXM 0 [mem 0x800000000000-0xffffffffffff] hotplug
+[    0.000190] ACPI: SRAT: Node 0 PXM 0 [mem 0x1000000000000-0x1ffffffffffff] hotplug
+[    0.000190] ACPI: SRAT: Node 0 PXM 0 [mem 0x2000000000000-0x3ffffffffffff] hotplug
+[    0.000191] ACPI: SRAT: Node 0 PXM 0 [mem 0x4000000000000-0x7ffffffffffff] hotplug
+[    0.000191] ACPI: SRAT: Node 0 PXM 0 [mem 0x8000000000000-0xfffffffffffff] hotplug
+[    0.000193] NUMA: Node 0 [mem 0x00001000-0xf7ffffff] + [mem 0x100000000-0x7bb7fffff] -> [mem 0x00001000-0x7bb7fffff]
+[    0.000196] NODE_DATA(0) allocated [mem 0x7bb7de300-0x7bb7fffff]
+[    0.000286] Zone ranges:
+[    0.000287]   DMA32    [mem 0x0000000000001000-0x00000000ffffffff]
+[    0.000288]   Normal   [mem 0x0000000100000000-0x00000007bb7fffff]
+[    0.000289]   Device   empty
+[    0.000290] Movable zone start for each node
+[    0.000290] Early memory node ranges
+[    0.000290]   node   0: [mem 0x0000000000001000-0x000000000009ffff]
+[    0.000291]   node   0: [mem 0x0000000000200000-0x00000000f7ffffff]
+[    0.000292]   node   0: [mem 0x0000000100000000-0x00000007bb7fffff]
+[    0.000293] Initmem setup node 0 [mem 0x0000000000001000-0x00000007bb7fffff]
+[    0.000319] On node 0, zone DMA32: 1 pages in unavailable ranges
+[    0.022808] On node 0, zone DMA32: 352 pages in unavailable ranges
+[    0.023971] On node 0, zone Normal: 18432 pages in unavailable ranges
+[    0.024007] ACPI: PM-Timer IO Port: 0x408
+[    0.024016] ACPI: LAPIC_NMI (acpi_id[0x01] dfl dfl lint[0x1])
+[    0.024333] IOAPIC[0]: apic_id 20, version 17, address 0xfec00000, GSI 0-23
+[    0.024338] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[    0.024342] ACPI: Using ACPI (MADT) for SMP configuration information
+[    0.024345] CPU topo: Max. logical packages:   1
+[    0.024345] CPU topo: Max. logical dies:       1
+[    0.024345] CPU topo: Max. dies per package:   1
+[    0.024347] CPU topo: Max. threads per core:   2
+[    0.024348] CPU topo: Num. cores per package:    10
+[    0.024348] CPU topo: Num. threads per package:  20
+[    0.024348] CPU topo: Allowing 20 present CPUs plus 0 hotplug CPUs
+[    0.024424] random: crng init done
+[    0.024429] PM: hibernation: Registered nosave memory: [mem 0x00000000-0x00000fff]
+[    0.024429] PM: hibernation: Registered nosave memory: [mem 0x000a0000-0x001fffff]
+[    0.024430] PM: hibernation: Registered nosave memory: [mem 0xf8000000-0xffffffff]
+[    0.024431] [mem 0xf8000000-0xffffffff] available for PCI devices
+[    0.024432] Booting paravirtualized kernel on Hyper-V
+[    0.024434] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
+[    0.024461] setup_percpu: NR_CPUS:8192 nr_cpumask_bits:20 nr_cpu_ids:20 nr_node_ids:1
+[    0.026769] percpu: Embedded 61 pages/cpu s212992 r8192 d28672 u262144
+[    0.026774] pcpu-alloc: s212992 r8192 d28672 u262144 alloc=1*2097152
+[    0.026776] pcpu-alloc: [0] 00 01 02 03 04 05 06 07 [0] 08 09 10 11 12 13 14 15 
+[    0.026779] pcpu-alloc: [0] 16 17 18 19 -- -- -- -- 
+[    0.026789] Hyper-V: PV spinlocks enabled
+[    0.026790] PV qspinlock hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.026792] Kernel command line: initrd=\initrd.img WSL_ROOT_INIT=1 panic=-1 nr_cpus=20 hv_utils.timesync_implicit=1 console=hvc0 debug pty.legacy_count=0 WSL_ENABLE_CRASH_DUMP=1
+[    0.026849] Unknown kernel command line parameters "WSL_ROOT_INIT=1 WSL_ENABLE_CRASH_DUMP=1", will be passed to user space.
+[    0.027065] printk: log buffer data + meta data: 262144 + 917504 = 1179648 bytes
+[    0.038673] Dentry cache hash table entries: 4194304 (order: 13, 33554432 bytes, linear)
+[    0.044443] Inode-cache hash table entries: 2097152 (order: 12, 16777216 bytes, linear)
+[    0.044566] software IO TLB: area num 32.
+[    0.069972] Fallback order for Node 0: 0 
+[    0.069978] Built 1 zonelists, mobility grouping on.  Total pages: 8074911
+[    0.069979] Policy zone: Normal
+[    0.069988] mem auto-init: stack:off, heap alloc:on, heap free:off
+[    0.077818] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=20, Nodes=1
+[    0.085394] ftrace: allocating 59125 entries in 232 pages
+[    0.085397] ftrace: allocated 232 pages with 4 groups
+[    0.086319] Dynamic Preempt: none
+[    0.086436] rcu: Preemptible hierarchical RCU implementation.
+[    0.086437] rcu: 	RCU restricting CPUs from NR_CPUS=8192 to nr_cpu_ids=20.
+[    0.086439] 	Trampoline variant of Tasks RCU enabled.
+[    0.086439] 	Rude variant of Tasks RCU enabled.
+[    0.086439] 	Tracing variant of Tasks RCU enabled.
+[    0.086440] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.086440] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=20
+[    0.086449] RCU Tasks: Setting shift to 5 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=20.
+[    0.086450] RCU Tasks Rude: Setting shift to 5 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=20.
+[    0.086451] RCU Tasks Trace: Setting shift to 5 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=20.
+[    0.088424] Using NULL legacy PIC
+[    0.088425] NR_IRQS: 524544, nr_irqs: 584, preallocated irqs: 0
+[    0.088477] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.089096] Console: colour dummy device 80x25
+[    0.089109] ACPI: Core revision 20250807
+[    0.089195] Failed to register legacy timer interrupt
+[    0.089196] APIC: Switch to symmetric I/O mode setup
+[    0.089202] Hyper-V: Host Build 10.0.26100.9444-9-0
+[    0.089204] Hyper-V: enabling crash_kexec_post_notifiers
+[    0.089246] Hyper-V: Using IPI hypercalls
+[    0.089248] APIC: send_IPI() replaced with hv_send_ipi()
+[    0.089252] APIC: send_IPI_mask() replaced with hv_send_ipi_mask()
+[    0.089253] APIC: send_IPI_mask_allbutself() replaced with hv_send_ipi_mask_allbutself()
+[    0.089254] APIC: send_IPI_allbutself() replaced with hv_send_ipi_allbutself()
+[    0.089256] APIC: send_IPI_all() replaced with hv_send_ipi_all()
+[    0.089257] APIC: send_IPI_self() replaced with hv_send_ipi_self()
+[    0.089258] Hyper-V: Using enlightened APIC (xapic mode)
+[    0.089263] APIC: eoi() replaced with hv_apic_eoi_write()
+[    0.089277] APIC: read() replaced with hv_apic_read()
+[    0.089289] APIC: write() replaced with hv_apic_write()
+[    0.089291] APIC: icr_write() replaced with hv_apic_icr_write()
+[    0.089292] APIC: icr_read() replaced with hv_apic_icr_read()
+[    0.089384] clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x3ddd3b70e23, max_idle_ns: 440795403016 ns
+[    0.089389] Calibrating delay loop (skipped), value calculated using timer frequency.. 8583.65 BogoMIPS (lpj=17167308)
+[    0.089445] x86/cpu: User Mode Instruction Prevention (UMIP) activated
+[    0.089483] Last level iTLB entries: 4KB 64, 2MB 64, 4MB 32
+[    0.089484] Last level dTLB entries: 4KB 128, 2MB 128, 4MB 64, 1GB 0
+[    0.089487] mitigations: Enabled attack vectors: user_kernel, user_user, guest_host, guest_guest, SMT mitigations: auto
+[    0.089489] Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl
+[    0.089490] Speculative Return Stack Overflow: IBPB-extending microcode not applied!
+[    0.089490] Speculative Return Stack Overflow: WARNING: See https://kernel.org/doc/html/latest/admin-guide/hw-vuln/srso.html for mitigation options.
+[    0.089491] Spectre V2 : Mitigation: Retpolines
+[    0.089492] Spectre V2 : User space: Mitigation: STIBP always-on protection
+[    0.089492] Speculative Return Stack Overflow: Vulnerable: Safe RET, no microcode
+[    0.089492] Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+[    0.089493] Spectre V2 : Spectre v2 / SpectreRSB: Filling RSB on context switch and VMEXIT
+[    0.089493] Spectre V2 : Enabling Restricted Speculation for firmware calls
+[    0.089493] Spectre V2 : mitigation: Enabling conditional Indirect Branch Prediction Barrier
+[    0.089494] active return thunk: srso_return_thunk
+[    0.089577] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.089578] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.089579] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.089579] x86/fpu: Supporting XSAVE feature 0x020: 'AVX-512 opmask'
+[    0.089579] x86/fpu: Supporting XSAVE feature 0x040: 'AVX-512 Hi256'
+[    0.089579] x86/fpu: Supporting XSAVE feature 0x080: 'AVX-512 ZMM_Hi256'
+[    0.089579] x86/fpu: Supporting XSAVE feature 0x800: 'Control-flow User registers'
+[    0.089580] x86/fpu: Supporting XSAVE feature 0x1000: 'Control-flow Kernel registers (KVM only)'
+[    0.089580] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.089581] x86/fpu: xstate_offset[5]:  832, xstate_sizes[5]:   64
+[    0.089582] x86/fpu: xstate_offset[6]:  896, xstate_sizes[6]:  512
+[    0.089582] x86/fpu: xstate_offset[7]: 1408, xstate_sizes[7]: 1024
+[    0.089582] x86/fpu: xstate_offset[11]: 2432, xstate_sizes[11]:   16
+[    0.089582] x86/fpu: xstate_offset[12]: 2448, xstate_sizes[12]:   24
+[    0.089583] x86/fpu: Enabled xstate features 0x18e7, context size is 2472 bytes, using 'compacted' format.
+[    0.093387] Freeing SMP alternatives memory: 52K
+[    0.093387] pid_max: default: 32768 minimum: 301
+[    0.093387] LSM: initializing lsm=capability,landlock,yama,safesetid,selinux,ima
+[    0.093387] landlock: Up and running.
+[    0.093387] Yama: becoming mindful.
+[    0.093387] SELinux:  Initializing.
+[    0.093387] Mount-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.093387] Mountpoint-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    0.093387] smpboot: CPU0: AMD Ryzen 9 9950X 16-Core Processor (family: 0x1a, model: 0x44, stepping: 0x0)
+[    0.093387] Performance Events: Fam17h+ core perfctr, AMD PMU driver.
+[    0.093387] ... version:                   0
+[    0.093387] ... bit width:                 48
+[    0.093387] ... generic counters:          6
+[    0.093387] ... generic bitmap:            000000000000003f
+[    0.093387] ... fixed-purpose counters:    0
+[    0.093387] ... fixed-purpose bitmap:      0000000000000000
+[    0.093387] ... value mask:                0000ffffffffffff
+[    0.093387] ... max period:                00007fffffffffff
+[    0.093387] ... global_ctrl mask:          000000000000003f
+[    0.093387] signal: max sigframe size: 3376
+[    0.093387] rcu: Hierarchical SRCU implementation.
+[    0.093387] rcu: 	Max phase no-delay instances is 1000.
+[    0.093387] Timer migration: 2 hierarchy levels; 8 children per group; 2 crossnode level
+[    0.095969] smp: Bringing up secondary CPUs ...
+[    0.096181] smpboot: x86: Booting SMP configuration:
+[    0.096182] .... node  #0, CPUs:        #2  #4  #6  #8 #10 #12 #14 #16 #18  #1  #3  #5  #7  #9 #11 #13 #15 #17 #19
+[    0.105752] Spectre V2 : Update user space SMT mitigation: STIBP always-on
+[    0.105752] smp: Brought up 1 node, 20 CPUs
+[    0.105752] smpboot: Total of 20 processors activated (171673.08 BogoMIPS)
+[    0.139120] node 0 deferred pages initialised in 28ms
+[    0.140423] Memory: 31604776K/32299644K available (20176K kernel code, 3632K rwdata, 14820K rodata, 4852K init, 5648K bss, 681168K reserved, 0K cma-reserved)
+[    0.141819] devtmpfs: initialized
+[    0.141819] x86/mm: Memory block size: 128MB
+[    0.146281] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.146281] posixtimers hash table entries: 16384 (order: 6, 262144 bytes, linear)
+[    0.146281] futex hash table entries: 8192 (524288 bytes on 1 NUMA nodes, total 512 KiB, linear).
+[    0.146281] pinctrl core: initialized pinctrl subsystem
+[    0.147205] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.150219] DMA: preallocated 4096 KiB GFP_KERNEL pool for atomic allocations
+[    0.151742] DMA: preallocated 4096 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.151758] audit: initializing netlink subsys (disabled)
+[    0.151782] audit: type=2000 audit(1791858062.060:1): state=initialized audit_enabled=0 res=1
+[    0.151782] thermal_sys: Registered thermal governor 'step_wise'
+[    0.151782] thermal_sys: Registered thermal governor 'user_space'
+[    0.151782] cpuidle: using governor ladder
+[    0.151782] cpuidle: using governor menu
+[    0.151782] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+[    0.151782] dca service started, version 1.12.1
+[    0.151782] PCI: Fatal: No config space access function found
+[    0.153451] kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+[    0.153517] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.153517] HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.153517] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.153517] HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+[    0.162956] ACPI: Added _OSI(Module Device)
+[    0.162958] ACPI: Added _OSI(Processor Device)
+[    0.162959] ACPI: Added _OSI(Processor Aggregator Device)
+[    0.170525] ACPI: 1 ACPI AML tables successfully acquired and loaded
+[    0.170876] ACPI: Interpreter enabled
+[    0.170876] ACPI: PM: (supports S0 S5)
+[    0.170876] ACPI: Using IOAPIC for interrupt routing
+[    0.170876] PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+[    0.170876] PCI: Using E820 reservations for host bridge windows
+[    0.170876] ACPI: Enabled 1 GPEs in block 00 to 0F
+[    0.173461] iommu: Default domain type: Translated
+[    0.173461] iommu: DMA domain TLB invalidation policy: lazy mode
+[    0.173549] SCSI subsystem initialized
+[    0.173595] libata version 3.00 loaded.
+[    0.173595] pps_core: LinuxPPS API ver. 1 registered
+[    0.173595] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.173595] PTP clock support registered
+[    0.173595] EDAC MC: Ver: 3.0.0
+[    0.177393] hv_vmbus: Vmbus version:5.3
+[    0.177683] hv_vmbus: Unknown GUID: 6e382d18-3336-4f4b-acc4-2b7703d4df4a
+[    0.177710] hv_vmbus: Unknown GUID: dde9cbc0-5060-4436-9448-ea1254a5d177
+[    0.177761] hv_vmbus: Unknown GUID: 6e382d18-3336-4f4b-acc4-2b7703d4df4a
+[    0.177810] NetLabel: Initializing
+[    0.177810] NetLabel:  domain hash size = 128
+[    0.177810] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    0.177810] NetLabel:  unlabeled traffic allowed by default
+[    0.177810] PCI: Using ACPI for IRQ routing
+[    0.177810] PCI: System does not support PCI
+[    0.177810] vgaarb: loaded
+[    0.177826] clocksource: Switched to clocksource tsc-early
+[    0.185736] VFS: Disk quotas dquot_6.6.0
+[    0.185745] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.186095] netfs: FS-Cache loaded
+[    0.186134] pnp: PnP ACPI init
+[    0.186254] pnp: PnP ACPI: found 1 devices
+[    0.196170] clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+[    0.196245] NET: Registered PF_INET protocol family
+[    0.197004] IP idents hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.210136] tcp_listen_portaddr_hash hash table entries: 16384 (order: 6, 262144 bytes, linear)
+[    0.210150] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.210875] TCP established hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.211672] TCP bind hash table entries: 65536 (order: 9, 2097152 bytes, linear)
+[    0.211710] TCP: Hash tables configured (established 262144 bind 65536)
+[    0.212129] UDP hash table entries: 16384 (order: 8, 1048576 bytes, linear)
+[    0.212542] UDP-Lite hash table entries: 16384 (order: 8, 1048576 bytes, linear)
+[    0.212622] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.212628] NET: Registered PF_XDP protocol family
+[    0.212632] PCI: CLS 0 bytes, default 64
+[    0.212652] PCI-DMA: Using software bounce buffering for IO (SWIOTLB)
+[    0.212653] software IO TLB: mapped [mem 0x00000000f4000000-0x00000000f8000000] (64MB)
+[    0.212702] Trying to unpack rootfs image as initramfs...
+[    0.214897] Freeing initrd memory: 2772K
+[    0.216547] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x3ddd3b70e23, max_idle_ns: 440795403016 ns
+[    0.216890] clocksource: Switched to clocksource tsc
+[    0.217419] Initialise system trusted keyrings
+[    0.217424] Key type blacklist registered
+[    0.217538] workingset: timestamp_bits=36 max_order=23 bucket_order=0
+[    0.217797] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.217807] fuse: init (API version 7.45)
+[    0.217926] SGI XFS with ACLs, security attributes, realtime, verbose warnings, quota, no debug enabled
+[    0.218279] 9p: Installing v9fs 9p2000 file system support
+[    0.219700] cryptd: max_cpu_qlen set to 1000
+[    0.225939] Key type asymmetric registered
+[    0.225941] Asymmetric key parser 'x509' registered
+[    0.225960] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 244)
+[    0.226075] io scheduler mq-deadline registered
+[    0.226077] io scheduler kyber registered
+[    0.227027] hv_vmbus: registering driver hv_pci
+[    0.227335] hv_pci c4b741f5-5582-4c98-8f8b-2e082933c396: PCI VMBus probing: Using version 0x10004
+[    0.228157] hv_pci c4b741f5-5582-4c98-8f8b-2e082933c396: PCI host bridge to bus 5582:00
+[    0.228159] pci_bus 5582:00: root bus resource [mem 0x9ffe00000-0x9ffe02fff window]
+[    0.228161] pci_bus 5582:00: No busn resource found for root bus, will use [bus 00-ff]
+[    0.229052] pci 5582:00:00.0: [1af4:1043] type 00 class 0x010000 conventional PCI endpoint
+[    0.230692] pci 5582:00:00.0: BAR 0 [mem 0x9ffe00000-0x9ffe00fff 64bit]
+[    0.230797] pci 5582:00:00.0: BAR 2 [mem 0x9ffe01000-0x9ffe01fff 64bit]
+[    0.230903] pci 5582:00:00.0: BAR 4 [mem 0x9ffe02000-0x9ffe02fff 64bit]
+[    0.234068] pci_bus 5582:00: busn_res: [bus 00-ff] end is updated to 00
+[    0.234074] pci 5582:00:00.0: BAR 0 [mem 0x9ffe00000-0x9ffe00fff 64bit]: assigned
+[    0.234435] pci 5582:00:00.0: BAR 2 [mem 0x9ffe01000-0x9ffe01fff 64bit]: assigned
+[    0.234796] pci 5582:00:00.0: BAR 4 [mem 0x9ffe02000-0x9ffe02fff 64bit]: assigned
+[    0.236494] hv_pci a8711d2a-657a-4a5a-8a0c-43163986b313: PCI VMBus probing: Using version 0x10004
+[    0.236988] hv_pci a8711d2a-657a-4a5a-8a0c-43163986b313: PCI host bridge to bus 657a:00
+[    0.236990] pci_bus 657a:00: No busn resource found for root bus, will use [bus 00-ff]
+[    0.237379] pci 657a:00:00.0: [1414:008e] type 00 class 0x030200 conventional PCI endpoint
+[    0.240976] pci_bus 657a:00: busn_res: [bus 00-ff] end is updated to 00
+[    0.242083] hv_pci abaa5d3d-ad59-4357-a831-0905487e768d: PCI VMBus probing: Using version 0x10004
+[    0.242531] hv_pci abaa5d3d-ad59-4357-a831-0905487e768d: PCI host bridge to bus ad59:00
+[    0.242533] pci_bus ad59:00: No busn resource found for root bus, will use [bus 00-ff]
+[    0.242927] pci ad59:00:00.0: [1414:008e] type 00 class 0x030200 conventional PCI endpoint
+[    0.246508] pci_bus ad59:00: busn_res: [bus 00-ff] end is updated to 00
+[    0.249782] ioatdma: Intel(R) QuickData Technology Driver 5.00
+[    0.249901] virtio-pci 5582:00:00.0: enabling device (0000 -> 0002)
+[    0.253924] Serial: 8250/16550 driver, 8 ports, IRQ sharing enabled
+[    0.297271] Linux agpgart interface v0.103
+[    0.297293] ACPI: bus type drm_connector registered
+[    0.298412] printk: legacy console [hvc0] enabled
+[    0.303007] brd: module loaded
+[    0.305976] loop: module loaded
+[    0.306171] Loading iSCSI transport class v2.0-870.
+[    0.306579] rdac: device handler registered
+[    0.306825] Microchip SmartPQI Driver (v2.1.34-035)
+[    0.307044] VMware PVSCSI driver - version 1.0.7.0-k
+[    0.307244] hv_vmbus: registering driver hv_storvsc
+[    0.308627] scsi host0: storvsc_host_t
+[    0.308672] PPP generic driver version 2.4.2
+[    0.309126] VMware vmxnet3 virtual NIC driver - version 1.9.0.0-k-NAPI
+[    0.309433] hv_vmbus: registering driver hv_netvsc
+[    0.309665] Fusion MPT base driver 3.04.20
+[    0.309800] Copyright (c) 1999-2008 LSI Corporation
+[    0.309970] Fusion MPT SPI Host driver 3.04.20
+[    0.310140] Fusion MPT SAS Host driver 3.04.20
+[    0.310329] Fusion MPT misc device (ioctl) driver 3.04.20
+[    0.310628] mptctl: Registered with Fusion MPT base driver
+[    0.310837] mptctl: /dev/mptctl @ (major,minor=10,220)
+[    0.311070] i8042: PNP: No PS/2 controller found.
+[    0.311255] hv_vmbus: registering driver hyperv_keyboard
+[    0.311497] rtc_cmos 00:00: RTC can wake from S4
+[    0.313678] rtc_cmos 00:00: registered as rtc0
+[    0.314234] rtc_cmos 00:00: setting system clock to 2026-10-13T02:21:02 UTC (1791858062)
+[    0.314672] rtc_cmos 00:00: alarms up to one month, 114 bytes nvram
+[    0.314971] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    0.315383] device-mapper: uevent: version 1.0.3
+[    0.315648] device-mapper: ioctl: 4.50.0-ioctl (2025-04-28) initialised: dm-devel@lists.linux.dev
+[    0.316155] amd_pstate: The CPPC feature is supported but currently disabled by the BIOS.
+               Please enable it if your BIOS has the CPPC option.
+[    0.316663] amd_pstate: the _CPC object is not present in SBIOS or ACPI disabled
+[    0.317119] hv_utils: Registering HyperV Utility Driver
+[    0.317301] hv_vmbus: registering driver hv_utils
+[    0.317523] hv_vmbus: registering driver hv_balloon
+[    0.317864] hv_vmbus: registering driver dxgkrnl
+[    0.317899] hv_utils: TimeSync IC version 4.0
+[    0.319031] hv_balloon: Using Dynamic Memory protocol version 2.0
+[    0.319739] Free page reporting enabled
+[    0.319892] hv_balloon: Cold memory discard hint enabled with order 9
+[    0.321035] drop_monitor: Initializing network drop monitor service
+[    0.323028] NET: Registered PF_INET6 protocol family
+[    0.323770] Segment Routing with IPv6
+[    0.323940] In-situ OAM (IOAM) with IPv6
+[    0.324117] NET: Registered PF_PACKET protocol family
+[    0.324387] scsi 0:0:0:0: Direct-Access     Msft     Virtual Disk     1.0  PQ: 0 ANSI: 5
+[    0.324473] 9pnet: Installing 9P2000 support
+[    0.324970] NET: Registered PF_VSOCK protocol family
+[    0.325213] hv_vmbus: registering driver hv_sock
+[    0.326912] scsi 0:0:0:1: Direct-Access     Msft     Virtual Disk     1.0  PQ: 0 ANSI: 5
+[    0.326979] IPI shorthand broadcast: enabled
+[    0.330248] sched_clock: Marking stable (328029696, 399480)->(354206850, -25777674)
+[    0.330984] registered taskstats version 1
+[    0.331436] Loading compiled-in X.509 certificates
+[    0.332234] sd 0:0:0:0: Attached scsi generic sg0 type 0
+[    0.332474] sd 0:0:0:0: [sda] 730960 512-byte logical blocks: (374 MB/357 MiB)
+[    0.332715] sd 0:0:0:1: Attached scsi generic sg1 type 0
+[    0.332814] sd 0:0:0:0: [sda] Write Protect is on
+[    0.332940] sd 0:0:0:1: [sdb] 326464 512-byte logical blocks: (167 MB/159 MiB)
+[    0.333134] sd 0:0:0:0: [sda] Mode Sense: 0f 00 80 00
+[    0.333451] sd 0:0:0:1: [sdb] Write Protect is on
+[    0.333751] sd 0:0:0:0: [sda] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+[    0.333870] sd 0:0:0:1: [sdb] Mode Sense: 0f 00 80 00
+[    0.334505] sd 0:0:0:1: [sdb] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+[    0.336815] Demotion targets for Node 0: null
+[    0.337049] ima: No TPM chip found, activating TPM-bypass!
+[    0.337255] ima: Allocated hash algorithm: sha256
+[    0.337452] ima: No architecture policies found
+[    0.337815] RAS: Correctable Errors collector initialized.
+[    0.344891] clk: Disabling unused clocks
+[    0.357476] sd 0:0:0:1: [sdb] Attached SCSI disk
+[    0.357476] sd 0:0:0:0: [sda] Attached SCSI disk
+[    0.358904] Freeing unused decrypted memory: 2028K
+[    0.359585] Freeing unused kernel image (initmem) memory: 4852K
+[    0.359853] Write protecting the kernel read-only data: 36864k
+[    0.360682] Freeing unused kernel image (text/rodata gap) memory: 300K
+[    0.361300] Freeing unused kernel image (rodata/data gap) memory: 1564K
+[    0.361541] Run /init as init process
+[    0.361663]   with arguments:
+[    0.361771]     /init
+[    0.361859]   with environment:
+[    0.361976]     HOME=/
+[    0.362066]     TERM=linux
+[    0.362140]     WSL_ROOT_INIT=1
+[    0.362266]     WSL_ENABLE_CRASH_DUMP=1
+[    0.362763] WSL (1 - ): WSL version 2.7.10.0
+[    0.372475] scsi 0:0:0:2: Direct-Access     Msft     Virtual Disk     1.0  PQ: 0 ANSI: 5
+[    0.378757] sd 0:0:0:2: Attached scsi generic sg2 type 0
+[    0.378881] sd 0:0:0:2: [sdc] 16777224 512-byte logical blocks: (8.59 GB/8.00 GiB)
+[    0.379332] sd 0:0:0:2: [sdc] 4096-byte physical blocks
+[    0.379632] sd 0:0:0:2: [sdc] Write Protect is off
+[    0.379844] sd 0:0:0:2: [sdc] Mode Sense: 0f 00 00 00
+[    0.380123] sd 0:0:0:2: [sdc] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    0.398520] EXT4-fs (sda): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[    0.401084] EXT4-fs (sdb): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[    0.404746] sd 0:0:0:2: [sdc] Attached SCSI disk
+[    0.416906] tun: Universal TUN/TAP device driver, 1.6
+[    0.433137] Adding 8388608k swap on /dev/sdc.  Priority:-2 extents:1 across:8388608k 
+[    0.441352] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[    0.443770] Bridge firewalling registered
+[    0.857464] hv_netvsc fc232fd7-4443-4791-a539-deef713ec4d4 loopback0: renamed from eth1
+[    0.999684] hv_pci 342be9d1-cf67-4a32-9010-effc4abfd648: PCI VMBus probing: Using version 0x10004
+[    1.000889] hv_pci 342be9d1-cf67-4a32-9010-effc4abfd648: PCI host bridge to bus cf67:00
+[    1.001197] pci_bus cf67:00: root bus resource [mem 0xc00000000-0xe00001fff window]
+[    1.001511] pci_bus cf67:00: No busn resource found for root bus, will use [bus 00-ff]
+[    1.002886] pci cf67:00:00.0: [1af4:105a] type 00 class 0x088000 conventional PCI endpoint
+[    1.004821] pci cf67:00:00.0: BAR 0 [mem 0xe00000000-0xe00000fff 64bit]
+[    1.005166] pci cf67:00:00.0: BAR 2 [mem 0xe00001000-0xe00001fff 64bit]
+[    1.005539] pci cf67:00:00.0: BAR 4 [mem 0xc00000000-0xdffffffff 64bit]
+[    1.009736] pci_bus cf67:00: busn_res: [bus 00-ff] end is updated to 00
+[    1.010002] pci cf67:00:00.0: BAR 4 [mem 0xc00000000-0xdffffffff 64bit]: assigned
+[    1.010715] pci cf67:00:00.0: BAR 0 [mem 0xe00000000-0xe00000fff 64bit]: assigned
+[    1.011409] pci cf67:00:00.0: BAR 2 [mem 0xe00001000-0xe00001fff 64bit]: assigned
+[    1.013724] virtio-pci cf67:00:00.0: enabling device (0000 -> 0002)
+[    1.021756] virtiofs virtio1: discovered new tag: wslg
+[    1.030531] virtiofs virtio1: Cache len: 0x200000000 @ 0xc00000000
+[    1.154476] scsi 0:0:0:3: Direct-Access     Msft     Virtual Disk     1.0  PQ: 0 ANSI: 5
+[    1.159399] sd 0:0:0:3: Attached scsi generic sg3 type 0
+[    1.159498] sd 0:0:0:3: [sdd] 2147483648 512-byte logical blocks: (1.10 TB/1.00 TiB)
+[    1.159970] sd 0:0:0:3: [sdd] 4096-byte physical blocks
+[    1.160221] sd 0:0:0:3: [sdd] Write Protect is off
+[    1.160434] sd 0:0:0:3: [sdd] Mode Sense: 0f 00 00 00
+[    1.160756] sd 0:0:0:3: [sdd] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    1.180761] sd 0:0:0:3: [sdd] Attached SCSI disk
+[    2.770416] EXT4-fs (sdd): 2 orphan inodes deleted
+[    2.770654] EXT4-fs (sdd): recovery complete
+[    2.773477] EXT4-fs (sdd): mounted filesystem 1196f284-f588-4af1-9991-2e9a749d8d6e r/w with ordered data mode. Quota mode: none.
+[    3.150218] misc dxg: dxgk: dxgkio_is_feature_enabled: Ioctl failed: -22
+[    3.153945] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[    3.154257] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[    3.154546] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[    3.155152] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[    3.157439] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[    3.157770] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[    3.158114] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[    3.158862] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[    3.403827] systemd-journald[59]: Received client request to flush runtime journal.
+[    3.411883] systemd-journald[59]: File /var/log/journal/7202af9ee1b0424083dcb97b0d85f806/system.journal corrupted or uncleanly shut down, renaming and replacing.
+[    3.718078] kvm_amd: TSC scaling supported
+[    3.718083] kvm_amd: Nested Virtualization enabled
+[    3.718085] kvm_amd: Nested Paging enabled
+[    3.718089] kvm_amd: kvm_amd: Hyper-V enlightened NPT TLB flush enabled
+[    3.718090] kvm_amd: kvm_amd: Hyper-V Direct TLB Flush enabled
+[    3.718092] kvm_amd: Virtual VMLOAD VMSAVE supported
+[    5.946485] WSL (221) ERROR: CheckConnection: getaddrinfo() failed: -5
+[    6.164550] WSL (221) ERROR: CheckConnection: getaddrinfo() failed: -5
+[    6.525692] TCP: eth0: Driver has suspect GRO implementation, TCP performance may be compromised.
+[   19.858910] Exception: 
+[   19.858915] Operation canceled @p9io.cpp:258 (AcceptAsync)
+
+[   20.169447] systemd-journald[59]: Received SIGTERM from PID 1 (systemd-shutdow).
+[   20.619485] EXT4-fs (sdd): unmounting filesystem 1196f284-f588-4af1-9991-2e9a749d8d6e.
+[   49.223162] hv_balloon: Max. dynamic memory size: 31544 MB
+[   59.744208] EXT4-fs (sdd): mounted filesystem 1196f284-f588-4af1-9991-2e9a749d8d6e r/w with ordered data mode. Quota mode: none.
+[   59.961920] misc dxg: dxgk: dxgkio_is_feature_enabled: Ioctl failed: -22
+[   59.965644] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[   59.966117] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[   59.966454] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[   59.966881] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[   59.968849] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[   59.969271] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[   59.969652] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[   59.970061] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[   60.340144] systemd-journald[62]: Received client request to flush runtime journal.
+[   60.348806] systemd-journald[62]: File /var/log/journal/7202af9ee1b0424083dcb97b0d85f806/system.journal corrupted or uncleanly shut down, renaming and replacing.
+[   61.331764] systemd-journald[62]: File /var/log/journal/7202af9ee1b0424083dcb97b0d85f806/user-1000.journal corrupted or uncleanly shut down, renaming and replacing.
+[   76.476356] Exception: 
+[   76.476362] Operation canceled @p9io.cpp:258 (AcceptAsync)
+
+[   76.743150] systemd-journald[62]: Received SIGTERM from PID 1 (systemd-shutdow).
+[   77.186397] EXT4-fs (sdd): unmounting filesystem 1196f284-f588-4af1-9991-2e9a749d8d6e.
+[  119.722570] EXT4-fs (sdd): mounted filesystem 1196f284-f588-4af1-9991-2e9a749d8d6e r/w with ordered data mode. Quota mode: none.
+[  119.955898] misc dxg: dxgk: dxgkio_is_feature_enabled: Ioctl failed: -22
+[  119.959002] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  119.959377] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  119.959672] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  119.960104] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[  119.961969] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  119.962337] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  119.962667] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  119.963067] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[  120.319761] systemd-journald[62]: Received client request to flush runtime journal.
+[  120.327797] systemd-journald[62]: File /var/log/journal/7202af9ee1b0424083dcb97b0d85f806/system.journal corrupted or uncleanly shut down, renaming and replacing.
+[  121.320984] systemd-journald[62]: File /var/log/journal/7202af9ee1b0424083dcb97b0d85f806/user-1000.journal corrupted or uncleanly shut down, renaming and replacing.
+[  136.448509] Exception: 
+[  136.448514] Operation canceled @p9io.cpp:258 (AcceptAsync)
+
+[  136.783113] systemd-journald[62]: Received SIGTERM from PID 1 (systemd-shutdow).
+[  137.231512] EXT4-fs (sdd): unmounting filesystem 1196f284-f588-4af1-9991-2e9a749d8d6e.
+[  166.010638] EXT4-fs (sdd): mounted filesystem 1196f284-f588-4af1-9991-2e9a749d8d6e r/w with ordered data mode. Quota mode: none.
+[  166.255188] misc dxg: dxgk: dxgkio_is_feature_enabled: Ioctl failed: -22
+[  166.258216] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  166.258569] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  166.258928] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  166.259419] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[  166.261249] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  166.261619] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  166.262056] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+[  166.262490] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+[  166.598704] systemd-journald[62]: Received client request to flush runtime journal.
+[  166.606432] systemd-journald[62]: File /var/log/journal/7202af9ee1b0424083dcb97b0d85f806/system.journal corrupted or uncleanly shut down, renaming and replacing.
+[  167.742943] systemd-journald[62]: File /var/log/journal/7202af9ee1b0424083dcb97b0d85f806/user-1000.journal corrupted or uncleanly shut down, renaming and replacing.
+[ 2365.540974] traps: python[6297] general protection fault ip:7d6859dd736e sp:7ffc45b7be80 error:0 in pybind.cpython-39-x86_64-linux-gnu.so[73d736e,7d6852a00000+2e074000]
+[ 2365.540995] python3.9: python: potentially unexpected fatal signal 11.
+[ 2365.541001] CPU: 2 UID: 1000 PID: 6297 Comm: python Not tainted 6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[ 2365.541004] RIP: 0033:0x7d6859dd736e
+[ 2365.541009] Code: e7 05 48 8d 44 3d 00 48 8b b6 20 02 00 00 44 8b 68 0c 44 8b 60 1c 44 89 e8 44 89 6c 24 50 44 89 64 24 60 4c 8b 0c c6 44 89 e0 <49> 0f af 41 60 4d 8b 81 88 00 00 00 49 03 41 58 4d 8b 89 90 00 00
+[ 2365.541011] RSP: 002b:00007ffc45b7be80 EFLAGS: 00010216
+[ 2365.541013] RAX: 0000000000007318 RBX: 0000000000099d26 RCX: 0000000000099d2e
+[ 2365.541015] RDX: 00007d662ca2ff70 RSI: 000000001bf57600 RDI: 000000000133a4c0
+[ 2365.541016] RBP: 00007d6618000000 R08: 0000000000000004 R09: 4036000000000000
+[ 2365.541017] R10: 00007ffc45b7c700 R11: 00007ffc45b7d680 R12: 0000000000007318
+[ 2365.541019] R13: 000000000000001a R14: 00007ffc45b81d60 R15: 00007d662ca300d0
+[ 2365.541020] FS:  00007d6997ed1740 GS:  0000000000000000
+[ 2365.541735] WSL (7839 - CaptureCrash): Capturing crash for pid: 1823, executable: !home!wenxin!miniconda3!envs!scenemi!bin!python3.9, signal: 11, port: 50005
+[ 3503.594573] python[9216]: segfault at 41392d71cd ip 00007ebd9529098c sp 00007ffde543e580 error 4 in libtorch_cpu.so[189098c,7ebd94815000+10376000] likely on CPU 12 (core 6, socket 0)
+[ 3503.594586] Code: 48 ba 15 7c 4a 7f b9 79 37 9e 48 0f af c2 41 0f be 8c 24 f0 12 00 00 49 8b 94 24 e0 12 00 00 48 d3 e8 48 8d 04 80 48 8d 1c c2 <80> 3b 00 0f 88 23 02 00 00 31 c0 eb 16 0f 1f 80 00 00 00 00 48 83
+[ 3503.594593] python3.9: python: potentially unexpected fatal signal 11.
+[ 3503.594596] CPU: 12 UID: 1000 PID: 9216 Comm: python Not tainted 6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[ 3503.594599] RIP: 0033:0x7ebd9529098c
+[ 3503.594603] Code: 48 ba 15 7c 4a 7f b9 79 37 9e 48 0f af c2 41 0f be 8c 24 f0 12 00 00 49 8b 94 24 e0 12 00 00 48 d3 e8 48 8d 04 80 48 8d 1c c2 <80> 3b 00 0f 88 23 02 00 00 31 c0 eb 16 0f 1f 80 00 00 00 00 48 83
+[ 3503.594605] RSP: 002b:00007ffde543e580 EFLAGS: 00010216
+[ 3503.594607] RAX: 00000000001b8db1 RBX: 00000041392d71cd RCX: 000000000000002b
+[ 3503.594609] RDX: 0000004138510445 RSI: 00007ebda78b1ba0 RDI: 0000000036f94470
+[ 3503.594610] RBP: 00000000a7010041 R08: 00000000a7010041 R09: 0000000000000000
+[ 3503.594611] R10: 00000000375bc3b8 R11: cf25294bc8851548 R12: 0000000036f94470
+[ 3503.594612] R13: 00007ebda78b1ba0 R14: 000000003add0860 R15: 000000000000a701
+[ 3503.594614] FS:  00007ebdba248740 GS:  0000000000000000
+[ 3503.595220] WSL (9333 - CaptureCrash): Capturing crash for pid: 4590, executable: !home!wenxin!miniconda3!envs!scenemi!bin!python3.9, signal: 11, port: 50005
+[ 3774.707585] python[9783]: segfault at cb09add93f ip 00000000004dcae3 sp 00007ffc8c8532d0 error 4 in python3.9[dcae3,41f000+1f2000] likely on CPU 0 (core 0, socket 0)
+[ 3774.707598] Code: 00 66 48 0f 6e f9 f2 0f 12 d7 0f 29 54 24 50 0f 29 94 24 80 00 00 00 4c 89 d2 eb 25 0f 1f 00 4c 8b 02 48 8b 4a 18 49 83 e0 fe <48> 83 b9 78 01 00 00 00 4c 89 02 4d 89 c2 0f 85 71 93 f4 ff 4c 89
+[ 3774.707606] python3.9: python: potentially unexpected fatal signal 11.
+[ 3774.707609] CPU: 0 UID: 1000 PID: 9783 Comm: python Not tainted 6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[ 3774.707613] RIP: 0033:0x4dcae3
+[ 3774.707617] Code: 00 66 48 0f 6e f9 f2 0f 12 d7 0f 29 54 24 50 0f 29 94 24 80 00 00 00 4c 89 d2 eb 25 0f 1f 00 4c 8b 02 48 8b 4a 18 49 83 e0 fe <48> 83 b9 78 01 00 00 00 4c 89 02 4d 89 c2 0f 85 71 93 f4 ff 4c 89
+[ 3774.707618] RSP: 002b:00007ffc8c8532d0 EFLAGS: 00010202
+[ 3774.707621] RAX: 0000000000000000 RBX: 000000000965ff80 RCX: 000000cb09add7c7
+[ 3774.707622] RDX: 000074b215d83570 RSI: 000074b2166d61f0 RDI: 000000000073ef40
+[ 3774.707623] RBP: 000000000965fcd0 R08: 000074b2159ad3b0 R09: 0000000000000000
+[ 3774.707625] R10: 000074b215d83570 R11: 0000000000000030 R12: 000000000965ff80
+[ 3774.707626] R13: 00007ffc8c853360 R14: 000000000965ff80 R15: 000000000965ff80
+[ 3774.707627] FS:  000074b56f5a2740 GS:  0000000000000000
+[ 3774.708272] WSL (9945 - CaptureCrash): Capturing crash for pid: 5148, executable: !home!wenxin!miniconda3!envs!scenemi!bin!python3.9, signal: 11, port: 50005
+[ 3869.815603] python3.9: python: potentially unexpected fatal signal 11.
+[ 3869.815610] CPU: 3 UID: 1000 PID: 10210 Comm: python Not tainted 6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[ 3869.815614] RIP: 0033:0x7265b72969bc
+[ 3869.815618] Code: 41 89 c5 41 f7 dd eb 80 66 0f 1f 44 00 00 b8 ba 00 00 00 0f 05 89 c5 e8 52 56 05 00 44 89 e2 89 ee 89 c7 b8 ea 00 00 00 0f 05 <41> 89 c5 41 f7 dd 3d 00 f0 ff ff b8 00 00 00 00 44 0f 46 e8 e9 6d
+[ 3869.815620] RSP: 002b:0000000029da3470 EFLAGS: 00000246 ORIG_RAX: 00000000000000ea
+[ 3869.815623] RAX: 0000000000000000 RBX: 00007265b74a1740 RCX: 00007265b72969bc
+[ 3869.815625] RDX: 000000000000000b RSI: 00000000000015bc RDI: 00000000000015bc
+[ 3869.815626] RBP: 00000000000015bc R08: 0000000000000000 R09: 000000000000000a
+[ 3869.815627] R10: 0000000000000001 R11: 0000000000000246 R12: 000000000000000b
+[ 3869.815628] R13: 0000000000000016 R14: 0000000000000048 R15: 0000000000000002
+[ 3869.815629] FS:  00007265b74a1740 GS:  0000000000000000
+[ 3869.816447] WSL (10279 - CaptureCrash): Capturing crash for pid: 5564, executable: !home!wenxin!miniconda3!envs!scenemi!bin!python3.9, signal: 11, port: 50005
+[ 3888.078132] python3.9: python: potentially unexpected fatal signal 11.
+[ 3888.078141] CPU: 17 UID: 1000 PID: 10123 Comm: python Not tainted 6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[ 3888.078145] RIP: 0033:0x7e652b4969bc
+[ 3888.078150] Code: 41 89 c5 41 f7 dd eb 80 66 0f 1f 44 00 00 b8 ba 00 00 00 0f 05 89 c5 e8 52 56 05 00 44 89 e2 89 ee 89 c7 b8 ea 00 00 00 0f 05 <41> 89 c5 41 f7 dd 3d 00 f0 ff ff b8 00 00 00 00 44 0f 46 e8 e9 6d
+[ 3888.078152] RSP: 002b:00000000298511f0 EFLAGS: 00000246 ORIG_RAX: 00000000000000ea
+[ 3888.078155] RAX: 0000000000000000 RBX: 00007e652b75a740 RCX: 00007e652b4969bc
+[ 3888.078156] RDX: 000000000000000b RSI: 0000000000001569 RDI: 0000000000001569
+[ 3888.078157] RBP: 0000000000001569 R08: 0000000000000000 R09: 000000000000000a
+[ 3888.078159] R10: 0000000000000001 R11: 0000000000000246 R12: 000000000000000b
+[ 3888.078160] R13: 0000000000000016 R14: 0000000000000048 R15: 0000000000000002
+[ 3888.078161] FS:  00007e652b75a740 GS:  0000000000000000
+[ 3888.078779] WSL (10359 - CaptureCrash): Capturing crash for pid: 5481, executable: !home!wenxin!miniconda3!envs!scenemi!bin!python3.9, signal: 11, port: 50005
+[ 4089.409225] python[10673]: segfault at 483bcf794d ip 000076ea6492aca3 sp 00007fff478a3900 error 4 in libc10.so[3dca3,76ea64915000+98000] likely on CPU 12 (core 6, socket 0)
+[ 4089.409238] Code: 1f 84 00 00 00 00 00 5b 5d 41 5c c3 66 2e 0f 1f 84 00 00 00 00 00 90 41 54 49 89 fc 55 53 48 8b 6f 10 48 85 ed 74 33 48 89 eb <48> 8b 6d 00 48 8b 7b 08 48 8d 43 18 48 39 c7 74 0d 48 8b 43 18 48
+[ 4089.409245] python3.9: python: potentially unexpected fatal signal 11.
+[ 4089.409248] CPU: 12 UID: 1000 PID: 10673 Comm: python Not tainted 6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[ 4089.409251] RIP: 0033:0x76ea6492aca3
+[ 4089.409255] Code: 1f 84 00 00 00 00 00 5b 5d 41 5c c3 66 2e 0f 1f 84 00 00 00 00 00 90 41 54 49 89 fc 55 53 48 8b 6f 10 48 85 ed 74 33 48 89 eb <48> 8b 6d 00 48 8b 7b 08 48 8d 43 18 48 39 c7 74 0d 48 8b 43 18 48
+[ 4089.409257] RSP: 002b:00007fff478a3900 EFLAGS: 00010206
+[ 4089.409259] RAX: 000076ea6492ad30 RBX: 000000483bcf794d RCX: 0000000000000004
+[ 4089.409260] RDX: 0000000000000001 RSI: 0000000000000001 RDI: 000076ea649ea160
+[ 4089.409261] RBP: 000000483bcf794d R08: 000000003bd18bd0 R09: 00007fff478a37c0
+[ 4089.409263] R10: 0000000000000000 R11: f79235d755b3563d R12: 000076ea649ea160
+[ 4089.409264] R13: 000076ea649ea160 R14: 000076ea6901bee8 R15: 000000003b0da0a0
+[ 4089.409265] FS:  000076ea69130740 GS:  0000000000000000
+[ 4089.409836] WSL (10794 - CaptureCrash): Capturing crash for pid: 6023, executable: !home!wenxin!miniconda3!envs!scenemi!bin!python3.9, signal: 11, port: 50005
+[ 4172.092896] python3.9: python: potentially unexpected fatal signal 11.
+[ 4172.092903] CPU: 12 UID: 1000 PID: 10798 Comm: python Not tainted 6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[ 4172.092907] RIP: 0033:0x704f0a4969bc
+[ 4172.092911] Code: 41 89 c5 41 f7 dd eb 80 66 0f 1f 44 00 00 b8 ba 00 00 00 0f 05 89 c5 e8 52 56 05 00 44 89 e2 89 ee 89 c7 b8 ea 00 00 00 0f 05 <41> 89 c5 41 f7 dd 3d 00 f0 ff ff b8 00 00 00 00 44 0f 46 e8 e9 6d
+[ 4172.092913] RSP: 002b:00000000283ea9b0 EFLAGS: 00000246 ORIG_RAX: 00000000000000ea
+[ 4172.092916] RAX: 0000000000000000 RBX: 0000704f0a77c740 RCX: 0000704f0a4969bc
+[ 4172.092918] RDX: 000000000000000b RSI: 0000000000001801 RDI: 0000000000001801
+[ 4172.092919] RBP: 0000000000001801 R08: 0000000000000000 R09: 000000000000000a
+[ 4172.092920] R10: 0000000000000001 R11: 0000000000000246 R12: 000000000000000b
+[ 4172.092921] R13: 0000000000000016 R14: 0000000000000048 R15: 0000000000000002
+[ 4172.092923] FS:  0000704f0a77c740 GS:  0000000000000000
+[ 4172.093559] WSL (10955 - CaptureCrash): Capturing crash for pid: 6145, executable: !home!wenxin!miniconda3!envs!scenemi!bin!python3.9, signal: 11, port: 50005
+[ 4537.049236] python3.9: python: potentially unexpected fatal signal 11.
+[ 4537.049244] CPU: 7 UID: 1000 PID: 11619 Comm: python Not tainted 6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[ 4537.049248] RIP: 0033:0x730387c969bc
+[ 4537.049252] Code: 41 89 c5 41 f7 dd eb 80 66 0f 1f 44 00 00 b8 ba 00 00 00 0f 05 89 c5 e8 52 56 05 00 44 89 e2 89 ee 89 c7 b8 ea 00 00 00 0f 05 <41> 89 c5 41 f7 dd 3d 00 f0 ff ff b8 00 00 00 00 44 0f 46 e8 e9 6d
+[ 4537.049254] RSP: 002b:000000004039ab70 EFLAGS: 00000246 ORIG_RAX: 00000000000000ea
+[ 4537.049257] RAX: 0000000000000000 RBX: 0000730387f48740 RCX: 0000730387c969bc
+[ 4537.049259] RDX: 000000000000000b RSI: 0000000000001b28 RDI: 0000000000001b28
+[ 4537.049260] RBP: 0000000000001b28 R08: 0000000000000000 R09: 000000000000000a
+[ 4537.049261] R10: 0000000000000001 R11: 0000000000000246 R12: 000000000000000b
+[ 4537.049262] R13: 0000000000000016 R14: 0000000000000048 R15: 0000000000000002
+[ 4537.049264] FS:  0000730387f48740 GS:  0000000000000000
+[ 4537.049829] WSL (11759 - CaptureCrash): Capturing crash for pid: 6952, executable: !home!wenxin!miniconda3!envs!scenemi!bin!python3.9, signal: 11, port: 50005
+[ 5971.647433] mini_init (204): drop_caches: 1
+[15831.782053] ------------[ cut here ]------------
+[15831.782058] memcpy: detected field-spanning write (size 4) of single field "current_pos" at drivers/hv/dxgkrnl/dxgvmbus.c:3095 (size 0)
+[15831.782072] WARNING: CPU: 8 PID: 8238 at drivers/hv/dxgkrnl/dxgvmbus.c:3095 dxgvmb_send_wait_sync_object_gpu+0x271/0x290
+[15831.782080] Modules linked in: tls intel_rapl_msr intel_rapl_common kvm_amd kvm irqbypass sch_fq_codel autofs4 br_netfilter bridge stp llc ip_tables tun
+[15831.782094] CPU: 8 UID: 1000 PID: 8238 Comm: python Not tainted 6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[15831.782097] RIP: 0010:dxgvmb_send_wait_sync_object_gpu+0x271/0x290
+[15831.782100] Code: a2 fe ff ff b8 ea ff ff ff eb 8d 31 c9 48 c7 c2 98 45 a8 ab 4c 89 ee 48 c7 c7 60 d3 9b ab c6 05 44 72 6a 01 01 e8 cf a4 25 ff <0f> 0b 4c 8b 85 60 ff ff ff e9 9f fe ff ff e8 fc d3 31 00 66 66 2e
+[15831.782101] RSP: 0018:ffffca724ba179c8 EFLAGS: 00010282
+[15831.782104] RAX: 0000000000000000 RBX: ffffca7249cf1038 RCX: 0000000000000027
+[15831.782105] RDX: ffff88df1c41cd08 RSI: 0000000000000001 RDI: ffff88df1c41cd00
+[15831.782106] RBP: ffffca724ba17a80 R08: 0000000000000000 R09: 0000000000000003
+[15831.782107] R10: ffffca724ba17838 R11: ffffffffac553708 R12: 0000000000000001
+[15831.782108] R13: 0000000000000004 R14: 0000000000000008 R15: 0000000000000008
+[15831.782109] FS:  0000739332bc3440(0000) GS:ffff88df6f7c7000(0000) knlGS:0000000000000000
+[15831.782111] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[15831.782112] CR2: 00007391e7796b80 CR3: 0000000103d23000 CR4: 0000000000350ef0
+[15831.782115] Call Trace:
+[15831.782116]  <TASK>
+[15831.782122]  dxgkio_submit_wait_to_hwqueue+0x133/0x2e0
+[15831.782126]  dxgk_ioctl+0x66/0x110
+[15831.782129]  dxgk_unlocked_ioctl+0x12/0x20
+[15831.782131]  __x64_sys_ioctl+0xa1/0xf0
+[15831.782135]  ? __secure_computing+0x7d/0xd0
+[15831.782139]  x64_sys_call+0x102c/0x20f0
+[15831.782142]  do_syscall_64+0x73/0x990
+[15831.782146]  ? vfree.part.0+0xe9/0x290
+[15831.782150]  ? srso_return_thunk+0x5/0x5f
+[15831.782153]  ? vfree+0x30/0x50
+[15831.782155]  ? srso_return_thunk+0x5/0x5f
+[15831.782156]  ? dxgvmb_send_map_gpu_va+0x73/0x190
+[15831.782160]  ? srso_return_thunk+0x5/0x5f
+[15831.782162]  ? dxgadapter_release_lock_shared+0x12/0x20
+[15831.782164]  ? srso_return_thunk+0x5/0x5f
+[15831.782165]  ? dxgkio_map_gpu_va+0xd4/0x290
+[15831.782168]  ? srso_return_thunk+0x5/0x5f
+[15831.782170]  ? __rseq_handle_notify_resume+0xaf/0x490
+[15831.782174]  ? srso_return_thunk+0x5/0x5f
+[15831.782176]  ? dxgk_ioctl+0x66/0x110
+[15831.782178]  ? srso_return_thunk+0x5/0x5f
+[15831.782180]  ? exit_to_user_mode_loop+0xc4/0x100
+[15831.782183]  ? srso_return_thunk+0x5/0x5f
+[15831.782185]  ? do_syscall_64+0x28a/0x990
+[15831.782188]  ? srso_return_thunk+0x5/0x5f
+[15831.782189]  ? __handle_mm_fault+0x6ed/0x910
+[15831.782194]  ? srso_return_thunk+0x5/0x5f
+[15831.782196]  ? __rseq_handle_notify_resume+0xaf/0x490
+[15831.782198]  ? srso_return_thunk+0x5/0x5f
+[15831.782199]  ? count_memcg_events+0xbd/0x170
+[15831.782203]  ? handle_mm_fault+0xc3/0x2c0
+[15831.782205]  ? srso_return_thunk+0x5/0x5f
+[15831.782207]  ? srso_return_thunk+0x5/0x5f
+[15831.782209]  ? irqentry_exit_to_user_mode+0x1d8/0x200
+[15831.782211]  ? srso_return_thunk+0x5/0x5f
+[15831.782213]  ? irqentry_exit+0x3f/0x50
+[15831.782215]  ? srso_return_thunk+0x5/0x5f
+[15831.782216]  ? exc_page_fault+0x7f/0x170
+[15831.782218]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[15831.782220] RIP: 0033:0x73933291aa9f
+[15831.782222] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <41> 89 c0 3d 00 f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+[15831.782224] RSP: 002b:00007ffe3502dd90 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[15831.782226] RAX: ffffffffffffffda RBX: 0000000000000001 RCX: 000073933291aa9f
+[15831.782227] RDX: 00007ffe3502de20 RSI: 00000000c0184736 RDI: 0000000000000005
+[15831.782228] RBP: 00007ffe3502de70 R08: 0000000000000001 R09: 00007ffe3502dea8
+[15831.782229] R10: 000000000000004c R11: 0000000000000246 R12: 000000003547e4a0
+[15831.782230] R13: 000000003547fb70 R14: 0000000035f6f160 R15: 000000002f922b30
+[15831.782234]  </TASK>
+[15831.782235] ---[ end trace 0000000000000000 ]---
+[15979.956253] python3.9: python: potentially unexpected fatal signal 7.
+[15979.956261] CPU: 14 UID: 1000 PID: 21325 Comm: python Tainted: G        W           6.18.33.2-microsoft-standard-WSL2 #1 PREEMPT(none) 
+[15979.956265] Tainted: [W]=WARN
+[15979.956267] RIP: 0033:0x7b0a0d36b7c0
+[15979.956271] Code: 00 00 66 0f 70 c1 1b 66 0f 70 c9 b1 66 0f 70 d2 1b 66 44 0f 6f c7 66 0f 3a 0f ca 08 66 0f 6c d0 eb 08 0f 1f 84 00 00 00 00 00 <f3> 0f 6f 1e f3 0f 6f 66 10 f3 0f 6f 6e 20 66 0f 38 00 df f3 0f 6f
+[15979.956273] RSP: 002b:00007ffc85cb8668 EFLAGS: 00010202
+[15979.956276] RAX: 0000000000f31880 RBX: 0000000020f081b0 RCX: 00007b0a0d4dbf00
+[15979.956278] RDX: 0000000000022862 RSI: 00007b0a0c75e000 RDI: 0000000020f081b0
+[15979.956280] RBP: 00007b0a0c0ce000 R08: 0000000000000000 R09: fed83203078bffff
+[15979.956281] R10: 00007b0a0d61c8a0 R11: 00000000f1bf07a9 R12: 0000000000f31880
+[15979.956282] R13: 000000000003cc62 R14: 0000000000f31880 R15: 0000000000f31880
+[15979.956284] FS:  00007b0a0dda8440 GS:  0000000000000000
+[15979.956762] WSL (21330 - CaptureCrash): Capturing crash for pid: 48735, executable: !home!wenxin!miniconda3!envs!scenemi!bin!python3.9, signal: 7, port: 50005
+[16191.943261] mini_init (204): drop_caches: 1

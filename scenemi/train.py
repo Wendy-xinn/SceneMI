@@ -468,6 +468,9 @@ def main(argv=None):
     peek = argparse.ArgumentParser(add_help=False)
     peek.add_argument('--config', type=Path, default=CONFIG)
     known, _ = peek.parse_known_args(raw)
+    if known.config.exists() and yaml.safe_load(known.config.read_text()).get('version') == 'ego-scene-refinement-v1':
+        from scenemi.refinement.training import main as refinement_main
+        return refinement_main(raw)
     if known.config.exists() and yaml.safe_load(known.config.read_text()).get('version') == 'ego-observed-geometry-v1':
         from scenemi.scene_geometry_training import main as geometry_main
         return geometry_main(raw)

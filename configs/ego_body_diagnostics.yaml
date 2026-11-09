@@ -1,0 +1,22 @@
+version: ego-body-diagnostics-v1
+output: runs/ego_body_diagnostics_26k
+reference_evaluation: configs/heldout_rich_26k.yaml
+sampling_seed: 777
+ddim_steps: 20
+candidate_batch_size: 16
+baseline_batch_size: 8
+bootstrap_seed: 617
+bootstrap_samples: 2000
+arms:
+  - candidate_no_scene_b
+  - candidate_scene_b
+  - oracle_no_scene_gt_rest_readout
+  - oracle_no_scene_gt_rest
+  - oracle_no_scene_gt_rest_and_mount
+  - egogvae_pretrained
+  - egogvae_finetuned
+support_proxy:
+  ankles_max_height_m: 0.08
+  toes_max_height_m: 0.04
+  max_speed_m_s: 0.15
+  true_contact_labels_available: false

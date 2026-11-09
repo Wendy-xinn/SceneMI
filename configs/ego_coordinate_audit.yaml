@@ -1,0 +1,14 @@
+version: ego-coordinate-audit-v1
+output: runs/ego_coordinate_audit_26k
+reference_evaluation: configs/heldout_rich_26k.yaml
+amass_manifest: runs/ego_anchor_b_partial/VALIDATION_MANIFEST.json
+amass_families: 32
+selection_seed: 20261106
+transform_seed: 617
+sampling_seed: 777
+batch_size: 8
+ddim_steps: 20
+horizontal_translation_range_m: 10.0
+rebuild_static_map_control: true
+mean_joint_tolerance_mm: 0.1
+max_joint_tolerance_mm: 1.0

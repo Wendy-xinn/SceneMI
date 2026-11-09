@@ -1,0 +1,41 @@
+# Scene input policy. No training is launched by preparing or auditing maps.
+version: ego-video-spatial-query-v1
+map:
+  scope: original_video_same_observer
+  voxel_m: 0.025
+  global_point_limit: null
+  context_voxel_m: 0.2
+  current_frame_dynamics_only: true
+query:
+  near_radius_m: 0.2
+  context_radius_m: 0.8
+  neighbours_per_scale: 16
+  workers: 1
+  observation_count_cap: 32
+normals:
+  normal_neighbours: 16
+  normal_radius_m: 0.1
+  minimum_neighbours: 6
+  minimum_spread_m: 0.005
+  maximum_planarity_ratio: 0.03
+ground:
+  search_radius_m: 0.8
+  max_extrapolation_m: 0.25
+  height_bin_m: 0.04
+  minimum_points: 20
+  minimum_horizontal_span_m: 0.3
+  minimum_normal_y: 0.9
+  maximum_fit_error_m: 0.015
+  maximum_step_above_anchor_m: 0.15
+  maximum_height_difference_m: 0.8
+  ambiguity_height_m: 0.08
+audit:
+  checkpoint: runs/ego_scene_refinement/selection/best.pt
+  diagnostic: runs/ego_scene_refinement/diagnostics/scene_causality
+  video_maps: runs/ego_scene_video_maps/validation
+  output: runs/ego_scene_refinement/diagnostics/egobody_spatial_coverage
+  distance_bins_m: [0.2, 0.4, 0.8]
+  gt_surface_near_m: 0.2
+runtime:
+  memory_gib: 10
+  cpu_count: 4

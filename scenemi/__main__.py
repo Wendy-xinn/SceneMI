@@ -16,6 +16,9 @@ def resource_main(argv):
 
 def main(argv=None):
     raw = list(sys.argv[1:] if argv is None else argv)
+    if raw and raw[0] == 'run':
+        from .launch import main as launch_main
+        return launch_main(raw[1:])
     if raw and raw[0] == 'resources':
         return resource_main(raw[1:])
     if raw and raw[0] == 'egogvae':
@@ -30,6 +33,12 @@ def main(argv=None):
         from .train import main as training_main
         return training_main(raw)
     if raw and raw[0] == 'evaluate':
+        if '--config' in raw:
+            import yaml
+            file = Path(raw[raw.index('--config')+1])
+            if yaml.safe_load(file.read_text()).get('version') == 'ego-scene-refinement-v1':
+                from .refinement.training import main as refinement_main
+                return refinement_main(raw)
         from .evaluate import main as evaluate_main
         return evaluate_main(raw[1:])
     if raw and raw[0] == 'exo-camera':
@@ -45,8 +54,15 @@ def main(argv=None):
     if raw and raw[0] == 'grail':
         from .data.grail_quality import main as grail_main
         return grail_main(raw[1:])
+    if raw and raw[0] == 'gimo':
+        if raw[1:2] == ['poses']:
+            from .data.gimo_pose import main as gimo_pose_main
+            return gimo_pose_main(raw[2:])
+        from .data.gimo import main as gimo_main
+        return gimo_main(raw[1:])
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
+    commands.add_parser('run', help='Run training from an explicit YAML configuration')
     commands.add_parser('train', help='Train EGO-only from a YAML configuration (manual launch)')
     commands.add_parser('preflight', help='Check a real EGO training update under resource limits')
     commands.add_parser('evaluate', help='Evaluate a saved EGO checkpoint on fixed validation windows')
@@ -54,6 +70,7 @@ def main(argv=None):
     commands.add_parser('ops', help='Existing monitoring, review and resource tools')
     commands.add_parser('resources', help='Check resources or run a command under RAM/CPU limits')
     commands.add_parser('grail', help='GRAIL data quality tools')
+    commands.add_parser('gimo', help='GIMO source audit, EGO preprocessing and Viser review')
     commands.add_parser('exo-camera', help='EXO camera preprocessing tools')
     commands.add_parser('egogvae', help='Prepare, evaluate or manually fine-tune the public EgoGVAE')
     config = commands.add_parser('config', help='Validate the 128-frame AMASS stage-A configuration')

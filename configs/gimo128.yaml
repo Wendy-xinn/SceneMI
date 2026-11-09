@@ -1,0 +1,36 @@
+version: gimo-native30-ego128-v2
+paths: configs/paths.local.yaml
+output: runs/gimo128_prepared_v2
+data:
+  fps: 30
+  frames: 128
+  stride: 128
+  end_frame: exclusive
+  tail: drop
+  validation_fraction_of_train_only_recordings: 0.1
+  seed: 20261109
+  test_overlap: test_wins_remove_from_train
+  duplicate_frames: first_annotation_wins_within_split
+scene:
+  width: 128
+  height: 72
+  near_m: 0.05
+  far_m: 4.0
+  points_per_frame: 512
+  voxel_m: 0.025
+  observation: first_hit_static_scan_with_wearer_occlusion_head_only_excluded
+  memory_scope: split_recording_world_frame
+  memory_causal: false
+  support_policy: configs/ego_scene_support.yaml
+  normal_radius_m: 0.10
+  normal_neighbours: 24
+  minimum_normal_neighbours: 6
+  minimum_normal_spread_m: 0.01
+  maximum_planarity_ratio: 0.10
+calibration:
+  source: rigid_fit_of_released_head_vertices
+  per_sequence_gt_mount_is_input: false
+runtime:
+  memory_gib: 12
+  cpu_count: 4
+  workers: 4
