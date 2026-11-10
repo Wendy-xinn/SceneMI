@@ -1,0 +1,9 @@
+# Frozen motion + shape prior for the NEW spatial refiner. Not a training launch.
+# Existing 22k-based refiner checkpoints retain their original parent identity.
+version: frozen-scene-prior-v1
+checkpoint: runs/ego_generalization_abc/control_ft/control_ft.pt
+checkpoint_sha256: 4925c8fd437664125aab2232b8874765ba07f7b63040e8590bf1757df1f11b5e
+stage: B
+step: 29288
+selection: runs/ego_generalization_abc/control_ft/SELECTION.json
+selection_sha256: 6bbaf3202eff8bbb1178f7770dc00b018f9feb92231cf9fd8edeb114165802e8

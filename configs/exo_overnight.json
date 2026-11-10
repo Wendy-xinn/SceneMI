@@ -1,0 +1,23 @@
+{
+  "version": "local-experiment-watch-v1",
+  "run": "runs/amass_exo_denoise128",
+  "unit": "scenemi-amass-exo-denoise128.service",
+  "resume_before": "2026-10-27T07:00:00+08:00",
+  "max_resume_attempts": 2,
+  "resume_command": [
+    "@python", "-m", "scenemi.denoise_runtime", "run",
+    "--device", "cuda", "--memory-gib", "10", "--cpu-count", "2", "--allocator-gib", "5.5",
+    "--", "@python", "-m", "scenemi.exo_denoise_training", "train", "--device", "cuda", "--resume"
+  ],
+  "next_stage": {
+    "enabled": true,
+    "readiness": "runs/exo_preparation/three_corpus_repair/READINESS.json",
+    "run": "runs/scene_exo128_noscene_repair",
+    "unit": "scenemi-scene-exo-repair.service",
+    "log": "runs/scene_exo128_noscene_repair/SERVICE.log",
+    "command": [
+      "@python", "-m", "scenemi.scene_repair_training", "pipeline",
+      "--config", "configs/scene_exo_repair.yaml"
+    ]
+  }
+}

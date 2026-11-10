@@ -1,0 +1,78 @@
+{
+  "checked_at_utc": "2026-10-22T07:43:03.361077+00:00",
+  "url": "http://localhost:8842/",
+  "seed": 2026102201,
+  "source_only": true,
+  "frames": 128,
+  "fps": 30,
+  "cases": 8,
+  "source_method": "Uniform distinct TRAIN corpora, then uniform family, original/reflected variant, and valid window. First draws retained.",
+  "native_model": "SMPL-H neutral, 16 betas, 6890 vertices",
+  "actual_training_inputs_exact": true,
+  "no_gt_shape_input": true,
+  "max_native_fk_error_m": 4.6076617240959406e-07,
+  "full_index_verified": true,
+  "complete_cpu_preflight_contract_unchanged": true,
+  "browser_cases_checked": 8,
+  "browser_playback_passed": true,
+  "browser_runtime_exceptions": [],
+  "model_inference": false,
+  "formal_training_started": false,
+  "cuda_preflight_passed": false,
+  "camera_mount": "eye midpoint plus 2cm forward; retained by user on 2026-10-22",
+  "exo": "synthetic missingness of clean GT joint positions; not real tracker noise",
+  "cache_bytes": 91997584,
+  "review_manifest_sha256": "e9b03573478c461bb6891986bf033f558e832d744219e291c0c86506e7fbea9a",
+  "full_index_sha256": "d78005fefe21c2646398db087432995d20b7320dd416a69460735bc6b03de6ca",
+  "source_cases": [
+    {
+      "source": "KIT/167/upstairs_downstairs01_poses.npz",
+      "start": 114,
+      "reflected": false
+    },
+    {
+      "source": "EKUT/125/WSUF1_poses.npz",
+      "start": 18,
+      "reflected": false
+    },
+    {
+      "source": "CMU/91/91_19_poses.npz",
+      "start": 184,
+      "reflected": true
+    },
+    {
+      "source": "Eyes_Japan_Dataset/kudo/jump-12-boxer step-kudo_poses.npz",
+      "start": 567,
+      "reflected": false
+    },
+    {
+      "source": "ACCAD/Male2Walking_c3d/B14 -  Walk turn right 45 t2_poses.npz",
+      "start": 0,
+      "reflected": true
+    },
+    {
+      "source": "DanceDB/20151003_AndriaMichaelidou/Andria_Pleased_v2_C3D_poses.npz",
+      "start": 269,
+      "reflected": true
+    },
+    {
+      "source": "DFaust_67/50021/50021_shake_shoulders_poses.npz",
+      "start": 5,
+      "reflected": false
+    },
+    {
+      "source": "TotalCapture/s2/freestyle2_poses.npz",
+      "start": 600,
+      "reflected": true
+    }
+  ],
+  "browser_runtime_source_sha256": {
+    "scenemi/amass_visualization.py": "a6ccdca46429cfdf5eac783965bda2927572c3fce91ff7f539ec7a85c83b6bfb",
+    "scenemi/visualization.py": "b2ee8b2caf22fccfb14f565b1f0186e05c8531df59254db5a8c5cb4352c48917"
+  },
+  "current_source_sha256": {
+    "scenemi/amass_visualization.py": "685d58d162ab5c24d4266b580679410ccd6c0566bfe2a048a2faebf7da2155e3",
+    "scenemi/visualization.py": "b2ee8b2caf22fccfb14f565b1f0186e05c8531df59254db5a8c5cb4352c48917"
+  },
+  "post_browser_change": "Readability refactor of AMASS viewer; byte compilation and stable CLI help passed. Running service and browser evidence retain their recorded source revision."
+}

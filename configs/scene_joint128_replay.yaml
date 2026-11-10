@@ -1,0 +1,147 @@
+version: native-joint-replay-v1
+output: runs/scene_joint128_replay
+seed: 2026102804
+reference_config: configs/amass_ego128.yaml
+selection: configs/scene_data_current.json
+parent:
+  run: runs/amass_joint128/scratch
+  require_complete: true
+  selection: final_full_validation_best
+  step: 100000
+  sha256: 5145b2e65ac7792ddee225e90e97148c410578c81096c90f4fdb098018a2dafe
+model:
+  hidden: 128
+  root_limit_m: 0.5
+  rotation_limit_rad: 1.2
+  residual_gain: 5.0
+data:
+  datasets:
+  - amass
+  - egobody
+  - trumans
+  - grail
+  excluded_datasets:
+  - rich
+  modes:
+  - ego
+  - exo
+  scene: false
+  frames: 128
+  fps: 30
+  minimum_tracked_frames_per_window: 34
+  history_voxel_m: 0.05
+  frame_points: 64
+  sampling: fixed_source_quotas_then_family_then_recording_then_all_valid_starts_with_replacement
+frontend:
+  probabilities:
+  - 0.2
+  - 0.35
+  - 0.25
+  - 0.2
+  beta_sigma: 0.15
+  pose_sigma_rad:
+  - 0.015
+  - 0.04
+  occluded_pose_sigma_rad:
+  - 0.12
+  - 0.25
+  pose_rho: 0.85
+  root_sigma_m:
+  - 0.01
+  - 0.04
+  root_rho: 0.95
+  gap_frames:
+  - 8
+  - 32
+training:
+  batch_size: 128
+  sampled_windows: 256000
+  updates: 2000
+  checkpoint_every: 32
+  log_every: 8
+  mode_windows_per_update:
+    ego: 64
+    exo: 64
+  gradient: zero_once_ego_half_backward_exo_half_backward_clip_once_adamw_step_once
+optimizer:
+  backbone_lr: 2.5e-06
+  native_shape_lr: 0.0002
+  exo_lr: 3.0e-05
+  weight_decay: 0.01
+  clip_norm: 1.0
+  trainable_backbone_prefixes:
+  - core.unet.mid_block1.
+  - core.unet.mid_attn.
+  - core.unet.mid_block2.
+  - core.unet.ups.
+  - core.unet.final_conv.
+  - camera_encoder.
+  - body_encoder.
+  - shape_encoder.
+  warmup_windows: 2400
+diffusion:
+  start_timestep: 200
+  ddim_steps: 8
+  seed: 777
+validation:
+  batch_size: 8
+  ego_batch_size: 4
+  ego_ddim_steps: 20
+  stride: 128
+  include_end_aligned_tail: true
+  identity_max_change_mm: 0.001
+  visible_noninferiority_mm: 1.0
+  ego_dataset_max_regression_mm: 0.0
+  amass_ego_max_regression_mm: 5.0
+  selection: equal_mode_baseline_normalized_native_ego_and_exo
+  test_used: false
+  sampled_windows:
+  - 0
+  - 8192
+  - 65536
+  - 256000
+  include_amass_exo: true
+  checkpoint_policy: best_among_fully_evaluated_eligible_checkpoints_and_last
+  screen_is_not_full_validation: true
+  execution: train_first_then_full_validation_all_declared_candidates
+  candidate_windows:
+  - 8192
+  - 65536
+  - 256000
+runtime:
+  memory_gib: 12
+  cpu_count: 4
+  cpu_affinity:
+  - 14
+  - 15
+  - 16
+  - 17
+  gpu_physical_reserve_gib: 4
+  cuda_allowance_gib: 1
+  allocator_policy: derive_from_actual_free_memory_at_admission
+  precision: fp32_no_tf32
+source_weights:
+- 0.5
+- 0.08333333333333333
+- 0.1875
+- 0.22916666666666666
+sampling_source_weights:
+- 0.25
+- 0.125
+- 0.28125
+- 0.34375
+resolution:
+  state: user_requested_formal_model_first_cpu_and_cuda_acceptance_required
+  first_pilot: runs/replay_pilot/RESULT.json
+  retention_pilot: runs/replay_pilot_retention/RESULT.json
+  pending: null
+  full_validation: false
+  automatic_launch: false
+  horizon_result: runs/replay_pilot_horizon/RESULT.json
+  retained_evaluation_candidate: runs/replay_pilot_retention/replay_weighted/last.pt
+  formal_training_allowed: true
+  short_screen_retention_passed: false
+  performance_guaranteed: false
+  authorization: user_requested_one_formal_four_corpus_model_on_20261028
+  next_required_check: Exact parent transfer, resumable optimizer and CPU/CUDA runtime acceptance.
+    Training authorization does not imply retention gates passed; full validation decides selection.

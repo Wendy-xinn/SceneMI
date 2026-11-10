@@ -1,0 +1,40 @@
+version: ego-head-anchor-evaluation-v1
+training_config: configs/ego_scene_geometry_22k.yaml
+checkpoint: runs/ego_scene_geometry_22k/selection/best.pt
+checkpoint_sha256: df8fdf48ddd5c0da97ee00b1116d7f8032f35d25d4e09dfe0aaa4ca3ddb529b7
+checkpoint_step: 24000
+validation_manifest: runs/ego_scene_geometry_22k/VALIDATION_MANIFEST.json
+validation_manifest_sha256: b33baf2feab1e53c0fabf736dfad5b12f6e248ac5d55db34e0653c2af14394fa
+references:
+  base22k: runs/ego_scene_geometry_22k/selection/full_step_022000/RESULT.json
+  scene24k: runs/ego_scene_geometry_22k/selection/full_step_024000/RESULT.json
+output: runs/ego_scene_geometry_22k/diagnostics/head_anchor
+preflight_output: runs/ego_scene_geometry_22k/diagnostics/head_anchor_preflight
+frames: 128
+fps: 30
+temporal_extent: independent_128_frame_prediction_window_not_full_source_recording
+input_condition: unchanged_clean_camera
+scheme_a:
+  kinds: [gaussian, savgol]
+  windows: [7, 11, 15]
+  strengths: [0.5, 0.75, 1.0]
+  gaussian_sigma: (window_minus_one)/6
+  gaussian_boundary: reflect
+  savgol_polyorder: 2
+  savgol_boundary: interp
+scheme_b:
+  data_weight: 1.0
+  derivative_units: meters_and_seconds_with_30fps_differences
+  # lambda_acc = tau_acc^4; lambda_jerk = tau_jerk^6.
+  timescales_s: [[0.03, 0.03], [0.06, 0.06], [0.12, 0.12], [0.06, 0.0], [0.0, 0.06]]
+selection:
+  basis: base22k_validation_only_same_method_applied_to_both_models
+  objective: minimum_equal_dataset_family_macro_mpjpe
+  macro_jerk_ratio_max: 1.01
+  per_dataset_jerk_ratio_max: 1.05
+  interpretation: exploratory_validation_parameter_selection_not_independent_test
+  physical_checks: [raw, hard, constant, selected, best_a, best_b]
+test_used: false
+reference_sha256:
+  base22k: ba621906c9d59e3dd6815ab7ef832c8fd5135e1e9f134df799a3474a933d01f8
+  scene24k: ae22604ecdd9e3f8546e40679fd8d148bbd6fadcc4dbb97f6189dfec05f5c30c

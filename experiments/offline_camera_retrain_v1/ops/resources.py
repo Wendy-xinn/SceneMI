@@ -35,8 +35,8 @@ def inspect_gpu(query=subprocess.check_output):
         raise ValueError("Invalid global GPU process measurement")
     return dict(memory_used_mib=used, utilization_percent=utilization,
                 compute_pids=pids,
-                admitted=not pids and used <= 2048 and utilization <= 10,
-                policy="No compute PID; at most 2048MiB and 10% global usage")
+                admitted=True, gpu_limits_disabled=True,
+                policy="GPU telemetry only; user-managed GPU usage, no launch thresholds")
 
 
 def available_memory():
@@ -47,6 +47,9 @@ def available_memory():
 
 
 def admission(device, memory_gib):
+    if device == 'cuda':
+        from scenemi.gpu_policy import admission as current
+        return current(device,memory_gib)
     free = available_memory()
     report = dict(device=device, available_memory_bytes=free,
                   memory_max_bytes=int(memory_gib * GIB),

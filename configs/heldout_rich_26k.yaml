@@ -1,0 +1,48 @@
+version: heldout-ego-evaluation-v1
+output: runs/heldout_rich_26k_floor
+source_cache_output: runs/heldout_rich_26k
+model_config: configs/ego_anchor_b_partial.yaml
+candidate:
+  checkpoint: runs/ego_anchor_b_partial/selection/best.pt
+  step: 26000
+reference:
+  checkpoint: runs/ego_only_clean_extension/selection/best.pt
+  step: 22000
+baselines_config: configs/pretrained_ego_baselines.yaml
+finetuned_gvae:
+  checkpoint: runs/egogvae_finetune/training/selected.pt
+  protocol: runs/egogvae_finetune/PROTOCOL.json
+source:
+  manifest_sha256: a5e9898ea4e7b53ac1a8ad5b66fbb48c333e4f2861302efda1900e0242167776
+  dataset: rich
+  split: test
+  recordings: 52
+  person_streams: 53
+  source_frames: 29903
+  windows: 390
+frames: 128
+fps: 30
+stride: 64
+end_aligned_tail: false
+seed: 777
+ddim_steps: 20
+batch_size: 16
+baseline_batch_size: 8
+guidance_device: cuda
+ground_frame:
+  height_bin_m: 0.02
+  minimum_normal_y: 0.95
+  minimum_points: 32
+  minimum_horizontal_span_m: 0.5
+arms:
+  - candidate_scene_b
+  - candidate_no_scene_b
+  - reference_no_scene_b
+  - egogvae_pretrained
+  - egogvae_finetuned
+  - egoallo_pretrained_raw
+  - egoallo_pretrained_guided
+primary_aggregation: equal_window_mean
+secondary_aggregation: equal_recording_mean
+camera_calibration: frozen_predicted_shape_for_ours_fixed_neutral_smplx_to_cpf_for_baselines
+test_used_for_training_or_selection: false

@@ -1,0 +1,15 @@
+# AMASS-only 小幅提高学习率：从验证选出的 130k best 试训到 140k，新增 10k 更新。
+# 从 130k 开始（不是 135k last）；模型、AdamW 历史和随机状态均继承。
+# LR：2e-5 -> 4e-5，保持常数，不重启 warmup；batch 明确保持 128。
+# 每 1k 快速验证，135k / 140k 完整验证；仅用 val 选优，不用 test 选模型。
+version: amass-optimizer-branch-v1
+reference_config: configs/amass_only_115k_to_135k.yaml
+output: training_outputs/amass_only_130k_to_140k_lr4e5
+parent_checkpoint: training_outputs/amass_only_115k_to_135k/selection/best.pt
+parent_sha256: b1e9c87c01047f45946aeddc84250eb22859a37d360daf2dcd867493981d0464
+parent_step: 130000
+end_step: 140000
+additional_updates: 10000
+learning_rate: 4.0e-5
+training:
+  batch_size: 128

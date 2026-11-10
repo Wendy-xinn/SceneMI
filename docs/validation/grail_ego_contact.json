@@ -1,0 +1,104 @@
+{
+  "state": "passed",
+  "checked_at_utc": "2026-10-22T06:08:27.522075+00:00",
+  "source_sequences_checked": 11789,
+  "metadata_hashes_rechecked": 11789,
+  "window_decisions_recomputed": 1935920,
+  "original_train_sequences": 13389,
+  "visibility_excluded_sequences": 1600,
+  "summary": {
+    "curb": {
+      "visibility_sequences": 1369,
+      "retained_sequences": 1179,
+      "visibility_windows": 237420,
+      "retained_windows": 138014
+    },
+    "all": {
+      "visibility_sequences": 11789,
+      "retained_sequences": 10910,
+      "visibility_windows": 1935920,
+      "retained_windows": 1431583
+    },
+    "sitting": {
+      "visibility_sequences": 759,
+      "retained_sequences": 694,
+      "visibility_windows": 18216,
+      "retained_windows": 16573
+    },
+    "slope": {
+      "visibility_sequences": 1451,
+      "retained_sequences": 1386,
+      "visibility_windows": 252327,
+      "retained_windows": 204530
+    },
+    "stair_p1": {
+      "visibility_sequences": 4135,
+      "retained_sequences": 3853,
+      "visibility_windows": 718999,
+      "retained_windows": 530857
+    },
+    "stair_p2": {
+      "visibility_sequences": 4075,
+      "retained_sequences": 3798,
+      "visibility_windows": 708958,
+      "retained_windows": 541609
+    }
+  },
+  "sequences_with_contact_review_events": 4166,
+  "sequences_flagged_by_event": {
+    "deep_foot_volume_overlap_0": 1227,
+    "deep_foot_volume_overlap_1": 2733,
+    "unsupported_both_feet": 808,
+    "estimated_contact_floating_0": 594,
+    "estimated_contact_floating_1": 557,
+    "estimated_stance_sliding_1": 55,
+    "estimated_stance_sliding_0": 38,
+    "seated_gap": 12,
+    "seated_surface_overlap": 50,
+    "seated_no_horizontal_support": 2,
+    "unverified_deep_foot_surface_overlap_1": 30,
+    "unverified_deep_foot_surface_overlap_0": 8
+  },
+  "exported_joint_max_error_m": 4.76837158203125e-07,
+  "canonical_manifest_sha256": "8168afe98f75cc3d212fd86f377a8580c237de615b41922638cb9e53a2019134",
+  "job_sha256": "59eb70d1790f8c1c8dc18ec2189faa8770e336797a75f5947fa489418d1f8aee",
+  "records_sha256": "c2491f8bdf9d8bac8dccad581115e8eba5727f37a31b26956949f8095e8b6789",
+  "artifacts_sha256": {
+    "train/manifest.jsonl": "c38dccbeb97785b3239269ede1cf862592a6ae3c2b431fa4e024c80458b573b4",
+    "train/windows.jsonl": "51f9a175d605540e538456a090d60fef4ed7ad0fd00b338bf589578a2465cdc2",
+    "train/excluded.jsonl": "d2f59fea2a4b4949f785c394a0bb1e7e699d999566419bf42294b44ac40a8d2d"
+  },
+  "original_visibility_artifacts_unchanged": true,
+  "canonical_evaluation_unchanged": true,
+  "exo_selection_unchanged": true,
+  "source_data_deleted": false,
+  "physics_validity_proven": false,
+  "formal_training_integrated": false,
+  "known_stair_case": {
+    "sequence_id": "terrain_stairs__stairs_2708__0001",
+    "bad_frame_ranges": [
+      [
+        198,
+        230
+      ]
+    ],
+    "eligible_start_ranges": [
+      [
+        0,
+        70
+      ]
+    ],
+    "eligible_windows": 71,
+    "visibility_windows": 174
+  },
+  "validation_record_sha256": "a0971ecb8a7d48d178903fc4150944946cbf8d0b017ed62aac8150baa4699c0d",
+  "calibration_evidence": "docs/validation/grail_ego_contact_calibration.json",
+  "verification": {
+    "contact_unit_tests_passed": 4,
+    "real_source_integration_cases_passed": 2,
+    "resume_after_incomplete_tail_outputs_identical": true,
+    "window_decisions_independently_recomputed": true,
+    "event_duration_and_context_independently_recomputed": true,
+    "all_metadata_hashes_rechecked": true
+  }
+}

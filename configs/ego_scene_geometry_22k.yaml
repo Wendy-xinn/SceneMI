@@ -1,0 +1,120 @@
+# Manual launch; common 22k parent, +2000 updates x 128 windows.
+version: ego-observed-geometry-v1
+output: runs/ego_scene_geometry_22k
+seed: 20261101
+selection: configs/scene_data_current.json
+scene_paths: configs/scene_paths.local.yaml
+amass_index: runs/amass128/index/complete.json
+reference_loss_config: configs/amass_ego128.yaml
+data:
+  datasets:
+  - amass
+  - egobody
+  - trumans
+  - grail
+  excluded_datasets:
+  - rich
+  split_train: train
+  split_validation: validation
+  frames: 128
+  fps: 30
+  source_quota_per_update: 32
+  sampling: equal_source_quota_with_replacement
+  scene: observed_recording
+  frame_points: 64
+  history_voxel_m: 0.05
+  intrinsics_scale_pixels: 256.0
+model:
+  latent_dim: 256
+  dim_mults:
+  - 1
+  - 2
+  - 4
+  initialization: from_checkpoint
+  scene_modules_trainable: true
+training:
+  effective_batch_size: 128
+  microbatch_size: 128
+  planned_updates: 24000
+  checkpoint_every: 128
+  quick_validation_every: 500
+  full_validation_steps:
+  - 23000
+  - 24000
+  precision: fp32
+  retain_candidates: false
+optimizer:
+  lr: 0.0001
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 200
+  lr_floor_fraction: 0.1
+  schedule: scene_cosine
+validation:
+  seed: 777
+  ddim_steps: 20
+  quick_families_per_dataset: 8
+  eval_batch_size: 32
+  primary: guarded_scene_mpjpe_mm
+  tie_tolerance_mm: 0.5
+  test_used: false
+  exhaustive_final: true
+  report_camera_translation: true
+  clean_macro_regression_mm: 2.0
+  clean_dataset_regression_mm: 3.0
+runtime:
+  memory_gib: 12
+  allocator_gib: null
+  cpu_count: 4
+logging:
+  tensorboard: true
+continuation:
+  checkpoint: runs/ego_only_clean_extension/selection/best.pt
+  checkpoint_sha256: 256054240c57e8494fe48ef9efc1cb68262405f1a0b7c4f6e2e84da75655c18e
+  step: 22000
+  validation_manifest: runs/ego_only_clean_extension/VALIDATION_MANIFEST.json
+  validation_manifest_sha256: b33baf2feab1e53c0fabf736dfad5b12f6e248ac5d55db34e0653c2af14394fa
+  metrics: runs/ego_only_clean_extension/selection/full_step_022000.json
+  metrics_sha256: 0d4951632062954f57082f7a0d4beac1080f612fb3d732f519103fdbe4e8686a
+scene_stage:
+  backbone: frozen
+  map_policy: configs/recording_scene_observed.yaml
+  contact_policy: configs/scene_contact_reliability.yaml
+  contact_supervision: reliability_weighted_planting
+  geometry_losses: true
+  quality_review:
+    file: runs/data_inventory/grail_scene_review/current_selection/RESULT.json
+    sha256: 6e8068cb9f4d1dcbf275213088afc70c712ddbec2f585301c4c9c8ad0e4465b2
+  geometry_warmup_updates: 200
+  scene_blind: false
+local:
+  history_points: 8192
+  frame_points: 512
+prepared_data:
+  root: runs/ego_scene_geometry_data_v1
+  prefetch_batches: 2
+  pin_memory: true
+geometry:
+  voxel_m: 0.025
+  static_points: 8192
+  frame_points: 64
+  normal_neighbours: 16
+  minimum_neighbours: 6
+  normal_radius_m: 0.1
+  minimum_spread_m: 0.005
+  maximum_planarity_ratio: 0.03
+  query_radius_m: 0.2
+  loss_frame_stride: 4
+  source_penetration_tolerance_m: 0.02
+  source_contact_tolerance_m: 0.04
+  penetration_tolerance_m: 0.01
+  contact_tolerance_m: 0.02
+  distance_scale_m: 0.02
+  velocity_scale_mps: 0.1
+  stance_speed_mps: 0.2
+  support_normal_y: 0.8
+  sliding_tolerance_mps: 0.02
+geometry_coefficients:
+  scene_nonpenetration: 0.01
+  scene_support: 0.005
+  scene_sliding: 0.001

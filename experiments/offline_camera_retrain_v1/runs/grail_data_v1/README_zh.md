@@ -44,11 +44,15 @@ sitting 重采样后仅 151 帧。落盘和可视化保存整条真实序列，�
 
 全量输出：`data/grail_recon30_v1` 软链接到 `/mnt/d/Datasets/GRAIL/scenemi_recon30_v1`；D 盘启动前约余 524GiB。`STATUS.json` 指向该持久化任务状态，`LAUNCH.json` 保存启动命令。先在 D 盘实跑 4 条并通过所有数组校验，再从同一不可变 JOB 继续全范围 CPU 处理。原三数据集模型训练保持独立。44 项 CPU 单测通过；预览三个完整序列的 mesh 与导出关节最大误差为零。
 
-重启后继续同一处理任务（不要在任务运行中重复启动）：
+2026-10-21 恢复记录：原任务停在 12,992/17,585 条，最后状态时间为北京时间 08:41。按用户要求继续处理，已通过 `ops.resources` 恢复同一不可变 JOB；任务限额为 8 GiB 内存、4 个 CPU 核、1 GiB swap，使用正常 CPU／磁盘优先级。恢复先校验已有产物，再继续剩余 4,593 条，不重做已通过校验的导出。启动命令、源哈希检查和实际限额见 `RESUME_LAUNCH_003.json`，日志见 `RESUME_LAUNCH_003.log`。恢复过程中的即时进度以 `STATUS.json` 为准；启动阶段仍在校验 metadata 时，状态文件可能暂时保留旧 PID。
+
+重启后继续同一处理任务（不要在任务运行中重复启动；资源准入或限额设置失败时不得绕过）：
 
 ```bash
-CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=2 \
-  nice -n 10 ionice -c 3 /home/wenxin/miniconda3/envs/scenemi/bin/python \
+/home/wenxin/miniconda3/envs/scenemi/bin/python \
+  -m experiments.offline_camera_retrain_v1.ops.resources run \
+  --device cpu --memory-gib 8 --cpu-count 4 -- \
+  /home/wenxin/miniconda3/envs/scenemi/bin/python -u \
   -m experiments.offline_camera_retrain_v1.ops.grail_prepare \
   --inventory experiments/offline_camera_retrain_v1/runs/grail_data_v1/inventory.jsonl \
   --output /mnt/d/Datasets/GRAIL/scenemi_recon30_v1 --scope full

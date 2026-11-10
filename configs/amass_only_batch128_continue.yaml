@@ -1,0 +1,16 @@
+# Continue the selected 95k batch-128 checkpoint for another 20k updates.
+version: amass-optimizer-branch-v1
+reference_config: configs/amass_only_lr_boost.yaml
+output: training_outputs/amass_ego_shape_anchor_batch128_continue
+parent_checkpoint: training_outputs/amass_ego_shape_anchor_lr_boost/selection/best.pt
+parent_sha256: 9f54740c9cd518d817434bab1705b7a477ee304dcdc3a84665aa7ce35c90eb7a
+parent_step: 95000
+additional_updates: 20000
+learning_rate: 2.0e-5
+training:
+  batch_size: 128
+source_migration:
+  kind: gimo_cli_dispatch_only
+  source: scenemi/__main__.py
+  parent_sha256: 0084d8b07201a39bf8995da6edce657be53dec79c7d77aa439547892b7dd5aef
+  current_sha256: ed1d388304d1e38631f6640e3f4d4af5f5e0a1ae8e52442a987f6c05206dc86c

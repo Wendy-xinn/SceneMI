@@ -24,7 +24,6 @@ import os
 from pathlib import Path
 import sys
 
-os.environ.setdefault("CUDA_VISIBLE_DEVICES", "")
 os.environ.setdefault("OMP_NUM_THREADS", "1")
 os.environ.setdefault("MKL_NUM_THREADS", "1")
 REPO = Path(__file__).resolve().parents[3]
@@ -386,6 +385,7 @@ class GrailSourceViewer(MotionViewer):
 
 
 def main() -> None:
+    os.environ.setdefault("CUDA_VISIBLE_DEVICES", "")
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     build = commands.add_parser("prepare", help="CPU prepare complete exported source sequences")

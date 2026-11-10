@@ -1,0 +1,53 @@
+# Same model, losses, rotation bounds and sampler; verified query runtime and validation diagnostics.
+# Formal training remains manual.
+version: ego-contact-support-refinement-v2
+reference_config: configs/ego_scene_support_refinement.yaml
+output: runs/ego_scene_contact_audit
+initialization:
+  checkpoint: runs/ego_scene_contact_refinement/initialization/parent.pt
+  sha256: 1646e717b28aaadbfd62f02a7c8fccc5359cf8f3ab9f5cb35c8646f4b8bc3543
+  step: 433
+objective:
+  measured_support_max_distance_m: 0.075
+  position_scale_m: 0.5
+  velocity_scale_mps: 1.0
+  head_position_scale_m: 0.05
+  motion:
+    rotation: 0.5
+    position: 1.0
+    lower_fk: 0.25
+    lower_velocity: 0.05
+    head_position: 0.1
+    head_orientation: 0.1
+  weights:
+    motion: 1.0
+    contact: 0.05
+    penetration: 0.01
+    support: 0.005
+    sliding: 0.001
+    residual: 0.001
+  residual:
+    magnitude: 1.0
+    first_difference: 0.1
+    second_difference: 0.1
+  contact:
+    positive_gap_m: 0.03
+    negative_gap_m: 0.06
+    positive_speed_mps: 0.2
+    negative_speed_mps: 0.3
+    positive_class_weight: 2.0
+  normalization:
+    epsilon: 1.0e-08
+    minimum_valid_samples:
+      contact: 16
+      penetration: 16
+      support: 8
+      sliding: 8
+diagnostics:
+  enabled: true
+  saturation_fraction: 0.9
+  query_stride: 4
+query_runtime:
+  cache_entries: 8
+  cache_mib: 256
+  timeout_seconds: 120

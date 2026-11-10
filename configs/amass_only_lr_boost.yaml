@@ -1,0 +1,11 @@
+# Fork the selected 80k model with an explicit batch, LR and update budget.
+version: amass-optimizer-branch-v1
+reference_config: configs/amass_only_continue.yaml
+output: training_outputs/amass_ego_shape_anchor_lr_boost
+parent_checkpoint: training_outputs/amass_ego_shape_anchor_continue/selection/best.pt
+parent_sha256: f4ed3083799f425add7ccb4ea77b1f2b1ffe9bc2f212b15c8e35d58c070b7985
+parent_step: 80000
+additional_updates: 20000
+learning_rate: 2.0e-5
+training:
+  batch_size: 128

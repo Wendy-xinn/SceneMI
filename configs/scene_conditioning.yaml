@@ -1,0 +1,45 @@
+version: observed-geometry-denoising-adapters-v1
+reference_config: configs/scene_ego128_residual.yaml
+output: runs/scene_ego128_conditioning
+seed: 20261025
+variants: [full, motion_only, points_only, late_only, ungated]
+training:
+  batch_size: 8
+  planned_updates: 3000
+  checkpoint_every: 250
+  validation_every: 1000
+optimizer:
+  lr: 0.0001
+  weight_decay: 0.01
+  warmup_updates: 250
+  clip_norm: 1.0
+validation:
+  selection: fixed_final_step_no_checkpoint_search
+  monitor_windows: 176
+  historical_windows: 1416
+  expanded: historical_plus_one_window_for_each_unrepresented_validation_sequence
+  ddim_steps: 20
+  seed: 777
+  test_used: false
+adapter:
+  hidden: 128
+  noise_gate_power: 0.5
+  root_limit_m: 0.15
+  rotation_6d_limit: 0.5
+  head_consistency_weight: 2.0
+  root_consistency_weight: 1.0
+  geometry:
+    neighbours: 16
+    query_radius_m: 0.6
+    plane_radius_m: 0.15
+    minimum_points: 6
+    maximum_planarity_ratio: 0.03
+    minimum_spread_m: 0.005
+    reliability_distance_m: 0.3
+    ray_tube_m: 0.015
+    ray_endpoint_margin_m: 0.05
+    ray_minimum_depth_m: 0.1
+runtime:
+  allocator_gib: 6
+  memory_gib: 10
+  cpu_count: 2

@@ -1,0 +1,17 @@
+# 测试对象预先固定为完整验证集选出的 130k best；不比较 test 后重新选 checkpoint。
+# 复用历史 344 个测试窗口与相机/GT 数组，官方 baseline 使用已留存的预测并重新核验。
+version: amass-selected-checkpoint-test-v1
+reference_config: configs/amass_test_comparison.yaml
+reference_config_sha256: a9d809483030e4310941cb73db466b50cb5e71bec005e4c4269b0dd4e966ceda
+output: runs/amass_test_130k
+paths: configs/amass_paths.local.yaml
+ours_config: configs/amass_only_115k_to_135k.yaml
+ours_checkpoint: training_outputs/amass_only_115k_to_135k/selection/best.pt
+ours_sha256: b1e9c87c01047f45946aeddc84250eb22859a37d360daf2dcd867493981d0464
+ours_step: 130000
+validation_metrics_sha256: 83e061503b6d09241ebefff1fc4047b5a0820d2d8a70cc17f43ea58ec1292e53
+reference_records_sha256:
+  EVALUATION_PROTOCOL.json: 47d609600a89394d840ffb7ba3fffbfdb49770a3d19d64e7aaa984817fd9df4d
+  FINAL_AUDIT.json: 65244f4c1b2b218b3952e6b8736659ece2691bd1b3fc2ee8783463d60d2d03e2
+  COMPARISON.json: 09aa6b485816302642fc9078447b766346e022c0e9f0076b124d5aec9dc8bb65
+  data/DATA_PROTOCOL.json: 789795da0125833d19b2bb845d9fb427f7cd52bf0da3a4c53f0a3779b116a9a3

@@ -1,0 +1,91 @@
+# Extend the completed clean-input control from its last 16k state to 22k.
+# Retains batch 128, constant LR 1e-5, optimizer/RNG, and original dataset membership.
+# Compare clean full-validation scores; this is not an otherwise-matched scene ablation.
+version: ego-camera-adaptation-v1
+output: runs/ego_only_clean_extension
+seed: 20261101
+selection: configs/scene_data_current.json
+scene_paths: configs/scene_paths.local.yaml
+amass_index: runs/amass128/index/complete.json
+reference_loss_config: configs/amass_ego128.yaml
+data:
+  datasets:
+  - amass
+  - egobody
+  - trumans
+  - grail
+  excluded_datasets:
+  - rich
+  split_train: train
+  split_validation: validation
+  frames: 128
+  fps: 30
+  source_quota_per_update: 32
+  sampling: equal_source_quota_with_replacement
+  scene: disabled
+model:
+  latent_dim: 256
+  dim_mults:
+  - 1
+  - 2
+  - 4
+  initialization: from_checkpoint
+  scene_modules_trainable: false
+training:
+  effective_batch_size: 128
+  microbatch_size: 32
+  planned_updates: 22000
+  checkpoint_every: 128
+  quick_validation_every: 500
+  full_validation_steps:
+  - 16000
+  - 17000
+  - 18000
+  - 19000
+  - 20000
+  - 21000
+  - 22000
+  precision: fp32
+  retain_candidates: false
+optimizer:
+  lr: 1.0e-05
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 1
+  lr_floor_fraction: 0.1
+  schedule: constant
+validation:
+  seed: 777
+  ddim_steps: 20
+  quick_families_per_dataset: 8
+  eval_batch_size: 32
+  primary: guarded_clean_noisy_mean_mpjpe_mm
+  tie_tolerance_mm: 0.5
+  test_used: false
+  exhaustive_final: true
+  clean_macro_regression_mm: 2.0
+  clean_dataset_regression_mm: 3.0
+runtime:
+  memory_gib: 10
+  allocator_gib: null
+  cpu_count: 4
+logging:
+  tensorboard: true
+continuation:
+  checkpoint: runs/ego_only_clean_continuation/training/last.pt
+  checkpoint_sha256: e03c989f72b24c63fa481baded906bc91ceef31bc3611db4e27fc20114b9f33b
+  step: 16000
+  validation_manifest: runs/ego_only_clean_continuation/VALIDATION_MANIFEST.json
+  validation_manifest_sha256: b33baf2feab1e53c0fabf736dfad5b12f6e248ac5d55db34e0653c2af14394fa
+  metrics: runs/ego_only_clean_continuation/selection/full_step_016000.json
+  metrics_sha256: b030d15c33a36f1a5ce604c7e4101645b09ec455a3254f4e188abe2df7c6bcc6
+camera_noise:
+  version: correlated-camera-error-v1
+  probability: 0.0
+  position_std_m: 0.005
+  rotation_std_deg: 0.5
+  drift_position_std_m: 0.015
+  drift_rotation_std_deg: 0.5
+  rho: 0.95
+  ramp_updates: 500
+  seed: 20261102

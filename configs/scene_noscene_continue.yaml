@@ -1,0 +1,19 @@
+version: native-noscene-parent-optimizer-continuation-v1
+reference_config: configs/scene_ego128_noscene.yaml
+output: runs/scene_ego128_noscene_low_lr
+parent_checkpoint: runs/scene_ego128_noscene/selection/best.pt
+parent_sha256: 33c102cc1dab381d1047b1a93056d1e1d38214504c33bb791087e4fd5ad0538d
+parent_contract: runs/scene_ego128_noscene/training/CONTRACT.json
+parent_step: 30000
+additional_updates: 3000
+learning_rate: 0.000005
+optimizer: restore_parent_adamw
+rng: restore_parent_all_rng
+checkpoint_every: 250
+quick_every: 1000
+final_validation: original_1416_fixed_step
+test_used: false
+runtime:
+  allocator_gib: 4
+  memory_gib: 8
+  cpu_count: 2

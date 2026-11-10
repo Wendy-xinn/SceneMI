@@ -1,46 +1,48 @@
-# 实验运维
+# 既有实验运维入口
 
-共享机器的后续重任务先运行 `python -m experiments.offline_camera_retrain_v1.ops.resources check`。此检查读取全局 GPU 占用，不把另一发行版中不可见的 PID 当成空闲；有其他计算任务、占用超过空闲阈值或读取失败时拒绝启动。`/tmp` 中旧的排队锁只能协调本发行版。
+工具实现保留原路径和源码封印。统一从仓库根目录执行：
 
-实际启动复用 `python -m experiments.offline_camera_retrain_v1.ops.resources run --device cuda --memory-gib 12 --cpu-count 4 -- <原训练或评估命令>`。CPU 预处理改为 `--device cpu`。systemd 仅为新任务创建资源限额：默认 RAM 最大 12GiB、80% 时开始回收、最多 1GiB swap；CPU 亲和性限制到四个逻辑核，为共享可用内存保留至少 4GiB。实际程序执行前再次读取自己的 cgroup 核验内存限额；设置失败不会退回无限额执行。不修改既有实验配置或封存源码。该检查不是跨用户的显卡预留，也不能修复共享内核缺陷；不自动等待后抢占资源，不重启 WSL 或干预另一 Ubuntu。
+```bash
+python -m scenemi ops --help
+python -m scenemi ops status
+python -m scenemi ops view --help
+python -m experiments.offline_camera_retrain_v1.ops.grail_prepare --help
+```
 
-当前实验、曲线、验证和权重统一从 [runs/INDEX_zh.md](../runs/INDEX_zh.md) 进入。
+当前模型与报告从 [实验索引](../runs/INDEX_zh.md) 进入，新 AMASS 接口见顶层 [代码导航](../../../docs/CODE_MAP_zh.md)。
 
-EGO 场景与主干融合实验复用以下模块入口，案例身份放在不可覆盖的 PLAN 中，不在 runs 复制训练或评估脚本：
+## 常用模块
 
-当前3000更新配对实验已经完成：[最终结果](../runs/native30_ego_scene_fusion_v2/REPORT_zh.md) · [可用工程候选及推理配置](../runs/native30_ego_scene_fusion_v2/SELECTED_MODEL.json)。新增区域attention被否决，保留原结构control；RICH相对41k的World改善尚不显著。推理固定`use_scene=True`、`guidance_enabled=False`，原IK/学习反馈保留。既有加载器需要原source config通过身份检查后显式设置该运行开关；实际CPU strict-load验证见[DEPLOYMENT_CHECK](../runs/native30_ego_scene_fusion_v2/DEPLOYMENT_CHECK.json)。
+| 模块 | 用途 |
+|---|---|
+| `resources` | 共享机器 GPU 准入、CPU/RAM 限额及有效限额核验 |
+| `motion_viewer` / `ops view` | 读取已准备的预测、GT、场景；当前使用 final_metrics 的 PREPARED_CASES |
+| `grail_prepare` | 可恢复的 GRAIL CPU 数据预处理；已有任务时不要重复启动 |
+| `final_metric_summary`、`final_metric_recheck` | 已有完整指标的汇总与独立复算；具体 CLI 以各模块 --help 为准 |
+| `rich_test` / `ops rich-test` | 官方独立 RICH TEST 的准备、评价与 CPU 复算 |
+| `maintenance` | 明确清单的 plan / apply / verify；本轮结果在 docs/maintenance |
 
-- 当前区域融合入口：`python -m experiments.offline_camera_retrain_v1.ops.ego_scene_trial {prepare,run,preflight,train,audit,status}`。`run --stop-step 1000` 在独立子进程中执行真实输入预检、两步配对检查及指定训练边界；后续 `run --stop-step 3000` 沿原日程恢复，不自动开始验证或替换正式模型。每臂仅保留一个可恢复 `last.pt`；TensorBoard 和 JSON 记录总 loss、各监督、参数组学习率与耗时。
-- 区域融合验证：`python -m experiments.offline_camera_retrain_v1.ops.ego_scene_evaluation {cohort,prepare,evaluate,recheck,report,combine,decision}`。固定录制身份、开发/确认面板和两套 DDIM 种子，观测误差种子保持不变；阶段 checkpoint 固定后才能续训覆盖 `last.pt`。[本轮设计](../runs/native30_ego_scene_fusion_v2/DESIGN_zh.md) 说明采纳标准。
-- `python -m experiments.offline_camera_retrain_v1.ops.scene_attention_trial {prepare,preflight,train,audit}`：历史500步配对接口，也是新训练器的共享依赖。该旧实验权重已退役，不能再对旧目录执行`--resume`；重现须从新目录准备。当前可恢复control3000与精确退役记录见[RETENTION](../runs/native30_ego_scene_fusion_v2/RETENTION.json)。
-- `python -m experiments.offline_camera_retrain_v1.ops.ego_scene_review {prepare,evaluate,recheck,report} --out <目录>`：同观测/参考/噪声的场景消融；新候选用新目录和显式 `--models <JSON清单>`，声明 checkpoint 路径、SHA256、步数、架构和场景 arms。`evaluate --resume` 恢复已保存的逐窗结果，`recheck` 在独立 CPU 进程重读原数据复算。
-- `python -m experiments.offline_camera_retrain_v1.ops.scene_feedback_policy {prepare,evaluate,recheck,compare} --out <目录>`：复用上项评估，只改变学习式反馈的许可或开关，保留场景条件；与已完成原策略做精确输入配对。
+历史 trial、ablation、adapter 模块继续保留，因为现有模型/审计引用其实现；它们不是新的推荐训练入口。退役目录不再有权重和预测，旧报告中的 resume/菜单描述只作为清理前证据。不要用旧模块默认输出目录覆盖这些历史记录。
 
-历史设计与实验边界见 [EGO 场景/attention 报告](../runs/native30_ego_scene_attention_trial/REPORT_zh.md)；当前结果以本页上方3000步最终报告为准。本轮未运行 TEST，不自动替换正式模型；保留可恢复模型依赖的封印源码。
+## 共享机器重任务
 
-统一运行 `python -m experiments.offline_camera_retrain_v1.ops --help`。子命令 `status`、`view`、`best`、`scene-check` 分别读取状态、打开Viser、保存best和执行登记的配对检查；`motion-check`、`support-check` 执行动作约束实验。已有后台任务不需要重复启动。
+```bash
+python -m experiments.offline_camera_retrain_v1.ops.resources check
+python -m experiments.offline_camera_retrain_v1.ops.resources run \
+  --device cpu --memory-gib 6 --cpu-count 2 -- <已有命令>
+```
 
-- `motion_viewer.py`：同步回放已有预测、GT和场景，案例来自数据清单；以后换例子复用同一入口。[Viser](http://localhost:8800)。
-- `checkpoint_guardian.py`：独立保存一个按验证指标选择的模型副本；[选择口径](CHECKPOINT_SELECTION_zh.md)。
-- `scene_causal_check.py`：完整RICH验证及独立复核通过后，配对区分学习式场景条件与物理修正的贡献；[证据说明](EVIDENCE_STATUS_zh.md)。
-- `rich_test.py`：`ops rich-test prepare/evaluate/recheck` 使用VAL事先选定的冻结权重评估官方RICH TEST，逐窗保存、可恢复、独立CPU复算；[本轮协议](../runs/rich_test_ego41k/README_zh.md)。
-- `adapt.py`：`ops adapt prepare/preflight/train/status/recheck` 在同一共享扩散模型上做有限预算的EGO/EXO适配；准备与实际反传预检分开，验证前后使用相同清单；[本轮配置与边界](../runs/native30_ego_exo_adapt_v1/README_zh.md)。
-- `cleanup_oct16_evening/`：此次清理的精确文件清单、依赖核验和实际执行记录。
+GPU 工作使用 `--device cuda`，检查被拒绝时不得绕过，也不自动排队抢占另一用户的任务。限额仅作用于新进程；设置失败不回退无限额执行。禁止重启 WSL、重置 GPU 或修改共享全局设置。
 
-工具放在本目录；权重和预测仍留本地实验目录。已退役工具随其完整实验移到 archive，保留历史重现信息。
+清理复验：
 
-2026-10-17进一步实际删除106个已退役根入口及1份完全重复的历史审计脚本，根目录Python文件352→246；其余模块没有宣称全部重构完成。[执行记录](ROOT_SCRIPT_RETIREMENT_EXECUTED.json)包含逐文件身份及清理前后活动EXO98项/TEST95项封印复验。[单个源码恢复包](../archive/source_bundles/README_zh.md)保留原55k的365项源码；当前仍封存使用的`runs/native30_final_review_oct16/io_recovery.py`保留原路径，迁移须在后续新阶段准备时完成。
+```bash
+python -m experiments.offline_camera_retrain_v1.ops.resources run \
+  --device cpu --memory-gib 1 --cpu-count 2 -- \
+  python -m experiments.offline_camera_retrain_v1.ops.maintenance verify \
+  --plan docs/maintenance/cleanup_plan.json \
+  --report docs/maintenance/cleanup_executed.json \
+  --output docs/maintenance/cleanup_summary.json
+```
 
-# 冻结权重的动作约束实验
-
-使用 `python -m experiments.offline_camera_retrain_v1.ops motion-check` 运行同权重、同输入和同 seed 的头部锚定/弱重力方向先验配对检查；`--prepare-only` 先登记清单。`motion_ablation.py` 负责实验、`support_constraints.py` 负责无GT的候选约束、`support_metrics.py` 负责只在评价阶段读取GT的指标。案例与结果放 `runs/native30_live_monitor_oct16/support_ablation/`，不往runs复制Python脚本。
-
-本轮四臂的重力项在原头部约束之前应用；它是有死区与角度限幅的root直立先验，不是牛顿重力或接触动力学。选取了弯腰、俯卧撑和瑜伽录制的窗口，但实际最大root倾角未超过60°，尚未验证倒立安全；不能把倾角变小当作成功。当前训练、既有全RICH评估与场景检验不改配置。
-
-`python -m experiments.offline_camera_retrain_v1.ops support-check --out <新目录>` 在已有baseline输出上运行CPU可见支撑关节投影，不重新采样或训练；原结果目录拒绝覆盖。当前候选已因垂直抖动增加而否决。40次配对采样及4次CPU后处理的完整结论见[决策记录](../runs/native30_live_monitor_oct16/support_ablation/DECISION_zh.md)，[同权重Viser](http://localhost:8801/)保留四组回放。
-
-`python -m experiments.offline_camera_retrain_v1.ops motion-trace` 对已冻结的19k权重记录原始FK、学习反馈、整身贴头、IK和物理修正阶段，排除proposal和物理候选内部约束。首轮4次采样和1次无监控控制已完成，默认结果目录不可覆盖。该诊断只解释同一采样轨迹中的阶段变化，不替代删除组件的完整消融。[阶段报告](../runs/native30_live_monitor_oct16/foot_stage_diagnostics/REPORT_zh.md)、[训练趋势与下一阶段建议](../runs/native30_live_monitor_oct16/foot_stage_diagnostics/TRAINING_AND_NEXT_STAGE_zh.md)。
-
-脚步配对短训复用 `ops foot-trial`，实现放在 `paired_foot_trial.py`，不修改封存的训练器。`prepare` 登记实验，`run` 顺序执行两臂，`status` 读取状态，`audit` 验证1000步实际输入、监督、场景几何、Adam/RNG/sampler恢复和原55k学习率。已有后台任务无需重复启动。[本次状态](../runs/native30_live_monitor_oct16/paired_foot_trial/STATUS.json)；[固定起点与预算](../runs/native30_live_monitor_oct16/paired_foot_trial/PARENT.json)。
-
-`python -m experiments.offline_camera_retrain_v1.ops.foot_trial_evaluation --out <评价目录> --models <模型清单> --only <已完成模型>` 从清单验证checkpoint确切步数后冻结，并分阶段恢复评价。三模型统一physics OFF主比较，五个核心窗口另交叉ON；保留GT幅度、双足运动RMS、stride、脚速、根/脚高度及同一可见局部表面指标。14窗含12个不同RICH录制和两个其他数据集录制，属于开发验证，不代替全RICH或TEST成绩。[本次评价报告](../runs/native30_live_monitor_oct16/paired_foot_trial/evaluation/REPORT_zh.md)。
+完整账本留在本机，紧凑摘要纳入代码。后续案例使用 manifest，参数使用 config，新增通用能力放在命名清楚的现有模块内。

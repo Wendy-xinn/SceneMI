@@ -1,0 +1,81 @@
+# Manual launch. Coarse inputs are full DDIM samples from the pinned 22k prior.
+# The reference supplies data/cache/body/geometry settings. The new head uses
+# only refinement_loss below, not the reference's diffusion training losses.
+version: ego-scene-refinement-v1
+reference_config: configs/ego_scene_geometry_22k.yaml
+output: runs/ego_scene_refinement
+seed: 20261107
+model:
+  scene_modules_trainable: false
+scene_stage:
+  contact_supervision: masked_anchor_bce
+  geometry_warmup_updates: 0
+refiner:
+  width: 96
+  heads: 4
+  blocks: 3
+  root_yaw_limit_deg: 5.0
+  torso_limit_deg: 8.0
+  lower_limit_deg: 15.0
+anchor:
+  data_loss: l2
+  data_weight: 1.0
+  acceleration_weight: 8.099999999999999e-7
+  jerk_weight: 7.289999999999999e-10
+  huber_delta_m: 0.02
+  irls_iterations: 5
+  missing_ridge: 1.0e-8
+sampling:
+  ddim_steps: 20
+  training_seed_offset: 1000003
+training:
+  effective_batch_size: 128
+  microbatch_size: 32
+  planned_updates: 2000
+  checkpoint_every: 100
+  quick_validation_every: 250
+  full_validation_steps: [500, 1000, 1500, 2000]
+  scene_dropout: 0.25
+optimizer:
+  lr: 0.0001
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 200
+  lr_floor_fraction: 0.1
+refinement_loss:
+  position_scale_m: 0.5
+  velocity_scale_mps: 1.0
+  head_position_scale_m: 0.05
+  contact:
+    positive_gap_m: 0.03
+    negative_gap_m: 0.06
+    positive_speed_mps: 0.2
+    negative_speed_mps: 0.3
+    support_normal_y: 0.8
+    positive_class_weight: 2.0
+  weights:
+    pose_rotation: 0.5
+    fk_position: 1.0
+    lower_fk: 0.25
+    lower_velocity: 0.05
+    head_position: 0.1
+    head_orientation: 0.1
+    contact: 0.05
+    residual: 0.001
+    scene_nonpenetration: 0.01
+    scene_support: 0.005
+    scene_sliding: 0.001
+validation:
+  eval_batch_size: 32
+  primary: four_source_macro_mpjpe_with_head_jerk_guards
+  report_camera_translation: false
+  # Quick diagnostics: one fixed window/source. Selection uses all 5693 windows.
+  quick_windows_per_source: 1
+  head_regression_tolerance_mm: 2.0
+  jerk_ratio_max: 1.1
+logging:
+  tensorboard: true
+runtime:
+  memory_gib: 12
+  cpu_count: 4
+  allocator_gib: null

@@ -1,0 +1,112 @@
+{
+  "checked_at_utc": "2026-10-21T14:50:29.309257+00:00",
+  "status": "pilot_passed_full_preparation_running_training_not_ready",
+  "pilot": {
+    "protocol": "egoallo-0a-cpu-audited-v1",
+    "state": "pilot_complete",
+    "pilot": true,
+    "pid": 262348,
+    "updated_at_utc": "2026-10-21T14:33:54.966485+00:00",
+    "total_raw_files": 14096,
+    "committed_sources": 53,
+    "counts": {
+      "prepared": 45,
+      "filename_excluded": 8
+    },
+    "completed_variants": 90,
+    "eligible_corpora": [
+      "ACCAD",
+      "BMLhandball",
+      "BMLmovi",
+      "BioMotionLab_NTroje",
+      "CMU",
+      "DFaust_67",
+      "DanceDB",
+      "EKUT",
+      "Eyes_Japan_Dataset",
+      "HumanEva",
+      "KIT",
+      "MPI_HDM05",
+      "MPI_Limits",
+      "MPI_mosh",
+      "SFU",
+      "SSM_synced",
+      "TCD_handMocap",
+      "TotalCapture",
+      "Transitions_mocap"
+    ],
+    "eligible_128_variants": 38,
+    "fk_max_error_m": 3.0141332783121323e-05,
+    "output_bytes": 59174588,
+    "manifest": "/mnt/e/Datasets/human/AMASS/egoallo_neutral30_v1/manifest.jsonl",
+    "output_root": "/mnt/e/Datasets/human/AMASS/egoallo_neutral30_v1",
+    "current_source": "SSM_synced/20160330_03333/shake_hips_poses.npz",
+    "invocation_elapsed_seconds": 111.78695213099854,
+    "invocation_completed_sources": 53,
+    "failures": 0,
+    "error": null,
+    "optimizer_steps": 0,
+    "no_gpu": true,
+    "body_shape_is_label": true
+  },
+  "preflight": {
+    "method": "Sum corpus raw bytes times largest paired-output/raw ratio observed in pilot; estimate, not a bound.",
+    "estimated_output_bytes": 15633550451,
+    "free_bytes": 118272032768,
+    "reserve_bytes": 21474836480,
+    "safety_factor": 2,
+    "space_preflight_passed": true,
+    "pilot_source_sha256": "0d1603a59ac9d720ee80c925431e295e132fad9566f928c67c9ed7f2eb4682e8"
+  },
+  "tests": {
+    "related_suite_run": 13,
+    "passed": 13,
+    "command": "python -m unittest tests.test_amass_contract tests.test_amass_prepare tests.test_amass_model -q",
+    "resource_memory_gib": 6,
+    "resource_cpu_count": 2,
+    "subsequent_config_contract_recheck": {
+      "run": 3,
+      "passed": 3
+    },
+    "real_pilot_processed_variants_compared_to_raw": 90,
+    "synthetic_model_backward": true,
+    "formal_training_builder_rejects_known_rest_prototype": true
+  },
+  "source_sha256": {
+    "scenemi/__main__.py": "eb9a7843997fd7a64e08e9255ba1f50859df4c7b5cc0600cecd3eab4f844d55f",
+    "scenemi/config.py": "d6bc4e9b10f04147e74cc4794519c770e95463159e8779bb82ed7ba21b7e8224",
+    "scenemi/data/amass_prepare.py": "0d1603a59ac9d720ee80c925431e295e132fad9566f928c67c9ed7f2eb4682e8",
+    "scenemi/data/amass.py": "060a79144ea596d09b69063f2c2dec303049a3d4393512699108999f464aed59",
+    "scenemi/geometry/body.py": "b301f8b3288b3cf02b03c2c3615f16f586929b91a6e5904ccdf38f5f0c45264a",
+    "scenemi/geometry/camera.py": "3aa74c0aff40e5a54d4004e5b22916a93ff090bfb431a21203178b63db6c0830",
+    "scenemi/models.py": "0e19c5b8788afbdcfc83cdf4b792aed640675527e7bdabb2da90ed5670bcc91f",
+    "configs/amass128.yaml": "e53f1d7d6ce08951ff5b44d4fc8b23d6b8f7d1a646985af0fdefa03c1ce996cd",
+    "configs/amass_splits.json": "eeeaed2a24424082f694c6d1de81fda76f57819a6f597b39e544b68ca633dca1",
+    "tests/test_amass_contract.py": "f735376cb71168729fd9e5aa0bbbccfdc8b3cd197baf5c2fef56e4361a0dcca6",
+    "tests/test_amass_prepare.py": "c2b8b651526ddd09402a9c7b5247b9133904f228e426f41221d988f0b56302ab",
+    "tests/test_amass_model.py": "46fa106c15ef4100a6b2c7c84b63df8397f724e9d15f1812209ee9d660387031",
+    "experiments/offline_camera_retrain_v1/ops/resources.py": "1817d5b32476d400a8004f2560158440ed40b37e811ebb2754d93e8fde002180"
+  },
+  "runtime_transform_source_matches_job_seal": true,
+  "preparation_job_sha256": "400c567174be527e301c559665c6fba80bb2b2dde259a373f3021e12aac3a486",
+  "deployment_inputs": {
+    "ego": [
+      "virtual_camera"
+    ],
+    "exo": [
+      "camera",
+      "estimated_3d_body_or_joints"
+    ],
+    "ground_truth_shape_input": false,
+    "shape_policy": "predicted",
+    "body_shape_implementation": "pending"
+  },
+  "optimizer_steps": 0,
+  "gpu_admission": "refused_other_compute_pid_9570_at_last_check",
+  "limits": [
+    "Full AMASS preprocessing is not complete.",
+    "Prototype backward test uses known rest and does not validate the pending predicted-shape model.",
+    "Predicted/target rest and camera mounts must be separated before real training.",
+    "EGO/EXO probabilities 0.5/0.5 remain a proposed training setting."
+  ]
+}

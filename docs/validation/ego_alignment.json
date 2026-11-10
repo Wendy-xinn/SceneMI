@@ -1,0 +1,65 @@
+{
+  "state": "passed",
+  "split": "val",
+  "windows": 16,
+  "unit_checks_passed": 9,
+  "train_updates": 0,
+  "checkpoint_sha256": "2b74d1b52cb059bc8c48f562d5c6610f8aef6c40f455836e5f5089cd03fe4f9e",
+  "ground_truth_placement": false,
+  "local_articulation_changed": false,
+  "sources": {
+    "scenemi/diagnostics.py": "5a9c10c0e33dd7dc2cd42f275d9bb233b34ceaa5cf7c57c61a2f6787d5cd74cb",
+    "scenemi/geometry/alignment.py": "9da874bc07225c4ea4cad448476296cb69726c876b53cc376eca68bd8296251a",
+    "scenemi/metrics.py": "d11bd569c3e1955268b536b4f7e2b0f2b765c768c7ece828cdd49308cfaa40dc",
+    "scenemi/evaluation.py": "54f1ab8e35d88a5087a3f696c9709fb10a0868868c33293d971cf5b8de15e063"
+  },
+  "means": {
+    "raw": {
+      "mpjpe_mm": 176.3268511232352,
+      "pa_mpjpe_mm": 99.63925693479354,
+      "released_pa_compat_mm": 161.73734732142103,
+      "root_error_mm": 128.04961038168952,
+      "head_error_mm": 90.96210982172272,
+      "root_relative_mpjpe_mm": 123.42173534100267,
+      "ground_lowest22_mm": 43.742120546994556,
+      "egoallo_gnd_any_contact": 1.0,
+      "mpjve_mm_s": 445.3203776245122,
+      "jerk_m_s3": 120.04436737520288,
+      "gt_jerk_m_s3": 134.69313860141972,
+      "camera_position_error_mm": 89.80741316080093,
+      "camera_rotation_error_deg": 8.541817426681519
+    },
+    "translation_only": {
+      "mpjpe_mm": 139.094857678354,
+      "pa_mpjpe_mm": 99.63925711056193,
+      "released_pa_compat_mm": 127.68854996799179,
+      "root_error_mm": 92.82928885323918,
+      "head_error_mm": 12.292287987902858,
+      "root_relative_mpjpe_mm": 123.42173596055866,
+      "ground_lowest22_mm": 56.95874969205761,
+      "egoallo_gnd_any_contact": 1.0,
+      "mpjve_mm_s": 396.08659722595064,
+      "jerk_m_s3": 154.60516251470443,
+      "gt_jerk_m_s3": 134.69313860141972,
+      "camera_position_error_mm": 4.424985831974482e-05,
+      "camera_rotation_error_deg": 8.541817426681519
+    },
+    "camera_rigid": {
+      "mpjpe_mm": 150.56178981439533,
+      "pa_mpjpe_mm": 99.63925679557605,
+      "released_pa_compat_mm": 141.31560597202667,
+      "root_error_mm": 99.14897756353027,
+      "head_error_mm": 4.8994640396779605,
+      "root_relative_mpjpe_mm": 133.93707234681455,
+      "ground_lowest22_mm": 53.995797065908846,
+      "egoallo_gnd_any_contact": 1.0,
+      "mpjve_mm_s": 491.2162432736065,
+      "jerk_m_s3": 287.4500342114625,
+      "gt_jerk_m_s3": 134.69313860141972,
+      "camera_position_error_mm": 0.00018447847014613217,
+      "camera_rotation_error_deg": 0.0
+    }
+  },
+  "full_record": "runs/amass128/diagnostics/ego_alignment/REPORT_zh.md",
+  "conclusion": "Global placement improves position error but worsens grounding and jerk; diagnostic only."
+}

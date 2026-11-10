@@ -1,0 +1,64 @@
+{
+  "decision": "train_only; validation_for_development; test_final_only",
+  "paper_url": "https://arxiv.org/html/2607.27755v1#S4.SS2",
+  "paper_scope": "EgoGVAE says it follows the EgoAllo AMASS split; released code explicitly chooses train only. This is not proof of the historical checkpoint training inputs.",
+  "repositories": {
+    "EgoGVAE": {
+      "url": "https://github.com/DCVL-3D/EgoGVAE_release",
+      "commit": "1dca529bf1efd6b53bf81da9c769ea3483777ac3"
+    },
+    "EgoAllo": {
+      "url": "https://github.com/brentyi/egoallo",
+      "commit": "0c20ae8c8d48be4ff682803ea523bcb00a6a708d"
+    }
+  },
+  "ego_gvae_train_splits": [
+    "train"
+  ],
+  "egoallo_default_train_splits": [
+    "train",
+    "val"
+  ],
+  "corpus_counts": {
+    "train": 13,
+    "val": 4,
+    "test": 2
+  },
+  "preprocess_step1_ast_identical": true,
+  "sources": {
+    "EgoGVAE": [
+      {
+        "path": "train.py",
+        "sha256": "b405c9a63d14522274067b3a8591a6518d7833fc32dd3a13043c3e887db764b6"
+      },
+      {
+        "path": "data/amass.py",
+        "sha256": "be198655ce5e38047e8cf7c5671fa016bcb3eb9847cabb3772a4dfe2ac47620b"
+      },
+      {
+        "path": "data/preprocess/preprocess_step1.py",
+        "sha256": "7b77da4e216e9dea26bd907d81c4bacb172cc39bc7f652115863328c8d2983a0"
+      }
+    ],
+    "EgoAllo": [
+      {
+        "path": "1_train_motion_prior.py",
+        "sha256": "852cfc2b9853e6a221fd66654aec161f9bf28cb9773bad2071078a9e9158e083"
+      },
+      {
+        "path": "src/egoallo/data/amass.py",
+        "sha256": "21e91163fd681997d4d462f0ee82c68114dc810c21963e085a4a13c90a9dec4c"
+      },
+      {
+        "path": "0a_preprocess_training_data.py",
+        "sha256": "e250487a7a54185001a8b4c409304a31b98fc38a769e5b0eb69588a8545f97fc"
+      }
+    ]
+  },
+  "constraints": [
+    "Original/reflected variants and windows remain within source family split.",
+    "No test-set parameter selection.",
+    "Retrained EgoAllo must explicitly override train_splits to train only.",
+    "Unified EGO/EXO supervision and shape handling must be disclosed independently of corpus alignment."
+  ]
+}

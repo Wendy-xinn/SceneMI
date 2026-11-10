@@ -1,0 +1,102 @@
+{
+  "checked_at_utc": "2026-10-22T18:21:24.429017+00:00",
+  "tests": {
+    "passed": 23
+  },
+  "immutable_source_check": {
+    "amass128": {
+      "sources": 56,
+      "changed": [],
+      "contract": "62a17cc931bac0575149834b2f3e6f58c17e678d0b1e285c2baa05744630d213"
+    },
+    "amass_ego128": {
+      "sources": 57,
+      "changed": [],
+      "contract": "48e28a18340bd5be0dee9eea0520d3da09e5b09d3b54fa88a2c0cef8f4c8ec63"
+    },
+    "scene_ego128": {
+      "sources": 67,
+      "changed": [],
+      "contract": "f2f762d6242bbced83cdda1d3c971611864d1f18d9fdf3485c8827ac4ce58690"
+    }
+  },
+  "native_shape": {
+    "state": "passed",
+    "counts": {
+      "trumans": 12,
+      "camera_wearer": 12,
+      "interactee": 12,
+      "grail": 12
+    },
+    "max_rest_error_m": 2.3844768293201923e-07,
+    "max_virtual_mount_error_m": 0.004850389901548624
+  },
+  "cpu": {
+    "state": "passed",
+    "contract_sha256": "f2f762d6242bbced83cdda1d3c971611864d1f18d9fdf3485c8827ac4ce58690",
+    "batch_size": 8,
+    "exact_resume": true,
+    "elapsed_seconds": 16.79429868399893
+  },
+  "cuda": {
+    "state": "passed",
+    "contract_sha256": "f2f762d6242bbced83cdda1d3c971611864d1f18d9fdf3485c8827ac4ce58690",
+    "batch_size": 8,
+    "exact_resume": true,
+    "elapsed_seconds": 15.6559125950007,
+    "peak_cuda_bytes": 3510750720
+  },
+  "amass_full_validation": {
+    "families": 337,
+    "windows": 2222,
+    "primary": "family_macro_mean.mpjpe_mm",
+    "test_used": false,
+    "completed": [
+      {
+        "step": 11000,
+        "score_mm": 303.77546098674435,
+        "elapsed_seconds": 442.2681343559998
+      },
+      {
+        "step": 15000,
+        "score_mm": 257.5865431829701,
+        "elapsed_seconds": 475.27419099599865
+      }
+    ]
+  },
+  "intrinsic_transfer": {
+    "diagnostic_only": true,
+    "paired_windows": 3,
+    "means_mm": {
+      "raw_pixels_random_weights": 2006.7856109212842,
+      "scaled_pixels_all_unused_zero_and_body_tag_copy": 654.9945764192092,
+      "scaled_pixels_random_weights": 661.4093775322948,
+      "scaled_pixels_zero_weights": 668.0338300773292
+    }
+  },
+  "rejected_scene_v1": {
+    "stopped_step": 158,
+    "source_archive_verified": true,
+    "removed_weights_gib": 1.82536933850497,
+    "resumed": false
+  },
+  "scene_v2_status": {
+    "state": "training",
+    "completed_updates": 60,
+    "updated_at_utc": "2026-10-22T18:24:52.184599+00:00",
+    "rich_excluded": true,
+    "mode": "ego"
+  },
+  "learned_accuracy_improvement_proven": false,
+  "scene_initial_validation": {
+    "step": 0,
+    "windows": 160,
+    "selection_score_mm": 733.3815435845305,
+    "dataset_family_mpjpe_mm": {
+      "egobody": 377.32517242405254,
+      "trumans": 635.8021840301369,
+      "grail": 1187.0172742994023
+    },
+    "note": "Corrected interface warm-start baseline; GRAIL remains poor before adaptation; not a trained performance gain."
+  }
+}

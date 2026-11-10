@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-21T13:50:25.994622+00:00",
+  "command": "env CUDA_VISIBLE_DEVICES= python -m unittest discover -s tests -t .",
+  "resource_limits": {
+    "device": "cpu",
+    "memory_max_gib": 6,
+    "cpu_count": 2
+  },
+  "tests_run": 182,
+  "tests_passed": 176,
+  "tests_skipped": 6,
+  "skip_reasons": {
+    "cuda_equivalence": 2,
+    "unavailable_original_legacy_5hz_archive": 4
+  },
+  "checks": [
+    "128-frame EGO/EXO forward and backward",
+    "native30 state_dict strict compatibility",
+    "scene NaN isolation in proposal and final outputs",
+    "fixed camera mount and CPF conversion",
+    "SMPL-H complete shape and shared 22-joint FK",
+    "AMASS Y-up conversion against existing torch FK",
+    "pinned EgoAllo source and corpus split",
+    "cleanup identity and dependency guards"
+  ],
+  "real_amass_sequences_decoded": 0,
+  "training_optimizer_updates": 0,
+  "synthetic_batch_backward": true,
+  "real_smplh_model_rest_check": true,
+  "source_sha256": {
+    "configs/amass128.yaml": "02bc4d7131b1d40fd5cdaf53213b421c7c0e75f7ce19c82198959ba100648b94",
+    "configs/amass_splits.json": "eeeaed2a24424082f694c6d1de81fda76f57819a6f597b39e544b68ca633dca1",
+    "scenemi/__init__.py": "20f29814b7184351bc4c606debb189d480a44c5f769dae0ca72fe01bbab0ef2b",
+    "scenemi/__main__.py": "8b3a2f473e3900682ae9ebc0af5c980fe4299fde99248a99b6692878953f42ee",
+    "scenemi/config.py": "dd8baee0ab07fdbfef79b9c634774238bd8d202a4eee706db1b6f531385eace3",
+    "scenemi/data/__init__.py": "5139e6ccb57e0bccf5f13e71bdeda808dea867a67627953c2db9c9f6c8a21fb3",
+    "scenemi/data/amass.py": "060a79144ea596d09b69063f2c2dec303049a3d4393512699108999f464aed59",
+    "scenemi/geometry/__init__.py": "27c358a112c1bd6f2bbba050ee841db1beffc8acd0620d025f2b17ba5ceb7372",
+    "scenemi/geometry/body.py": "b301f8b3288b3cf02b03c2c3615f16f586929b91a6e5904ccdf38f5f0c45264a",
+    "scenemi/geometry/camera.py": "3aa74c0aff40e5a54d4004e5b22916a93ff090bfb431a21203178b63db6c0830",
+    "scenemi/models.py": "b98edaeed05dc9395036e709daa05b9f332f980c2fddf28821cc0f80165cca32",
+    "tests/test_amass_contract.py": "5a2eeaed8dce4c9cc9f7fca5c4aa078e6271ec79821bc0fd1f2c344ca59d76c4",
+    "tests/test_amass_model.py": "173fd0f1a2ea398c76f6bb1b31eec55d5093446056a3fc72b9400c8c0b07fe2d",
+    "tests/test_maintenance.py": "aa6c5f5f68365a481e680a175a77d00e297cc69d8b71cce890523907dfc75609"
+  }
+}

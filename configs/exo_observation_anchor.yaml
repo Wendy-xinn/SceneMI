@@ -1,0 +1,27 @@
+version: exo-observation-anchor-fixed-weights-v1
+training_config: configs/amass_exo128.yaml
+output: runs/amass_exo128_anchor
+reference_adapter:
+  source: runs/amass_exo128/selection/best.pt
+  step: 9000
+  sha256: 46bdaba7e39dfa3960d024bcd48d22127067c3ad2410c8a86e88499c64ac0e23
+validation:
+  split: val
+  families_per_corpus: 16
+  selection: evenly_spaced_families_then_middle_window
+  conditions: [clean_masked, noisy_gap]
+  ddim_steps: 20
+  seed: 777
+  batch_size: 4
+  test_used: false
+  checkpoint_selection: none_fixed_9000
+projection:
+  iterations: 3
+  huber_m: 0.08
+  temporal_weight: 1.0
+  ridge: 0.00001
+variants: [unchanged, final_translation, denoising_translation]
+runtime:
+  allocator_gib: 4
+  memory_gib: 8
+  cpu_count: 2

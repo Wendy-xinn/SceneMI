@@ -1,0 +1,35 @@
+version: native-observed-relations-pilot-v1
+repair_config: configs/scene_ego128_residual.yaml
+output: runs/scene_ego128_relations
+parent_checkpoint: runs/scene_ego128_residual/selection/best.pt
+parent_sha256: c78330875ec6e6849b5da2b62c4991c97d4708243390df19e8c1c395b72c5a05
+parent_step: 3000
+parent_contract: runs/scene_ego128_residual/training/CONTRACT.json
+planned_updates: 500
+batch_size: 8
+learning_rate: 0.00002
+warmup_updates: 50
+checkpoint_every: 100
+training_seed: 20261025
+evaluation_seed: 20261025
+pilot_families_per_dataset: 8
+relation:
+  frame_stride: 4
+  neighbours: 16
+  query_radius_m: 0.25
+  minimum_points: 6
+  maximum_planarity_ratio: 0.03
+  minimum_spread_m: 0.005
+  maximum_target_offset_m: 0.15
+  loss_scale_m: 0.05
+  near_surface_m: 0.03
+  correspondence_m: 0.05
+weights:
+  surface_relation: 0.01
+  near_surface_gate: 0.002
+  surface_correspondence_gate: 0.002
+runtime:
+  allocator_gib: 6
+  memory_gib: 8
+  cpu_count: 2
+test_used: false

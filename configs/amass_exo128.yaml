@@ -1,0 +1,58 @@
+version: amass-exo-frozen-prior-v1
+reference_config: configs/amass_ego128.yaml
+seed: 20261026
+output: runs/amass_exo128
+base:
+  checkpoint: runs/amass_ego128/training/last.pt
+  sha256: 50a061e0d40fd0acd866b3806620cfe98255394f1e4c32c7828a542aae4a3305
+  step: 55000
+adapter:
+  hidden: 128
+training:
+  planned_updates: 15000
+  batch_size: 8
+  checkpoint_every: 500
+  log_every: 20
+optimizer:
+  name: AdamW
+  lr: 0.0001
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 500
+  lr_floor_fraction: 0.1
+loss_overrides:
+  # Clean GT motion already supervises observed and hidden joints. Do not
+  # additionally force the prediction to fit synthetic tracking noise.
+  observed_position: 0.0
+sampling:
+  family: uniform_with_replacement
+  reflection: uniform_original_or_reflected
+  window: uniform_all_valid_starts
+  batch_distinct_families: false
+  unseen_priority: false
+corruption:
+  clean_probability: 0.25
+  joint_sigma_m: [0.005, 0.03]
+  joint_rho: 0.85
+  root_drift_sigma_m: [0.01, 0.06]
+  root_rho: 0.98
+validation:
+  split: val
+  every_updates: 3000
+  batch_size: 8
+  ddim_steps: 20
+  seed: 777
+  conditions: [clean_masked, noisy_gap]
+  stride: 128
+  include_end_aligned_tail: true
+  reflected: false
+  yaw: 0.0
+  selection_metric: family_macro_mean.mpjpe_mm
+  aggregation: equal_condition_then_equal_family
+  ego_full_steps: [0, 15000]
+  ego_sentinel_every_updates: 500
+  test_used: false
+runtime:
+  allocator_gib: 5.5
+  memory_gib: 10
+  cpu_count: 2

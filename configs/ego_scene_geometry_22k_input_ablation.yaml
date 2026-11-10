@@ -1,0 +1,20 @@
+version: ego-geometry-input-ablation-v1
+training_config: configs/ego_scene_geometry_22k.yaml
+checkpoint: runs/ego_scene_geometry_22k/selection/best.pt
+checkpoint_step: 24000
+validation_manifest: runs/ego_scene_geometry_22k/VALIDATION_MANIFEST.json
+reference_metrics: runs/ego_scene_geometry_22k/selection/full_step_024000/RESULT.json
+disabled_reference_metrics: runs/ego_scene_geometry_22k/selection/full_step_022000/RESULT.json
+conditions:
+- matched
+- disabled
+- empty
+- mismatched
+donor_seed: 20261105
+bootstrap_samples: 2000
+output: runs/ego_scene_geometry_22k/input_ablation
+preflight_output: runs/ego_scene_geometry_22k/input_ablation_preflight
+checkpoint_sha256: df8fdf48ddd5c0da97ee00b1116d7f8032f35d25d4e09dfe0aaa4ca3ddb529b7
+validation_manifest_sha256: b33baf2feab1e53c0fabf736dfad5b12f6e248ac5d55db34e0653c2af14394fa
+reference_metrics_sha256: ae22604ecdd9e3f8546e40679fd8d148bbd6fadcc4dbb97f6189dfec05f5c30c
+disabled_reference_metrics_sha256: ba621906c9d59e3dd6815ab7ef832c8fd5135e1e9f134df799a3474a933d01f8

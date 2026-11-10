@@ -1,0 +1,50 @@
+% Candidate extension: implemented in the standalone EGO scene-adapter branch.
+% NOT part of the scene:false joint128/replay method above.
+% Integration into the joint model and its evaluation are pending.
+\subsection{Observed Geometry Adaptation: Candidate Extension}
+\label{sec:scene_candidate}
+
+\paragraph{Scope of this draft.}
+This subsection describes the implemented standalone EGO scene adapter. Its integration with the joint EGO/EXO model remains pending; it is not a description of the current joint128 experiment.
+
+Camera reconstruction can additionally provide observed scene points in the motion coordinate system. We formulate scene conditioning through body-relative measurements around a motion proposal. A frozen EGO denoiser first predicts a kinematically reconciled motion $X^b$. Skinning the predicted body yields 67 surface anchors $q_{t,k}$, their body-region labels, and associated global rotations $Q_{t,k}$.
+
+For each anchor, we query nearby measured points and form a 14-dimensional relation descriptor
+\begin{equation}
+\begin{aligned}
+r_{t,k}=\big[&
+Q_{t,k}^{\top}(p^\star-q_{t,k})/r_q,\
+d/r_q,\
+Q_{t,k}^{\top}n,\
+\eta/r_q,\\
+&v_n,\ c_n,\ \rho_s,\ f,\ h,\ u
+\big],
+\end{aligned}
+\label{eq:scene_relations}
+\end{equation}
+where $p^\star$ is the nearest observed point, $d$ its distance, $n$ a locally fitted normal, and $\eta=(q_{t,k}-p^\star)^\top n$ an oriented plane offset. The remaining entries encode normal validity, neighborhood coverage, surface reliability, measured free-space evidence, a nearby-point indicator, and an unknown-space indicator. The query radius is $r_q=0.6\,\mathrm{m}$. Invalid geometric entries are masked.
+
+Free-space evidence is restricted to measured camera-to-first-hit ray segments. A local plane offset does not establish the inside/outside sign of a full scene surface. The unknown indicator marks anchors with neither a nearby observation nor measured free-space evidence; missing geometry is not converted to a free-space label.
+
+An MLP embeds each relation together with anchor motion features, an anchor identity embedding, and the diffusion signal level. Evidence-weighted tokens are pooled within 22 body regions and processed by temporal convolutions. Zero-initialized projections inject the resulting features into the bottleneck and two decoder resolutions of a second pass through the same frozen denoiser. Each injection is further gated by
+\begin{equation}
+G_t=\left(\max_k g_{t,k}\right)\bar\alpha_\tau^{1/2},
+\label{eq:scene_gate}
+\end{equation}
+where $g_{t,k}$ combines local surface reliability, a weaker point-only confidence, and measured free-space evidence.
+
+Let $Y^b$ and $Y^g$ denote the raw baseline and geometry-conditioned outputs. The output correction is bounded before kinematic reconciliation:
+\begin{equation}
+\begin{aligned}
+\widetilde Y^p &=Y^{b,p}
++\kappa^{-1}\mathcal T_{c_s}
+\big(\kappa(Y^{g,p}-Y^{b,p})\big),\\
+\widetilde Y^R&=Y^{b,R}
++c_6\tanh\big((Y^{g,R}-Y^{b,R})/c_6\big),
+\end{aligned}
+\label{eq:scene_bounds}
+\end{equation}
+where $\mathcal T_c(v)=v\,\tanh(\|v\|_2/c)/(\|v\|_2/c)$ with its continuous value at zero, $c_s=0.15\,\mathrm{m}$, and $c_6=0.5$. The rotation limit is imposed on 6D coordinates rather than rotation angles. The final positions are reconstructed through FK with the predicted rest skeleton.
+
+This adapter currently uses a frozen EGO prior. Its proposal/query pass has a different role from the differentiable reference pass in SRRD. A joint scene model must specify their composition, gradient paths, and inference cost before these components can be presented as one evaluated method.
+

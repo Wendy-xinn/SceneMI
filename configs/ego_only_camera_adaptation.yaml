@@ -1,0 +1,86 @@
+# Synthetic pilot settings; not calibrated from validation/frontend error labels.
+# Manual 14k -> 16k continuation. Original checkpoints/records remain protected.
+version: ego-camera-adaptation-v1
+output: runs/ego_only_camera_adaptation
+seed: 20261101
+selection: configs/scene_data_current.json
+scene_paths: configs/scene_paths.local.yaml
+amass_index: runs/amass128/index/complete.json
+reference_loss_config: configs/amass_ego128.yaml
+data:
+  datasets:
+  - amass
+  - egobody
+  - trumans
+  - grail
+  excluded_datasets:
+  - rich
+  split_train: train
+  split_validation: validation
+  frames: 128
+  fps: 30
+  source_quota_per_update: 32
+  sampling: equal_source_quota_with_replacement
+  scene: disabled
+model:
+  latent_dim: 256
+  dim_mults:
+  - 1
+  - 2
+  - 4
+  initialization: from_checkpoint
+  scene_modules_trainable: false
+training:
+  effective_batch_size: 128
+  microbatch_size: 32
+  planned_updates: 16000
+  checkpoint_every: 128
+  quick_validation_every: 500
+  full_validation_steps:
+  - 14000
+  - 15000
+  - 16000
+  precision: fp32
+  retain_candidates: false
+optimizer:
+  lr: 1.0e-05
+  weight_decay: 0.01
+  clip_norm: 1.0
+  warmup_updates: 1
+  lr_floor_fraction: 0.1
+  schedule: constant
+validation:
+  seed: 777
+  ddim_steps: 20
+  quick_families_per_dataset: 8
+  eval_batch_size: 32
+  primary: guarded_clean_noisy_mean_mpjpe_mm
+  tie_tolerance_mm: 0.5
+  test_used: false
+  exhaustive_final: true
+  clean_macro_regression_mm: 2.0
+  clean_dataset_regression_mm: 3.0
+runtime:
+  memory_gib: 10
+  allocator_gib: null  # GPU memory is allocated on demand, without a process ceiling.
+  cpu_count: 4
+logging:
+  tensorboard: true
+continuation:
+  checkpoint: runs/native_ego4_from_scratch_v2/selection/best.pt
+  checkpoint_sha256: cced399085d52e81f92a285be8aac5b2a956d66f8457bfccbb993df8114529b6
+  step: 14000
+  validation_manifest: runs/native_ego4_from_scratch_v2/VALIDATION_MANIFEST.json
+  validation_manifest_sha256: b33baf2feab1e53c0fabf736dfad5b12f6e248ac5d55db34e0653c2af14394fa
+  metrics: runs/native_ego4_from_scratch_v2/selection/full_step_014000.json
+  metrics_sha256: 6b96b01e9d290b13d444675a5decea8570f26d48ca14e6bf2a4fe4553fd6f040
+camera_noise:
+  version: correlated-camera-error-v1
+  probability: 0.25
+  position_std_m: 0.005
+  rotation_std_deg: 0.5
+  drift_position_std_m: 0.015
+  drift_rotation_std_deg: 0.5
+  rho: 0.95
+  ramp_updates: 500
+  seed: 20261102

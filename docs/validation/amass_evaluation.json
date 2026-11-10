@@ -1,0 +1,52 @@
+{
+  "state": "passed",
+  "unit_checks_passed": 6,
+  "final_checkpoint_step": 55000,
+  "checkpoint_sha256": "2b74d1b52cb059bc8c48f562d5c6610f8aef6c40f455836e5f5089cd03fe4f9e",
+  "windows": 344,
+  "source_families": 113,
+  "results": "runs/amass128/evaluation/ego128/RESULT.json",
+  "audit": "runs/amass128/evaluation/ego128/AUDIT.json",
+  "evaluator_sources": {
+    "scenemi/evaluation.py": "54f1ab8e35d88a5087a3f696c9709fb10a0868868c33293d971cf5b8de15e063",
+    "scenemi/metrics.py": "d11bd569c3e1955268b536b4f7e2b0f2b765c768c7ece828cdd49308cfaa40dc"
+  },
+  "current_test_window_mean": {
+    "mpjpe_mm": 175.21938499506058,
+    "pa_mpjpe_mm": 103.30479093525173,
+    "released_pa_compat_mm": 157.45684850342874,
+    "root_error_mm": 127.73822194592499,
+    "head_error_mm": 91.06841124432707,
+    "root_relative_mpjpe_mm": 132.80917149602962,
+    "ground_lowest22_mm": 32.350028748666325,
+    "egoallo_gnd_any_contact": 1.0,
+    "mpjve_mm_s": 605.864841588174,
+    "jerk_m_s3": 138.13276872483317,
+    "gt_jerk_m_s3": 175.22674199497428
+  },
+  "baseline_status": "paper references only; no official checkpoint inference completed",
+  "paper_url": "https://arxiv.org/html/2607.27755v1#S4.T1",
+  "paper_reported_mm": {
+    "EgoEgo": {
+      "mpjpe": 167.4,
+      "pampjpe": 145.8,
+      "head": 54.9
+    },
+    "EgoAllo": {
+      "mpjpe": 119.7,
+      "pampjpe": 101.1,
+      "head": 6.2
+    },
+    "EgoGVAE": {
+      "mpjpe": 106.7,
+      "pampjpe": 89.9,
+      "head": 5.5
+    }
+  },
+  "strict_comparison_ready": false,
+  "unresolved": [
+    "same camera/CPF calibration and same window baseline reruns",
+    "standard PA versus released implementation",
+    "paper and released Ground/Jitter/foot-sliding definitions"
+  ]
+}

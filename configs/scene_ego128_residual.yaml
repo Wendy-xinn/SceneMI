@@ -1,0 +1,27 @@
+version: native-scene-frozen-residual-v1
+reference_config: configs/scene_ego128_local.yaml
+output: runs/scene_ego128_residual
+base:
+  checkpoint: runs/scene_ego128_noscene/selection/best.pt
+  sha256: 33c102cc1dab381d1047b1a93056d1e1d38214504c33bb791087e4fd5ad0538d
+  contract: runs/scene_ego128_noscene/training/CONTRACT.json
+  step: 30000
+  quick_reference: runs/scene_ego128_noscene/selection/quick/step_030000.json
+  comprehensive_reference: runs/scene_ego128_noscene/selection/comprehensive/step_030000.json
+training:
+  batch_size: 8
+  planned_updates: 8000
+  checkpoint_every: 250
+  validation_every: 1000
+optimizer:
+  lr: 0.0001
+  weight_decay: 0.01
+  warmup_updates: 250
+  clip_norm: 1.0
+residual:
+  root_limit_m: 0.08
+  rotation_6d_limit: 0.20
+  head_consistency_weight: 2.0
+  root_consistency_weight: 1.0
+  frozen_backbone_eval: true
+  checkpoint_storage: adapter_optimizer_rng_with_pinned_base

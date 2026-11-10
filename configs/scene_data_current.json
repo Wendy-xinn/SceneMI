@@ -1,0 +1,144 @@
+{
+  "version": "scene-data-quality-v2",
+  "frames": 128,
+  "fps": 30,
+  "paths_config": "configs/scene_paths.local.yaml",
+  "test_requires_explicit_opt_in": true,
+  "ego_loader": "scenemi.data.checked_scene_dataset.CheckedSceneDataset",
+  "ego_local_loader": "scenemi.data.checked_scene_dataset.CheckedLocalSceneDataset",
+  "exo_source_index": "scenemi.data.checked_scene_dataset.SceneSelection",
+  "exo_payload_adapter_ready": false,
+  "sources": {
+    "native_manifest": {
+      "path_key": "native_manifest",
+      "sha256": "0ad36607e705a6480368486e98d3b5dd4de69f2ec916a45b73f2f0d9f2c9c9cc"
+    },
+    "trumans_exo_manifest": {
+      "path": "runs/exo_preparation/trumans_moving/manifest.jsonl",
+      "sha256": "43d8b4eb6623646ad2d3ddbc8a5fcb58e2d5cad62e96f1d8a8f6af38f9e525f7"
+    },
+    "grail_train_main": {
+      "path": "runs/grail_ego_quality_v2/full/train/windows.jsonl",
+      "sha256": "6eedbd386ea9b7b8c3abdd100f805fab3bd8217030f6f9a82e245433d91e42d9"
+    },
+    "grail_train_chairs": {
+      "path": "runs/grail_ego_quality_v2/chair400/SELECTION.jsonl",
+      "sha256": "7d8184423eeaafc2f1900abeb8c71679c5219b7be0a50a8330bfe47b7006754f"
+    },
+    "grail_train_exo": {
+      "path": "runs/exo_preparation/grail_ego_aligned/train/selection.jsonl",
+      "sha256": "e1727839a36cb5ea5fea0da0dbdd2569a88f0cae2c4e1a94f732ea321e8d2ef3"
+    },
+    "chair_prototypes": {
+      "path": "runs/grail_ego_quality_v2/chair400/conditions/PROTOTYPES.json",
+      "sha256": "a00e53d661cc9533ba0136c0153bb20684fd6a312a15311cf1b640b67a98530d"
+    },
+    "grail_validation": {
+      "path": "runs/grail_heldout_quality_v1/full/validation/selection.jsonl",
+      "sha256": "5e7c91ae5d4bccd24edf7af46ed922bc29ca7fa9febdc9ba3e36fd9d4ecf9128"
+    },
+    "grail_test": {
+      "path": "runs/grail_heldout_quality_v1/full/test/selection.jsonl",
+      "sha256": "1941fd1836bc6541153c1951fa4065ae6bfeadc7dd8ab6e85ab25463b4f5f4c6"
+    },
+    "quality_status": {
+      "path": "runs/grail_heldout_quality_v1/full/STATUS.json",
+      "sha256": "9e5e1ea89c605a46dcc328a24f18e4f455f91e56cc900edf2bd027b4717f8078"
+    },
+    "quality_validation": {
+      "path": "runs/grail_heldout_quality_v1/full/VALIDATION.json",
+      "sha256": "78073501776f3664d6f4fa1d96f66b34745b3c184881e39dd061066cbae863c4"
+    }
+  },
+  "grail_selection": {
+    "ego": {
+      "train": [
+        "grail_train_main",
+        "grail_train_chairs"
+      ],
+      "validation": [
+        "grail_validation"
+      ],
+      "test": [
+        "grail_test"
+      ]
+    },
+    "exo": {
+      "train": [
+        "grail_train_exo"
+      ],
+      "validation": [
+        "grail_validation"
+      ],
+      "test": [
+        "grail_test"
+      ]
+    }
+  },
+  "expected": {
+    "ego": {
+      "train": {
+        "egobody": {
+          "retained_sequence_frames": 202950,
+          "usable_frames": 202950
+        },
+        "trumans": {
+          "retained_sequence_frames": 1031393,
+          "usable_frames": 1031365
+        },
+        "grail": {
+          "retained_sequence_frames": 2170711,
+          "usable_frames": 1563865,
+          "sequences": 7411
+        }
+      },
+      "validation": {
+        "egobody": {
+          "retained_sequence_frames": 47880,
+          "usable_frames": 47880
+        },
+        "trumans": {
+          "retained_sequence_frames": 66664,
+          "usable_frames": 66664
+        },
+        "grail": {
+          "retained_sequence_frames": 300496,
+          "usable_frames": 222429,
+          "sequences": 1096
+        }
+      }
+    },
+    "exo": {
+      "train": {
+        "egobody": {
+          "retained_sequence_frames": 233260,
+          "usable_frames": 233260
+        },
+        "trumans": {
+          "retained_sequence_frames": 1031393,
+          "usable_frames": 1031365
+        },
+        "grail": {
+          "retained_sequence_frames": 2170711,
+          "usable_frames": 1563865,
+          "sequences": 7411
+        }
+      },
+      "validation": {
+        "egobody": {
+          "retained_sequence_frames": 58280,
+          "usable_frames": 58280
+        },
+        "trumans": {
+          "retained_sequence_frames": 66664,
+          "usable_frames": 66664
+        },
+        "grail": {
+          "retained_sequence_frames": 300496,
+          "usable_frames": 222429,
+          "sequences": 1096
+        }
+      }
+    }
+  }
+}

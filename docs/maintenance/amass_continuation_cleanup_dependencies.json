@@ -1,0 +1,32 @@
+{
+  "state": "dependencies_checked",
+  "targets": [
+    "runs/amass_joint128/warm/selection/best.pt",
+    "runs/amass_joint128/warm/training/last.pt",
+    "runs/scene_ego128_noscene_low_lr/training/recovery/step_001000.pt"
+  ],
+  "reference_records": {
+    "runs/amass_joint128/warm/selection/best.pt": [
+      "runs/amass_joint128/warm/STATUS.json",
+      "runs/amass_joint128/warm/selection/BEST.json",
+      "runs/amass_joint128/warm/training/STATUS.json"
+    ],
+    "runs/amass_joint128/warm/training/last.pt": [],
+    "runs/scene_ego128_noscene_low_lr/training/recovery/step_001000.pt": [
+      "runs/scene_ego128_noscene_low_lr/training/recovery/RECOVERY.json"
+    ]
+  },
+  "sealed_dependencies": [],
+  "protected_files": 110,
+  "retained_records": true,
+  "reasons": {
+    "runs/amass_joint128/warm/selection/best.pt": "Wrong warm joint branch; step-zero best duplicates existing initializer.",
+    "runs/amass_joint128/warm/training/last.pt": "Wrong warm joint branch stopped at 1350; never use as EXO-only initializer.",
+    "runs/scene_ego128_noscene_low_lr/training/recovery/step_001000.pt": "Superseded recovery snapshot at 1000; completed 3000 last checkpoint retained."
+  },
+  "disk_before": {
+    "total": 1081101176832,
+    "used": 944733896704,
+    "free": 81374924800
+  }
+}

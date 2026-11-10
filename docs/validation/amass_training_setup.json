@@ -1,0 +1,271 @@
+{
+  "checked_at_utc": "2026-10-21T15:34:01.151821+00:00",
+  "formal_training_started": false,
+  "implementation": "observation_shape_v1",
+  "configuration": "configs/amass128.yaml",
+  "runtime_contract_sha256": "04c478e6b8171cd4a785d2a6be460bf5a586539df86a52f644cf8da0c115843f",
+  "runtime_sources": {
+    "experiments/offline_camera_retrain_v1/camera_v2_observations.py": "afe09e0d397091e83d467dd99c8b3c1cb61fa7177127184548a0b9e70597073e",
+    "experiments/offline_camera_retrain_v1/checkpoint_io.py": "5c845fcce92ce449fc0186cf140d692a3604099b0a1261734dfdd59525f31989",
+    "experiments/offline_camera_retrain_v1/control.py": "5c013a324cab1c3a1b061978ebcfb3fa605bc0b9a0f29abff7686a97f1115d7f",
+    "experiments/offline_camera_retrain_v1/coordination.py": "a1d279cef2ee1c4bb339790627210c56f06fb48f749f2f87900fcecc50b8d8fe",
+    "experiments/offline_camera_retrain_v1/data.py": "9868acdc4207092a837f1ac8e44560c828ed287e6322fdede0282013b0e6eb14",
+    "experiments/offline_camera_retrain_v1/export_egobody_exo.py": "ab94d9dd81b1b4d530f74d5ee61cb68dd7dac67a3bfe62f212af42ac1199bb6a",
+    "experiments/offline_camera_retrain_v1/export_native20_training_scenes.py": "7b7da0140494e3444bfac424d7ff8ff60057d81723cb007e855f0d231e686e9c",
+    "experiments/offline_camera_retrain_v1/export_pose_sequences.py": "e306eeec0991c663751191647a7121e27c2172edd9b27586637ac3919598028a",
+    "experiments/offline_camera_retrain_v1/export_rest_joints.py": "cd6af72ed3294004a32dc9d5c62a1c48c5761ed64c299b91a2caffdf4e6b0a1d",
+    "experiments/offline_camera_retrain_v1/metric_surface_tokens.py": "727b60383cd93def75490d43c244e090550560a92558b58386e4141fc013215f",
+    "experiments/offline_camera_retrain_v1/native30_exo.py": "d217dc71c78908c8d4936012a6715a217d0344dea61496a7d623002fdb090c22",
+    "experiments/offline_camera_retrain_v1/native30_geometry.py": "15812909d3fea996db7ac4fdf8fbfd4ac92f535e6a164917b73455b0089ed942",
+    "experiments/offline_camera_retrain_v1/native30_input_noise.py": "d488fbfeb9d12463fa4632226352a976474f92e69185af6f05bba55897d707bd",
+    "experiments/offline_camera_retrain_v1/native30_memory.py": "6dfceff4ce380fe68a254817c641bba311984793f5d7c7d7325b477496df9190",
+    "experiments/offline_camera_retrain_v1/native30_model.py": "8859036ffa34ec07df79cb795ac3f43f3277e411c8ae02e0eabfc58451fc5854",
+    "experiments/offline_camera_retrain_v1/native30_observations.py": "a400b12f5bb8e52a4334f230dab2f9fdd1baa5f19141c07f1eb4d96222d589e5",
+    "experiments/offline_camera_retrain_v1/observed_body_surfaces.py": "fc83b1c4ff43160331acb94e0459c6d34a30523d1ca4cd7cc55c1077b2eff74f",
+    "experiments/offline_camera_retrain_v1/ops/resources.py": "1817d5b32476d400a8004f2560158440ed40b37e811ebb2754d93e8fde002180",
+    "experiments/offline_camera_retrain_v1/orientation_supervision.py": "0512aaf7715a210997264cdb8bd747e0cce04c4d3b8a8549a6dfce4b967132c3",
+    "experiments/offline_camera_retrain_v1/prepare_rich_pseudo_ego.py": "6bf3dfd4610d563ae5216f1d4f85cb33d266628b85d32970e85de0e47b52275d",
+    "experiments/offline_camera_retrain_v1/scene_model.py": "19882da0e640d089fb8068213c7b76bea11c5ef561936492f9a3fe15e4354f9e",
+    "experiments/offline_camera_retrain_v1/scene_visibility_v2.py": "ea4492790483c5c641a823a2e7fd8092d9dd8c376688b2e5c18205fcc0283ca7",
+    "experiments/offline_camera_retrain_v1/supervision.py": "dff0548ef3f4b8eb44198bde12367e746bd5a8646238bcbcf1666f67b2533e58",
+    "experiments/offline_camera_retrain_v1/unified_geometry.py": "ace4f37c11bffcf6f7d2ef76675b0e45a2e1c102c32719c2e29343303c248733",
+    "experiments/offline_camera_retrain_v1/unified_observations.py": "2d3747fd0b6b2d8109e07d817974e074a944524f4c73bd76c1fdee0c53afa63f",
+    "model/mdm_scene_unet.py": "9f5ead721987fb73169a1975c4f9b7185f2a34feff4cbc197f66673abe30f606",
+    "model/net_modules.py": "3bdae73e808e13a600b1e343c60326a259c763c2ef4d4e8b5ba5c9b1293acda0",
+    "scenemi/__init__.py": "20f29814b7184351bc4c606debb189d480a44c5f769dae0ca72fe01bbab0ef2b",
+    "scenemi/__main__.py": "28a14574fc4f5aedf7a07688213696bd232b456b51dcca8580342c3e51715284",
+    "scenemi/config.py": "4c053b2d796406e6064dd3ef64d26e6c2de82ca9a48e3c970a4ced755504bc27",
+    "scenemi/data/__init__.py": "5139e6ccb57e0bccf5f13e71bdeda808dea867a67627953c2db9c9f6c8a21fb3",
+    "scenemi/data/amass.py": "060a79144ea596d09b69063f2c2dec303049a3d4393512699108999f464aed59",
+    "scenemi/data/amass_dataset.py": "cc752de1ecd8ecb49bb11523748f594e23607fd9c47f75ebf7fc1a3bbd9fe8cb",
+    "scenemi/data/amass_prepare.py": "0d1603a59ac9d720ee80c925431e295e132fad9566f928c67c9ed7f2eb4682e8",
+    "scenemi/geometry/__init__.py": "27c358a112c1bd6f2bbba050ee841db1beffc8acd0620d025f2b17ba5ceb7372",
+    "scenemi/geometry/body.py": "b301f8b3288b3cf02b03c2c3615f16f586929b91a6e5904ccdf38f5f0c45264a",
+    "scenemi/geometry/camera.py": "3aa74c0aff40e5a54d4004e5b22916a93ff090bfb431a21203178b63db6c0830",
+    "scenemi/geometry/shape.py": "5f63edb5dc64a70f4f4261bb91ba397c6210f0982eb288582ef13a8a787acdd6",
+    "scenemi/losses.py": "7a45887b21ac36aa96542bc5c8c5a0b3d227946d77c472bcd2055b752bd2f408",
+    "scenemi/models.py": "4a83868b1f75aced7d420e48f2ad681c11fc971c9e042325f5d5d7ce7592e709",
+    "scenemi/observations.py": "8d4ffd87117e06dfa2258065801e9c75ed85219a3b944a6edc97fa0c340fa376",
+    "scenemi/training.py": "3b66be8416bd707fe1af14f7401fc8e8b19711f3b5fd4544c3b299bb48ec2b1d",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/data_loaders/humanml/common/quaternion.py": "ae2e3d090eb39342bdcd0bdae7183bab3159bc100eea5725680dd25032f78c25",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/data_loaders/humanml/common/skeleton.py": "5b047d93ca883a84d972a8e743d33a68089a990e3553f18eb7752b3ce4000776",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/data_loaders/humanml/scripts/motion_process.py": "77d91fa591f54d2227eecf850f8eea52f7d8dba0dc49331102a7c039a14a0216",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/data_loaders/humanml/utils/paramUtil.py": "fe0265f3dcd0d466690d816eae973fcece145f64551cef7e46fed7ef3de80d34",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/experiments/offline_sequence_v1/data_loader.py": "65bb233dbe8853094ca16511798c711cee09ec378a47657fdf3b8edb8ffde0e5",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/model/rotation2xyz.py": "1c0c0f6ce5e7316bb2cb72e1995afee8556ab86fefd18d467bdcc6e8a82b40bc",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/model/smpl.py": "659a35f0552e6cbfabe03ebf04fa41d5fbfd0def0d6e5f81894e63021974d3d1",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/sample/custom_clip_utils.py": "b2951e604c0b77f842f5416f14cf95df6f4986cc559ac62a39375c8e31cd96c9",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/sample/prepare_trumans_static_scene.py": "7d2600b6e59816262e4f9b3240370b2425b0b2e09fb1a9b60fe0975e08f39eb6",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/sample/virtual_head_camera.py": "20e96bd7a30f9323ef73b0135fad0367b8a0bd3b34b7d9d20efe3be4903cd20a",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/utils/config.py": "5bfa8a5d1cfef8a2cc52ef2e205e8824d5d5542280128913142a51df84444f86",
+    "/home/wenxin/projects/diffusion-motion-inbetweening/utils/rotation_conversions.py": "ba21bc55ad8f4ae7c547f432e9d91296bef86cef80ad21ee59971dedd0babeb2"
+  },
+  "config": {
+    "version": "amass128-stage-a-v1",
+    "seed": 20261021,
+    "data": {
+      "source": "amass",
+      "fps": 30,
+      "frames": 128,
+      "split_definition": "configs/amass_splits.json",
+      "splits": {
+        "train": [
+          "train"
+        ],
+        "validation": [
+          "val"
+        ],
+        "test": [
+          "test"
+        ]
+      },
+      "preprocessing": "egoallo_0a_neutral_crop80_floor30_reflect",
+      "body_model": "smplh",
+      "num_betas": 16,
+      "coordinate_frame": "right_handed_y_up_meters",
+      "representation": "201d_common_neutral_pelvis_v1",
+      "sampling": "uniform_family_then_variant_and_window",
+      "exo_camera": "unavailable_in_amass"
+    },
+    "model": {
+      "architecture": "native30",
+      "latent_dim": 256,
+      "dim_mults": [
+        1,
+        2,
+        4
+      ],
+      "initialization": "from_scratch",
+      "checkpoint": null,
+      "diffusion_target": "absolute_x0",
+      "diffusion_steps": 1000,
+      "shape_betas": 16
+    },
+    "scene": {
+      "enabled": false,
+      "geometry_losses": false
+    },
+    "observation": {
+      "ego_input": "virtual_camera",
+      "ego_joints": [
+        15
+      ],
+      "exo_input": "estimated_3d_body_or_joints",
+      "body_shape": "predicted_from_observations",
+      "ground_truth_shape_as_input": false,
+      "mode_probabilities": {
+        "ego": 0.5,
+        "exo": 0.5
+      },
+      "exo_mask": "synthetic_body_part_temporal_dropout",
+      "input_noise": "disabled_clean_baseline"
+    },
+    "loss": {
+      "supervise_hidden_joints": true,
+      "profile": "native30_predicted_shape_v1",
+      "coefficients": {
+        "x0": 1.0,
+        "raw_x0": 0.5,
+        "rotation": 0.2,
+        "position": 2.0,
+        "head_position": 1.0,
+        "velocity": 0.025,
+        "acceleration": 1.25e-05,
+        "root_orientation": 0.25,
+        "head_orientation": 0.5,
+        "neck_orientation": 0.25,
+        "head_root_coordination": 0.1,
+        "turning": 0.02,
+        "foot_velocity": 0.075,
+        "planting": 0.1,
+        "raw_consistency": 0.5,
+        "shape_betas": 0.05,
+        "shape_rest": 0.5,
+        "camera_position": 2.0,
+        "camera_rotation": 0.5,
+        "observed_position": 0.01
+      }
+    },
+    "optimizer": {
+      "name": "AdamW",
+      "lr": 0.0001,
+      "weight_decay": 0.01,
+      "clip_norm": 1.0,
+      "warmup_updates": 500,
+      "lr_floor_fraction": 0.1
+    },
+    "training": {
+      "implementation": "observation_shape_v1",
+      "batch_size": 8,
+      "precision": "fp32",
+      "planned_updates": 55000,
+      "checkpoint_policy": "atomic_resumable_last",
+      "checkpoint_every": 1000,
+      "log_every": 20
+    },
+    "validation": {
+      "ddim_steps": 20,
+      "mode": [
+        "ego",
+        "exo"
+      ],
+      "fixed_seeds": [
+        777
+      ],
+      "report_hidden_and_visible_separately": true,
+      "every_updates": 1000,
+      "families_per_corpus": 1
+    }
+  },
+  "environment": {
+    "torch": "2.8.0",
+    "numpy": "1.24.4",
+    "scipy": "1.9.1",
+    "einops": "0.7.0"
+  },
+  "regression": {
+    "command": "python -m unittest discover -s tests -t .",
+    "tests": 193,
+    "passed": 187,
+    "skipped": 6,
+    "failures": 0,
+    "elapsed_seconds": 12.396,
+    "skipped_scope": "2 CUDA equivalence checks; 4 unavailable legacy 5Hz archive integrations",
+    "bounded_memory_gib": 8,
+    "cpu_count": 2,
+    "gpu_used": false
+  },
+  "targeted_regression": {
+    "tests": 19,
+    "passed": 19,
+    "skipped": 0,
+    "failures": 0,
+    "elapsed_seconds": 6.939
+  },
+  "real_data_diagnostic": {
+    "state": "passed",
+    "diagnostic_only": true,
+    "batch_size": 2,
+    "updates_executed": 3,
+    "elapsed_seconds": 12.469863236998208,
+    "resume_bitwise_exact": true,
+    "isolation": {
+      "label_poison_invariant": true,
+      "ego_joint_track_poison_invariant": true,
+      "observation_only_shape": true,
+      "finite_output": true
+    },
+    "full_record": "runs/amass128/preflight/diagnostic_cpu/RESULT.json",
+    "index_sha256": "9d454a9288db15fa85da6fe3468e8266c6f78895f182b13ae123f52cfcb2e00c",
+    "shape_predictor_gradient_nonzero": true,
+    "ddim_modes": [
+      "ego",
+      "exo"
+    ],
+    "ddim_steps": 20,
+    "trained_quality_claim": false,
+    "checkpoint_bytes": 1026922617,
+    "checkpoint_sha256": "d8c84d3d2b2690d4b617957a6451f828675991c22a4cb34775a066a459af9949",
+    "checkpoint_removed": true
+  },
+  "frozen_preparation_sources_unchanged": true,
+  "readiness_watcher": {
+    "state": "waiting_for_full_data",
+    "launcher_pid": 266229,
+    "automatic_gpu_launch": false,
+    "purpose": "Complete inventory/output hashing, then full-data CPU preflight"
+  },
+  "data_snapshot": {
+    "state": "running",
+    "committed_sources": 1428,
+    "total_raw_files": 14096,
+    "failures": 0,
+    "updated_at_utc": "2026-10-21T15:33:30.450623+00:00",
+    "estimated_remaining_seconds": 28145.946980392153,
+    "eta_method": "Recent 256 prepared source pairs, excluding cheap filename skips; sequence length varies"
+  },
+  "gpu_admission_snapshot": {
+    "checked_at_utc": "2026-10-21T15:31:09+00:00",
+    "admitted": false,
+    "memory_used_mib": 14709,
+    "utilization_percent": 87,
+    "compute_pids": [
+      9570
+    ],
+    "ownership": "unconfirmed",
+    "gpu_preflight_started": false,
+    "other_processes_modified": false
+  },
+  "required_before_formal_training": [
+    "Complete AMASS preparation and frozen full index",
+    "Current-code/config/index full-data CPU preflight",
+    "Admitted CUDA preflight at formal batch size 8, including exact resume",
+    "Fresh random initialization; diagnostic weights are not a warm start"
+  ],
+  "limitations": [
+    "Pilot checks do not establish full-data correctness or convergence",
+    "AMASS EXO observations are clean synthetic masked 3D joints; no external camera",
+    "Fixed development sentinels are not full val/test or a reproduced paper benchmark",
+    "Stage B requires a shape-preserving scene adapter and separate evaluation"
+  ]
+}

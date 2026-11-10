@@ -1,0 +1,242 @@
+{
+  "protocol": "grail-ego-causal-visibility-filter-v1",
+  "completed_at_utc": "2026-10-22T03:49:37.527425+00:00",
+  "config": {
+    "protocol": "grail-ego-causal-visibility-filter-v1",
+    "frames": 128,
+    "fps": 30,
+    "image_size": [
+      128,
+      96
+    ],
+    "selected_profile": "standard",
+    "selection_basis": "Predeclared basic observability heuristic; sensitivity reported on train, not selected by validation/test performance",
+    "memory": "same_recording_causal_static_history",
+    "min_ready_frames_per_window": 16,
+    "profiles": {
+      "lenient": {
+        "min_object_pixel_fraction": 0.005,
+        "min_observed_frames": 8,
+        "min_consecutive_frames": 4
+      },
+      "standard": {
+        "min_object_pixel_fraction": 0.01,
+        "min_observed_frames": 16,
+        "min_consecutive_frames": 8
+      },
+      "strict": {
+        "min_object_pixel_fraction": 0.02,
+        "min_observed_frames": 32,
+        "min_consecutive_frames": 16
+      }
+    },
+    "mode": "ego",
+    "training_only_selection": true,
+    "physics_quality_checked": false
+  },
+  "config_sha256": "5d7b7574c6aec59a80fb5ceb3b482375ec9504407b0be5b4ab22c6bf82e1f950",
+  "implementation_sha256": "484454998bde946c16d8d0b89666a13ea51212799d27a8e6289f4ce5bf4b124b",
+  "manifest_sha256": "8168afe98f75cc3d212fd86f377a8580c237de615b41922638cb9e53a2019134",
+  "statistics_sha256": "6ec3af2d96bb81666957061cb76c854aa82e5e60b6cd6e88eff4d87a4837fd58",
+  "counts": {
+    "train_sequences": 13389,
+    "train_visibility_pass": 11789,
+    "train_possible_windows": 2116986,
+    "train_eligible_windows": 1935920,
+    "validation_sequences": 1663,
+    "validation_visibility_pass": 1456,
+    "validation_possible_windows": 257112,
+    "validation_eligible_windows": 234657,
+    "test_sequences": 2533,
+    "test_visibility_pass": 2340,
+    "test_possible_windows": 423492,
+    "test_eligible_windows": 399474
+  },
+  "artifacts_sha256": {
+    "train/manifest.jsonl": "8bfbffc16853653d47ed3b0c884fa34d12cc936e464ad21f71b9c6bda433eea6",
+    "train/windows.jsonl": "f9d91ade9d299604e8b8441e760e4b67fc9d097a75b2ea2ada823c69fc120157",
+    "train/excluded.jsonl": "d2ecf13ba5e437f8a1687940ec337f404dcf53e29dfe282d6861473dc22d0e9b",
+    "evaluation_coverage_audit.jsonl": "1d3f87784e76d597247ebac85251f3a5c1fb829f2be28901c47ac14b10f18913"
+  },
+  "physics_quality_checked": false,
+  "canonical_evaluation_unchanged": true,
+  "exo_selection_unchanged": true,
+  "formal_training_integrated": false,
+  "source_data_deleted": false,
+  "training_distribution": {
+    "lenient": {
+      "train/curb": {
+        "sequences": 1411,
+        "eligible_sequences": 1382,
+        "possible_windows": 245514,
+        "eligible_windows": 239820,
+        "windows_preserved_by_history": 30868
+      },
+      "train/all": {
+        "sequences": 13389,
+        "eligible_sequences": 12177,
+        "possible_windows": 2116986,
+        "eligible_windows": 1971973,
+        "windows_preserved_by_history": 205017
+      },
+      "train/sitting": {
+        "sequences": 1418,
+        "eligible_sequences": 971,
+        "possible_windows": 34032,
+        "eligible_windows": 23284,
+        "windows_preserved_by_history": 174
+      },
+      "train/slope": {
+        "sequences": 1488,
+        "eligible_sequences": 1466,
+        "possible_windows": 258912,
+        "eligible_windows": 254961,
+        "windows_preserved_by_history": 29776
+      },
+      "train/stair_p1": {
+        "sequences": 4917,
+        "eligible_sequences": 4269,
+        "possible_windows": 855558,
+        "eligible_windows": 742426,
+        "windows_preserved_by_history": 118582
+      },
+      "train/stair_p2": {
+        "sequences": 4155,
+        "eligible_sequences": 4089,
+        "possible_windows": 722970,
+        "eligible_windows": 711482,
+        "windows_preserved_by_history": 25617
+      }
+    },
+    "standard": {
+      "train/curb": {
+        "sequences": 1411,
+        "eligible_sequences": 1369,
+        "possible_windows": 245514,
+        "eligible_windows": 237420,
+        "windows_preserved_by_history": 31665
+      },
+      "train/all": {
+        "sequences": 13389,
+        "eligible_sequences": 11789,
+        "possible_windows": 2116986,
+        "eligible_windows": 1935920,
+        "windows_preserved_by_history": 196237
+      },
+      "train/sitting": {
+        "sequences": 1418,
+        "eligible_sequences": 759,
+        "possible_windows": 34032,
+        "eligible_windows": 18216,
+        "windows_preserved_by_history": 36
+      },
+      "train/slope": {
+        "sequences": 1488,
+        "eligible_sequences": 1451,
+        "possible_windows": 258912,
+        "eligible_windows": 252327,
+        "windows_preserved_by_history": 30550
+      },
+      "train/stair_p1": {
+        "sequences": 4917,
+        "eligible_sequences": 4135,
+        "possible_windows": 855558,
+        "eligible_windows": 718999,
+        "windows_preserved_by_history": 108628
+      },
+      "train/stair_p2": {
+        "sequences": 4155,
+        "eligible_sequences": 4075,
+        "possible_windows": 722970,
+        "eligible_windows": 708958,
+        "windows_preserved_by_history": 25358
+      }
+    },
+    "strict": {
+      "train/curb": {
+        "sequences": 1411,
+        "eligible_sequences": 1309,
+        "possible_windows": 245514,
+        "eligible_windows": 226725,
+        "windows_preserved_by_history": 28505
+      },
+      "train/all": {
+        "sequences": 13389,
+        "eligible_sequences": 10947,
+        "possible_windows": 2116986,
+        "eligible_windows": 1850963,
+        "windows_preserved_by_history": 166243
+      },
+      "train/sitting": {
+        "sequences": 1418,
+        "eligible_sequences": 344,
+        "possible_windows": 34032,
+        "eligible_windows": 8256,
+        "windows_preserved_by_history": 0
+      },
+      "train/slope": {
+        "sequences": 1488,
+        "eligible_sequences": 1420,
+        "possible_windows": 258912,
+        "eligible_windows": 246605,
+        "windows_preserved_by_history": 30090
+      },
+      "train/stair_p1": {
+        "sequences": 4917,
+        "eligible_sequences": 3839,
+        "possible_windows": 855558,
+        "eligible_windows": 667698,
+        "windows_preserved_by_history": 84378
+      },
+      "train/stair_p2": {
+        "sequences": 4155,
+        "eligible_sequences": 4035,
+        "possible_windows": 722970,
+        "eligible_windows": 701679,
+        "windows_preserved_by_history": 23270
+      }
+    }
+  },
+  "verification": {
+    "state": "passed",
+    "source_metadata_hashes_verified_in_scan": 17585,
+    "source_manifest_unchanged": true,
+    "train_sequences_retained": 11789,
+    "train_sequences_excluded": 1600,
+    "train_windows_retained": 1935920,
+    "all_selected_windows_in_bounds_and_causally_eligible": true,
+    "all_artifact_hashes_verified": true,
+    "known_cases": {
+      "terrain_stairs__stairs_2708__0001": {
+        "visibility_pass": true,
+        "reason": "sufficient_causal_object_observation",
+        "history_ready_frame": 15,
+        "eligible_start_ranges": [
+          [
+            0,
+            173
+          ]
+        ],
+        "physics_quality_checked": false
+      },
+      "sitting__sandstone_mexican_carved_chair_desert_ochre__005": {
+        "visibility_pass": false,
+        "reason": "insufficient_object_observation_or_window_coverage",
+        "history_ready_frame": null,
+        "eligible_start_ranges": [],
+        "physics_quality_checked": false
+      },
+      "sitting__steam_bent_hardwood_captain_chair_with_armrests__008": {
+        "visibility_pass": false,
+        "reason": "no_non_ground_object_pixels",
+        "history_ready_frame": null,
+        "eligible_start_ranges": [],
+        "physics_quality_checked": false
+      }
+    },
+    "tests": {
+      "module": "tests.test_grail_visibility",
+      "passed": 6
+    }
+  }
+}

@@ -1,0 +1,29 @@
+version: sequence-support-surfaces-v1
+gravity:
+  source: public_calibrated_world
+  up_world: [0.0, 1.0, 0.0]
+extraction:
+  voxel_m: 0.025
+  radius_m: 0.45
+  stride_m: 0.30
+  height_bin_m: 0.04
+  minimum_points: 20
+  minimum_span_m: 0.15
+  maximum_slope_deg: 25
+  normal_agreement_deg: 10
+  ransac_distance_m: 0.015
+  ransac_iterations: 128
+  maximum_layers_per_tile: 8
+  maximum_fit_error_m: 0.015
+query:
+  horizontal_radius_m: 0.30
+  reliable_distance_m: 0.075
+  uncertain_distance_m: 0.20
+  minimum_reliable_coverage: 0.50
+  minimum_reliable_confidence: 0.35
+  maximum_step_above_anchor_m: 0.15
+  maximum_height_difference_m: 0.80
+  maximum_candidates: 4
+  layer_separation_m: 0.08
+  ambiguity_margin_m: 0.04
+  temporal_weight: 0.20

@@ -1,0 +1,112 @@
+{
+  "checked_at_utc": "2026-10-22T01:33:30.189882+00:00",
+  "incident": {
+    "cause": "cgroup_oom_kill",
+    "confirmed_by": "systemd user journal and kernel OOM log",
+    "scope": "scenemi-0e92aea6505b.scope",
+    "killed_at_beijing": "2026-10-22T08:07:23+08:00",
+    "previous_memory_gib": 6,
+    "resume_memory_gib": 16
+  },
+  "committed_sources_at_interruption": 8063,
+  "total_raw_sources": 14096,
+  "resumed_launcher_pid": 278878,
+  "resumed_preparation_pid": 278879,
+  "actual_limits_verified": {
+    "memory_max_bytes": 17179869184,
+    "cpu_affinity": [
+      16,
+      17,
+      18,
+      19
+    ],
+    "oom_kill_count_at_check": 0
+  },
+  "sealed_preparation_sources_unchanged": true,
+  "monitor_source_sha256": "786fd56c1d97811306c8c59c13fff6f3cbec9a2da6d54af1398fc1332679be5b",
+  "targeted_checks": {
+    "command": "python -m unittest tests.test_amass_training -v",
+    "tests": 7,
+    "passed": 7,
+    "skipped": 0,
+    "elapsed_seconds": 1.43,
+    "bounded_memory_gib": 4,
+    "cpu_count": 2,
+    "gpu_used": false
+  },
+  "monitor_checks": [
+    "Killed process has no live-running status or ETA",
+    "Live recovery hashing is distinguished from a dead process",
+    "Resumed ETA discards the prior invocation clock",
+    "Partial/stale/diagnostic proofs cannot authorize formal training"
+  ],
+  "readiness_snapshot": {
+    "state": "waiting_for_full_data",
+    "updated_at_utc": "2026-10-22T01:33:32.890531+00:00",
+    "data": {
+      "state": "running",
+      "recorded_preparation_state": "running",
+      "process_alive": true,
+      "seconds_since_last_commit": 2.135297,
+      "committed_sources": 8117,
+      "total_raw_files": 14096,
+      "failures": 0,
+      "updated_at_utc": "2026-10-22T01:33:30.751163+00:00",
+      "estimated_remaining_seconds": 12441.085471698114,
+      "eta_method": "Recent 256 prepared source pairs, excluding cheap filename skips; sequence length varies"
+    },
+    "formal_training_started": false,
+    "automatic_gpu_launch": false
+  },
+  "formal_training_started": false,
+  "prior_training_checks_note": "Historical proof predates monitor source changes; full-data CPU and CUDA preflight must seal current sources",
+  "data_status_snapshot": {
+    "protocol": "egoallo-0a-cpu-audited-v1",
+    "state": "running",
+    "pilot": false,
+    "pid": 278879,
+    "updated_at_utc": "2026-10-22T01:33:28.967169+00:00",
+    "total_raw_files": 14096,
+    "committed_sources": 8116,
+    "counts": {
+      "prepared": 6881,
+      "filename_excluded": 1194,
+      "too_short_upstream": 41
+    },
+    "completed_variants": 13762,
+    "eligible_corpora": [
+      "ACCAD",
+      "BMLhandball",
+      "BMLmovi",
+      "BioMotionLab_NTroje",
+      "CMU",
+      "DFaust_67",
+      "DanceDB",
+      "EKUT",
+      "Eyes_Japan_Dataset",
+      "HumanEva",
+      "KIT",
+      "MPI_HDM05",
+      "MPI_Limits",
+      "MPI_mosh",
+      "SFU",
+      "SSM_synced",
+      "TCD_handMocap",
+      "TotalCapture",
+      "Transitions_mocap"
+    ],
+    "eligible_128_variants": 7400,
+    "fk_max_error_m": 3.6268888363388296e-05,
+    "output_bytes": 7719405804,
+    "manifest": "/mnt/e/Datasets/human/AMASS/egoallo_neutral30_v1/manifest.jsonl",
+    "output_root": "/mnt/e/Datasets/human/AMASS/egoallo_neutral30_v1",
+    "current_source": "DanceDB/20151003_AndriaMichaelidou/Andria_Tired_v2_C3D_poses.npz",
+    "invocation_elapsed_seconds": 127.38654270100233,
+    "invocation_completed_sources": 53,
+    "failures": 0,
+    "error": null,
+    "optimizer_steps": 0,
+    "no_gpu": true,
+    "body_shape_is_label": true
+  }
+}

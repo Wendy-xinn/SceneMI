@@ -1,0 +1,11 @@
+version: user-managed-gpu-v1
+# User instruction, 2026-11-04: GPU usage is managed manually.
+gpu:
+  allocator_limit_gib: null
+  minimum_free_gib: null
+  maximum_used_gib: null
+  maximum_utilization_percent: null
+  concurrent_job_limit: null
+  enforce_process_identity: false
+# CPU/RAM isolation and same-output checkpoint locks remain in effect.
+cpu_ram_isolation: true
